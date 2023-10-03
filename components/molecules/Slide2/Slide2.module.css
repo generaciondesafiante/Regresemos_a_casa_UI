@@ -1,0 +1,131 @@
+.carouselTwo-section {
+  height: 100vh;
+  color: var(--white);
+  background-color: var(--yellow);
+  text-align: center;
+}
+
+.carouselTwo-title {
+  margin: 0 auto;
+  width: 8rem;
+  padding-top: 6rem;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.carouselTwo-titleTwo {
+  margin-top: -4.5rem;
+}
+
+.carouselTwo-paragraph {
+  width: 14rem;
+  margin: 0 auto;
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+}
+
+.carouselTwo-paragraph span {
+  font-weight: bold;
+}
+
+.carouselTwo-img {
+  width: 18rem;
+}
+
+@media (min-width: 48rem) {
+  .carouselTwo-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .carouselTwo-content_text {
+    position: relative;
+    z-index: 10;
+    height: 15rem;
+  }
+
+  .carouselTwo-title {
+    font-size: 1.2rem;
+  }
+
+  .carouselTwo-content_text.left {
+    margin-left: 1rem;
+  }
+
+  .carouselTwo-content_text.rigth {
+    margin-right: 1rem;
+  }
+
+  .carouselTwo-titleTwo {
+    margin-top: 0rem;
+  }
+
+  .carouselTwo-paragraph {
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+  }
+
+  .carouselTwo-container_img {
+    width: 100%;
+    position: fixed;
+  }
+
+  .carouselTwo-img {
+    display: block;
+    margin: 0 auto;
+    width: 27rem;
+    padding-top: 6rem;
+  }
+}
+
+@media (min-width: 64rem) {
+  .carouselTwo-content_text.left {
+    margin-left: 4rem;
+  }
+
+  .carouselTwo-content_text.rigth {
+    margin-right: 4rem;
+  }
+
+  .carouselTwo-title {
+    width: 10rem;
+    font-size: 1.4rem;
+  }
+
+  .carouselTwo-paragraph {
+    width: 16rem;
+    margin-top: 0.8rem;
+    font-size: 1rem;
+  }
+
+  .carouselTwo-img {
+    width: 35rem;
+    padding-top: 6rem;
+  }
+}
+
+@media (min-width: 75rem) {
+  .carouselTwo-content_text.left {
+    margin-left: 7rem;
+  }
+
+  .carouselTwo-content_text.rigth {
+    margin-right: 7rem;
+  }
+
+  .carouselTwo-title {
+    width: 16rem;
+    font-size: 2rem;
+  }
+
+  .carouselTwo-paragraph {
+    width: 17rem;
+    font-size: 1.1rem;
+  }
+
+  .carouselTwo-img {
+    width: 50rem;
+    padding-top: 5rem;
+  }
+}

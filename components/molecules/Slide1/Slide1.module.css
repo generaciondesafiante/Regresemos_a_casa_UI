@@ -1,0 +1,133 @@
+.carouselOne-section {
+  display: flex;
+  justify-content: center;
+}
+
+.carouselOne-img_one {
+  width: 23rem;
+  height: 16rem;
+  margin-top: 5rem;
+}
+
+.carouselOne-img_two {
+  display: none;
+}
+
+.carouselOne-content_text {
+  position: absolute;
+  margin-top: 24rem;
+  text-align: center;
+}
+
+.carouselOne-title {
+  margin: 0 auto;
+  width: 12rem;
+  font-size: 1.6rem;
+  color: var(--darkBlue);
+}
+
+.carouselOne-title span {
+  color: var(--yellow);
+}
+
+.carouselOne-paragraph {
+  width: 11rem;
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: var(--darkGreen);
+}
+
+@media (min-width: 48rem) {
+  .carouselOne-img_one {
+    position: absolute;
+    right: 0;
+    width: 35rem;
+    height: 23rem;
+    margin-top: 9rem;
+  }
+
+  .carouselOne-img_two {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 10rem;
+    height: 21rem;
+  }
+
+  .carouselOne-content_text {
+    text-align: left;
+    margin-top: 15rem;
+    margin-left: -25rem;
+  }
+
+  .carouselOne-title {
+    margin: 0;
+    width: 13rem;
+    font-size: 1.7rem;
+  }
+
+  .carouselOne-paragraph {
+    width: 13rem;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (min-width: 64rem) {
+  .carouselOne-img_one {
+    width: 45rem;
+    height: 29rem;
+  }
+
+  .carouselOne-img_two {
+    width: 12rem;
+    height: 25rem;
+  }
+
+  .carouselOne-content_text {
+    margin-top: 16rem;
+    margin-left: -37rem;
+  }
+
+  .carouselOne-title {
+    width: 15rem;
+    font-size: 2rem;
+  }
+
+  .carouselOne-paragraph {
+    width: 13rem;
+    margin-top: 1rem;
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 75rem) {
+  .carouselOne-img_one {
+    width: 60rem;
+    height: 40rem;
+    margin-top: 6rem;
+    margin-right: 5rem;
+  }
+
+  .carouselOne-img_two {
+    width: 19rem;
+    height: 38rem;
+  }
+
+  .carouselOne-content_text {
+    margin-top: 16rem;
+    margin-left: -48rem;
+  }
+
+  .carouselOne-title {
+    width: 26rem;
+    font-size: 3.5rem;
+  }
+
+  .carouselOne-paragraph {
+    width: 19rem;
+    font-size: 1.4rem;
+  }
+}
