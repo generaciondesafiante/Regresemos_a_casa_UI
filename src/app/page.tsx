@@ -1,10 +1,9 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import HomePageTemplate from "../../components/templates/HomePage-template/HomePageTemplate";
 
 export default function Home() {
   return (
-   <>
-    
-   </>
+    <>
+      <HomePageTemplate />
+    </>
   );
 }
