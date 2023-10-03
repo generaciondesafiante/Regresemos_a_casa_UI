@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from "react";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { Slide1, Slide2, Slide3 } from "../../molecules";
-import styles from "./Carousel.module.css"; // Importa el módulo CSS
+import styles from "./Carousel.module.css";
 
 export const Carousel: React.FC = () => {
   const slideshow = useRef<HTMLDivElement>(null);
@@ -59,7 +59,6 @@ export const Carousel: React.FC = () => {
     }, 8000);
 
     return () => {
-      // Limpia el intervalo cuando el componente se desmonta
       if (slideshowInterval.current) {
         clearInterval(slideshowInterval.current);
       }
