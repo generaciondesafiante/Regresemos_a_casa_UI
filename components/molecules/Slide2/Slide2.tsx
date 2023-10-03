@@ -27,9 +27,9 @@ export const Slide2 = () => {
           CONÉCTATE CON TU FE
         </h1>
         <p className={styles["carouselTwo-paragraph"]}>
-          Si tú no conoces a tu pareja ¿como sabes que la estás amando
+          Si tú no conoces a tu pareja ¿Cómo sabes que la estás amando
           correctamente? ¡lo mismo pasa con nuestro Dios!{" "}
-          <span>Amemoslo como Él desea</span>
+          <span>Amémoslo como Él desea</span>
         </p>
       </div>
     </section>
