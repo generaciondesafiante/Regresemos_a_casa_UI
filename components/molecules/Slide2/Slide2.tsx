@@ -1,5 +1,5 @@
 import styles from "./Slide2.module.css";
-export const Slide2 = () => {
+export const Slide2: React.FC = () => {
   return (
     <section className={styles["carouselTwo-section"]}>
       <div

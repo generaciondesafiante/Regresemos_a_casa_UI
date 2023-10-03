@@ -1,7 +1,7 @@
-import { HomePage } from "../../organisms/HomePage/HomePage";
+import { Carousel } from "../../organisms";
 
-const HomePageTemplate = () => {
-  return <HomePage />;
+const HomePageTemplate: React.FC = () => {
+  return <Carousel />;
 };
 
 export default HomePageTemplate;

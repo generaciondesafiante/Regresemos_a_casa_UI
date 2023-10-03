@@ -1,6 +1,6 @@
 import styles from "./Slide1.module.css";
 
-export const Slide1 = () => {
+export const Slide1: React.FC = () => {
   return (
     <section className={styles["carouselOne-section"]}>
       <img

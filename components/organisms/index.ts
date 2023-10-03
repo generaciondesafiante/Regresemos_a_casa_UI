@@ -1,2 +1,3 @@
 export * from './Carousel/Carousel';
-export * from './HomePage/HomePage';
+export * from './Login/Login';
+export * from './index';
