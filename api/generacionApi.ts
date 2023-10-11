@@ -5,7 +5,7 @@ const generacionApi = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL
 });
 
-// ----- TODO: CONFIGURE INTERCEPTORS
+// ----- TODO: CONFIGURE INTERCEPTORS Commented for future use in user authentication
 // generacionApi.interceptors.request.use((config) => {
 //   config.headers = {
 //     ...config.headers,
