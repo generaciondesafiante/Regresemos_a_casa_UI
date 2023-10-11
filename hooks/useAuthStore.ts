@@ -20,12 +20,7 @@ interface UserData {
   image: string;
 }
 
-// export interface AuthStore {
-//   status: string;
-//   errorMessage: string | undefined;
-//   user: UserData;
-//   startLogin: (credentials: { email: string; password: string }) => Promise<void>;
-// }
+
 interface AuthStore {
   status: string;
   errorMessage: string | undefined;

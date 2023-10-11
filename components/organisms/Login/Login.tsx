@@ -1,17 +1,12 @@
 "use client";
 import { FC, useEffect } from "react";
 import Link from "next/link";
-// import { useAuthStore } from ".././../../hooks";
 import { useAuthStore } from "../../../hooks/useAuthStore";
 import { useForm } from "../../../hooks/useForm";
 import { Button, Input } from "../../atoms";
 import styles from "./Login.module.css";
 import Swal from "sweetalert2";
 
-// interface LoginFormFields {
-//   loginEmail: string;
-//   loginPassword: string;
-// }
 interface FormField {
   [key: string]: string;
 }
@@ -24,11 +19,6 @@ const loginFormFields: FormField = {
 export const Login: FC = () => {
   const { startLogin, errorMessage } = useAuthStore();
 
-  // const {
-  //   loginEmail,
-  //   loginPassword,
-  //   onInputChange: onLoginInputChange,
-  // } = useForm(loginFormFields);
   const { formState, onInputChange: onLoginInputChange } =
     useForm(loginFormFields);
   const { loginEmail, loginPassword } = formState;
@@ -43,10 +33,6 @@ export const Login: FC = () => {
     if (errorMessage !== undefined)
       Swal.fire("Usuario o contraseña incorrecta", errorMessage, "warning");
   }, [errorMessage]);
-  // const {
-  //   formState: { loginEmail, loginPassword },
-  //   onInputChange: onLoginInputChange,
-  // } = useForm(loginFormFields);
 
   return (
     <>

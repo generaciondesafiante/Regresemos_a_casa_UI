@@ -1,13 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-// Define el tipo para el estado inicial
+// Defines the type for the initial state
 export interface AuthState {
   status: string;
   user: { uid?: string; email?: string };
   errorMessage?: string | undefined;
 }
 
-// Define el tipo para las acciones
+// Defines the type for the actions
 interface AuthActions {
   onChecking: () => void;
   onLogin: (payload: { uid?: string; email?: string }) => void;
