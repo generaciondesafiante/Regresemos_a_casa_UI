@@ -1,6 +1,7 @@
+import { FC } from "react";
 import { DashboardTemplate } from "../../../../components/templates";
 
-const page = () => {
+const page: FC = () => {
   return <DashboardTemplate />;
 };
 
