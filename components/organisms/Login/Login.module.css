@@ -1,0 +1,83 @@
+.form-login {
+  background-image: linear-gradient(0deg, #29384be6, #29384be6),
+    url("https://i.imgur.com/giBenIE.png");
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-login-title {
+  margin-top: 8rem;
+  width: 16rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--white);
+  font-size: 1.6rem;
+}
+
+.form-login-title_register {
+  width: 15rem;
+}
+
+.form-login-forgot_login {
+  text-decoration: none;
+  color: var(--whiteGradient);
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+}
+
+.form-login-forgot_login:hover {
+  text-decoration: underline;
+  color: var(--turquoise);
+}
+
+.form-login-btn {
+  border: none;
+  background-color: var(--turquoise);
+  color: var(--white);
+  margin-top: 0.5rem;
+}
+
+.form-login-btn:hover {
+  background-color: var(--white);
+  color: var(--turquoise);
+}
+
+@media (min-width: 38rem) {
+  .form-login-title {
+    width: 17rem;
+    font-size: 1.8rem;
+  }
+
+  .form-login-forgot_login {
+    font-size: 0.9rem;
+  }
+
+  .form-login-btn {
+    font-size: 0.9rem;
+  }
+}
+
+@media (min-width: 64rem) {
+  .form-login-title {
+    width: 28rem;
+    font-size: 3rem;
+  }
+
+  .form-login-title_register {
+    margin-top: 4rem;
+  }
+
+  .form-login-forgot_login {
+    font-size: 1rem;
+  }
+
+  .form-login-btn {
+    width: 10rem;
+    padding: 0.6rem 1rem;
+    font-size: 1.1rem;
+  }
+}

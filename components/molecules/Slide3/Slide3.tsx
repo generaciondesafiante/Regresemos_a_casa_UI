@@ -1,5 +1,5 @@
 import styles from "./Slide3.module.css";
-export const Slide3 = () => {
+export const Slide3: React.FC = () => {
   return (
     <section className={styles["carouselThree-container"]}>
       <iframe

@@ -1,0 +1,73 @@
+.form-input-container_inLa {
+  position: relative;
+  padding: 0.6rem;
+  margin-top: 0.8rem;
+}
+
+.form-input-label {
+  position: absolute;
+  padding: 0.6rem;
+  left: 0.5rem;
+  color: var(--white);
+  font-size: 0.8rem;
+  transition: 0.5s;
+}
+
+.form-input-input {
+  font-family: "Montserrat", sans-serif;
+  padding: 0.6rem;
+  border-radius: 0.8rem;
+  width: 15rem;
+  border: none;
+  outline: 0.05rem solid var(--turquoise);
+  background-color: transparent;
+  color: var(--white);
+  font-size: 0.8rem;
+}
+
+.form-input-input:focus + .form-input-label {
+  transform: translateY(-2.1rem);
+  color: var(--turquoise);
+  padding-left: 0rem;
+  font-size: 0.9rem;
+}
+
+.form-input-input:not(:placeholder-shown) + .form-input-label {
+  transform: translateY(-1.9rem);
+  transition: 0.5s;
+}
+
+@media (min-width: 38rem) {
+  .form-input-label {
+    font-size: 0.9rem;
+  }
+
+  .form-input-input {
+    padding: 0.7rem;
+    width: 20rem;
+    font-size: 0.9rem;
+  }
+
+  .form-input-input:focus + .form-input-label {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 64rem) {
+  .form-input-label {
+    font-size: 1.1rem;
+  }
+
+  .form-input-input {
+    width: 30rem;
+    font-size: 1.1rem;
+  }
+
+  .form-input-input:focus + .form-input-label {
+    font-size: 1.2rem;
+  }
+
+  .form-input-input:not(:placeholder-shown) + .form-input-label {
+    transform: translateY(-2.1rem);
+  }
+}
