@@ -20,14 +20,15 @@ interface UserData {
   image: string;
 }
 
-
 interface AuthStore {
   status: string;
   errorMessage: string | undefined;
-  user: Partial<UserData>; // Permite propiedades opcionales en user
-  startLogin: (credentials: { email: string; password: string }) => Promise<void>;
+  user: Partial<UserData>;
+  startLogin: (credentials: {
+    email: string;
+    password: string;
+  }) => Promise<void>;
 }
-
 
 export const useAuthStore = (): AuthStore => {
   const { status, errorMessage, user } = useSelector(
@@ -35,7 +36,13 @@ export const useAuthStore = (): AuthStore => {
   );
   const dispatch = useDispatch();
 
-  const startLogin = async ({ email, password }: { email: string; password: string }): Promise<void> => {
+  const startLogin = async ({
+    email,
+    password,
+  }: {
+    email: string;
+    password: string;
+  }): Promise<void> => {
     dispatch(onChecking());
 
     try {
@@ -64,9 +71,7 @@ export const useAuthStore = (): AuthStore => {
       localStorage.setItem("image", data.image);
       localStorage.setItem("token-init-date", String(new Date().getTime()));
 
-     dispatch(onLogin({ data, token: data.token }));
-        console.log(data);
-      console.log("autenticado");
+      dispatch(onLogin({ data, token: data.token }));
     } catch (error) {
       dispatch(onLogout("Error en autenticación"));
       setTimeout(() => {
