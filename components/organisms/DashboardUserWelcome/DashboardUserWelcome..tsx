@@ -42,7 +42,6 @@ export const DashboardUserWelcome = () => {
         />
       </div>
       <div className={styles["dashboard-continue_course"]}>
-        {/* <h2 className={styles["continue-course_subtitle"]}>¡Recursos para ti!</h2> */}
         <h2 className={styles["continue-course_subtitle"]}>
           ¡Recursos para ti!
         </h2>
