@@ -1,0 +1,6 @@
+@media (min-width: 48rem) {
+  .dashboard-container {
+    display: flex;
+    justify-content: space-between;
+  }
+}

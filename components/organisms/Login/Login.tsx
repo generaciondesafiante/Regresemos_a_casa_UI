@@ -1,17 +1,55 @@
+"use client";
+import { FC, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useAuthStore } from "../../../hooks/useAuthStore";
+import { useForm } from "../../../hooks/useForm";
 import { Button, Input } from "../../atoms";
 import styles from "./Login.module.css";
+import Swal from "sweetalert2";
 
-export const Login: React.FC = () => {
+interface FormField {
+  [key: string]: string;
+}
+
+const loginFormFields: FormField = {
+  loginEmail: "",
+  loginPassword: "",
+};
+
+export const Login: FC = () => {
+  const router = useRouter();
+  const { startLogin, errorMessage } = useAuthStore();
+
+  const { formState, onInputChange: onLoginInputChange } =
+    useForm(loginFormFields);
+  const { loginEmail, loginPassword } = formState;
+
+  const loginSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    startLogin({ email: loginEmail, password: loginPassword });
+    console.log("echo en logincomponent");
+    return router.push("/dashboard");
+  };
+
+  useEffect(() => {
+    if (errorMessage !== undefined) {
+      console.log("error en autenticacion");
+      Swal.fire("Usuario o contraseña incorrecta", errorMessage, "warning");
+    }
+  }, [errorMessage]);
+
   return (
     <>
-      <form className={styles["form-login"]}>
+      <form action="" className={styles["form-login"]} onSubmit={loginSubmit}>
         <h2 className={styles["form-login-title"]}>
           ¡Bienvenido/a al Recorrido de la fé!
         </h2>
         <Input
           id="emailLogin"
           htmlForm="emailLogin"
+          value={loginEmail}
+          onChange={onLoginInputChange}
           name="loginEmail"
           type="email"
           placeholder=" "
@@ -22,6 +60,8 @@ export const Login: React.FC = () => {
           id="passwordLogin"
           htmlForm="passwordLogin"
           name="loginPassword"
+          value={loginPassword}
+          onChange={onLoginInputChange}
           type="password"
           placeholder=" "
           label="Contraseña"
@@ -31,7 +71,9 @@ export const Login: React.FC = () => {
           Olvidé mi contraseña
         </Link>
 
-        <Button className={styles["form-login-btn"]}>Ingresar</Button>
+        <Button className={styles["form-login-btn"]} type="submit">
+          Ingresar
+        </Button>
       </form>
     </>
   );
