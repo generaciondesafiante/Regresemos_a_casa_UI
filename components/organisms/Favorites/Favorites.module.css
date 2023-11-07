@@ -1,0 +1,103 @@
+.favorites__container {
+    position: absolute;
+    height: 100%;
+    width: 100vw;
+    background-image: url(https://i.imgur.com/PSLqcjG.png);
+    background-size: 100% 100%;
+    overflow-y: scroll;
+}
+
+.favorites__title {
+    display: flex;
+    width: 100vw;
+    height: 5rem;
+    background-color: #04dbbd;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    font-weight: 800;
+    font-size: 1.875rem;
+    color: var(--darkBlue);
+}
+
+.favorites__section--buttons {
+    display: flex;
+    align-items: center;
+    height: 3.75rem;
+    gap: 2.5rem;
+    margin: 0 5rem 0 5rem;
+    overflow-x: hidden;
+}
+
+.favorites__button {
+    padding: 0.438rem 0.75rem;
+    margin-left: 1.25rem;
+    background-color: #e4e4e4;
+    border-radius: 0.875rem;
+    font-size: 0.813;
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.2);
+    border: none;
+}
+
+.favorites__button.active {
+    background-color: var(--darkBlue);
+    color: #FFFFFF;
+    box-shadow: 0 0.25rem 0.5 rgba(0, 0, 0, 0.3);
+    font-weight: 500;
+}
+
+.favorites__button:hover {
+    background-color: var(--darkBlue);
+    color: #FFFFFF;
+    box-shadow: 0 0.25rem 0.5 rgba(0, 0, 0, 0.3);
+    font-weight: 500;
+}
+
+.favorites__container--cards {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 5rem 0 5rem;
+}
+
+.favorites__cards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 9.375rem;
+    height: 13.75rem;
+    margin: 1.25rem;
+    border-radius: 0.938;
+    flex-wrap: wrap;
+    border: 1px solid blue;
+}
+
+.favorites-btn {
+    position: absolute;
+    display: inline-block;
+    z-index: 100;
+    width: 3rem;
+    height: 3rem;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.1s ease all;
+}
+
+.favorites-btn:hover {
+    background: var(--greenDGradient);
+    color: var(--white);
+}
+
+.favorites-btn_left {
+    left: 0.5rem;
+}
+
+.favorites-btn_right {
+    right: 0.5rem;
+}
+
+.hidden {
+    display: none;
+}
