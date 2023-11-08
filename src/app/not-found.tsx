@@ -19,7 +19,7 @@ const NotFoundPage = () => {
           <p className={styles["paragraf-notFound"]}>
             La página que estás buscando no existe.
           </p>
-          <Link href="/home" className={styles["link-home_notFound"]}>
+          <Link href="/" className={styles["link-home_notFound"]}>
             Volver a la página de inicio
           </Link>
         </div>
