@@ -26,6 +26,14 @@ export const Register = () => {
     event.preventDefault();
     setErrors([]);
 
+    if (password !== password2) {
+      Swal.fire({
+        icon: "error",
+        title: "Contraseñas no coinciden",
+        text: "Las contraseñas ingresadas no coinciden. Por favor, verifica e intenta nuevamente.",
+      });
+      return;
+    }
     const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/new`, {
       method: "POST",
       headers: {
@@ -46,7 +54,17 @@ export const Register = () => {
     const responseAPI = await res.json();
 
     if (!res.ok) {
-      setErrors(responseAPI.message);
+      // Verificar si el error es porque el usuario ya existe
+      if (res.status === 400) {
+        Swal.fire({
+          icon: "error",
+          title: "Usuario Existente",
+          text: "El usuario con este correo electrónico ya existe. Por favor, utiliza otro correo electrónico.",
+        });
+      } else {
+        // Otro tipo de error
+        setErrors(["Error al registrar al usuario"]);
+      }
       return;
     }
 
