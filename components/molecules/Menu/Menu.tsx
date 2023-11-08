@@ -14,10 +14,14 @@ export const Menu: React.FC = () => {
       </Link>
       <section className={styles["header-container_btn"]}>
         <Link href={"/loginPage"}>
-          <Button className={styles["button-sesion"]}> INICIAR SESIÓN </Button>
+          <Button className={styles["button-sesion"]} type="text">
+            INICIAR SESIÓN
+          </Button>
         </Link>
-        <Link href={"/registerPage"}>
-          <Button className={styles["button-register"]}> CREAR CUENTA </Button>
+        <Link href={"/register"}>
+          <Button className={styles["button-register"]} type="text">
+            CREAR CUENTA
+          </Button>
         </Link>
       </section>
     </header>
