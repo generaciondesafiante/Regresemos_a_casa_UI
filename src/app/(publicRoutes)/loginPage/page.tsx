@@ -1,6 +1,7 @@
-import { LoginTemplate } from "../../../../components/templates/Login-template/LoginTemplate";
+import { FC } from "react";
+import { LoginTemplate } from "../../../../components/templates";
 
-const LoginPage: React.FC = () => {
+const LoginPage: FC = () => {
   return <LoginTemplate />;
 };
 
