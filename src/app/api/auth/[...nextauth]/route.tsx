@@ -7,7 +7,7 @@ const handler = NextAuth({
 
       credentials: {
         email: { label: "email", type: "email", placeholder: "test@test.com" },
-        password: { label: "Password", type: "password" },
+        password: { label: "Password", type: "password", placeholder: "**** " },
       },
       async authorize(credentials, req) {
         const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth`, {
