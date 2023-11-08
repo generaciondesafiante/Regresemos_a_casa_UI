@@ -76,8 +76,8 @@ export const Sidebar = () => {
           return (
             <button
               onClick={async () => {
-                await signOut(); // Cierra la sesión
-                router.push(link.href); // Redirige al usuario a la página de inicio de sesión
+                await signOut();
+                router.push(link.href);
               }}
               key={link.name}
             >
