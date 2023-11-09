@@ -33,7 +33,7 @@ export const Login: FC = () => {
       });
       return;
     }
-    return;
+
     router.push("/dashboard");
   };
   return (
