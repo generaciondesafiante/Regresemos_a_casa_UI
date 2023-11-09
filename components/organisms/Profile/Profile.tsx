@@ -1,9 +1,10 @@
 "use client";
-import { FC, useState } from "react";
+import { FC, useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
-import styles from "./Profile.module.css";
+import Swal from "sweetalert2";
 import { ModalEditPhotoProfile } from "../Modal/Modal";
+import styles from "./Profile.module.css";
 
 interface Props {
   name?: string | null | undefined;
@@ -16,8 +17,10 @@ interface Props {
 
 export const Profile: FC<Props> = () => {
   const { data: session } = useSession();
-  // console.log(session);
+
   const [isEditing, setIsEditing] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
 
   const [formData, setFormData] = useState({
     name: session?.user?.name ?? "",
@@ -28,12 +31,17 @@ export const Profile: FC<Props> = () => {
     phone: session?.user?.phone ?? "",
   });
 
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   };
+
   const handleSaveChanges = async () => {
     try {
       const response = await fetch(
@@ -48,11 +56,18 @@ export const Profile: FC<Props> = () => {
       );
 
       if (response.ok) {
-        // Maneja la respuesta del servidor en caso de éxito
-        console.log("Usuario actualizado con éxito");
+        Swal.fire({
+          icon: "success",
+          title: "Datos actualizados correctamente",
+          text: "Dato/s actualizados",
+        });
       } else {
         // Maneja errores del servidor
-        console.error("Error al actualizar el usuario:", response.statusText);
+        Swal.fire({
+          icon: "success",
+          title: "No se han actualizado correctamente los datos",
+          text: "No se actualizaron los datos",
+        });
       }
     } catch (error) {
       console.error("Error al actualizar el usuario:", error);
@@ -72,33 +87,36 @@ export const Profile: FC<Props> = () => {
           />
           <div
             className={styles["profile-container_addPhoto"]}
-            // onClick={() => setIsModalOpen(!isModalOpen)}
+            onClick={() => setIsModalOpen(!isModalOpen)}
           >
-            <AddAPhotoIcon className={styles["profile-add-photo_icon"]} />
+            <AddAPhotoIcon
+              className={styles["profile-add-photo_icon"]}
+              onClick={handleOpenModal}
+            />
           </div>
 
           <div>
             <ModalEditPhotoProfile
-              // openModalProfile={isModalOpen}
-              // closeModalProfile={() => {
-              //   setIsModalOpen(false);
-              //   setSelectedFile(null);
-              // }}
+              openModalProfile={isModalOpen}
+              closeModalProfile={() => {
+                setIsModalOpen(false);
+              }}
               title="Agrega foto de perfil"
             >
-              <form className="modalEditImg-content">
-                <h3 className="modalEditImg-title">Subir Imagen</h3>
+              <form className={styles["modalEditImg-content"]}>
+                <h3 className={styles["modalEditImg-title"]}>Subir Imagen</h3>
 
-                <div className="custom-file-input">
-                  <span className="file-input-label">
+                <div className={styles["custom-file-input"]}>
+                  <span className={styles["file-input-label"]}>
                     {/* {selectedFile
                       ? `Has seleccionado el archivo: ${selectedFile.name}`
                       : "Seleccionar archivo"} */}
+                    Seleccionar archivo
                   </span>
                   <input
                     type="file"
                     accept="image/*"
-                    className="modalEditImg-inputUploadImage"
+                    className={styles["modalEditImg-inputUploadImage"]}
                     // onChange={(e) => {
                     //   handleInputChange(e);
                     //   setSelectedFile(e.target.files[0]);
@@ -111,7 +129,7 @@ export const Profile: FC<Props> = () => {
                   //   handleSaveChanges(e);
                   //   handleFileChange(e);
                   // }}
-                  className="modalEditImg-buttonAccept"
+                  className={styles["modalEditImg-buttonAccept"]}
                 >
                   Guardar cambios
                 </button>
@@ -175,9 +193,6 @@ export const Profile: FC<Props> = () => {
             />
             <div className={styles["container-buttons"]}>
               <button
-                // onClick={
-                //   isEditing ? showConfirmationModal : () => setIsEditing(true)
-                // }
                 onClick={handleSaveChanges}
                 className={styles["profile-saveChange_btn"]}
               >
@@ -185,9 +200,9 @@ export const Profile: FC<Props> = () => {
               </button>
               <button
                 onClick={() => setIsEditing(false)}
-                className={`${styles["profile-saveChange_btn"]} ${[
-                  "profile-cancel_btn",
-                ]}`}
+                className={`
+                ${styles["profile-saveChange_btn"]} 
+                ${styles["profile-cancel_btn"]}`}
               >
                 Cancelar
               </button>
