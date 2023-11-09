@@ -16,7 +16,7 @@ export const Register = () => {
   const [lastname, setLastName] = useState<string>("");
   const [country, setCountry] = useState<string>("");
   const [city, setCity] = useState<string>("");
-  const [phone, setPhone] = useState<string>("");
+  const [phone, setPhone] = useState<number | null>(null);
   const [image, setImage] = useState<string>(
     "'http://somebooks.es/wp-content/uploads/2018/12/Poner-una-imagen-a-la-cuenta-de-usuario-en-Windows-10-000.png'"
   );
@@ -46,7 +46,7 @@ export const Register = () => {
         lastname,
         country,
         city,
-        phone,
+        phone: phone === null ? null : phone,
         image,
       }),
     });
@@ -54,16 +54,18 @@ export const Register = () => {
     const responseAPI = await res.json();
 
     if (!res.ok) {
-      // Verificar si el error es porque el usuario ya existe
+      setErrors(responseAPI.message);
+      Swal.fire({
+        icon: "error",
+        title: "Revisar los campos obligatorios",
+        text: "Probablemente hay un campo obligatorio sin llenar.",
+      });
       if (res.status === 400) {
         Swal.fire({
           icon: "error",
           title: "Usuario Existente",
           text: "El usuario con este correo electrónico ya existe. Por favor, utiliza otro correo electrónico.",
         });
-      } else {
-        // Otro tipo de error
-        setErrors(["Error al registrar al usuario"]);
       }
       return;
     }
@@ -148,9 +150,11 @@ export const Register = () => {
             id={"phone-form-register"}
             htmlForm={"phone-form-register"}
             name="phone"
-            value={phone}
-            onChange={(event) => setPhone(event.target.value)}
-            type="text"
+            value={phone !== null ? phone.toString() : ""}
+            onChange={(event) =>
+              setPhone(parseInt(event.target.value, 10) || null)
+            }
+            type="number"
             placeholder=" "
             label={"Teléfono (optional)"}
             isRequire={false}

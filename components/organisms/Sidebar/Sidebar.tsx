@@ -13,7 +13,7 @@ import { signOut } from "next-auth/react";
 import styles from "./Sidebar.module.css";
 
 const links = [
-  { name: "profile", href: "/dashboard/profilepage", icon: Face },
+  { name: "profile", href: "/dashboard/profile", icon: Face },
   { name: "home", href: "/dashboard", icon: Home },
   { name: "path", href: "/dashboard/path", icon: Bookmark },
   { name: "resources", href: "/dashboard/resources", icon: Folder },
@@ -80,6 +80,7 @@ export const Sidebar = () => {
                 router.push(link.href);
               }}
               key={link.name}
+              className={styles["button-logout"]}
             >
               <div className="sidebar-iconContainer">
                 <Icon className={styles["sidebar-icon"]} />

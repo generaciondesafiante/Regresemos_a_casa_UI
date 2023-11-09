@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { Button, Input } from "../../atoms";
 import styles from "./Login.module.css";
+import Swal from "sweetalert2";
 
 export const Login: FC = () => {
   const [errors, setErrors] = useState<string[]>([]);
@@ -24,6 +25,14 @@ export const Login: FC = () => {
 
     if (responseNextAuth?.error) {
       setErrors(responseNextAuth.error.split(","));
+
+      Swal.fire({
+        icon: "error",
+        title: "Error en autenticacion",
+        text: "Usuario o contraseña incorrecta",
+      });
+      return;
+
       return;
     }
 

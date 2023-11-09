@@ -1,7 +1,10 @@
 export * from './CourseResources-template/CourseResourcesTemplate';
 export * from './Dashboard-template/DashboardTemplate';
 export { default as HomePageTemplate } from './HomePage-template/HomePageTemplate';
+export * from './LearningPath-template/LearningPathTemplate';
 export * from './Login-template/LoginTemplate';
+export * from './Path-template/PathTemplate';
+export * from './Profile-template/ProfileTemplate';
 export * from './Register-template/RegisterTemplate';
 export * from './Sidebar-template/SidebarTemplate';
 export * from './index';

@@ -47,10 +47,12 @@
   transform: scale(1.1);
   color: var(--turquoise);
 }
-/* 
-.focuSelect.sidebar-sectionSelected {
-  color: red;
-} */
+.button-logout {
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+}
+
 @media (min-width: 48rem) {
   .sidebar-container {
     flex-direction: column;

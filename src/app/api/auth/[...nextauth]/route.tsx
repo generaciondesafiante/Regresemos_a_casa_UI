@@ -1,5 +1,6 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import Swal from "sweetalert2";
 const handler = NextAuth({
   providers: [
     CredentialsProvider({
@@ -20,7 +21,14 @@ const handler = NextAuth({
         });
         const user = await res.json();
 
-        if (user.error) throw user;
+        if (!user.ok) {
+          Swal.fire({
+            icon: "error",
+            title: user.message || "errro en autenticacion",
+            text: "Error en autenticacion",
+          });
+          return;
+        }
 
         return user;
       },
