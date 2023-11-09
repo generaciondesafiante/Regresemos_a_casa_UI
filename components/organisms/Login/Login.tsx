@@ -32,10 +32,8 @@ export const Login: FC = () => {
         text: "Usuario o contraseña incorrecta",
       });
       return;
-
-      return;
     }
-
+    return;
     router.push("/dashboard");
   };
   return (
