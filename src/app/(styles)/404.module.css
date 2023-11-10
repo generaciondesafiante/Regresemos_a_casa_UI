@@ -1,0 +1,44 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+}
+.icon-404 {
+  width: 250px;
+  height: 200px;
+  overflow-x: hidden;
+}
+.text-notFound {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--darkGreen);
+}
+
+.paragraf-notFound {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.link-home_notFound {
+  color: var(--darkBlue);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.link-home_notFound:hover {
+  color: var(--turquoise);
+}
+
+@media (width >= 720px) {
+  .icon-404 {
+    width: 380px;
+    height: 380px;
+  }
+  /* .continer-text-notFound {
+    margin-top: -60px;
+  } */
+}

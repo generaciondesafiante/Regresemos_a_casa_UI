@@ -1,22 +1,10 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
 import styles from "./DashboardUserWelcome.module.css";
 
 export const DashboardUserWelcome = () => {
-  const [name, setName] = useState<string | null>("");
-
-  useEffect(() => {
-    const savedName = localStorage.getItem("name");
-    if (savedName) {
-      const nameCapitalized = capitalizeFirstLetter(savedName);
-      setName(nameCapitalized);
-    }
-  }, []);
-
-  const capitalizeFirstLetter = (str: string): string => {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-  };
-
+  const { data: session } = useSession();
+  const name = session?.user?.name;
   return (
     <div className={styles["userWelcome-container"]}>
       <div className={styles["userWelcome-content"]}>

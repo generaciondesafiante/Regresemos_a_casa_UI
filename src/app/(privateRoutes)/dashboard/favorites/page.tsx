@@ -1,5 +1,5 @@
 import React from 'react'
-import { FavoritesTemplate } from '../../../../components/templates/Favorites-template/FavoritesTemplate';
+import { FavoritesTemplate } from '../../../../../components/templates/Favorites-template/FavoritesTemplate';
 
 const page = () => {
     return (
