@@ -1,0 +1,12 @@
+{
+  "rules": {
+    "users": {
+      "$uid": {
+        "profile-image": {
+          ".read": "auth.uid === $uid",
+          ".write": "auth.uid === $uid"
+        }
+      }
+    }
+  }
+}
