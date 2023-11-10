@@ -34,9 +34,9 @@ export const Favorites = () => {
         if (container) {
             setIsScrollable(container.scrollWidth > container.clientWidth);
             if (direction === "left") {
-                container.scrollLeft -= 100; // Desplaza hacia la izquierda
+                container.scrollLeft -= 100;
             } else if (direction === "right") {
-                container.scrollLeft += 100; // Desplaza hacia la derecha
+                container.scrollLeft += 100;
             }
             setIsLeftButtonVisible(container.scrollLeft > 0);
         }
