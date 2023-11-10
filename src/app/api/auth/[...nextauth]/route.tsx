@@ -24,8 +24,8 @@ const handler = NextAuth({
         if (!user.ok) {
           return Swal.fire({
             icon: "error",
-            title: user.message || "errro en autenticacion",
-            text: "Error en autenticacion",
+            title: user.message || "Error en autenticación",
+            text: "Error en autenticación",
           });
         }
 
