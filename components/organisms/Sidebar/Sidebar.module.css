@@ -10,6 +10,7 @@
   border-radius: 2rem 2rem 0 0;
   box-shadow: 0.25rem 0.063rem 0.25rem 0.188rem #7b7b7b33;
   opacity: 2;
+  z-index: 2;
 }
 
 .sidebar-icon {
