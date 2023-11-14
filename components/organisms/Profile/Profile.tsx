@@ -33,7 +33,7 @@ export const Profile: FC<Props> = () => {
   const [currentPassword, setCurrentPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
-  console.log(password);
+
   const handleOpenChangePasswordModal = () => {
     setIsChangePasswordModalOpen(true);
   };
@@ -127,13 +127,13 @@ export const Profile: FC<Props> = () => {
   };
 
   const changePassword = async () => {
+    console.log('"Change Password Function Called"');
     try {
-      // Verifica si las contraseñas nuevas son iguales
       if (password !== confirmPassword) {
         console.log("Las contraseñas nuevas no coinciden");
         return;
       }
-
+      console.log("Password Matched");
       const responseValidate = await fetch(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/validate-password/${session?.user?.uid}`,
         {
@@ -142,15 +142,14 @@ export const Profile: FC<Props> = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            password: currentPassword, // Send the current password for validation
+            password: currentPassword,
           }),
         }
       );
+      console.error("envio correcot changePassword:");
 
       if (responseValidate.ok) {
-        // Contraseña actual válida, la nueva contraseña y la confirmación son iguales
-
-        // Fetch to update the password
+        console.error("envio correcot changePassword:");
         const responseUpdate = await fetch(
           `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/change-password/${session?.user?.uid}`,
           {
@@ -159,13 +158,12 @@ export const Profile: FC<Props> = () => {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              password,
+              password: password,
             }),
           }
         );
 
         if (responseUpdate.ok) {
-          // Password successfully updated
           console.log("Contraseña actualizada correctamente");
         } else {
           console.log("Error al actualizar la contraseña");
@@ -250,7 +248,13 @@ export const Profile: FC<Props> = () => {
             closeModalProfile={handleCloseChangePasswordModal}
             title="Cambiar Contraseña"
           >
-            <form className={styles["modalChangePassword-content"]}>
+            <form
+              className={styles["modalChangePassword-content"]}
+              // onSubmit={(e) => {
+              //   e.preventDefault();
+              //   changePassword();
+              // }}
+            >
               <Input
                 type={"password"}
                 id="currentPassword"
@@ -295,7 +299,11 @@ export const Profile: FC<Props> = () => {
               <Button
                 type={"submit"}
                 className={styles["button-changePassword"]}
-                onClick={changePassword}
+                // onClick={changePassword}
+                onClick={() => {
+                  console.log("Guardar Cambios Button Clicked");
+                  changePassword();
+                }}
               >
                 Guardar Cambios
               </Button>
