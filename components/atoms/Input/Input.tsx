@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, CSSProperties } from "react";
 import styles from "./Input.module.css";
 
 interface InputProps {
@@ -11,7 +11,9 @@ interface InputProps {
   id?: string;
   htmlForm?: string;
   labelColor?: string;
+  inputColor?: string; // Nueva propiedad para el color del input
   isRequire?: boolean;
+  className?: string;
 }
 
 export const Input: React.FC<InputProps> = ({
@@ -24,10 +26,15 @@ export const Input: React.FC<InputProps> = ({
   id,
   htmlForm,
   labelColor,
+  inputColor,
   isRequire,
 }) => {
-  const labelStyle = {
+  const labelStyle: CSSProperties = {
     color: labelColor || "var(--white)",
+  };
+
+  const inputStyle: CSSProperties = {
+    color: inputColor || "var(--white)",
   };
 
   return (
@@ -41,7 +48,7 @@ export const Input: React.FC<InputProps> = ({
         required={isRequire}
         placeholder={placeholder}
         className={styles["form-input-input"]}
-        style={labelStyle}
+        style={inputStyle}
       />
       <label
         htmlFor={htmlForm}
