@@ -42,3 +42,8 @@
   color: var(--turquoise);
   background-color: var(--transparentBackground);
 }
+@media (width >= 1024px) {
+  .modalEditProfile-container {
+    width: 600px;
+  }
+}
