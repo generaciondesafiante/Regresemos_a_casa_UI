@@ -1,0 +1,29 @@
+.button-component {
+  width: 7rem;
+  padding: 0.5rem;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 0.8rem;
+  font-size: 0.6rem;
+  transition: 400ms;
+  cursor: pointer;
+}
+
+.button-component:hover {
+  transform: scale(1.05);
+}
+
+@media (min-width: 48rem) {
+  .button-component {
+    width: 9rem;
+    font-size: 0.8rem;
+  }
+}
+
+@media (min-width: 48rem) {
+  .button-component {
+    width: 9rem;
+    font-size: 0.8rem;
+  }
+}

@@ -1,0 +1,44 @@
+.modalEditProfile-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: var(--darkGrayGradient);
+  padding: 2.4rem;
+}
+
+.modalEditProfile-container {
+  position: relative;
+  width: 23rem;
+  padding: 1.2rem;
+  background: var(--white);
+  border-radius: 0.8rem;
+  box-shadow: #64646f33 0px 7px 29px 0px;
+}
+
+.modalEditProfile-title {
+  padding-bottom: 1rem;
+  text-align: left;
+  font-size: 1rem;
+  border-bottom: 0.08rem solid #e8e8e8;
+  color: var(--darkBlue);
+}
+
+.modalEditProfile-iconClose {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  cursor: pointer;
+  transition: 0.3s ease all;
+  color: var(--darkBlue);
+}
+
+.modalEditProfile-iconClose:hover {
+  border-radius: 0.5rem;
+  color: var(--turquoise);
+  background-color: var(--transparentBackground);
+}

@@ -1,0 +1,151 @@
+.userWelcome-container {
+  padding: 2rem 1rem;
+  background-color: var(--white);
+}
+
+.userWelcome-content {
+  padding: 0.8rem;
+  border: 0.06rem solid rgb(255, 255, 255);
+  border-radius: 1rem;
+  box-shadow: 0.2rem 0.06rem 0.2rem 0.3rem #7b7b7b33;
+}
+
+.userWelcome-title {
+  font-size: 1.3rem;
+  color: var(--darkBlue);
+}
+
+.userWelcome-paragraph {
+  width: 12rem;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--darkGray);
+}
+
+.userWelcome-decorationImg {
+  display: none;
+}
+
+.dashboard-continue_course {
+  margin-top: 1rem;
+}
+
+.continue-course_subtitle {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  color: var(--darkBlue);
+}
+
+.continue-course_video {
+  width: 9rem;
+  border-radius: 0.5rem;
+}
+
+.dashboard-subcontent_studyMaterial {
+  height: 10rem;
+  overflow: auto;
+}
+
+.dashboard-subcontent_studyMaterial::-webkit-scrollbar {
+  width: 0.3rem;
+}
+
+.dashboard-subcontent_studyMaterial::-webkit-scrollbar-thumb {
+  background-color: var(--darkBlue);
+  border-radius: 1rem;
+}
+
+.dashboard-studyMaterial {
+  width: 6rem;
+  height: 3.3rem;
+  border-radius: 0.5rem;
+  margin: 0.4rem;
+}
+
+@media (min-width: 48rem) {
+  .userWelcome-container {
+    width: 85%;
+    padding-left: 6.5rem;
+  }
+}
+
+@media (min-width: 64rem) {
+  .userWelcome-container {
+    width: 70%;
+    height: 100vh;
+    padding-left: 7rem;
+  }
+
+  .userWelcome-content {
+    width: 90%;
+    max-width: 40.6rem;
+    position: relative;
+    padding: 1rem;
+    margin-top: 1rem;
+  }
+
+  .userWelcome-title {
+    width: 70%;
+    font-size: 1.7rem;
+  }
+
+  .userWelcome-decorationImg {
+    display: block;
+    position: absolute;
+    width: 19rem;
+    height: 12.63rem;
+    top: calc(50% - 6.5rem);
+    right: -10.5rem;
+  }
+
+  .continue-course_subtitle {
+    font-size: 1.3rem;
+  }
+
+  .userWelcome-container .dashboard-continue_course:nth-child(3) {
+    height: 50vh;
+  }
+
+  .dashboard-subcontent_studyMaterial {
+    height: 80%;
+  }
+
+  .dashboard-studyMaterial {
+    width: 8rem;
+    height: 4rem;
+  }
+}
+
+@media (min-width: 89.3rem) {
+  .userWelcome-container {
+    width: 80%;
+  }
+
+  .userWelcome-content {
+    width: 80%;
+    margin-bottom: 3rem;
+  }
+
+  .userWelcome-title {
+    font-size: 2rem;
+  }
+
+  .userWelcome-paragraph {
+    width: 100%;
+    font-size: 1.2rem;
+  }
+
+  .continue-course_subtitle {
+    font-size: 1.5rem;
+  }
+
+  .continue-course_video {
+    width: 20rem;
+  }
+
+  .dashboard-studyMaterial {
+    width: 13rem;
+    height: 7rem;
+  }
+}
