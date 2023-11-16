@@ -57,7 +57,8 @@ export const Login: FC = () => {
           htmlForm="passwordLogin"
           name="loginPassword"
           type="password"
-          placeholder=" "
+          value={password}
+          placeholder=""
           label="Contraseña"
           isRequire={true}
           onChange={(event) => setPassword(event.target.value)}

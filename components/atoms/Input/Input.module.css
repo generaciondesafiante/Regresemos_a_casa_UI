@@ -3,7 +3,22 @@
   padding: 0.6rem;
   margin-top: 0.8rem;
 }
+.password-toggle-button {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-40%);
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: var(--turquoise);
+}
 
+.form-input-input:not(:placeholder-shown) + .form-input-label,
+.form-input-input:focus + .form-input-label {
+  transform: translateY(-1.9rem);
+  transition: 0.5s;
+}
 .form-input-label {
   position: absolute;
   padding: 0.6rem;
@@ -12,7 +27,12 @@
   font-size: 0.8rem;
   transition: 0.5s;
 }
-
+.form-input-label.active {
+  transform: translateY(-2.1rem);
+  color: var(--turquoise);
+  padding-left: 0rem;
+  font-size: 0.9rem;
+}
 .form-input-input {
   font-family: "Montserrat", sans-serif;
   padding: 0.6rem;

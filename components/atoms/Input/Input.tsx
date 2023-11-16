@@ -1,11 +1,14 @@
-import React, { ChangeEvent, CSSProperties } from "react";
+"use client";
+import React, { ChangeEvent, CSSProperties, useState } from "react";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import styles from "./Input.module.css";
 
 interface InputProps {
   name?: string;
   value?: string;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
-  type: string;
+  type?: string;
   placeholder?: string;
   label?: string;
   id?: string;
@@ -29,6 +32,16 @@ export const Input: React.FC<InputProps> = ({
   inputColor,
   isRequire,
 }) => {
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible(!isPasswordVisible);
+  };
+
+  const inputType = isPasswordVisible ? "text" : "password";
+
+  const showToggle = type === "password" && value && value.length > 1;
+
   const labelStyle: CSSProperties = {
     color: labelColor || "var(--white)",
   };
@@ -44,15 +57,30 @@ export const Input: React.FC<InputProps> = ({
         name={name}
         value={value}
         onChange={onChange}
-        type={type}
+        type={type === "password" ? inputType : type}
         required={isRequire}
         placeholder={placeholder}
         className={styles["form-input-input"]}
         style={inputStyle}
       />
+      {showToggle && (
+        <button
+          type="button"
+          className={styles["password-toggle-button"]}
+          onClick={togglePasswordVisibility}
+        >
+          {isPasswordVisible ? (
+            <RemoveRedEyeIcon className={styles["icon"]} />
+          ) : (
+            <VisibilityOffIcon />
+          )}
+        </button>
+      )}
       <label
         htmlFor={htmlForm}
-        className={styles["form-input-label"]}
+        className={`${styles["form-input-label"]} ${
+          value && value.length > 0 ? styles["active"] : ""
+        }`}
         style={labelStyle}
       >
         {label}

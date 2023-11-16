@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import { Button, Input } from "../../atoms";
 import { ModalEditPhotoProfile } from "../Modal/Modal";
 import styles from "./Profile.module.css";
+import Link from "next/link";
 
 interface Props {
   name?: string | null | undefined;
@@ -16,34 +17,10 @@ interface Props {
   phone?: number | null | undefined;
 }
 
-interface ChangePasswordForm {
-  currentPassword: string;
-  newPassword: string;
-  confirmPassword: string;
-}
-
 export const Profile: FC<Props> = () => {
   const { data: session } = useSession();
   const [isEditing, setIsEditing] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isChangePasswordModalOpen, setIsChangePasswordModalOpen] =
-    useState(false);
-
-  const [password, setPassword] = useState("");
-  const [currentPassword, setCurrentPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [selectedFile, setSelectedFile] = useState(null);
-
-  const handleOpenChangePasswordModal = () => {
-    setIsChangePasswordModalOpen(true);
-  };
-
-  const handleCloseChangePasswordModal = () => {
-    setIsChangePasswordModalOpen(false);
-  };
-
-  const myLabelColor = "#234e67";
-  const myInputColor = "#234e67";
 
   const [formData, setFormData] = useState({
     name: session?.user?.name ?? "",
@@ -65,36 +42,7 @@ export const Profile: FC<Props> = () => {
     });
   };
 
-  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
-    setFormData((prevData) => ({
-      ...prevData,
-      password: e.target.value,
-    }));
-  };
-
-  const handleCurrentPasswordChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setCurrentPassword(e.target.value);
-    setFormData((prevData) => ({
-      ...prevData,
-      currentPassword: e.target.value,
-    }));
-  };
-
-  const handleConfirmPasswordChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setConfirmPassword(e.target.value);
-    setFormData((prevData) => ({
-      ...prevData,
-      confirmPassword: e.target.value,
-    }));
-  };
-
   const handleSaveChanges = async () => {
-    console.log("FormData before request:", formData);
     try {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/edit-profile/${session?.user?.uid}`,
@@ -114,7 +62,6 @@ export const Profile: FC<Props> = () => {
           text: "Dato/s actualizados",
         });
       } else {
-        // Maneja errores del servidor
         Swal.fire({
           icon: "success",
           title: "No se han actualizado correctamente los datos",
@@ -123,56 +70,6 @@ export const Profile: FC<Props> = () => {
       }
     } catch (error) {
       console.error("Error al actualizar el usuario:", error);
-    }
-  };
-
-  const changePassword = async () => {
-    console.log('"Change Password Function Called"');
-    try {
-      if (password !== confirmPassword) {
-        console.log("Las contraseñas nuevas no coinciden");
-        return;
-      }
-      console.log("Password Matched");
-      const responseValidate = await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/validate-password/${session?.user?.uid}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            password: currentPassword,
-          }),
-        }
-      );
-      console.error("envio correcot changePassword:");
-
-      if (responseValidate.ok) {
-        console.error("envio correcot changePassword:");
-        const responseUpdate = await fetch(
-          `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/change-password/${session?.user?.uid}`,
-          {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              password: password,
-            }),
-          }
-        );
-
-        if (responseUpdate.ok) {
-          console.log("Contraseña actualizada correctamente");
-        } else {
-          console.log("Error al actualizar la contraseña");
-        }
-      } else {
-        console.log("La contraseña actual no es correcta");
-      }
-    } catch (error) {
-      console.error("Error al cambiar la contraseña:", error);
     }
   };
 
@@ -240,84 +137,6 @@ export const Profile: FC<Props> = () => {
           </div>
         </div>
         {/* -------------------- CLOSE MODAL EDIT PHOTO PROFILE------------------------- */}
-      </div>
-      <div className={styles["Container-changePassword"]}>
-        <div>
-          <ModalEditPhotoProfile
-            openModalProfile={isChangePasswordModalOpen}
-            closeModalProfile={handleCloseChangePasswordModal}
-            title="Cambiar Contraseña"
-          >
-            <form
-              className={styles["modalChangePassword-content"]}
-              // onSubmit={(e) => {
-              //   e.preventDefault();
-              //   changePassword();
-              // }}
-            >
-              <Input
-                type={"password"}
-                id="currentPassword"
-                htmlForm="currentPassword"
-                name="currentPassword"
-                placeholder=" "
-                label="Contraseña Actual"
-                className={styles["input-changePassword"]}
-                labelColor={myLabelColor}
-                inputColor={myInputColor}
-                value={currentPassword}
-                onChange={handleCurrentPasswordChange}
-              />
-              <Input
-                type="password"
-                id="password"
-                htmlForm="password"
-                name="password"
-                placeholder=""
-                label="Nueva Contraseña"
-                className={styles["input-changePassword"]}
-                labelColor={myLabelColor}
-                inputColor={myInputColor}
-                value={password}
-                onChange={handlePasswordChange}
-              />
-
-              <Input
-                type="password"
-                id="confirmPassword"
-                htmlForm="confirmPassword"
-                name="confirmPassword"
-                placeholder=""
-                label="Confirmar Contraseña"
-                className={styles["input-changePassword"]}
-                labelColor={myLabelColor}
-                inputColor={myInputColor}
-                value={confirmPassword}
-                onChange={handleConfirmPasswordChange}
-              />
-
-              <Button
-                type={"submit"}
-                className={styles["button-changePassword"]}
-                // onClick={changePassword}
-                onClick={() => {
-                  console.log("Guardar Cambios Button Clicked");
-                  changePassword();
-                }}
-              >
-                Guardar Cambios
-              </Button>
-              <button
-                onClick={() => setIsEditing(false)}
-                className={`
-                ${styles["profile-saveChange_btn"]} 
-                ${styles["profile-cancel_btn"]}`}
-              >
-                Cancelar
-              </button>
-            </form>
-          </ModalEditPhotoProfile>
-        </div>
       </div>
 
       <div className={styles["profile-container_info"]}>
@@ -445,12 +264,11 @@ export const Profile: FC<Props> = () => {
               >
                 Editar perfil
               </button>
-              <button
-                className={styles["profile-btn"]}
-                onClick={handleOpenChangePasswordModal}
-              >
-                Cambiar contraseña
-              </button>
+              <Link href={"/dashboard/profile/changepassword"}>
+                <button className={styles["profile-btn"]}>
+                  Cambiar contraseña
+                </button>
+              </Link>
             </div>
           </div>
         )}

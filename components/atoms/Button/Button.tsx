@@ -4,7 +4,7 @@ import styles from "./Button.module.css";
 interface ButtonProps {
   children?: ReactNode; // This allows additional content to be passed as children of the component
   className?: string;
-  type: string;
+  type?: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 export const Button: React.FC<ButtonProps> = ({

@@ -13,7 +13,11 @@ import { signOut } from "next-auth/react";
 import styles from "./Sidebar.module.css";
 
 const links = [
-  { name: "profile", href: "/dashboard/profile", icon: Face },
+  {
+    name: "profile",
+    href: "/dashboard/profile" || "/dashboard/profile/changepassword",
+    icon: Face,
+  },
   { name: "home", href: "/dashboard", icon: Home },
   { name: "path", href: "/dashboard/path", icon: Bookmark },
   { name: "resources", href: "/dashboard/resources", icon: Folder },
