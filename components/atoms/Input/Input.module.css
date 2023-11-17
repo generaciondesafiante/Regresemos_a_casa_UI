@@ -4,6 +4,28 @@
   margin-top: 0.8rem;
 }
 
+.password-toggle-button {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-40%);
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: var(--turquoise);
+}
+
+.form-input_input:not(:placeholder-shown) + .form-input_label,
+.form-input_input:focus + .form-input_label {
+  transform: translateY(-1.9rem);
+  transition: 0.5s;
+}
+.form-input_label.active {
+  transform: translateY(-2.1rem);
+  color: var(--turquoise);
+  padding-left: 0rem;
+  font-size: 0.9rem;
+}
 .form-input_label {
   position: absolute;
   padding: 0.6rem;
@@ -42,7 +64,7 @@
 }
 
 @media (min-width: 64rem) {
-  .form-input_label{
+  .form-input_label {
     font-size: var(--fontSize-paragraph_laptop);
   }
 

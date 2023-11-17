@@ -12,16 +12,14 @@ interface Props {
 export const ModalEditPhotoProfile: FC<Props> = ({
   children,
   openModalProfile,
+  
   closeModalProfile,
   title = "Add Profile Photo",
 }) => {
   return (
     <>
       {openModalProfile && (
-        <div
-          className={styles["modalEditProfile-overlay"]}
-          onClick={() => closeModalProfile && closeModalProfile()}
-        >
+        <div className={styles["modalEditProfile-overlay"]}>
           <div className={styles["modalEditProfile-container"]}>
             <h3 className={styles["modalEditProfile-title"]}>{title}</h3>
             <button onClick={() => closeModalProfile && closeModalProfile()}>

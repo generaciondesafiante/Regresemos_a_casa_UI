@@ -1,3 +1,4 @@
+export * from './ChangePasswordUser-template/ChangePasswordUserTemplate';
 export * from './CourseResources-template/CourseResourcesTemplate';
 export * from './Dashboard-template/DashboardTemplate';
 export * from './Favorites-template/FavoritesTemplate';
