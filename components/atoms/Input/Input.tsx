@@ -14,7 +14,7 @@ interface InputProps {
   id?: string;
   htmlForm?: string;
   labelColor?: string;
-  inputColor?: string; // Nueva propiedad para el color del input
+  inputColor?: string; 
   isRequire?: boolean;
   className?: string;
 }
@@ -32,6 +32,7 @@ export const Input: React.FC<InputProps> = ({
   inputColor,
   isRequire,
 }) => {
+  
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const togglePasswordVisibility = () => {
