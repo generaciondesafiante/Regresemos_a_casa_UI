@@ -15,12 +15,12 @@ export const Menu: React.FC = () => {
       <section className={styles["header-container_btn"]}>
         <Link href={"/loginPage"}>
           <Button className={styles["button-sesion"]} type="text">
-            INICIAR SESIÓN
+            ACCEDER
           </Button>
         </Link>
         <Link href={"/register"}>
           <Button className={styles["button-register"]} type="text">
-            CREAR CUENTA
+            REGISTRARSE
           </Button>
         </Link>
       </section>

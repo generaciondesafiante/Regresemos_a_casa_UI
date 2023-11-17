@@ -15,15 +15,15 @@
 
 .carouselOne-content_text {
   position: absolute;
-  margin-top: 24rem;
   text-align: center;
+  margin-top: 24rem;
 }
 
 .carouselOne-title {
-  margin: 0 auto;
   width: 12rem;
-  font-size: 1.6rem;
+  margin: 0 auto;
   color: var(--darkBlue);
+  font-size: var(--fontSize-superTitles_mobile);
 }
 
 .carouselOne-title span {
@@ -33,45 +33,44 @@
 .carouselOne-paragraph {
   width: 11rem;
   margin-top: 1rem;
-  font-size: 0.8rem;
-  font-weight: bold;
   color: var(--darkGreen);
+  margin: 0 auto;
+  font-size: var(--fontSize-paragraph_mobile);
 }
 
 @media (min-width: 48rem) {
   .carouselOne-img_one {
-    position: absolute;
-    right: 0;
     width: 35rem;
     height: 23rem;
-    margin-top: 9rem;
+    position: absolute;
+    margin-top: 5rem;
+    right: 0;
   }
 
   .carouselOne-img_two {
-    display: block;
-    position: absolute;
-    bottom: 0;
-    left: 0;
     width: 10rem;
     height: 21rem;
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
   }
 
   .carouselOne-content_text {
     text-align: left;
-    margin-top: 15rem;
+    margin-top: 10rem;
     margin-left: -25rem;
   }
 
   .carouselOne-title {
-    margin: 0;
-    width: 13rem;
-    font-size: 1.7rem;
+    width: 14rem;
+    font-size: var(--fontSize-superTitles_tablet);
   }
 
   .carouselOne-paragraph {
     width: 13rem;
     margin-top: 1rem;
-    font-size: 0.9rem;
+    font-size: var(--fontSize-paragraph_tablet);
   }
 }
 
@@ -87,47 +86,46 @@
   }
 
   .carouselOne-content_text {
-    margin-top: 16rem;
-    margin-left: -37rem;
+    margin-top: 12rem;
+    margin-left: -30rem;
   }
 
   .carouselOne-title {
-    width: 15rem;
-    font-size: 2rem;
+    width: 21rem;
+    font-size: var(--fontSize-superTitles_laptop);
   }
 
   .carouselOne-paragraph {
     width: 13rem;
     margin-top: 1rem;
-    font-size: 1rem;
+    font-size: var(--fontSize-paragraph_laptop);
   }
 }
 
 @media (min-width: 75rem) {
   .carouselOne-img_one {
-    width: 60rem;
-    height: 40rem;
+    width: 65rem;
+    height: 45rem;
     margin-top: 6rem;
-    margin-right: 5rem;
   }
 
   .carouselOne-img_two {
-    width: 19rem;
-    height: 38rem;
+    width: 15rem;
+    height: 35rem;
   }
 
   .carouselOne-content_text {
-    margin-top: 16rem;
-    margin-left: -48rem;
+    margin-top: 20rem;
+    margin-left: -50rem;
   }
 
   .carouselOne-title {
-    width: 26rem;
-    font-size: 3.5rem;
+    width: 24rem;
+    font-size: var(--fontSize-superTitles_desktop);
   }
 
   .carouselOne-paragraph {
     width: 19rem;
-    font-size: 1.4rem;
+    font-size: var(--fontSize-paragraph_desktop);
   }
 }
