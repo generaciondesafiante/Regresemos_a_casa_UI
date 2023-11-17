@@ -1,12 +1,11 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
+import Swal from "sweetalert2";
 import { Input } from "../../atoms";
 import styles from "./ChangePasswordUser.module.css";
-import { useSession } from "next-auth/react";
-import Swal from "sweetalert2";
 
 export const ChangePasswordUser = () => {
   const { data: session } = useSession();
@@ -131,15 +130,15 @@ export const ChangePasswordUser = () => {
         className={styles["content-modal"]}
         onSubmit={validatePasswordSubmit}
       >
+        <div className={styles["container-arrow-back"]}>
         <Link
           href={"/dashboard/profile"}
           className={styles["link-backProfile"]}
         >
-          <div className={styles["container-arrow-back"]}>
             <KeyboardBackspaceIcon />
             <p>Regresar</p>
-          </div>
         </Link>
+          </div>
         <h2 className={styles["title-modal"]}>Cambiar Contraseña</h2>
 
         <Input
