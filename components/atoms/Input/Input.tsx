@@ -40,12 +40,12 @@ export const Input: React.FC<InputProps> = ({
         type={type}
         required={isRequire}
         placeholder={placeholder}
-        className={styles["form-input-input"]}
+        className={styles["form-input_input"]}
         style={labelStyle}
       />
       <label
         htmlFor={htmlForm}
-        className={styles["form-input-label"]}
+        className={styles["form-input_label"]}
         style={labelStyle}
       >
         {label}

@@ -1,16 +1,15 @@
 .carouselTwo-section {
   height: 100vh;
+  text-align: center;
   color: var(--white);
   background-color: var(--yellow);
-  text-align: center;
 }
 
 .carouselTwo-title {
+  width: 11rem;
   margin: 0 auto;
-  width: 8rem;
   padding-top: 6rem;
-  font-size: 1rem;
-  font-weight: bold;
+  font-size: var(--fontSize-superTitles_mobile);
 }
 
 .carouselTwo-titleTwo {
@@ -21,7 +20,7 @@
   width: 14rem;
   margin: 0 auto;
   margin-top: 0.5rem;
-  font-size: 0.8rem;
+  font-size: var(--fontSize-paragraph_mobile);
 }
 
 .carouselTwo-paragraph span {
@@ -29,7 +28,7 @@
 }
 
 .carouselTwo-img {
-  width: 18rem;
+  width: 20rem;
 }
 
 @media (min-width: 48rem) {
@@ -46,24 +45,20 @@
   }
 
   .carouselTwo-title {
-    font-size: 1.2rem;
+    padding-top: 5rem;
+    font-size: var(--fontSize-titles_tablet);
   }
 
   .carouselTwo-content_text.left {
-    margin-left: 1rem;
+    margin-left: 1.5rem;
   }
 
   .carouselTwo-content_text.rigth {
-    margin-right: 1rem;
+    margin-right: 1.5rem;
   }
 
   .carouselTwo-titleTwo {
     margin-top: 0rem;
-  }
-
-  .carouselTwo-paragraph {
-    font-size: 0.9rem;
-    margin-top: 0.5rem;
   }
 
   .carouselTwo-container_img {
@@ -72,10 +67,10 @@
   }
 
   .carouselTwo-img {
+    width: 30rem;
     display: block;
     margin: 0 auto;
-    width: 27rem;
-    padding-top: 6rem;
+    padding-top: 5rem;
   }
 }
 
@@ -89,43 +84,44 @@
   }
 
   .carouselTwo-title {
-    width: 10rem;
-    font-size: 1.4rem;
+    width: 19rem;
+    padding-top: 4rem;
+    font-size: var(--fontSize-superTitles_laptop);
   }
 
   .carouselTwo-paragraph {
-    width: 16rem;
+    width: 17rem;
     margin-top: 0.8rem;
-    font-size: 1rem;
+    font-size: var(--fontSize-paragraph_laptop);
   }
 
   .carouselTwo-img {
     width: 35rem;
-    padding-top: 6rem;
+    padding-top: 8rem;
   }
 }
 
 @media (min-width: 75rem) {
   .carouselTwo-content_text.left {
-    margin-left: 7rem;
+    margin-left: 5rem;
   }
 
   .carouselTwo-content_text.rigth {
-    margin-right: 7rem;
+    margin-right: 5rem;
   }
 
   .carouselTwo-title {
-    width: 16rem;
-    font-size: 2rem;
+    width: 23rem;
+    font-size: var(--fontSize-superTitles_desktop);
   }
 
   .carouselTwo-paragraph {
-    width: 17rem;
-    font-size: 1.1rem;
+    width: 19rem;
+    font-size: var(--fontSize-paragraph_desktop);
   }
 
   .carouselTwo-img {
-    width: 50rem;
+    width: 55rem;
     padding-top: 5rem;
   }
 }
