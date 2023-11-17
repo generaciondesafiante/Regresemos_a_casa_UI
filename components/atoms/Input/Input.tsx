@@ -60,8 +60,8 @@ export const Input: React.FC<InputProps> = ({
         type={type === "password" ? inputType : type}
         required={isRequire}
         placeholder={placeholder}
-        className={styles["form-input-input"]}
-        style={inputStyle}
+        className={styles["form-input_input"]}
+        style={labelStyle}
       />
       {showToggle && (
         <button
@@ -78,9 +78,7 @@ export const Input: React.FC<InputProps> = ({
       )}
       <label
         htmlFor={htmlForm}
-        className={`${styles["form-input-label"]} ${
-          value && value.length > 0 ? styles["active"] : ""
-        }`}
+        className={styles["form-input_label"]}
         style={labelStyle}
       >
         {label}

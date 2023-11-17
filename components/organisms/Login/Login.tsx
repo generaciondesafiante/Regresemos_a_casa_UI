@@ -28,7 +28,7 @@ export const Login: FC = () => {
 
       Swal.fire({
         icon: "error",
-        title: "Error en autenticacion",
+        title: "Error en autenticación",
         text: "Usuario o contraseña incorrecta",
       });
       return;
@@ -39,7 +39,7 @@ export const Login: FC = () => {
   return (
     <>
       <form action="" className={styles["form-login"]} onSubmit={handleSubmit}>
-        <h2 className={styles["form-login-title"]}>
+        <h2 className={styles["form-login_title"]}>
           ¡Bienvenido/a al Recorrido de la fé!
         </h2>
         <Input
@@ -63,11 +63,11 @@ export const Login: FC = () => {
           isRequire={true}
           onChange={(event) => setPassword(event.target.value)}
         />
-        <Link className={styles["form-login-forgot_login"]} href={"/home"}>
+        <Link className={styles["form-login_forgotPassword"]} href={"/home"}>
           Olvidé mi contraseña
         </Link>
 
-        <Button className={styles["form-login-btn"]} type="submit">
+        <Button className={styles["form-login_btn"]} type="submit">
           Ingresar
         </Button>
       </form>

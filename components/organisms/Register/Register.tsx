@@ -4,7 +4,7 @@ import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
-import { Input } from "../../atoms";
+import { Input, Button } from "../../atoms";
 import styles from "./Register.module.css";
 
 export const Register = () => {
@@ -197,15 +197,15 @@ export const Register = () => {
         </section>
 
         <Link
-          className={styles["form-register-forgot_login"]}
+          className={styles["form-register_loginRedirection"]}
           href="/loginPage"
         >
           ¿Ya tienes cuenta?
         </Link>
 
-        <button className={styles["form-register-btn"]} type="submit">
+        <Button className={styles["form-register-btn"]} type="submit">
           Crear cuenta
-        </button>
+        </Button>
       </form>
     </>
   );

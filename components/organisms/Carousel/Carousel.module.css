@@ -3,10 +3,10 @@
 }
 
 .carousel-content_view {
+  position: relative;
   display: flex;
   flex-wrap: nowrap;
   overflow: hidden;
-  position: relative;
 }
 
 .carousel-view {
@@ -16,23 +16,25 @@
 }
 
 .carousel-btn {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
   z-index: 100;
   top: calc(50vh - 2.5rem);
-  width: 4rem;
-  height: 4rem;
   border: none;
   border-radius: 50%;
   color: var(--greenDesafiante);
-  background: none;
+  background-color: var(--white-transparent);
   cursor: pointer;
-  transition: 0.1s ease all;
+  transition: var(--transition);
 }
 
 .carousel-btn:hover {
-  background: var(--greenDGradient);
+  background-color: var(--greenDesafiante);
   color: var(--white);
-  border-radius: 50%;
 }
 
 .carousel-btn_right {
