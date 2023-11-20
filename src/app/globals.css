@@ -4,11 +4,9 @@
   box-sizing: border-box;
   font-family: "Montserrat", sans-serif;
 }
-
 :root {
   /* Typography */
   --primaryFont: "Montserrat", sans-serif;
-
   /* Font size */
   /* mobile */
   --fontSize-buttons_mobile: 1rem;
@@ -35,15 +33,13 @@
   --fontSize-titles_desktop: 2.5rem;
   --fontSize-subtitles_desktop: 2rem;
   --fontSize-paragraph_desktop: 1.375rem;
-
   /* Letters colors */
   --white: #fcfcfc;
   --black: black;
   --yellow: #fad047;
-  --darkBlue: #2b394a;
+  --darkBlue: #072a3e;
   --darkGreen: #0f5765;
   --darkGray: #707070;
-
   /* Design colors */
   --white: #fcfcfc;
   --white-transparent: #ffffffbe;
@@ -54,11 +50,10 @@
   --red: #f44336;
   --yellow: #fad047;
   --blue: #38b6ff;
-  --darkBlue: #2b394a;
+  --darkBlue-content: #2b394a;
   --darkGreen: #0f5765;
   --greenDesafiante: #168991;
   --turquoise: #61d3c3;
-
   /* Others */
   --border: solid 0.02rem;
   --borderRadius: 0.8rem;
