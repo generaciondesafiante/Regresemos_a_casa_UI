@@ -1,12 +1,12 @@
 "use client";
-import { FC, useState, useEffect } from "react";
+import { FC, useState } from "react";
+import Link from "next/link";
 import { useSession } from "next-auth/react";
 import Swal from "sweetalert2";
-import { Button, Input } from "../../atoms";
+import { Button } from "../../atoms";
 import { ModalEditPhotoProfile } from "../Modal/Modal";
 import { AddPhotoIcon } from "../../atoms/icons/addPhotoIcon/AddPhotoIcon";
 import styles from "./Profile.module.css";
-import Link from "next/link";
 
 interface Props {
   name?: string | null | undefined;
@@ -104,29 +104,16 @@ export const Profile: FC<Props> = () => {
 
                 <div className={styles["custom-file-input"]}>
                   <span className={styles["file-input-label"]}>
-                    {/* {selectedFile
-                      ? Has seleccionado el archivo: ${selectedFile.name}
-                      : "Seleccionar archivo"} */}
                     Seleccionar archivo
                   </span>
                   <input
                     type="file"
                     accept="image/*"
                     className={styles["modalEditImg-inputUploadImage"]}
-                    // onChange={(e) => {
-                    //   handleInputChange(e);
-                    //   setSelectedFile(e.target.files[0]);
-                    // }}
                     onClick={(e) => e.stopPropagation()}
                   />
                 </div>
-                <button
-                  // onClick={(e) => {
-                  //   handleSaveChanges(e);
-                  //   handleFileChange(e);
-                  // }}
-                  className={styles["modalEditImg-buttonAccept"]}
-                >
+                <button className={styles["modalEditImg-buttonAccept"]}>
                   Guardar cambios
                 </button>
               </form>
@@ -197,7 +184,6 @@ export const Profile: FC<Props> = () => {
               </Button>
               <Button
                 type={"text"}
-                // onClick={() => setIsEditing(false)}
                 className={`
                 ${styles["profile-saveChange_btn"]} 
                 ${styles["profile-cancel_btn"]}`}

@@ -1,4 +1,4 @@
-import { LearningPath } from "../../organisms";
+import { LearningPath } from "../../organisms/LearningPath/LearningPath";
 
 export const LearningPathTemplate = () => {
   return <LearningPath />;

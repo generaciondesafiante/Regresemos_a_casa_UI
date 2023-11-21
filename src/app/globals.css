@@ -4,46 +4,42 @@
   box-sizing: border-box;
   font-family: "Montserrat", sans-serif;
 }
-
 :root {
   /* Typography */
   --primaryFont: "Montserrat", sans-serif;
-
   /* Font size */
-    /* mobile */
+  /* mobile */
   --fontSize-buttons_mobile: 1rem;
   --fontSize-superTitles_mobile: 1.7rem;
   --fontSize-titles_mobile: 1.5rem;
   --fontSize-subtitles_mobile: 1.125rem;
   --fontSize-paragraph_mobile: 1rem;
-    /* tablet */
+  /* tablet */
   --fontSize-buttons_tablet: 1rem;
   --fontSize-superTitles_tablet: 2rem;
   --fontSize-titles_tablet: 1.75rem;
   --fontSize-subtitles_tablet: 1.65rem;
   --fontSize-paragraph_tablet: 1rem;
-    /* laptop */
+  /* laptop */
   --fontSize-buttons_laptop: 1.125rem;
   --fontSize-superTitles_laptop: 3rem;
   --fontSize-titles_laptop: 2rem;
   --fontSize-subtitles_laptop: 1.75rem;
   --fontSize-trasitionLabel_laptop: 1.35rem;
   --fontSize-paragraph_laptop: 1.25rem;
-    /* desktop */
+  /* desktop */
   --fontSize-buttons_desktop: 1.25rem;
   --fontSize-superTitles_desktop: 3.5rem;
   --fontSize-titles_desktop: 2.5rem;
   --fontSize-subtitles_desktop: 2rem;
   --fontSize-paragraph_desktop: 1.375rem;
-
   /* Letters colors */
   --white: #fcfcfc;
   --black: black;
   --yellow: #fad047;
-  --darkBlue: #072A3E;
-  --darkGreen: #0F5765;
+  --darkBlue: #072a3e;
+  --darkGreen: #0f5765;
   --darkGray: #707070;
-
   /* Design colors */
   --white: #fcfcfc;
   --white-transparent: #ffffffbe;
@@ -51,14 +47,13 @@
   --gray: #e8e8e8;
   --darkGray: #707070;
   --darkGrayGradient: #707070a2;
-  --red: #F44336;
+  --red: #f44336;
   --yellow: #fad047;
-  --blue: #38B6FF;
+  --blue: #38b6ff;
   --darkBlue-content: #2b394a;
-  --darkGreen: #0F5765;
+  --darkGreen: #0f5765;
   --greenDesafiante: #168991;
   --turquoise: #61d3c3;
-
   /* Others */
   --border: solid 0.02rem;
   --borderRadius: 0.8rem;
