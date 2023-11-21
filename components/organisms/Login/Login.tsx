@@ -63,7 +63,10 @@ export const Login: FC = () => {
           isRequire={true}
           onChange={(event) => setPassword(event.target.value)}
         />
-        <Link className={styles["form-login_forgotPassword"]} href={"/home"}>
+        <Link
+          className={styles["form-login_forgotPassword"]}
+          href={"/forgetpassword"}
+        >
           Olvidé mi contraseña
         </Link>
 
