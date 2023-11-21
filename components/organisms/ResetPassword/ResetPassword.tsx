@@ -69,8 +69,7 @@ export const ResetPassword = () => {
         Asignar nueva contraseña
       </h2>
       <p className={`${styles["form-reset_paragraph"]}`}>
-        Al terminar, te enviaremos a iniciar sesión de nuevo con tu nueva
-        contraseña
+        Al terminar, Inicia sesión con tu nueva contraseña.
       </p>
       <div className={styles["form-login-container_inLa"]}>
         <Input
