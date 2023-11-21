@@ -21,7 +21,6 @@
 
 .carouselOne-title {
   width: 12rem;
-  margin: 0 auto;
   color: var(--darkBlue);
   font-size: var(--fontSize-superTitles_mobile);
 }
@@ -31,11 +30,11 @@
 }
 
 .carouselOne-paragraph {
-  width: 11rem;
+  width: 12rem;
   margin-top: 1rem;
   color: var(--darkGreen);
-  margin: 0 auto;
   font-size: var(--fontSize-paragraph_mobile);
+
 }
 
 @media (min-width: 48rem) {
