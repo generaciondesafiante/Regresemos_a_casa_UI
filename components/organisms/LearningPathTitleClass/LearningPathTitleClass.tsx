@@ -20,9 +20,7 @@ export const LearningPathTitleClass: FC<LearningPathVideoClassProps> = ({
   }
   const { idvideo } = useParams();
   const [currentVideo, setCurrentVideo] = useState(null);
-  // console.log(idvideo);
-  // console.log(course);
-  console.log(currentVideo);
+
   const { name } = course;
   useEffect(() => {
     if (course && idvideo) {

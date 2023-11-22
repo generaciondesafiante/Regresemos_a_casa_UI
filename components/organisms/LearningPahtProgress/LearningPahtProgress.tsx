@@ -1,28 +1,24 @@
+"use client";
 import { FC } from "react";
 import { Course } from "..";
 import styles from "./LearningPahtProgress.module.css";
+import { useRouter } from "next/navigation";
 
 interface LearningPathVideoClassProps {
   course: Course | null;
-  lessonData: {
-    title: string;
-    description: string;
-    url: string;
-    idVideo: number;
-    isLastLesson: boolean;
-  } | null;
   isSelected: boolean;
-  onItemClick: () => void;
+  onItemClick: (index: number) => void;
 }
 
 export const LearningPahtProgress: FC<LearningPathVideoClassProps> = ({
   course,
-  lessonData,
   isSelected,
   onItemClick,
 }) => {
+  const router = useRouter();
+
   if (!course || !course.content) {
-    return <div>No se encontraron datos para mostrar</div>;
+    return <div></div>;
   }
 
   return (
@@ -33,7 +29,7 @@ export const LearningPahtProgress: FC<LearningPathVideoClassProps> = ({
           className={`${styles["classRoomRoute-subcontent"]} ${
             isSelected ? styles["selected"] : ""
           }`}
-          onClick={() => onItemClick(index + 1)} // Pass the index to onItemClick
+          onClick={() => onItemClick(index)}
         >
           <div className={styles["classRoomRoute-title"]}>{index + 1}</div>
 

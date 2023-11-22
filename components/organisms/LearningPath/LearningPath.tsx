@@ -65,13 +65,7 @@ export const LearningPath: FC = async () => {
       <LearningPathTitleClass course={selectedCourse} />
 
       <nav className={styles["classRoomRoute-container"]}>
-        <LearningPahtProgress
-          course={selectedCourse}
-          onItemClick={() => {
-            setSelectedItemIndex(index + 1); // Update the selected item index
-            handleUrlId(index + 1); // Pass the updated index to the function
-          }}
-        />
+        <LearningPahtProgress course={selectedCourse} />
       </nav>
     </div>
   );

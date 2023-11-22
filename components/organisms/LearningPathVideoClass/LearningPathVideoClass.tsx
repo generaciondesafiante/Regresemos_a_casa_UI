@@ -1,8 +1,10 @@
+"use client";
 import Link from "next/link";
 import StarIcon from "@mui/icons-material/Star";
 import styles from "./LearningPathVideoClass.module.css";
 import { Course } from "../LearningPath/LearningPath";
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
+import { useParams } from "next/navigation";
 
 interface LearningPathVideoClassProps {
   course: Course | null;
@@ -10,14 +12,30 @@ interface LearningPathVideoClassProps {
 export const LearningPathVideoClass: FC<LearningPathVideoClassProps> = ({
   course,
 }) => {
-  if (!course) {
-    return <div>No se encontraron datos para mostrar</div>;
+  const { idvideo } = useParams();
+  const [currentVideo, setCurrentVideo] = useState(null);
+
+  useEffect(() => {
+    if (course && idvideo) {
+      const video = course.content.find(
+        (video) => video.idVideo === parseInt(idvideo, 10)
+      );
+
+      if (video) {
+        setCurrentVideo(video);
+      }
+    }
+  }, [course, idvideo]);
+
+  if (!course || !currentVideo) {
+    return <div>Loading...</div>;
   }
+
   return (
     <div className={styles["learningPathVideoClass-container"]}>
       <iframe
         className={styles["learningPathVideoClass-video"]}
-        src={course.content[0].url}
+        src={currentVideo.url}
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowFullScreen
       ></iframe>
