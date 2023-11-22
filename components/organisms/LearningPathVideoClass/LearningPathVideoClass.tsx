@@ -4,7 +4,7 @@ import StarIcon from "@mui/icons-material/Star";
 import styles from "./LearningPathVideoClass.module.css";
 import { Course } from "../LearningPath/LearningPath";
 import { FC, useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 
 interface LearningPathVideoClassProps {
   course: Course | null;
@@ -14,6 +14,7 @@ export const LearningPathVideoClass: FC<LearningPathVideoClassProps> = ({
 }) => {
   const { idvideo } = useParams();
   const [currentVideo, setCurrentVideo] = useState(null);
+  const router = useRouter();
 
   useEffect(() => {
     if (course && idvideo) {
@@ -26,6 +27,20 @@ export const LearningPathVideoClass: FC<LearningPathVideoClassProps> = ({
       }
     }
   }, [course, idvideo]);
+
+  const handleNextVideo = () => {
+    if (course && idvideo) {
+      const currentIndex = course.content.findIndex(
+        (video) => video.idVideo === parseInt(idvideo, 10)
+      );
+
+      if (currentIndex !== -1 && currentIndex < course.content.length - 1) {
+        const nextVideo = course.content[currentIndex + 1];
+        const nextVideoUrl = `/dashboard/path/course/${course.id}/${course.endpoint}/${nextVideo.idVideo}`;
+        router.push(nextVideoUrl);
+      }
+    }
+  };
 
   if (!course || !currentVideo) {
     return <div></div>;
@@ -74,6 +89,7 @@ export const LearningPathVideoClass: FC<LearningPathVideoClassProps> = ({
           </div>
           <button
             className={`${styles["learningPathVideoClass-btn_next"]} ${styles["learningPathVideoClass-btn_textNext"]}`}
+            onClick={handleNextVideo}
           >
             SIGUIENTE
           </button>

@@ -21,7 +21,7 @@ export const Path = async () => {
 
   const handleUrlId = (course: any) => {
     const defaultContentIndex = 0;
-    const url = `/dashboard/path/learningpath/${course.name}/${course.id}/${
+    const url = `/dashboard/path/course/${course.id}/${course.endpoint}/${
       defaultContentIndex + 1
     }`;
     router.push(url);

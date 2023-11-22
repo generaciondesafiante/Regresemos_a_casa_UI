@@ -52,8 +52,8 @@ export const LearningPath: FC = async () => {
   }, [idtema]);
 
   const handleItemClick = (index: number) => {
-    const url = `/dashboard/path/learningpath/${selectedCourse?.name}/${
-      selectedCourse?.id
+    const url = `/dashboard/path/course/${selectedCourse?.id}/${
+      selectedCourse?.endpoint
     }/${selectedCourse?.content[index - 1].idVideo}`;
     router.push(url);
   };
