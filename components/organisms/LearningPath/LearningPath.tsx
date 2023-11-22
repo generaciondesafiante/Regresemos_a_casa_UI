@@ -1,6 +1,6 @@
 "use client";
 import { FC, useState, useEffect } from "react";
-import { LearningPahtProgress } from "../LearningPahtProgress/LearningPahtProgress";
+import { LearningPahtProgress } from "../LearningPathProgress/LearningPathProgress";
 import { LearningPathTitleClass } from "../LearningPathTitleClass/LearningPathTitleClass";
 import { LearningPathVideoClass } from "../LearningPathVideoClass/LearningPathVideoClass";
 import styles from "./LearningPath.module.css";
