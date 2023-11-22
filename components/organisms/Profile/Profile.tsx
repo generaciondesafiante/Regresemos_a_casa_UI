@@ -2,10 +2,10 @@
 import { FC, useState } from "react";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
-import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 import Swal from "sweetalert2";
 import { Button } from "../../atoms";
 import { ModalEditPhotoProfile } from "../Modal/Modal";
+import { AddPhotoIcon } from "../../atoms/icons/addPhotoIcon/AddPhotoIcon";
 import styles from "./Profile.module.css";
 
 interface Props {
@@ -88,10 +88,7 @@ export const Profile: FC<Props> = () => {
             className={styles["profile-container_addPhoto"]}
             onClick={() => setIsModalOpen(!isModalOpen)}
           >
-            <AddAPhotoIcon
-              className={styles["profile-add-photo_icon"]}
-              onClick={handleOpenModal}
-            />
+            <AddPhotoIcon />
           </div>
 
           <div>
