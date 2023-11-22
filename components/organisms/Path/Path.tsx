@@ -5,8 +5,8 @@ import styles from "./Path.module.css";
 
 export const Path = async () => {
   const [courses, setCourses] = useState([]);
-
   const router = useRouter();
+
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(

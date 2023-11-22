@@ -14,6 +14,7 @@ interface LearningPathVideoClassProps {
   isSelected: boolean;
   onItemClick: () => void;
 }
+
 export const LearningPahtProgress: FC<LearningPathVideoClassProps> = ({
   course,
   lessonData,
