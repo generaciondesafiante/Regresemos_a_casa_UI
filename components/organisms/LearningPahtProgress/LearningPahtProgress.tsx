@@ -29,7 +29,7 @@ export const LearningPahtProgress: FC<LearningPathVideoClassProps> = ({
           className={`${styles["classRoomRoute-subcontent"]} ${
             isSelected ? styles["selected"] : ""
           }`}
-          onClick={() => onItemClick(index)}
+          onClick={() => onItemClick(index + 1)}
         >
           <div className={styles["classRoomRoute-title"]}>{index + 1}</div>
 

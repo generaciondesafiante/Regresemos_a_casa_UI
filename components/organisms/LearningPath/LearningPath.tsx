@@ -43,7 +43,6 @@ export const LearningPath: FC = async () => {
 
       if (filteredCourse?.course.content.length > 0) {
         setSelectedVideoId(filteredCourse.course.content[0].idVideo);
-        // setSelectedItemIndex(1);
       }
     };
 
@@ -52,20 +51,23 @@ export const LearningPath: FC = async () => {
     }
   }, [idtema]);
 
-  const handleUrlId = (index: number) => {
+  const handleItemClick = (index: number) => {
     const url = `/dashboard/path/learningpath/${selectedCourse?.name}/${
       selectedCourse?.id
-    }?videoId=${selectedCourse?.content[index - 1].idVideo}&itemIndex=${index}`;
+    }/${selectedCourse?.content[index - 1].idVideo}`;
     router.push(url);
   };
-  // // console.log(selectedCourse);
   return (
     <div className={styles["learningPath-container"]}>
       <LearningPathVideoClass course={selectedCourse} />
       <LearningPathTitleClass course={selectedCourse} />
 
       <nav className={styles["classRoomRoute-container"]}>
-        <LearningPahtProgress course={selectedCourse} />
+        <LearningPahtProgress
+          course={selectedCourse}
+          isSelected={true}
+          onItemClick={handleItemClick}
+        />
       </nav>
     </div>
   );

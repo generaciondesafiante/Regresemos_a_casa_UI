@@ -28,7 +28,7 @@ export const LearningPathVideoClass: FC<LearningPathVideoClassProps> = ({
   }, [course, idvideo]);
 
   if (!course || !currentVideo) {
-    return <div>Loading...</div>;
+    return <div></div>;
   }
 
   return (
@@ -74,7 +74,6 @@ export const LearningPathVideoClass: FC<LearningPathVideoClassProps> = ({
           </div>
           <button
             className={`${styles["learningPathVideoClass-btn_next"]} ${styles["learningPathVideoClass-btn_textNext"]}`}
-            // onClick={handleUrlId}
           >
             SIGUIENTE
           </button>
