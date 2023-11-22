@@ -5,6 +5,7 @@ import { LearningPathTitleClass } from "../LearningPathTitleClass/LearningPathTi
 import { LearningPathVideoClass } from "../LearningPathVideoClass/LearningPathVideoClass";
 import styles from "./LearningPath.module.css";
 import { useParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export interface Course {
   course: {
@@ -22,10 +23,13 @@ export interface Course {
 }
 export const LearningPath: FC = async () => {
   const { idtema } = useParams();
+  const router = useRouter();
 
   const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
   const [selectedVideoId, setSelectedVideoId] = useState<number | null>(null);
-
+  const [selectedItemIndex, setSelectedItemIndex] = useState<number | null>(
+    null
+  );
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(
@@ -39,6 +43,7 @@ export const LearningPath: FC = async () => {
 
       if (filteredCourse?.course.content.length > 0) {
         setSelectedVideoId(filteredCourse.course.content[0].idVideo);
+        // setSelectedItemIndex(1);
       }
     };
 
@@ -47,24 +52,26 @@ export const LearningPath: FC = async () => {
     }
   }, [idtema]);
 
-  console.log(selectedCourse);
-
+  const handleUrlId = (index: number) => {
+    const url = `/dashboard/path/learningpath/${selectedCourse?.name}/${
+      selectedCourse?.id
+    }?videoId=${selectedCourse?.content[index - 1].idVideo}&itemIndex=${index}`;
+    router.push(url);
+  };
+  // // console.log(selectedCourse);
   return (
     <div className={styles["learningPath-container"]}>
       <LearningPathVideoClass course={selectedCourse} />
       <LearningPathTitleClass course={selectedCourse} />
 
       <nav className={styles["classRoomRoute-container"]}>
-        {selectedCourse?.content?.map((lesson, index) => (
-          <LearningPahtProgress
-            lessonData={{
-              ...lesson,
-              isLastLesson: selectedCourse.content.length - 1 === index,
-            }}
-            course={selectedCourse}
-            // isSelected={lesson.idVideo === selectedVideoId}
-          />
-        ))}
+        <LearningPahtProgress
+          course={selectedCourse}
+          onItemClick={() => {
+            setSelectedItemIndex(index + 1); // Update the selected item index
+            handleUrlId(index + 1); // Pass the updated index to the function
+          }}
+        />
       </nav>
     </div>
   );

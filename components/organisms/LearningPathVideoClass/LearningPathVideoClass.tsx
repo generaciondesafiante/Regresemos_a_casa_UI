@@ -6,19 +6,10 @@ import { FC } from "react";
 
 interface LearningPathVideoClassProps {
   course: Course | null;
-  // // lessonData: {
-  // //   title: string;
-  // //   description: string;
-  // //   url: string;
-  // //   idVideo: number;
-  // //   isLastLesson: boolean;
-  // // } | null;
-  // Agrega esta línea para corregir el error
 }
 export const LearningPathVideoClass: FC<LearningPathVideoClassProps> = ({
   course,
 }) => {
-  console.log(course);
   if (!course) {
     return <div>No se encontraron datos para mostrar</div>;
   }

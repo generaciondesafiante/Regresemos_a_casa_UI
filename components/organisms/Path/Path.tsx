@@ -5,8 +5,8 @@ import styles from "./Path.module.css";
 
 export const Path = async () => {
   const [courses, setCourses] = useState([]);
-  const router = useRouter();
 
+  const router = useRouter();
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(
@@ -20,7 +20,10 @@ export const Path = async () => {
   }, []);
 
   const handleUrlId = (course: any) => {
-    const url = `/dashboard/path/learningpath/${course.name}/${course.id}`;
+    const defaultContentIndex = 0;
+    const url = `/dashboard/path/learningpath/${course.name}/${course.id}/${
+      defaultContentIndex + 1
+    }`;
     router.push(url);
   };
   return (
