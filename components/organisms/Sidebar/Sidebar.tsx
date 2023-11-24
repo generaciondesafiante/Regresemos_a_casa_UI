@@ -2,23 +2,27 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import {
-  Bookmark,
-  Face,
-  Favorite,
-  Folder,
-  Home,
-  Logout,
-} from "@mui/icons-material";
+  DashboardIcon,
+  ProfileIcon,
+  ResourcesIcon,
+} from "../../atoms/icons/sidebarIcons";
 import { signOut } from "next-auth/react";
 import styles from "./Sidebar.module.css";
+import { PathIcon } from "../../atoms/icons/sidebarIcons/PathIcon";
+import { FavoriteIcon } from "../../atoms/icons/sidebarIcons/FavoriteIcon";
+import { LogoutIcon } from "../../atoms/icons/sidebarIcons/LogoutIcon";
 
 const links = [
-  { name: "profile", href: "/dashboard/profile", icon: Face },
-  { name: "home", href: "/dashboard", icon: Home },
-  { name: "path", href: "/dashboard/path", icon: Bookmark },
-  { name: "resources", href: "/dashboard/resources", icon: Folder },
-  { name: "favorites", href: "/dashboard/favorites", icon: Favorite },
-  { name: "logout", href: "/", icon: Logout },
+  {
+    name: "profile",
+    href: "/dashboard/profile" || "/dashboard/profile/changepassword",
+    icon: <ProfileIcon />,
+  },
+  { name: "home", href: "/dashboard", icon: <DashboardIcon /> },
+  { name: "path", href: "/dashboard/path", icon: <PathIcon /> },
+  { name: "resources", href: "/dashboard/resources", icon: <ResourcesIcon /> },
+  { name: "favorites", href: "/dashboard/favorites", icon: <FavoriteIcon /> },
+  { name: "logout", href: "/", icon: <LogoutIcon /> },
 ];
 
 export const Sidebar = () => {
@@ -40,7 +44,7 @@ export const Sidebar = () => {
                     : ""
                 }`}
               >
-                <Icon className={styles["sidebar-icon"]} />
+                {link.icon}
               </div>
             </Link>
           );
@@ -61,7 +65,7 @@ export const Sidebar = () => {
                       : ""
                   }`}
                 >
-                  <Icon className={styles["sidebar-icon"]} />
+                  {link.icon}
                 </div>
               </Link>
             );
@@ -82,9 +86,7 @@ export const Sidebar = () => {
               key={link.name}
               className={styles["button-logout"]}
             >
-              <div className="sidebar-iconContainer">
-                <Icon className={styles["sidebar-icon"]} />
-              </div>
+              <div className="sidebar-iconContainer">{link.icon}</div>
             </button>
           );
         }

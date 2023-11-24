@@ -1,11 +1,14 @@
+export * from './ChangePasswordUser-template/ChangePasswordUserTemplate';
 export * from './CourseResources-template/CourseResourcesTemplate';
 export * from './Dashboard-template/DashboardTemplate';
 export * from './Favorites-template/FavoritesTemplate';
+export * from './ForgetPassword-template/ForgetPasswordTemplate';
 export { default as HomePageTemplate } from './HomePage-template/HomePageTemplate';
 export * from './LearningPath-template/LearningPathTemplate';
 export * from './Login-template/LoginTemplate';
 export * from './Path-template/PathTemplate';
 export * from './Profile-template/ProfileTemplate';
 export * from './Register-template/RegisterTemplate';
+export * from './ResetPassword-template/ResetPassword';
 export * from './Sidebar-template/SidebarTemplate';
 export * from './index';

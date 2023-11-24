@@ -1,0 +1,12 @@
+.icon-addPhoto {
+    width: 1.5rem;
+    position: relative;
+    color: var(--white);
+    top: 0.3rem;
+}
+
+@media (min-width: 48rem) {
+    .icon-addPhoto {
+        width: 1.8rem
+    }
+}

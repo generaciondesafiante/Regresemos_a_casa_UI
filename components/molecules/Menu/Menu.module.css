@@ -1,56 +1,73 @@
 .header {
-  display: flex;
-  justify-content: space-between;
-  position: fixed;
-  z-index: 200;
   width: 100%;
   min-width: 20rem;
+  position: fixed;
+  z-index: 200;
+  display: flex;
+  justify-content: space-between;
   padding: 0.5rem;
   align-items: center;
-  background-color: #ffffffbe;
+  background-color: var(--white-transparent);
 }
+
 .header-logo {
-  width: 2.5rem;
-  transition: 400ms;
+  width: 3rem;
+  transition: var(--transition);
   cursor: pointer;
 }
 
 .header-logo:hover {
-  transform: scale(1.1);
+  transform: var(--transform);
 }
 
-.header-container_btn{
+.header-container_btn {
   display: flex;
   justify-content: space-around;
   gap: 0.7rem;
+ 
 }
+
 .button-sesion {
-  border: solid 0.02rem var(--greenDesafiante);
+  border: var(--border) var(--greenDesafiante);
   background-color: var(--white);
   color: var(--greenDesafiante);
+  font-weight: bold;
 }
+
 .button-sesion:hover {
   background-color: var(--greenDesafiante);
   color: var(--white);
 }
+
 .button-register {
-  border: solid 0.02rem var(--greenDesafiante);
+  border: var(--border) var(--greenDesafiante);
   background-color: var(--greenDesafiante);
   color: var(--white);
+  font-weight: bold;
 }
+
 .button-register:hover {
-  border: solid 0.02rem var(--greenDesafiante);
+  border: var(--border) var(--greenDesafiante);
   background-color: var(--white);
   color: var(--greenDesafiante);
 }
+
 @media (min-width: 48rem) {
   .header {
     padding: 0.5rem 1rem;
   }
+
   .header-logo {
-    width: 3rem;
+    width: 3.5rem;
   }
-  .header-container_btn{
-    gap: 1.5rem;
+}
+
+@media (min-width: 64rem) {
+  .header {
+    padding: 0.5rem 1.5rem;
+  }
+
+  .header-logo {
+    width: 4rem;
   }
 }
