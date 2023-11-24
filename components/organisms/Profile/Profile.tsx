@@ -187,6 +187,7 @@ export const Profile: FC<Props> = () => {
                 className={`
                 ${styles["profile-saveChange_btn"]} 
                 ${styles["profile-cancel_btn"]}`}
+                onClick={() => setIsEditing(false)}
               >
                 Cancelar
               </Button>
