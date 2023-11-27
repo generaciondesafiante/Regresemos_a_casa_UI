@@ -33,7 +33,26 @@
   text-decoration: underline;
   color: var(--turquoise);
 }
-
+.enabled {
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  background-color: var(--darkGray);
+  color: var(--white);
+}
+.disabled {
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  margin-top: 0.8rem;
+  color: var(--white);
+  background-color: var(--turquoise);
+}
+.disabled:hover {
+  font-weight: bold;
+  color: var(--turquoise);
+  background-color: var(--white);
+}
 .form-register-btn {
   width: 8rem;
   margin-top: 0.8rem;

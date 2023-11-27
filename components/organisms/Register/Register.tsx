@@ -4,7 +4,10 @@ import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
-import { Input, Button } from "../../atoms";
+import { Button } from "../../atoms";
+import { ArrowRightIcon } from "../../atoms/icons/arrowsIcons";
+import { RegisterFormPassword } from "./RegisterFormPassword/RegisterFormPassword";
+import { RegisterFormInformation } from "./RegisterFormInformation/RegisterFormInformation";
 import styles from "./Register.module.css";
 
 export const Register = () => {
@@ -13,6 +16,7 @@ export const Register = () => {
   const [email, setEmail] = useState<string>("");
   const [password2, setPassword2] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  console.log(password, password2);
   const [lastname, setLastName] = useState<string>("");
   const [country, setCountry] = useState<string>("");
   const [city, setCity] = useState<string>("");
@@ -20,6 +24,30 @@ export const Register = () => {
   const [image, setImage] = useState<string>(
     "'http://somebooks.es/wp-content/uploads/2018/12/Poner-una-imagen-a-la-cuenta-de-usuario-en-Windows-10-000.png'"
   );
+  const [showPasswordSection, setShowPasswordSection] =
+    useState<boolean>(false);
+  const [showPasswordSectionClicked, setShowPasswordSectionClicked] =
+    useState<boolean>(false);
+
+  const handleInputChange = () => {
+    const allFieldsFilled: boolean = !!(
+      name &&
+      email &&
+      lastname &&
+      country &&
+      city
+    );
+
+    // Actualizar el estado solo si showPasswordSectionClicked es falso
+    if (!showPasswordSectionClicked) {
+      setShowPasswordSection(allFieldsFilled);
+    }
+  };
+  const handlePasswordButtonClick = () => {
+    // Alternar el estado de showPasswordSection y marcar que el botón ha sido clicado
+    setShowPasswordSection(!showPasswordSection);
+    setShowPasswordSectionClicked(true);
+  };
   const router = useRouter();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -100,100 +128,62 @@ export const Register = () => {
           <span>¡Bienvenido/a </span>
           <span>Crea tu cuenta!</span>
         </h2>
-        <section className={styles["continer-label_grid"]}>
-          <Input
-            id={"name-form-register"}
-            htmlForm={"name-form-register"}
-            name="name"
-            value={name}
-            onChange={(event) => setName(event.target.value)}
-            type="text"
-            placeholder=" "
-            label={"Nombres"}
-            isRequire={true}
-          />
-          <Input
-            id={"last-name-form-register"}
-            htmlForm={"last-name-form-register"}
-            name="lastname"
-            value={lastname}
-            onChange={(event) => setLastName(event.target.value)}
-            type="text"
-            placeholder=" "
-            label={"Apellidos"}
-            isRequire={true}
-          />
-          <Input
-            id={"country-form-register"}
-            htmlForm={"country-form-register"}
-            name="country"
-            value={country}
-            onChange={(event) => setCountry(event.target.value)}
-            type="text"
-            placeholder=" "
-            label={"País"}
-            isRequire={true}
-          />
+        <section>
+          {!showPasswordSection ? (
+            <div className={styles["continer-label_grid"]}>
+              <RegisterFormInformation
+                setLastName={setLastName}
+                setName={setName}
+                setCountry={setCountry}
+                setCity={setCity}
+                setPhone={setPhone}
+                setEmail={setEmail}
+                name={name}
+                lastname={lastname}
+                country={country}
+                city={city}
+                phone={phone}
+                email={email}
+              />
+            </div>
+          ) : null}
+          <div className={styles["continer-label_grid"]}>
+            <Button
+              className={`${
+                showPasswordSection ? styles["disabled"] : styles["enabled"]
+              }`}
+              type="button"
+              onClick={handlePasswordButtonClick}
+              disabled={
+                !(
+                  name &&
+                  email &&
+                  lastname &&
+                  country &&
+                  city &&
+                  !showPasswordSection
+                )
+              }
+            >
+              <ArrowRightIcon />
+            </Button>
+          </div>
 
-          <Input
-            id={"city-form-register"}
-            htmlForm={"city-form-register"}
-            name="city"
-            value={city}
-            onChange={(event) => setCity(event.target.value)}
-            type="text"
-            placeholder=" "
-            label={"Ciudad"}
-            isRequire={true}
-          />
-          <Input
-            id={"phone-form-register"}
-            htmlForm={"phone-form-register"}
-            name="phone"
-            value={phone !== null ? phone.toString() : ""}
-            onChange={(event) =>
-              setPhone(parseInt(event.target.value, 10) || null)
-            }
-            type="number"
-            placeholder=" "
-            label={"Teléfono (optional)"}
-            isRequire={false}
-          />
-
-          <Input
-            id={"email-form-register"}
-            htmlForm={"email-form-register"}
-            name="email"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-            type="email"
-            placeholder=" "
-            label={"Correo electrónico"}
-            isRequire={true}
-          />
-          <Input
-            id={"password-form-register"}
-            htmlForm={"password-form-register"}
-            name="password"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-            type="password"
-            placeholder=" "
-            label={"Contraseña"}
-            isRequire={true}
-          />
-
-          <Input
-            id={"password2-form-register"}
-            htmlForm={"password2-form-register"}
-            name="password2"
-            value={password2}
-            onChange={(event) => setPassword2(event.target.value)}
-            type="password"
-            placeholder=" "
-            label={"Repite la contraseña"}
-            isRequire={true}
-          />
+          {showPasswordSection && (
+            <>
+              <RegisterFormPassword
+                setPassword={setPassword}
+                setPassword2={setPassword2}
+                password2={password2}
+                password={password}
+              />
+              <div className={styles["continer-label_grid"]}>
+                <Button className={styles["form-register-btn"]} type="submit">
+                  Crear cuenta
+                </Button>
+              </div>
+            </>
+          )}
         </section>
 
         <Link
@@ -202,10 +192,6 @@ export const Register = () => {
         >
           ¿Ya tienes cuenta?
         </Link>
-
-        <Button className={styles["form-register-btn"]} type="submit">
-          Crear cuenta
-        </Button>
       </form>
     </>
   );
