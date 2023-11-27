@@ -16,7 +16,7 @@ export const Register = () => {
   const [email, setEmail] = useState<string>("");
   const [password2, setPassword2] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  console.log(password, password2);
+
   const [lastname, setLastName] = useState<string>("");
   const [country, setCountry] = useState<string>("");
   const [city, setCity] = useState<string>("");
@@ -38,13 +38,11 @@ export const Register = () => {
       city
     );
 
-    // Actualizar el estado solo si showPasswordSectionClicked es falso
     if (!showPasswordSectionClicked) {
       setShowPasswordSection(allFieldsFilled);
     }
   };
   const handlePasswordButtonClick = () => {
-    // Alternar el estado de showPasswordSection y marcar que el botón ha sido clicado
     setShowPasswordSection(!showPasswordSection);
     setShowPasswordSectionClicked(true);
   };
@@ -147,27 +145,27 @@ export const Register = () => {
               />
             </div>
           ) : null}
-          <div className={styles["continer-label_grid"]}>
-            <Button
-              className={`${
-                showPasswordSection ? styles["disabled"] : styles["enabled"]
-              }`}
-              type="button"
-              onClick={handlePasswordButtonClick}
-              disabled={
-                !(
-                  name &&
-                  email &&
-                  lastname &&
-                  country &&
-                  city &&
-                  !showPasswordSection
-                )
-              }
-            >
-              <ArrowRightIcon />
-            </Button>
-          </div>
+          {!showPasswordSection && (
+            <div className={styles["center-label-in"]}>
+              <Button
+                className={styles["enabled"]}
+                type="button"
+                onClick={handlePasswordButtonClick}
+                disabled={
+                  !(
+                    name &&
+                    email &&
+                    lastname &&
+                    country &&
+                    city &&
+                    !showPasswordSection
+                  )
+                }
+              >
+                <ArrowRightIcon />
+              </Button>
+            </div>
+          )}
 
           {showPasswordSection && (
             <>
@@ -177,11 +175,6 @@ export const Register = () => {
                 password2={password2}
                 password={password}
               />
-              <div className={styles["continer-label_grid"]}>
-                <Button className={styles["form-register-btn"]} type="submit">
-                  Crear cuenta
-                </Button>
-              </div>
             </>
           )}
         </section>

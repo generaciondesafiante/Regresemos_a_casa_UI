@@ -1,4 +1,5 @@
 .form-register {
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -33,7 +34,14 @@
   text-decoration: underline;
   color: var(--turquoise);
 }
+.center-label-in {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .enabled {
+  text-align: center;
   border-radius: 50%;
   width: 70px;
   height: 70px;
