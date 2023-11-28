@@ -1,10 +1,12 @@
-import * as React from "react";
-import styles from "./sidebarIcons.module.css";
+import React, { FC } from "react";
+interface Props extends React.SVGProps<SVGSVGElement> {
+  className?: string;
+}
 
-export const ResourcesIcon = (props: React.SVGProps<SVGSVGElement>) => {
+export const ResourcesIcon: FC<Props> = ({ className, ...props }) => {
   return (
     <svg
-      className={styles["icons-sidebar"]}
+      className={className}
       viewBox="0 0 24 24"
       fill="currentColor"
       {...props}
