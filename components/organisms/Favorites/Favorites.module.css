@@ -1,4 +1,4 @@
-.favorites__container {
+.favorites-container {
     position: absolute;
     height: 100%;
     width: 100vw;
@@ -8,7 +8,7 @@
     overflow-x: hidden;
 }
 
-.favorites__title {
+.favorites-title {
     display: flex;
     width: 100vw;
     height: 5rem;
@@ -57,7 +57,7 @@
     font-weight: 500;
 }
 
-.favorites__container--cards {
+.favorites-container--cards {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -106,7 +106,7 @@
 }
 
 @media (max-width: 47.938rem) {
-    .favorites__container--cards{
+    .favorites-container--cards{
         margin: 0 2.5rem 6rem 2.5rem;
     }
 
@@ -134,7 +134,7 @@
 }
 
 @media (max-width: 64rem) {
-    .favorites__container--cards {
+    .favorites-container--cards {
         display: flex;
         justify-content: center;
     }

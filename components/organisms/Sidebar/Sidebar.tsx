@@ -12,29 +12,56 @@ import { PathIcon } from "../../atoms/icons/sidebarIcons/PathIcon";
 import { FavoriteIcon } from "../../atoms/icons/sidebarIcons/FavoriteIcon";
 import { LogoutIcon } from "../../atoms/icons/sidebarIcons/LogoutIcon";
 
-const links = [
-  {
-    name: "profile",
-    href: "/dashboard/profile" || "/dashboard/profile/changepassword",
-    icon: <ProfileIcon />,
-  },
-  { name: "home", href: "/dashboard", icon: <DashboardIcon /> },
-  { name: "path", href: "/dashboard/path", icon: <PathIcon /> },
-  { name: "resources", href: "/dashboard/resources", icon: <ResourcesIcon /> },
-  { name: "favorites", href: "/dashboard/favorites", icon: <FavoriteIcon /> },
-  { name: "logout", href: "/", icon: <LogoutIcon /> },
-];
-
 export const Sidebar = () => {
   const pathName = usePathname();
   const router = useRouter();
   const centeredLinks = ["home", "resources", "favorites", "path"];
 
+  const links = [
+    {
+      name: "profile",
+      href: "/dashboard/profile" || "/dashboard/profile/changepassword",
+      icon: <ProfileIcon className={styles["sidebar-icon"]} />,
+    },
+    {
+      name: "home",
+      href: "/dashboard",
+      icon: (
+        <DashboardIcon
+          className={`${styles["sidebar-icon"]} ${styles["sidebar-icon_house"]}`}
+        />
+      ),
+    },
+    {
+      name: "path",
+      href: "/dashboard/path",
+      icon: <PathIcon className={styles["sidebar-icon"]} />,
+    },
+    {
+      name: "resources",
+      href: "/dashboard/resources",
+      icon: <ResourcesIcon className={styles["sidebar-icon"]} />,
+    },
+    {
+      name: "favorites",
+      href: "/dashboard/favorites",
+      icon: <FavoriteIcon className={styles["sidebar-icon"]} />,
+    },
+    {
+      name: "logout",
+      href: "/",
+      icon: (
+        <LogoutIcon
+          className={`${styles["sidebar-icon"]} ${styles["sidebar-icon_house"]}`}
+        />
+      ),
+    },
+  ];
+
   return (
     <div className={styles["sidebar-container"]}>
       {links.map((link) => {
         if (link.name === "profile") {
-          const Icon = link.icon;
           return (
             <Link href={link.href} key={link.name}>
               <div
