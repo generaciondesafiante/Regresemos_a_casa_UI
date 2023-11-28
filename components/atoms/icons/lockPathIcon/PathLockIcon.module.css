@@ -1,0 +1,10 @@
+.icon-lock {
+  width: 1.5rem;
+  color: var(--darkGray);
+}
+
+@media (min-width: 64rem) {
+  .icon-lock {
+    width: 1.8rem;
+  }
+}
