@@ -1,10 +1,12 @@
-import * as React from "react";
-import styles from "./sidebarIcons.module.css";
+import React, { FC } from "react";
+interface Props extends React.SVGProps<SVGSVGElement> {
+  className?: string;
+}
 
-export const LogoutIcon = (props: React.SVGProps<SVGSVGElement>) => {
+export const LogoutIcon: FC<Props> = ({ className, ...props }) => {
   return (
     <svg
-      className={`${styles["icons-sidebar"]} ${styles["icon-logout"]}`}
+      className={className}
       viewBox="0 0 24 24"
       fill="currentColor"
       {...props}
