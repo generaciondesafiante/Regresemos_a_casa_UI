@@ -57,7 +57,7 @@
   color: var(--turquoise);
 }
 
-.enabled {
+.disabled {
   text-align: center;
   border-radius: 50%;
   width: 4.375rem;
@@ -65,7 +65,7 @@
   background-color: var(--darkGray);
   color: var(--white);
 }
-.disabled {
+.enabled {
   border-radius: 50%;
   width: 4.375rem;
   height: 4.375rem;
@@ -73,7 +73,7 @@
   color: var(--white);
   background-color: var(--turquoise);
 }
-.disabled:hover {
+.enabled:hover {
   font-weight: bold;
   color: var(--turquoise);
   background-color: var(--white);
@@ -89,7 +89,7 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   .form-register-title_password,
   .form-register-title_info {
     font-size: var(--fontSize-superTitles_tablet);

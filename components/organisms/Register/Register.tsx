@@ -171,7 +171,7 @@ export const Register = () => {
               <div className={styles["center-label-in"]}>
                 <Button
                   className={
-                    showPasswordSection ? styles["disabled"] : styles["enabled"]
+                    showPasswordSection ? styles["enabled"] : styles["disabled"]
                   }
                   type="button"
                   onClick={handlePasswordButtonClick}

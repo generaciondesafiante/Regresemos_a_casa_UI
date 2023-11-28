@@ -1,5 +1,5 @@
 "use client";
-import { FC, useState } from "react";
+import { FC, useState, useEffect } from "react";
 import { Button, Input } from "../../../atoms";
 import { PasswordValidation } from "../RegisterCharacterValidatePassword/RegisterCharacterValidatePassword";
 import styles from "./RegisterFormPassword.module.css";
@@ -21,7 +21,8 @@ export const RegisterFormPassword: FC<RegisterFormPasswordProps> = ({
   const [isNumberValid, setNumberValid] = useState(false);
   const [isLengthValid, setLengthValid] = useState(false);
   const [isLetterValid, setLetterValid] = useState(false);
-
+  const [isFormValid, setFormValid] = useState(false);
+  console.log(isFormValid);
   const handlePasswordChange = (value: string) => {
     const specialCharRegex = /[!@#$%^&*(),.?":{}|<>]/;
     const numberRegex = /\d/;
@@ -34,7 +35,11 @@ export const RegisterFormPassword: FC<RegisterFormPasswordProps> = ({
 
     setPassword(value);
   };
-
+  useEffect(() => {
+    setFormValid(
+      isSpecialCharValid && isNumberValid && isLengthValid && isLetterValid
+    );
+  }, [isSpecialCharValid, isNumberValid, isLengthValid, isLetterValid]);
   return (
     <>
       <Input
@@ -59,7 +64,7 @@ export const RegisterFormPassword: FC<RegisterFormPasswordProps> = ({
         label={"Repite la contraseña"}
         isRequire={true}
       />
-      <div className={styles['content-character_password']}>
+      <div className={styles["content-character_password"]}>
         <PasswordValidation
           isValid={isSpecialCharValid}
           message="Al menos un caracter especial (- . * : _)"
@@ -78,7 +83,11 @@ export const RegisterFormPassword: FC<RegisterFormPasswordProps> = ({
         />
       </div>
       <div className={styles["register-button_submit-content"]}>
-        <Button className={styles["form-register_btn"]} type="submit">
+        <Button
+          className={isFormValid ? styles["enabled"] : styles["disabled"]}
+          type="submit"
+          disabled={!isFormValid}
+        >
           Crear cuenta
         </Button>
       </div>
