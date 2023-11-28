@@ -26,26 +26,25 @@ export const Register = () => {
   );
   const [showPasswordSection, setShowPasswordSection] =
     useState<boolean>(false);
-  const [showPasswordSectionClicked, setShowPasswordSectionClicked] =
-    useState<boolean>(false);
-
+  console.log(showPasswordSection);
   const handleInputChange = () => {
+    // Lógica para activar/desactivar la sección de contraseña
     const allFieldsFilled: boolean = !!(
       name &&
       email &&
       lastname &&
       country &&
-      city
+      city &&
+      phone
     );
-
-    if (!showPasswordSectionClicked) {
-      setShowPasswordSection(allFieldsFilled);
-    }
+    setShowPasswordSection(allFieldsFilled);
   };
   const handlePasswordButtonClick = () => {
-    setShowPasswordSection(!showPasswordSection);
-    setShowPasswordSectionClicked(true);
+    if (!showPasswordSection) {
+      setShowPasswordSection(true);
+    }
   };
+
   const router = useRouter();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -127,7 +126,16 @@ export const Register = () => {
           <span>Crea tu cuenta!</span>
         </h2>
         <section>
-          {!showPasswordSection ? (
+          {showPasswordSection ? (
+            <>
+              <RegisterFormPassword
+                setPassword={setPassword}
+                setPassword2={setPassword2}
+                password2={password2}
+                password={password}
+              />
+            </>
+          ) : (
             <div className={styles["continer-label_grid"]}>
               <RegisterFormInformation
                 setLastName={setLastName}
@@ -142,41 +150,23 @@ export const Register = () => {
                 city={city}
                 phone={phone}
                 email={email}
+                onInputChange={handleInputChange}
               />
-            </div>
-          ) : null}
-          {!showPasswordSection && (
-            <div className={styles["center-label-in"]}>
-              <Button
-                className={styles["enabled"]}
-                type="button"
-                onClick={handlePasswordButtonClick}
-                disabled={
-                  !(
-                    name &&
-                    email &&
-                    lastname &&
-                    country &&
-                    city &&
-                    !showPasswordSection
-                  )
-                }
-              >
-                <ArrowRightIcon />
-              </Button>
             </div>
           )}
 
-          {showPasswordSection && (
-            <>
-              <RegisterFormPassword
-                setPassword={setPassword}
-                setPassword2={setPassword2}
-                password2={password2}
-                password={password}
-              />
-            </>
-          )}
+          <div className={styles["center-label-in"]}>
+            <Button
+              className={
+                showPasswordSection ? styles["enabled"] : styles["disabled"]
+              }
+              type="button"
+              onClick={handlePasswordButtonClick}
+              disabled={!showPasswordSection}
+            >
+              <ArrowRightIcon />
+            </Button>
+          </div>
         </section>
 
         <Link

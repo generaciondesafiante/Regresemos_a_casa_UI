@@ -1,6 +1,9 @@
+"use client";
 import { FC, useState } from "react";
 import { Button, Input } from "../../../atoms";
+import { PasswordValidation } from "../RegisterCharacterValidatePassword/RegisterCharacterValidatePassword";
 import styles from "./RegisterFormPassword.module.css";
+
 interface RegisterFormPasswordProps {
   setPassword: React.Dispatch<React.SetStateAction<string>>;
   setPassword2: React.Dispatch<React.SetStateAction<string>>;
@@ -8,21 +11,6 @@ interface RegisterFormPasswordProps {
   password2: string;
 }
 
-interface PasswordValidationProps {
-  isValid: boolean;
-  message: string;
-}
-
-const PasswordValidation: FC<PasswordValidationProps> = ({
-  isValid,
-  message,
-}) => {
-  return (
-    <p className={`${styles.validationMessage} ${isValid ? styles.valid : ""}`}>
-      {isValid ? "✅" : "❌"} {message}
-    </p>
-  );
-};
 export const RegisterFormPassword: FC<RegisterFormPasswordProps> = ({
   setPassword,
   setPassword2,
@@ -89,8 +77,8 @@ export const RegisterFormPassword: FC<RegisterFormPasswordProps> = ({
         isValid={isLetterValid}
         message="Al menos una letra"
       />
-      <div className={styles["center-label-in"]}>
-        <Button className={styles["form-register-btn"]} type="submit">
+      <div className={styles["register-button_submit-content"]}>
+        <Button className={styles["form-register_btn"]} type="submit">
           Crear cuenta
         </Button>
       </div>

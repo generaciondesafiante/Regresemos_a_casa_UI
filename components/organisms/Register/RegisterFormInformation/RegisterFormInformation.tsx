@@ -2,6 +2,7 @@ import { FC } from "react";
 import { Input } from "../../../atoms";
 
 interface RegisterFormInformationProps {
+  onInputChange: () => void;
   setName: React.Dispatch<React.SetStateAction<string>>;
   setLastName: React.Dispatch<React.SetStateAction<string>>;
   setCountry: React.Dispatch<React.SetStateAction<string>>;
@@ -16,6 +17,7 @@ interface RegisterFormInformationProps {
   email: string;
 }
 export const RegisterFormInformation: FC<RegisterFormInformationProps> = ({
+  onInputChange,
   setLastName,
   setName,
   setCountry,
@@ -38,6 +40,7 @@ export const RegisterFormInformation: FC<RegisterFormInformationProps> = ({
         value={name}
         onChange={(event) => {
           setName(event.target.value);
+          onInputChange();
         }}
         type="text"
         placeholder=" "
@@ -51,6 +54,7 @@ export const RegisterFormInformation: FC<RegisterFormInformationProps> = ({
         value={lastname}
         onChange={(event) => {
           setLastName(event.target.value);
+          onInputChange();
         }}
         type="text"
         placeholder=" "
@@ -64,6 +68,7 @@ export const RegisterFormInformation: FC<RegisterFormInformationProps> = ({
         value={country}
         onChange={(event) => {
           setCountry(event.target.value);
+          onInputChange();
         }}
         type="text"
         placeholder=" "
@@ -77,6 +82,7 @@ export const RegisterFormInformation: FC<RegisterFormInformationProps> = ({
         value={city}
         onChange={(event) => {
           setCity(event.target.value);
+          onInputChange();
         }}
         type="text"
         placeholder=" "
@@ -101,6 +107,7 @@ export const RegisterFormInformation: FC<RegisterFormInformationProps> = ({
         value={email}
         onChange={(event) => {
           setEmail(event.target.value);
+          onInputChange();
         }}
         type="email"
         placeholder=" "
