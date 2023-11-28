@@ -1,6 +1,5 @@
 import { FC } from "react";
 import { Input } from "../../../atoms";
-
 interface RegisterFormInformationProps {
   onInputChange: () => void;
   setName: React.Dispatch<React.SetStateAction<string>>;
@@ -47,6 +46,7 @@ export const RegisterFormInformation: FC<RegisterFormInformationProps> = ({
         label={"Nombres"}
         isRequire={true}
       />
+
       <Input
         id={"last-name-form-register"}
         htmlForm={"last-name-form-register"}

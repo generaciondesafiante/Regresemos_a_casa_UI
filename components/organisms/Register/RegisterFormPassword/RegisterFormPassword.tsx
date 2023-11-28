@@ -23,7 +23,6 @@ export const RegisterFormPassword: FC<RegisterFormPasswordProps> = ({
   const [isLetterValid, setLetterValid] = useState(false);
 
   const handlePasswordChange = (value: string) => {
-    // Puedes personalizar estas expresiones regulares según tus requisitos
     const specialCharRegex = /[!@#$%^&*(),.?":{}|<>]/;
     const numberRegex = /\d/;
     const letterRegex = /[a-zA-Z]/;
@@ -60,23 +59,24 @@ export const RegisterFormPassword: FC<RegisterFormPasswordProps> = ({
         label={"Repite la contraseña"}
         isRequire={true}
       />
-
-      <PasswordValidation
-        isValid={isSpecialCharValid}
-        message="Al menos un caracter especial (- . * : _)"
-      />
-      <PasswordValidation
-        isValid={isNumberValid}
-        message="Al menos un número"
-      />
-      <PasswordValidation
-        isValid={isLengthValid}
-        message="Mínimo 8 caracteres"
-      />
-      <PasswordValidation
-        isValid={isLetterValid}
-        message="Al menos una letra"
-      />
+      <div className={styles['content-character_password']}>
+        <PasswordValidation
+          isValid={isSpecialCharValid}
+          message="Al menos un caracter especial (- . * : _)"
+        />
+        <PasswordValidation
+          isValid={isNumberValid}
+          message="Al menos un número"
+        />
+        <PasswordValidation
+          isValid={isLengthValid}
+          message="Mínimo 8 caracteres"
+        />
+        <PasswordValidation
+          isValid={isLetterValid}
+          message="Al menos una letra"
+        />
+      </div>
       <div className={styles["register-button_submit-content"]}>
         <Button className={styles["form-register_btn"]} type="submit">
           Crear cuenta

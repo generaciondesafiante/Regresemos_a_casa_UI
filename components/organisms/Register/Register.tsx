@@ -26,12 +26,13 @@ export const Register = () => {
   );
   const [showPasswordSection, setShowPasswordSection] =
     useState<boolean>(false);
-  console.log(showPasswordSection);
+  const [condicionalView, setCondicionalView] = useState<boolean>(false);
+
   const handleInputChange = () => {
-    // Lógica para activar/desactivar la sección de contraseña
     const allFieldsFilled: boolean = !!(
       name &&
-      email &&
+      email.includes("@") &&
+      email.includes(".") &&
       lastname &&
       country &&
       city &&
@@ -40,8 +41,10 @@ export const Register = () => {
     setShowPasswordSection(allFieldsFilled);
   };
   const handlePasswordButtonClick = () => {
-    if (!showPasswordSection) {
-      setShowPasswordSection(true);
+    if (showPasswordSection) {
+      setCondicionalView(true);
+    } else {
+      setCondicionalView(false);
     }
   };
 
@@ -121,60 +124,65 @@ export const Register = () => {
         className={styles["form-register"]}
         onSubmit={handleSubmit}
       >
-        <h2 className={`${styles["form-register-title"]} `}>
-          <span>¡Bienvenido/a </span>
-          <span>Crea tu cuenta!</span>
-        </h2>
-        <section>
-          {showPasswordSection ? (
+        <section className={styles["register-section"]}>
+          {condicionalView ? (
             <>
-              <RegisterFormPassword
-                setPassword={setPassword}
-                setPassword2={setPassword2}
-                password2={password2}
-                password={password}
-              />
+              <div className={styles["container-inputs_password"]}>
+                <h2 className={`${styles["form-register-title_password"]} `}>
+                  Elige tu contraseña
+                </h2>
+                <RegisterFormPassword
+                  setPassword={setPassword}
+                  setPassword2={setPassword2}
+                  password2={password2}
+                  password={password}
+                />
+              </div>
             </>
           ) : (
-            <div className={styles["continer-label_grid"]}>
-              <RegisterFormInformation
-                setLastName={setLastName}
-                setName={setName}
-                setCountry={setCountry}
-                setCity={setCity}
-                setPhone={setPhone}
-                setEmail={setEmail}
-                name={name}
-                lastname={lastname}
-                country={country}
-                city={city}
-                phone={phone}
-                email={email}
-                onInputChange={handleInputChange}
-              />
-            </div>
+            <>
+              <h2 className={`${styles["form-register-title_info"]} `}>
+                <span>¡Bienvenido/a </span>
+                <span>Crea tu cuenta!</span>
+              </h2>
+              <div className={styles["container-inputs_info"]}>
+                <RegisterFormInformation
+                  setLastName={setLastName}
+                  setName={setName}
+                  setCountry={setCountry}
+                  setCity={setCity}
+                  setPhone={setPhone}
+                  setEmail={setEmail}
+                  name={name}
+                  lastname={lastname}
+                  country={country}
+                  city={city}
+                  phone={phone}
+                  email={email}
+                  onInputChange={handleInputChange}
+                />
+              </div>
+              <Link
+                className={styles["form-register_loginRedirection"]}
+                href="/loginPage"
+              >
+                ¿Ya tienes cuenta?
+              </Link>
+              <div className={styles["center-label-in"]}>
+                <Button
+                  className={
+                    showPasswordSection ? styles["disabled"] : styles["enabled"]
+                  }
+                  type="button"
+                  onClick={handlePasswordButtonClick}
+                  disabled={!showPasswordSection}
+                >
+                  <ArrowRightIcon />
+                </Button>
+              </div>
+            </>
           )}
-
-          <div className={styles["center-label-in"]}>
-            <Button
-              className={
-                showPasswordSection ? styles["enabled"] : styles["disabled"]
-              }
-              type="button"
-              onClick={handlePasswordButtonClick}
-              disabled={!showPasswordSection}
-            >
-              <ArrowRightIcon />
-            </Button>
-          </div>
         </section>
-
-        <Link
-          className={styles["form-register_loginRedirection"]}
-          href="/loginPage"
-        >
-          ¿Ya tienes cuenta?
-        </Link>
       </form>
     </>
   );
