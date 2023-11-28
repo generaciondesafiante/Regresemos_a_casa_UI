@@ -6,6 +6,10 @@ import {
   ProfileIcon,
   ResourcesIcon,
 } from "../../atoms/icons/sidebarIcons";
+  DashboardIcon,
+  ProfileIcon,
+  ResourcesIcon,
+} from "../../atoms/icons/sidebarIcons";
 import { signOut } from "next-auth/react";
 import styles from "./Sidebar.module.css";
 import { PathIcon } from "../../atoms/icons/sidebarIcons/PathIcon";
@@ -72,6 +76,7 @@ export const Sidebar = () => {
                 }`}
               >
                 {link.icon}
+                {link.icon}
               </div>
             </Link>
           );
@@ -93,6 +98,7 @@ export const Sidebar = () => {
                   }`}
                 >
                   {link.icon}
+                  {link.icon}
                 </div>
               </Link>
             );
@@ -113,6 +119,7 @@ export const Sidebar = () => {
               key={link.name}
               className={styles["button-logout"]}
             >
+              <div className="sidebar-iconContainer">{link.icon}</div>
               <div className="sidebar-iconContainer">{link.icon}</div>
             </button>
           );
