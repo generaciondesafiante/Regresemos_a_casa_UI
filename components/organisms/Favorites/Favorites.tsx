@@ -137,8 +137,8 @@ export const Favorites = () => {
         : favorites.filter(favorite => favorite.typeFavorite.includes(selectedType));
 
     return (
-        <div className={styles["favorites__container"]}>
-            <h1 className={styles["favorites__title"]}>MIS FAVORITOS</h1>
+        <div className={styles["favorites-container"]}>
+            <h1 className={styles["favorites-title"]}>MIS FAVORITOS</h1>
             <main>
                 <section className={styles["favorites__section--buttons"]} ref={scrollContainerRef}>
                     <button
@@ -214,7 +214,7 @@ export const Favorites = () => {
                     )}
                 </section>
                 <section>
-                    <article className={styles["favorites__container--cards"]}>
+                    <article className={styles["favorites-container--cards"]}>
                         {filteredFavorites.map(favorite => (
                             <div key={favorite.id} className={styles["favorites__cards"]}>
                                 {favorite.typeFavorite}
