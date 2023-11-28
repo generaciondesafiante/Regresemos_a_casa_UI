@@ -1,9 +1,11 @@
 "use client";
-import { FC, useState, useEffect } from "react";
+import { FC, useState } from "react";
+import Link from "next/link";
 import { useSession } from "next-auth/react";
-import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 import Swal from "sweetalert2";
+import { Button } from "../../atoms";
 import { ModalEditPhotoProfile } from "../Modal/Modal";
+import { AddPhotoIcon } from "../../atoms/icons/addPhotoIcon/AddPhotoIcon";
 import styles from "./Profile.module.css";
 
 interface Props {
@@ -17,10 +19,8 @@ interface Props {
 
 export const Profile: FC<Props> = () => {
   const { data: session } = useSession();
-
   const [isEditing, setIsEditing] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedFile, setSelectedFile] = useState(null);
 
   const [formData, setFormData] = useState({
     name: session?.user?.name ?? "",
@@ -62,7 +62,6 @@ export const Profile: FC<Props> = () => {
           text: "Dato/s actualizados",
         });
       } else {
-        // Maneja errores del servidor
         Swal.fire({
           icon: "success",
           title: "No se han actualizado correctamente los datos",
@@ -89,10 +88,7 @@ export const Profile: FC<Props> = () => {
             className={styles["profile-container_addPhoto"]}
             onClick={() => setIsModalOpen(!isModalOpen)}
           >
-            <AddAPhotoIcon
-              className={styles["profile-add-photo_icon"]}
-              onClick={handleOpenModal}
-            />
+            <AddPhotoIcon />
           </div>
 
           <div>
@@ -108,29 +104,16 @@ export const Profile: FC<Props> = () => {
 
                 <div className={styles["custom-file-input"]}>
                   <span className={styles["file-input-label"]}>
-                    {/* {selectedFile
-                      ? `Has seleccionado el archivo: ${selectedFile.name}`
-                      : "Seleccionar archivo"} */}
                     Seleccionar archivo
                   </span>
                   <input
                     type="file"
                     accept="image/*"
                     className={styles["modalEditImg-inputUploadImage"]}
-                    // onChange={(e) => {
-                    //   handleInputChange(e);
-                    //   setSelectedFile(e.target.files[0]);
-                    // }}
                     onClick={(e) => e.stopPropagation()}
                   />
                 </div>
-                <button
-                  // onClick={(e) => {
-                  //   handleSaveChanges(e);
-                  //   handleFileChange(e);
-                  // }}
-                  className={styles["modalEditImg-buttonAccept"]}
-                >
+                <button className={styles["modalEditImg-buttonAccept"]}>
                   Guardar cambios
                 </button>
               </form>
@@ -192,20 +175,21 @@ export const Profile: FC<Props> = () => {
               className={styles["profile-input_editInfromation"]}
             />
             <div className={styles["container-buttons"]}>
-              <button
-                onClick={handleSaveChanges}
+              <Button
                 className={styles["profile-saveChange_btn"]}
+                type={"submit"}
+                onClick={handleSaveChanges}
               >
-                Guardar
-              </button>
-              <button
-                onClick={() => setIsEditing(false)}
+                Guardar Cambios
+              </Button>
+              <Button
+                type={"text"}
                 className={`
                 ${styles["profile-saveChange_btn"]} 
                 ${styles["profile-cancel_btn"]}`}
               >
                 Cancelar
-              </button>
+              </Button>
             </div>
           </div>
         ) : (
@@ -219,7 +203,6 @@ export const Profile: FC<Props> = () => {
             <div className={styles["viewDesktop_profile"]}>
               <h3 className={styles["profile-info_title"]}>Apellidos</h3>
               <p className={styles["profile-user_personalInfo"]}>
-                {" "}
                 {formData.lastname}
               </p>
             </div>
@@ -228,21 +211,18 @@ export const Profile: FC<Props> = () => {
                 Correo electrónico
               </h3>
               <p className={styles["profile-user_personalInfo"]}>
-                {" "}
                 {formData.email}
               </p>
             </div>
             <div className={styles["viewDesktop_profile"]}>
               <h3 className={styles["profile-info_title"]}>País</h3>
               <p className={styles["profile-user_personalInfo"]}>
-                {" "}
                 {formData.country}
               </p>
             </div>
             <div className={styles["viewDesktop_profile"]}>
               <h3 className={styles["profile-info_title"]}>Ciudad</h3>
               <p className={styles["profile-user_personalInfo"]}>
-                {" "}
                 {formData.city}
               </p>
             </div>
@@ -267,12 +247,11 @@ export const Profile: FC<Props> = () => {
               >
                 Editar perfil
               </button>
-              <button
-                className={styles["profile-btn"]}
-                // onClick={() => navigateChangePassword()}
-              >
-                Cambiar contraseña
-              </button>
+              <Link href={"/dashboard/profile/changepassword"}>
+                <button className={styles["profile-btn"]}>
+                  Cambiar contraseña
+                </button>
+              </Link>
             </div>
           </div>
         )}

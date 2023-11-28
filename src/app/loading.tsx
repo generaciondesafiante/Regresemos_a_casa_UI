@@ -10,7 +10,7 @@ const loading = () => {
     borderColor: "#36d7b7",
   };
 
-  let [color, setColor] = useState("#0f5765");
+  const [color, setColor] = useState("#0f5765");
   const [loading, setloading] = useState(false);
   useEffect(() => {
     setloading(true);
@@ -31,7 +31,7 @@ const loading = () => {
           data-testid="loader"
         />
       ) : (
-        ""
+        "No hay datos para monstrar"
       )}
     </div>
   );

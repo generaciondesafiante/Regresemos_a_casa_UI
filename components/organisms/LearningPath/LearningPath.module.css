@@ -1,0 +1,37 @@
+.learningPath-container {
+  padding-bottom: 4rem;
+}
+.classRoomRoute-container {
+  gap: 0.2rem;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+@media (min-width: 48rem) {
+  .learningPath-container {
+    padding-bottom: 0rem;
+  }
+}
+
+@media (min-width: 64rem) {
+  .learningPath-container {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+  .classRoomRoute-container {
+    background-color: var(--turquoise);
+    justify-content: center;
+    height: 100vh;
+    width: 9rem;
+    padding-left: 6rem;
+    padding-bottom: 1rem;
+    overflow-y: scroll;
+    gap: 0rem;
+  }
+
+  .classRoomRoute-container::-webkit-scrollbar {
+    display: none;
+  }
+}

@@ -4,70 +4,80 @@
   margin-top: 0.8rem;
 }
 
-.form-input-label {
+.password-toggle-button {
   position: absolute;
-  padding: 0.6rem;
-  left: 0.5rem;
-  color: var(--white);
-  font-size: 0.8rem;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-40%);
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: var(--turquoise);
+}
+
+.form-input_input:not(:placeholder-shown) + .form-input_label,
+.form-input_input:focus + .form-input_label {
+  transform: translateY(-1.9rem);
   transition: 0.5s;
 }
-
-.form-input-input {
-  font-family: "Montserrat", sans-serif;
-  padding: 0.6rem;
-  border-radius: 0.8rem;
-  width: 15rem;
-  border: none;
-  outline: 0.05rem solid var(--turquoise);
-  background-color: transparent;
-  color: var(--white);
-  font-size: 0.8rem;
-}
-
-.form-input-input:focus + .form-input-label {
+.form-input_label.active {
   transform: translateY(-2.1rem);
   color: var(--turquoise);
   padding-left: 0rem;
   font-size: 0.9rem;
 }
+.form-input_label {
+  position: absolute;
+  padding: 0.6rem;
+  left: 0.5rem;
+  color: var(--gray);
+  font-size: var(--fontSize-paragraph_mobile);
+  transition: var(--transition);
+}
 
-.form-input-input:not(:placeholder-shown) + .form-input-label {
+.form-input_input {
+  width: 17rem;
+  padding: 0.6rem;
+  border: none;
+  border-radius: var(--borderRadius);
+  outline: var(--border) var(--turquoise);
+  background-color: transparent;
+  font-family: var(--primaryFont);
+  font-size: var(--fontSize-paragraph_mobile);
+}
+
+.form-input_input:focus + .form-input_label {
+  transform: translateY(-2.1rem);
+  padding-left: 0rem;
+  font-size: var(--fontSize-subtitles_mobile);
+}
+
+.form-input_input:not(:placeholder-shown) + .form-input_label {
   transform: translateY(-1.9rem);
-  transition: 0.5s;
+  transition: var(--transition);
 }
 
 @media (min-width: 38rem) {
-  .form-input-label {
-    font-size: 0.9rem;
-  }
-
-  .form-input-input {
-    padding: 0.7rem;
+  .form-input_input {
     width: 20rem;
-    font-size: 0.9rem;
-  }
-
-  .form-input-input:focus + .form-input-label {
-    font-size: 1rem;
   }
 }
 
 @media (min-width: 64rem) {
-  .form-input-label {
-    font-size: 1.1rem;
+  .form-input_label {
+    font-size: var(--fontSize-paragraph_laptop);
   }
 
-  .form-input-input {
-    width: 30rem;
-    font-size: 1.1rem;
+  .form-input_input {
+    width: 28rem;
+    font-size: var(--fontSize-paragraph_laptop);
   }
 
-  .form-input-input:focus + .form-input-label {
-    font-size: 1.2rem;
+  .form-input_input:focus + .form-input_label {
+    font-size: var(--fontSize-trasitionLabel_laptop);
   }
 
-  .form-input-input:not(:placeholder-shown) + .form-input-label {
+  .form-input_input:not(:placeholder-shown) + .form-input_label {
     transform: translateY(-2.1rem);
   }
 }

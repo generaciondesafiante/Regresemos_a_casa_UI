@@ -1,29 +1,21 @@
 .button-component {
-  width: 7rem;
+  width: auto;
   padding: 0.5rem;
-  font-weight: bold;
   text-align: center;
   text-decoration: none;
-  border-radius: 0.8rem;
-  font-size: 0.6rem;
-  transition: 400ms;
+  border: none;
+  border-radius: var(--borderRadius);
+  font-size: var(--fontSize-buttons_mobile);
+  transition: var(--transition);
   cursor: pointer;
 }
 
 .button-component:hover {
-  transform: scale(1.05);
+  transform: var(--transform);
 }
 
-@media (min-width: 48rem) {
+@media (min-width: 64rem) {
   .button-component {
-    width: 9rem;
-    font-size: 0.8rem;
-  }
-}
-
-@media (min-width: 48rem) {
-  .button-component {
-    width: 9rem;
-    font-size: 0.8rem;
+    font-size: var(--fontSize-buttons_laptop);
   }
 }
