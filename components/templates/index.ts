@@ -1,3 +1,4 @@
+export * from './Assessment-template/AssessmentTemplate';
 export * from './ChangePasswordUser-template/ChangePasswordUserTemplate';
 export * from './CourseResources-template/CourseResourcesTemplate';
 export * from './Dashboard-template/DashboardTemplate';
@@ -9,4 +10,3 @@ export * from './Path-template/PathTemplate';
 export * from './Profile-template/ProfileTemplate';
 export * from './Register-template/RegisterTemplate';
 export * from './Sidebar-template/SidebarTemplate';
-export * from './index';

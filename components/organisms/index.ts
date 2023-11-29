@@ -1,3 +1,4 @@
+export * from './Assessment/Assessment';
 export * from './Carousel/Carousel';
 export * from './ChangePasswordUser/ChangePasswordUser';
 export * from './CourseResources/CourseResources';
@@ -11,4 +12,3 @@ export * from './Profile/Profile';
 export * from './Register/Register';
 export * from './ResourcesAndVerses/ResourcesAndVerses';
 export * from './Sidebar/Sidebar';
-export * from './index';
