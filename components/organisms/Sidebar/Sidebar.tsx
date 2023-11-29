@@ -2,39 +2,66 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import {
-  Bookmark,
-  Face,
-  Favorite,
-  Folder,
-  Home,
-  Logout,
-} from "@mui/icons-material";
+  DashboardIcon,
+  ProfileIcon,
+  ResourcesIcon,
+} from "../../atoms/icons/sidebarIcons";
 import { signOut } from "next-auth/react";
 import styles from "./Sidebar.module.css";
-
-const links = [
-  {
-    name: "profile",
-    href: "/dashboard/profile" || "/dashboard/profile/changepassword",
-    icon: Face,
-  },
-  { name: "home", href: "/dashboard", icon: Home },
-  { name: "path", href: "/dashboard/path", icon: Bookmark },
-  { name: "resources", href: "/dashboard/resources", icon: Folder },
-  { name: "favorites", href: "/dashboard/favorites", icon: Favorite },
-  { name: "logout", href: "/", icon: Logout },
-];
+import { PathIcon } from "../../atoms/icons/sidebarIcons/PathIcon";
+import { FavoriteIcon } from "../../atoms/icons/sidebarIcons/FavoriteIcon";
+import { LogoutIcon } from "../../atoms/icons/sidebarIcons/LogoutIcon";
 
 export const Sidebar = () => {
   const pathName = usePathname();
   const router = useRouter();
   const centeredLinks = ["home", "resources", "favorites", "path"];
 
+  const links = [
+    {
+      name: "profile",
+      href: "/dashboard/profile" || "/dashboard/profile/changepassword",
+      icon: <ProfileIcon className={styles["sidebar-icon"]} />,
+    },
+    {
+      name: "home",
+      href: "/dashboard",
+      icon: (
+        <DashboardIcon
+          className={`${styles["sidebar-icon"]} ${styles["sidebar-icon_house"]}`}
+        />
+      ),
+    },
+    {
+      name: "path",
+      href: "/dashboard/path",
+      icon: <PathIcon className={styles["sidebar-icon"]} />,
+    },
+    {
+      name: "resources",
+      href: "/dashboard/resources",
+      icon: <ResourcesIcon className={styles["sidebar-icon"]} />,
+    },
+    {
+      name: "favorites",
+      href: "/dashboard/favorites",
+      icon: <FavoriteIcon className={styles["sidebar-icon"]} />,
+    },
+    {
+      name: "logout",
+      href: "/",
+      icon: (
+        <LogoutIcon
+          className={`${styles["sidebar-icon"]} ${styles["sidebar-icon_house"]}`}
+        />
+      ),
+    },
+  ];
+
   return (
     <div className={styles["sidebar-container"]}>
       {links.map((link) => {
         if (link.name === "profile") {
-          const Icon = link.icon;
           return (
             <Link href={link.href} key={link.name}>
               <div
@@ -44,7 +71,7 @@ export const Sidebar = () => {
                     : ""
                 }`}
               >
-                <Icon className={styles["sidebar-icon"]} />
+                {link.icon}
               </div>
             </Link>
           );
@@ -65,7 +92,7 @@ export const Sidebar = () => {
                       : ""
                   }`}
                 >
-                  <Icon className={styles["sidebar-icon"]} />
+                  {link.icon}
                 </div>
               </Link>
             );
@@ -86,9 +113,7 @@ export const Sidebar = () => {
               key={link.name}
               className={styles["button-logout"]}
             >
-              <div className="sidebar-iconContainer">
-                <Icon className={styles["sidebar-icon"]} />
-              </div>
+              <div className="sidebar-iconContainer">{link.icon}</div>
             </button>
           );
         }

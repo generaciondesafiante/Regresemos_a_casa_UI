@@ -1,0 +1,20 @@
+.icons-arrows {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+@media (min-width: 48rem) {
+    .icons-arrows {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+}
+
+@media (min-width: 64rem) {
+    .icons-arrows {
+        width: 3.5rem;
+        height: 3.5rem;
+    }
+}

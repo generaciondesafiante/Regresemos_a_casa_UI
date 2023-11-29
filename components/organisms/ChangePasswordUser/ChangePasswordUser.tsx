@@ -131,14 +131,14 @@ export const ChangePasswordUser = () => {
         onSubmit={validatePasswordSubmit}
       >
         <div className={styles["container-arrow-back"]}>
-        <Link
-          href={"/dashboard/profile"}
-          className={styles["link-backProfile"]}
-        >
+          <Link
+            href={"/dashboard/profile"}
+            className={styles["link-backProfile"]}
+          >
             <KeyboardBackspaceIcon />
             <p>Regresar</p>
-        </Link>
-          </div>
+          </Link>
+        </div>
         <h2 className={styles["title-modal"]}>Cambiar Contraseña</h2>
 
         <Input
@@ -182,7 +182,6 @@ export const ChangePasswordUser = () => {
 
         <div className={styles["container-button-change"]}>
           <button
-            // type="submit"
             className={`${styles["form-changePassword-btns"]} ${styles["button-changePassword-submit"]}`}
           >
             Cambiar Contraseña

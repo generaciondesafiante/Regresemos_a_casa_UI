@@ -4,6 +4,8 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { Slide1, Slide2, Slide3 } from "../../molecules";
 import styles from "./Carousel.module.css";
+import { ArrowRightIcon } from "../../atoms/icons/arrowsIcons/ArrowRightIcon";
+import { ArrowLeftIcon } from "../../atoms/icons/arrowsIcons/ArrowLeftIcon";
 
 export const Carousel: React.FC = () => {
   const slideshow = useRef<HTMLDivElement>(null);
@@ -82,13 +84,13 @@ export const Carousel: React.FC = () => {
         className={`${styles["carousel-btn"]} ${styles["carousel-btn_right"]}`}
         onClick={former}
       >
-        <ArrowBackIosIcon fontSize="large" />
+        <ArrowLeftIcon />
       </button>
       <button
         className={`${styles["carousel-btn"]} ${styles["carousel-btn_left"]}`}
         onClick={following}
       >
-        <ArrowForwardIosIcon fontSize="large" />
+        <ArrowRightIcon />
       </button>
     </div>
   );

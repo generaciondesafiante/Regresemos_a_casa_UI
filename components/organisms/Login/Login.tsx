@@ -2,10 +2,10 @@
 import { FC, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import Swal from "sweetalert2";
 import { signIn } from "next-auth/react";
 import { Button, Input } from "../../atoms";
 import styles from "./Login.module.css";
-import Swal from "sweetalert2";
 
 export const Login: FC = () => {
   const [errors, setErrors] = useState<string[]>([]);
@@ -63,7 +63,10 @@ export const Login: FC = () => {
           isRequire={true}
           onChange={(event) => setPassword(event.target.value)}
         />
-        <Link className={styles["form-login_forgotPassword"]} href={"/home"}>
+        <Link
+          className={styles["form-login_forgotPassword"]}
+          href={"/forgetpassword"}
+        >
           Olvidé mi contraseña
         </Link>
 

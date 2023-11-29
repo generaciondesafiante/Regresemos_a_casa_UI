@@ -16,8 +16,8 @@
 }
 
 .carousel-btn {
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2rem;
+  height: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -28,19 +28,33 @@
   border-radius: 50%;
   color: var(--greenDesafiante);
   background-color: var(--white-transparent);
-  cursor: pointer;
   transition: var(--transition);
 }
 
 .carousel-btn:hover {
   background-color: var(--greenDesafiante);
-  color: var(--white);
+  color: var(--white-transparent);
+  transform: var(--transform);
 }
 
 .carousel-btn_right {
-  left: 0.2rem;
+  left: 0.5rem;
 }
 
 .carousel-btn_left {
-  right: 0.2rem;
+  right: 0.5rem;
+}
+
+@media (min-width: 48rem) {
+  .carousel-btn {
+    width: 2.2rem;
+    height: 2.2rem;
+  }
+}
+
+@media (min-width: 64rem) {
+  .carousel-btn {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
 }
