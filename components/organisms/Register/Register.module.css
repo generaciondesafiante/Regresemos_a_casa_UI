@@ -1,4 +1,5 @@
 .form-register {
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -8,22 +9,44 @@
   background-size: cover;
   padding-bottom: 2rem;
 }
+.register-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.container-inputs_password {
+  height: calc(100vh - 3.75rem);
+  margin-top: 3.75rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.form-register-title_password {
+  color: var(--white);
+  font-size: var(--fontSize-superTitles_mobile);
+}
+.container-inputs_info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
-.form-register-title {
+.form-register-title_info {
   width: 15rem;
   text-align: center;
+  align-self: center;
   margin-top: 8rem;
   margin-bottom: 2rem;
   color: var(--white);
   font-size: var(--fontSize-superTitles_mobile);
 }
 
-.form-register-title_register {
-  width: 15rem;
-}
-
 .form-register_loginRedirection {
-  margin-top: 0.5rem;
+  text-align: center;
+  align-self: center;
+  margin: 1.5rem 0 1.5rem 0;
   text-decoration: none;
   color: var(--gray);
   font-size: var(--fontSize-paragraph_mobile);
@@ -34,21 +57,41 @@
   color: var(--turquoise);
 }
 
-.form-register-btn {
-  width: 8rem;
+.disabled {
+  text-align: center;
+  border-radius: 50%;
+  width: 4.375rem;
+  height: 4.375rem;
+  background-color: var(--darkGray);
+  color: var(--white);
+}
+.enabled {
+  border-radius: 50%;
+  width: 4.375rem;
+  height: 4.375rem;
   margin-top: 0.8rem;
   color: var(--white);
   background-color: var(--turquoise);
 }
-
-.form-register-btn:hover {
+.enabled:hover {
   font-weight: bold;
   color: var(--turquoise);
   background-color: var(--white);
 }
 
 @media (min-width: 38rem) {
-  .form-register-title {
+  .form-register {
+    height: 100vh;
+  }
+
+  .container-inputs_info {
+    height: calc(100% - 5.125rem);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .form-register-title_password,
+  .form-register-title_info {
     font-size: var(--fontSize-superTitles_tablet);
   }
 }
@@ -58,22 +101,19 @@
     height: 100vh;
   }
 
-  .form-register-title {
-    width: 22rem;
+  .form-register-title_password,
+  .form-register-title_info {
     font-size: var(--fontSize-superTitles_laptop);
   }
-
-  .continer-label_grid {
+  .form-register-title_info {
+    width: 25.75rem;
+  }
+  .container-inputs_info {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
   }
 
   .form-register_loginRedirection {
     font-size: var(--fontSize-paragraph_laptop);
-  }
-
-  .form-register-btn {
-    width: 10rem;
-    font-size: var(--fontSize-buttons_laptop);
   }
 }

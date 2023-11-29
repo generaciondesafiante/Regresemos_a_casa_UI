@@ -1,0 +1,14 @@
+.register-check-icon {
+  color: var(--turquoise);
+  width: 1.3rem;
+  margin: 0 0.6rem;
+  background: var(--white);
+  border-radius: 80%;
+}
+
+@media (min-width: 48rem) {
+  .register-check-icon {
+    width: 1.5rem;
+    margin: 0 1rem 0 0.8rem;
+  }
+}
