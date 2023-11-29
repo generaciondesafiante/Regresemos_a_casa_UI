@@ -1,0 +1,15 @@
+.error-register-icon {
+  color: var(--darkGray);
+  width: 1.3rem;
+  margin: 0 0.6rem;
+  background: var(--white);
+  border-radius: 50%;
+  border: 1px solid var(--darkGray);
+}
+
+@media (min-width: 48rem) {
+  .error-register-icon {
+    width: 1.5rem;
+    margin: 0 1rem 0 0.8rem;
+  }
+}

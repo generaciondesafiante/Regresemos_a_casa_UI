@@ -1,10 +1,11 @@
-import * as React from "react";
-import styles from "./sidebarIcons.module.css";
-
-export const PathIcon = (props: React.SVGProps<SVGSVGElement>) => {
+import React, { FC } from "react";
+interface Props extends React.SVGProps<SVGSVGElement> {
+  className?: string;
+}
+export const PathIcon: FC<Props> = ({ className, ...props }) => {
   return (
     <svg
-      className={styles["icons-sidebar"]}
+    className={className}
       fill="currentColor"
       viewBox="0 0 16 16"
       {...props}
