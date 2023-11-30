@@ -1,12 +1,13 @@
 "use client";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import Swal from "sweetalert2";
-import { Button } from "../../atoms";
+import { Button, CheckRegisterIcion } from "../../atoms";
 import { ModalEditPhotoProfile } from "../Modal/Modal";
 import { AddPhotoIcon } from "../../atoms/icons/addPhotoIcon/AddPhotoIcon";
 import styles from "./Profile.module.css";
+import { uploadFile } from "../../../hooks/useFirebase";
 
 interface Props {
   name?: string | null | undefined;
@@ -15,31 +16,64 @@ interface Props {
   country?: string | null | undefined;
   city?: string | null | undefined;
   phone?: number | null | undefined;
+  image?: string | null | undefined;
 }
 
 export const Profile: FC<Props> = () => {
   const { data: session } = useSession();
   const [isEditing, setIsEditing] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [file, setFile] = useState<File | null>(null);
 
-  const [formData, setFormData] = useState({
-    name: session?.user?.name ?? "",
-    lastname: session?.user?.lastname ?? "",
-    email: session?.user?.email ?? "",
-    country: session?.user?.country ?? "",
-    city: session?.user?.city ?? "",
-    phone: session?.user?.phone ?? "",
+  const [formData, setFormData] = useState(() => {
+    const storedData = localStorage.getItem("formData");
+    return storedData
+      ? JSON.parse(storedData)
+      : {
+          name: session?.user?.name ?? "",
+          lastname: session?.user?.lastname ?? "",
+          email: session?.user?.email ?? "",
+          country: session?.user?.country ?? "",
+          city: session?.user?.city ?? "",
+          phone: session?.user?.phone ?? "",
+          image: session?.user?.image ?? "",
+        };
   });
 
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
-  };
+  useEffect(() => {
+    localStorage.setItem("formData", JSON.stringify(formData));
+  }, [formData]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
+  };
+
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log("handleFileChange called");
+    const files = e.target?.files;
+    if (files && files.length > 0) {
+      try {
+        const id = session?.user?.uid;
+
+        if (id) {
+          const result = await uploadFile(files[0], id);
+
+          setFormData((formData) => ({
+            ...formData,
+            image: result,
+          }));
+
+          setFile(files[0]);
+        } else {
+          console.error("ID is undefined");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
   };
 
   const handleSaveChanges = async () => {
@@ -77,10 +111,9 @@ export const Profile: FC<Props> = () => {
     <div className={styles["profile-container"]}>
       <div className={styles["profileContainer-title_img"]}>
         <h2 className={styles["profile-title"]}>Información personal</h2>
-        {/* -------------MODAL EDIT PHOTO PROFILE -------------*/}
         <div className={styles["profile-container_img"]}>
           <img
-            src={session?.user?.image || "URL_DE_IMAGEN_POR_DEFECTO"}
+            src={formData?.image}
             alt="Imagen de perfil"
             className={styles["profile-user_img"]}
           />
@@ -99,7 +132,10 @@ export const Profile: FC<Props> = () => {
               }}
               title="Agrega foto de perfil"
             >
-              <form className={styles["modalEditImg-content"]}>
+              <form
+                className={styles["modalEditImg-content"]}
+                onSubmit={handleSaveChanges}
+              >
                 <h3 className={styles["modalEditImg-title"]}>Subir Imagen</h3>
 
                 <div className={styles["custom-file-input"]}>
@@ -111,16 +147,22 @@ export const Profile: FC<Props> = () => {
                     accept="image/*"
                     className={styles["modalEditImg-inputUploadImage"]}
                     onClick={(e) => e.stopPropagation()}
+                    onChange={(e) => {
+                      handleFileChange(e);
+                      setFile(e.target.files![0]);
+                    }}
                   />
                 </div>
-                <button className={styles["modalEditImg-buttonAccept"]}>
+                <button
+                  type="submit"
+                  className={styles["modalEditImg-buttonAccept"]}
+                >
                   Guardar cambios
                 </button>
               </form>
             </ModalEditPhotoProfile>
           </div>
         </div>
-        {/* -------------------- CLOSE MODAL EDIT PHOTO PROFILE------------------------- */}
       </div>
 
       <div className={styles["profile-container_info"]}>
@@ -198,13 +240,13 @@ export const Profile: FC<Props> = () => {
             <div className={styles["viewDesktop_profile"]}>
               <h3 className={styles["profile-info_title"]}>Nombres</h3>
               <p className={styles["profile-user_personalInfo"]}>
-                {formData.name}
+                {formData.name || session?.user?.name}
               </p>
             </div>
             <div className={styles["viewDesktop_profile"]}>
               <h3 className={styles["profile-info_title"]}>Apellidos</h3>
               <p className={styles["profile-user_personalInfo"]}>
-                {formData.lastname}
+                {formData.lastname || session?.user?.lastname}
               </p>
             </div>
             <div className={styles["viewDesktop_profile"]}>
@@ -212,33 +254,41 @@ export const Profile: FC<Props> = () => {
                 Correo electrónico
               </h3>
               <p className={styles["profile-user_personalInfo"]}>
-                {formData.email}
+                {formData.email || session?.user?.email}
               </p>
             </div>
             <div className={styles["viewDesktop_profile"]}>
               <h3 className={styles["profile-info_title"]}>País</h3>
               <p className={styles["profile-user_personalInfo"]}>
-                {formData.country}
+                {formData.country || session?.user?.country}
               </p>
             </div>
             <div className={styles["viewDesktop_profile"]}>
               <h3 className={styles["profile-info_title"]}>Ciudad</h3>
               <p className={styles["profile-user_personalInfo"]}>
-                {formData.city}
+                {formData.city || session?.user?.city}
               </p>
             </div>
             <div
               className={styles["viewDesktop_profile"]}
-              style={{ display: formData.phone !== null ? "block" : "none" }}
+              style={{
+                display:
+                  formData.phone || session?.user?.phone !== null
+                    ? "block"
+                    : "none",
+              }}
             >
               <h3 className={styles["profile-info_title"]}>Teléfono</h3>
               <p
                 className={styles["profile-user_personalInfo"]}
                 style={{
-                  display: formData.phone !== null ? "block" : "none",
+                  display:
+                    formData.phone || session?.user?.phone !== null
+                      ? "block"
+                      : "none",
                 }}
               >
-                {formData.phone}
+                {formData.phone || session?.user?.phone}
               </p>
             </div>
             <div className={styles["profile-container_buttons"]}>
