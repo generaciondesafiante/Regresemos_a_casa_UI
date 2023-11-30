@@ -12,18 +12,13 @@ interface LearningPathVideoClassProps {
 export const LearningPathVideoClass: FC<LearningPathVideoClassProps> = ({
   course,
 }) => {
-const router = useRouter();
-
-  if (!course) {
-    return <div></div>;
-  }
-
   const { idvideo } = useParams();
   const [currentVideo, setCurrentVideo] = useState(null);
+  const router = useRouter();
 
   useEffect(() => {
     if (idvideo) {
-      const video = course.content.find(
+      const video = course?.content.find(
         (video) => video.idVideo === parseInt(idvideo, 10)
       );
 
@@ -35,22 +30,24 @@ const router = useRouter();
 
   const handleNextVideo = () => {
     if (idvideo) {
-      const currentIndex = course.content.findIndex(
+      const currentIndex = course?.content.findIndex(
         (video) => video.idVideo === parseInt(idvideo, 10)
       );
 
-      if (currentIndex !== -1 && currentIndex < course.content.length - 1) {
-        const nextVideo = course.content[currentIndex + 1];
-        const nextVideoUrl = `/dashboard/path/course/${course.id}/${course.endpoint}/${nextVideo.idVideo}`;
+      if (
+        currentIndex !== -1 &&
+        currentIndex < (course?.content.length || 0) - 1
+      ) {
+        const nextVideo = course?.content[currentIndex + 1];
+        const nextVideoUrl = `/dashboard/path/course/${course?.id}/${course?.endpoint}/${nextVideo?.idVideo}`;
         router.push(nextVideoUrl);
       }
     }
   };
 
-  if (!currentVideo) {
+  if (!course || !currentVideo) {
     return <div></div>;
   }
-
 
   return (
     <div className={styles["learningPathVideoClass-container"]}>
