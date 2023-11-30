@@ -15,16 +15,11 @@ interface Video {
 export const LearningPathTitleClass: FC<LearningPathVideoClassProps> = ({
   course,
 }) => {
-  if (!course) {
-    return <div></div>;
-  }
-
   const { idvideo } = useParams();
   const [currentVideo, setCurrentVideo] = useState(null);
 
   useEffect(() => {
     if (course && idvideo) {
-      // Find the video in the course content based on idvideo
       const video = course.content.find(
         (video) => video.idVideo === parseInt(idvideo, 10)
       );
@@ -35,7 +30,7 @@ export const LearningPathTitleClass: FC<LearningPathVideoClassProps> = ({
     }
   }, [course, idvideo]);
 
-  if (!currentVideo) {
+  if (!course || !currentVideo) {
     return <div>Loading...</div>;
   }
 
