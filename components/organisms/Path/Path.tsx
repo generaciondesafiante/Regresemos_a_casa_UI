@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import styles from "./Path.module.css";
 import IconBxLock from "../../atoms/icons/lockPathIcon/PathLockIcon";
 
-export const Path = async () => {
+export const Path = () => {
   const [courses, setCourses] = useState([]);
   const router = useRouter();
 
