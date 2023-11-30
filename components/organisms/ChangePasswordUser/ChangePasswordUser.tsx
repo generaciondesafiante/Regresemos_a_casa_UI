@@ -6,7 +6,11 @@ import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import Swal from "sweetalert2";
 import { Input } from "../../atoms";
 import styles from "./ChangePasswordUser.module.css";
-
+interface ValidatePasswordResponse {
+  ok: boolean;
+  msg: string;
+  // otras propiedades si las hay
+}
 export const ChangePasswordUser = () => {
   const { data: session } = useSession();
   const [password, setPassword] = useState("");
@@ -44,11 +48,13 @@ export const ChangePasswordUser = () => {
           }),
         }
       );
+      const responseData: ValidatePasswordResponse =
+        await responseValidate.json();
 
-      if (responseValidate.ok === true) {
+      if (responseData.ok === true) {
         return true;
       } else {
-        setErrorMessage(responseValidate.msg);
+        setErrorMessage(responseData.msg);
         return false;
       }
     } catch (error) {
