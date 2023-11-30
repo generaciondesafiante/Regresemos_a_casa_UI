@@ -18,10 +18,10 @@ export const LearningPathTitleClass: FC<LearningPathVideoClassProps> = ({
   if (!course) {
     return <div></div>;
   }
+
   const { idvideo } = useParams();
   const [currentVideo, setCurrentVideo] = useState(null);
 
-  const { name } = course;
   useEffect(() => {
     if (course && idvideo) {
       // Find the video in the course content based on idvideo
@@ -35,9 +35,11 @@ export const LearningPathTitleClass: FC<LearningPathVideoClassProps> = ({
     }
   }, [course, idvideo]);
 
-  if (!course || !currentVideo) {
+  if (!currentVideo) {
     return <div>Loading...</div>;
   }
+
+  const { name } = course;
 
   return (
     <div className={styles["learningPathTitleClass-container"]}>

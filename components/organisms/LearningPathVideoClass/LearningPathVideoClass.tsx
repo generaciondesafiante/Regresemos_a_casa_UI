@@ -12,7 +12,7 @@ interface LearningPathVideoClassProps {
 export const LearningPathVideoClass: FC<LearningPathVideoClassProps> = ({
   course,
 }) => {
-  const router = useRouter();
+const router = useRouter();
 
   if (!course) {
     return <div></div>;
@@ -50,6 +50,7 @@ export const LearningPathVideoClass: FC<LearningPathVideoClassProps> = ({
   if (!currentVideo) {
     return <div></div>;
   }
+
 
   return (
     <div className={styles["learningPathVideoClass-container"]}>
