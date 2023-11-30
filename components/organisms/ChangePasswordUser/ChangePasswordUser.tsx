@@ -9,7 +9,6 @@ import styles from "./ChangePasswordUser.module.css";
 interface ValidatePasswordResponse {
   ok: boolean;
   msg: string;
-  // otras propiedades si las hay
 }
 export const ChangePasswordUser = () => {
   const { data: session } = useSession();
