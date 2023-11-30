@@ -1,10 +1,10 @@
 "use client";
+import { FC, useEffect, useState } from "react";
+import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import StarIcon from "@mui/icons-material/Star";
 import styles from "./LearningPathVideoClass.module.css";
 import { Course } from "../LearningPath/LearningPath";
-import { FC, useEffect, useState } from "react";
-import { useParams, useRouter } from "next/navigation";
 
 interface LearningPathVideoClassProps {
   course: Course | null;
@@ -12,12 +12,17 @@ interface LearningPathVideoClassProps {
 export const LearningPathVideoClass: FC<LearningPathVideoClassProps> = ({
   course,
 }) => {
-  const { idvideo } = useParams();
-  const [currentVideo, setCurrentVideo] = useState(null);
   const router = useRouter();
 
+  if (!course) {
+    return <div></div>;
+  }
+
+  const { idvideo } = useParams();
+  const [currentVideo, setCurrentVideo] = useState(null);
+
   useEffect(() => {
-    if (course && idvideo) {
+    if (idvideo) {
       const video = course.content.find(
         (video) => video.idVideo === parseInt(idvideo, 10)
       );
@@ -29,7 +34,7 @@ export const LearningPathVideoClass: FC<LearningPathVideoClassProps> = ({
   }, [course, idvideo]);
 
   const handleNextVideo = () => {
-    if (course && idvideo) {
+    if (idvideo) {
       const currentIndex = course.content.findIndex(
         (video) => video.idVideo === parseInt(idvideo, 10)
       );
@@ -42,7 +47,7 @@ export const LearningPathVideoClass: FC<LearningPathVideoClassProps> = ({
     }
   };
 
-  if (!course || !currentVideo) {
+  if (!currentVideo) {
     return <div></div>;
   }
 
