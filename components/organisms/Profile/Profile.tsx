@@ -52,7 +52,6 @@ export const Profile: FC<Props> = () => {
   };
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log("handleFileChange called");
     const files = e.target?.files;
     if (files && files.length > 0) {
       try {
@@ -61,7 +60,7 @@ export const Profile: FC<Props> = () => {
         if (id) {
           const result = await uploadFile(files[0], id);
 
-          setFormData((formData) => ({
+          setFormData((formData: {}) => ({
             ...formData,
             image: result,
           }));
