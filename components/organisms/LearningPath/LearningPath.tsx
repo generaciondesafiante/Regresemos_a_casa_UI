@@ -21,7 +21,7 @@ export interface Course {
     id: number;
   } | null;
 }
-export const LearningPath: FC = async () => {
+export const LearningPath: FC = () => {
   const { idtema } = useParams();
   const router = useRouter();
 
