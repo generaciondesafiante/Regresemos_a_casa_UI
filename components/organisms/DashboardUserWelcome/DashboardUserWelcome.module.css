@@ -1,151 +1,187 @@
-.userWelcome-container {
-  padding: 2rem 1rem;
+.dashboardUserWelcome-container {
   background-color: var(--white);
+  padding-top: 2rem;
+  padding-bottom: 1rem;
 }
 
-.userWelcome-content {
-  padding: 0.8rem;
-  border: 0.06rem solid rgb(255, 255, 255);
-  border-radius: 1rem;
-  box-shadow: 0.2rem 0.06rem 0.2rem 0.3rem #7b7b7b33;
+.dashboardUserWelcome-welcomeMessageContainer {
+  max-width: 85%;
+  margin-left: 1rem;
+  padding: 1rem;
+  border-radius: var(--borderRadius);
+  box-shadow: 0rem 0rem 0.3rem 0.3rem #7b7b7b33;
 }
 
-.userWelcome-title {
-  font-size: 1.3rem;
-  color: var(--darkBlue);
+.dashboardUserWelcome-welcomeMessage_title {
+  font-size: var(--fontSize-titles_mobile);
+  color: var(--blueKing);
 }
 
-.userWelcome-paragraph {
-  width: 12rem;
-  margin-top: 0.5rem;
-  font-size: 0.9rem;
+.dashboardUserWelcome-welcomeMessage_paragraph {
+  font-size: var(--fontSize-paragraph_mobile);
   color: var(--darkGray);
 }
 
-.userWelcome-decorationImg {
+.dashboardUserWelcome-welcomeMessage_decorationImg {
   display: none;
 }
 
-.dashboard-continue_course {
+.dashboardUserWelcome-subtitle {
   margin-top: 1rem;
-}
-
-.continue-course_subtitle {
-  margin-top: 1rem;
+  margin-left: 1.5rem;
   margin-bottom: 0.5rem;
-  font-size: 1.2rem;
-  color: var(--darkBlue);
+  font-size: var(--fontSize-subtitles_mobile);
+  color: var(--blueKing);
 }
 
-.continue-course_video {
-  width: 9rem;
-  border-radius: 0.5rem;
+.dashboardUserWelcome-continuePlayingContainer {
+  width: 85%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 1.5rem;
+  overflow-y: auto;
 }
 
-.dashboard-subcontent_studyMaterial {
-  height: 10rem;
-  overflow: auto;
+.dashboardUserWelcome-continuePlayingContainer img {
+  width: 12rem;
+  display: block;
+  border-radius: var(--borderRadius);
 }
 
-.dashboard-subcontent_studyMaterial::-webkit-scrollbar {
-  width: 0.3rem;
+.dashboardUserWelcome-resourcesContainer {
+  width: 85%;
+  max-height: 10rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-left: 1.5rem;
+  overflow-y: scroll;
 }
 
-.dashboard-subcontent_studyMaterial::-webkit-scrollbar-thumb {
+.dashboardUserWelcome-resourcesContainer::-webkit-scrollbar {
+  width: 0.2rem;
+}
+
+.dashboardUserWelcome-resourcesContainer::-webkit-scrollbar-thumb {
   background-color: var(--darkBlue);
-  border-radius: 1rem;
+  border-radius: var(--borderRadius);
 }
 
-.dashboard-studyMaterial {
-  width: 6rem;
-  height: 3.3rem;
-  border-radius: 0.5rem;
-  margin: 0.4rem;
+.dashboardUserWelcome-resourcesContainer img {
+  width: 8rem;
+  display: block;
+  border-radius: var(--borderRadius);
 }
 
-@media (min-width: 48rem) {
-  .userWelcome-container {
-    width: 85%;
-    padding-left: 6.5rem;
+@media (width >=48rem) {
+  .dashboardUserWelcome-container {
+    min-height: 100vh;
+    padding-left: 5rem;
+  }
+
+  .dashboardUserWelcome-welcomeMessage_title {
+    font-size: var(--fontSize-titles_tablet);
+  }
+
+  .dashboardUserWelcome-subtitle {
+    font-size: var(--fontSize-subtitles_tablet);
+  }
+
+  .dashboardUserWelcome-continuePlayingContainer img {
+    width: 13rem;
+  }
+
+  .dashboardUserWelcome-resourcesContainer {
+    min-height: 10rem;
+    max-height: 42vh;
+  }
+
+  .dashboardUserWelcome-resourcesContainer img {
+    width: 8.5rem;
   }
 }
 
-@media (min-width: 64rem) {
-  .userWelcome-container {
-    width: 70%;
-    height: 100vh;
-    padding-left: 7rem;
-  }
-
-  .userWelcome-content {
-    width: 90%;
-    max-width: 40.6rem;
+@media (width >=64rem) {
+  .dashboardUserWelcome-welcomeMessageContainer {
     position: relative;
-    padding: 1rem;
-    margin-top: 1rem;
   }
 
-  .userWelcome-title {
-    width: 70%;
-    font-size: 1.7rem;
+  .dashboardUserWelcome-welcomeMessage_title {
+    width: 24.6rem;
+    font-size: var(--fontSize-titles_laptop);
   }
 
-  .userWelcome-decorationImg {
+  .dashboardUserWelcome-welcomeMessage_paragraph {
+    font-size: var(--fontSize-paragraph_laptop);
+  }
+
+  .dashboardUserWelcome-welcomeMessage_decorationImg {
+    width: 13rem;
     display: block;
     position: absolute;
-    width: 19rem;
-    height: 12.63rem;
-    top: calc(50% - 6.5rem);
-    right: -10.5rem;
+    right: calc(0rem - 6rem);
+    bottom: 0rem;
   }
 
-  .continue-course_subtitle {
-    font-size: 1.3rem;
+  .dashboardUserWelcome-subtitle {
+    font-size: var(--fontSize-subtitles_laptop);
   }
 
-  .userWelcome-container .dashboard-continue_course:nth-child(3) {
-    height: 50vh;
+  .dashboardUserWelcome-continuePlayingContainer {
+    height: auto;
   }
 
-  .dashboard-subcontent_studyMaterial {
-    height: 80%;
+  .dashboardUserWelcome-continuePlayingContainer img {
+    width: 14rem;
   }
 
-  .dashboard-studyMaterial {
-    width: 8rem;
-    height: 4rem;
+  .dashboardUserWelcome-resourcesContainer {
+    max-height: 41vh;
+  }
+
+  .dashboardUserWelcome-resourcesContainer img {
+    width: 9rem;
   }
 }
 
-@media (min-width: 89.3rem) {
-  .userWelcome-container {
-    width: 80%;
+@media (width >=75rem) {
+
+  .dashboardUserWelcome-container {
+    padding-left: 6rem;
   }
 
-  .userWelcome-content {
-    width: 80%;
-    margin-bottom: 3rem;
+  .dashboardUserWelcome-welcomeMessageContainer {
+    max-width: 40rem;
   }
 
-  .userWelcome-title {
-    font-size: 2rem;
+  .dashboardUserWelcome-welcomeMessage_title {
+    width: 33.7rem;
+    font-size: var(--fontSize-titles_desktop);
   }
 
-  .userWelcome-paragraph {
-    width: 100%;
-    font-size: 1.2rem;
+  .dashboardUserWelcome-welcomeMessage_paragraph {
+    font-size: var(--fontSize-paragraph_desktop);
   }
 
-  .continue-course_subtitle {
-    font-size: 1.5rem;
+  .dashboardUserWelcome-welcomeMessage_decorationImg {
+    width: 14.2rem;
+    right: calc(0rem - 7.6rem);
+    bottom: 0rem;
   }
 
-  .continue-course_video {
-    width: 20rem;
+  .dashboardUserWelcome-subtitle {
+    font-size: var(--fontSize-subtitles_desktop);
   }
 
-  .dashboard-studyMaterial {
-    width: 13rem;
-    height: 7rem;
+  .dashboardUserWelcome-continuePlayingContainer img {
+    width: 19rem;
+  }
+
+  .dashboardUserWelcome-resourcesContainer {
+    max-height: 31vh;
+  }
+
+  .dashboardUserWelcome-resourcesContainer img {
+    width: 10rem;
   }
 }
