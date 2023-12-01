@@ -66,9 +66,9 @@
   cursor: pointer;
 }
 
-@media (min-width: 48rem) {
+@media (width >= 48rem) {
   .sidebar-container {
-    width: 6rem;
+    width: 5rem;
     height: 100vh;
     flex-direction: column;
     border-radius: 0 3rem 3rem 0;
@@ -87,5 +87,11 @@
   .sidebar-sectionSelected {
     width: 3.5rem;
     height: 2.5rem;
+  }
+}
+
+@media (width >= 75rem) {
+  .sidebar-container {
+    width: 6rem;
   }
 }

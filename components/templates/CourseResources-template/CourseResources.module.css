@@ -1,6 +1,5 @@
 @media (min-width: 48rem) {
   .resourcesPage-container {
     display: flex;
-    justify-content: space-between;
   }
 }
