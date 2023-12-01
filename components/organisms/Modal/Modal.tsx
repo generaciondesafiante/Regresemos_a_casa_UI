@@ -12,7 +12,7 @@ interface Props {
 export const ModalEditPhotoProfile: FC<Props> = ({
   children,
   openModalProfile,
-  
+
   closeModalProfile,
   title = "Add Profile Photo",
 }) => {

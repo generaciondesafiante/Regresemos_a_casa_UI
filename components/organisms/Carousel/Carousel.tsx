@@ -82,7 +82,7 @@ export const Carousel: React.FC = () => {
         className={`${styles["carousel-btn"]} ${styles["carousel-btn_right"]}`}
         onClick={former}
       >
-        <ArrowLeftIcon/>
+        <ArrowLeftIcon />
       </button>
       <button
         className={`${styles["carousel-btn"]} ${styles["carousel-btn_left"]}`}
