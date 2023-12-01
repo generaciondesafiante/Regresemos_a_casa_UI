@@ -1,5 +1,5 @@
 .dashboardUserWelcome-container {
-  background-color: var(--white);
+  background-color: var(--lightGrey);
   padding-top: 2rem;
   padding-bottom: 1rem;
 }
@@ -92,7 +92,6 @@
   }
 
   .dashboardUserWelcome-resourcesContainer {
-    min-height: 10rem;
     max-height: 42vh;
   }
 
@@ -145,8 +144,8 @@
 }
 
 @media (width >=75rem) {
-
   .dashboardUserWelcome-container {
+    width: 100%;
     padding-left: 6rem;
   }
 
