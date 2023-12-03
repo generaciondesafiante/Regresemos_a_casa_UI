@@ -1,11 +1,12 @@
 "use client";
 import { useState } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 import { Button, Input } from "../../atoms";
 import styles from "./ResetPassword.module.css";
 
 export const ResetPassword = () => {
+  const router = useRouter();
   const { id } = useParams();
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -48,7 +49,9 @@ export const ResetPassword = () => {
         title: "Contraseña modificada",
         text: "Los cambios en tu perfil han sido guardados exitosamente.",
         didClose: () => {
-          window.location.href = "/loginPage";
+          // window.location.href = "/loginPage";
+          router.push("/loginPage");
+
         },
       });
     } catch (error) {
