@@ -3,9 +3,10 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./Path.module.css";
 import IconBxLock from "../../atoms/icons/lockPathIcon/PathLockIcon";
+import { Course } from "../../../types/types/course.types";
 
 export const Path = () => {
-  const [courses, setCourses] = useState([]);
+  const [courses, setCourses] = useState<Course[]>([]);
   const router = useRouter();
 
   useEffect(() => {
