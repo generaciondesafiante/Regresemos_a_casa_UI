@@ -1,8 +1,8 @@
 "use client";
 import { FC, useEffect, useState } from "react";
-import styles from "./LearningPathTitleClass.module.css";
-import { Course } from "..";
 import { useParams } from "next/navigation";
+import { Course } from "../../../types/types/course.types";
+import styles from "./LearningPathTitleClass.module.css";
 
 interface LearningPathVideoClassProps {
   course: Course | null;

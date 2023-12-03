@@ -1,8 +1,8 @@
 "use client";
 import { FC } from "react";
-import { Course } from "..";
-import styles from "./LearningPathProgress.module.css";
 import { useRouter } from "next/navigation";
+import { Course } from "../../../types/types/course.types";
+import styles from "./LearningPathProgress.module.css";
 
 interface LearningPathVideoClassProps {
   course: Course | null;

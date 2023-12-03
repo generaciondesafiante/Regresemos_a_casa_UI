@@ -3,8 +3,8 @@ import { FC, useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import StarIcon from "@mui/icons-material/Star";
+import { Course } from "../../../types/types/course.types";
 import styles from "./LearningPathVideoClass.module.css";
-import { Course } from "../LearningPath/LearningPath";
 
 interface LearningPathVideoClassProps {
   course: Course | null;
