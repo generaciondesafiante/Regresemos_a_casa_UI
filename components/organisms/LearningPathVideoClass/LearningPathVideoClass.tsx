@@ -9,30 +9,40 @@ import styles from "./LearningPathVideoClass.module.css";
 interface LearningPathVideoClassProps {
   course: Course | null;
 }
+interface Video {
+  title: string;
+  description: string;
+  url: string;
+  idVideo: number;
+}
+
 export const LearningPathVideoClass: FC<LearningPathVideoClassProps> = ({
   course,
 }) => {
   const { idvideo } = useParams();
-  const [currentVideo, setCurrentVideo] = useState(null);
+  const videoId: string = Array.isArray(idvideo) ? idvideo[0] : idvideo;
+
+  const [currentVideo, setCurrentVideo] = useState<Video | null>(null);
   const router = useRouter();
 
   useEffect(() => {
-    if (idvideo) {
+    if (videoId) {
       const video = course?.content.find(
-        (video) => video.idVideo === parseInt(idvideo, 10)
+        (video) => video.idVideo === parseInt(videoId, 10)
       );
 
       if (video) {
         setCurrentVideo(video);
       }
     }
-  }, [course, idvideo]);
+  }, [course, videoId]);
 
   const handleNextVideo = () => {
-    if (idvideo) {
-      const currentIndex = course?.content.findIndex(
-        (video) => video.idVideo === parseInt(idvideo, 10)
-      );
+    if (videoId) {
+      const currentIndex =
+        course?.content.findIndex(
+          (video) => video.idVideo === parseInt(videoId, 10)
+        ) ?? -1;
 
       if (
         currentIndex !== -1 &&

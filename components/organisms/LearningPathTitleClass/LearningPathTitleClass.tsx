@@ -16,12 +16,13 @@ export const LearningPathTitleClass: FC<LearningPathVideoClassProps> = ({
   course,
 }) => {
   const { idvideo } = useParams();
-  const [currentVideo, setCurrentVideo] = useState(null);
+  const videoId: string = Array.isArray(idvideo) ? idvideo[0] : idvideo;
+  const [currentVideo, setCurrentVideo] = useState<Video | null>(null);
 
   useEffect(() => {
-    if (course && idvideo) {
+    if (course && videoId) {
       const video = course.content.find(
-        (video) => video.idVideo === parseInt(idvideo, 10)
+        (video) => video.idVideo === parseInt(videoId, 10)
       );
 
       if (video) {
@@ -31,7 +32,7 @@ export const LearningPathTitleClass: FC<LearningPathVideoClassProps> = ({
   }, [course, idvideo]);
 
   if (!course || !currentVideo) {
-    return <div>Loading...</div>;
+    return <div></div>;
   }
 
   const { name } = course;
@@ -41,14 +42,10 @@ export const LearningPathTitleClass: FC<LearningPathVideoClassProps> = ({
       <p className={styles["learningPathTitleClass-topic"]}>{name}</p>
       <div className={styles["learningPathTitleClass-line"]}></div>
       <h2 className={styles["learningPathTitleClass-title"]}>
-        {/* {course.content[0].title} */}
         {currentVideo.title}
       </h2>
       <div className={styles["learningPathTitleClass-subcontent"]}>
-        <p>
-          {/* {course.content[0].description} */}
-          {currentVideo.description}
-        </p>
+        <p>{currentVideo.description}</p>
       </div>
     </div>
   );
