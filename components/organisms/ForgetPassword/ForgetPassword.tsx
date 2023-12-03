@@ -37,8 +37,6 @@ export const ForgetPassword = () => {
         text: "Verifica tu correo electrónico para restablecer la contraseña.",
         didClose: () => {
           router.push("/loginPage");
-
-          // window.location.href = "/loginPage";
           localStorage.clear();
         },
       });

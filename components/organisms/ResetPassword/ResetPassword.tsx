@@ -49,9 +49,7 @@ export const ResetPassword = () => {
         title: "Contraseña modificada",
         text: "Los cambios en tu perfil han sido guardados exitosamente.",
         didClose: () => {
-          // window.location.href = "/loginPage";
           router.push("/loginPage");
-
         },
       });
     } catch (error) {

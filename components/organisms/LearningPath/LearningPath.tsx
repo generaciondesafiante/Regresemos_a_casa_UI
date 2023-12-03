@@ -14,9 +14,7 @@ export const LearningPath: FC = () => {
 
   const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
   const [selectedVideoId, setSelectedVideoId] = useState<number | null>(null);
-  // const [selectedItemIndex, setSelectedItemIndex] = useState<number | null>(
-  //   null
-  // );
+
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(

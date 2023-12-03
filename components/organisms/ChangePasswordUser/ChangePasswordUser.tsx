@@ -96,7 +96,7 @@ export const ChangePasswordUser = () => {
         text: "Los cambios en tu perfil han sido guardados exitosamente.",
         didClose: () => {
           router.push("/dashboard/profile/changepassword");
-          // window.location.href = "/dashboard/profile/changepassword";
+    
         },
       });
     } catch (error) {
