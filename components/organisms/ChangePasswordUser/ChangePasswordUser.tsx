@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import Swal from "sweetalert2";
@@ -12,6 +13,8 @@ interface ValidatePasswordResponse {
 }
 export const ChangePasswordUser = () => {
   const { data: session } = useSession();
+  const router = useRouter();
+
   const [password, setPassword] = useState("");
   const [currentPassword, setCurrentPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -92,7 +95,8 @@ export const ChangePasswordUser = () => {
         title: "Contraseña modificada",
         text: "Los cambios en tu perfil han sido guardados exitosamente.",
         didClose: () => {
-          window.location.href = "/dashboard/profile/changepassword";
+          router.push("/dashboard/profile/changepassword");
+          // window.location.href = "/dashboard/profile/changepassword";
         },
       });
     } catch (error) {
