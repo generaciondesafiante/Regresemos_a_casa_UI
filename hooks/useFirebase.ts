@@ -25,7 +25,6 @@ export async function uploadFile(file:File,id: string) {
   const storageRef =  ref(storage, `users/${id}/profile-image`);
   await uploadBytes(storageRef, file);
   const url = await getDownloadURL(storageRef);
-  console.log(url);
   return url;
  
 }
