@@ -2,7 +2,7 @@
 import { FC, useEffect, useState } from "react";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
-import Swal from "sweetalert2";
+import Swal, { SweetAlertOptions } from "sweetalert2";
 import { Button, CheckRegisterIcion } from "../../atoms";
 import { ModalEditPhotoProfile } from "../Modal/Modal";
 import { AddPhotoIcon } from "../../atoms/icons/addPhotoIcon/AddPhotoIcon";
@@ -89,17 +89,23 @@ export const Profile: FC<Props> = () => {
       );
 
       if (response.ok) {
-        Swal.fire({
-          icon: "success",
-          title: "Datos actualizados correctamente",
-          text: "Dato/s actualizados",
-        });
+        if (Swal && typeof Swal.fire === "function") {
+          const swalOptions: SweetAlertOptions = {
+            icon: "success",
+            title: "Datos actualizados correctamente",
+            text: "Dato/s actualizados",
+          };
+          Swal.fire(swalOptions);
+        }
       } else {
-        Swal.fire({
-          icon: "success",
-          title: "No se han actualizado correctamente los datos",
-          text: "No se actualizaron los datos",
-        });
+        if (Swal && typeof Swal.fire === "function") {
+          const swalOptions: SweetAlertOptions = {
+            icon: "success",
+            title: "No se han actualizado correctamente los datos",
+            text: "No se actualizaron los datos",
+          };
+          Swal.fire(swalOptions);
+        }
       }
     } catch (error) {
       console.error("Error al actualizar el usuario:", error);
