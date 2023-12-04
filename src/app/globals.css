@@ -45,7 +45,8 @@
   --white: #fcfcfc;
   --white-transparent: #ffffffbe;
   --black: black;
-  --gray: #e8e8e8;
+  --gray: #e8e8e8e6;
+  --lightGrey: #f8f7f7;
   --darkGray: #707070;
   --darkGrayGradient: #707070a2;
   --red: #f44336;

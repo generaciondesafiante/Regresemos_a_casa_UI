@@ -103,6 +103,7 @@
   .resourcesAndVerses-container {
     min-width: 21rem;
     min-height: 100vh;
+    flex: 1;
     padding-bottom: 0;
   }
 
