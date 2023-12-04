@@ -1,5 +1,4 @@
-import React from 'react'
-import { AssessmentTemplate } from '../../../../../components/templates/Assessment-template/AssessmentTemplate';
+import { AssessmentTemplate } from "../../../../../components/templates";
 
 const page = () => {
     return (

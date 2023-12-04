@@ -1,4 +1,6 @@
-export * from './Assessment/Assessment';
+export * from './Assessment/AssessmentMain/AssessmentMain';
+export * from './Assessment/AssessmentQuestions/AssessmentQuestions';
+export * from './Assessment/AssessmentTitleSubtitleBackground/AssessmentTitleSubtitleBackground';
 export * from './Carousel/Carousel';
 export * from './ChangePasswordUser/ChangePasswordUser';
 export * from './CourseResources/CourseResources';
@@ -14,6 +16,7 @@ export * from './Modal/Modal';
 export * from './Path/Path';
 export * from './Profile/Profile';
 export * from './Register/Register';
+export * from './Register/RegisterCharacterValidatePassword/RegisterCharacterValidatePassword';
 export * from './Register/RegisterFormInformation/RegisterFormInformation';
 export * from './Register/RegisterFormPassword/RegisterFormPassword';
 export * from './ResetPassword/ResetPassword';

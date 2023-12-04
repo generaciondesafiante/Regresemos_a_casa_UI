@@ -1,34 +1,9 @@
-.assessment__container{
-    position: absolute;
-    height: 100vh;
-    width: 100vw;
-    background-image: url(https://i.imgur.com/LbpagcS.png);
-    background-size: 100% 100%;
-}
-
-.assessment__content--topic{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 50px;
-}
-
-.assessment__topic{
-    color: var(--darkBlue);
-    font: 30px;
-    font-weight: 600;
-}
-
-.assessment__topic--description{
-    color: var(--darkBlue);
-    font-size: 20px;
-    font-weight: 600;
-    margin-top: 30px;
+.assessment__container--questions{
+    position: relative;
 }
 
 .assessment__content--image{
-    margin-top: 100px;
+    margin-top: 220px;
     bottom: 0;
     display: flex;
     justify-content: center;

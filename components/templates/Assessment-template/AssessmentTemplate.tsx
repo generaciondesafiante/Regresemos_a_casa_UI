@@ -1,9 +1,11 @@
-import { Assessment } from "../../organisms";
+import { AssessmentMain, AssessmentQuestions, AssessmentTitleSubtitleBackground } from "../../organisms";
 
 export const AssessmentTemplate: React.FC = () => {
     return (        
         <div>
-            <Assessment />;
+            <AssessmentTitleSubtitleBackground />;
+            {/* <AssessmentMain /> */}
+            <AssessmentQuestions />
         </div>
     );
 };
