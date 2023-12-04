@@ -76,6 +76,7 @@
 @media (width >=48rem) {
   .dashboardUserWelcome-container {
     min-height: 100vh;
+    flex: 2;
     padding-left: 5rem;
   }
 
@@ -97,6 +98,7 @@
 
   .dashboardUserWelcome-resourcesContainer img {
     width: 8.5rem;
+    height: 5.3rem;
   }
 }
 
