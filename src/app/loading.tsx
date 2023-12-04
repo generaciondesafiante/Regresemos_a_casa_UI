@@ -30,9 +30,7 @@ const loading = () => {
           aria-label="Loading Spinner"
           data-testid="loader"
         />
-      ) : (
-        "No hay datos para monstrar"
-      )}
+      ) : null}
     </div>
   );
 };

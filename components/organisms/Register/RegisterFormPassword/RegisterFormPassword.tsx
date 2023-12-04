@@ -22,7 +22,7 @@ export const RegisterFormPassword: FC<RegisterFormPasswordProps> = ({
   const [isLengthValid, setLengthValid] = useState(false);
   const [isLetterValid, setLetterValid] = useState(false);
   const [isFormValid, setFormValid] = useState(false);
-  console.log(isFormValid);
+
   const handlePasswordChange = (value: string) => {
     const specialCharRegex = /[!@#$%^&*(),.?":{}|<>]/;
     const numberRegex = /\d/;
