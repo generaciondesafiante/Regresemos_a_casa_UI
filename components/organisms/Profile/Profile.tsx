@@ -2,7 +2,7 @@
 import { FC, useEffect, useState } from "react";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
-import Swal, { SweetAlertOptions } from "sweetalert2";
+import Swal from "sweetalert2";
 import { Button, CheckRegisterIcion } from "../../atoms";
 import { ModalEditPhotoProfile } from "../Modal/Modal";
 import { AddPhotoIcon } from "../../atoms/icons/addPhotoIcon/AddPhotoIcon";

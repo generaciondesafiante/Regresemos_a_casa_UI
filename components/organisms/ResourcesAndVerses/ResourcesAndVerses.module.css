@@ -1,300 +1,141 @@
 .resourcesAndVerses-container {
-  padding: 1rem;
+  padding-top: 2rem;
   padding-bottom: 6rem;
   background-color: var(--turquoise);
-  font-family: var(--primaryFont);
 }
 
-.resourcesAndVerses-content_bibleQuote {
-  margin: 1rem;
+.resourcesAndVerses-bibleVerseContainerA {
+  max-width: 85%;
+  margin: 0 auto;
 }
 
-.resourcesAndVerses-bibleQuote {
+.resourcesAndVerses-bibleVerseContainerA_verse {
   color: var(--white);
-  font-size: 1.2rem;
+  font-size: var(--fontSize-subtitles_mobile);
 }
 
-.resourcesAndVerses-bibleQuote span {
-  font-weight: bold;
-  color: var(--white);
-  font-size: 1.2rem;
-}
-
-.resourcesAndVerses-bibleQuote_number {
-  font-size: 0.8rem;
+.resourcesAndVerses-bibleVerseContainerA_verseIndex {
   margin-top: 0.5rem;
+  font-size: var(--fontSize-paragraph_mobile);
   color: var(--white);
 }
 
-.resourcesAndVerses-content_bibleQuoteTwo {
+.resourcesAndVerses-bibleVerseContainerB {
+  max-width: 85%;
+  margin: 0 auto;
+  margin-top: 2rem;
   padding: 1rem;
-  margin-top: 3rem;
   background-color: var(--white);
-  border-radius: 1.5rem;
-  box-shadow: 0rem 0.188rem 1.25rem #00000029;
+  border-radius: var(--borderRadius);
+  box-shadow: 0rem 0rem 0.3rem 0.3rem #7b7b7b33;
 }
 
-.resourcesAndVerses-bibleQuoteTwo {
+.resourcesAndVerses-bibleVerseContainerB_verse {
   color: var(--darkBlue);
-  font-size: 1rem;
+  font-size: var(--fontSize-paragraph_mobile);
 }
 
-.resourcesAndVerses-bibleQuoteTwo span {
-  font-weight: bold;
-  font-size: 1.1rem;
-}
-
-.resourcesAndVerses-bibleQuote_number-two {
+.resourcesAndVerses-bibleVerseContainerB_verseIndex {
   margin-top: 0.5rem;
-  color: #80808085;
-  font-size: 0.9rem;
+  font-size: var(--fontSize-paragraph_mobile);
+  color: var(--darkGray);
 }
 
-.resourcesAndVerses-content_memorize {
+.resourcesAndVerses-playerListLink {
+  text-decoration: none;
+}
+
+.resourcesAndVerses-playerListContainer {
+  max-width: 85%;
+  height: 4.4rem;
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  justify-content: space-evenly;
   align-items: center;
-  height: 4rem;
+  margin: 0 auto;
   margin-top: 2rem;
-  background-color: var(--darkBlue);
-  box-shadow: 0rem 0.188rem 1.25rem #00000029;
-  border-radius: 1.5rem;
+  border-radius: var(--borderRadius);
+  background-color: var(--darkBlue-content);
+  box-shadow: 0rem 0rem 0.3rem 0.3rem #7b7b7b33;
+}
+
+.resourcesAndVerses-playerListContainer_text {
   color: var(--white);
-  font-size: 0.7rem;
+  font-size: var(--fontSize-paragraph_mobile);
+  transition: var(--transition);
 }
 
-.resourcesAndVerses-memorize_title {
-  width: 4rem;
+.resourcesAndVerses-playerListContainer_text span {
+  font-weight: 900;
 }
 
-@media (min-width: 48rem) {
-  .resourcesAndVerses-container {
-    width: 30rem;
-    padding: 2rem;
-    height: 100vh;
-  }
-
-  .resourcesAndVerses-content_bibleQuoteTwo {
-    padding: 1.2rem;
-    margin-top: 4rem;
-  }
-
-  .resourcesAndVerses-content_memorize {
-    margin-top: 3rem;
-    padding: 1rem;
-  }
-
-  .resourcesAndVerses-memorize_title {
-    width: 4rem;
-  }
+.resourcesAndVerses-playerListContainer_text:hover {
+  color: var(--turquoise);
+  transform: var(--transform);
 }
 
-@media (min-width: 64rem) {
-  .resourcesAndVerses-container {
-    width: 35rem;
-    padding: 3rem 4.5rem;
-  }
-
-  .resourcesAndVerses-bibleQuote {
-    font-size: 1.5rem;
-  }
-
-  .resourcesAndVerses-bibleQuote span {
-    font-size: 1.5rem;
-  }
-
-  .resourcesAndVerses-bibleQuote_number {
-    font-size: 0.9rem;
-    margin-top: 1rem;
-  }
-
-  .resourcesAndVerses-content_bibleQuoteTwo {
-    padding: 2rem;
-    margin-top: 4rem;
-  }
-
-  .resourcesAndVerses-bibleQuoteTwo {
-    font-size: 1.2rem;
-  }
-
-  .resourcesAndVerses-bibleQuoteTwo span {
-    font-size: 1.2rem;
-  }
-
-  .resourcesAndVerses-bibleQuote_number-two {
-    margin-top: 0.5rem;
-    font-size: 1rem;
-  }
-
-  .resourcesAndVerses-content_memorize {
-    height: 5rem;
-    margin-top: 3rem;
-    font-size: 0.9rem;
-  }
-
-  .resourcesAndVerses-memorize_title {
-    width: 5rem;
-  }
-}
-
-@media (min-width: 105rem) {
-  .resourcesAndVerses-container {
-    width: 45rem;
-    padding: 4rem 7rem;
-  }
-
-  .resourcesAndVerses-bibleQuote {
-    font-size: 2.5rem;
-  }
-
-  .resourcesAndVerses-bibleQuote span {
-    font-size: 2.5rem;
-  }
-
-  .resourcesAndVerses-bibleQuote_number {
-    font-size: 1.2rem;
-  }
-
-  .resourcesAndVerses-bibleQuoteTwo {
-    font-size: 1.3rem;
-  }
-
-  .resourcesAndVerses-bibleQuoteTwo span {
-    font-size: 1.3rem;
-  }
-
-  .resourcesAndVerses-content_memorize {
-    margin-top: 4rem;
-    font-size: 1rem;
-  }
-}
-
-.resourcesAndVerses-bibleQuoteTwo span {
-  font-weight: bold;
-  font-size: 1.1rem;
-}
-
-.resourcesAndVerses-bibleQuote_number-two {
-  margin-top: 0.5rem;
-  color: #80808085;
-  font-size: 0.9rem;
-}
-
-.resourcesAndVerses-content_memorize {
+.resourcesAndVerses-playerListContainer_child {
   display: flex;
-  justify-content: space-around;
   align-items: center;
-  height: 4rem;
-  margin-top: 2rem;
-  background-color: var(--darkBlue);
-  box-shadow: 0rem 0.188rem 1.25rem #00000029;
-  border-radius: 1.5rem;
+}
+
+.resourcesAndVerses-playerListContainer_playBtn {
+  display: flex;
+  margin-left: 0.5rem;
+  border: none;
   color: var(--white);
-  font-size: 0.7rem;
+  background-color: transparent;
+  cursor: pointer;
+  transition: var(--transition);
 }
 
-.resourcesAndVerses-memorize_title {
-  width: 4rem;
+.resourcesAndVerses-playerListContainer_playBtn:hover {
+  color: var(--turquoise);
+  transform: var(--transform);
 }
 
-@media (min-width: 48rem) {
+.resourcesAndVerses-playerListContainer_playBtnIcon {
+  width: 1.8rem;
+  height: 1.8rem;
+}
+
+@media (width >=48rem) {
   .resourcesAndVerses-container {
-    width: 30rem;
-    padding: 2rem;
-    height: 100vh;
+    min-width: 21rem;
+    min-height: 100vh;
+    flex: 1;
+    padding-bottom: 0;
   }
 
-  .resourcesAndVerses-content_bibleQuoteTwo {
-    padding: 1.2rem;
-    margin-top: 4rem;
-  }
-
-  .resourcesAndVerses-content_memorize {
-    margin-top: 3rem;
-    padding: 1rem;
-  }
-
-  .resourcesAndVerses-memorize_title {
-    width: 4rem;
+  .resourcesAndVerses-bibleVerseContainerA_verse {
+    font-size: var(--fontSize-subtitles_tablet);
   }
 }
 
-@media (min-width: 64rem) {
+@media (width >=64rem) {
   .resourcesAndVerses-container {
-    width: 35rem;
-    padding: 2rem 4rem;
+    min-width: 23rem;
   }
 
-  .resourcesAndVerses-bibleQuote {
-    font-size: 1.5rem;
+  .resourcesAndVerses-bibleVerseContainerA_verse {
+    font-size: var(--fontSize-subtitles_laptop);
   }
 
-  .resourcesAndVerses-bibleQuote span {
-    font-size: 1.5rem;
+  .resourcesAndVerses-bibleVerseContainerB_verse {
+    font-size: var(--fontSize-paragraph_laptop);
   }
 
-  .resourcesAndVerses-bibleQuote_number {
-    font-size: 0.9rem;
-    margin-top: 1rem;
-  }
-
-  .resourcesAndVerses-content_bibleQuoteTwo {
-    padding: 2rem;
-    margin-top: 2.5rem;
-  }
-
-  .resourcesAndVerses-bibleQuoteTwo {
-    font-size: 1.2rem;
-  }
-
-  .resourcesAndVerses-bibleQuoteTwo span {
-    font-size: 1.2rem;
-  }
-
-  .resourcesAndVerses-bibleQuote_number-two {
-    margin-top: 0.5rem;
-    font-size: 1rem;
-  }
-
-  .resourcesAndVerses-content_memorize {
+  .resourcesAndVerses-playerListContainer {
     height: 5rem;
-    margin-top: 2rem;
-    font-size: 0.9rem;
   }
 
-  .resourcesAndVerses-memorize_title {
-    width: 5rem;
+  .resourcesAndVerses-playerListContainer_text {
+    font-size: var(--fontSize-paragraph_laptop);
   }
 }
 
-@media (min-width: 105rem) {
+@media (width >=75rem) {
   .resourcesAndVerses-container {
-    width: 45rem;
-    padding: 4rem 7rem;
-  }
-
-  .resourcesAndVerses-bibleQuote {
-    font-size: 2.5rem;
-  }
-
-  .resourcesAndVerses-bibleQuote span {
-    font-size: 2.5rem;
-  }
-
-  .resourcesAndVerses-bibleQuote_number {
-    font-size: 1.2rem;
-  }
-
-  .resourcesAndVerses-bibleQuoteTwo {
-    font-size: 1.3rem;
-  }
-
-  .resourcesAndVerses-bibleQuoteTwo span {
-    font-size: 1.3rem;
-  }
-
-  .resourcesAndVerses-content_memorize {
-    margin-top: 4rem;
-    font-size: 1rem;
+    max-width: 28rem;
   }
 }
