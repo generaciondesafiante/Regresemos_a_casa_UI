@@ -63,7 +63,7 @@
   }
 }
 
-@media (min-width: 64rem) {
+@media (width >=64rem) {
   .form-input_label {
     font-size: var(--fontSize-paragraph_laptop);
   }

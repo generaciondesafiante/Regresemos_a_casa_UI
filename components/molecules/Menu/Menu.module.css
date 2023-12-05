@@ -52,7 +52,7 @@
   color: var(--greenDesafiante);
 }
 
-@media (min-width: 48rem) {
+@media (width >=48rem) {
   .header {
     padding: 0.5rem 1rem;
   }
@@ -62,7 +62,7 @@
   }
 }
 
-@media (min-width: 64rem) {
+@media (width >=64rem) {
   .header {
     padding: 0.5rem 1.5rem;
   }

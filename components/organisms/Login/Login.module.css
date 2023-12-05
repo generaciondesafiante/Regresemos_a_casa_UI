@@ -50,7 +50,7 @@
   }
 }
 
-@media (min-width: 64rem) {
+@media (width >=64rem) {
   .form-login_title {
     width: 28rem;
     font-size: var(--fontSize-superTitles_laptop);

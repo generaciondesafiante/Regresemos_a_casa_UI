@@ -45,14 +45,14 @@
   right: 0.5rem;
 }
 
-@media (min-width: 48rem) {
+@media (width >=48rem) {
   .carousel-btn {
     width: 2.2rem;
     height: 2.2rem;
   }
 }
 
-@media (min-width: 64rem) {
+@media (width >=64rem) {
   .carousel-btn {
     width: 2.5rem;
     height: 2.5rem;

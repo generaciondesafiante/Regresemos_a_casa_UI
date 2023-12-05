@@ -1,37 +1,39 @@
 .learningPath-container {
   padding-bottom: 4rem;
 }
+
 .classRoomRoute-container {
-  gap: 0.2rem;
   display: flex;
   flex-direction: column;
-  cursor: pointer;
+  gap: 0.2rem;
 }
 
-@media (min-width: 48rem) {
+@media (width >=64rem) {
   .learningPath-container {
-    padding-bottom: 0rem;
-  }
-}
-
-@media (min-width: 64rem) {
-  .learningPath-container {
+    height: 100vh;
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
   }
+
   .classRoomRoute-container {
-    background-color: var(--turquoise);
-    justify-content: center;
+    width: 8rem;
     height: 100vh;
-    width: 9rem;
-    padding-left: 6rem;
-    padding-bottom: 1rem;
+    justify-content: center;
+    padding-left: 5rem;
+    background-color: var(--turquoise);
     overflow-y: scroll;
     gap: 0rem;
   }
 
   .classRoomRoute-container::-webkit-scrollbar {
     display: none;
+  }
+}
+
+@media (width >=75rem) {
+.classRoomRoute-container {
+    width: 10rem;
+    padding-left: 6rem;
   }
 }
