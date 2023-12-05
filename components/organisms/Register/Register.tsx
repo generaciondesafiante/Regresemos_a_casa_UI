@@ -136,6 +136,11 @@ export const Register = () => {
                   setPassword2={setPassword2}
                   password2={password2}
                   password={password}
+                  labelButton={"Crear Cuenta"}
+                  inputColor="var(--white)"
+                  borderColor="var(--turquoise)"
+                  labelColor="var(--white)"
+                  buttonColor={"var(--white)"}
                 />
               </div>
             </>
