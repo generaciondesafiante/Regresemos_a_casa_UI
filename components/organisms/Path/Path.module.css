@@ -71,7 +71,7 @@
   color: var(--darkGray);
 }
 
-@media (min-width: 48rem) {
+@media (width >=48rem) {
   .path-container {
     padding-left: 5.625rem;
   }
@@ -106,7 +106,7 @@
   }
 }
 
-@media (min-width: 64rem) {
+@media (width >=64rem) {
   .path-content {
     row-gap: 5rem;
     column-gap: 8rem;

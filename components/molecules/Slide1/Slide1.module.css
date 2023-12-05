@@ -37,7 +37,7 @@
 
 }
 
-@media (min-width: 48rem) {
+@media (width >=48rem) {
   .carouselOne-img_one {
     width: 35rem;
     height: 23rem;
@@ -73,7 +73,7 @@
   }
 }
 
-@media (min-width: 64rem) {
+@media (width >=64rem) {
   .carouselOne-img_one {
     width: 45rem;
     height: 29rem;
@@ -101,7 +101,7 @@
   }
 }
 
-@media (min-width: 75rem) {
+@media (width >=75rem) {
   .carouselOne-img_one {
     width: 65rem;
     height: 45rem;

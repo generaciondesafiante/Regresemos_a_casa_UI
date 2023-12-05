@@ -96,7 +96,7 @@
   }
 }
 
-@media (min-width: 64rem) {
+@media (width >=64rem) {
   .form-register {
     height: 100vh;
   }
