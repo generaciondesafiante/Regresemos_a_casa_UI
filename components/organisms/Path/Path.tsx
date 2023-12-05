@@ -6,9 +6,10 @@ import IconBxLock from "../../atoms/icons/lockPathIcon/PathLockIcon";
 import { FlagStartIcon } from "../../atoms/icons/flagsIcon/FlagStartIcon";
 import { FlagEndIcon } from "../../atoms/icons/flagsIcon/FlagEndIcon";
 import { DavidStarIcon } from "../../atoms/icons/davidStar/DavidStarIcon";
+import { Course } from "../../../types/types/course.types";
 
-export const Path = async () => {
-  const [courses, setCourses] = useState([]);
+export const Path = () => {
+  const [courses, setCourses] = useState<Course[]>([]);
   const router = useRouter();
 
   useEffect(() => {

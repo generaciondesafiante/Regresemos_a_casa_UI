@@ -1,44 +1,56 @@
 "use client";
-import Link from "next/link";
-import { FullStarIcon } from "../../atoms/icons/starIcon/FullStarIcon";
-import { EmptyStarIcon } from "../../atoms/icons/starIcon/EmptyStarIcon";
-import styles from "./LearningPathVideoClass.module.css";
-import { Button } from "../../atoms";
-import { Course } from "../LearningPath/LearningPath";
 import { FC, useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
+import { FullStarIcon } from "../../atoms/icons/starIcon/FullStarIcon";
+import { EmptyStarIcon } from "../../atoms/icons/starIcon/EmptyStarIcon";
+import { Button } from "../../atoms";
+import { Course } from "../../../types/types/course.types";
+import styles from "./LearningPathVideoClass.module.css";
 
 interface LearningPathVideoClassProps {
   course: Course | null;
 }
+interface Video {
+  title: string;
+  description: string;
+  url: string;
+  idVideo: number;
+}
+
 export const LearningPathVideoClass: FC<LearningPathVideoClassProps> = ({
   course,
 }) => {
   const { idvideo } = useParams();
-  const [currentVideo, setCurrentVideo] = useState(null);
+  const videoId: string = Array.isArray(idvideo) ? idvideo[0] : idvideo;
+
+  const [currentVideo, setCurrentVideo] = useState<Video | null>(null);
   const router = useRouter();
 
   useEffect(() => {
-    if (course && idvideo) {
-      const video = course.content.find(
-        (video) => video.idVideo === parseInt(idvideo, 10)
+    if (videoId) {
+      const video = course?.content.find(
+        (video) => video.idVideo === parseInt(videoId, 10)
       );
 
       if (video) {
         setCurrentVideo(video);
       }
     }
-  }, [course, idvideo]);
+  }, [course, videoId]);
 
   const handleNextVideo = () => {
-    if (course && idvideo) {
-      const currentIndex = course.content.findIndex(
-        (video) => video.idVideo === parseInt(idvideo, 10)
-      );
+    if (videoId) {
+      const currentIndex =
+        course?.content.findIndex(
+          (video) => video.idVideo === parseInt(videoId, 10)
+        ) ?? -1;
 
-      if (currentIndex !== -1 && currentIndex < course.content.length - 1) {
-        const nextVideo = course.content[currentIndex + 1];
-        const nextVideoUrl = `/dashboard/path/course/${course.id}/${course.endpoint}/${nextVideo.idVideo}`;
+      if (
+        currentIndex !== -1 &&
+        currentIndex < (course?.content.length || 0) - 1
+      ) {
+        const nextVideo = course?.content[currentIndex + 1];
+        const nextVideoUrl = `/dashboard/path/course/${course?.id}/${course?.endpoint}/${nextVideo?.idVideo}`;
         router.push(nextVideoUrl);
       }
     }

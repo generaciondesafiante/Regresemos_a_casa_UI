@@ -51,6 +51,8 @@ export const Login: FC = () => {
           label="Correo Electrónico"
           isRequire={true}
           onChange={(event) => setEmail(event.target.value)}
+          borderColor="var(--turquoise)"
+          inputColor="var(--white)"
         />
         <Input
           id="passwordLogin"
@@ -62,6 +64,9 @@ export const Login: FC = () => {
           label="Contraseña"
           isRequire={true}
           onChange={(event) => setPassword(event.target.value)}
+          borderColor="var(--turquoise)"
+          buttonColor="var(--white)"
+          inputColor="var(--white)"
         />
         <Link
           className={styles["form-login_forgotPassword"]}
