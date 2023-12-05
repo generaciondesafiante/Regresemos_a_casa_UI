@@ -129,9 +129,10 @@ export const ChangePasswordUser = () => {
       Swal.fire("Contraseña incorrecta", errorMessage, "warning");
     }
   }, [errorMessage]);
-  const myLabelColor = "var(--blueKing)";
-  const myInputColor = "var(--blueKing)";
-  const myButtonColor = "var(--blueKing)";
+  const myLabelColor = "var(--darkBlue-content)";
+  const myInputColor = "var(--darkBlue-content)";
+  const myButtonColor = "var(--darkBlue-content)";
+  const myBorderInput = "var(--turquoise)";
 
   return (
     <div className={styles["container-changePasswrod-profile"]}>
@@ -163,6 +164,7 @@ export const ChangePasswordUser = () => {
           labelColor={myLabelColor}
           inputColor={myInputColor}
           buttonColor={myButtonColor}
+          borderColor={myBorderInput}
         />
 
         <RegisterFormPassword
@@ -170,11 +172,12 @@ export const ChangePasswordUser = () => {
           setPassword2={setPassword2}
           password2={password2}
           password={password}
-          colorTextCharacter={"var(--blueKing)"}
+          colorTextCharacter="var(--blueKing)"
           labelButton={"Cambiar Contraseña"}
-          labelColor="var(--blueKing)"
+          labelColor="var(--darkBlue-content)"
           inputColor={myInputColor}
           buttonColor={myButtonColor}
+          borderColor={myBorderInput}
         />
         <div className={styles["container-button-change"]}>
           <Link

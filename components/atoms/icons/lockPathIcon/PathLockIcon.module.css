@@ -3,7 +3,7 @@
   color: var(--darkGray);
 }
 
-@media (min-width: 64rem) {
+@media (width >=64rem) {
   .icon-lock {
     width: 1.8rem;
   }

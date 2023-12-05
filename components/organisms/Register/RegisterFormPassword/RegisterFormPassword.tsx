@@ -10,10 +10,11 @@ interface RegisterFormPasswordProps {
   password: string;
   password2: string;
   labelButton: string;
-  colorTextCharacter: string;
   labelColor?: string;
   inputColor?: string;
   buttonColor?: string;
+  borderColor?: string;
+  colorTextCharacter?: string;
 }
 
 export const RegisterFormPassword: FC<RegisterFormPasswordProps> = ({
@@ -26,6 +27,7 @@ export const RegisterFormPassword: FC<RegisterFormPasswordProps> = ({
   labelColor,
   inputColor,
   buttonColor,
+  borderColor,
 }) => {
   const [isSpecialCharValid, setSpecialCharValid] = useState(false);
   const [isNumberValid, setNumberValid] = useState(false);
@@ -66,6 +68,7 @@ export const RegisterFormPassword: FC<RegisterFormPasswordProps> = ({
           labelColor={labelColor}
           inputColor={inputColor}
           buttonColor={buttonColor}
+          borderColor={borderColor}
         />
         <Input
           id={"password2-form-register"}
@@ -80,6 +83,7 @@ export const RegisterFormPassword: FC<RegisterFormPasswordProps> = ({
           labelColor={labelColor}
           inputColor={inputColor}
           buttonColor={buttonColor}
+          borderColor={borderColor}
         />
         <div className={styles["content-character_password"]}>
           <PasswordValidation

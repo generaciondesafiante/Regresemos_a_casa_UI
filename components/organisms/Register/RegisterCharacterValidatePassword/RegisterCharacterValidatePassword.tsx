@@ -5,7 +5,7 @@ import styles from "./RegisterCharacterValidatePassword.module.css";
 interface PasswordValidationProps {
   isValid: boolean;
   message: string;
-  colorTextCharacter: string;
+  colorTextCharacter?: string;
 }
 export const PasswordValidation: FC<PasswordValidationProps> = ({
   isValid,

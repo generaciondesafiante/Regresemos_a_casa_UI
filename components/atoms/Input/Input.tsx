@@ -18,6 +18,7 @@ interface InputProps {
   isRequire?: boolean;
   className?: string;
   buttonColor?: string;
+  borderColor?: string;
 }
 
 export const Input: React.FC<InputProps> = ({
@@ -33,6 +34,7 @@ export const Input: React.FC<InputProps> = ({
   inputColor,
   isRequire,
   buttonColor,
+  borderColor,
 }) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
@@ -49,7 +51,8 @@ export const Input: React.FC<InputProps> = ({
   };
 
   const inputStyle: CSSProperties = {
-    color: inputColor || "var(--white)",
+    color: inputColor || "transparent",
+    border: borderColor ? `3px solid ${borderColor}` : "3px solid var(--white)",
   };
   const buttonStyle: CSSProperties = {
     color: buttonColor || "var(--white)",
@@ -72,7 +75,7 @@ export const Input: React.FC<InputProps> = ({
           type="button"
           className={styles["password-toggle-button"]}
           onClick={togglePasswordVisibility}
-          style={{ ...buttonStyle }}
+          style={{ ...buttonStyle, position: "absolute", right: "-10" }}
         >
           {isPasswordVisible ? (
             <RemoveRedEyeIcon className={styles["icon"]} />
@@ -83,7 +86,9 @@ export const Input: React.FC<InputProps> = ({
       )}
       <label
         htmlFor={htmlForm}
-        className={styles["form-input_label"]}
+        className={`${styles["form-input_label"]} ${
+          value && value.length > 1 ? styles.active : ""
+        }`}
         style={labelStyle}
       >
         {label}

@@ -1,8 +1,9 @@
 "use client";
 import { FC, useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import Link from "next/link";
-import StarIcon from "@mui/icons-material/Star";
+import { FullStarIcon } from "../../atoms/icons/starIcon/FullStarIcon";
+import { EmptyStarIcon } from "../../atoms/icons/starIcon/EmptyStarIcon";
+import { Button } from "../../atoms";
 import { Course } from "../../../types/types/course.types";
 import styles from "./LearningPathVideoClass.module.css";
 
@@ -61,51 +62,43 @@ export const LearningPathVideoClass: FC<LearningPathVideoClassProps> = ({
 
   return (
     <div className={styles["learningPathVideoClass-container"]}>
-      <iframe
-        className={styles["learningPathVideoClass-video"]}
-        src={currentVideo.url}
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowFullScreen
-      ></iframe>
+      <div className={styles["learningPathVideoClass-content"]}>
+        <iframe
+          className={styles["learningPathVideoClass-video"]}
+          src={currentVideo.url}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+        ></iframe>
 
-      <div
-        className={styles["learningPathVideoClass-content_videoInteraction"]}
-      >
         <div
-          className={
-            styles["learningPathVideoClass-subcontent_videoInteraction"]
-          }
+          className={styles["learningPathVideoClass-content_videoInteraction"]}
         >
-          <p
-            className={styles["learningPathVideoClass-videoInteraction_title"]}
-          >
-            1 H 40 MIN
-          </p>
-          <StarIcon
-            className={styles["learningPathVideoClass-videoInteraction_icon"]}
-          />
-          <StarIcon
-            className={styles["learningPathVideoClass-videoInteraction_icon"]}
-          />
-          <StarIcon
-            className={styles["learningPathVideoClass-videoInteraction_icon"]}
-          />
-        </div>
-        <div className={styles["learningPathVideoClass-subcontent_btn"]}>
-          <div className={styles["learningPathVideoClass-btn_activity"]}>
-            <Link
-              href={"/"}
-              className={styles["learningPathVideoClass-btn_textActivity"]}
+          <div>
+            <p
+              className={
+                styles["learningPathVideoClass-videoInteraction_title"]
+              }
             >
-              ACTIVIDAD
-            </Link>
+              1H 40MIN
+            </p>
+            <div
+              className={
+                styles["learningPathVideoClass-videoInteraction_containerStar"]
+              }
+            >
+              <FullStarIcon />
+              <FullStarIcon />
+              <FullStarIcon />
+              <EmptyStarIcon />
+              <EmptyStarIcon />
+            </div>
           </div>
-          <button
-            className={`${styles["learningPathVideoClass-btn_next"]} ${styles["learningPathVideoClass-btn_textNext"]}`}
+          <Button
+            className={styles["learningPathVideoClass-btn"]}
             onClick={handleNextVideo}
           >
             SIGUIENTE
-          </button>
+          </Button>
         </div>
       </div>
     </div>
