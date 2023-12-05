@@ -71,6 +71,8 @@ export const ForgetPassword = () => {
         onChange={handleEmailChange}
         label={"Correo electrónico"}
         isRequire={true}
+        borderColor="var(--turquoise)"
+        inputColor="var(--white)"
       />
       <Button className={styles["form-forget_button"]} type="submit">
         Recuperar contraseña
