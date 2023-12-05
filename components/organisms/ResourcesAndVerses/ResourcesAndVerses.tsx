@@ -31,12 +31,18 @@ export const ResourcesAndVerses: FC = () => {
           SALMO 19:7
         </p>
       </div>
-      <a className={styles["resourcesAndVerses-playerListLink"]} href="">
+      <a
+        className={styles["resourcesAndVerses-playerListLink"]}
+        target="_blank"
+        href="https://www.youtube.com/watch?v=pQPoX4WRUW0&list=PLX-KKyt726LOVO77-bC3WxO90WY15kDGi"
+      >
         <div className={styles["resourcesAndVerses-playerListContainer"]}>
           <h3 className={styles["resourcesAndVerses-playerListContainer_text"]}>
             <span>Memoriza</span> su palabra
           </h3>
-          <div className={styles["resourcesAndVerses-playerListContainer_child"]}>
+          <div
+            className={styles["resourcesAndVerses-playerListContainer_child"]}
+          >
             <p
               className={styles["resourcesAndVerses-playerListContainer_text"]}
             >

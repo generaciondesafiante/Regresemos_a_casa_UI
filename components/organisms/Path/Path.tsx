@@ -3,6 +3,9 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./Path.module.css";
 import IconBxLock from "../../atoms/icons/lockPathIcon/PathLockIcon";
+import { FlagStartIcon } from "../../atoms/icons/flagsIcon/FlagStartIcon";
+import { FlagEndIcon } from "../../atoms/icons/flagsIcon/FlagEndIcon";
+import { DavidStarIcon } from "../../atoms/icons/davidStar/DavidStarIcon";
 
 export const Path = async () => {
   const [courses, setCourses] = useState([]);
@@ -29,28 +32,27 @@ export const Path = async () => {
   };
   return (
     <div className={styles["path-container"]}>
+      <h2 className={styles["path-title"]}>
+        ¡Vamos de<span> regreso </span>a casa! <DavidStarIcon />
+      </h2>
       <div className={styles["path-content"]}>
         {courses.map((course, index) => (
           <div key={course.id} className={styles["path-border"]}>
             {index === 0 && (
-              <img
-                className={`${styles["path-img_flag"]} ${styles["flag-start"]}`}
-                src="https://i.imgur.com/pIOGRDs.png"
-                alt="Bandera del inicio"
+              <FlagStartIcon
+                className={`${styles["path-flagIcon"]} ${styles["path-flagIcon_start"]}`}
               />
             )}
 
             {index === courses.length - 1 && (
-              <img
-                className={`${styles["path-img_flag"]} ${styles["flag-end"]}`}
-                src="https://i.imgur.com/8cfdvwv.png"
-                alt="Bandera de la meta"
+              <FlagEndIcon
+                className={`${styles["path-flagIcon"]} ${styles["path-flagIcon_end"]}`}
               />
             )}
 
             <button
               onClick={() => handleUrlId(course)}
-              className={styles["path-learningPath"]}
+              className={styles["path-button"]}
             >
               <IconBxLock />
             </button>

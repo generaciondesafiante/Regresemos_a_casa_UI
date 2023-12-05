@@ -1,6 +1,6 @@
 .icon-lock {
   width: 1.5rem;
-  color: var(--darkGray);
+  color: var(--darkGrayGradient);
 }
 
 @media (width >=64rem) {
