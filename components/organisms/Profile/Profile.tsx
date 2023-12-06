@@ -2,12 +2,12 @@
 import { FC, useEffect, useState } from "react";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
-import Swal from "sweetalert2";
-import { Button, CheckRegisterIcion } from "../../atoms";
+import Swal, { SweetAlertOptions } from "sweetalert2";
+import { Button } from "../../atoms";
+import { uploadFile } from "../../../hooks/useFirebase";
 import { ModalEditPhotoProfile } from "../Modal/Modal";
 import { AddPhotoIcon } from "../../atoms/icons/addPhotoIcon/AddPhotoIcon";
 import styles from "./Profile.module.css";
-import { uploadFile } from "../../../hooks/useFirebase";
 
 interface Props {
   name?: string | null | undefined;
