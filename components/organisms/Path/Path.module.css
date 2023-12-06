@@ -1,133 +1,146 @@
 .path-container {
-  background-image: url(https://i.imgur.com/PSLqcjG.png);
-  background-size: cover;
-  background-position: center;
-  background-size: 100% 100%;
-  width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  padding-bottom: 6rem;
+  background-image: url(https://i.imgur.com/PSLqcjG.png);
+  background-size: 100% 100%;
+  overflow-y: scroll;
+}
+
+.path-title {
+  width: 13rem;
+  margin-top: 5rem;
+  position: relative;
+  text-align: center;
+  font-size: var(--fontSize-titles_mobile);
+  color: var(--darkBlue-content);
+}
+
+.path-title span {
+  color: var(--turquoise);
 }
 
 .path-content {
+  margin-top: 5rem;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
+  row-gap: 4rem;
+  column-gap: 2rem;
 }
 
 .path-border {
-  width: 3.7rem;
-  height: 3.7rem;
+  width: 4rem;
+  height: 4rem;
   position: relative;
   margin: 0 auto;
   border-radius: 50%;
-  border: solid 0.1rem #eaeaea;
-  transition: 400ms;
+  border: var(--border) var(--gray);
+  transition: var(--transition);
 }
 
 .path-border:hover {
-  transform: scale(1.2);
+  transform: var(--transform);
 }
 
-.path-img_flag {
+.path-flagIcon {
   position: absolute;
-  width: 3rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  left: 1.4rem;
+  top: -2.2rem;
 }
 
-.flag-start {
-  left: 1.2rem;
-  top: -2.5rem;
+.path-flagIcon_start {
+  color: var(--turquoise);
 }
 
-.flag-end {
-  left: 1.1rem;
-  top: -2.6rem;
+.path-flagIcon_end {
+  color: var(--yellow);
 }
 
-.path-learningPath {
+.path-button {
   width: 100%;
   height: 100%;
-  border: solid 0.3rem var(--white);
+  border: solid 0.3rem var(--white-transparent);
   border-radius: 50%;
-  background-color: #eaeaea;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: 400ms;
-}
-
-.icon-lock {
-  color: var(--darkGray);
-  padding: 0.1rem;
+  background-color: var(--gray);
 }
 
 .path-CourseTitle {
   text-align: center;
-  margin-top: 0.5rem;
-  font-size: 0.8rem;
+  margin-top: 0.1rem;
+  font-size: var(--fontSize-paragraph_mobile);
   color: var(--darkGray);
 }
 
 @media (width >=48rem) {
   .path-container {
-    padding-left: 5.625rem;
+    padding-left: 5rem;
+  }
+
+  .path-title {
+    width: 13rem;
+    margin-top: 3rem;
+    font-size: var(--fontSize-titles_tablet);
+  }
+
+  .path-content {
+    row-gap: 4rem;
+    column-gap: 2rem;
+    grid-template-columns: repeat(4, 8rem);
+  }
+}
+
+@media (width >=64rem) {
+  .path-title {
+    width: 15rem;
+    font-size: var(--fontSize-titles_laptop);
   }
 
   .path-content {
     row-gap: 5rem;
     column-gap: 3rem;
-    grid-template-columns: repeat(4, 8rem);
   }
 
   .path-border {
-    width: 5.625rem;
-    height: 5.625rem;
+    width: 6rem;
+    height: 6rem;
   }
 
-  .path-learningPath {
-    border: solid 0.5rem var(--white);
+  .path-flagIcon {
+    width: 3rem;
+    height: 3rem;
+    left: 2.4rem;
+    top: -2.7rem;
   }
 
-  .path-img_flag {
-    width: 4rem;
+  .path-button {
+    border: solid 0.5rem var(--white-transparent);
   }
 
-  .flag-start {
-    left: 2rem;
-    top: -3.3rem;
-  }
-
-  .flag-end {
-    left: 1.8rem;
-    top: -3.4rem;
+  .path-CourseTitle {
+    margin-top: 0.3rem;
+    font-size: var(--fontSize-paragraph_laptop);
   }
 }
 
-@media (width >=64rem) {
+@media (width >=75rem) {
+  .path-title {
+    width: 20rem;
+    font-size: var(--fontSize-titles_desktop);
+  }
+
   .path-content {
-    row-gap: 5rem;
-    column-gap: 8rem;
+    row-gap: 7rem;
+    column-gap: 5rem;
   }
 
-  .path-border {
-    width: 6.25rem;
-    height: 6.25rem;
-  }
-
-  .path-img_flag {
-    width: 5rem;
-  }
-
-  .flag-start {
-    left: 2.2rem;
-    top: -4.2rem;
-  }
-
-  .flag-end {
-    left: 2rem;
-    top: -4.3rem;
+  .path-flagIcon {
+    width: 4rem;
+    height: 4rem;
+    left: 2.1rem;
+    top: -3.5rem;
   }
 }
