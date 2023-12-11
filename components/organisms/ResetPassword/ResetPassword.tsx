@@ -1,14 +1,15 @@
 "use client";
 import { useState } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import Swal from "sweetalert2";
-import { Button, Input } from "../../atoms";
+import { RegisterFormPassword } from "../Register/RegisterFormPassword/RegisterFormPassword";
 import styles from "./ResetPassword.module.css";
 
 export const ResetPassword = () => {
+  const router = useRouter();
   const { id } = useParams();
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [password2, setPassword2] = useState("");
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
@@ -16,11 +17,11 @@ export const ResetPassword = () => {
   const handleConfirmPasswordChange = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
-    setConfirmPassword(e.target.value);
+    setPassword2(e.target.value);
   };
   const resetSubmitPassword = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (password !== confirmPassword) {
+    if (password !== password2) {
       Swal.fire(
         "Error de autenticación",
         "Las contraseñas no son iguales",
@@ -48,7 +49,7 @@ export const ResetPassword = () => {
         title: "Contraseña modificada",
         text: "Los cambios en tu perfil han sido guardados exitosamente.",
         didClose: () => {
-          window.location.href = "/loginPage";
+          router.push("/loginPage");
         },
       });
     } catch (error) {
@@ -72,32 +73,18 @@ export const ResetPassword = () => {
         Al terminar, inicia sesión con tu nueva contraseña.
       </p>
       <div className={styles["form-login-container_inLa"]}>
-        <Input
-          id="password-change"
-          htmlForm={"password-change"}
-          name="password"
-          value={password}
-          onChange={handlePasswordChange}
-          type="password"
-          placeholder=" "
-          label={"Contraseña"}
-          isRequire={true}
-        />
-        <Input
-          id="confirm-password-change"
-          htmlForm={"confirm-password-change"}
-          name="confirmPassword"
-          value={confirmPassword}
-          onChange={handleConfirmPasswordChange}
-          type="password"
-          placeholder=" "
-          label={"Confirmar contraseña"}
-          isRequire={true}
+        <RegisterFormPassword
+          setPassword={setPassword}
+          setPassword2={setPassword2}
+          password2={password2}
+          password={password}
+          colorTextCharacter="var(--white)"
+          labelButton={"Hacer el cambio de contraseña"}
+          labelColor="var(--white)"
+          inputColor="var(--white)"
+          borderColor="var(--turquoise)"
         />
       </div>
-      <Button className={styles["form-reset_button"]} type="submit">
-        Hacer el cambio de contraseña
-      </Button>
     </form>
   );
 };

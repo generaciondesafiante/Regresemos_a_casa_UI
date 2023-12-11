@@ -1,35 +1,20 @@
 "use client";
 import { FC, useState, useEffect } from "react";
+import { Course } from "../../../types/types/course.types";
 import { LearningPahtProgress } from "../LearningPathProgress/LearningPathProgress";
 import { LearningPathTitleClass } from "../LearningPathTitleClass/LearningPathTitleClass";
 import { LearningPathVideoClass } from "../LearningPathVideoClass/LearningPathVideoClass";
-import styles from "./LearningPath.module.css";
 import { useParams } from "next/navigation";
 import { useRouter } from "next/navigation";
+import styles from "./LearningPath.module.css";
 
-export interface Course {
-  course: {
-    _id: string;
-    name: string;
-    endpoint: string;
-    content: {
-      title: string;
-      description: string;
-      url: string;
-      idVideo: number;
-    }[];
-    id: number;
-  } | null;
-}
-export const LearningPath: FC = async () => {
+export const LearningPath: FC = () => {
   const { idtema } = useParams();
   const router = useRouter();
 
   const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
   const [selectedVideoId, setSelectedVideoId] = useState<number | null>(null);
-  const [selectedItemIndex, setSelectedItemIndex] = useState<number | null>(
-    null
-  );
+
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(

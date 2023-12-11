@@ -1,33 +1,33 @@
-import { initializeApp } from 'firebase/app';
-import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { useSession } from 'next-auth/react';
+
+import { initializeApp } from "firebase/app";
+import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";;
+import { getAnalytics } from "firebase/analytics";
+
+// TODO: Add SDKs for Firebase products that you want to use
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyAHm0AKBVb6ebPxUIM9hVqfLqnliu4SeCw',
-  authDomain: 'image-profile-user.firebaseapp.com',
-  projectId: 'image-profile-user',
-  storageBucket: 'image-profile-user.appspot.com',
-  messagingSenderId: '607985851033',
-  appId: '1:607985851033:web:2b5e32ec683f1733cd3608',
+  apiKey: "AIzaSyAWF3JuhrakXQg1a74TtDU1Ab704ZNHe7s",
+  authDomain: "photoperfilusers.firebaseapp.com",
+  projectId: "photoperfilusers",
+  storageBucket: "photoperfilusers.appspot.com",
+  messagingSenderId: "1095944212939",
+  appId: "1:1095944212939:web:56caa09500d90e8191264e",
+  measurementId: "G-N9DLMLCE2B"
 };
 
+
 const app = initializeApp(firebaseConfig);
-
 export const storage = getStorage(app);
+const analytics = getAnalytics(app);
 
-export async function uploadFile(file: File) {
-  const { data: session } = useSession();
-
-
-  if (!session?.user?.uid) {
-    console.error('No se encontró el UID del usuario en el localStorage');
-    return;
-  }
-
-  const storageRef = ref(storage, `users/${session?.user?.uid}/profile-image`);
-
+export async function uploadFile(file:File,id: string) {
+  console.log(file,id);
+  const storageRef =  ref(storage, `users/${id}/profile-image`);
   await uploadBytes(storageRef, file);
-
   const url = await getDownloadURL(storageRef);
+  console.log(url);
   return url;
+ 
 }
+
+

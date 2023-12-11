@@ -4,7 +4,10 @@ import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
-import { Input, Button } from "../../atoms";
+import { Button } from "../../atoms";
+import { ArrowRightIcon } from "../../atoms/icons/arrowsIcons";
+import { RegisterFormPassword } from "./RegisterFormPassword/RegisterFormPassword";
+import { RegisterFormInformation } from "./RegisterFormInformation/RegisterFormInformation";
 import styles from "./Register.module.css";
 
 export const Register = () => {
@@ -13,13 +16,38 @@ export const Register = () => {
   const [email, setEmail] = useState<string>("");
   const [password2, setPassword2] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+
   const [lastname, setLastName] = useState<string>("");
   const [country, setCountry] = useState<string>("");
   const [city, setCity] = useState<string>("");
   const [phone, setPhone] = useState<number | null>(null);
   const [image, setImage] = useState<string>(
-    "'http://somebooks.es/wp-content/uploads/2018/12/Poner-una-imagen-a-la-cuenta-de-usuario-en-Windows-10-000.png'"
+    "http://somebooks.es/wp-content/uploads/2018/12/Poner-una-imagen-a-la-cuenta-de-usuario-en-Windows-10-000.png"
   );
+  const [showPasswordSection, setShowPasswordSection] =
+    useState<boolean>(false);
+  const [condicionalView, setCondicionalView] = useState<boolean>(false);
+
+  const handleInputChange = () => {
+    const allFieldsFilled: boolean = !!(
+      name &&
+      email.includes("@") &&
+      email.includes(".") &&
+      lastname &&
+      country &&
+      city &&
+      phone
+    );
+    setShowPasswordSection(allFieldsFilled);
+  };
+  const handlePasswordButtonClick = () => {
+    if (showPasswordSection) {
+      setCondicionalView(true);
+    } else {
+      setCondicionalView(false);
+    }
+  };
+
   const router = useRouter();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -96,116 +124,70 @@ export const Register = () => {
         className={styles["form-register"]}
         onSubmit={handleSubmit}
       >
-        <h2 className={`${styles["form-register-title"]} `}>
-          <span>¡Bienvenido/a </span>
-          <span>Crea tu cuenta!</span>
-        </h2>
-        <section className={styles["continer-label_grid"]}>
-          <Input
-            id={"name-form-register"}
-            htmlForm={"name-form-register"}
-            name="name"
-            value={name}
-            onChange={(event) => setName(event.target.value)}
-            type="text"
-            placeholder=" "
-            label={"Nombres"}
-            isRequire={true}
-          />
-          <Input
-            id={"last-name-form-register"}
-            htmlForm={"last-name-form-register"}
-            name="lastname"
-            value={lastname}
-            onChange={(event) => setLastName(event.target.value)}
-            type="text"
-            placeholder=" "
-            label={"Apellidos"}
-            isRequire={true}
-          />
-          <Input
-            id={"country-form-register"}
-            htmlForm={"country-form-register"}
-            name="country"
-            value={country}
-            onChange={(event) => setCountry(event.target.value)}
-            type="text"
-            placeholder=" "
-            label={"País"}
-            isRequire={true}
-          />
-
-          <Input
-            id={"city-form-register"}
-            htmlForm={"city-form-register"}
-            name="city"
-            value={city}
-            onChange={(event) => setCity(event.target.value)}
-            type="text"
-            placeholder=" "
-            label={"Ciudad"}
-            isRequire={true}
-          />
-          <Input
-            id={"phone-form-register"}
-            htmlForm={"phone-form-register"}
-            name="phone"
-            value={phone !== null ? phone.toString() : ""}
-            onChange={(event) =>
-              setPhone(parseInt(event.target.value, 10) || null)
-            }
-            type="number"
-            placeholder=" "
-            label={"Teléfono (optional)"}
-            isRequire={false}
-          />
-
-          <Input
-            id={"email-form-register"}
-            htmlForm={"email-form-register"}
-            name="email"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-            type="email"
-            placeholder=" "
-            label={"Correo electrónico"}
-            isRequire={true}
-          />
-          <Input
-            id={"password-form-register"}
-            htmlForm={"password-form-register"}
-            name="password"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-            type="password"
-            placeholder=" "
-            label={"Contraseña"}
-            isRequire={true}
-          />
-
-          <Input
-            id={"password2-form-register"}
-            htmlForm={"password2-form-register"}
-            name="password2"
-            value={password2}
-            onChange={(event) => setPassword2(event.target.value)}
-            type="password"
-            placeholder=" "
-            label={"Repite la contraseña"}
-            isRequire={true}
-          />
+        <section className={styles["register-section"]}>
+          {condicionalView ? (
+            <>
+              <div className={styles["container-inputs_password"]}>
+                <h2 className={`${styles["form-register-title_password"]} `}>
+                  Elige tu contraseña
+                </h2>
+                <RegisterFormPassword
+                  setPassword={setPassword}
+                  setPassword2={setPassword2}
+                  password2={password2}
+                  password={password}
+                  labelButton={"Crear Cuenta"}
+                  inputColor="var(--white)"
+                  borderColor="var(--turquoise)"
+                  labelColor="var(--white)"
+                  buttonColor={"var(--white)"}
+                />
+              </div>
+            </>
+          ) : (
+            <>
+              <h2 className={`${styles["form-register-title_info"]} `}>
+                <span>¡Bienvenido/a </span>
+                <span>Crea tu cuenta!</span>
+              </h2>
+              <div className={styles["container-inputs_info"]}>
+                <RegisterFormInformation
+                  setLastName={setLastName}
+                  setName={setName}
+                  setCountry={setCountry}
+                  setCity={setCity}
+                  setPhone={setPhone}
+                  setEmail={setEmail}
+                  name={name}
+                  lastname={lastname}
+                  country={country}
+                  city={city}
+                  phone={phone}
+                  email={email}
+                  onInputChange={handleInputChange}
+                />
+              </div>
+              <Link
+                className={styles["form-register_loginRedirection"]}
+                href="/loginPage"
+              >
+                ¿Ya tienes cuenta?
+              </Link>
+              <div className={styles["center-label-in"]}>
+                <Button
+                  className={
+                    showPasswordSection ? styles["enabled"] : styles["disabled"]
+                  }
+                  type="button"
+                  onClick={handlePasswordButtonClick}
+                  disabled={!showPasswordSection}
+                >
+                  <ArrowRightIcon />
+                </Button>
+              </div>
+            </>
+          )}
         </section>
-
-        <Link
-          className={styles["form-register_loginRedirection"]}
-          href="/loginPage"
-        >
-          ¿Ya tienes cuenta?
-        </Link>
-
-        <Button className={styles["form-register-btn"]} type="submit">
-          Crear cuenta
-        </Button>
       </form>
     </>
   );

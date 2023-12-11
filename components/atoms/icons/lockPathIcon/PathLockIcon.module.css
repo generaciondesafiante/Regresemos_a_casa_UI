@@ -1,9 +1,9 @@
 .icon-lock {
   width: 1.5rem;
-  color: var(--darkGray);
+  color: var(--darkGrayGradient);
 }
 
-@media (min-width: 64rem) {
+@media (width >=64rem) {
   .icon-lock {
     width: 1.8rem;
   }

@@ -1,17 +1,11 @@
-.learningPahtProgress-container {
-  gap: 0.2rem;
-  display: flex;
-  flex-direction: column;
-  cursor: pointer;
-  border: none;
-}
 .classRoomRoute-subcontent {
   background-color: var(--turquoise);
+  cursor: pointer;
 }
 
 .classRoomRoute-title {
   padding: 1rem;
-  font-size: 1rem;
+  font-size: var(--fontSize-paragraph_mobile);
   font-weight: bold;
   color: var(--white);
 }
@@ -19,38 +13,18 @@
 .classRoomRoute-iconCircle {
   display: none;
 }
-/* .selected {
-  color: red;
-  background-color: yellow;
-} */
-@media (min-width: 48rem) {
+
+@media (width >=48rem) {
   .classRoomRoute-title {
-    font-size: 1.2rem;
     padding-left: 7rem;
   }
 }
 
-@media (min-width: 64rem) {
-  .learningPahtProgress-container {
-    background-color: var(--turquoise);
-    justify-content: center;
-    height: 100vh;
-    width: 9rem;
-    padding-left: 6rem;
-    padding-bottom: 1rem;
-    overflow-y: scroll;
-    gap: 0rem;
-  }
-
-  .learningPahtProgress-container::-webkit-scrollbar {
-    display: none;
-  }
+@media (width >=64rem) {
   .classRoomRoute-subcontent {
-    background-color: transparent;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: none;
     cursor: pointer;
   }
 
@@ -59,21 +33,21 @@
   }
 
   .classRoomRoute-iconCircle {
-    display: block;
     width: 1.5rem;
     height: 1.5rem;
-    border-radius: 50%;
-    background-color: var(--white);
-    font-size: 0.9rem;
+    display: block;
     text-align: center;
-    padding-top: 0.2rem;
-    color: var(--darkBlue);
+    padding-top: 0.18rem;
+    border-radius: 50%;
+    font-size: var(--fontSize-buttons_mobile);
+    background-color: var(--white-transparent);
+    color: var(--darkGreen);
   }
 
   .classRoomRoute-line {
-    width: 0.15rem;
-    height: 1.8rem;
-    background-color: var(--white);
+    width: 0.12rem;
+    height: 1rem;
+    background-color: var(--white-transparent);
   }
 
   .classRoomRoute-line.hide {
