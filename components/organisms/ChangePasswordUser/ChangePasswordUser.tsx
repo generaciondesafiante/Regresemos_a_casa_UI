@@ -1,17 +1,24 @@
 "use client";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import Swal from "sweetalert2";
+import { RegisterFormPassword } from "../Register/RegisterFormPassword/RegisterFormPassword";
 import { Input } from "../../atoms";
 import styles from "./ChangePasswordUser.module.css";
-
+interface ValidatePasswordResponse {
+  ok: boolean;
+  msg: string;
+}
 export const ChangePasswordUser = () => {
   const { data: session } = useSession();
+  const router = useRouter();
+
   const [password, setPassword] = useState("");
   const [currentPassword, setCurrentPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [password2, setPassword2] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleCurrentPasswordChange = (
@@ -27,7 +34,7 @@ export const ChangePasswordUser = () => {
   const handleConfirmPasswordChange = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
-    setConfirmPassword(e.target.value);
+    setPassword2(e.target.value);
   };
 
   const validatePassword = async () => {
@@ -44,11 +51,13 @@ export const ChangePasswordUser = () => {
           }),
         }
       );
+      const responseData: ValidatePasswordResponse =
+        await responseValidate.json();
 
-      if (responseValidate.ok === true) {
+      if (responseData.ok === true) {
         return true;
       } else {
-        setErrorMessage(responseValidate.msg);
+        setErrorMessage(responseData.msg);
         return false;
       }
     } catch (error) {
@@ -59,7 +68,7 @@ export const ChangePasswordUser = () => {
 
   const resetSubmitPassword = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (password !== confirmPassword) {
+    if (password !== password2) {
       Swal.fire(
         "Error de autenticación",
         "Las contraseñas no son iguales",
@@ -87,7 +96,7 @@ export const ChangePasswordUser = () => {
         title: "Contraseña modificada",
         text: "Los cambios en tu perfil han sido guardados exitosamente.",
         didClose: () => {
-          window.location.href = "/dashboard/profile/changepassword";
+          router.push("/dashboard/profile/changepassword");
         },
       });
     } catch (error) {
@@ -120,8 +129,10 @@ export const ChangePasswordUser = () => {
       Swal.fire("Contraseña incorrecta", errorMessage, "warning");
     }
   }, [errorMessage]);
-  const myLabelColor = "#234e67";
-  const myInputColor = "#234e67";
+  const myLabelColor = "var(--darkBlue-content)";
+  const myInputColor = "var(--darkBlue-content)";
+  const myButtonColor = "var(--darkBlue-content)";
+  const myBorderInput = "var(--turquoise)";
 
   return (
     <div className={styles["container-changePasswrod-profile"]}>
@@ -152,41 +163,23 @@ export const ChangePasswordUser = () => {
           isRequire={true}
           labelColor={myLabelColor}
           inputColor={myInputColor}
+          buttonColor={myButtonColor}
+          borderColor={myBorderInput}
         />
 
-        <Input
-          htmlForm={"passwordNew-change-profile"}
-          type="password"
-          placeholder=" "
-          name="password"
-          value={password}
-          onChange={handlePasswordChange}
-          label={"Nueva Contraseña"}
-          labelColor={myLabelColor}
+        <RegisterFormPassword
+          setPassword={setPassword}
+          setPassword2={setPassword2}
+          password2={password2}
+          password={password}
+          colorTextCharacter="var(--blueKing)"
+          labelButton={"Cambiar Contraseña"}
+          labelColor="var(--darkBlue-content)"
           inputColor={myInputColor}
-          isRequire={true}
+          buttonColor={myButtonColor}
+          borderColor={myBorderInput}
         />
-
-        <Input
-          htmlForm={"passwordConfirm-change-profile"}
-          type="password"
-          placeholder=" "
-          name="confirmPassword"
-          value={confirmPassword}
-          onChange={handleConfirmPasswordChange}
-          label={"Confirmar contraseña"}
-          labelColor={myLabelColor}
-          inputColor={myInputColor}
-          isRequire={true}
-        />
-
         <div className={styles["container-button-change"]}>
-          <button
-            className={`${styles["form-changePassword-btns"]} ${styles["button-changePassword-submit"]}`}
-          >
-            Cambiar Contraseña
-          </button>
-
           <Link
             href={"/dashboard/profile"}
             className={`${styles["form-changePassword-btns"]} ${styles["button-changePassword-danger"]}`}

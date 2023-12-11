@@ -168,7 +168,7 @@
   align-items: center;
 }
 
-@media (min-width: 48rem) {
+@media (width >=48rem) {
   .profileContainer-title_img {
     height: 10rem;
   }
@@ -249,7 +249,7 @@
   }
 }
 
-@media (min-width: 64rem) {
+@media (width >=64rem) {
   .profileContainer-title_img {
     height: 12rem;
   }

@@ -14,7 +14,7 @@
   transform: var(--transform);
 }
 
-@media (min-width: 64rem) {
+@media (width >=64rem) {
   .button-component {
     font-size: var(--fontSize-buttons_laptop);
   }

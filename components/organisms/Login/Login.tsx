@@ -2,10 +2,10 @@
 import { FC, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import Swal from "sweetalert2";
 import { signIn } from "next-auth/react";
 import { Button, Input } from "../../atoms";
 import styles from "./Login.module.css";
-import Swal from "sweetalert2";
 
 export const Login: FC = () => {
   const [errors, setErrors] = useState<string[]>([]);
@@ -51,6 +51,8 @@ export const Login: FC = () => {
           label="Correo Electrónico"
           isRequire={true}
           onChange={(event) => setEmail(event.target.value)}
+          borderColor="var(--turquoise)"
+          inputColor="var(--white)"
         />
         <Input
           id="passwordLogin"
@@ -62,6 +64,9 @@ export const Login: FC = () => {
           label="Contraseña"
           isRequire={true}
           onChange={(event) => setPassword(event.target.value)}
+          borderColor="var(--turquoise)"
+          buttonColor="var(--white)"
+          inputColor="var(--white)"
         />
         <Link
           className={styles["form-login_forgotPassword"]}
