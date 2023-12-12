@@ -20,7 +20,7 @@
 .form-login_forgotPassword {
   margin-top: 0.5rem;
   text-decoration: none;
-  color: var(--gray);
+  color: var(--grayGradient);
   font-size: var(--fontSize-paragraph_mobile);
 }
 

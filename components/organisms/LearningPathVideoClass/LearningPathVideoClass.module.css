@@ -33,7 +33,7 @@
 }
 
 .learningPathVideoClass-btn {
-  background-color: var(--gray);
+  background-color: var(--grayGradient);
   color: var(--darkGrayGradient);
 }
 
