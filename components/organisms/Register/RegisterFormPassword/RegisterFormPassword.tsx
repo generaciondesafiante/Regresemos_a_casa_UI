@@ -9,6 +9,12 @@ interface RegisterFormPasswordProps {
   setPassword2: React.Dispatch<React.SetStateAction<string>>;
   password: string;
   password2: string;
+  labelButton: string;
+  labelColor?: string;
+  inputColor?: string;
+  buttonColor?: string;
+  borderColor?: string;
+  colorTextCharacter?: string;
 }
 
 export const RegisterFormPassword: FC<RegisterFormPasswordProps> = ({
@@ -16,13 +22,19 @@ export const RegisterFormPassword: FC<RegisterFormPasswordProps> = ({
   setPassword2,
   password,
   password2,
+  labelButton,
+  colorTextCharacter,
+  labelColor,
+  inputColor,
+  buttonColor,
+  borderColor,
 }) => {
   const [isSpecialCharValid, setSpecialCharValid] = useState(false);
   const [isNumberValid, setNumberValid] = useState(false);
   const [isLengthValid, setLengthValid] = useState(false);
   const [isLetterValid, setLetterValid] = useState(false);
   const [isFormValid, setFormValid] = useState(false);
-  console.log(isFormValid);
+
   const handlePasswordChange = (value: string) => {
     const specialCharRegex = /[!@#$%^&*(),.?":{}|<>]/;
     const numberRegex = /\d/;
@@ -42,45 +54,59 @@ export const RegisterFormPassword: FC<RegisterFormPasswordProps> = ({
   }, [isSpecialCharValid, isNumberValid, isLengthValid, isLetterValid]);
   return (
     <>
-      <Input
-        id={"password-form-register"}
-        htmlForm={"password-form-register"}
-        name="password"
-        value={password}
-        onChange={(event) => handlePasswordChange(event.target.value)}
-        type="password"
-        placeholder=" "
-        label={"Contraseña"}
-        isRequire={true}
-      />
-      <Input
-        id={"password2-form-register"}
-        htmlForm={"password2-form-register"}
-        name="password2"
-        value={password2}
-        onChange={(event) => setPassword2(event.target.value)}
-        type="password"
-        placeholder=" "
-        label={"Repite la contraseña"}
-        isRequire={true}
-      />
-      <div className={styles["content-character_password"]}>
-        <PasswordValidation
-          isValid={isSpecialCharValid}
-          message="Al menos un caracter especial (- . * : _)"
+      <div>
+        <Input
+          id={"password-form-register"}
+          htmlForm={"password-form-register"}
+          name="password"
+          value={password}
+          onChange={(event) => handlePasswordChange(event.target.value)}
+          type="password"
+          placeholder=" "
+          label={"Contraseña"}
+          isRequire={true}
+          labelColor={labelColor}
+          inputColor={inputColor}
+          buttonColor={buttonColor}
+          borderColor={borderColor}
         />
-        <PasswordValidation
-          isValid={isNumberValid}
-          message="Al menos un número"
+        <Input
+          id={"password2-form-register"}
+          htmlForm={"password2-form-register"}
+          name="password2"
+          value={password2}
+          onChange={(event) => setPassword2(event.target.value)}
+          type="password"
+          placeholder=" "
+          label={"Repite la contraseña"}
+          isRequire={true}
+          labelColor={labelColor}
+          inputColor={inputColor}
+          buttonColor={buttonColor}
+          borderColor={borderColor}
         />
-        <PasswordValidation
-          isValid={isLengthValid}
-          message="Mínimo 8 caracteres"
-        />
-        <PasswordValidation
-          isValid={isLetterValid}
-          message="Al menos una letra"
-        />
+        <div className={styles["content-character_password"]}>
+          <PasswordValidation
+            isValid={isSpecialCharValid}
+            message="Al menos un caracter especial (- . * : _)"
+            colorTextCharacter={colorTextCharacter}
+          />
+          <PasswordValidation
+            isValid={isNumberValid}
+            message="Al menos un número"
+            colorTextCharacter={colorTextCharacter}
+          />
+          <PasswordValidation
+            isValid={isLengthValid}
+            message="Mínimo 8 caracteres"
+            colorTextCharacter={colorTextCharacter}
+          />
+          <PasswordValidation
+            isValid={isLetterValid}
+            message="Al menos una letra"
+            colorTextCharacter={colorTextCharacter}
+          />
+        </div>
       </div>
       <div className={styles["register-button_submit-content"]}>
         <Button
@@ -88,7 +114,7 @@ export const RegisterFormPassword: FC<RegisterFormPasswordProps> = ({
           type="submit"
           disabled={!isFormValid}
         >
-          Crear cuenta
+          {labelButton}
         </Button>
       </div>
     </>

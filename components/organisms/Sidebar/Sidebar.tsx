@@ -107,6 +107,7 @@ export const Sidebar = () => {
           return (
             <button
               onClick={async () => {
+                localStorage.clear();
                 await signOut();
                 router.push(link.href);
               }}

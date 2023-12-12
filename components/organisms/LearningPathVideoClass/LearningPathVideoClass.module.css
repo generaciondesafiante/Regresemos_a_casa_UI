@@ -1,184 +1,99 @@
 .learningPathVideoClass-container {
-  padding: 1.5rem 1rem;
-  background-color: var(--darkBlue);
+  padding: 2rem 0rem;
+  background-color: var(--darkBlue-content);
+}
+
+.learningPathVideoClass-content {
+  width: 18rem;
+  margin: 0 auto;
 }
 
 .learningPathVideoClass-video {
-  display: block;
-  margin: 0 auto;
-  width: 17.7rem;
-  height: 10rem;
+  width: 18rem;
+  height: 10.2rem;
   border: none;
-  border-radius: 1.2rem;
+  border-radius: var(--borderRadius);
 }
 
-.learningPathVideoClass-subcontent_videoInteraction {
-  margin: 0 auto;
-  width: 17rem;
-  padding-left: 0.8rem;
+.learningPathVideoClass-content_videoInteraction {
+  display: flex;
+  justify-content: space-between;
+  margin: 0rem 0.4rem;
+  padding-top: 0.5rem;
 }
 
 .learningPathVideoClass-videoInteraction_title {
-  font-size: 0.6rem;
-  font-weight: bold;
   color: var(--white);
-  margin-top: 0.5rem;
+  font-size: var(--fontSize-paragraph_mobile);
 }
 
-.learningPathVideoClass-videoInteraction_icon {
-  color: yellow;
-}
-
-.learningPathVideoClass-subcontent_btn {
+.learningPathVideoClass-videoInteraction_containerStar {
   display: flex;
-  justify-content: center;
-  gap: 6rem;
+  gap: 0.2rem;
 }
 
-.learningPathVideoClass-btn_activity,
-.learningPathVideoClass-btn_next {
-  margin-top: 0.5rem;
-  padding: 0.3rem 0.7rem;
-  border-radius: 0.8rem;
-  font-size: 0.7rem;
-  font-weight: bold;
-  cursor: pointer;
+.learningPathVideoClass-btn {
+  background-color: var(--gray);
+  color: var(--darkGrayGradient);
 }
 
-.learningPathVideoClass-btn_activity {
+.learningPathVideoClass-btn:hover {
   background-color: var(--turquoise);
-}
-
-.learningPathVideoClass-btn_next {
-  background-color: var(--white);
-  cursor: pointer;
-}
-
-.learningPathVideoClass-btn_textActivity {
   color: var(--white);
+  font-weight: bold;
 }
 
-.learningPathVideoClass-btn_textNext {
-  color: var(--blueContent);
-}
-
-@media (min-width: 37.5rem) {
-  .learningPathVideoClass-video {
-    width: 26.5rem;
-    height: 14.9rem;
-  }
-
-  .learningPathVideoClass-subcontent_videoInteraction {
-    width: 27rem;
-  }
-
-  .learningPathVideoClass-videoInteraction_title {
-    font-size: 0.8rem;
-    margin-top: 0.6rem;
-  }
-
-  .learningPathVideoClass-subcontent_btn {
-    margin-top: 1rem;
-    gap: 7rem;
-  }
-
-  .learningPathVideoClass-btn_activity,
-  .learningPathVideoClass-btn_next {
-    padding: 0.6rem 1rem;
-    font-size: 0.8rem;
-  }
-}
-
-@media (min-width: 48rem) {
-  .learningPathVideoClass-content_videoInteraction {
-    display: flex;
-    margin: 0 auto;
-    width: 26rem;
-    margin-top: 0.4rem;
-  }
-
-  .learningPathVideoClass-subcontent_videoInteraction {
-    width: 26rem;
-  }
-
-  .learningPathVideoClass-subcontent_btn {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .learningPathVideoClass-btn_activity,
-  .learningPathVideoClass-btn_next {
-    margin: 0 auto;
-    width: 12rem;
-    text-align: center;
-  }
-}
-
-@media (min-width: 64rem) {
+@media (width >=48rem) {
   .learningPathVideoClass-container {
-    padding: 10rem 1rem;
-    width: 55vw;
-    height: 100vh;
+    padding-left: 5rem;
+  }
+
+  .learningPathVideoClass-content {
+    width: 30rem;
   }
 
   .learningPathVideoClass-video {
     width: 30rem;
-    height: 16.9rem;
+    height: 17rem;
+  }
+}
+
+@media (width >=64rem) {
+  .learningPathVideoClass-container {
+    width: 60%;
+    height: 100vh;
+    padding-left: 0rem;
+    padding-top: 0rem;
   }
 
-  .learningPathVideoClass-content_videoInteraction {
-    width: 29rem;
-    margin-top: 1.5rem;
+  .learningPathVideoClass-content {
+    padding-top: 8rem;
+  }
+}
+
+@media (width >=75rem) {
+  .learningPathVideoClass-content {
+    width: 40rem;
   }
 
-  .learningPathVideoClass-subcontent_videoInteraction {
-    width: 29rem;
+  .learningPathVideoClass-video {
+    width: 40rem;
+    height: 22.5rem;
   }
 
   .learningPathVideoClass-videoInteraction_title {
-    font-size: 0.9rem;
-  }
-
-  .learningPathVideoClass-subcontent_btn {
-    gap: 1rem;
-  }
-
-  .learningPathVideoClass-btn_activity,
-  .learningPathVideoClass-btn_next {
-    width: 13rem;
-    font-size: 1rem;
+    font-size: var(--fontSize-paragraph_laptop);
   }
 }
 
-@media (min-width: 66.875rem) {
+@media (width >=100rem) {
+  .learningPathVideoClass-content {
+    width: 50rem;
+    padding-top: 12rem;
+  }
+
   .learningPathVideoClass-video {
-    width: 35rem;
-    height: 19.7rem;
-  }
-
-  .learningPathVideoClass-content_videoInteraction {
-    width: 35rem;
-  }
-}
-
-@media (min-width: 105rem) {
-  .learningPathVideoClass-video {
-    width: 55.1rem;
-    height: 31rem;
-  }
-
-  .learningPathVideoClass-content_videoInteraction {
-    width: 55rem;
-  }
-
-  .learningPathVideoClass-subcontent_videoInteraction {
-    width: 55rem;
-  }
-
-  .learningPathVideoClass-btn_activity,
-  .learningPathVideoClass-btn_next {
-    margin: 0 auto;
-    width: 16rem;
+    width: 50rem;
+    height: 28.1rem;
   }
 }

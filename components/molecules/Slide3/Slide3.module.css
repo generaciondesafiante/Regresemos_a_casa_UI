@@ -21,7 +21,7 @@
   }
 }
 
-@media (min-width: 64rem) {
+@media (width >=64rem) {
   .carouselThree-container {
     width: 48rem;
     height: 27rem;
@@ -30,7 +30,7 @@
   }
 }
 
-@media (min-width: 75rem) {
+@media (width >=75rem) {
   .carouselThree-container {
     width: 64rem;
     height: 36rem;

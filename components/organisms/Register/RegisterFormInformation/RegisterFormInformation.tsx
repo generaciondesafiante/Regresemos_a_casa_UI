@@ -45,6 +45,9 @@ export const RegisterFormInformation: FC<RegisterFormInformationProps> = ({
         placeholder=" "
         label={"Nombres"}
         isRequire={true}
+        inputColor="var(--white)"
+        borderColor="var(--turquoise)"
+        labelColor="var(--white)"
       />
 
       <Input
@@ -60,6 +63,9 @@ export const RegisterFormInformation: FC<RegisterFormInformationProps> = ({
         placeholder=" "
         label={"Apellidos"}
         isRequire={true}
+        inputColor="var(--white)"
+        borderColor="var(--turquoise)"
+        labelColor="var(--white)"
       />
       <Input
         id={"country-form-register"}
@@ -74,6 +80,9 @@ export const RegisterFormInformation: FC<RegisterFormInformationProps> = ({
         placeholder=" "
         label={"País"}
         isRequire={true}
+        inputColor="var(--white)"
+        borderColor="var(--turquoise)"
+        labelColor="var(--white)"
       />
       <Input
         id={"city-form-register"}
@@ -88,6 +97,9 @@ export const RegisterFormInformation: FC<RegisterFormInformationProps> = ({
         placeholder=" "
         label={"Ciudad"}
         isRequire={true}
+        inputColor="var(--white)"
+        borderColor="var(--turquoise)"
+        labelColor="var(--white)"
       />
       <Input
         id={"phone-form-register"}
@@ -99,6 +111,9 @@ export const RegisterFormInformation: FC<RegisterFormInformationProps> = ({
         placeholder=" "
         label={"Teléfono (optional)"}
         isRequire={false}
+        inputColor="var(--white)"
+        borderColor="var(--turquoise)"
+        labelColor="var(--white)"
       />
       <Input
         id={"email-form-register"}
@@ -113,6 +128,9 @@ export const RegisterFormInformation: FC<RegisterFormInformationProps> = ({
         placeholder=" "
         label={"Correo electrónico"}
         isRequire={true}
+        inputColor="var(--white)"
+        borderColor="var(--turquoise)"
+        labelColor="var(--white)"
       />
     </>
   );

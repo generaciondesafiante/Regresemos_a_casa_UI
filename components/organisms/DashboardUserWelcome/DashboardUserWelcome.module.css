@@ -1,5 +1,5 @@
 .dashboardUserWelcome-container {
-  background-color: var(--white);
+  background-color: var(--lightGrey);
   padding-top: 2rem;
   padding-bottom: 1rem;
 }
@@ -76,6 +76,7 @@
 @media (width >=48rem) {
   .dashboardUserWelcome-container {
     min-height: 100vh;
+    flex: 2;
     padding-left: 5rem;
   }
 
@@ -92,12 +93,12 @@
   }
 
   .dashboardUserWelcome-resourcesContainer {
-    min-height: 10rem;
     max-height: 42vh;
   }
 
   .dashboardUserWelcome-resourcesContainer img {
     width: 8.5rem;
+    height: 5.3rem;
   }
 }
 
@@ -145,8 +146,8 @@
 }
 
 @media (width >=75rem) {
-
   .dashboardUserWelcome-container {
+    width: 100%;
     padding-left: 6rem;
   }
 

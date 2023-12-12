@@ -15,7 +15,7 @@
     height: 1.7rem;
 }
 
-@media (min-width: 64rem) {
+@media (width >=64rem) {
     .icons-sidebar {
         width: 1.8rem;
     }

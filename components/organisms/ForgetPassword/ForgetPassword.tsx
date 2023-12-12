@@ -1,10 +1,13 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 import { Button, Input } from "../../atoms";
 import styles from "./ForgetPassword.module.css";
 
 export const ForgetPassword = () => {
+  const router = useRouter();
+
   const [email, setemail] = useState("");
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setemail(e.target.value);
@@ -33,7 +36,7 @@ export const ForgetPassword = () => {
         title: "Correo enviado exitosamente",
         text: "Verifica tu correo electrónico para restablecer la contraseña.",
         didClose: () => {
-          window.location.href = "/loginPage";
+          router.push("/loginPage");
           localStorage.clear();
         },
       });
@@ -68,6 +71,8 @@ export const ForgetPassword = () => {
         onChange={handleEmailChange}
         label={"Correo electrónico"}
         isRequire={true}
+        borderColor="var(--turquoise)"
+        inputColor="var(--white)"
       />
       <Button className={styles["form-forget_button"]} type="submit">
         Recuperar contraseña

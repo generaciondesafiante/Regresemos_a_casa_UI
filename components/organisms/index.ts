@@ -11,6 +11,7 @@ export * from './LearningPath/LearningPath';
 export * from './LearningPathProgress/LearningPathProgress';
 export * from './LearningPathTitleClass/LearningPathTitleClass';
 export * from './LearningPathVideoClass/LearningPathVideoClass';
+export * from './Loading/Loading';
 export * from './Login/Login';
 export * from './Modal/Modal';
 export * from './Path/Path';

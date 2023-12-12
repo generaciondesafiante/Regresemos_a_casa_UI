@@ -1,4 +1,3 @@
-// icon:x-circle-fill-16 | Octicons https://primer.style/octicons/ | Github Primer
 import * as React from "react";
 import styles from "./ErrorRegisterIcon.module.css";
 
