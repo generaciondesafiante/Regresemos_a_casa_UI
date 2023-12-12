@@ -1,6 +1,7 @@
 "use client";
+import { AssessmentFinished } from "../..";
 import styles from "./AssessmentQuestions.module.css";
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 
 const questions = [
   {
@@ -104,12 +105,13 @@ export const AssessmentQuestions = () => {
   const [score, setScore] = useState(0);
   const [selectedButtonIndex, setSelectedButtonIndex] = useState<number | null>(null);
   const [correctButtonIndex, setCorrectButtonIndex] = useState<number | null>(null);
+  const [assessmentCompleted, setAssessmentCompleted] = useState(false);
 
   useEffect(() => {
     // Verificar si la pregunta actual tiene solo una respuesta correcta
     const currentOptions = questions[currentQuestion].options;
     const countCorrect = currentOptions.filter((option) => option.isCorrect).length;
-    
+
     // Deshabilitar botones después de seleccionar uno si hay solo un valor "true"
     if (countCorrect === 1 && selectedButtonIndex !== null) {
       setCorrectButtonIndex(
@@ -137,8 +139,10 @@ export const AssessmentQuestions = () => {
 
   const advanceToNextQuestion = () => {
     if (currentQuestion === questions.length - 1) {
-      console.log("Assessment finalizado");
+      // Si es la última pregunta, actualizar el estado para indicar que la evaluación ha terminado
+      setAssessmentCompleted(true);
     } else {
+      // Si no es la última pregunta, avanzar a la siguiente pregunta
       setCurrentQuestion((prev) => prev + 1);
       setSelectedButtonIndex(null);
       setCorrectButtonIndex(null);
@@ -161,22 +165,21 @@ export const AssessmentQuestions = () => {
           <div className={styles['assessmentQuestions__row']}>
             {questions[currentQuestion].options.map((answer, index) => (
               <button
-              key={answer.textAnswer}
-            className={`${styles['assessmentQuestions__button']} ${styles['button' + (index + 1)]} ${
-              selectedButtonIndex !== null
-                ? index === selectedButtonIndex
-                  ? isAnswerCorrect(index)
-                    ? styles['correct']
-                    : styles['incorrect']
-                  : index === correctButtonIndex
-                    ? styles['correct']
-                    : styles['inactive']
-                : styles['active']
-            }`}
-            onClick={() => handleAnswerSubmit(index)}
-            disabled={selectedButtonIndex !== null}
-          >
-            {answer.textAnswer}
+                key={answer.textAnswer}
+                className={`${styles['assessmentQuestions__button']} ${styles['button' + (index + 1)]} ${selectedButtonIndex !== null
+                  ? index === selectedButtonIndex
+                    ? isAnswerCorrect(index)
+                      ? styles['correct']
+                      : styles['incorrect']
+                    : index === correctButtonIndex
+                      ? styles['correct']
+                      : styles['inactive']
+                  : styles['active']
+                  }`}
+                onClick={() => handleAnswerSubmit(index)}
+                disabled={selectedButtonIndex !== null}
+              >
+                {answer.textAnswer}
               </button>
             ))}
           </div>
@@ -188,9 +191,15 @@ export const AssessmentQuestions = () => {
           onClick={advanceToNextQuestion}
           disabled={selectedButtonIndex === null} // Deshabilitar el botón hasta que se seleccione una respuesta
         >
-          Siguiente
+          {currentQuestion === questions.length - 1 ? "Terminar Evaluación" : "Siguiente"}
         </button>
       </section>
+      {/* Renderiza AssessmentFinished solo cuando la evaluación está completa */}
+      {assessmentCompleted && (
+        <div>
+          <AssessmentFinished />
+        </div>
+      )}
     </div>
   );
 };

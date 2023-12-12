@@ -1,10 +1,9 @@
-.assessment__container--questions{
+.assessment__container--finished{
     position: relative;
 }
 
 .assessment__content--image{
-    position:relative;
-    top: 220px;
+    margin-top: 220px;
     bottom: 0;
     display: flex;
     justify-content: center;
@@ -14,27 +13,25 @@
     width: 300px;
 }
 
-.assessment__content--questions{
-    position: relative;
+.assessment__content--result{
     display: flex;
     justify-content: center;
-    top: 250px;
+    margin-top: 30px;
 }
 
-.assessment__questions{
+.assessment__result{
     color: #FFFFFF;
     font-size: 17px;
     font-weight: 500;
 }
 
-.assessment__content--buttomStart{
-    position: relative;
+.assessment__content--button{
     display: flex;
     justify-content: center;
-    top: 300px;
+    margin-top: 30px;
 }
 
-.assessment__buttomStart{
+.assessment__button{
     width: 150px;
     height: 40px;
     color: var(--darkBlue);
@@ -44,8 +41,9 @@
     border-radius: 0.875rem;
     border: none;
     cursor: pointer;
+    margin: 0 10px;
 }
 
-.assessment__buttomStart:hover{
+.assessment__button:hover{
     background-color: #FAD047;
 }

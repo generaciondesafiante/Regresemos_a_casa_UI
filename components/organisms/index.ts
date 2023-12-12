@@ -1,3 +1,4 @@
+export * from './Assessment/AssessmentFinished/AssessmentFinished';
 export * from './Assessment/AssessmentMain/AssessmentMain';
 export * from './Assessment/AssessmentQuestions/AssessmentQuestions';
 export * from './Assessment/AssessmentTitleSubtitleBackground/AssessmentTitleSubtitleBackground';

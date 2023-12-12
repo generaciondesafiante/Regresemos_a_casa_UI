@@ -4,7 +4,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-top: 220px;
+    top: 220px;
 }
 
 .assessmentQuestions__img {
