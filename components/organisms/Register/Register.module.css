@@ -48,7 +48,7 @@
   align-self: center;
   margin: 1.5rem 0 1.5rem 0;
   text-decoration: none;
-  color: var(--gray);
+  color: var(--grayGradient);
   font-size: var(--fontSize-paragraph_mobile);
 }
 
