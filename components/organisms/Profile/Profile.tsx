@@ -41,7 +41,9 @@ export const Profile: FC<Props> = () => {
   });
 
   useEffect(() => {
-    localStorage.setItem("formData", JSON.stringify(formData));
+    if (typeof window !== "undefined") {
+      localStorage.setItem("formData", JSON.stringify(formData));
+    }
   }, [formData]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
