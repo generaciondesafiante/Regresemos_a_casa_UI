@@ -1,13 +1,13 @@
-.assessmentQuestions__container--questions{
+.assessmentQuestions__container--questions {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;   
+    flex-direction: column;
     margin-top: 220px;
 }
 
-.assessmentQuestions__img{
+.assessmentQuestions__img {
     position: relative;
     width: 250px;
     height: 210px;
@@ -15,7 +15,7 @@
     border-radius: 50px;
 }
 
-.assessmentQuestions__numberQuestion{
+.assessmentQuestions__numberQuestion {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -24,43 +24,43 @@
     height: 100%;
     left: 700px;
     color: #FFFFFF;
-    background-color: rgba(255,255,255,0.2);
+    background-color: rgba(255, 255, 255, 0.2);
     border-radius: 5px;
 }
 
-.assessmentQuestions__container--buttons{
-    position: relative;  
+.assessmentQuestions__container--buttons {
+    position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center; 
-    border-radius: 20px;  
-    background-color: rgba(255,255,255,0.2);
+    align-items: center;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.2);
     width: 600px;
     height: 220px;
 }
 
-.assessmentQuestions__content--titleQuestion{
+.assessmentQuestions__content--titleQuestion {
     margin: 20px auto;
 }
 
-.assessmentQuestions__titleQuestion{
+.assessmentQuestions__titleQuestion {
     color: #FFFFFF;
     font-size: 20px;
 }
 
-.assessmentQuestions__content--buttons{
+.assessmentQuestions__content--buttons {
     display: flex;
     flex-direction: column;
     width: 80%;
 }
 
-.assessmentQuestions__row{
+.assessmentQuestions__row {
     display: flex;
-    justify-content:space-evenly;
-    margin: 10px;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
-.assessmentQuestions__button{
+.assessmentQuestions__button {
     width: 180px;
     height: 50px;
     border-radius: 20px;
@@ -68,25 +68,54 @@
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    margin-bottom: 10px;
 }
 
 .assessmentQuestions__button:hover {
     background-color: rgba(255, 255, 255, 0.3);
 }
 
-.button1{
+.correct,
+.correct:hover {
+    background-color: #61D3C3 !important;
+    color: #000000 !important;
+}
+
+.incorrect,
+.incorrect:hover {
+    background-color: #F44336 !important;
+    color: #000000 !important;
+}
+
+.inactive {
+    background-color: #888888 !important; /* Color gris para botones inactivos */
+    cursor: not-allowed;
+}
+
+.button1,
+.button2 {
+    margin-bottom: 10px;
+}
+
+.button3,
+.button4 {
+    margin-top: 10px;
+}
+
+.button1 {
     background-color: #FFC73B;
 }
 
-.button2{
+.button2 {
     background-color: #F44336;
 }
 
-.button3{
+.button3 {
     background-color: #38B6FF;
 }
 
-.button4{
+.button4 {
     background-color: #61D3C3;
 }
+
