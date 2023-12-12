@@ -2,7 +2,7 @@ import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import Swal from "sweetalert2";
 
-export const runtime = "edge";
+// export const runtime = "edge";
 const handler = NextAuth({
   providers: [
     CredentialsProvider({
