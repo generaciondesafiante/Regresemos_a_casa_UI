@@ -1,8 +1,6 @@
 "use client";
 import { FC, useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { FullStarIcon } from "../../atoms/icons/starIcon/FullStarIcon";
-import { EmptyStarIcon } from "../../atoms/icons/starIcon/EmptyStarIcon";
 import { Button } from "../../atoms";
 import { Course } from "../../../types/types/course.types";
 import styles from "./LearningPathVideoClass.module.css";
