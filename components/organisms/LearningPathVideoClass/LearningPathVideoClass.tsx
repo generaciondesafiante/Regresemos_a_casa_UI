@@ -95,11 +95,6 @@ export const LearningPathVideoClass: FC<LearningPathVideoClassProps> = ({
                 userRating={userRating}
                 onRatingChange={handleRatingChange}
               />
-              {/* <FullStarIcon />
-              <FullStarIcon />
-              <FullStarIcon />
-              <EmptyStarIcon />
-              <EmptyStarIcon /> */}
             </div>
           </div>
           <Button
