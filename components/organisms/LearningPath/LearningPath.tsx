@@ -2,8 +2,8 @@
 import { FC, useState, useEffect } from "react";
 import { Course } from "../../../types/types/course.types";
 import { LearningPahtProgress } from "../LearningPathProgress/LearningPathProgress";
-import { LearningPathTitleClass } from "../LearningPathTitleClass/LearningPathTitleClass";
 import { LearningPathVideoClass } from "../LearningPathVideoClass/LearningPathVideoClass";
+import { LearningPathTitleClass } from "../LearningPathTitleClass/LearningPathTitleClass";
 import { useParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import styles from "./LearningPath.module.css";

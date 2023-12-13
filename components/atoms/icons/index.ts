@@ -1,7 +1,12 @@
 export * from './addPhotoIcon/AddPhotoIcon';
 export * from './arrowsIcons';
 export { default as CheckRegisterIcion } from './checkRegisterIcon/CheckRegisterIcion';
+export * from './davidStar/DavidStarIcon';
 export { default as ErrorRegisterIcon } from './errorRegisterIcons/ErrorRegisterIcon';
+export * from './flagsIcon/FlagEndIcon';
+export * from './flagsIcon/FlagStartIcon';
 export * from './index';
 export { default as PathLockIcon } from './lockPathIcon/PathLockIcon';
 export * from './sidebarIcons';
+export * from './starIcon/EmptyStarIcon';
+export * from './starIcon/FullStarIcon';
