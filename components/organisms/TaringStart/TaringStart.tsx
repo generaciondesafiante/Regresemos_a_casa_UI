@@ -14,9 +14,8 @@ export const TaringStart: FC<StarRatingProps> = ({
   onRatingChange,
 }) => {
   const handleRatingChange = (newRating: number) => {
-    if (newRating !== userRating) {
-      onRatingChange(newRating);
-    }
+    const updatedRating = newRating === userRating ? 0 : newRating;
+    onRatingChange(updatedRating);
   };
 
   return (

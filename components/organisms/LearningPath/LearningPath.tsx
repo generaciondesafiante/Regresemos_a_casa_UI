@@ -50,7 +50,6 @@ export const LearningPath: FC = () => {
       <nav className={styles["classRoomRoute-container"]}>
         <LearningPahtProgress
           course={selectedCourse}
-          isSelected={true}
           onItemClick={handleItemClick}
         />
       </nav>
