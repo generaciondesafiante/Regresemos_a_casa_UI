@@ -150,56 +150,65 @@ export const AssessmentQuestions = () => {
   };
 
   return (
-    <div className={styles["assessmentQuestions__container--questions"]}>
-      <section>
-        <div className={styles["assessmentQuestions__img"]}></div>
-      </section>
-      <section>
-        <p className={styles["assessmentQuestions__numberQuestion"]}>{currentQuestion + 1} de {questions.length} </p>
-      </section>
-      <div className={styles["assessmentQuestions__container--buttons"]}>
-        <section className={styles["assessmentQuestions__content--titleQuestion"]}>
-          <span className={styles["assessmentQuestions__titleQuestion"]}>{questions[currentQuestion].title}</span>
-        </section>
-        <section className={styles["assessmentQuestions__content--buttons"]}>
-          <div className={styles['assessmentQuestions__row']}>
-            {questions[currentQuestion].options.map((answer, index) => (
-              <button
-                key={answer.textAnswer}
-                className={`${styles['assessmentQuestions__button']} ${styles['button' + (index + 1)]} ${selectedButtonIndex !== null
-                  ? index === selectedButtonIndex
-                    ? isAnswerCorrect(index)
-                      ? styles['correct']
-                      : styles['incorrect']
-                    : index === correctButtonIndex
-                      ? styles['correct']
-                      : styles['inactive']
-                  : styles['active']
-                  }`}
-                onClick={() => handleAnswerSubmit(index)}
-                disabled={selectedButtonIndex !== null}
-              >
-                {answer.textAnswer}
-              </button>
-            ))}
+    <>
+      {!assessmentCompleted ? (
+        <div className={styles["assessmentQuestions__container--questions"]}>
+          <section>
+            <div className={styles["assessmentQuestions__img"]}></div>
+          </section>
+          <section>
+            <p className={styles["assessmentQuestions__numberQuestion"]}>{currentQuestion + 1} de {questions.length} </p>
+          </section>
+          <div className={styles["assessmentQuestions__container--buttons"]}>
+            <section className={styles["assessmentQuestions__content--titleQuestion"]}>
+              <span className={styles["assessmentQuestions__titleQuestion"]}>{questions[currentQuestion].title}</span>
+            </section>
+            <section className={styles["assessmentQuestions__content--buttons"]}>
+              <div className={styles['assessmentQuestions__row']}>
+                {questions[currentQuestion].options.map((answer, index) => (
+                  <button
+                    key={answer.textAnswer}
+                    className={`${styles['assessmentQuestions__button']} ${styles['button' + (index + 1)]} ${selectedButtonIndex !== null
+                      ? index === selectedButtonIndex
+                        ? isAnswerCorrect(index)
+                          ? styles['correct']
+                          : styles['incorrect']
+                        : index === correctButtonIndex
+                          ? styles['correct']
+                          : styles['inactive']
+                      : styles['active']
+                      }`}
+                    onClick={() => handleAnswerSubmit(index)}
+                    disabled={selectedButtonIndex !== null}
+                  >
+                    {answer.textAnswer}
+                  </button>
+                ))}
+              </div>
+            </section>
           </div>
-        </section>
-      </div>
-      <section>
-        <p>Puntuación: {score}</p>
-        <button
-          onClick={advanceToNextQuestion}
-          disabled={selectedButtonIndex === null} // Deshabilitar el botón hasta que se seleccione una respuesta
-        >
-          {currentQuestion === questions.length - 1 ? "Terminar Evaluación" : "Siguiente"}
-        </button>
-      </section>
-      {/* Renderiza AssessmentFinished solo cuando la evaluación está completa */}
-      {assessmentCompleted && (
+          <section>
+            <p>Puntuación: {score}</p>
+            <button
+              onClick={advanceToNextQuestion}
+              disabled={selectedButtonIndex === null} // Deshabilitar el botón hasta que se seleccione una respuesta
+            >
+              {currentQuestion === questions.length - 1 ? "Terminar Evaluación" : "Siguiente"}
+            </button>
+          </section>
+          {/* Renderiza AssessmentFinished solo cuando la evaluación está completa */}
+          {/* {assessmentCompleted && (
         <div>
           <AssessmentFinished />
         </div>
-      )}
-    </div>
+      )} */}
+        </div>
+      ) : (
+        <div>
+          <AssessmentFinished />
+        </div>
+      )
+      }
+    </>
   );
 };

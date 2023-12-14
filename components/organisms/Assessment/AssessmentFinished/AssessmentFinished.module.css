@@ -3,7 +3,8 @@
 }
 
 .assessment__content--image{
-    margin-top: 220px;
+    position: relative;
+    top: 220px;
     bottom: 0;
     display: flex;
     justify-content: center;
