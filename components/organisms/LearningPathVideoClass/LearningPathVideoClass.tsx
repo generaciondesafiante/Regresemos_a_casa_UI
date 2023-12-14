@@ -6,6 +6,7 @@ import { EmptyStarIcon } from "../../atoms/icons/starIcon/EmptyStarIcon";
 import { Button } from "../../atoms";
 import { Course } from "../../../types/types/course.types";
 import styles from "./LearningPathVideoClass.module.css";
+import { TaringStart } from "../TaringStart/TaringStart";
 
 interface LearningPathVideoClassProps {
   course: Course | null;
@@ -24,6 +25,7 @@ export const LearningPathVideoClass: FC<LearningPathVideoClassProps> = ({
   const videoId: string = Array.isArray(idvideo) ? idvideo[0] : idvideo;
 
   const [currentVideo, setCurrentVideo] = useState<Video | null>(null);
+  const [userRating, setUserRating] = useState<number>(0);
   const router = useRouter();
 
   useEffect(() => {
@@ -55,7 +57,9 @@ export const LearningPathVideoClass: FC<LearningPathVideoClassProps> = ({
       }
     }
   };
-
+  const handleRatingChange = (rating: number) => {
+    setUserRating(rating);
+  };
   if (!course || !currentVideo) {
     return <div></div>;
   }
@@ -86,11 +90,11 @@ export const LearningPathVideoClass: FC<LearningPathVideoClassProps> = ({
                 styles["learningPathVideoClass-videoInteraction_containerStar"]
               }
             >
-              <FullStarIcon />
-              <FullStarIcon />
-              <FullStarIcon />
-              <EmptyStarIcon />
-              <EmptyStarIcon />
+              <TaringStart
+                totalStars={5}
+                userRating={userRating}
+                onRatingChange={handleRatingChange}
+              />
             </div>
           </div>
           <Button

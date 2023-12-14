@@ -18,6 +18,19 @@ interface Props {
   phone?: number | null | undefined;
   image?: string | null | undefined;
 }
+const getLocalStorageItem = (key: string): string | null => {
+  if (typeof window !== "undefined") {
+    const item = localStorage.getItem(key);
+    return item ? item : null;
+  }
+  return null;
+};
+
+const setLocalStorageItem = (key: string, value: any): void => {
+  if (typeof window !== "undefined") {
+    localStorage.setItem(key, JSON.stringify(value));
+  }
+};
 
 export const Profile: FC<Props> = () => {
   const { data: session } = useSession();
@@ -26,7 +39,7 @@ export const Profile: FC<Props> = () => {
   const [file, setFile] = useState<File | null>(null);
 
   const [formData, setFormData] = useState(() => {
-    const storedData = localStorage.getItem("formData");
+    const storedData = getLocalStorageItem("formData");
     return storedData
       ? JSON.parse(storedData)
       : {
@@ -41,7 +54,7 @@ export const Profile: FC<Props> = () => {
   });
 
   useEffect(() => {
-    localStorage.setItem("formData", JSON.stringify(formData));
+    setLocalStorageItem("formData", formData);
   }, [formData]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {

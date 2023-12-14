@@ -82,7 +82,6 @@ export const Sidebar = () => {
       <div className={styles["sidebar-content_center"]}>
         {links.map((link) => {
           if (centeredLinks.includes(link.name)) {
-            const Icon = link.icon;
             return (
               <Link href={link.href} key={link.name}>
                 <div
@@ -103,7 +102,6 @@ export const Sidebar = () => {
 
       {links.map((link) => {
         if (link.name === "logout") {
-          const Icon = link.icon;
           return (
             <button
               onClick={async () => {

@@ -24,3 +24,5 @@ export * from './Register/RegisterFormPassword/RegisterFormPassword';
 export * from './ResetPassword/ResetPassword';
 export * from './ResourcesAndVerses/ResourcesAndVerses';
 export * from './Sidebar/Sidebar';
+export * from './TaringStart/TaringStart';
+export * from './index';
