@@ -126,7 +126,7 @@ export const ChangePasswordUser = () => {
 
   useEffect(() => {
     if (errorMessage !== "") {
-      Swal.fire("Contraseña incorrecta", errorMessage, "warning");
+      Swal.fire("Contraseña actual incorrecta.", errorMessage, "warning");
     }
   }, [errorMessage]);
   const myLabelColor = "var(--darkBlue-content)";
