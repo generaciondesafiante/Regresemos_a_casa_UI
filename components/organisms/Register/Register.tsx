@@ -54,14 +54,6 @@ export const Register = () => {
     event.preventDefault();
     setErrors([]);
 
-    if (password !== password2) {
-      Swal.fire({
-        icon: "error",
-        title: "Contraseñas no coinciden",
-        text: "Las contraseñas ingresadas no coinciden. Por favor, verifica e intenta nuevamente.",
-      });
-      return;
-    }
     const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/new`, {
       method: "POST",
       headers: {
