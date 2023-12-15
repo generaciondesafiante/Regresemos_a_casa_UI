@@ -106,6 +106,9 @@ export const AssessmentQuestions = () => {
   const [selectedButtonIndex, setSelectedButtonIndex] = useState<number | null>(null);
   const [correctButtonIndex, setCorrectButtonIndex] = useState<number | null>(null);
   const [assessmentCompleted, setAssessmentCompleted] = useState(false);
+  const [selectedOptions, setSelectedOptions] = useState<number[]>([]);
+  const [showScore, setShowScore] = useState(false); // Nuevo estado para controlar la visibilidad del puntaje
+  const [resetAssessment, setResetAssessment] = useState(false);// para volver a presentar el examen cuando se le da en el boton volver a presentar de AssessmentFinished
 
   useEffect(() => {
     // Verificar si la pregunta actual tiene solo una respuesta correcta
@@ -119,6 +122,20 @@ export const AssessmentQuestions = () => {
       );
     }
   }, [currentQuestion, selectedButtonIndex]);
+
+  //para reiniciar evaluacion
+  useEffect(() => {
+    if (resetAssessment) {
+      setCurrentQuestion(0);
+      setScore(0);
+      setSelectedButtonIndex(null);
+      setCorrectButtonIndex(null);
+      setAssessmentCompleted(false);
+      setSelectedOptions([]);
+      setShowScore(false);
+      setResetAssessment(false);
+    }
+  }, [resetAssessment]);
 
   const isAnswerCorrect = (index: number) => {
     return questions[currentQuestion].options[index].isCorrect;
@@ -141,6 +158,7 @@ export const AssessmentQuestions = () => {
     if (currentQuestion === questions.length - 1) {
       // Si es la última pregunta, actualizar el estado para indicar que la evaluación ha terminado
       setAssessmentCompleted(true);
+      setShowScore(true); // Mostrar el puntaje al finalizar la evaluación
     } else {
       // Si no es la última pregunta, avanzar a la siguiente pregunta
       setCurrentQuestion((prev) => prev + 1);
@@ -188,24 +206,32 @@ export const AssessmentQuestions = () => {
             </section>
           </div>
           <section>
-            <p>Puntuación: {score}</p>
+            {showScore && (
+              <AssessmentFinished
+                score={score}
+                questions={questions}
+                onRestartAssessment={() => setResetAssessment(true)}
+              />
+            )}
             <button
               onClick={advanceToNextQuestion}
               disabled={selectedButtonIndex === null} // Deshabilitar el botón hasta que se seleccione una respuesta
             >
               {currentQuestion === questions.length - 1 ? "Terminar Evaluación" : "Siguiente"}
             </button>
+            {/* Agrega el botón "Validar" solo si la pregunta tiene más de una respuesta correcta y el usuario ha seleccionado más de dos botones */}
+            {questions[currentQuestion].options.filter(option => option.isCorrect).length > 1 && selectedButtonIndex !== null && selectedButtonIndex !== correctButtonIndex && (
+              <button
+                onClick={advanceToNextQuestion}
+              >
+                Validar
+              </button>
+            )}
           </section>
-          {/* Renderiza AssessmentFinished solo cuando la evaluación está completa */}
-          {/* {assessmentCompleted && (
-        <div>
-          <AssessmentFinished />
-        </div>
-      )} */}
         </div>
       ) : (
         <div>
-          <AssessmentFinished />
+          <AssessmentFinished score={score} questions={questions} onRestartAssessment={() => setResetAssessment(true)}/>
         </div>
       )
       }
