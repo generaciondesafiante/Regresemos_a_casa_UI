@@ -47,11 +47,25 @@ export const RegisterFormPassword: FC<RegisterFormPasswordProps> = ({
 
     setPassword(value);
   };
+
   useEffect(() => {
     setFormValid(
-      isSpecialCharValid && isNumberValid && isLengthValid && isLetterValid
+      isSpecialCharValid &&
+        isNumberValid &&
+        isLengthValid &&
+        isLetterValid &&
+        password !== "" &&
+        password2 !== "" &&
+        password === password2
     );
-  }, [isSpecialCharValid, isNumberValid, isLengthValid, isLetterValid]);
+  }, [
+    isSpecialCharValid,
+    isNumberValid,
+    isLengthValid,
+    isLetterValid,
+    password,
+    password2,
+  ]);
   return (
     <>
       <div>
