@@ -141,42 +141,45 @@ export const Profile: FC<Props> = () => {
           >
             <AddPhotoIcon />
           </div>
-
           <div>
             <ModalEditPhotoProfile
               openModalProfile={isModalOpen}
               closeModalProfile={() => {
                 setIsModalOpen(false);
               }}
-              title="Agrega foto de perfil"
+              title="Elegir foto de perfil"
             >
               <form
-                className={styles["modalEditImg-content"]}
                 onSubmit={handleSaveChanges}
+                className={styles["profile-container_modalUploadPhoto"]}
               >
-                <h3 className={styles["modalEditImg-title"]}>Subir Imagen</h3>
-
-                <div className={styles["custom-file-input"]}>
-                  <span className={styles["file-input-label"]}>
-                    Seleccionar archivo
-                  </span>
+                <Button
+                  className={
+                    styles["profile-modalUploadPhoto_buttonUploadPhoto"]
+                  }
+                >
+                  <label className={styles["profile-modalUploadPhoto_label"]}>
+                    Subir foto
+                  </label>
                   <input
                     type="file"
                     accept="image/*"
-                    className={styles["modalEditImg-inputUploadImage"]}
+                    className={styles["profile-modalUploadPhoto_input"]}
                     onClick={(e) => e.stopPropagation()}
                     onChange={(e) => {
                       handleFileChange(e);
                       setFile(e.target.files![0]);
                     }}
                   />
-                </div>
-                <button
+                </Button>
+                <Button
                   type="submit"
-                  className={styles["modalEditImg-buttonAccept"]}
+                  className={
+                    styles["profile-modalUploadPhoto_buttonSaveChange"]
+                  }
                 >
                   Guardar cambios
-                </button>
+                </Button>
               </form>
             </ModalEditPhotoProfile>
           </div>
@@ -192,7 +195,7 @@ export const Profile: FC<Props> = () => {
               name="name"
               value={formData.name}
               onChange={handleInputChange}
-              className={styles["profile-input_editInfromation"]}
+              className={styles["profile-editInformation_input"]}
             />
             <h3 className={styles["profile-info_title"]}>Apellidos</h3>
             <input
@@ -200,7 +203,7 @@ export const Profile: FC<Props> = () => {
               name="lastname"
               value={formData.lastname}
               onChange={handleInputChange}
-              className={styles["profile-input_editInfromation"]}
+              className={styles["profile-editInformation_input"]}
             />
             <h3 className={styles["profile-info_title"]}>Correo electrónico</h3>
             <input
@@ -208,7 +211,7 @@ export const Profile: FC<Props> = () => {
               name="email"
               value={formData.email}
               onChange={handleInputChange}
-              className={styles["profile-input_editInfromation"]}
+              className={styles["profile-editInformation_input"]}
             />
             <h3 className={styles["profile-info_title"]}>País</h3>
             <input
@@ -216,7 +219,7 @@ export const Profile: FC<Props> = () => {
               name="country"
               value={formData.country}
               onChange={handleInputChange}
-              className={styles["profile-input_editInfromation"]}
+              className={styles["profile-editInformation_input"]}
             />
             <h3 className={styles["profile-info_title"]}>Ciudad</h3>
             <input
@@ -224,7 +227,7 @@ export const Profile: FC<Props> = () => {
               name="city"
               value={formData.city}
               onChange={handleInputChange}
-              className={styles["profile-input_editInfromation"]}
+              className={styles["profile-editInformation_input"]}
             />
             <h3 className={styles["profile-info_title"]}>Teléfono</h3>
             <input
@@ -232,11 +235,11 @@ export const Profile: FC<Props> = () => {
               name="phone"
               value={formData.phone}
               onChange={handleInputChange}
-              className={styles["profile-input_editInfromation"]}
+              className={styles["profile-editInformation_input"]}
             />
-            <div className={styles["container-buttons"]}>
+            <div className={styles["profile-editInformation_containerButtons"]}>
               <Button
-                className={styles["profile-saveChange_btn"]}
+                className={styles["profile-editInformation_saveChangeButton"]}
                 type={"submit"}
                 onClick={handleSaveChanges}
               >
@@ -244,9 +247,7 @@ export const Profile: FC<Props> = () => {
               </Button>
               <Button
                 type={"text"}
-                className={`
-                ${styles["profile-saveChange_btn"]} 
-                ${styles["profile-cancel_btn"]}`}
+                className={styles["profile-editInformation_cancelButton"]}
                 onClick={() => setIsEditing(false)}
               >
                 Cancelar
@@ -255,40 +256,40 @@ export const Profile: FC<Props> = () => {
           </div>
         ) : (
           <div>
-            <div className={styles["viewDesktop_profile"]}>
+            <div className={styles["profile-info_contentPersonalInformation"]}>
               <h3 className={styles["profile-info_title"]}>Nombres</h3>
-              <p className={styles["profile-user_personalInfo"]}>
+              <p className={styles["profile-info_personalInformation"]}>
                 {formData.name || session?.user?.name}
               </p>
             </div>
-            <div className={styles["viewDesktop_profile"]}>
+            <div className={styles["profile-info_contentPersonalInformation"]}>
               <h3 className={styles["profile-info_title"]}>Apellidos</h3>
-              <p className={styles["profile-user_personalInfo"]}>
+              <p className={styles["profile-info_personalInformation"]}>
                 {formData.lastname || session?.user?.lastname}
               </p>
             </div>
-            <div className={styles["viewDesktop_profile"]}>
+            <div className={styles["profile-info_contentPersonalInformation"]}>
               <h3 className={styles["profile-info_title"]}>
                 Correo electrónico
               </h3>
-              <p className={styles["profile-user_personalInfo"]}>
+              <p className={styles["profile-info_personalInformation"]}>
                 {formData.email || session?.user?.email}
               </p>
             </div>
-            <div className={styles["viewDesktop_profile"]}>
+            <div className={styles["profile-info_contentPersonalInformation"]}>
               <h3 className={styles["profile-info_title"]}>País</h3>
-              <p className={styles["profile-user_personalInfo"]}>
+              <p className={styles["profile-info_personalInformation"]}>
                 {formData.country || session?.user?.country}
               </p>
             </div>
-            <div className={styles["viewDesktop_profile"]}>
+            <div className={styles["profile-info_contentPersonalInformation"]}>
               <h3 className={styles["profile-info_title"]}>Ciudad</h3>
-              <p className={styles["profile-user_personalInfo"]}>
+              <p className={styles["profile-info_personalInformation"]}>
                 {formData.city || session?.user?.city}
               </p>
             </div>
             <div
-              className={styles["viewDesktop_profile"]}
+              className={styles["profile-info_contentPersonalInformation"]}
               style={{
                 display:
                   formData.phone || session?.user?.phone !== null
@@ -298,7 +299,7 @@ export const Profile: FC<Props> = () => {
             >
               <h3 className={styles["profile-info_title"]}>Teléfono</h3>
               <p
-                className={styles["profile-user_personalInfo"]}
+                className={styles["profile-info_personalInformation"]}
                 style={{
                   display:
                     formData.phone || session?.user?.phone !== null
@@ -309,17 +310,17 @@ export const Profile: FC<Props> = () => {
                 {formData.phone || session?.user?.phone}
               </p>
             </div>
-            <div className={styles["profile-container_buttons"]}>
-              <button
+            <div className={styles["profile-containerButtons"]}>
+              <Button
                 onClick={() => setIsEditing(true)}
-                className={styles["profile-btn"]}
+                className={styles["profile-buttons"]}
               >
                 Editar perfil
-              </button>
-              <Link href={"/dashboard/profile/changepassword"}>
-                <button className={styles["profile-btn"]}>
+              </Button>
+              <Link href={"/dashboard/profile/changepassword"} >
+                <Button className={styles["profile-buttons"]}>
                   Cambiar contraseña
-                </button>
+                </Button>
               </Link>
             </div>
           </div>
