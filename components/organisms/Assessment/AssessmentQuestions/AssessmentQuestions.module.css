@@ -9,23 +9,24 @@
 
 .assessmentQuestions__img {
     position: relative;
-    width: 250px;
-    height: 210px;
+    width: 200px;
+    height: 150px;
     background-color: rgb(80, 214, 214);
-    border-radius: 50px;
+    border-radius: 25px;
 }
 
 .assessmentQuestions__numberQuestion {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
+    /* position: relative; */
     width: 80px;
     height: 100%;
-    left: 700px;
+    /* left: 700px; */
     color: #FFFFFF;
     background-color: rgba(255, 255, 255, 0.2);
     border-radius: 5px;
+    margin: 10px 0;
 }
 
 .assessmentQuestions__container--buttons {
@@ -89,7 +90,7 @@
 }
 
 .inactive {
-    background-color: #888888 !important; /* Color gris para botones inactivos */
+    background-color: #888888 !important;
     cursor: not-allowed;
 }
 
@@ -119,3 +120,32 @@
     background-color: #61D3C3;
 }
 
+@media (width >=48rem) {
+
+}
+
+@media (width >=64rem) {
+
+    .assessmentQuestions__img {
+        width: 250px;
+        height: 210px;
+        border-radius: 50px;
+    }
+
+    .assessmentQuestions__numberQuestion {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* position: relative; */
+        width: 80px;
+        height: 100%;
+        /* left: 700px; */
+        color: #FFFFFF;
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 5px;
+    }
+}
+
+@media (width >= 1400px) {
+
+}

@@ -1,5 +1,5 @@
 "use client";
-import { AssessmentFinished } from "../..";
+import { AssessmentFinished, AssessmentMain } from "../..";
 import styles from "./AssessmentQuestions.module.css";
 import { useState, useEffect } from 'react';
 

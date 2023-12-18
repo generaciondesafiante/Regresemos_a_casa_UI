@@ -10,3 +10,15 @@ export interface AssessmentFinishedProps {
     }[];
     onRestartAssessment: () => void;
 }
+
+export interface AssessmentMainProps {
+    questions: {
+        title: string;
+        image: string;
+        options: {
+            textAnswer: string;
+            isCorrect: boolean;
+        }[];
+    }[];
+    onStartAssessment: () => void;    
+}
