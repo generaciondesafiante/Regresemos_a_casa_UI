@@ -53,8 +53,8 @@ export const Input: React.FC<InputProps> = ({
   const inputStyle: CSSProperties = {
     color: inputColor || "transparent",
     border: borderColor
-      ? `0.188rem solid ${borderColor}`
-      : "0.188rem solid var(--white)",
+      ? `var(--border) ${borderColor}`
+      : "var(--border) var(--white)",
   };
   const buttonStyle: CSSProperties = {
     color: buttonColor || "var(--white)",
