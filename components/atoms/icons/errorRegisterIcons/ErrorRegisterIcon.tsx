@@ -7,7 +7,7 @@ function ErrorRegisterIcon(props: React.SVGProps<SVGSVGElement>) {
       viewBox="0 0 16 16"
       fill="currentColor"
       {...props}
-      className={styles["error-register-icon"]}
+      className={styles["errorRegisterIcon"]}
     >
       <path
         fillRule="evenodd"
