@@ -1,76 +1,82 @@
 "use client";
 import { FC, useEffect, useState } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { Button } from "../../atoms";
-import { Course } from "../../../types/types/course.types";
-import styles from "./LearningPathVideoClass.module.css";
 import { TaringStart } from "../TaringStart/TaringStart";
+import { Topic } from "../../../types/types/topic.type";
+import { Lesson } from "../../../types/types/lessons.type";
+import styles from "./LearningPathVideoClass.module.css";
 
 interface LearningPathVideoClassProps {
-  course: Course | null;
-}
-interface Video {
-  title: string;
-  description: string;
-  url: string;
-  idVideo: number;
+  course: Topic | null;
+  selectedLesson: Lesson | null;
+  onNextVideoClick: (index: string) => void;
 }
 
 export const LearningPathVideoClass: FC<LearningPathVideoClassProps> = ({
-  course,
+  selectedLesson,
+  onNextVideoClick,
 }) => {
-  const { idvideo } = useParams();
-  const videoId: string = Array.isArray(idvideo) ? idvideo[0] : idvideo;
+  const { indexVideo } = useParams();
 
-  const [currentVideo, setCurrentVideo] = useState<Video | null>(null);
   const [userRating, setUserRating] = useState<number>(0);
-  const router = useRouter();
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const [showContent, setShowContent] = useState(false);
 
-  useEffect(() => {
-    if (videoId) {
-      const video = course?.content.find(
-        (video) => video.idVideo === parseInt(videoId, 10)
-      );
-
-      if (video) {
-        setCurrentVideo(video);
-      }
-    }
-  }, [course, videoId]);
-
-  const handleNextVideo = () => {
-    if (videoId) {
-      const currentIndex =
-        course?.content.findIndex(
-          (video) => video.idVideo === parseInt(videoId, 10)
-        ) ?? -1;
-
-      if (
-        currentIndex !== -1 &&
-        currentIndex < (course?.content.length || 0) - 1
-      ) {
-        const nextVideo = course?.content[currentIndex + 1];
-        const nextVideoUrl = `/dashboard/path/course/${course?.id}/${course?.endpoint}/${nextVideo?.idVideo}`;
-        router.push(nextVideoUrl);
-      }
-    }
-  };
   const handleRatingChange = (rating: number) => {
     setUserRating(rating);
   };
-  if (!course || !currentVideo) {
-    return <div></div>;
-  }
+
+  const handleNextVideo = () => {
+    if (Array.isArray(indexVideo)) {
+      const firstIndex = indexVideo[0];
+
+      onNextVideoClick(firstIndex);
+    } else {
+      onNextVideoClick(indexVideo);
+    }
+  };
+
+  const videoUrl = selectedLesson?.videoUrl;
+  const modifiedUrl = videoUrl?.replace("/play/", "/embed/");
+  const responsiveVideoUrl = `${modifiedUrl}?loop=true&muted=true&preload=true&responsive=true`;
+
+  useEffect(() => {
+    setIsVideoLoaded(false);
+    setTimeout(() => {
+      setIsVideoLoaded(true);
+    }, 80);
+    setTimeout(() => {
+      setShowContent(true);
+    }, 80);
+  }, [selectedLesson]);
 
   return (
     <div className={styles["learningPathVideoClass-container"]}>
       <div className={styles["learningPathVideoClass-content"]}>
-        <iframe
-          className={styles["learningPathVideoClass-video"]}
-          src={currentVideo.url}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
-        ></iframe>
+        <div
+          style={{
+            position: "relative",
+            paddingTop: "56.25%",
+          }}
+        >
+          {isVideoLoaded && (
+            <iframe
+              src={responsiveVideoUrl}
+              loading="lazy"
+              className={styles["learningPathVideoClass-video"]}
+              style={{
+                border: "0",
+                position: "absolute",
+                top: 0,
+                height: "100%",
+                width: "100%",
+              }}
+              allow="accelerometer;gyroscope;encrypted-media;picture-in-picture;"
+              allowFullScreen
+            ></iframe>
+          )}
+        </div>
 
         <div
           className={styles["learningPathVideoClass-content_videoInteraction"]}
