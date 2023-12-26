@@ -1,5 +1,6 @@
 "use client";
 import { AssessmentFinished, AssessmentMain } from "../..";
+import { ArrowRightIcon } from "../../../atoms";
 import styles from "./AssessmentQuestions.module.css";
 import { useState, useEffect } from 'react';
 
@@ -214,19 +215,22 @@ export const AssessmentQuestions = () => {
               />
             )}
             <button
+              className={styles["assessmentQuestions__button--next"]}
               onClick={advanceToNextQuestion}
               disabled={selectedButtonIndex === null} // Deshabilitar el botón hasta que se seleccione una respuesta
             >
-              {currentQuestion === questions.length - 1 ? "Terminar Evaluación" : "Siguiente"}
+              {currentQuestion === questions.length - 1 ? "Fin" : ""}
+              <ArrowRightIcon />
             </button>
-            {/* Agrega el botón "Validar" solo si la pregunta tiene más de una respuesta correcta y el usuario ha seleccionado más de dos botones */}
+            {/* Agrega el botón "Validar" solo si la pregunta tiene más de una respuesta correcta y el usuario ha seleccionado más de dos botones
             {questions[currentQuestion].options.filter(option => option.isCorrect).length > 1 && selectedButtonIndex !== null && selectedButtonIndex !== correctButtonIndex && (
               <button
+                className={styles["assessmentQuestions__button--validate"]}
                 onClick={advanceToNextQuestion}
               >
                 Validar
               </button>
-            )}
+            )} */}
           </section>
         </div>
       ) : (

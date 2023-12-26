@@ -4,34 +4,36 @@
 
 .assessment__content--image{
     position: relative;
-    top: 220px;
-    bottom: 0;
+    top: 170px;
     display: flex;
     justify-content: center;
 }
 
 .assessment__image{
-    width: 300px;
+    width: 180px;
 }
 
 .assessment__content--result{
     position: relative;
     display: flex;
     justify-content: center;
-    top: 240px;
+    top: 180px;
 }
 
 .assessment__result{
     color: #FFFFFF;
-    font-size: 17px;
+    font-size: var(--fontSize-paragraph_mobile);
     font-weight: 500;
 }
 
 .assessment__content--button{
     position: relative;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    top: 270px;
+    align-items: center;
+    top: 190px;
+    width: auto;
 }
 
 .assessment__button{
@@ -39,14 +41,75 @@
     height: 40px;
     color: var(--darkBlue);
     font-weight: 700;
+    font-size: var(--fontSize-paragraph_mobile);
     letter-spacing: 1px;
     background-color: #e4e4e4;
     border-radius: 0.875rem;
     border: none;
     cursor: pointer;
-    margin: 0 10px;
+    margin: 10px;
+    padding: 0 5px;
 }
 
 .assessment__button:hover{
     background-color: #FAD047;
+}
+
+@media (width >=48rem) {
+    .assessment__content--image{
+        top: 190px;
+    }
+
+    .assessment__image{
+        width: 230px;
+    }
+
+    .assessment__content--result{
+        top: 220px;
+    }
+
+    .assessment__content--button{
+        top: 250px;
+        flex-direction: row;
+    }
+}
+
+@media (width >=64rem) {
+    .assessment__content--image{
+        top: 200px;
+    }
+
+    .assessment__image{
+        width: 260px;
+    }
+
+    .assessment__content--button{
+        font-size: var(--fontSize-paragraph_desktop);
+    }
+
+    .assessment__result{
+        font-size: var(--fontSize-paragraph_desktop);
+    }
+}
+
+@media (width >= 1400px) {
+    .assessment__content--image{
+        top: 220px;
+    }
+
+    .assessment__image{
+        width: 300px;
+    }
+
+    .assessment__content--result{
+        top: 240px;
+    }
+
+    .assessment__content--button{
+        top: 270px;
+    }
+
+    .assessment__button{
+        width: 150px;
+    }
 }
