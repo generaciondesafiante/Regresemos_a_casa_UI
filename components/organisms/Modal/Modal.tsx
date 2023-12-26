@@ -1,5 +1,5 @@
 import { FC, ReactNode } from "react";
-import CloseIcon from "@mui/icons-material/Close";
+import { CloseModalIcon } from "../../atoms/icons/closeModalIcon/CloseModalIcon";
 import styles from "./Modal.module.css";
 
 interface Props {
@@ -23,9 +23,11 @@ export const ModalEditPhotoProfile: FC<Props> = ({
           <div className={styles["modalEditProfile-container"]}>
             <h3 className={styles["modalEditProfile-title"]}>{title}</h3>
             <button onClick={() => closeModalProfile && closeModalProfile()}>
-              <CloseIcon className={styles["modalEditProfile-iconClose"]} />
+              <CloseModalIcon
+                className={styles["modalEditProfile-iconClose"]}
+              />
             </button>
-            <div className={styles["modalEditProfile-content"]}>{children}</div>
+            <div>{children}</div>
           </div>
         </div>
       )}
