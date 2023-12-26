@@ -11,10 +11,27 @@
 .learningPathVideoClass-video {
   width: 18rem;
   height: 10.2rem;
-  border: none;
   border-radius: var(--borderRadius);
 }
-
+.learningPathVideoClass-skeletonVideo {
+  width: 18rem;
+  height: 10.2rem;
+  display: inline-block;
+  background-color: #f0f0f0;
+  border-radius: 0.313rem;
+  animation: pulse 2s infinite ease-in-out;
+}
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
 .learningPathVideoClass-content_videoInteraction {
   display: flex;
   justify-content: space-between;
@@ -56,6 +73,11 @@
     width: 30rem;
     height: 17rem;
   }
+
+  .learningPathVideoClass-skeletonVideo {
+    width: 30rem;
+    height: 17rem;
+  }
 }
 
 @media (width >=64rem) {
@@ -80,6 +102,10 @@
     width: 40rem;
     height: 22.5rem;
   }
+  .learningPathVideoClass-skeletonVideo {
+    width: 40rem;
+    height: 22.5rem;
+  }
 
   .learningPathVideoClass-videoInteraction_title {
     font-size: var(--fontSize-paragraph_laptop);
@@ -93,6 +119,11 @@
   }
 
   .learningPathVideoClass-video {
+    width: 50rem;
+    height: 28.1rem;
+    border-radius: 10px;
+  }
+  .learningPathVideoClass-skeletonVideo {
     width: 50rem;
     height: 28.1rem;
   }
