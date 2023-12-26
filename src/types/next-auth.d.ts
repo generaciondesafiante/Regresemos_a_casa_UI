@@ -27,6 +27,7 @@ declare module "next-auth" {
       videoName: string;
       description: string;
       videoUrl: string;
+      length:string;
       rating: number;
     }>;
   }>;

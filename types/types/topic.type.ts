@@ -5,6 +5,9 @@ export interface Topic {
         videoName: string;
         description: string;
         videoUrl: string;
+        length:string;
+      videoUrlHls:string;
+
         rating: number;
     }>;
 
