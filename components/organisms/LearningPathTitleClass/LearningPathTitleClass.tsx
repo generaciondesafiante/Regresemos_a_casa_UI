@@ -1,51 +1,29 @@
 "use client";
-import { FC, useEffect, useState } from "react";
-import { useParams } from "next/navigation";
-import { Course } from "../../../types/types/course.types";
+import { FC } from "react";
+import { Lesson } from "../../../types/types/lessons.type";
+import { Topic } from "../../../types/types/topic.type";
 import styles from "./LearningPathTitleClass.module.css";
 
 interface LearningPathVideoClassProps {
-  course: Course | null;
+  course: Topic | null;
+  selectedLesson: Lesson | null;
 }
 
-interface Video {
-  title: string;
-  description: string;
-}
 export const LearningPathTitleClass: FC<LearningPathVideoClassProps> = ({
   course,
+  selectedLesson,
 }) => {
-  const { idvideo } = useParams();
-  const videoId: string = Array.isArray(idvideo) ? idvideo[0] : idvideo;
-  const [currentVideo, setCurrentVideo] = useState<Video | null>(null);
-
-  useEffect(() => {
-    if (course && videoId) {
-      const video = course.content.find(
-        (video) => video.idVideo === parseInt(videoId, 10)
-      );
-
-      if (video) {
-        setCurrentVideo(video);
-      }
-    }
-  }, [course, idvideo]);
-
-  if (!course || !currentVideo) {
-    return <div></div>;
-  }
-
-  const { name } = course;
-
   return (
     <div className={styles["learningPathTitleClass-container"]}>
-      <p className={styles["learningPathTitleClass-topic"]}>{name}</p>
+      <p className={styles["learningPathTitleClass-topic"]}>
+        {course?.topicName}
+      </p>
       <div className={styles["learningPathTitleClass-line"]}></div>
       <h2 className={styles["learningPathTitleClass-title"]}>
-        {currentVideo.title}
+        {selectedLesson?.videoName}
       </h2>
       <div className={styles["learningPathTitleClass-subcontent"]}>
-        <p>{currentVideo.description}</p>
+        <p> {selectedLesson?.description}</p>
       </div>
     </div>
   );
