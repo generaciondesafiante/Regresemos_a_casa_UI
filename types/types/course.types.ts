@@ -1,13 +1,19 @@
-
 export interface Course {
-_id: string;
-  name: string;
-  endpoint: string;
-  content: {
-    title: string;
-    description: string;
-    url: string;
-    idVideo: number;
-  }[];
-  id: number;
-}
+  _id: string;
+  courseName: string;
+  topicName: string;
+  topics: Array<{
+    topicName: string;
+    lessons: Array<{
+      videoId: string;
+      videoName: string;
+      description: string;
+      videoUrl: string;
+      length:string;
+      videoUrlHls:string;
+      rating: number;
+    }>;
+  }>;
+};
+
+

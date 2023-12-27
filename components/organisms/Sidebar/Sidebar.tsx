@@ -34,7 +34,7 @@ export const Sidebar = () => {
     },
     {
       name: "path",
-      href: "/dashboard/path",
+      href: "/dashboard/courses",
       icon: <PathIcon className={styles["sidebar-icon"]} />,
     },
     {
