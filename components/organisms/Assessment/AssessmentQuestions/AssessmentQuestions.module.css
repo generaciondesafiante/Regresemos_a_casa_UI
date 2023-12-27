@@ -141,27 +141,6 @@
     font-weight: bold;
 }
 
-/* .assessmentQuestions__button--validate {
-    position: relative;
-    bottom: 20px;
-    width: auto;
-    height: 40px;
-    padding: 0 10px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    border-radius: 0.875rem;
-    border: none;
-    cursor: pointer;
-    font-size: var(--fontSize-paragraph_mobile);
-    color: var(--darkGrayGradient);
-}
-
-.assessmentQuestions__button--validate:hover {
-    background-color: #FAD047;
-    color: var(--darkBlue);
-    font-weight: bold;
-} */
-
 @media (width >=48rem) {
     .assessmentQuestions__img {
         width: 11.25rem;

@@ -1,11 +1,10 @@
 "use client";
-// import { AssessmentFinished} from "../..";
-import { AssessmentFinished } from "../AssessmentFinished/AssessmentFinished" 
+import { AssessmentFinished } from "../AssessmentFinished/AssessmentFinished"
 import { ArrowRightIcon } from "../../../atoms";
 import styles from "./AssessmentQuestions.module.css";
 import { useState, useEffect } from 'react';
 
-const questions = [
+export const questions = [
   {
     title: "¿ Cuál es el primogenito de abraham ?",
     image: "esto es una imagen",
@@ -109,15 +108,13 @@ export const AssessmentQuestions = () => {
   const [correctButtonIndex, setCorrectButtonIndex] = useState<number | null>(null);
   const [assessmentCompleted, setAssessmentCompleted] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState<number[]>([]);
-  const [showScore, setShowScore] = useState(false); // Nuevo estado para controlar la visibilidad del puntaje
-  const [resetAssessment, setResetAssessment] = useState(false);// para volver a presentar el examen cuando se le da en el boton volver a presentar de AssessmentFinished
+  const [showScore, setShowScore] = useState(false);
+  const [resetAssessment, setResetAssessment] = useState(false);
 
   useEffect(() => {
-    // Verificar si la pregunta actual tiene solo una respuesta correcta
     const currentOptions = questions[currentQuestion].options;
     const countCorrect = currentOptions.filter((option) => option.isCorrect).length;
 
-    // Deshabilitar botones después de seleccionar uno si hay solo un valor "true"
     if (countCorrect === 1 && selectedButtonIndex !== null) {
       setCorrectButtonIndex(
         currentOptions.findIndex((option) => option.isCorrect)
@@ -125,7 +122,6 @@ export const AssessmentQuestions = () => {
     }
   }, [currentQuestion, selectedButtonIndex]);
 
-  //para reiniciar evaluacion
   useEffect(() => {
     if (resetAssessment) {
       setCurrentQuestion(0);
@@ -158,11 +154,9 @@ export const AssessmentQuestions = () => {
 
   const advanceToNextQuestion = () => {
     if (currentQuestion === questions.length - 1) {
-      // Si es la última pregunta, actualizar el estado para indicar que la evaluación ha terminado
       setAssessmentCompleted(true);
-      setShowScore(true); // Mostrar el puntaje al finalizar la evaluación
+      setShowScore(true);
     } else {
-      // Si no es la última pregunta, avanzar a la siguiente pregunta
       setCurrentQuestion((prev) => prev + 1);
       setSelectedButtonIndex(null);
       setCorrectButtonIndex(null);
@@ -218,25 +212,16 @@ export const AssessmentQuestions = () => {
             <button
               className={styles["assessmentQuestions__button--next"]}
               onClick={advanceToNextQuestion}
-              disabled={selectedButtonIndex === null} // Deshabilitar el botón hasta que se seleccione una respuesta
+              disabled={selectedButtonIndex === null}
             >
               {currentQuestion === questions.length - 1 ? "Fin" : ""}
               <ArrowRightIcon />
             </button>
-            {/* Agrega el botón "Validar" solo si la pregunta tiene más de una respuesta correcta y el usuario ha seleccionado más de dos botones
-            {questions[currentQuestion].options.filter(option => option.isCorrect).length > 1 && selectedButtonIndex !== null && selectedButtonIndex !== correctButtonIndex && (
-              <button
-                className={styles["assessmentQuestions__button--validate"]}
-                onClick={advanceToNextQuestion}
-              >
-                Validar
-              </button>
-            )} */}
           </section>
         </div>
       ) : (
         <div>
-          <AssessmentFinished score={score} questions={questions} onRestartAssessment={() => setResetAssessment(true)}/>
+          <AssessmentFinished score={score} questions={questions} onRestartAssessment={() => setResetAssessment(true)} />
         </div>
       )
       }

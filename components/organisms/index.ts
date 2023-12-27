@@ -1,6 +1,5 @@
 export * from './Assessment/AssessmentFinished/AssessmentFinished';
 export * from './Assessment/AssessmentMain/AssessmentMain';
-export * from './Assessment/AssessmentManager/AssessmentManager';
 export * from './Assessment/AssessmentQuestions/AssessmentQuestions';
 export * from './Assessment/AssessmentTitleSubtitleBackground/AssessmentTitleSubtitleBackground';
 export * from './Carousel/Carousel';

@@ -12,15 +12,7 @@ export interface AssessmentFinishedProps {
 }
 
 export interface AssessmentMainProps {
-    onStartAssessment: () => void;    
-}
-
-export interface AssessmentQuestionsProps {
-    onAssessmentCompleted?: () => void;    
-}
-
-export interface AssessmentManagerProps {
-    onAssessmentCompleted?: () => void;
+    onStartAssessment: () => void;
 }
 
 export interface AssessmentTemplateProps {

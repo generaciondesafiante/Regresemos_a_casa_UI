@@ -2,6 +2,7 @@
 import { FC } from "react";
 import styles from "./AssessmentMain.module.css";
 import { AssessmentMainProps } from "../../../../types/types/assessment.type";
+import { questions } from "../../Assessment/AssessmentQuestions/AssessmentQuestions";
 
 export const AssessmentMain: FC<AssessmentMainProps> = ({ onStartAssessment }) => {
     let imageStudents = "https://i.imgur.com/bBY0Bs9.png";
@@ -12,7 +13,7 @@ export const AssessmentMain: FC<AssessmentMainProps> = ({ onStartAssessment }) =
                 <img src={imageStudents} alt="students" className={styles["assessment__image"]} />
             </section>
             <section className={styles["assessment__content--questions"]}>
-                <p className={styles["assessment__questions"]}>{`Son (No me da, para revizar) preguntas de esta sección`}</p>
+                <p className={styles["assessment__questions"]}>{`Son ${questions.length} preguntas de esta sección`}</p>
             </section>
             <section className={styles["assessment__content--buttomStart"]}>
                 <button className={styles["assessment__buttomStart"]} onClick={onStartAssessment}>EMPEZAR</button>

@@ -1,10 +1,7 @@
 "use client";
 import { useState } from 'react'
 import { AssessmentMain, AssessmentQuestions, AssessmentTitleSubtitleBackground, AssessmentFinished } from "../../organisms";
-
-interface AssessmentTemplateProps {
-    onAssessmentCompleted?: () => void;
-}
+import { AssessmentTemplateProps } from '../../../types/types/assessment.type';
 
 export const AssessmentTemplate: React.FC<AssessmentTemplateProps> = () => {
     const [assessmentStarted, setAssessmentStarted] = useState(false);
@@ -13,11 +10,6 @@ export const AssessmentTemplate: React.FC<AssessmentTemplateProps> = () => {
     const handleStartAssessment = () => {
         setAssessmentStarted(true);
     };
-
-    // const handleAssessmentCompleted = () => {
-    //     setAssessmentCompleted(true);
-    //     onAssessmentCompleted(); // Llama a la función proporcionada por props
-    // };
 
     return (
         <div>
@@ -31,7 +23,6 @@ export const AssessmentTemplate: React.FC<AssessmentTemplateProps> = () => {
                     )}
                 </div>
             )}
-            {/* Renderiza AssessmentFinished solo cuando la evaluación está completa */}
             {assessmentCompleted && (
                 <div>
                     <AssessmentFinished />
