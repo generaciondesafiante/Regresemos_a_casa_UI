@@ -142,7 +142,7 @@
   .learningPathVideoClass-video {
     width: 50rem;
     height: 28.1rem;
-    border-radius: 10px;
+    border-radius: 0.625rem;
   }
   .learningPathVideoClass-skeletonVideo {
     width: 50rem;
