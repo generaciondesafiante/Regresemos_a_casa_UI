@@ -11,7 +11,7 @@ export const AssessmentFinished: FC<AssessmentFinishedProps> = ({ score, questio
                 <img src={imageFinished} alt="students" className={styles["assessment__image"]} />
             </section>
             <section className={styles["assessment__content--result"]}>
-                <p className={styles["assessment__result"]}>{`Son ${score} de ${questions.length} preguntas correctas`}</p>
+                <p className={styles["assessment__result"]}>{`Son ${score} de ${questions?.length} preguntas correctas`}</p>
             </section>
             <section className={styles["assessment__content--button"]}>
                 <button

@@ -1,6 +1,6 @@
 export interface AssessmentFinishedProps {
-    score: number;
-    questions: {
+    score?: number;
+    questions?: {
         title: string;
         image: string;
         options: {
@@ -8,17 +8,21 @@ export interface AssessmentFinishedProps {
             isCorrect: boolean;
         }[];
     }[];
-    onRestartAssessment: () => void;
+    onRestartAssessment?: () => void;
 }
 
 export interface AssessmentMainProps {
-    questions: {
-        title: string;
-        image: string;
-        options: {
-            textAnswer: string;
-            isCorrect: boolean;
-        }[];
-    }[];
     onStartAssessment: () => void;    
+}
+
+export interface AssessmentQuestionsProps {
+    onAssessmentCompleted?: () => void;    
+}
+
+export interface AssessmentManagerProps {
+    onAssessmentCompleted?: () => void;
+}
+
+export interface AssessmentTemplateProps {
+    onAssessmentCompleted?: () => void;
 }

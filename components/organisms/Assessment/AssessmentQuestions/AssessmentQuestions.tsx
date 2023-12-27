@@ -1,5 +1,6 @@
 "use client";
-import { AssessmentFinished, AssessmentMain } from "../..";
+// import { AssessmentFinished} from "../..";
+import { AssessmentFinished } from "../AssessmentFinished/AssessmentFinished" 
 import { ArrowRightIcon } from "../../../atoms";
 import styles from "./AssessmentQuestions.module.css";
 import { useState, useEffect } from 'react';

@@ -1,4 +1,4 @@
-.assessment__container{
+.assessment__container {
     position: absolute;
     height: 100vh;
     width: 100vw;
@@ -6,7 +6,7 @@
     background-size: 100% 100%;
 }
 
-.assessment__content--topic{
+.assessment__content--topic {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -14,37 +14,37 @@
     margin-top: 3.125rem;
 }
 
-.assessment__topic{
+.assessment__topic {
     color: var(--darkBlue);
     font-size: var(--fontSize-titles_mobile);
     font-weight: 600;
 }
 
-.assessment__topic--description{
+.assessment__topic--description {
     color: var(--darkBlue);
     font-size: var(--fontSize-subtitles_mobile);
     text-align: center;
     font-weight: 600;
     margin-top: 1.875rem;
-    padding: 0 20px;
+    padding: 0 1.25rem;
 }
 
-@media (width >= 48rem){
-    .assessment__topic{
+@media (width >=48rem) {
+    .assessment__topic {
         font-size: var(--fontSize-titles_tablet);
     }
 
-    .assessment__topic--description{
+    .assessment__topic--description {
         font-size: var(--fontSize-subtitles_tablet);
     }
 }
 
-@media (width >= 64rem){
-    .assessment__topic{
+@media (width >=64rem) {
+    .assessment__topic {
         font-size: var(--fontSize-titles_laptop);
     }
 
-    .assessment__topic--description{
+    .assessment__topic--description {
         font-size: var(--fontSize-subtitles_laptop);
     }
 }

@@ -1,12 +1,9 @@
 "use client";
-import { useState } from 'react'
-import { AssessmentMain, AssessmentQuestions, AssessmentTitleSubtitleBackground, AssessmentFinished } from "../../organisms";
+import { useState } from 'react';
+import { AssessmentMain, AssessmentQuestions, AssessmentTitleSubtitleBackground, AssessmentFinished } from "../../../organisms";
+import { AssessmentManagerProps } from '../../../../types/types/assessment.type';
 
-interface AssessmentTemplateProps {
-    onAssessmentCompleted?: () => void;
-}
-
-export const AssessmentTemplate: React.FC<AssessmentTemplateProps> = () => {
+export const AssessmentManager: React.FC<AssessmentManagerProps> = ({ onAssessmentCompleted }) => {
     const [assessmentStarted, setAssessmentStarted] = useState(false);
     const [assessmentCompleted, setAssessmentCompleted] = useState(false);
 
@@ -14,10 +11,12 @@ export const AssessmentTemplate: React.FC<AssessmentTemplateProps> = () => {
         setAssessmentStarted(true);
     };
 
-    // const handleAssessmentCompleted = () => {
-    //     setAssessmentCompleted(true);
-    //     onAssessmentCompleted(); // Llama a la función proporcionada por props
-    // };
+    const handleAssessmentCompleted = () => {
+        setAssessmentCompleted(true);
+        if (onAssessmentCompleted) {
+            onAssessmentCompleted(); // Llama a la función proporcionada por props
+        }        
+    };
 
     return (
         <div>
@@ -27,14 +26,14 @@ export const AssessmentTemplate: React.FC<AssessmentTemplateProps> = () => {
                     {!assessmentStarted ? (
                         <AssessmentMain onStartAssessment={handleStartAssessment} />
                     ) : (
-                        <AssessmentQuestions />
+                        <AssessmentQuestions/>
                     )}
                 </div>
             )}
             {/* Renderiza AssessmentFinished solo cuando la evaluación está completa */}
             {assessmentCompleted && (
                 <div>
-                    <AssessmentFinished />
+                    <AssessmentFinished/>
                 </div>
             )}
         </div>

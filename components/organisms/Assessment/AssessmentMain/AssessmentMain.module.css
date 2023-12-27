@@ -4,21 +4,21 @@
 
 .assessment__content--image {
     position: relative;
-    top: 220px;
+    top: 13.75rem;
     bottom: 0;
     display: flex;
     justify-content: center;
 }
 
 .assessment__image {
-    width: 200px;
+    width: 12.5rem;
 }
 
 .assessment__content--questions {
     position: relative;
     display: flex;
     justify-content: center;
-    top: 250px;
+    top: 15.625rem;
 }
 
 .assessment__questions {
@@ -26,23 +26,23 @@
     font-size: var(--fontSize-paragraph_mobile);
     font-weight: 500;
     text-align: center;
-    padding: 0 20px;
+    padding: 0 1.25rem;
 }
 
 .assessment__content--buttomStart {
     position: relative;
     display: flex;
     justify-content: center;
-    top: 280px;
+    top: 17.5rem;
 }
 
 .assessment__buttomStart {
-    width: 150px;
-    height: 40px;
+    width: 9.375rem;
+    height: 2.5rem;
     color: var(--darkBlue);
     font-size: var(--fontSize-buttons_mobile);
     font-weight: 700;
-    letter-spacing: 1px;
+    letter-spacing: 0.063rem;
     background-color: #e4e4e4;
     border-radius: 0.875rem;
     border: none;
@@ -55,7 +55,7 @@
 
 @media (width >=48rem) {
     .assessment__image {
-        width: 250px;
+        width: 15.625rem;
     }
 }
 
@@ -69,8 +69,8 @@
     }
 }
 
-@media (width >= 1400px) {
+@media (width >=87.5rem) {
     .assessment__image {
-        width: 300px;
+        width: 18.75rem;
     }
 }
