@@ -70,12 +70,12 @@
   gap: 0.2rem;
 }
 
-.learningPathVideoClass-btn {
+.disabled {
   background-color: var(--grayGradient);
   color: var(--darkGrayGradient);
 }
 
-.learningPathVideoClass-btn:hover {
+.enabled {
   background-color: var(--turquoise);
   color: var(--white);
   font-weight: bold;
