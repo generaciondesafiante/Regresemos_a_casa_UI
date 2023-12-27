@@ -1,12 +1,11 @@
 "use client";
-import { FC, Suspense, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { LearningPathProgress } from "../LearningPathProgress/LearningPathProgress";
 import { LearningPathVideoClass } from "../LearningPathVideoClass/LearningPathVideoClass";
 import { LearningPathTitleClass } from "../LearningPathTitleClass/LearningPathTitleClass";
 import { Lesson } from "../../../types/types/lessons.type";
 import { Topic } from "../../../types/types/topic.type";
-import { Loading } from "../Loading/Loading";
 import styles from "./LearningPath.module.css";
 
 export const LearningPath: FC = () => {
@@ -80,13 +79,11 @@ export const LearningPath: FC = () => {
   };
   return (
     <div className={styles["learningPath-container"]}>
-      <Suspense fallback={<Loading />}>
-        <LearningPathVideoClass
-          selectedLesson={selectedLesson}
-          course={selectedTopic}
-          onNextVideoClick={handleNextVideo}
-        />
-      </Suspense>
+      <LearningPathVideoClass
+        selectedLesson={selectedLesson}
+        onNextVideoClick={handleNextVideo}
+      />
+
       <LearningPathTitleClass
         course={selectedTopic}
         selectedLesson={selectedLesson}

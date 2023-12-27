@@ -1,14 +1,13 @@
 "use client";
 import { FC, useEffect, useState } from "react";
 import { useParams } from "next/navigation";
+import ReactPlayer from "react-player/lazy";
 import { Button } from "../../atoms";
 import { TaringStart } from "../TaringStart/TaringStart";
-import { Topic } from "../../../types/types/topic.type";
 import { Lesson } from "../../../types/types/lessons.type";
 import styles from "./LearningPathVideoClass.module.css";
 
 interface LearningPathVideoClassProps {
-  course: Topic | null;
   selectedLesson: Lesson | null;
   onNextVideoClick: (index: string) => void;
 }
@@ -20,8 +19,16 @@ export const LearningPathVideoClass: FC<LearningPathVideoClassProps> = ({
   const { indexVideo } = useParams();
 
   const [userRating, setUserRating] = useState<number>(0);
-  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
-  const [showContent, setShowContent] = useState(false);
+  const [isVideoReady, setIsVideoReady] = useState(false);
+  const [duracionTotal, setDuracionTotal] = useState<number>(0);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVideoReady(true);
+    }, 1000);
+
+    return () => setIsVideoReady(false);
+  }, [selectedLesson]);
 
   const handleRatingChange = (rating: number) => {
     setUserRating(rating);
@@ -37,58 +44,66 @@ export const LearningPathVideoClass: FC<LearningPathVideoClassProps> = ({
     }
   };
 
-  const videoUrl = selectedLesson?.videoUrl;
-  const modifiedUrl = videoUrl?.replace("/play/", "/embed/");
-  const responsiveVideoUrl = `${modifiedUrl}?loop=true&muted=true&preload=true&responsive=true`;
+  const obtenerDuracionFormateada = (length: number) => {
+    length = Math.round(length);
 
-  useEffect(() => {
-    setIsVideoLoaded(false);
-    setTimeout(() => {
-      setIsVideoLoaded(true);
-    }, 80);
-    setTimeout(() => {
-      setShowContent(true);
-    }, 80);
-  }, [selectedLesson]);
+    const horas = Math.floor(length / 3600);
+    const minutosRestantes = Math.floor((length % 3600) / 60);
+    const segundos = length % 60;
+
+    const duracionFormateada =
+      (horas > 0 ? `${horas}:` : "") +
+      (minutosRestantes < 10 ? "0" : "") +
+      `${minutosRestantes}:${segundos < 10 ? "0" : ""}${segundos}`;
+
+    return duracionFormateada;
+  };
+
+  const handleDuration = (duration: number) => {
+    setDuracionTotal(duration);
+  };
 
   return (
     <div className={styles["learningPathVideoClass-container"]}>
       <div className={styles["learningPathVideoClass-content"]}>
-        <div
-          style={{
-            position: "relative",
-            paddingTop: "56.25%",
-          }}
-        >
-          {isVideoLoaded && (
-            <iframe
-              src={responsiveVideoUrl}
-              loading="lazy"
-              className={styles["learningPathVideoClass-video"]}
-              style={{
-                border: "0",
-                position: "absolute",
-                top: 0,
-                height: "100%",
-                width: "100%",
-              }}
-              allow="accelerometer;gyroscope;encrypted-media;picture-in-picture;"
-              allowFullScreen
-            ></iframe>
-          )}
-        </div>
+        {isVideoReady && (
+          <div className={styles["learningPathVideoClass-video"]}>
+            <ReactPlayer
+              url={selectedLesson?.videoUrl}
+              controls={true}
+              playsinline={true}
+              pip={true}
+              stopOnUnmount
+              onDuration={handleDuration}
+              width={"100%"}
+              height={"100%"}
+            />
+          </div>
+        )}
+        {!isVideoReady && (
+          <div className={styles["learningPathVideoClass-skeletonVideo"]}></div>
+        )}
 
         <div
           className={styles["learningPathVideoClass-content_videoInteraction"]}
         >
           <div>
-            <p
-              className={
-                styles["learningPathVideoClass-videoInteraction_title"]
-              }
-            >
-              1H 40MIN
-            </p>
+            {isVideoReady ? (
+              <div>
+                <p
+                  className={
+                    styles["learningPathVideoClass-videoInteraction_title"]
+                  }
+                >
+                  {obtenerDuracionFormateada(duracionTotal)}
+                </p>
+              </div>
+            ) : (
+              <div
+                className={styles["learningPathVideoClass-skeletonTimeVideo"]}
+              ></div>
+            )}
+
             <div
               className={
                 styles["learningPathVideoClass-videoInteraction_containerStar"]

@@ -11,10 +11,28 @@
 .learningPathVideoClass-video {
   width: 18rem;
   height: 10.2rem;
-  border: none;
   border-radius: var(--borderRadius);
 }
 
+.learningPathVideoClass-skeletonVideo {
+  width: 18rem;
+  height: 10.2rem;
+  display: inline-block;
+  background-color: #f0f0f0;
+  border-radius: 0.313rem;
+  animation: pulse 1s ease-in-out;
+}
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
 .learningPathVideoClass-content_videoInteraction {
   display: flex;
   justify-content: space-between;
@@ -27,6 +45,26 @@
   font-size: var(--fontSize-paragraph_mobile);
 }
 
+.learningPathVideoClass-skeletonTimeVideo {
+  width: 6.75rem;
+  height: 1.125rem;
+  display: inline-block;
+  background-color: #f0f0f0;
+  border-radius: 0.313rem;
+  animation: timevideo 3s ease-in-out;
+}
+
+@keyframes timevideo {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
 .learningPathVideoClass-videoInteraction_containerStar {
   display: flex;
   gap: 0.2rem;
@@ -56,6 +94,11 @@
     width: 30rem;
     height: 17rem;
   }
+
+  .learningPathVideoClass-skeletonVideo {
+    width: 30rem;
+    height: 17rem;
+  }
 }
 
 @media (width >=64rem) {
@@ -80,6 +123,10 @@
     width: 40rem;
     height: 22.5rem;
   }
+  .learningPathVideoClass-skeletonVideo {
+    width: 40rem;
+    height: 22.5rem;
+  }
 
   .learningPathVideoClass-videoInteraction_title {
     font-size: var(--fontSize-paragraph_laptop);
@@ -93,6 +140,11 @@
   }
 
   .learningPathVideoClass-video {
+    width: 50rem;
+    height: 28.1rem;
+    border-radius: 0.625rem;
+  }
+  .learningPathVideoClass-skeletonVideo {
     width: 50rem;
     height: 28.1rem;
   }
