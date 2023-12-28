@@ -21,6 +21,7 @@ export const LearningPathVideoClass: FC<LearningPathVideoClassProps> = ({
   const [userRating, setUserRating] = useState<number>(0);
   const [isVideoReady, setIsVideoReady] = useState(false);
   const [duracionTotal, setDuracionTotal] = useState<number>(0);
+  const [enableButton, setEnableButton] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -63,6 +64,15 @@ export const LearningPathVideoClass: FC<LearningPathVideoClassProps> = ({
     setDuracionTotal(duration);
   };
 
+  const enableFollowVideoButton = (progressVideo: any) => {
+    const currentVideo = progressVideo.played;
+    if (currentVideo >= 0.95) {
+      setEnableButton(true);
+    } else {
+      setEnableButton(false);
+    }
+  };
+
   return (
     <div className={styles["learningPathVideoClass-container"]}>
       <div className={styles["learningPathVideoClass-content"]}>
@@ -75,6 +85,7 @@ export const LearningPathVideoClass: FC<LearningPathVideoClassProps> = ({
               pip={true}
               stopOnUnmount
               onDuration={handleDuration}
+              onProgress={enableFollowVideoButton}
               width={"100%"}
               height={"100%"}
             />
@@ -117,7 +128,8 @@ export const LearningPathVideoClass: FC<LearningPathVideoClassProps> = ({
             </div>
           </div>
           <Button
-            className={styles["learningPathVideoClass-btn"]}
+            className={enableButton ? styles["enabled"] : styles["disabled"]}
+            disabled={!enableButton}
             onClick={handleNextVideo}
           >
             SIGUIENTE
