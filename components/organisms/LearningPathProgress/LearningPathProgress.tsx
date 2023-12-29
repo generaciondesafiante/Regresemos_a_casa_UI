@@ -1,43 +1,67 @@
 "use client";
-import { FC } from "react";
-import { useRouter } from "next/navigation";
-import { Course } from "../../../types/types/course.types";
+import { FC, useEffect, useState } from "react";
+import { Topic } from "../../../types/types/topic.type";
+import { useParams } from "next/navigation";
 import styles from "./LearningPathProgress.module.css";
 
 interface LearningPathVideoClassProps {
-  course: Course | null;
-  isSelected: boolean;
+  course: Topic | null;
   onItemClick: (index: number) => void;
 }
 
-export const LearningPahtProgress: FC<LearningPathVideoClassProps> = ({
+export const LearningPathProgress: FC<LearningPathVideoClassProps> = ({
   course,
-  isSelected,
   onItemClick,
 }) => {
-  const router = useRouter();
+  const { lessonId, indexVideo } = useParams();
 
-  if (!course || !course.content) {
+  const [selectedItem, setSelectedItem] = useState<number | null>(null);
+
+  useEffect(() => {
+    const videoId = Array.isArray(lessonId) ? lessonId[0] : lessonId;
+    const videoIndex = parseInt(videoId, 10);
+    if (!isNaN(videoIndex)) {
+      setSelectedItem(videoIndex - 1);
+    }
+  }, [lessonId]);
+
+  const indexVideoString = Array.isArray(indexVideo)
+    ? indexVideo.join(",")
+    : indexVideo;
+
+  const indexVideoNumber = parseInt(indexVideoString, 10);
+
+  if (!course || !course.lessons) {
     return <div></div>;
   }
 
   return (
     <>
-      {course.content.map((lesson, index) => (
+      {course?.lessons.map((lesson, index) => (
         <div
           key={index}
-          className={`${styles["classRoomRoute-subcontent"]} ${
-            isSelected ? styles["selected"] : ""
-          }`}
-          onClick={() => onItemClick(index + 1)}
+          className={`${styles["classRoomRoute-subcontent"]}`}
+          onClick={() => onItemClick && onItemClick(index + 1)}
         >
-          <div className={styles["classRoomRoute-title"]}>{index + 1}</div>
+          <div
+            className={`${styles["classRoomRoute-title"]} ${
+              indexVideoNumber - 1 === index ? styles["selected"] : ""
+            }`}
+          >
+            {index + 1}
+          </div>
 
-          <div className={styles["classRoomRoute-iconCircle"]}>{index + 1}</div>
+          <div
+            className={`${styles["classRoomRoute-iconCircle"]} ${
+              indexVideoNumber - 1 === index ? styles["selected"] : ""
+            }`}
+          >
+            {index + 1}
+          </div>
 
           <div
             className={`${styles["classRoomRoute-line"]} ${
-              index === course.content.length - 1 ? styles["hide"] : ""
+              index === course.lessons.length - 1 ? styles["hide"] : ""
             }`}
           ></div>
         </div>

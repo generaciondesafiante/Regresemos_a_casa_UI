@@ -54,14 +54,6 @@ export const Register = () => {
     event.preventDefault();
     setErrors([]);
 
-    if (password !== password2) {
-      Swal.fire({
-        icon: "error",
-        title: "Contraseñas no coinciden",
-        text: "Las contraseñas ingresadas no coinciden. Por favor, verifica e intenta nuevamente.",
-      });
-      return;
-    }
     const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/new`, {
       method: "POST",
       headers: {
@@ -91,7 +83,7 @@ export const Register = () => {
       if (res.status === 400) {
         Swal.fire({
           icon: "error",
-          title: "Usuario Existente",
+          title: "Usuario existente",
           text: "El usuario con este correo electrónico ya existe. Por favor, utiliza otro correo electrónico.",
         });
       }
@@ -121,14 +113,14 @@ export const Register = () => {
     <>
       <form
         action=""
-        className={styles["form-register"]}
+        className={styles["register-form"]}
         onSubmit={handleSubmit}
       >
         <section className={styles["register-section"]}>
           {condicionalView ? (
             <>
-              <div className={styles["container-inputs_password"]}>
-                <h2 className={`${styles["form-register-title_password"]} `}>
+              <div className={styles["register-form-passwordInputs"]}>
+                <h2 className={`${styles["register-form-passwordTitle"]} `}>
                   Elige tu contraseña
                 </h2>
                 <RegisterFormPassword
@@ -136,7 +128,7 @@ export const Register = () => {
                   setPassword2={setPassword2}
                   password2={password2}
                   password={password}
-                  labelButton={"Crear Cuenta"}
+                  labelButton={"Crear cuenta"}
                   inputColor="var(--white)"
                   borderColor="var(--turquoise)"
                   labelColor="var(--white)"
@@ -146,11 +138,11 @@ export const Register = () => {
             </>
           ) : (
             <>
-              <h2 className={`${styles["form-register-title_info"]} `}>
+              <h2 className={`${styles["register-form-infoTitle"]} `}>
                 <span>¡Bienvenido/a </span>
                 <span>Crea tu cuenta!</span>
               </h2>
-              <div className={styles["container-inputs_info"]}>
+              <div className={styles["register-form_infoInputs"]}>
                 <RegisterFormInformation
                   setLastName={setLastName}
                   setName={setName}
@@ -168,23 +160,21 @@ export const Register = () => {
                 />
               </div>
               <Link
-                className={styles["form-register_loginRedirection"]}
+                className={styles["register-form_loginRedirection"]}
                 href="/loginPage"
               >
                 ¿Ya tienes cuenta?
               </Link>
-              <div className={styles["center-label-in"]}>
-                <Button
-                  className={
-                    showPasswordSection ? styles["enabled"] : styles["disabled"]
-                  }
-                  type="button"
-                  onClick={handlePasswordButtonClick}
-                  disabled={!showPasswordSection}
-                >
-                  <ArrowRightIcon />
-                </Button>
-              </div>
+              <Button
+                className={
+                  showPasswordSection ? styles["register-form_loginRedirection_buttonEnabled"] : styles["register-form_loginRedirection_buttonDisabled"]
+                }
+                type="button"
+                onClick={handlePasswordButtonClick}
+                register-form_loginRedirection_buttonDisabled={!showPasswordSection}
+              >
+                <ArrowRightIcon />
+              </Button>
             </>
           )}
         </section>

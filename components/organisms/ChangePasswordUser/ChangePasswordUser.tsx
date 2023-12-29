@@ -3,11 +3,11 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
-import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import Swal from "sweetalert2";
 import { RegisterFormPassword } from "../Register/RegisterFormPassword/RegisterFormPassword";
-import { Input } from "../../atoms";
+import { ArrowLeftIcon, Button, Input } from "../../atoms";
 import styles from "./ChangePasswordUser.module.css";
+
 interface ValidatePasswordResponse {
   ok: boolean;
   msg: string;
@@ -61,7 +61,7 @@ export const ChangePasswordUser = () => {
         return false;
       }
     } catch (error) {
-      setErrorMessage("Contraseña actual incorrecta.");
+      setErrorMessage("Contraseña actual incorrecta");
       return false;
     }
   };
@@ -94,7 +94,7 @@ export const ChangePasswordUser = () => {
       Swal.fire({
         icon: "success",
         title: "Contraseña modificada",
-        text: "Los cambios en tu perfil han sido guardados exitosamente.",
+        text: "Los cambios en tu perfil han sido guardados exitosamente",
         didClose: () => {
           router.push("/dashboard/profile/changepassword");
         },
@@ -102,7 +102,7 @@ export const ChangePasswordUser = () => {
     } catch (error) {
       Swal.fire(
         "Error",
-        "Ocurrió un error al guardar los cambios. Por favor, intenta nuevamente.",
+        "Ocurrió un error al guardar los cambios. Por favor, intenta nuevamente",
         "error"
       );
     }
@@ -120,13 +120,13 @@ export const ChangePasswordUser = () => {
         await resetSubmitPassword(e);
       }
     } catch (error) {
-      Swal.fire("Error", "Ocurrió un error al validar la contraseña.", "error");
+      Swal.fire("Error", "Ocurrió un error al validar la contraseña", "error");
     }
   };
 
   useEffect(() => {
     if (errorMessage !== "") {
-      Swal.fire("Contraseña incorrecta", errorMessage, "warning");
+      Swal.fire("Contraseña actual incorrecta.", errorMessage, "warning");
     }
   }, [errorMessage]);
   const myLabelColor = "var(--darkBlue-content)";
@@ -135,22 +135,23 @@ export const ChangePasswordUser = () => {
   const myBorderInput = "var(--turquoise)";
 
   return (
-    <div className={styles["container-changePasswrod-profile"]}>
+    <div className={styles["changePasswordUser-container"]}>
       <form
         action=""
-        className={styles["content-modal"]}
+        className={styles["changePasswordUser-modalContainer"]}
         onSubmit={validatePasswordSubmit}
       >
-        <div className={styles["container-arrow-back"]}>
-          <Link
-            href={"/dashboard/profile"}
-            className={styles["link-backProfile"]}
-          >
-            <KeyboardBackspaceIcon />
-            <p>Regresar</p>
-          </Link>
-        </div>
-        <h2 className={styles["title-modal"]}>Cambiar Contraseña</h2>
+        <Link
+          href={"/dashboard/profile"}
+          className={styles["changePasswordUser-returnProfile"]}
+        >
+          <ArrowLeftIcon />
+          <p>Regresar</p>
+        </Link>
+
+        <h2 className={styles["changePasswordUser-title"]}>
+          Cambiar contraseña
+        </h2>
 
         <Input
           htmlForm={"password-change-profile"}
@@ -159,7 +160,7 @@ export const ChangePasswordUser = () => {
           name="currentPassword"
           value={currentPassword}
           onChange={handleCurrentPasswordChange}
-          label={"Contraseña Actual"}
+          label={"Contraseña actual"}
           isRequire={true}
           labelColor={myLabelColor}
           inputColor={myInputColor}
@@ -172,21 +173,18 @@ export const ChangePasswordUser = () => {
           setPassword2={setPassword2}
           password2={password2}
           password={password}
-          colorTextCharacter="var(--blueKing)"
-          labelButton={"Cambiar Contraseña"}
+          colorTextCharacter="var(--darkGray)"
+          labelButton={"Cambiar contraseña"}
           labelColor="var(--darkBlue-content)"
           inputColor={myInputColor}
           buttonColor={myButtonColor}
           borderColor={myBorderInput}
         />
-        <div className={styles["container-button-change"]}>
-          <Link
-            href={"/dashboard/profile"}
-            className={`${styles["form-changePassword-btns"]} ${styles["button-changePassword-danger"]}`}
-          >
-            Cancelar
+          <Link href={"/dashboard/profile"}>
+            <Button className={styles["changePasswordUser-cancelButton"]}>
+              Cancelar
+            </Button>
           </Link>
-        </div>
       </form>
     </div>
   );

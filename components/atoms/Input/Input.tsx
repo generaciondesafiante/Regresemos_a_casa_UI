@@ -53,14 +53,14 @@ export const Input: React.FC<InputProps> = ({
   const inputStyle: CSSProperties = {
     color: inputColor || "transparent",
     border: borderColor
-      ? `0.188rem solid ${borderColor}`
-      : "0.188rem solid var(--white)",
+      ? `var(--border) ${borderColor}`
+      : "var(--border) var(--white)",
   };
   const buttonStyle: CSSProperties = {
     color: buttonColor || "var(--white)",
   };
   return (
-    <div className={styles["form-input-container_inLa"]}>
+    <div className={styles["input-container_inputLabel"]}>
       <input
         id={id}
         name={name}
@@ -69,18 +69,18 @@ export const Input: React.FC<InputProps> = ({
         type={type === "password" ? inputType : type}
         required={isRequire}
         placeholder={placeholder}
-        className={styles["form-input_input"]}
+        className={styles["input-input"]}
         style={{ ...inputStyle }}
       />
       {showToggle && (
         <button
           type="button"
-          className={styles["password-toggle-button"]}
+          className={styles["password-toggle_button"]}
           onClick={togglePasswordVisibility}
           style={{ ...buttonStyle, position: "absolute", right: "-10" }}
         >
           {isPasswordVisible ? (
-            <RemoveRedEyeIcon className={styles["icon"]} />
+            <RemoveRedEyeIcon />
           ) : (
             <VisibilityOffIcon />
           )}
@@ -88,7 +88,7 @@ export const Input: React.FC<InputProps> = ({
       )}
       <label
         htmlFor={htmlForm}
-        className={`${styles["form-input_label"]} ${
+        className={`${styles["input-label"]} ${
           value && value.length > 1 ? styles.active : ""
         }`}
         style={labelStyle}

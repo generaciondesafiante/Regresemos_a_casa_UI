@@ -1,100 +1,135 @@
 "use client";
 import { FC, useEffect, useState } from "react";
-import { useParams, useRouter } from "next/navigation";
-import { FullStarIcon } from "../../atoms/icons/starIcon/FullStarIcon";
-import { EmptyStarIcon } from "../../atoms/icons/starIcon/EmptyStarIcon";
+import { useParams } from "next/navigation";
+import ReactPlayer from "react-player/lazy";
 import { Button } from "../../atoms";
-import { Course } from "../../../types/types/course.types";
+import { TaringStart } from "../TaringStart/TaringStart";
+import { Lesson } from "../../../types/types/lessons.type";
 import styles from "./LearningPathVideoClass.module.css";
 
 interface LearningPathVideoClassProps {
-  course: Course | null;
-}
-interface Video {
-  title: string;
-  description: string;
-  url: string;
-  idVideo: number;
+  selectedLesson: Lesson | null;
+  onNextVideoClick: (index: string) => void;
 }
 
 export const LearningPathVideoClass: FC<LearningPathVideoClassProps> = ({
-  course,
+  selectedLesson,
+  onNextVideoClick,
 }) => {
-  const { idvideo } = useParams();
-  const videoId: string = Array.isArray(idvideo) ? idvideo[0] : idvideo;
+  const { indexVideo } = useParams();
 
-  const [currentVideo, setCurrentVideo] = useState<Video | null>(null);
-  const router = useRouter();
+  const [userRating, setUserRating] = useState<number>(0);
+  const [isVideoReady, setIsVideoReady] = useState(false);
+  const [duracionTotal, setDuracionTotal] = useState<number>(0);
+  const [enableButton, setEnableButton] = useState(false);
 
   useEffect(() => {
-    if (videoId) {
-      const video = course?.content.find(
-        (video) => video.idVideo === parseInt(videoId, 10)
-      );
+    const timer = setTimeout(() => {
+      setIsVideoReady(true);
+    }, 1000);
 
-      if (video) {
-        setCurrentVideo(video);
-      }
-    }
-  }, [course, videoId]);
+    return () => setIsVideoReady(false);
+  }, [selectedLesson]);
+
+  const handleRatingChange = (rating: number) => {
+    setUserRating(rating);
+  };
 
   const handleNextVideo = () => {
-    if (videoId) {
-      const currentIndex =
-        course?.content.findIndex(
-          (video) => video.idVideo === parseInt(videoId, 10)
-        ) ?? -1;
+    if (Array.isArray(indexVideo)) {
+      const firstIndex = indexVideo[0];
 
-      if (
-        currentIndex !== -1 &&
-        currentIndex < (course?.content.length || 0) - 1
-      ) {
-        const nextVideo = course?.content[currentIndex + 1];
-        const nextVideoUrl = `/dashboard/path/course/${course?.id}/${course?.endpoint}/${nextVideo?.idVideo}`;
-        router.push(nextVideoUrl);
-      }
+      onNextVideoClick(firstIndex);
+    } else {
+      onNextVideoClick(indexVideo);
     }
   };
 
-  if (!course || !currentVideo) {
-    return <div></div>;
-  }
+  const obtenerDuracionFormateada = (length: number) => {
+    length = Math.round(length);
+
+    const horas = Math.floor(length / 3600);
+    const minutosRestantes = Math.floor((length % 3600) / 60);
+    const segundos = length % 60;
+
+    const duracionFormateada =
+      (horas > 0 ? `${horas}:` : "") +
+      (minutosRestantes < 10 ? "0" : "") +
+      `${minutosRestantes}:${segundos < 10 ? "0" : ""}${segundos}`;
+
+    return duracionFormateada;
+  };
+
+  const handleDuration = (duration: number) => {
+    setDuracionTotal(duration);
+  };
+
+  const enableFollowVideoButton = (progressVideo: any) => {
+    const currentVideo = progressVideo.played;
+    if (currentVideo >= 0.95) {
+      setEnableButton(true);
+    } else {
+      setEnableButton(false);
+    }
+  };
 
   return (
     <div className={styles["learningPathVideoClass-container"]}>
       <div className={styles["learningPathVideoClass-content"]}>
-        <iframe
-          className={styles["learningPathVideoClass-video"]}
-          src={currentVideo.url}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
-        ></iframe>
+        {isVideoReady && (
+          <div className={styles["learningPathVideoClass-video"]}>
+            <ReactPlayer
+              url={selectedLesson?.videoUrl}
+              controls={true}
+              playsinline={true}
+              pip={true}
+              stopOnUnmount
+              onDuration={handleDuration}
+              onProgress={enableFollowVideoButton}
+              width={"100%"}
+              height={"100%"}
+            />
+          </div>
+        )}
+        {!isVideoReady && (
+          <div className={styles["learningPathVideoClass-skeletonVideo"]}></div>
+        )}
 
         <div
           className={styles["learningPathVideoClass-content_videoInteraction"]}
         >
           <div>
-            <p
-              className={
-                styles["learningPathVideoClass-videoInteraction_title"]
-              }
-            >
-              1H 40MIN
-            </p>
+            {isVideoReady ? (
+              <div>
+                <p
+                  className={
+                    styles["learningPathVideoClass-videoInteraction_title"]
+                  }
+                >
+                  {obtenerDuracionFormateada(duracionTotal)}
+                </p>
+              </div>
+            ) : (
+              <div
+                className={styles["learningPathVideoClass-skeletonTimeVideo"]}
+              ></div>
+            )}
+
             <div
               className={
                 styles["learningPathVideoClass-videoInteraction_containerStar"]
               }
             >
-              <FullStarIcon />
-              <FullStarIcon />
-              <FullStarIcon />
-              <EmptyStarIcon />
-              <EmptyStarIcon />
+              <TaringStart
+                totalStars={5}
+                userRating={userRating}
+                onRatingChange={handleRatingChange}
+              />
             </div>
           </div>
           <Button
-            className={styles["learningPathVideoClass-btn"]}
+            className={enableButton ? styles["enabled"] : styles["disabled"]}
+            disabled={!enableButton}
             onClick={handleNextVideo}
           >
             SIGUIENTE

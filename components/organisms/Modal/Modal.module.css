@@ -1,49 +1,58 @@
 .modalEditProfile-overlay {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 100vw;
   height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: fixed;
   top: 0;
   left: 0;
+  padding: 2rem;
   background-color: var(--darkGrayGradient);
-  padding: 2.4rem;
 }
 
 .modalEditProfile-container {
-  position: relative;
   width: 23rem;
-  padding: 1.2rem;
+  padding: 2rem;
+  position: relative;
   background: var(--white);
-  border-radius: 0.8rem;
-  box-shadow: #64646f33 0px 7px 29px 0px;
+  border-radius: var(--borderRadius);
 }
 
 .modalEditProfile-title {
   padding-bottom: 1rem;
   text-align: left;
-  font-size: 1rem;
-  border-bottom: 0.08rem solid #e8e8e8;
+  font-size: var(--fontSize-subtitles_mobile);
+  border-bottom: 0.08rem solid var(--grayGradient);
   color: var(--darkBlue);
 }
 
 .modalEditProfile-iconClose {
+  width: 1.8rem;
+  height: 1.8rem;
   position: absolute;
   top: 1rem;
   right: 1rem;
-  cursor: pointer;
-  transition: 0.3s ease all;
   color: var(--darkBlue);
+  transition: var(--transition);
+  cursor: pointer;
 }
 
 .modalEditProfile-iconClose:hover {
-  border-radius: 0.5rem;
-  color: var(--turquoise);
-  background-color: var(--transparentBackground);
+  color: var(--red);
 }
-@media (width >= 1024px) {
+
+@media (width >=64rem) {
   .modalEditProfile-container {
-    width: 600px;
+    width: 30rem;
+  }
+
+  .modalEditProfile-title {
+    font-size: var(--fontSize-subtitles_tablet);
+  }
+
+  .modalEditProfile-iconClose {
+    width: 2rem;
+    height: 2rem;
   }
 }
