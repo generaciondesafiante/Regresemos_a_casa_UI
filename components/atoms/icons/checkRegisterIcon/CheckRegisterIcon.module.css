@@ -1,7 +1,7 @@
 .register-check-icon {
   color: var(--turquoise);
   width: 1.3rem;
-  margin: 0 0.6rem;
+  margin: 0 0.5rem;
   background: var(--white);
   border-radius: 80%;
 }
