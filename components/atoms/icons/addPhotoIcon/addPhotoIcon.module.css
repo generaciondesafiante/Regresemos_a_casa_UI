@@ -1,11 +1,9 @@
-.icon-addPhoto {
+.icon-addPhoto {  
     width: 1.5rem;
-    position: relative;
     color: var(--white);
-    top: 0.3rem;
 }
 
-@media (width >=48rem) {
+@media (width >=64rem) {
     .icon-addPhoto {
         width: 1.8rem
     }

@@ -27,8 +27,17 @@
 @media (width >=48rem) {
   .learningPathTitleClass-container {
     padding-left: 7rem;
+    overflow-y: scroll;
   }
 
+  .learningPathTitleClass-container::-webkit-scrollbar {
+    width: 0.4rem;
+  }
+
+  .learningPathTitleClass-container::-webkit-scrollbar-thumb {
+    background-color: var(--darkBlue);
+    border-radius: var(--borderRadius);
+  }
   .learningPathTitleClass-title {
     font-size: var(--fontSize-titles_tablet);
   }

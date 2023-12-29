@@ -47,11 +47,25 @@ export const RegisterFormPassword: FC<RegisterFormPasswordProps> = ({
 
     setPassword(value);
   };
+
   useEffect(() => {
     setFormValid(
-      isSpecialCharValid && isNumberValid && isLengthValid && isLetterValid
+      isSpecialCharValid &&
+        isNumberValid &&
+        isLengthValid &&
+        isLetterValid &&
+        password !== "" &&
+        password2 !== "" &&
+        password === password2
     );
-  }, [isSpecialCharValid, isNumberValid, isLengthValid, isLetterValid]);
+  }, [
+    isSpecialCharValid,
+    isNumberValid,
+    isLengthValid,
+    isLetterValid,
+    password,
+    password2,
+  ]);
   return (
     <>
       <div>
@@ -85,15 +99,15 @@ export const RegisterFormPassword: FC<RegisterFormPasswordProps> = ({
           buttonColor={buttonColor}
           borderColor={borderColor}
         />
-        <div className={styles["content-character_password"]}>
+        <div className={styles["registerFormPassword-characterContainer"]}>
           <PasswordValidation
             isValid={isSpecialCharValid}
-            message="Al menos un caracter especial (- . * : _)"
+            message="Mínimo un caracter especial (- . * : _)"
             colorTextCharacter={colorTextCharacter}
           />
           <PasswordValidation
             isValid={isNumberValid}
-            message="Al menos un número"
+            message="Mínimo un número"
             colorTextCharacter={colorTextCharacter}
           />
           <PasswordValidation
@@ -103,14 +117,18 @@ export const RegisterFormPassword: FC<RegisterFormPasswordProps> = ({
           />
           <PasswordValidation
             isValid={isLetterValid}
-            message="Al menos una letra"
+            message="Mínimo una letra"
             colorTextCharacter={colorTextCharacter}
           />
         </div>
       </div>
-      <div className={styles["register-button_submit-content"]}>
+      <div className={styles["registerFormPassword-containerButton"]}>
         <Button
-          className={isFormValid ? styles["enabled"] : styles["disabled"]}
+          className={
+            isFormValid
+              ? styles["registerFormPassword-buttonEnabled"]
+              : styles["registerFormPassword-buttonDisabled"]
+          }
           type="submit"
           disabled={!isFormValid}
         >

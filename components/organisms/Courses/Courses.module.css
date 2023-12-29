@@ -1,0 +1,40 @@
+.course-container {
+  whidth: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  overflow-x: scroll;
+  align-content: center;
+  padding-bottom: 6rem;
+  background-image: url(https://i.imgur.com/PSLqcjG.png);
+  background-size: 100% 100%;
+}
+.course-container ::-webkit-scrollbar {
+  width: 0.2rem;
+}
+
+.course-container ::-webkit-scrollbar-thumb {
+  background-color: var(--darkBlue);
+  border-radius: var(--borderRadius);
+}
+.card-container {
+  margin-bottom: 0.5rem;
+}
+@media (width >=48rem) {
+  .course-container {
+    margin-left: 1.5rem;
+    display: flex;
+  }
+  .card-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (width >= 64rem) {
+  .card-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
