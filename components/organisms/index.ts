@@ -1,3 +1,7 @@
+export * from './Assessment/AssessmentFinished/AssessmentFinished';
+export * from './Assessment/AssessmentMain/AssessmentMain';
+export * from './Assessment/AssessmentQuestions/AssessmentQuestions';
+export * from './Assessment/AssessmentTitleSubtitleBackground/AssessmentTitleSubtitleBackground';
 export * from './Carousel/Carousel';
 export * from './ChangePasswordUser/ChangePasswordUser';
 export * from './CourseResources/CourseResources';
@@ -21,4 +25,3 @@ export * from './ResetPassword/ResetPassword';
 export * from './ResourcesAndVerses/ResourcesAndVerses';
 export * from './Sidebar/Sidebar';
 export * from './TaringStart/TaringStart';
-export * from './index';

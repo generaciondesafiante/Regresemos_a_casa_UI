@@ -20,7 +20,7 @@ export const Sidebar = () => {
   const links = [
     {
       name: "profile",
-      href: "/dashboard/profile" || "/dashboard/profile/changepassword",
+      href: "/dashboard/profile",
       icon: <ProfileIcon className={styles["sidebar-icon"]} />,
     },
     {
@@ -34,7 +34,7 @@ export const Sidebar = () => {
     },
     {
       name: "path",
-      href: "/dashboard/path",
+      href: "/dashboard/courses",
       icon: <PathIcon className={styles["sidebar-icon"]} />,
     },
     {
@@ -66,7 +66,7 @@ export const Sidebar = () => {
             <Link href={link.href} key={link.name}>
               <div
                 className={`${styles["sidebar-iconContainer"]} ${
-                  pathName === link.href
+                  pathName.startsWith(link.href)
                     ? styles["sidebar-sectionSelected"]
                     : ""
                 }`}
@@ -86,7 +86,11 @@ export const Sidebar = () => {
               <Link href={link.href} key={link.name}>
                 <div
                   className={`${styles["sidebar-iconContainer"]} ${
-                    pathName === link.href
+                    (
+                      link.name === "home"
+                        ? pathName === link.href
+                        : pathName.startsWith(link.href)
+                    )
                       ? styles["sidebar-sectionSelected"]
                       : ""
                   }`}

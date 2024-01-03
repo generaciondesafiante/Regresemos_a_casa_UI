@@ -102,12 +102,12 @@ export const RegisterFormPassword: FC<RegisterFormPasswordProps> = ({
         <div className={styles["registerFormPassword-characterContainer"]}>
           <PasswordValidation
             isValid={isSpecialCharValid}
-            message="Al menos un caracter especial (- . * : _)"
+            message="Mínimo un caracter especial (- . * : _)"
             colorTextCharacter={colorTextCharacter}
           />
           <PasswordValidation
             isValid={isNumberValid}
-            message="Al menos un número"
+            message="Mínimo un número"
             colorTextCharacter={colorTextCharacter}
           />
           <PasswordValidation
@@ -117,7 +117,7 @@ export const RegisterFormPassword: FC<RegisterFormPasswordProps> = ({
           />
           <PasswordValidation
             isValid={isLetterValid}
-            message="Al menos una letra"
+            message="Mínimo una letra"
             colorTextCharacter={colorTextCharacter}
           />
         </div>

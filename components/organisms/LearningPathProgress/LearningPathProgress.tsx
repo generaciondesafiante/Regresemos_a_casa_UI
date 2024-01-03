@@ -1,49 +1,51 @@
 "use client";
 import { FC, useEffect, useState } from "react";
-import { useParams} from "next/navigation";
-import { Course } from "../../../types/types/course.types";
+import { Topic } from "../../../types/types/topic.type";
+import { useParams } from "next/navigation";
 import styles from "./LearningPathProgress.module.css";
 
 interface LearningPathVideoClassProps {
-  course: Course | null;
-
+  course: Topic | null;
   onItemClick: (index: number) => void;
 }
 
-export const LearningPahtProgress: FC<LearningPathVideoClassProps> = ({
+export const LearningPathProgress: FC<LearningPathVideoClassProps> = ({
   course,
-
   onItemClick,
 }) => {
-  const { idvideo } = useParams();
+  const { lessonId, indexVideo } = useParams();
 
   const [selectedItem, setSelectedItem] = useState<number | null>(null);
 
   useEffect(() => {
-    const videoId = Array.isArray(idvideo) ? idvideo[0] : idvideo;
+    const videoId = Array.isArray(lessonId) ? lessonId[0] : lessonId;
     const videoIndex = parseInt(videoId, 10);
     if (!isNaN(videoIndex)) {
       setSelectedItem(videoIndex - 1);
     }
-  }, [idvideo]);
-  if (!course || !course.content) {
+  }, [lessonId]);
+
+  const indexVideoString = Array.isArray(indexVideo)
+    ? indexVideo.join(",")
+    : indexVideo;
+
+  const indexVideoNumber = parseInt(indexVideoString, 10);
+
+  if (!course || !course.lessons) {
     return <div></div>;
   }
 
   return (
     <>
-      {course.content.map((lesson, index) => (
+      {course?.lessons.map((lesson, index) => (
         <div
           key={index}
           className={`${styles["classRoomRoute-subcontent"]}`}
-          onClick={() => {
-            onItemClick(index + 1);
-            setSelectedItem(index);
-          }}
+          onClick={() => onItemClick && onItemClick(index + 1)}
         >
           <div
             className={`${styles["classRoomRoute-title"]} ${
-              selectedItem === index ? styles["selected"] : ""
+              indexVideoNumber - 1 === index ? styles["selected"] : ""
             }`}
           >
             {index + 1}
@@ -51,7 +53,7 @@ export const LearningPahtProgress: FC<LearningPathVideoClassProps> = ({
 
           <div
             className={`${styles["classRoomRoute-iconCircle"]} ${
-              selectedItem === index ? styles["selected"] : ""
+              indexVideoNumber - 1 === index ? styles["selected"] : ""
             }`}
           >
             {index + 1}
@@ -59,7 +61,7 @@ export const LearningPahtProgress: FC<LearningPathVideoClassProps> = ({
 
           <div
             className={`${styles["classRoomRoute-line"]} ${
-              index === course.content.length - 1 ? styles["hide"] : ""
+              index === course.lessons.length - 1 ? styles["hide"] : ""
             }`}
           ></div>
         </div>
