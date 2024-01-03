@@ -154,9 +154,10 @@ export const ChangePasswordUser = () => {
         </h2>
 
         <Input
+          id={"password-change-profile"}
           htmlForm={"password-change-profile"}
           type="password"
-          placeholder=" "
+          placeholder=""
           name="currentPassword"
           value={currentPassword}
           onChange={handleCurrentPasswordChange}
@@ -180,11 +181,11 @@ export const ChangePasswordUser = () => {
           buttonColor={myButtonColor}
           borderColor={myBorderInput}
         />
-          <Link href={"/dashboard/profile"}>
-            <Button className={styles["changePasswordUser-cancelButton"]}>
-              Cancelar
-            </Button>
-          </Link>
+        <Link href={"/dashboard/profile"}>
+          <Button className={styles["changePasswordUser-cancelButton"]}>
+            Cancelar
+          </Button>
+        </Link>
       </form>
     </div>
   );

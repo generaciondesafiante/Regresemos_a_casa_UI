@@ -1,42 +1,41 @@
-.form-input-container_inLa {
+.input-container_inputLabel {
+  display: flex;
+  align-items: center;
   position: relative;
   padding: 0.6rem;
   margin-top: 0.8rem;
-  display: flex;
-  align-items: center;
 }
 
-.password-toggle-button {
+.password-toggle_button {
   position: absolute;
-  right: 1.25rem;
-  top: 50%;
-  transform: translateY(-40%);
-  cursor: pointer;
+  right: 1rem;
   background: none;
   border: none;
+  cursor: pointer;
 }
 
-.form-input_input:not(:placeholder-shown) + .form-input_label,
-.form-input_input:focus + .form-input_label {
+.input-input:not(:placeholder-shown)+.input-label,
+.input-input:focus+.input-label {
   transform: translateY(-1.9rem);
-  transition: 0.5s;
+  transition: var(--transition);
 }
-.form-input_label.active {
+
+.input-label.active {
   transform: translateY(-2.1rem);
-  color: var(--turquoise);
   padding-left: 0rem;
-  font-size: 0.9rem;
+  font-size: var(--fontSize-paragraph_mobile);
 }
-.form-input_label {
+
+.input-label {
   position: absolute;
-  padding: 0.6rem;
   left: 0.5rem;
+  padding: 0.6rem;
   font-size: var(--fontSize-paragraph_mobile);
   transition: var(--transition);
 }
 
-.form-input_input {
-  width: 17rem;
+.input-input {
+  width: 18rem;
   padding: 0.6rem;
   border: none;
   border-radius: var(--borderRadius);
@@ -45,47 +44,48 @@
   font-family: var(--primaryFont);
   font-size: var(--fontSize-paragraph_mobile);
 }
-.form-input_input:not(:placeholder-shown) + .form-input_label,
-.form-input_input:focus + .form-input_label,
-.form-input_input:not(:placeholder-shown) + .form-input_label.active {
-  transform: translateY(-2.1rem);
-  transition: var(--transition);
+
+.input-input:not(:placeholder-shown)+.input-label,
+.input-input:focus+.input-label,
+.input-input:not(:placeholder-shown)+.input-label.active {
   padding-left: 0;
   font-size: var(--fontSize-paragraph_mobile);
+  transform: translateY(-2.1rem);
+  transition: var(--transition);
 }
 
-.form-input_input:focus + .form-input_label {
-  transform: translateY(-2.1rem);
+.input-input:focus+.input-label {
   padding-left: 0rem;
   font-size: var(--fontSize-subtitles_mobile);
+  transform: translateY(-2.1rem);
 }
 
-.form-input_input:not(:placeholder-shown) + .form-input_label {
+.input-input:not(:placeholder-shown)+.input-label {
   transform: translateY(-1.9rem);
   transition: var(--transition);
 }
 
-@media (min-width: 38rem) {
-  .form-input_input {
+@media (width >=38rem) {
+  .input-input {
     width: 20rem;
   }
 }
 
 @media (width >=64rem) {
-  .form-input_label {
+  .input-label {
     font-size: var(--fontSize-paragraph_laptop);
   }
 
-  .form-input_input {
+  .input-input {
     width: 28rem;
     font-size: var(--fontSize-paragraph_laptop);
   }
 
-  .form-input_input:focus + .form-input_label {
+  .input-input:focus+.input-label {
     font-size: var(--fontSize-trasitionLabel_laptop);
   }
 
-  .form-input_input:not(:placeholder-shown) + .form-input_label {
+  .input-input:not(:placeholder-shown)+.input-label {
     transform: translateY(-2.1rem);
   }
 }

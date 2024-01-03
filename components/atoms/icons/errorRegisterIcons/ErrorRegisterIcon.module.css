@@ -9,5 +9,6 @@
 @media (width >=48rem) {
   .errorRegisterIcon {
     width: 1.5rem;
+    margin: 0 1rem 0 0.8rem;
   }
 }

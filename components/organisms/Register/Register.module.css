@@ -1,5 +1,5 @@
-.form-register {
-  height: 100%;
+.register-form {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -9,13 +9,15 @@
   background-size: cover;
   padding-bottom: 2rem;
 }
+
 .register-section {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.container-inputs_password {
+
+.register-form-passwordInputs {
   height: calc(100vh - 3.75rem);
   margin-top: 3.75rem;
   display: flex;
@@ -23,17 +25,20 @@
   flex-direction: column;
   align-items: center;
 }
-.form-register-title_password {
+
+.register-form-passwordTitle {
   color: var(--white);
   font-size: var(--fontSize-superTitles_mobile);
+  margin-bottom: 2rem;
 }
-.container-inputs_info {
+
+.register-form_infoInputs {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.form-register-title_info {
+.register-form-infoTitle {
   width: 15rem;
   text-align: center;
   align-self: center;
@@ -43,7 +48,7 @@
   font-size: var(--fontSize-superTitles_mobile);
 }
 
-.form-register_loginRedirection {
+.register-form_loginRedirection {
   text-align: center;
   align-self: center;
   margin: 1.5rem 0 1.5rem 0;
@@ -52,68 +57,68 @@
   font-size: var(--fontSize-paragraph_mobile);
 }
 
-.form-register_loginRedirection:hover {
+.register-form_loginRedirection:hover {
   text-decoration: underline;
   color: var(--turquoise);
 }
 
-.disabled {
-  text-align: center;
+.register-form_loginRedirection_buttonDisabled {
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
   border-radius: 50%;
-  width: 4.375rem;
-  height: 4.375rem;
-  background-color: var(--darkGray);
-  color: var(--white);
+  color: var(--darkGrayGradient);
+  background-color: var(--grayGradient);
 }
-.enabled {
+
+.register-form_loginRedirection_buttonDisabled:hover {
+  transform: none;
+}
+
+.register-form_loginRedirection_buttonEnabled {
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
   border-radius: 50%;
-  width: 4.375rem;
-  height: 4.375rem;
-  margin-top: 0.8rem;
   color: var(--white);
   background-color: var(--turquoise);
 }
-.enabled:hover {
-  font-weight: bold;
+
+.register-form_loginRedirection_buttonEnabled:hover {
   color: var(--turquoise);
   background-color: var(--white);
 }
 
-@media (min-width: 38rem) {
-  .form-register {
-    height: 100vh;
-  }
+@media (width >=38rem) {
 
-  .container-inputs_info {
-    height: calc(100% - 5.125rem);
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .form-register-title_password,
-  .form-register-title_info {
+  .register-form-passwordTitle,
+  .register-form-infoTitle {
     font-size: var(--fontSize-superTitles_tablet);
   }
 }
 
 @media (width >=64rem) {
-  .form-register {
-    height: 100vh;
-  }
 
-  .form-register-title_password,
-  .form-register-title_info {
+  .register-form-passwordTitle,
+  .register-form-infoTitle {
     font-size: var(--fontSize-superTitles_laptop);
   }
-  .form-register-title_info {
+
+  .register-form-infoTitle {
     width: 25.75rem;
   }
-  .container-inputs_info {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+
+  .register-form_loginRedirection {
+    font-size: var(--fontSize-paragraph_laptop);
   }
 
-  .form-register_loginRedirection {
-    font-size: var(--fontSize-paragraph_laptop);
+  .register-form_loginRedirection_buttonDisabled,
+  .register-form_loginRedirection_buttonEnabled {
+    display: flex;
+    align-items: center;
+    width: 4rem;
+    height: 4rem;
   }
 }
