@@ -6,11 +6,13 @@
   height: 100vh;
   text-align: center;
 }
+
 .icon-404 {
-  width: 250px;
-  height: 200px;
+  width: 15.625rem;
+  height: 12.5rem;
   overflow-x: hidden;
 }
+
 .text-notFound {
   font-size: 2rem;
   margin-bottom: 1rem;
@@ -33,12 +35,13 @@
   color: var(--turquoise);
 }
 
-@media (width >= 720px) {
+@media (width >=45rem) {
   .icon-404 {
-    width: 380px;
-    height: 380px;
+    width: 23.75rem;
+    height: 23.75rem;
   }
+
   /* .continer-text-notFound {
-    margin-top: -60px;
+    margin-top: -3.75rem;
   } */
 }
