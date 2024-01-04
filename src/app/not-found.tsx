@@ -1,28 +1,24 @@
 import Link from "next/link";
-import Image from "next/image";
-import icon404 from "../../public/404-2.svg";
 import styles from "./(styles)/404.module.css";
+import { Button } from "../../components/atoms/Button/Button";
 
 const NotFoundPage = () => {
   return (
     <>
       <div className={styles["container"]}>
-        <Image
-          height={500}
-          width={500}
-          alt="Image 404"
-          src={icon404}
-          className={styles["icon-404"]}
+        <img
+          className={styles["not-found_img"]}
+          src="https://i.imgur.com/q09T4ke.png"
+          alt="Imagen de un error 404"
         />
-        {/* <div className={styles["text-notFound"]}>404 - Página no encontrada</div> */}
-        <div className={styles["continer-text-notFound"]}>
-          <p className={styles["paragraf-notFound"]}>
-            La página que estás buscando no existe.
-          </p>
-          <Link href="/" className={styles["link-home_notFound"]}>
-            Volver a la página de inicio
+        <p className={styles["not-found_paragraph"]}>
+          La página que estás buscando no existe, <span>vuelve a casa</span>
+        </p>
+        <Button className={styles["not-found_button_LinkHome"]}>
+          <Link href="/" className={styles["not-found_linkHome"]}>
+            Ir a inicio
           </Link>
-        </div>
+        </Button>
       </div>
     </>
   );
