@@ -44,8 +44,8 @@ export const Courses = () => {
   };
 
   return (
-    <div className={styles["course-container"]}>
-      <div className={styles["card-container"]}>
+    <div className={styles["courses-container"]}>
+      <div className={styles["courses-cardContainer"]}>
         {courses.map((course) => (
           <div key={course._id}>
             <Card
