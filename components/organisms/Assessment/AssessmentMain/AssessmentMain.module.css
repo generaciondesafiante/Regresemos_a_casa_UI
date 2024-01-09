@@ -43,6 +43,10 @@
 }
 
 @media (width >=48rem) {
+    .assessment-questions_container {
+        padding-left: 5rem;
+    }
+
     .assessment-image {
         width: 16rem;
     }
