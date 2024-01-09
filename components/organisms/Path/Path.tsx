@@ -64,28 +64,32 @@ export const Path = () => {
         {courses.map((course, courseIndex) => (
           <div key={courseIndex} className={styles["path-content"]}>
             {course.topics.map((topic, topicIndex) => (
-              <div key={topicIndex} className={styles["path-border"]}>
-                {topicIndex === 0 ? (
-                  <FlagStartIcon
-                    className={`${styles["path-flagIcon"]} ${styles["path-flagIcon_start"]}`}
-                  />
-                ) : (
-                  ""
-                )}
-                {course.topics.length - 1 === topicIndex ? (
-                  <FlagEndIcon
-                    className={`${styles["path-flagIcon"]} ${styles["path-flagIcon_end"]}`}
-                  />
-                ) : null}
+              <div key={topicIndex} className={styles["path-topicContainer"]}>
+                <div className={styles["path-border"]}>
+                  {topicIndex === 0 ? (
+                    <FlagStartIcon
+                      className={`${styles["path-flagIcon"]} ${styles["path-flagIcon_start"]}`}
+                    />
+                  ) : (
+                    ""
+                  )}
+                  {course.topics.length - 1 === topicIndex ? (
+                    <FlagEndIcon
+                      className={`${styles["path-flagIcon"]} ${styles["path-flagIcon_end"]}`}
+                    />
+                  ) : null}
 
-                <button
-                  onClick={() => handleUrlId(topic)}
-                  className={styles["path-button"]}
-                >
-                  <IconBxLock />
-                </button>
+                  <button
+                    onClick={() => handleUrlId(topic)}
+                    className={styles["path-button"]}
+                  >
+                    <IconBxLock />
+                  </button>
 
-                <p className={styles["path-CourseTitle"]}>{topic.topicName}</p>
+                </div>
+                  <p className={styles["path-CourseTitle"]}>
+                    {topic.topicName}
+                  </p>
               </div>
             ))}
           </div>
