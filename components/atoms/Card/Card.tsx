@@ -11,17 +11,13 @@ export const Card: FC<CardProps> = ({ title, onNextVideoClick }) => {
   return (
     <>
       <div className={styles["card-container"]}>
-        <div className={styles["card-content"]}>
-          <h5 className={styles["card-title"]}>{title}</h5>
-        </div>
-        <div className={styles["card-button_vontainer"]}>
-          <Button
-            className={styles["card-button"]}
-            onClick={() => onNextVideoClick()}
-          >
-            Ver curso
-          </Button>
-        </div>
+        <h2 className={styles["card-title"]}>{title}</h2>
+        <Button
+          className={styles["card-button"]}
+          onClick={() => onNextVideoClick()}
+        >
+          Ver curso
+        </Button>
       </div>
     </>
   );

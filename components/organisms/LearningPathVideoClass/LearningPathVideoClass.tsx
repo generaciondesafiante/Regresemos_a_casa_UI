@@ -132,7 +132,7 @@ export const LearningPathVideoClass: FC<LearningPathVideoClassProps> = ({
             disabled={!enableButton}
             onClick={handleNextVideo}
           >
-            SIGUIENTE
+            Siguiente
           </Button>
         </div>
       </div>
