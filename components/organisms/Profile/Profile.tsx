@@ -37,20 +37,21 @@ export const Profile: FC<Props> = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [file, setFile] = useState<File | null>(null);
+  const [shouldSaveFile, setShouldSaveFile] = useState(false);
 
   const [formData, setFormData] = useState(() => {
     const storedData = getLocalStorageItem("formData");
     return storedData
       ? JSON.parse(storedData)
       : {
-          name: session?.user?.name ?? "",
-          lastname: session?.user?.lastname ?? "",
-          email: session?.user?.email ?? "",
-          country: session?.user?.country ?? "",
-          city: session?.user?.city ?? "",
-          phone: session?.user?.phone ?? "",
-          image: session?.user?.image ?? "",
-        };
+        name: session?.user?.name ?? "",
+        lastname: session?.user?.lastname ?? "",
+        email: session?.user?.email ?? "",
+        country: session?.user?.country ?? "",
+        city: session?.user?.city ?? "",
+        phone: session?.user?.phone ?? "",
+        image: session?.user?.image ?? "",
+      };
   });
 
   useEffect(() => {
@@ -65,30 +66,17 @@ export const Profile: FC<Props> = () => {
   };
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target?.files;
-    if (files && files.length > 0) {
-      try {
-        const id = session?.user?.uid;
 
-        if (id) {
-          const result = await uploadFile(files[0], id);
+    const files = e.target?.files ?? [];
 
-          setFormData((formData: {}) => ({
-            ...formData,
-            image: result,
-          }));
-
-          setFile(files[0]);
-        } else {
-          console.error("ID is undefined");
-        }
-      } catch (error) {
-        console.log(error);
-      }
+    if (files.length > 0) {
+      setFile(files[0]);
     }
   };
 
-  const handleSaveChanges = async () => {
+  const handleSaveChanges = async (e?: React.FormEvent<HTMLFormElement>) => {
+    e?.preventDefault();
+
     try {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/edit-profile/${session?.user?.uid}`,
@@ -101,28 +89,56 @@ export const Profile: FC<Props> = () => {
         }
       );
 
-      if (response.ok) {
-        if (Swal && typeof Swal.fire === "function") {
-          const swalOptions: SweetAlertOptions = {
-            icon: "success",
-            title: "Datos actualizados correctamente",
-            text: "Dato/s actualizados",
-          };
-          Swal.fire(swalOptions);
-        }
-      } else {
-        if (Swal && typeof Swal.fire === "function") {
-          const swalOptions: SweetAlertOptions = {
-            icon: "success",
-            title: "No se han actualizado correctamente los datos",
-            text: "No se actualizaron los datos",
-          };
-          Swal.fire(swalOptions);
-        }
+      const isSuccess = response.ok;
+
+      if (Swal && typeof Swal.fire === "function") {
+        const swalOptions: SweetAlertOptions = {
+          icon: isSuccess ? "success" : "error",
+          title: isSuccess ? "Datos actualizados correctamente" : "Error al actualizar los datos",
+          text: isSuccess ? "Dato/s actualizados" : "No se actualizaron los datos",
+        };
+        Swal.fire(swalOptions);
       }
+
+      return isSuccess;
     } catch (error) {
       console.error("Error al actualizar el usuario:", error);
+      return false;
     }
+  };
+
+  const handleSaveChangesAndCloseModal = async () => {
+    if (file) {
+      try {
+        const id = session?.user?.uid;
+
+        if (id) {
+          const result = await uploadFile(file, id);
+
+          setFormData((formData: {}) => ({
+            ...formData,
+            image: result,
+          }));
+          setShouldSaveFile(true);
+        } else {
+          console.error("ID is undefined");
+        }
+      } catch (error) {
+        console.error("Error en handleFileChange:", error);
+      }
+    }
+
+    if (shouldSaveFile) {
+      const saveSuccess = await handleSaveChanges();
+      setShouldSaveFile(false);
+
+      if (saveSuccess) {
+        setIsModalOpen(false);
+      }
+    } else {
+      setIsModalOpen(false);
+    }
+    setFile(null)
   };
 
   return (
@@ -144,7 +160,9 @@ export const Profile: FC<Props> = () => {
           <div>
             <ModalEditPhotoProfile
               openModalProfile={isModalOpen}
+              onSaveChangesAndCloseModal={handleSaveChangesAndCloseModal}
               closeModalProfile={() => {
+                setFile(null)
                 setIsModalOpen(false);
               }}
               title="Elegir foto de perfil"
@@ -165,7 +183,9 @@ export const Profile: FC<Props> = () => {
                     type="file"
                     accept="image/*"
                     className={styles["profile-modalUploadPhoto_input"]}
-                    onClick={(e) => e.stopPropagation()}
+                    onClick={(e) => {
+                      e.stopPropagation()
+                    }}
                     onChange={(e) => {
                       handleFileChange(e);
                       setFile(e.target.files![0]);
@@ -173,10 +193,12 @@ export const Profile: FC<Props> = () => {
                   />
                 </Button>
                 <Button
-                  type="submit"
-                  className={
-                    styles["profile-modalUploadPhoto_buttonSaveChange"]
-                  }
+                  type="button"
+                  className={styles["profile-modalUploadPhoto_buttonSaveChange"]}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleSaveChangesAndCloseModal();
+                  }}
                 >
                   Guardar cambios
                 </Button>
