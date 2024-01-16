@@ -162,7 +162,7 @@ export const Profile: FC<Props> = () => {
               openModalProfile={isModalOpen}
               onSaveChangesAndCloseModal={handleSaveChangesAndCloseModal}
               closeModalProfile={() => {
-                setFile(null)
+                setFile(null);
                 setIsModalOpen(false);
               }}
               title="Elegir foto de perfil"
@@ -184,7 +184,7 @@ export const Profile: FC<Props> = () => {
                     accept="image/*"
                     className={styles["profile-modalUploadPhoto_input"]}
                     onClick={(e) => {
-                      e.stopPropagation()
+                      e.stopPropagation();
                     }}
                     onChange={(e) => {
                       handleFileChange(e);
@@ -194,7 +194,9 @@ export const Profile: FC<Props> = () => {
                 </Button>
                 <Button
                   type="button"
-                  className={styles["profile-modalUploadPhoto_buttonSaveChange"]}
+                  className={
+                    styles["profile-modalUploadPhoto_buttonSaveChange"]
+                  }
                   onClick={(e) => {
                     e.preventDefault();
                     handleSaveChangesAndCloseModal();
@@ -339,7 +341,7 @@ export const Profile: FC<Props> = () => {
               >
                 Editar perfil
               </Button>
-              <Link href={"/dashboard/profile/changepassword"} >
+              <Link href={"/dashboard/profile/changepassword"}>
                 <Button className={styles["profile-buttons"]}>
                   Cambiar contraseña
                 </Button>
