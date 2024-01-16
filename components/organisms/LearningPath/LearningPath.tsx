@@ -7,16 +7,20 @@ import { LearningPathTitleClass } from "../LearningPathTitleClass/LearningPathTi
 import { Lesson } from "../../../types/types/lessons.type";
 import { Topic } from "../../../types/types/topic.type";
 import styles from "./LearningPath.module.css";
+import { useSession } from "next-auth/react";
 
 export const LearningPath: FC = () => {
   const { courseName, lessonId, tema, courseId } = useParams();
+  const { data: session } = useSession();
+  const userId = session?.user.uid;
 
   const router = useRouter();
 
   const [selectedTopic, setSelectedTopic] = useState<Topic | null>(null);
   const [selectedLesson, setSelectedLesson] = useState<Lesson | null>(null);
+  const [courseProgress, setCourseProgress] = useState<any[]>([]);
   const [viewVideo, setViewVideo] = useState(false);
-  console.log(selectedLesson, selectedTopic);
+  console.log(selectedLesson?._id);
   console.log(viewVideo);
   useEffect(() => {
     const fetchData = async () => {
@@ -47,6 +51,74 @@ export const LearningPath: FC = () => {
       fetchData();
     }
   }, [lessonId]);
+  useEffect(() => {
+    const sendVideoStatus = async () => {
+      console.log(viewVideo);
+      if (viewVideo && selectedTopic && selectedLesson) {
+        try {
+          const response = await fetch(
+            `${process.env.NEXT_PUBLIC_BACKEND_URL}/course/updateVideoStatus/${userId}/${courseId}/${selectedTopic._id}/${selectedLesson?._id}/${selectedLesson?.videoId}`,
+            {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ viewVideo: true }),
+            }
+          );
+
+          if (response.ok) {
+            // Actualizar el estado del componente u otras acciones necesarias
+            console.log("Video status enviado correctamente");
+          } else {
+            // Manejar errores de la respuesta del servidor
+            console.error(
+              "Error al enviar el estado del video:",
+              response.statusText
+            );
+          }
+        } catch (error) {
+          // Manejar errores de la solicitud fetch
+          console.error("Error al realizar la solicitud fetch:", error);
+        }
+      }
+    };
+
+    sendVideoStatus();
+  }, [viewVideo, selectedTopic, selectedLesson, userId, courseId]);
+
+  useEffect(() => {
+    const userInformacion = async () => {
+      try {
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/userinformations`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ id: userId }),
+          }
+        );
+
+        if (response.ok) {
+          const dataUser = await response.json();
+
+          if (dataUser.CourseProgress && dataUser.CourseProgress.length > 0) {
+            setCourseProgress(dataUser.CourseProgress);
+          }
+        } else {
+          console.error(
+            "Error al obtener la información del usuario:",
+            response.statusText
+          );
+        }
+      } catch (error) {
+        console.error("Error al realizar la solicitud fetch:", error);
+      }
+    };
+    userInformacion();
+  }, [userId]);
 
   const handleItemClick = (index: number) => {
     const indexTopic = index;
@@ -84,6 +156,8 @@ export const LearningPath: FC = () => {
         selectedLesson={selectedLesson}
         setViewVideo={setViewVideo}
         onNextVideoClick={handleNextVideo}
+        courseProgress={courseProgress}
+        selectedTopic={selectedTopic}
       />
 
       <LearningPathTitleClass
