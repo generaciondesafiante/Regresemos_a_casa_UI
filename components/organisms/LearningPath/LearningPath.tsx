@@ -14,9 +14,10 @@ export const LearningPath: FC = () => {
   const router = useRouter();
 
   const [selectedTopic, setSelectedTopic] = useState<Topic | null>(null);
-
   const [selectedLesson, setSelectedLesson] = useState<Lesson | null>(null);
-
+  const [viewVideo, setViewVideo] = useState(false);
+  console.log(selectedLesson, selectedTopic);
+  console.log(viewVideo);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -81,6 +82,7 @@ export const LearningPath: FC = () => {
     <div className={styles["learningPath-container"]}>
       <LearningPathVideoClass
         selectedLesson={selectedLesson}
+        setViewVideo={setViewVideo}
         onNextVideoClick={handleNextVideo}
       />
 
