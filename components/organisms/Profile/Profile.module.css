@@ -93,7 +93,20 @@
 .profile-buttons:hover {
   background-color: var(--darkBlue);
 }
-
+.profile-container_previewImage {
+  width: 7.5rem;
+  height: 7.5rem;
+  position: relative;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 50%;
+}
+.profile-user_previewImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
 /* "Información personal" */
 .profile-container_info {
   display: flex;
@@ -191,6 +204,11 @@
     flex-direction: row;
   }
 
+  .profile-container_previewImage {
+    width: 9.5rem;
+    height: 9.5rem;
+  }
+
   /* "Edit Information" */
   .profile-content_editInformation {
     width: 19rem;
@@ -236,6 +254,10 @@
     width: 12rem;
   }
 
+  .profile-container_previewImage {
+    width: 12.5rem;
+    height: 12.5rem;
+  }
   /* "Información personal" */
   .profile-container_info {
     padding-top: 2rem;
@@ -254,7 +276,6 @@
 
   .profile-editInformation_input {
     font-size: var(--fontSize-paragraph_laptop);
-
   }
 
   .profile-info_personalInformation {

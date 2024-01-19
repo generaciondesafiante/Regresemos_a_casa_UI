@@ -38,20 +38,21 @@ export const Profile: FC<Props> = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [file, setFile] = useState<File | null>(null);
   const [shouldSaveFile, setShouldSaveFile] = useState(false);
+  const [previewImage, setPreviewImage] = useState<string | null>(null);
 
   const [formData, setFormData] = useState(() => {
     const storedData = getLocalStorageItem("formData");
     return storedData
       ? JSON.parse(storedData)
       : {
-        name: session?.user?.name ?? "",
-        lastname: session?.user?.lastname ?? "",
-        email: session?.user?.email ?? "",
-        country: session?.user?.country ?? "",
-        city: session?.user?.city ?? "",
-        phone: session?.user?.phone ?? "",
-        image: session?.user?.image ?? "",
-      };
+          name: session?.user?.name ?? "",
+          lastname: session?.user?.lastname ?? "",
+          email: session?.user?.email ?? "",
+          country: session?.user?.country ?? "",
+          city: session?.user?.city ?? "",
+          phone: session?.user?.phone ?? "",
+          image: session?.user?.image ?? "",
+        };
   });
 
   useEffect(() => {
@@ -66,11 +67,13 @@ export const Profile: FC<Props> = () => {
   };
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-
     const files = e.target?.files ?? [];
 
     if (files.length > 0) {
-      setFile(files[0]);
+      const selectedFile = files[0];
+      setFile(selectedFile);
+      const imageUrl = URL.createObjectURL(selectedFile);
+      setPreviewImage(imageUrl);
     }
   };
 
@@ -94,8 +97,12 @@ export const Profile: FC<Props> = () => {
       if (Swal && typeof Swal.fire === "function") {
         const swalOptions: SweetAlertOptions = {
           icon: isSuccess ? "success" : "error",
-          title: isSuccess ? "Datos actualizados correctamente" : "Error al actualizar los datos",
-          text: isSuccess ? "Dato/s actualizados" : "No se actualizaron los datos",
+          title: isSuccess
+            ? "Datos actualizados correctamente"
+            : "Error al actualizar los datos",
+          text: isSuccess
+            ? "Dato/s actualizados"
+            : "No se actualizaron los datos",
         };
         Swal.fire(swalOptions);
       }
@@ -114,7 +121,6 @@ export const Profile: FC<Props> = () => {
 
         if (id) {
           const result = await uploadFile(file, id);
-
           setFormData((formData: {}) => ({
             ...formData,
             image: result,
@@ -138,7 +144,7 @@ export const Profile: FC<Props> = () => {
     } else {
       setIsModalOpen(false);
     }
-    setFile(null)
+    setFile(null);
   };
 
   return (
@@ -163,6 +169,7 @@ export const Profile: FC<Props> = () => {
               onSaveChangesAndCloseModal={handleSaveChangesAndCloseModal}
               closeModalProfile={() => {
                 setFile(null);
+                setPreviewImage(null);
                 setIsModalOpen(false);
               }}
               title="Elegir foto de perfil"
@@ -171,6 +178,15 @@ export const Profile: FC<Props> = () => {
                 onSubmit={handleSaveChanges}
                 className={styles["profile-container_modalUploadPhoto"]}
               >
+                {previewImage ? (
+                  <div className={styles["profile-container_previewImage"]}>
+                    <img
+                      src={previewImage}
+                      alt="Imagen de perfil"
+                      className={styles["profile-user_previewImage"]}
+                    />
+                  </div>
+                ) : null}
                 <Button
                   className={
                     styles["profile-modalUploadPhoto_buttonUploadPhoto"]
