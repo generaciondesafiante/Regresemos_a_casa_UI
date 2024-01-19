@@ -1,5 +1,6 @@
 "use client";
 import { FC, useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
 import { useParams, useRouter } from "next/navigation";
 import { LearningPathProgress } from "../LearningPathProgress/LearningPathProgress";
 import { LearningPathVideoClass } from "../LearningPathVideoClass/LearningPathVideoClass";
@@ -10,12 +11,14 @@ import styles from "./LearningPath.module.css";
 
 export const LearningPath: FC = () => {
   const { courseName, lessonId, tema, courseId } = useParams();
-
   const router = useRouter();
+  const { data: session } = useSession();
+  const userId = session?.user.uid;
 
   const [selectedTopic, setSelectedTopic] = useState<Topic | null>(null);
-
   const [selectedLesson, setSelectedLesson] = useState<Lesson | null>(null);
+  const [courseProgress, setCourseProgress] = useState<any[]>([]);
+  const [viewVideo, setViewVideo] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -46,6 +49,62 @@ export const LearningPath: FC = () => {
       fetchData();
     }
   }, [lessonId]);
+
+  useEffect(() => {
+    const sendVideoStatus = async () => {
+      if (viewVideo && selectedTopic && selectedLesson) {
+        try {
+          const response = await fetch(
+            `${process.env.NEXT_PUBLIC_BACKEND_URL}/course/updateVideoStatus/${userId}/${courseId}/${selectedTopic._id}/${selectedLesson?._id}/${selectedLesson?.videoId}`,
+            {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ viewVideo: true }),
+            }
+          );
+        } catch (error) {
+          console.error("Error al realizar la solicitud fetch:", error);
+        }
+      }
+    };
+
+    sendVideoStatus();
+  }, [viewVideo, selectedTopic, selectedLesson, userId, courseId]);
+
+  useEffect(() => {
+    const userInformacion = async () => {
+      try {
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/userinformations`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ id: userId }),
+          }
+        );
+
+        if (response.ok) {
+          const dataUser = await response.json();
+
+          if (dataUser.CourseProgress && dataUser.CourseProgress.length > 0) {
+            setCourseProgress(dataUser.CourseProgress);
+          }
+        } else {
+          console.error(
+            "Error al obtener la información del usuario:",
+            response.statusText
+          );
+        }
+      } catch (error) {
+        console.error("Error al realizar la solicitud fetch:", error);
+      }
+    };
+    userInformacion();
+  }, [userId]);
 
   const handleItemClick = (index: number) => {
     const indexTopic = index;
@@ -81,7 +140,10 @@ export const LearningPath: FC = () => {
     <div className={styles["learningPath-container"]}>
       <LearningPathVideoClass
         selectedLesson={selectedLesson}
+        setViewVideo={setViewVideo}
         onNextVideoClick={handleNextVideo}
+        courseProgress={courseProgress}
+        selectedTopic={selectedTopic}
       />
 
       <LearningPathTitleClass

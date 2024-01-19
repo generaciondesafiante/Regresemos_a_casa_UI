@@ -1,5 +1,6 @@
 export interface Topic {
   topicName: string;
+  _id: string;
   lessons: Array<{
     videoId: string;
     videoName: string;
