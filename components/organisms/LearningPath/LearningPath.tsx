@@ -1,5 +1,6 @@
 "use client";
 import { FC, useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
 import { useParams, useRouter } from "next/navigation";
 import { LearningPathProgress } from "../LearningPathProgress/LearningPathProgress";
 import { LearningPathVideoClass } from "../LearningPathVideoClass/LearningPathVideoClass";
@@ -7,21 +8,18 @@ import { LearningPathTitleClass } from "../LearningPathTitleClass/LearningPathTi
 import { Lesson } from "../../../types/types/lessons.type";
 import { Topic } from "../../../types/types/topic.type";
 import styles from "./LearningPath.module.css";
-import { useSession } from "next-auth/react";
 
 export const LearningPath: FC = () => {
   const { courseName, lessonId, tema, courseId } = useParams();
+  const router = useRouter();
   const { data: session } = useSession();
   const userId = session?.user.uid;
-
-  const router = useRouter();
 
   const [selectedTopic, setSelectedTopic] = useState<Topic | null>(null);
   const [selectedLesson, setSelectedLesson] = useState<Lesson | null>(null);
   const [courseProgress, setCourseProgress] = useState<any[]>([]);
   const [viewVideo, setViewVideo] = useState(false);
-  console.log(selectedLesson?._id);
-  console.log(viewVideo);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -51,9 +49,9 @@ export const LearningPath: FC = () => {
       fetchData();
     }
   }, [lessonId]);
+
   useEffect(() => {
     const sendVideoStatus = async () => {
-      console.log(viewVideo);
       if (viewVideo && selectedTopic && selectedLesson) {
         try {
           const response = await fetch(
@@ -66,19 +64,7 @@ export const LearningPath: FC = () => {
               body: JSON.stringify({ viewVideo: true }),
             }
           );
-
-          if (response.ok) {
-            // Actualizar el estado del componente u otras acciones necesarias
-            console.log("Video status enviado correctamente");
-          } else {
-            // Manejar errores de la respuesta del servidor
-            console.error(
-              "Error al enviar el estado del video:",
-              response.statusText
-            );
-          }
         } catch (error) {
-          // Manejar errores de la solicitud fetch
           console.error("Error al realizar la solicitud fetch:", error);
         }
       }

@@ -23,9 +23,7 @@ export const LearningPathVideoClass: FC<LearningPathVideoClassProps> = ({
   courseProgress,
   selectedTopic,
 }) => {
-  console.log(selectedTopic, "info topic");
   const { indexVideo, courseId } = useParams();
-  console.log(courseProgress);
 
   const [userRating, setUserRating] = useState<number>(0);
   const [isVideoReady, setIsVideoReady] = useState(false);
@@ -78,22 +76,17 @@ export const LearningPathVideoClass: FC<LearningPathVideoClassProps> = ({
     const threshold = 0.95;
 
     if (typeof setViewVideo === "function") {
-      // setViewVideo es una función de actualización de estado
       if (currentVideo >= threshold) {
         setViewVideo(true);
         setEnableButton(true);
-        console.log("video en true");
       }
     } else if (typeof setViewVideo === "boolean") {
-      // setViewVideo es un valor booleano directo
       if (setViewVideo === false && currentVideo >= threshold) {
-        console.log("video en true");
       }
     }
   };
 
   useEffect(() => {
-    // Verifica si el video actual ya se ha visto
     if (courseProgress.length > 0 && selectedTopic && selectedLesson) {
       const currentCourse = courseProgress.find(
         (course) => course.idCourse === courseId
@@ -110,7 +103,6 @@ export const LearningPathVideoClass: FC<LearningPathVideoClassProps> = ({
           );
 
           if (currentLesson && currentLesson.viewVideo) {
-            // Habilitar el botón y actualizar el estado de viewVideo si es una función
             setEnableButton(true);
             if (typeof setViewVideo === "function") {
               setViewVideo(true);
