@@ -2,12 +2,14 @@
 import styles from "./AssessmentTitleSubtitleBackground.module.css";
 
 export const AssessmentTitleSubtitleBackground = () => {
-    return (
-        <div className={styles["assessment__container"]}>
-            <section className={styles["assessment__content--topic"]}>
-                <h1 className={styles["assessment__topic"]}>Tema #1</h1>
-                <p className={styles["assessment__topic--description"]}>El nombre es el propósito/ Hasta jacob.</p>
-            </section>            
-        </div>
-    )
-}
+  return (
+    <div className={styles["assessment-container"]}>
+      <section className={styles["assessment-topic_container"]}>
+        <h1 className={styles["assessment-topic"]}>Tema #1</h1>
+        <p className={styles["assessment-topic_description"]}>
+          El nombre es el propósito/ Hasta Jacob.
+        </p>
+      </section>
+    </div>
+  );
+};

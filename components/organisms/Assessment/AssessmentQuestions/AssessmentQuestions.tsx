@@ -105,7 +105,7 @@ export const AssessmentQuestions = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [selectedButtonIndex, setSelectedButtonIndex] = useState<number | null>(null);
-  const [correctButtonIndex, setCorrectButtonIndex] = useState<number | null>(null);
+  const [correctButtonIndex, setCorrectButtonIndex] = useState<(number | undefined)[]>([]);
   const [assessmentCompleted, setAssessmentCompleted] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState<number[]>([]);
   const [showScore, setShowScore] = useState(false);
@@ -114,10 +114,12 @@ export const AssessmentQuestions = () => {
   useEffect(() => {
     const currentOptions = questions[currentQuestion].options;
     const countCorrect = currentOptions.filter((option) => option.isCorrect).length;
+    console.log("este es el countCorrect", countCorrect);
 
-    if (countCorrect === 1 && selectedButtonIndex !== null) {
+
+    if (selectedButtonIndex !== null) {
       setCorrectButtonIndex(
-        currentOptions.findIndex((option) => option.isCorrect)
+        currentOptions.map((option, index) => { if (option.isCorrect) return index }).filter(option => option !== undefined)
       );
     }
   }, [currentQuestion, selectedButtonIndex]);
@@ -127,7 +129,7 @@ export const AssessmentQuestions = () => {
       setCurrentQuestion(0);
       setScore(0);
       setSelectedButtonIndex(null);
-      setCorrectButtonIndex(null);
+      setCorrectButtonIndex([]);
       setAssessmentCompleted(false);
       setSelectedOptions([]);
       setShowScore(false);
@@ -147,7 +149,7 @@ export const AssessmentQuestions = () => {
       setScore((prevScore) => prevScore + 1);
     } else {
       setCorrectButtonIndex(
-        questions[currentQuestion].options.findIndex((option) => option.isCorrect)
+        questions[currentQuestion].options.map((option, index) => { if (option.isCorrect) return index }).filter(option => option !== undefined)
       );
     }
   };
@@ -159,7 +161,7 @@ export const AssessmentQuestions = () => {
     } else {
       setCurrentQuestion((prev) => prev + 1);
       setSelectedButtonIndex(null);
-      setCorrectButtonIndex(null);
+      setCorrectButtonIndex([]);
     }
   };
 
@@ -187,7 +189,7 @@ export const AssessmentQuestions = () => {
                         ? isAnswerCorrect(index)
                           ? styles['correct']
                           : styles['incorrect']
-                        : index === correctButtonIndex
+                        : correctButtonIndex.some(i => i === index)
                           ? styles['correct']
                           : styles['inactive']
                       : styles['active']
