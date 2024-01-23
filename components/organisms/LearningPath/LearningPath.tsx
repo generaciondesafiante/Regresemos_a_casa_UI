@@ -19,6 +19,15 @@ export const LearningPath: FC = () => {
   const [selectedLesson, setSelectedLesson] = useState<Lesson | null>(null);
   const [courseProgress, setCourseProgress] = useState<any[]>([]);
   const [viewVideo, setViewVideo] = useState(false);
+  const [topicIndex, setTopicIndex] = useState("");
+
+  const [lastViewedVideo, setLastViewedVideo] = useState({
+    courseName: "",
+    idCourse: "",
+    videoId: "",
+    tema: "",
+    id: "",
+  });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,6 +45,22 @@ export const LearningPath: FC = () => {
             if (lesson) {
               setSelectedTopic(topic);
               setSelectedLesson(lesson);
+
+              const singleCourseId = Array.isArray(courseId)
+                ? courseId[0]
+                : courseId;
+              const singleTema = Array.isArray(tema) ? tema[0] : tema;
+              const singleId = Array.isArray(userId) ? userId[0] : userId;
+              const singleCourseName = Array.isArray(courseName)
+                ? courseName[0]
+                : courseName;
+              setLastViewedVideo({
+                courseName: singleCourseName,
+                idCourse: singleCourseId,
+                videoId: lesson.videoId,
+                tema: singleTema,
+                id: singleId,
+              });
               break;
             }
           }
@@ -61,7 +86,9 @@ export const LearningPath: FC = () => {
               headers: {
                 "Content-Type": "application/json",
               },
-              body: JSON.stringify({ viewVideo: true }),
+              body: JSON.stringify({
+                viewVideo: true,
+              }),
             }
           );
         } catch (error) {
@@ -108,6 +135,7 @@ export const LearningPath: FC = () => {
 
   const handleItemClick = (index: number) => {
     const indexTopic = index;
+
     if (selectedTopic) {
       const selectedLesson = selectedTopic.lessons[index - 1];
 
@@ -144,6 +172,7 @@ export const LearningPath: FC = () => {
         onNextVideoClick={handleNextVideo}
         courseProgress={courseProgress}
         selectedTopic={selectedTopic}
+        lastViewedVideo={lastViewedVideo}
       />
 
       <LearningPathTitleClass
@@ -154,6 +183,7 @@ export const LearningPath: FC = () => {
         <LearningPathProgress
           course={selectedTopic}
           onItemClick={handleItemClick}
+          setTopicIndex={setTopicIndex}
         />
       </nav>
     </div>
