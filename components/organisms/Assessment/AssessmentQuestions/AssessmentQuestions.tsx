@@ -1,8 +1,8 @@
 "use client";
-import { AssessmentFinished } from "../AssessmentFinished/AssessmentFinished"
-import { ArrowRightIcon } from "../../../atoms";
+import { AssessmentFinished } from "../AssessmentFinished/AssessmentFinished";
+import { ArrowRightIcon, Button } from "../../../atoms";
 import styles from "./AssessmentQuestions.module.css";
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 export const questions = [
   {
@@ -93,19 +93,29 @@ export const questions = [
     title: "¿ Cuáles fueron las promesas que le dio Dios ?",
     image: "esto es una imagen",
     options: [
-      { textAnswer: "Descendencia como las estrellas de la arena", isCorrect: true },
-      { textAnswer: "Benditas en ti todas las familias de la tierra", isCorrect: true },
+      {
+        textAnswer: "Descendencia como las estrellas de la arena",
+        isCorrect: true,
+      },
+      {
+        textAnswer: "Benditas en ti todas las familias de la tierra",
+        isCorrect: true,
+      },
       { textAnswer: "Un territorio que fluye leche y miel", isCorrect: true },
       { textAnswer: "Que tendria varias esposas", isCorrect: false },
     ],
   },
-]
+];
 
 export const AssessmentQuestions = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
-  const [selectedButtonIndex, setSelectedButtonIndex] = useState<number | null>(null);
-  const [correctButtonIndex, setCorrectButtonIndex] = useState<number | null>(null);
+  const [selectedButtonIndex, setSelectedButtonIndex] = useState<number | null>(
+    null
+  );
+  const [correctButtonIndex, setCorrectButtonIndex] = useState<number | null>(
+    null
+  );
   const [assessmentCompleted, setAssessmentCompleted] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState<number[]>([]);
   const [showScore, setShowScore] = useState(false);
@@ -113,7 +123,9 @@ export const AssessmentQuestions = () => {
 
   useEffect(() => {
     const currentOptions = questions[currentQuestion].options;
-    const countCorrect = currentOptions.filter((option) => option.isCorrect).length;
+    const countCorrect = currentOptions.filter(
+      (option) => option.isCorrect
+    ).length;
 
     if (countCorrect === 1 && selectedButtonIndex !== null) {
       setCorrectButtonIndex(
@@ -147,7 +159,9 @@ export const AssessmentQuestions = () => {
       setScore((prevScore) => prevScore + 1);
     } else {
       setCorrectButtonIndex(
-        questions[currentQuestion].options.findIndex((option) => option.isCorrect)
+        questions[currentQuestion].options.findIndex(
+          (option) => option.isCorrect
+        )
       );
     }
   };
@@ -164,67 +178,84 @@ export const AssessmentQuestions = () => {
   };
 
   return (
-    <>
+    <div className={styles["assessment-prueba"]}>
       {!assessmentCompleted ? (
-        <div className={styles["assessmentQuestions__container--questions"]}>
-          <section>
-            <div className={styles["assessmentQuestions__img"]}></div>
-          </section>
-          <section>
-            <p className={styles["assessmentQuestions__numberQuestion"]}>{currentQuestion + 1} de {questions.length} </p>
-          </section>
-          <div className={styles["assessmentQuestions__container--buttons"]}>
-            <section className={styles["assessmentQuestions__content--titleQuestion"]}>
-              <span className={styles["assessmentQuestions__titleQuestion"]}>{questions[currentQuestion].title}</span>
-            </section>
-            <section className={styles["assessmentQuestions__content--buttons"]}>
-              <div className={styles['assessmentQuestions__row']}>
-                {questions[currentQuestion].options.map((answer, index) => (
-                  <button
-                    key={answer.textAnswer}
-                    className={`${styles['assessmentQuestions__button']} ${styles['button' + (index + 1)]} ${selectedButtonIndex !== null
-                      ? index === selectedButtonIndex
-                        ? isAnswerCorrect(index)
-                          ? styles['correct']
-                          : styles['incorrect']
-                        : index === correctButtonIndex
-                          ? styles['correct']
-                          : styles['inactive']
-                      : styles['active']
+        <div className={styles["assessmentQuestions-container"]}>
+          <div className={styles["assessmentQuestions-img"]}></div>
+          <p className={styles["assessmentQuestions-numberQuestion"]}>
+            {currentQuestion + 1} de {questions.length}{" "}
+          </p>
+          <div className={styles["ensayo"]}>
+            <div className={styles["assessmentQuestions-question_container"]}>
+              <h3 className={styles["assessmentQuestions-question_title"]}>
+                {questions[currentQuestion].title}
+              </h3>
+              <section
+                className={
+                  styles["assessmentQuestions-answerOptions_buttons_content"]
+                }
+              >
+                <div
+                  className={
+                    styles["assessmentQuestions-answerOptions_container"]
+                  }
+                >
+                  {questions[currentQuestion].options.map((answer, index) => (
+                    <Button
+                      key={answer.textAnswer}
+                      className={`${
+                        styles["assessmentQuestions-answerOptions_button"]
+                      } ${
+                        styles[
+                          "assessmentQuestions-answer_button" + (index + 1)
+                        ]
+                      } ${
+                        selectedButtonIndex !== null
+                          ? index === selectedButtonIndex
+                            ? isAnswerCorrect(index)
+                              ? styles["correct"]
+                              : styles["incorrect"]
+                            : index === correctButtonIndex
+                            ? styles["correct"]
+                            : styles["inactive"]
+                          : styles["active"]
                       }`}
-                    onClick={() => handleAnswerSubmit(index)}
-                    disabled={selectedButtonIndex !== null}
-                  >
-                    {answer.textAnswer}
-                  </button>
-                ))}
-              </div>
+                      onClick={() => handleAnswerSubmit(index)}
+                      disabled={selectedButtonIndex !== null}
+                    >
+                      {answer.textAnswer}
+                    </Button>
+                  ))}
+                </div>
+              </section>
+            </div>
+            <section>
+              {showScore && (
+                <AssessmentFinished
+                  score={score}
+                  questions={questions}
+                  onRestartAssessment={() => setResetAssessment(true)}
+                />
+              )}
+              <button
+                className={styles["assessmentQuestions-nextButton"]}
+                onClick={advanceToNextQuestion}
+                disabled={selectedButtonIndex === null}
+              >
+                <ArrowRightIcon />
+              </button>
             </section>
           </div>
-          <section>
-            {showScore && (
-              <AssessmentFinished
-                score={score}
-                questions={questions}
-                onRestartAssessment={() => setResetAssessment(true)}
-              />
-            )}
-            <button
-              className={styles["assessmentQuestions__button--next"]}
-              onClick={advanceToNextQuestion}
-              disabled={selectedButtonIndex === null}
-            >
-              {currentQuestion === questions.length - 1 ? "Fin" : ""}
-              <ArrowRightIcon />
-            </button>
-          </section>
         </div>
       ) : (
         <div>
-          <AssessmentFinished score={score} questions={questions} onRestartAssessment={() => setResetAssessment(true)} />
+          <AssessmentFinished
+            score={score}
+            questions={questions}
+            onRestartAssessment={() => setResetAssessment(true)}
+          />
         </div>
-      )
-      }
-    </>
+      )}
+    </div>
   );
 };
