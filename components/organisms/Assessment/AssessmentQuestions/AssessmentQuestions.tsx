@@ -129,6 +129,7 @@ export const AssessmentQuestions = () => {
     console.log("este es el countCorrect", countCorrect);
 
     if (selectedButtonIndex !== null) {
+    if (selectedButtonIndex !== null) {
       setCorrectButtonIndex(
         currentOptions
           .map((option, index) => {
@@ -144,6 +145,7 @@ export const AssessmentQuestions = () => {
       setCurrentQuestion(0);
       setScore(0);
       setSelectedButtonIndex(null);
+      setCorrectButtonIndex([]);
       setCorrectButtonIndex([]);
       setAssessmentCompleted(false);
       setSelectedOptions([]);
@@ -180,6 +182,7 @@ export const AssessmentQuestions = () => {
     } else {
       setCurrentQuestion((prev) => prev + 1);
       setSelectedButtonIndex(null);
+      setCorrectButtonIndex([]);
       setCorrectButtonIndex([]);
     }
   };

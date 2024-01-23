@@ -6,4 +6,5 @@ export interface Lesson {
   length: string;
   videoUrlHls: string;
   rating: number;
+  _id?: string;
 }

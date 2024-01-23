@@ -9,10 +9,16 @@ interface Props {
   title: string;
 }
 
+interface Props {
+  children?: ReactNode;
+  openModalProfile?: boolean;
+  onSaveChangesAndCloseModal?: () => void;
+  title: string;
+}
+
 export const ModalEditPhotoProfile: FC<Props> = ({
   children,
   openModalProfile,
-
   closeModalProfile,
   title = "Add Profile Photo",
 }) => {
@@ -22,7 +28,7 @@ export const ModalEditPhotoProfile: FC<Props> = ({
         <div className={styles["modalEditProfile-overlay"]}>
           <div className={styles["modalEditProfile-container"]}>
             <h3 className={styles["modalEditProfile-title"]}>{title}</h3>
-            <button onClick={() => closeModalProfile && closeModalProfile()}>
+            <button onClick={closeModalProfile}>
               <CloseModalIcon
                 className={styles["modalEditProfile-iconClose"]}
               />

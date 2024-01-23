@@ -1,22 +1,29 @@
 "use client";
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useState, Dispatch, SetStateAction } from "react";
 import { useParams } from "next/navigation";
 import ReactPlayer from "react-player/lazy";
 import { Button } from "../../atoms";
 import { TaringStart } from "../TaringStart/TaringStart";
 import { Lesson } from "../../../types/types/lessons.type";
 import styles from "./LearningPathVideoClass.module.css";
+import { Topic } from "../../../types/types/topic.type";
 
 interface LearningPathVideoClassProps {
   selectedLesson: Lesson | null;
+  selectedTopic: Topic | null;
   onNextVideoClick: (index: string) => void;
+  setViewVideo?: Dispatch<SetStateAction<boolean>> | boolean;
+  courseProgress: any[];
 }
 
 export const LearningPathVideoClass: FC<LearningPathVideoClassProps> = ({
   selectedLesson,
   onNextVideoClick,
+  setViewVideo,
+  courseProgress,
+  selectedTopic,
 }) => {
-  const { indexVideo } = useParams();
+  const { indexVideo, courseId } = useParams();
 
   const [userRating, setUserRating] = useState<number>(0);
   const [isVideoReady, setIsVideoReady] = useState(false);
@@ -64,14 +71,47 @@ export const LearningPathVideoClass: FC<LearningPathVideoClassProps> = ({
     setDuracionTotal(duration);
   };
 
-  const enableFollowVideoButton = (progressVideo: any) => {
+  const enableFollowVideoButton = async (progressVideo: any) => {
     const currentVideo = progressVideo.played;
-    if (currentVideo >= 0.95) {
-      setEnableButton(true);
-    } else {
-      setEnableButton(false);
+    const threshold = 0.95;
+
+    if (typeof setViewVideo === "function") {
+      if (currentVideo >= threshold) {
+        setViewVideo(true);
+        setEnableButton(true);
+      }
+    } else if (typeof setViewVideo === "boolean") {
+      if (setViewVideo === false && currentVideo >= threshold) {
+      }
     }
   };
+
+  useEffect(() => {
+    if (courseProgress.length > 0 && selectedTopic && selectedLesson) {
+      const currentCourse = courseProgress.find(
+        (course) => course.idCourse === courseId
+      );
+
+      if (currentCourse) {
+        const currentTopic = currentCourse.topics.find(
+          (topic: any) => topic.idTopic === selectedTopic._id
+        );
+
+        if (currentTopic) {
+          const currentLesson = currentTopic.lessons.find(
+            (lesson: any) => lesson.idLesson === selectedLesson._id
+          );
+
+          if (currentLesson && currentLesson.viewVideo) {
+            setEnableButton(true);
+            if (typeof setViewVideo === "function") {
+              setViewVideo(true);
+            }
+          }
+        }
+      }
+    }
+  }, [selectedLesson, courseProgress, courseId, selectedTopic]);
 
   return (
     <div className={styles["learningPathVideoClass-container"]}>
