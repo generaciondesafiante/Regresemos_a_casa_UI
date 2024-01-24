@@ -26,7 +26,6 @@ export const Register = () => {
   );
   const [showPasswordSection, setShowPasswordSection] =
     useState<boolean>(false);
-  console.log(name, lastname, country, city, phone, email);
   const [condicionalView, setCondicionalView] = useState<boolean>(false);
 
   const handleInputChange = () => {
@@ -36,8 +35,7 @@ export const Register = () => {
       email.includes(".") &&
       lastname &&
       country &&
-      city &&
-      phone
+      city
     );
     setShowPasswordSection(allFieldsFilled);
   };
@@ -67,26 +65,37 @@ export const Register = () => {
         lastname,
         country,
         city,
-        phone: phone === null ? null : phone,
+        phone,
         image,
       }),
     });
-
+    if (res.status === 500) {
+      Swal.fire({
+        icon: "error",
+        title: "Upss",
+        text: `Error en nuestro servidor puedes comunicarte con el administrador del grupo para tu registro`,
+      });
+    }
     const responseAPI = await res.json();
-
     if (!res.ok) {
       setErrors(responseAPI.message);
       Swal.fire({
         icon: "error",
-        title: "Revisar los campos obligatorios",
-        text: "Probablemente hay un campo obligatorio sin llenar.",
+        title: "¡Upss!",
+        text: `${responseAPI.msg}`,
       });
-      console.log(res.status);
-      if (res.status === 400) {
+      if (res.status === 422) {
         Swal.fire({
           icon: "error",
-          title: "Usuario existente",
-          text: "El usuario con este correo electrónico ya existe. Por favor, utiliza otro correo electrónico.",
+          title: "Revisar los campos obligatorios",
+          text: `${errors} ${responseAPI.errors[0].msg}`,
+        });
+      }
+      if (res.status === 500) {
+        Swal.fire({
+          icon: "error",
+          title: "Upss",
+          text: `${responseAPI.msg}`,
         });
       }
       return;

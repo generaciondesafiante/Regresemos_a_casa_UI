@@ -1,4 +1,5 @@
-import { FC } from "react";
+"use client";
+import { FC, useEffect } from "react";
 import { Input } from "../../../atoms";
 interface RegisterFormInformationProps {
   onInputChange: () => void;
@@ -12,7 +13,7 @@ interface RegisterFormInformationProps {
   lastname: string;
   country: string;
   city: string;
-  phone: number | null;
+  phone?: number | null;
   email: string;
 }
 export const RegisterFormInformation: FC<RegisterFormInformationProps> = ({
@@ -30,6 +31,9 @@ export const RegisterFormInformation: FC<RegisterFormInformationProps> = ({
   city,
   phone,
 }) => {
+  useEffect(() => {
+    onInputChange();
+  }, [name, lastname, country, city, phone, email]);
   return (
     <>
       <Input
@@ -105,7 +109,7 @@ export const RegisterFormInformation: FC<RegisterFormInformationProps> = ({
         id={"phone-form-register"}
         htmlForm={"phone-form-register"}
         name="phone"
-        value={phone !== null ? phone.toString() : ""}
+        value={phone !== null ? phone?.toString() : ""}
         onChange={(event) => setPhone(parseInt(event.target.value, 10) || null)}
         type="number"
         placeholder=" "
