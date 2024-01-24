@@ -19,7 +19,6 @@ export const LearningPath: FC = () => {
   const [selectedLesson, setSelectedLesson] = useState<Lesson | null>(null);
   const [courseProgress, setCourseProgress] = useState<any[]>([]);
   const [viewVideo, setViewVideo] = useState(false);
-  const [topicIndex, setTopicIndex] = useState("");
 
   const [lastViewedVideo, setLastViewedVideo] = useState({
     courseName: "",
@@ -183,7 +182,6 @@ export const LearningPath: FC = () => {
         <LearningPathProgress
           course={selectedTopic}
           onItemClick={handleItemClick}
-          setTopicIndex={setTopicIndex}
         />
       </nav>
     </div>
