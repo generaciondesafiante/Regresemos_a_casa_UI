@@ -11,18 +11,16 @@ export const AssessmentMain: FC<AssessmentMainProps> = ({
   let imageStudents = "https://i.imgur.com/bBY0Bs9.png";
 
   return (
-    <section className={styles["assessment-questions_container"]}>
-      <div className={styles["assessment-image_container"]}>
-        <img
-          src={imageStudents}
-          alt="students"
-          className={styles["assessment-image"]}
-        />
-      </div>
+    <div className={styles["assessment-questions_container"]}>
+      <img
+        src={imageStudents}
+        alt="students"
+        className={styles["assessment-image"]}
+      />
       <div className={styles["assessment-questions_content"]}>
-        <p
-          className={styles["assessment-questions"]}
-        >{`Son ${questions.length} preguntas de esta sección`}</p>
+        <p className={styles["assessment-questions"]}>
+          {`Son ${questions.length} preguntas de esta sección`}
+        </p>
       </div>
       <div className={styles["assessment-startButton_container"]}>
         <Button
@@ -32,6 +30,6 @@ export const AssessmentMain: FC<AssessmentMainProps> = ({
           EMPEZAR
         </Button>
       </div>
-    </section>
+    </div>
   );
 };
