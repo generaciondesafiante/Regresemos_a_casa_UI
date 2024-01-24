@@ -4,9 +4,9 @@ import { useParams } from "next/navigation";
 import ReactPlayer from "react-player/lazy";
 import { Button } from "../../atoms";
 import { TaringStart } from "../TaringStart/TaringStart";
+import { Topic } from "../../../types/types/topic.type";
 import { Lesson } from "../../../types/types/lessons.type";
 import styles from "./LearningPathVideoClass.module.css";
-import { Topic } from "../../../types/types/topic.type";
 
 interface LearningPathVideoClassProps {
   selectedLesson: Lesson | null;
@@ -14,6 +14,13 @@ interface LearningPathVideoClassProps {
   onNextVideoClick: (index: string) => void;
   setViewVideo?: Dispatch<SetStateAction<boolean>> | boolean;
   courseProgress: any[];
+  lastViewedVideo: {
+    courseName: string;
+    idCourse: string;
+    videoId: string;
+    tema: string;
+    id: string;
+  };
 }
 
 export const LearningPathVideoClass: FC<LearningPathVideoClassProps> = ({
@@ -22,6 +29,7 @@ export const LearningPathVideoClass: FC<LearningPathVideoClassProps> = ({
   setViewVideo,
   courseProgress,
   selectedTopic,
+  lastViewedVideo,
 }) => {
   const { indexVideo, courseId } = useParams();
 
@@ -29,6 +37,52 @@ export const LearningPathVideoClass: FC<LearningPathVideoClassProps> = ({
   const [isVideoReady, setIsVideoReady] = useState(false);
   const [duracionTotal, setDuracionTotal] = useState<number>(0);
   const [enableButton, setEnableButton] = useState(false);
+  const [video, setVideo] = useState(false);
+  const urlVideo = selectedLesson?.videoUrl;
+
+  const handleVideoPlay = () => {
+    setVideo(true);
+  };
+
+  const handleVideoPause = () => {
+    setVideo(true);
+  };
+
+  useEffect(() => {
+    if (video) {
+      const sendVideoInfo = async () => {
+        try {
+          const response = await fetch(
+            `${process.env.NEXT_PUBLIC_BACKEND_URL}/course/lastViewedVideo/${lastViewedVideo.id}`,
+            {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                courseName: lastViewedVideo.courseName,
+                courseId: lastViewedVideo.idCourse,
+                videoId: lastViewedVideo.videoId,
+                tema: lastViewedVideo.tema,
+                indexTopic: indexVideo,
+                urlVideo: urlVideo,
+              }),
+            }
+          );
+
+          if (response.ok) {
+            console.log("Video information sent successfully");
+          } else {
+            console.error("Error sending video information");
+          }
+        } catch (error) {
+          console.error("Error when making fetch request:", error);
+        }
+      };
+      setVideo(false);
+      sendVideoInfo();
+    }
+  }, [video, lastViewedVideo]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -116,7 +170,7 @@ export const LearningPathVideoClass: FC<LearningPathVideoClassProps> = ({
   return (
     <div className={styles["learningPathVideoClass-container"]}>
       <div className={styles["learningPathVideoClass-content"]}>
-        {isVideoReady && (
+        {isVideoReady ? (
           <div className={styles["learningPathVideoClass-video"]}>
             <ReactPlayer
               url={selectedLesson?.videoUrl}
@@ -128,10 +182,11 @@ export const LearningPathVideoClass: FC<LearningPathVideoClassProps> = ({
               onProgress={enableFollowVideoButton}
               width={"100%"}
               height={"100%"}
+              onPlay={handleVideoPlay}
+              onPause={handleVideoPause}
             />
           </div>
-        )}
-        {!isVideoReady && (
+        ) : (
           <div className={styles["learningPathVideoClass-skeletonVideo"]}></div>
         )}
 
