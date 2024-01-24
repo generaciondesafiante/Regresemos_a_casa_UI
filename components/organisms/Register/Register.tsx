@@ -20,7 +20,7 @@ export const Register = () => {
   const [lastname, setLastName] = useState<string>("");
   const [country, setCountry] = useState<string>("");
   const [city, setCity] = useState<string>("");
-  const [phone, setPhone] = useState<number | null>(null);
+  const [phone, setPhone] = useState<number>();
   const [image, setImage] = useState<string>(
     "http://somebooks.es/wp-content/uploads/2018/12/Poner-una-imagen-a-la-cuenta-de-usuario-en-Windows-10-000.png"
   );
