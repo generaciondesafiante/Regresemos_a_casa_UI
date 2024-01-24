@@ -26,6 +26,7 @@ export const Register = () => {
   );
   const [showPasswordSection, setShowPasswordSection] =
     useState<boolean>(false);
+  console.log(name, lastname, country, city, phone, email);
   const [condicionalView, setCondicionalView] = useState<boolean>(false);
 
   const handleInputChange = () => {
@@ -80,6 +81,7 @@ export const Register = () => {
         title: "Revisar los campos obligatorios",
         text: "Probablemente hay un campo obligatorio sin llenar.",
       });
+      console.log(res.status);
       if (res.status === 400) {
         Swal.fire({
           icon: "error",
@@ -167,11 +169,13 @@ export const Register = () => {
               </Link>
               <Button
                 className={
-                  showPasswordSection ? styles["register-form_loginRedirection_buttonEnabled"] : styles["register-form_loginRedirection_buttonDisabled"]
+                  showPasswordSection
+                    ? styles["register-form_loginRedirection_buttonEnabled"]
+                    : styles["register-form_loginRedirection_buttonDisabled"]
                 }
                 type="button"
+                disabled={!showPasswordSection}
                 onClick={handlePasswordButtonClick}
-                register-form_loginRedirection_buttonDisabled={!showPasswordSection}
               >
                 <ArrowRightIcon />
               </Button>
