@@ -7,7 +7,7 @@ interface RegisterFormInformationProps {
   setLastName: React.Dispatch<React.SetStateAction<string>>;
   setCountry: React.Dispatch<React.SetStateAction<string>>;
   setCity: React.Dispatch<React.SetStateAction<string>>;
-  setPhone: React.Dispatch<React.SetStateAction<number | null>>;
+  setPhone: React.Dispatch<React.SetStateAction<number | undefined>>;
   setEmail: React.Dispatch<React.SetStateAction<string>>;
   name: string;
   lastname: string;
@@ -110,7 +110,7 @@ export const RegisterFormInformation: FC<RegisterFormInformationProps> = ({
         htmlForm={"phone-form-register"}
         name="phone"
         value={phone !== null ? phone?.toString() : ""}
-        onChange={(event) => setPhone(parseInt(event.target.value, 10) || null)}
+        onChange={(event) => setPhone(parseInt(event.target.value, 10))}
         type="number"
         placeholder=" "
         label={"Teléfono (optional)"}

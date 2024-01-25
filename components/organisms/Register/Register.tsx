@@ -21,9 +21,6 @@ export const Register = () => {
   const [country, setCountry] = useState<string>("");
   const [city, setCity] = useState<string>("");
   const [phone, setPhone] = useState<number>();
-  const [image, setImage] = useState<string>(
-    "http://somebooks.es/wp-content/uploads/2018/12/Poner-una-imagen-a-la-cuenta-de-usuario-en-Windows-10-000.png"
-  );
   const [showPasswordSection, setShowPasswordSection] =
     useState<boolean>(false);
   const [condicionalView, setCondicionalView] = useState<boolean>(false);
@@ -66,14 +63,14 @@ export const Register = () => {
         country,
         city,
         phone,
-        image,
       }),
     });
+
     if (res.status === 500) {
       Swal.fire({
         icon: "error",
         title: "Upss",
-        text: `Error en nuestro servidor puedes comunicarte con el administrador del grupo para tu registro`,
+        text: `Error en nuestro servidor, comunícate con el administrador del grupo para tu registro.`,
       });
     }
     const responseAPI = await res.json();
@@ -109,7 +106,6 @@ export const Register = () => {
       country,
       city,
       phone,
-      image,
       redirect: false,
     });
 
