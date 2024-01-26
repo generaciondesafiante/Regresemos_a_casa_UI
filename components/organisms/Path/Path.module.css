@@ -23,11 +23,19 @@
 }
 
 .path-content {
+  height: auto;
   margin-top: 5rem;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  row-gap: 4rem;
-  column-gap: 2rem;
+  grid-template-columns: repeat(2, 1fr);
+  row-gap: 2.5rem;
+  column-gap: 3rem;
+}
+
+.path-topicContainer {
+  width: 7rem;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
 }
 
 .path-border {
@@ -71,7 +79,6 @@
 }
 
 .path-CourseTitle {
-  text-align: center;
   margin-top: 0.1rem;
   font-size: var(--fontSize-paragraph_mobile);
   color: var(--darkGray);
@@ -89,9 +96,7 @@
   }
 
   .path-content {
-    row-gap: 4rem;
-    column-gap: 2rem;
-    grid-template-columns: repeat(4, 8rem);
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
@@ -102,8 +107,11 @@
   }
 
   .path-content {
-    row-gap: 5rem;
-    column-gap: 3rem;
+    column-gap: 5rem;
+  }
+
+  .path-topicContainer {
+    width: 9rem;
   }
 
   .path-border {
@@ -135,8 +143,7 @@
   }
 
   .path-content {
-    row-gap: 7rem;
-    column-gap: 5rem;
+    row-gap: 3.5rem;
   }
 
   .path-flagIcon {
@@ -144,5 +151,9 @@
     height: 4rem;
     left: 2.1rem;
     top: -3.5rem;
+  }
+
+  .path-topicContainer {
+    width: 10rem;
   }
 }

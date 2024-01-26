@@ -1,76 +1,60 @@
-.assessment__container--questions {
-    position: relative;
+.assessment-image {
+    width: 14rem;
+    display: block;
+    margin: 0 auto;
+    margin-top: 2rem;
 }
 
-.assessment__content--image {
-    position: relative;
-    top: 13.75rem;
-    bottom: 0;
+.assessment-questions_content {
     display: flex;
     justify-content: center;
 }
 
-.assessment__image {
-    width: 12.5rem;
-}
-
-.assessment__content--questions {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    top: 15.625rem;
-}
-
-.assessment__questions {
-    color: #FFFFFF;
-    font-size: var(--fontSize-paragraph_mobile);
-    font-weight: 500;
-    text-align: center;
+.assessment-questions {
+    margin-top: 1rem;
     padding: 0 1.25rem;
+    text-align: center;
+    font-size: var(--fontSize-subtitles_mobile);
+    font-weight: bold;
+    color: var(--white);
 }
 
-.assessment__content--buttomStart {
-    position: relative;
+.assessment-startButton_container {
     display: flex;
     justify-content: center;
-    top: 17.5rem;
 }
 
-.assessment__buttomStart {
-    width: 9.375rem;
-    height: 2.5rem;
+.assessment-startButton {
+    margin-top: 1.5rem;
+    margin-bottom: 4rem;
+    background-color: var(--white);
     color: var(--darkBlue);
-    font-size: var(--fontSize-buttons_mobile);
-    font-weight: 700;
-    letter-spacing: 0.063rem;
-    background-color: #e4e4e4;
-    border-radius: 0.875rem;
-    border: none;
-    cursor: pointer;
+    font-weight: bold;
+    letter-spacing: 0.05rem;
 }
 
-.assessment__buttomStart:hover {
-    background-color: #FAD047;
+.assessment-startButton:hover {
+    background-color: var(--yellow);
 }
 
 @media (width >=48rem) {
-    .assessment__image {
-        width: 15.625rem;
+    .assessment-image {
+        width: 16rem;
+    }
+
+    .assessment-questions {
+        font-size: var(--fontSize-subtitles_tablet);
     }
 }
 
 @media (width >=64rem) {
-    .assessment__questions {
-        font-size: var(--fontSize-paragraph_desktop);
-    }
-
-    .assessment__content--buttomStart {
-        top: 300;
+    .assessment-questions {
+        font-size: var(--fontSize-subtitles_laptop);
     }
 }
 
 @media (width >=87.5rem) {
-    .assessment__image {
-        width: 18.75rem;
+    .assessment-image {
+        width: 19rem;
     }
 }

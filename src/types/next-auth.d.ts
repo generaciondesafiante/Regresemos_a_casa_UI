@@ -10,8 +10,9 @@ declare module "next-auth" {
       city: string;
       phone: number;
       image: string;
-      uid:string
-      token:string
+      uid:string;
+      token:string;
+      CourseProgress:[];
       msg:string
     };
   }

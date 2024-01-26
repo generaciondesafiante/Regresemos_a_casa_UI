@@ -7,14 +7,17 @@ import styles from "./LearningPathProgress.module.css";
 interface LearningPathVideoClassProps {
   course: Topic | null;
   onItemClick: (index: number) => void;
+ 
 }
 
 export const LearningPathProgress: FC<LearningPathVideoClassProps> = ({
   course,
   onItemClick,
+  
 }) => {
   const { lessonId, indexVideo } = useParams();
 
+  
   const [selectedItem, setSelectedItem] = useState<number | null>(null);
 
   useEffect(() => {

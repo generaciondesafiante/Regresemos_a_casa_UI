@@ -20,10 +20,7 @@ export const Register = () => {
   const [lastname, setLastName] = useState<string>("");
   const [country, setCountry] = useState<string>("");
   const [city, setCity] = useState<string>("");
-  const [phone, setPhone] = useState<number | null>(null);
-  const [image, setImage] = useState<string>(
-    "http://somebooks.es/wp-content/uploads/2018/12/Poner-una-imagen-a-la-cuenta-de-usuario-en-Windows-10-000.png"
-  );
+  const [phone, setPhone] = useState<number>();
   const [showPasswordSection, setShowPasswordSection] =
     useState<boolean>(false);
   const [condicionalView, setCondicionalView] = useState<boolean>(false);
@@ -35,8 +32,7 @@ export const Register = () => {
       email.includes(".") &&
       lastname &&
       country &&
-      city &&
-      phone
+      city
     );
     setShowPasswordSection(allFieldsFilled);
   };
@@ -66,25 +62,37 @@ export const Register = () => {
         lastname,
         country,
         city,
-        phone: phone === null ? null : phone,
-        image,
+        phone,
       }),
     });
 
+    if (res.status === 500) {
+      Swal.fire({
+        icon: "error",
+        title: "Upss",
+        text: `Error en nuestro servidor, comunícate con el administrador del grupo para tu registro.`,
+      });
+    }
     const responseAPI = await res.json();
-
     if (!res.ok) {
       setErrors(responseAPI.message);
       Swal.fire({
         icon: "error",
-        title: "Revisar los campos obligatorios",
-        text: "Probablemente hay un campo obligatorio sin llenar.",
+        title: "¡Upss!",
+        text: `${responseAPI.msg}`,
       });
-      if (res.status === 400) {
+      if (res.status === 422) {
         Swal.fire({
           icon: "error",
-          title: "Usuario existente",
-          text: "El usuario con este correo electrónico ya existe. Por favor, utiliza otro correo electrónico.",
+          title: "Revisar los campos obligatorios",
+          text: `${errors} ${responseAPI.errors[0].msg}`,
+        });
+      }
+      if (res.status === 500) {
+        Swal.fire({
+          icon: "error",
+          title: "Upss",
+          text: `${responseAPI.msg}`,
         });
       }
       return;
@@ -98,7 +106,6 @@ export const Register = () => {
       country,
       city,
       phone,
-      image,
       redirect: false,
     });
 
@@ -167,11 +174,13 @@ export const Register = () => {
               </Link>
               <Button
                 className={
-                  showPasswordSection ? styles["register-form_loginRedirection_buttonEnabled"] : styles["register-form_loginRedirection_buttonDisabled"]
+                  showPasswordSection
+                    ? styles["register-form_loginRedirection_buttonEnabled"]
+                    : styles["register-form_loginRedirection_buttonDisabled"]
                 }
                 type="button"
+                disabled={!showPasswordSection}
                 onClick={handlePasswordButtonClick}
-                register-form_loginRedirection_buttonDisabled={!showPasswordSection}
               >
                 <ArrowRightIcon />
               </Button>

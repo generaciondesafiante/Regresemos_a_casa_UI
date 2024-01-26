@@ -1,4 +1,4 @@
-import { MouseEventHandler, ReactNode } from "react";
+import { ReactNode } from "react";
 import styles from "./Button.module.css";
 
 interface ButtonProps {
@@ -6,7 +6,7 @@ interface ButtonProps {
   className?: string;
   type?: string;
   disabled?: boolean;
-  onClick?: MouseEventHandler<HTMLButtonElement>;
+  onClick?: (event: any) => void;
 }
 export const Button: React.FC<ButtonProps> = ({
   children,
