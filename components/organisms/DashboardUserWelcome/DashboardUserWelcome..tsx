@@ -28,7 +28,6 @@ export const DashboardUserWelcome = () => {
   const [data, setData] = useState<UserData | null>(null);
   const [isVideoReady, setisVideoReady] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  console.log(isVideoReady);
   const FILLER_CONTENT_IMG =
     "https://static.wixstatic.com/media/d166cc_4cc837baf9254000a0f3963193c6b07a~mv2.jpg/v1/fill/w_368,h_195,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/Romanos%2011111.jpg";
 
