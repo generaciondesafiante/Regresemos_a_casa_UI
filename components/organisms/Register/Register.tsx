@@ -5,7 +5,7 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 import { Button } from "../../atoms";
-import { ArrowRightIcon } from "../../atoms/icons/arrowsIcons";
+import { ArrowLeftIcon, ArrowRightIcon } from "../../atoms/icons/arrowsIcons";
 import { RegisterFormPassword } from "./RegisterFormPassword/RegisterFormPassword";
 import { RegisterFormInformation } from "./RegisterFormInformation/RegisterFormInformation";
 import styles from "./Register.module.css";
@@ -42,6 +42,10 @@ export const Register = () => {
     } else {
       setCondicionalView(false);
     }
+  };
+
+  const handleBackButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setCondicionalView(false)
   };
 
   const router = useRouter();
@@ -127,6 +131,15 @@ export const Register = () => {
           {condicionalView ? (
             <>
               <div className={styles["register-form-passwordInputs"]}>
+                <div>
+                  <button
+                    className={styles["register-backButtonFormRegister"]}
+                    onClick={handleBackButtonClick}
+                  >
+                    <ArrowLeftIcon />
+                    <p>Regresar</p>
+                  </button>
+                </div>
                 <h2 className={`${styles["register-form-passwordTitle"]} `}>
                   Elige tu contraseña
                 </h2>

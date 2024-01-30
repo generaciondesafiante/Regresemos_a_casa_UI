@@ -91,6 +91,23 @@
   background-color: var(--white);
 }
 
+.register-backButtonFormRegister {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: var(--white);
+  font-size: var(--fontSize-buttons_mobile);
+  transition: var(--transition);
+  background-color: transparent;
+  border:none;
+  cursor: pointer;
+}
+
+.register-backButtonFormRegister:hover {
+  color: var(--turquoise);
+}
+
 @media (width >=38rem) {
 
   .register-form-passwordTitle,
@@ -120,5 +137,9 @@
     align-items: center;
     width: 4rem;
     height: 4rem;
+  }
+
+  .register-backButtonFormRegister{
+    font-size: var(--fontSize-paragraph_laptop);
   }
 }
