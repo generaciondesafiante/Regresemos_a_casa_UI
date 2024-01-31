@@ -22,7 +22,6 @@ export const Login: FC = () => {
       password,
       redirect: false,
     });
-    console.warn(responseNextAuth);
     if (responseNextAuth?.error) {
       const errorMessage = responseNextAuth.error;
       console.error(responseNextAuth?.error);
