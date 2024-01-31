@@ -44,10 +44,6 @@ export const Register = () => {
     }
   };
 
-  const handleBackButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setCondicionalView(false)
-  };
-
   const router = useRouter();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -134,7 +130,7 @@ export const Register = () => {
                 <div className={styles["register-containerBackButtonFormRegister"]}>
                   <button
                     className={styles["register-backButtonFormRegister"]}
-                    onClick={handleBackButtonClick}
+                    onClick={() => setCondicionalView(false)}
                   >
                     <ArrowLeftIcon />
                     <p>Regresar</p>
