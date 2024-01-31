@@ -22,15 +22,31 @@ export const Login: FC = () => {
       password,
       redirect: false,
     });
-
+    console.warn(responseNextAuth);
     if (responseNextAuth?.error) {
-      setErrors(responseNextAuth.error.split(","));
+      const errorMessage = responseNextAuth.error;
+      console.error(responseNextAuth?.error);
+      if (errorMessage.includes("Failed to parse URL from undefined/auth")) {
+        Swal.fire({
+          icon: "error",
+          title: "Error en autenticación",
+          text: "Hubo un problema con el servidor.Por favor, intenta nuevamente más tarde.",
+        });
+      } else if (errorMessage.includes("Server error")) {
+        Swal.fire({
+          icon: "error",
+          title: "Error en autenticación",
+          text: "Hubo un problema con el servidor. Por favor, intenta nuevamente más tarde.",
+        });
+      } else {
+        setErrors(errorMessage.split(","));
+        Swal.fire({
+          icon: "error",
+          title: "Error en autenticación",
+          text: "Usuario o contraseña incorrecta",
+        });
+      }
 
-      Swal.fire({
-        icon: "error",
-        title: "Error en autenticación",
-        text: "Usuario o contraseña incorrecta",
-      });
       return;
     }
 
