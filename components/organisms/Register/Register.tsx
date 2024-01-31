@@ -131,7 +131,7 @@ export const Register = () => {
           {condicionalView ? (
             <>
               <div className={styles["register-form-passwordInputs"]}>
-                <div>
+                <div className={styles["register-containerBackButtonFormRegister"]}>
                   <button
                     className={styles["register-backButtonFormRegister"]}
                     onClick={handleBackButtonClick}
