@@ -55,6 +55,20 @@ export const Profile: FC<Props> = () => {
         };
   });
 
+  const handleCancelEdit = () => {
+    setFormData({
+      name: session?.user?.name ?? "",
+      lastname: session?.user?.lastname ?? "",
+      email: session?.user?.email ?? "",
+      country: session?.user?.country ?? "",
+      city: session?.user?.city ?? "",
+      phone: session?.user?.phone ?? "",
+      image: session?.user?.image ?? "",
+    });
+
+    setIsEditing(false);
+  };
+
   useEffect(() => {
     setLocalStorageItem("formData", formData);
   }, [formData]);
@@ -93,6 +107,11 @@ export const Profile: FC<Props> = () => {
       );
 
       const isSuccess = response.ok;
+
+      if (isSuccess) {
+        setFormData(formData);
+        setIsEditing(false);
+      }
 
       if (Swal && typeof Swal.fire === "function") {
         const swalOptions: SweetAlertOptions = {
@@ -140,9 +159,11 @@ export const Profile: FC<Props> = () => {
 
       if (saveSuccess) {
         setIsModalOpen(false);
+        setIsEditing(false);
       }
     } else {
       setIsModalOpen(false);
+      setIsEditing(false);
     }
     setFile(null);
   };
@@ -288,7 +309,7 @@ export const Profile: FC<Props> = () => {
               <Button
                 type={"text"}
                 className={styles["profile-editInformation_cancelButton"]}
-                onClick={() => setIsEditing(false)}
+                onClick={handleCancelEdit}
               >
                 Cancelar
               </Button>
