@@ -44,7 +44,16 @@
   display: block;
   border-radius: var(--borderRadius);
 }
-
+.titleVideo-skeletonVideo {
+  width: 12rem;
+  height: 1rem;
+  margin-left: 1.5rem;
+  margin-top: 0.8rem;
+  margin-bottom: 0.8rem;
+  border-radius: var(--borderRadius);
+  background-color: #7b7b7b33;
+  animation: pulse 1s ease-in-out;
+}
 .lastViewedVideo-skeletonVideo {
   width: 12rem;
   height: 6rem;
@@ -112,7 +121,9 @@
   .dashboardUserWelcome-continuePlayingContainer {
     width: 13rem;
   }
-
+  .titleVideo-skeletonVideo {
+    width: 13rem;
+  }
   .lastViewedVideo-skeletonVideo {
     width: 13rem;
   }
@@ -156,9 +167,13 @@
     height: 9rem;
     width: 14rem;
   }
-  .lastViewedVideo-skeletonVideo {
-    height: 9rem;
+  .titleVideo-skeletonVideo {
     width: 14rem;
+    height: 2rem;
+  }
+  .lastViewedVideo-skeletonVideo {
+    width: 14rem;
+    height: 9rem;
   }
   .dashboardUserWelcome-resourcesContainer {
     max-height: 41vh;
@@ -201,7 +216,10 @@
   .dashboardUserWelcome-continuePlayingContainer {
     width: 19rem;
   }
-
+  .titleVideo-skeletonVideo {
+    width: 19rem;
+    height: 2rem;
+  }
   .lastViewedVideo-skeletonVideo {
     width: 19rem;
   }
