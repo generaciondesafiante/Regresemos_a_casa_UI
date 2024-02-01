@@ -4,20 +4,46 @@ import { ArrowRightIcon, Button } from "../../../atoms";
 import styles from "./AssessmentQuestions.module.css";
 import { useState, useEffect } from "react";
 
-export const questions = [
-  {
-    title: "¿ Cuál es el primogenito de abraham ?",
-    image: "esto es una imagen",
-    options: [
-      { textAnswer: "Jose", isCorrect: false },
-      { textAnswer: "Ismael", isCorrect: false },
-      { textAnswer: "Isaac", isCorrect: true },
-      { textAnswer: "Jacob", isCorrect: false },
-    ],
-  },
+type SingleChoiceQuestion = {
+  title: string;
+  image: string;
+  questionType: "single";
+  options: {
+    textAnswer: string;
+    isCorrect: boolean;
+  }[];
+};
+
+type TrueFalseQuestion = {
+  title: string;
+  image: string;
+  questionType: "trueFalse";
+  options: {
+    textAnswer: string;
+    isCorrect: boolean;
+  }[];
+};
+
+type MultipleChoiceQuestion = {
+  title: string;
+  image: string;
+  questionType: "multiple";
+  options: {
+    textAnswer: string;
+    isCorrect: boolean;
+  }[];
+};
+
+type Question =
+  | SingleChoiceQuestion
+  | TrueFalseQuestion
+  | MultipleChoiceQuestion;
+
+export const questions: Question[] = [
   {
     title: "¿ Cuáles son los hijos de abraham ?",
     image: "esto es una imagen",
+    questionType: "single",
     options: [
       { textAnswer: "cristian", isCorrect: false },
       { textAnswer: "daniel", isCorrect: false },
@@ -26,8 +52,30 @@ export const questions = [
     ],
   },
   {
+    title: "¿ Abraham significa... Padre ?",
+    image: "esto es una imagen",
+    questionType: "trueFalse",
+    options: [
+      { textAnswer: "Falso", isCorrect: true },
+      { textAnswer: "Verdadero", isCorrect: false },
+    ],
+  },
+  {
+    title: "¿ Cuál es el primogenito de abraham ?",
+    image: "esto es una imagen",
+    questionType: "single",
+    options: [
+      { textAnswer: "Jose", isCorrect: false },
+      { textAnswer: "Ismael", isCorrect: false },
+      { textAnswer: "Isaac", isCorrect: true },
+      { textAnswer: "Jacob", isCorrect: false },
+    ],
+  },
+
+  {
     title: "¿ Cuáles son los hijos de abraham2 ?",
     image: "esto es una imagen",
+    questionType: "multiple",
     options: [
       { textAnswer: "cristian2", isCorrect: false },
       { textAnswer: "daniel2", isCorrect: false },
@@ -38,6 +86,7 @@ export const questions = [
   {
     title: "¿ Cuál es el primogenito de abraham 2?",
     image: "esto es una imagen",
+    questionType: "single",
     options: [
       { textAnswer: "Jose2", isCorrect: false },
       { textAnswer: "Ismael2", isCorrect: false },
@@ -48,6 +97,7 @@ export const questions = [
   {
     title: "¿ Cuál es el primogenito de abraham ?",
     image: "esto es una imagen",
+    questionType: "single",
     options: [
       { textAnswer: "Jose", isCorrect: false },
       { textAnswer: "Ismael", isCorrect: false },
@@ -58,6 +108,7 @@ export const questions = [
   {
     title: "¿ Cuál es el primogenito de abraham ?",
     image: "esto es una imagen",
+    questionType: "single",
     options: [
       { textAnswer: "Jose", isCorrect: false },
       { textAnswer: "Ismael", isCorrect: false },
@@ -65,9 +116,11 @@ export const questions = [
       { textAnswer: "Jacob", isCorrect: false },
     ],
   },
+
   {
     title: "¿ Abraham significa... Padre ?",
     image: "esto es una imagen",
+    questionType: "trueFalse",
     options: [
       { textAnswer: "Falso", isCorrect: true },
       { textAnswer: "Verdadero", isCorrect: false },
@@ -76,14 +129,7 @@ export const questions = [
   {
     title: "¿ Abraham significa... Padre ?",
     image: "esto es una imagen",
-    options: [
-      { textAnswer: "Falso", isCorrect: true },
-      { textAnswer: "Verdadero", isCorrect: false },
-    ],
-  },
-  {
-    title: "¿ Abraham significa... Padre ?",
-    image: "esto es una imagen",
+    questionType: "trueFalse",
     options: [
       { textAnswer: "Falso", isCorrect: true },
       { textAnswer: "Verdadero", isCorrect: false },
@@ -92,6 +138,7 @@ export const questions = [
   {
     title: "¿ Cuáles fueron las promesas que le dio Dios ?",
     image: "esto es una imagen",
+    questionType: "multiple",
     options: [
       {
         textAnswer: "Descendencia como las estrellas de la arena",
@@ -113,65 +160,70 @@ export const AssessmentQuestions = () => {
   const [selectedButtonIndex, setSelectedButtonIndex] = useState<number | null>(
     null
   );
-  const [correctButtonIndex, setCorrectButtonIndex] = useState<
-    (number | undefined)[]
-  >([]);
+  const [correctButtonIndex, setCorrectButtonIndex] = useState<number[]>([]);
   const [assessmentCompleted, setAssessmentCompleted] = useState(false);
-  const [selectedOptions, setSelectedOptions] = useState<number[]>([]);
   const [showScore, setShowScore] = useState(false);
   const [resetAssessment, setResetAssessment] = useState(false);
-
-  useEffect(() => {
-    const currentOptions = questions[currentQuestion].options;
-    const countCorrect = currentOptions.filter(
-      (option) => option.isCorrect
-    ).length;
-    console.log("este es el countCorrect", countCorrect);
-
-    if (selectedButtonIndex !== null) {
-      setCorrectButtonIndex(
-        currentOptions
-          .map((option, index) => {
-            if (option.isCorrect) return index;
-          })
-          .filter((option) => option !== undefined)
-      );
-    }
-  }, [currentQuestion, selectedButtonIndex]);
+  const [answerVisible, setAnswerVisible] = useState(false);
+  const [selectedAnswerIndices, setSelectedAnswerIndices] = useState<number[]>(
+    []
+  );
 
   useEffect(() => {
     if (resetAssessment) {
-      setCurrentQuestion(0);
-      setScore(0);
-      setSelectedButtonIndex(null);
-      setCorrectButtonIndex([]);
-      setCorrectButtonIndex([]);
-      setAssessmentCompleted(false);
-      setSelectedOptions([]);
-      setShowScore(false);
-      setResetAssessment(false);
+      resetAssessmentState();
     }
   }, [resetAssessment]);
 
-  const isAnswerCorrect = (index: number) => {
-    return questions[currentQuestion].options[index].isCorrect;
+  const resetAssessmentState = () => {
+    setCurrentQuestion(0);
+    setScore(0);
+    setSelectedButtonIndex(null);
+    setCorrectButtonIndex([]);
+    setAssessmentCompleted(false);
+    setShowScore(false);
+    setAnswerVisible(false);
+    setResetAssessment(false);
   };
 
-  const handleAnswerSubmit = (index: number) => {
-    setSelectedButtonIndex(index);
+  const isAnswerCorrect = (index: number) =>
+    questions[currentQuestion]?.options[index]?.isCorrect || false;
 
-    const isCorrect = isAnswerCorrect(index);
-    if (isCorrect) {
-      setScore((prevScore) => prevScore + 1);
+  useEffect(() => {
+    const currentOptions = questions[currentQuestion]?.options || [];
+    const correctIndices = currentOptions
+      .map((option, index) => (option.isCorrect ? index : undefined))
+      .filter((index) => index !== undefined) as number[];
+    setCorrectButtonIndex(correctIndices);
+    setSelectedButtonIndex(null); // Reset selected button index when question changes
+  }, [currentQuestion]);
+
+  const handleAnswerSubmit = (index: number) => {
+    const currentQuestionType = questions[currentQuestion]?.questionType;
+
+    if (
+      currentQuestionType === "single" ||
+      currentQuestionType === "trueFalse"
+    ) {
+      setSelectedAnswerIndices([index]);
+      setSelectedButtonIndex(index); // Set selected button index for single selection
     } else {
-      setCorrectButtonIndex(
-        questions[currentQuestion].options
-          .map((option, index) => {
-            if (option.isCorrect) return index;
-          })
-          .filter((option) => option !== undefined)
+      // Multiple choice question
+      const updatedIndices = selectedAnswerIndices.includes(index)
+        ? selectedAnswerIndices.filter((i) => i !== index)
+        : [...selectedAnswerIndices, index];
+
+      setSelectedAnswerIndices(updatedIndices);
+
+      // Update selected button index for multiple selection
+      setSelectedButtonIndex(
+        updatedIndices.length > 0 ? updatedIndices[0] : null
       );
     }
+  };
+
+  const showCorrectAnswer = () => {
+    setAnswerVisible(true);
   };
 
   const advanceToNextQuestion = () => {
@@ -180,9 +232,13 @@ export const AssessmentQuestions = () => {
       setShowScore(true);
     } else {
       setCurrentQuestion((prev) => prev + 1);
+
+      // Reinicia el estado de selectedAnswerIndices
+      setSelectedAnswerIndices([]);
+
       setSelectedButtonIndex(null);
       setCorrectButtonIndex([]);
-      setCorrectButtonIndex([]);
+      setAnswerVisible(false);
     }
   };
 
@@ -212,30 +268,36 @@ export const AssessmentQuestions = () => {
                   {questions[currentQuestion].options.map((answer, index) => (
                     <Button
                       key={answer.textAnswer}
-                      className={`${
-                        styles["assessmentQuestions-answerOptions_button"]
-                      } ${
-                        styles[
-                          "assessmentQuestions-answer_button" + (index + 1)
-                        ]
-                      } ${
-                        selectedButtonIndex !== null
-                          ? index === selectedButtonIndex
-                            ? isAnswerCorrect(index)
-                              ? styles["correct"]
-                              : styles["incorrect"]
-                            : correctButtonIndex.some((i) => i === index)
-                            ? styles["correct"]
-                            : styles["inactive"]
-                          : styles["active"]
-                      }`}
+                      className={`
+                        ${styles["assessmentQuestions-answerOptions_button"]} 
+                        ${
+                          styles[
+                            "assessmentQuestions-answer_button" + (index + 1)
+                          ]
+                        } 
+                        ${
+                          questions[currentQuestion].questionType ===
+                            "multiple" && selectedAnswerIndices.includes(index)
+                            ? styles["selected"]
+                            : ""
+                        }
+                        ${
+                          questions[currentQuestion].questionType ===
+                            "single" && selectedButtonIndex === index
+                            ? styles["selected"]
+                            : ""
+                        }
+                      `}
                       onClick={() => handleAnswerSubmit(index)}
-                      disabled={selectedButtonIndex !== null}
+                      disabled={answerVisible}
                     >
                       {answer.textAnswer}
                     </Button>
                   ))}
                 </div>
+                <Button onClick={showCorrectAnswer} disabled={answerVisible}>
+                  Conocer Respuesta
+                </Button>
               </section>
             </div>
             <section>
@@ -249,7 +311,7 @@ export const AssessmentQuestions = () => {
               <button
                 className={styles["assessmentQuestions-nextButton"]}
                 onClick={advanceToNextQuestion}
-                disabled={selectedButtonIndex === null}
+                disabled={selectedButtonIndex === null || !answerVisible}
               >
                 <ArrowRightIcon />
               </button>
