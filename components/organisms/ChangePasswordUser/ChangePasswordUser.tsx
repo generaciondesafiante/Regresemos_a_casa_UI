@@ -56,7 +56,6 @@ export const ChangePasswordUser = () => {
 
       if (responseData.ok === true) {
         return true;
-
       } else {
         setErrorMessage(responseData.msg);
         return false;
