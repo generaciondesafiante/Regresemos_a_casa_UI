@@ -41,9 +41,20 @@ type Question =
 
 export const questions: Question[] = [
   {
-    title: "¿ Cuáles son los hijos de abraham ?",
+    title: "¿ Cuál es el primogenito de abraham ?",
     image: "esto es una imagen",
     questionType: "single",
+    options: [
+      { textAnswer: "Jose", isCorrect: false },
+      { textAnswer: "Ismael", isCorrect: false },
+      { textAnswer: "Isaac", isCorrect: true },
+      { textAnswer: "Jacob", isCorrect: false },
+    ],
+  },
+  {
+    title: "¿ Cuáles son los hijos de abraham ?",
+    image: "esto es una imagen",
+    questionType: "multiple",
     options: [
       { textAnswer: "cristian", isCorrect: false },
       { textAnswer: "daniel", isCorrect: false },
@@ -60,15 +71,14 @@ export const questions: Question[] = [
       { textAnswer: "Verdadero", isCorrect: false },
     ],
   },
+
   {
-    title: "¿ Cuál es el primogenito de abraham ?",
+    title: "¿ Abraham significa... Padre ?",
     image: "esto es una imagen",
-    questionType: "single",
+    questionType: "trueFalse",
     options: [
-      { textAnswer: "Jose", isCorrect: false },
-      { textAnswer: "Ismael", isCorrect: false },
-      { textAnswer: "Isaac", isCorrect: true },
-      { textAnswer: "Jacob", isCorrect: false },
+      { textAnswer: "Falso", isCorrect: true },
+      { textAnswer: "Verdadero", isCorrect: false },
     ],
   },
 
@@ -127,15 +137,6 @@ export const questions: Question[] = [
     ],
   },
   {
-    title: "¿ Abraham significa... Padre ?",
-    image: "esto es una imagen",
-    questionType: "trueFalse",
-    options: [
-      { textAnswer: "Falso", isCorrect: true },
-      { textAnswer: "Verdadero", isCorrect: false },
-    ],
-  },
-  {
     title: "¿ Cuáles fueron las promesas que le dio Dios ?",
     image: "esto es una imagen",
     questionType: "multiple",
@@ -168,6 +169,8 @@ export const AssessmentQuestions = () => {
   const [selectedAnswerIndices, setSelectedAnswerIndices] = useState<number[]>(
     []
   );
+  const [showCorrectIncorrect, setShowCorrectIncorrect] = useState(false);
+  const [selectedAnswerCorrect, setSelectedAnswerCorrect] = useState(false);
 
   useEffect(() => {
     if (resetAssessment) {
@@ -198,15 +201,40 @@ export const AssessmentQuestions = () => {
     setSelectedButtonIndex(null); // Reset selected button index when question changes
   }, [currentQuestion]);
 
+  // const handleAnswerSubmit = (index: number) => {
+  //   const currentQuestionType = questions[currentQuestion]?.questionType;
+
+  //   if (
+  //     currentQuestionType === "single" ||
+  //     currentQuestionType === "trueFalse"
+  //   ) {
+  //     setSelectedAnswerIndices([index]);
+  //     setSelectedButtonIndex(index); // Set selected button index for single selection
+  //   } else {
+  //     // Multiple choice question
+  //     const updatedIndices = selectedAnswerIndices.includes(index)
+  //       ? selectedAnswerIndices.filter((i) => i !== index)
+  //       : [...selectedAnswerIndices, index];
+
+  //     setSelectedAnswerIndices(updatedIndices);
+
+  //     // Update selected button index for multiple selection
+  //     setSelectedButtonIndex(
+  //       updatedIndices.length > 0 ? updatedIndices[0] : null
+  //     );
+  //   }
+  // };
   const handleAnswerSubmit = (index: number) => {
     const currentQuestionType = questions[currentQuestion]?.questionType;
+    console.log(currentQuestionType);
 
     if (
       currentQuestionType === "single" ||
       currentQuestionType === "trueFalse"
     ) {
       setSelectedAnswerIndices([index]);
-      setSelectedButtonIndex(index); // Set selected button index for single selection
+      setSelectedButtonIndex(index);
+      setSelectedAnswerCorrect(isAnswerCorrect(index));
     } else {
       // Multiple choice question
       const updatedIndices = selectedAnswerIndices.includes(index)
@@ -219,11 +247,50 @@ export const AssessmentQuestions = () => {
       setSelectedButtonIndex(
         updatedIndices.length > 0 ? updatedIndices[0] : null
       );
+
+      // Check if the selected answer is correct in multiple choice questions
+      setSelectedAnswerCorrect(updatedIndices.every((i) => isAnswerCorrect(i)));
     }
+    console.log(
+      "Respuesta seleccionada:",
+      questions[currentQuestion]?.options[index]?.textAnswer
+    );
+    console.log(
+      "Respuestas correctas:",
+      correctButtonIndex.map(
+        (i) => questions[currentQuestion]?.options[i]?.textAnswer
+      )
+    );
+    console.log("Respuesta es correcta:", isAnswerCorrect(index));
   };
 
   const showCorrectAnswer = () => {
-    setAnswerVisible(true);
+    setShowCorrectIncorrect(true);
+
+    // Obtén los índices de las respuestas seleccionadas
+    const selectedIndices = selectedAnswerIndices;
+
+    // Obtén los índices de las respuestas correctas
+    const correctIndices = correctButtonIndex;
+
+    // Compara los arreglos de índices para determinar si son iguales
+    const isCorrect =
+      JSON.stringify(selectedIndices.sort()) ===
+      JSON.stringify(correctIndices.sort());
+
+    console.log(
+      "Respuestas seleccionadas:",
+      selectedIndices.map(
+        (i) => questions[currentQuestion]?.options[i]?.textAnswer
+      )
+    );
+    console.log(
+      "Respuestas correctas:",
+      correctIndices.map(
+        (i) => questions[currentQuestion]?.options[i]?.textAnswer
+      )
+    );
+    console.log("Respuesta es correcta:", isCorrect);
   };
 
   const advanceToNextQuestion = () => {
@@ -269,25 +336,29 @@ export const AssessmentQuestions = () => {
                     <Button
                       key={answer.textAnswer}
                       className={`
-                        ${styles["assessmentQuestions-answerOptions_button"]} 
-                        ${
-                          styles[
-                            "assessmentQuestions-answer_button" + (index + 1)
-                          ]
-                        } 
-                        ${
-                          questions[currentQuestion].questionType ===
-                            "multiple" && selectedAnswerIndices.includes(index)
-                            ? styles["selected"]
-                            : ""
-                        }
-                        ${
-                          questions[currentQuestion].questionType ===
-                            "single" && selectedButtonIndex === index
-                            ? styles["selected"]
-                            : ""
-                        }
-                      `}
+                          ${styles["assessmentQuestions-answerOptions_button"]} 
+                          ${
+                            styles[
+                              "assessmentQuestions-answer_button" + (index + 1)
+                            ]
+                          } 
+                          ${
+                            selectedButtonIndex === index
+                              ? styles["selected"]
+                              : ""
+                          }
+                          ${
+                            showCorrectIncorrect &&
+                            answer.isCorrect &&
+                            selectedAnswerCorrect
+                              ? styles["true"]
+                              : showCorrectIncorrect &&
+                                !answer.isCorrect &&
+                                !selectedAnswerCorrect
+                              ? styles["incorrect"]
+                              : ""
+                          }
+                        `}
                       onClick={() => handleAnswerSubmit(index)}
                       disabled={answerVisible}
                     >
@@ -295,7 +366,13 @@ export const AssessmentQuestions = () => {
                     </Button>
                   ))}
                 </div>
-                <Button onClick={showCorrectAnswer} disabled={answerVisible}>
+                <Button
+                  onClick={() => {
+                    showCorrectAnswer();
+                    setAnswerVisible(true);
+                  }}
+                  disabled={answerVisible}
+                >
                   Conocer Respuesta
                 </Button>
               </section>
