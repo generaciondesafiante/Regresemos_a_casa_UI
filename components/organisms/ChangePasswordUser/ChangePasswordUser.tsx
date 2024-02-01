@@ -56,6 +56,7 @@ export const ChangePasswordUser = () => {
 
       if (responseData.ok === true) {
         return true;
+
       } else {
         setErrorMessage(responseData.msg);
         return false;
@@ -96,7 +97,7 @@ export const ChangePasswordUser = () => {
         title: "Contraseña modificada",
         text: "Los cambios en tu perfil han sido guardados exitosamente",
         didClose: () => {
-          router.push("/dashboard/profile/changepassword");
+          router.push("/dashboard/profile");
         },
       });
     } catch (error) {
