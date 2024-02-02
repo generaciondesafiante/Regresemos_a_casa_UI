@@ -10,8 +10,8 @@ export const AssessmentQuestions = () => {
   const [score, setScore] = useState(0);
   const [assessmentCompleted, setAssessmentCompleted] = useState(false);
   const [resetAssessment, setResetAssessment] = useState(false);
-  const [selectedAnswerIndex, setSelectedAnswerIndex] = useState<number | null>(
-    null
+  const [selectedAnswerIndices, setSelectedAnswerIndices] = useState<number[]>(
+    []
   );
   const [answerRevealed, setAnswerRevealed] = useState(false);
   const [selectedIncorrectAnswers, setSelectedIncorrectAnswers] = useState<
@@ -31,7 +31,7 @@ export const AssessmentQuestions = () => {
       return null;
     }
     return questionsData[currentQuestion].options.map((option, index) => {
-      const isSelected = selectedAnswerIndex === index;
+      const isSelected = selectedAnswerIndices.includes(index);
       const isCorrect = selectedCorrectAnswers.includes(index);
       const isIncorrect = selectedIncorrectAnswers.includes(index);
       const isRevealed = answerRevealed && isSelected;
@@ -49,7 +49,7 @@ export const AssessmentQuestions = () => {
           type="button"
           key={index}
           className={buttonClass}
-          onClick={() => !answerLocked && setSelectedAnswerIndex(index)}
+          onClick={() => !answerLocked && handleAnswerClick(index)}
         >
           {option.textAnswer}
         </Button>
@@ -57,18 +57,37 @@ export const AssessmentQuestions = () => {
     });
   };
 
+  const handleAnswerClick = (index: number) => {
+    const currentQuestionData = questionsData[currentQuestion];
+    if (currentQuestionData.questionType === "multiple") {
+      const updatedSelectedAnswers = [...selectedAnswerIndices];
+      const answerIndex = updatedSelectedAnswers.indexOf(index);
+
+      if (answerIndex !== -1) {
+        updatedSelectedAnswers.splice(answerIndex, 1);
+      } else {
+        updatedSelectedAnswers.push(index);
+      }
+
+      setSelectedAnswerIndices(updatedSelectedAnswers);
+    } else {
+      setSelectedAnswerIndices([index]);
+    }
+  };
+
   const handleCheckAnswerClick = () => {
-    if (selectedAnswerIndex !== null) {
+    if (selectedAnswerIndices.length > 0) {
       setShowCorrectIncorrect(true);
 
       const correctAnswerIndices = questionsData[currentQuestion].options
         .map((option, index) => (option.isCorrect ? index : -1))
         .filter((index) => index !== -1);
 
-      const isAnswerCorrect =
-        correctAnswerIndices.includes(selectedAnswerIndex);
+      const areAnswersCorrect = selectedAnswerIndices.every((index) =>
+        correctAnswerIndices.includes(index)
+      );
 
-      if (isAnswerCorrect) {
+      if (areAnswersCorrect) {
         setScore((prevScore) => prevScore + 1);
       }
 
@@ -87,7 +106,7 @@ export const AssessmentQuestions = () => {
   };
 
   const handleNextQuestionClick = () => {
-    setSelectedAnswerIndex(null);
+    setSelectedAnswerIndices([]);
     setShowCorrectIncorrect(false);
     setSelectedCorrectAnswers([]);
     setSelectedIncorrectAnswers([]);
@@ -102,18 +121,20 @@ export const AssessmentQuestions = () => {
       setAssessmentCompleted(true);
     }
   };
+
   const handleRestartAssessmentClick = () => {
     setCurrentQuestion(0);
     setScore(0);
     setAssessmentCompleted(false);
     setResetAssessment(true);
-    setSelectedAnswerIndex(null);
+    setSelectedAnswerIndices([]);
     setAnswerRevealed(false);
     setSelectedIncorrectAnswers([]);
     setSelectedCorrectAnswers([]);
     setShowCorrectIncorrect(false);
     setAnswerLocked(false);
   };
+
   return (
     <div className={styles["assessment-prueba"]}>
       {!assessmentCompleted ? (
@@ -148,7 +169,7 @@ export const AssessmentQuestions = () => {
                 >
                   <Button
                     onClick={handleCheckAnswerClick}
-                    disabled={selectedAnswerIndex === null}
+                    disabled={selectedAnswerIndices.length === 0}
                   >
                     Conocer Respuesta
                   </Button>
