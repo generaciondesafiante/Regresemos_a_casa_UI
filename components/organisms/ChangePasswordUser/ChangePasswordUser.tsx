@@ -96,7 +96,7 @@ export const ChangePasswordUser = () => {
         title: "Contraseña modificada",
         text: "Los cambios en tu perfil han sido guardados exitosamente",
         didClose: () => {
-          router.push("/dashboard/profile/changepassword");
+          router.push("/dashboard/profile");
         },
       });
     } catch (error) {
