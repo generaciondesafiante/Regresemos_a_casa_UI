@@ -41,7 +41,7 @@
   display: flex;
   justify-content: space-between;
   margin: 0rem 0.4rem;
-  padding-top: 0.5rem;
+  padding-top: 1rem;
 }
 
 .learningPathVideoClass-videoInteraction_title {
@@ -79,6 +79,8 @@
 
 .disabled {
   width: 5rem;
+  height: 2rem;
+  padding: 0;
   background-color: var(--grayGradient);
   color: var(--darkGrayGradient);
 }
@@ -90,6 +92,8 @@
 
 .enabled {
   width: 5rem;
+  height: 2rem;
+  padding: 0;
   background-color: var(--turquoise);
   color: var(--white);
 }
@@ -120,10 +124,12 @@
 
   .disabled {
     width: 7rem;
+    height: 2.5rem;
   }
 
   .enabled {
     width: 7rem;
+    height: 2.5rem;
   }
 }
 
@@ -153,6 +159,10 @@
   .learningPathVideoClass-skeletonVideo {
     width: 40rem;
     height: 22.5rem;
+  }
+
+  .learningPathVideoClass-content_videoInteraction {
+    padding-top: 1.5rem;
   }
 
   .learningPathVideoClass-videoInteraction_title {
