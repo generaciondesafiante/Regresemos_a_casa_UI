@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Button } from "../../../atoms";
 import { AssessmentFinished } from "../AssessmentFinished/AssessmentFinished";
 import { questionsData } from "../AssessmentQuestionsData";
+import Confetti from "react-confetti";
 import styles from "./AssessmentQuestions.module.css";
 
 export const AssessmentQuestions = () => {
@@ -20,9 +21,9 @@ export const AssessmentQuestions = () => {
   const [selectedCorrectAnswers, setSelectedCorrectAnswers] = useState<
     number[]
   >([]);
-
   const [showCorrectIncorrect, setShowCorrectIncorrect] = useState(false);
   const [answerLocked, setAnswerLocked] = useState(false);
+  const [confettiActive, setConfettiActive] = useState(false);
 
   const renderAnswerOptions = () => {
     const currentQuestionData = questionsData[currentQuestion];
@@ -35,9 +36,11 @@ export const AssessmentQuestions = () => {
       const isCorrect = selectedCorrectAnswers.includes(index);
       const isIncorrect = selectedIncorrectAnswers.includes(index);
       const isRevealed = answerRevealed && isSelected;
+      const buttonColorClass = styles[`color${index + 1}`];
 
       const buttonClass = [
         styles["assessmentQuestions-answerOptions_button"],
+        buttonColorClass,
         isSelected ? styles["selected"] : "",
         isCorrect ? styles["correctAnswer"] : "",
         isIncorrect ? styles["incorrect"] : "",
@@ -66,8 +69,8 @@ export const AssessmentQuestions = () => {
       if (answerIndex !== -1) {
         updatedSelectedAnswers.splice(answerIndex, 1);
       } else {
-        updatedSelectedAnswers.push(index);
       }
+      updatedSelectedAnswers.push(index);
 
       setSelectedAnswerIndices(updatedSelectedAnswers);
     } else {
@@ -89,6 +92,10 @@ export const AssessmentQuestions = () => {
 
       if (areAnswersCorrect) {
         setScore((prevScore) => prevScore + 1);
+        setConfettiActive(true);
+        setTimeout(() => {
+          setConfettiActive(false);
+        }, 8000);
       }
 
       setSelectedCorrectAnswers(correctAnswerIndices);
@@ -112,6 +119,7 @@ export const AssessmentQuestions = () => {
     setSelectedIncorrectAnswers([]);
     setAnswerRevealed(false);
     setAnswerLocked(false);
+    setConfettiActive(false);
 
     const nextQuestion = currentQuestion + 1;
 
@@ -133,55 +141,63 @@ export const AssessmentQuestions = () => {
     setSelectedCorrectAnswers([]);
     setShowCorrectIncorrect(false);
     setAnswerLocked(false);
+    setConfettiActive(false);
   };
 
   return (
-    <div className={styles["assessment-prueba"]}>
+    <>
       {!assessmentCompleted ? (
         <div className={styles["assessmentQuestions-container"]}>
+          {confettiActive && <Confetti />}
           <div className={styles["assessmentQuestions-img"]}></div>
           <p className={styles["assessmentQuestions-numberQuestion"]}>
             {currentQuestion + 1} de {questionsData.length}
           </p>
-          <div className={styles["ensayo"]}>
-            <div className={styles["assessmentQuestions-question_container"]}>
-              <h3 className={styles["assessmentQuestions-question_title"]}>
-                {questionsData[currentQuestion].title}
-              </h3>
-              <section
+
+          <div className={styles["assessmentQuestions-question_container"]}>
+            <h3 className={styles["assessmentQuestions-question_title"]}>
+              {questionsData[currentQuestion].title}
+            </h3>
+            <section>
+              <div
                 className={
-                  styles["assessmentQuestions-answerOptions_buttons_content"]
+                  styles["assessmentQuestions-answerOptions_container"]
                 }
               >
-                <div
+                {renderAnswerOptions()}
+              </div>
+              <div
+                className={
+                  styles[
+                    "assessmentQuestions-answersOpscions_container_next_and_questions"
+                  ]
+                }
+              >
+                <Button
+                  onClick={handleCheckAnswerClick}
                   className={
-                    styles["assessmentQuestions-answerOptions_container"]
+                    selectedAnswerIndices.length > 0
+                      ? styles["assessmentQuestions-checkAnswerButton"]
+                      : ""
+                  }
+                  disabled={selectedAnswerIndices.length === 0}
+                >
+                  Conocer Respuesta
+                </Button>
+
+                <Button
+                  onClick={handleNextQuestionClick}
+                  disabled={!answerRevealed}
+                  className={
+                    answerRevealed
+                      ? styles["assessmentQuestions-nextQuestionButton"]
+                      : ""
                   }
                 >
-                  {renderAnswerOptions()}
-                </div>
-                <div
-                  className={
-                    styles[
-                      "assessmentQuestions-answersOpscions_container_next_and_qestions"
-                    ]
-                  }
-                >
-                  <Button
-                    onClick={handleCheckAnswerClick}
-                    disabled={selectedAnswerIndices.length === 0}
-                  >
-                    Conocer Respuesta
-                  </Button>
-                  <Button
-                    onClick={handleNextQuestionClick}
-                    disabled={!answerRevealed}
-                  >
-                    Siguiente Pregunta
-                  </Button>
-                </div>
-              </section>
-            </div>
+                  Siguiente Pregunta
+                </Button>
+              </div>
+            </section>
           </div>
         </div>
       ) : (
@@ -193,6 +209,6 @@ export const AssessmentQuestions = () => {
           />
         </div>
       )}
-    </div>
+    </>
   );
 };
