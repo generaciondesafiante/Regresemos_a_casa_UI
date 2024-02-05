@@ -32,10 +32,3 @@
     display: none;
   }
 }
-
-@media (width >=75rem) {
-  .classRoomRoute-container {
-    width: 10rem;
-    padding-left: 6rem;
-  }
-}
