@@ -93,9 +93,6 @@ export const AssessmentQuestions = () => {
       if (areAnswersCorrect) {
         setScore((prevScore) => prevScore + 1);
         setConfettiActive(true);
-        setTimeout(() => {
-          setConfettiActive(false);
-        }, 8000);
       }
 
       setSelectedCorrectAnswers(correctAnswerIndices);
@@ -153,7 +150,6 @@ export const AssessmentQuestions = () => {
           <p className={styles["assessmentQuestions-numberQuestion"]}>
             {currentQuestion + 1} de {questionsData.length}
           </p>
-
           <div className={styles["assessmentQuestions-question_container"]}>
             <h3 className={styles["assessmentQuestions-question_title"]}>
               {questionsData[currentQuestion].title}
@@ -166,38 +162,38 @@ export const AssessmentQuestions = () => {
               >
                 {renderAnswerOptions()}
               </div>
-              <div
-                className={
-                  styles[
-                    "assessmentQuestions-answersOpscions_container_next_and_questions"
-                  ]
-                }
-              >
-                <Button
-                  onClick={handleCheckAnswerClick}
-                  className={
-                    selectedAnswerIndices.length > 0
-                      ? styles["assessmentQuestions-checkAnswerButton"]
-                      : ""
-                  }
-                  disabled={selectedAnswerIndices.length === 0}
-                >
-                  Conocer Respuesta
-                </Button>
-
-                <Button
-                  onClick={handleNextQuestionClick}
-                  disabled={!answerRevealed}
-                  className={
-                    answerRevealed
-                      ? styles["assessmentQuestions-nextQuestionButton"]
-                      : ""
-                  }
-                >
-                  Siguiente Pregunta
-                </Button>
-              </div>
             </section>
+          </div>
+          <div
+            className={
+              styles[
+                "assessmentQuestions-answersOpscions_container_next_and_questions"
+              ]
+            }
+          >
+            <Button
+              onClick={handleCheckAnswerClick}
+              className={
+                selectedAnswerIndices.length > 0
+                  ? styles["assessmentQuestions-checkAnswerButton"]
+                  : styles["disabled"]
+              }
+              disabled={selectedAnswerIndices.length === 0}
+            >
+              Conocer Respuesta
+            </Button>
+
+            <Button
+              onClick={handleNextQuestionClick}
+              disabled={!answerRevealed}
+              className={
+                answerRevealed
+                  ? styles["assessmentQuestions-nextQuestionButton"]
+                  : styles["disabled"]
+              }
+            >
+              Siguiente Pregunta
+            </Button>
           </div>
         </div>
       ) : (
