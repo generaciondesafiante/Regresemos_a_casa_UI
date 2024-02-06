@@ -191,7 +191,7 @@ export const Profile: FC<Props> = () => {
                   }
                 >
                   <label className={styles["profile-modalUploadPhoto_label"]}>
-                    Subir foto
+                    Selecciona tu foto
                   </label>
                   <input
                     type="file"
