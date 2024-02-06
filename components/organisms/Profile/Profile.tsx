@@ -37,7 +37,6 @@ export const Profile: FC<Props> = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [file, setFile] = useState<File | null>(null);
-  const [shouldSaveFile, setShouldSaveFile] = useState(false);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
 
   const [formData, setFormData] = useState(() => {
@@ -95,6 +94,20 @@ export const Profile: FC<Props> = () => {
     e?.preventDefault();
 
     try {
+      if (file) {
+        const id = session?.user?.uid;
+
+        if (id) {
+          const result = await uploadFile(file, id);
+          setFormData((formData: {}) => ({
+            ...formData,
+            image: result,
+          }));
+        } else {
+          console.error("ID is undefined");
+        }
+      }
+
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/edit-profile/${session?.user?.uid}`,
         {
@@ -109,7 +122,6 @@ export const Profile: FC<Props> = () => {
       const isSuccess = response.ok;
 
       if (isSuccess) {
-        setFormData(formData);
         setIsEditing(false);
       }
 
@@ -133,41 +145,6 @@ export const Profile: FC<Props> = () => {
     }
   };
 
-  const handleSaveChangesAndCloseModal = async () => {
-    if (file) {
-      try {
-        const id = session?.user?.uid;
-
-        if (id) {
-          const result = await uploadFile(file, id);
-          setFormData((formData: {}) => ({
-            ...formData,
-            image: result,
-          }));
-          setShouldSaveFile(true);
-        } else {
-          console.error("ID is undefined");
-        }
-      } catch (error) {
-        console.error("Error en handleFileChange:", error);
-      }
-    }
-
-    if (shouldSaveFile) {
-      const saveSuccess = await handleSaveChanges();
-      setShouldSaveFile(false);
-
-      if (saveSuccess) {
-        setIsModalOpen(false);
-        setIsEditing(false);
-      }
-    } else {
-      setIsModalOpen(false);
-      setIsEditing(false);
-    }
-    setFile(null);
-  };
-
   return (
     <div className={styles["profile-container"]}>
       <div className={styles["profileContainer-title_img"]}>
@@ -187,7 +164,6 @@ export const Profile: FC<Props> = () => {
           <div>
             <ModalEditPhotoProfile
               openModalProfile={isModalOpen}
-              onSaveChangesAndCloseModal={handleSaveChangesAndCloseModal}
               closeModalProfile={() => {
                 setFile(null);
                 setPreviewImage(null);
@@ -230,14 +206,10 @@ export const Profile: FC<Props> = () => {
                   />
                 </Button>
                 <Button
-                  type="button"
+                  type="submit"
                   className={
                     styles["profile-modalUploadPhoto_buttonSaveChange"]
                   }
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleSaveChangesAndCloseModal();
-                  }}
                 >
                   Guardar cambios
                 </Button>
