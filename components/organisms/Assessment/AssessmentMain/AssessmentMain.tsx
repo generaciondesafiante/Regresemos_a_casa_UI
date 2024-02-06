@@ -2,7 +2,7 @@
 import { FC } from "react";
 import styles from "./AssessmentMain.module.css";
 import { AssessmentMainProps } from "../../../../types/types/assessment.type";
-import { questions } from "../../Assessment/AssessmentQuestions/AssessmentQuestions";
+import { questionsData } from "../AssessmentQuestionsData";
 import { Button } from "../../../atoms";
 
 export const AssessmentMain: FC<AssessmentMainProps> = ({
@@ -19,7 +19,7 @@ export const AssessmentMain: FC<AssessmentMainProps> = ({
       />
       <div className={styles["assessment-questions_content"]}>
         <p className={styles["assessment-questions"]}>
-          {`Son ${questions.length} preguntas de esta sección`}
+          {`Son ${questionsData.length} preguntas de esta sección`}
         </p>
       </div>
       <div className={styles["assessment-startButton_container"]}>

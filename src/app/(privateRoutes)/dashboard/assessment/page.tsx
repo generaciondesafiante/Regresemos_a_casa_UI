@@ -1,10 +1,7 @@
-// import { AssessmentTemplate } from "../../../../../components/templates";
-import { AssessmentTemplate } from "../../../../../components/templates/Assessment-template/AssessmentTemplate"
+import { AssessmentConditinalViewTemplate } from "../../../../../components/templates";
 
 const page = () => {
-    return (
-        <AssessmentTemplate/>
-    )
-}
+  return <AssessmentConditinalViewTemplate />;
+};
 
-export default page
+export default page;
