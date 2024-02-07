@@ -62,7 +62,7 @@
   color: var(--turquoise);
 }
 
-.register-form_loginRedirection_buttonDisabled {
+button.register-form_loginRedirection_buttonDisabled {
   width: 3rem;
   height: 3rem;
   display: flex;
@@ -72,11 +72,11 @@
   background-color: var(--grayGradient);
 }
 
-.register-form_loginRedirection_buttonDisabled:hover {
+button.register-form_loginRedirection_buttonDisabled:hover {
   transform: none;
 }
 
-.register-form_loginRedirection_buttonEnabled {
+button.register-form_loginRedirection_buttonEnabled {
   width: 3rem;
   height: 3rem;
   display: flex;
@@ -86,7 +86,7 @@
   background-color: var(--turquoise);
 }
 
-.register-form_loginRedirection_buttonEnabled:hover {
+button.register-form_loginRedirection_buttonEnabled:hover {
   color: var(--turquoise);
   background-color: var(--white);
 }
@@ -100,7 +100,7 @@
   font-size: var(--fontSize-buttons_mobile);
   transition: var(--transition);
   background-color: transparent;
-  border:none;
+  border: none;
   cursor: pointer;
 }
 
@@ -108,10 +108,10 @@
   color: var(--turquoise);
 }
 
-.register-containerBackButtonFormRegister{
+.register-containerBackButtonFormRegister {
   display: flex;
   justify-content: flex-start;
-  width: 100%; 
+  width: 100%;
   margin-bottom: 1rem;
 }
 
@@ -124,7 +124,6 @@
 }
 
 @media (width >=64rem) {
-
   .register-form-passwordTitle,
   .register-form-infoTitle {
     font-size: var(--fontSize-superTitles_laptop);
@@ -138,15 +137,15 @@
     font-size: var(--fontSize-paragraph_laptop);
   }
 
-  .register-form_loginRedirection_buttonDisabled,
-  .register-form_loginRedirection_buttonEnabled {
+  button.register-form_loginRedirection_buttonDisabled,
+  button.register-form_loginRedirection_buttonEnabled {
     display: flex;
     align-items: center;
-    width: 4rem;
-    height: 4rem;
+    width: 3.5rem;
+    height: 3.5rem;
   }
 
-  .register-backButtonFormRegister{
+  .register-backButtonFormRegister {
     font-size: var(--fontSize-paragraph_laptop);
   }
 }
