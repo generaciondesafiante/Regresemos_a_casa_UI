@@ -167,7 +167,7 @@ export const AssessmentQuestions = () => {
           <div
             className={
               styles[
-                "assessmentQuestions-answersOpscions_container_next_and_questions"
+                "assessmentQuestions-checkAndNextButtons_container"
               ]
             }
           >
@@ -176,7 +176,7 @@ export const AssessmentQuestions = () => {
               className={
                 selectedAnswerIndices.length > 0
                   ? styles["assessmentQuestions-checkAnswerButton"]
-                  : styles["disabled"]
+                  : styles["assessmentQuestions-checkAnswerButton_disabled"]
               }
               disabled={selectedAnswerIndices.length === 0}
             >
@@ -189,7 +189,7 @@ export const AssessmentQuestions = () => {
               className={
                 answerRevealed
                   ? styles["assessmentQuestions-nextQuestionButton"]
-                  : styles["disabled"]
+                  : styles["assessmentQuestions-nextQuestionButton_disabled"]
               }
             >
               Siguiente Pregunta
