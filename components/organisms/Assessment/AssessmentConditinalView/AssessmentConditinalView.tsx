@@ -1,14 +1,10 @@
 "use client";
-import { useState } from "react";
-import {
-  AssessmentMain,
-  AssessmentQuestions,
-  AssessmentFinished,
-} from "../../organisms";
-import { AssessmentTemplateProps } from "../../../types/types/assessment.type";
-import styles from "./AssessmentTemplate.module.css";
+import { FC, useState } from "react";
+import { AssestmentConditionalView } from "../../../../types/types/assessment.type";
+import styles from "./AssestmentConditionalView.module.css";
+import { AssessmentFinished, AssessmentMain, AssessmentQuestions } from "../..";
 
-export const AssessmentTemplate: React.FC<AssessmentTemplateProps> = () => {
+export const AssessmentConditinalView: FC<AssestmentConditionalView> = () => {
   const [assessmentStarted, setAssessmentStarted] = useState(false);
   const [assessmentCompleted, setAssessmentCompleted] = useState(false);
 

@@ -9,11 +9,13 @@
   font-weight: bold;
   color: var(--white);
 }
+
 .classRoomRoute-title.selected {
   background-color: var(--darkBlue);
   font-size: var(--fontSize-paragraph_mobile);
   color: var(--white);
 }
+
 .classRoomRoute-iconCircle {
   display: none;
 }
@@ -35,6 +37,7 @@
   .classRoomRoute-title {
     display: none;
   }
+
   .classRoomRoute-iconCircle.selected {
     display: flex;
     justify-content: center;
@@ -43,6 +46,7 @@
     font-size: var(--fontSize-paragraph_mobile);
     color: var(--white);
   }
+
   .classRoomRoute-iconCircle {
     width: 1.5rem;
     height: 1.5rem;

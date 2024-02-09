@@ -15,6 +15,6 @@ export interface AssessmentMainProps {
     onStartAssessment: () => void;
 }
 
-export interface AssessmentTemplateProps {
+export interface AssestmentConditionalView {
     onAssessmentCompleted?: () => void;
 }

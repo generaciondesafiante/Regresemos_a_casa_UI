@@ -38,6 +38,7 @@
     background-color: var(--darkBlue);
     border-radius: var(--borderRadius);
   }
+
   .learningPathTitleClass-title {
     font-size: var(--fontSize-titles_tablet);
   }
@@ -45,44 +46,21 @@
 
 @media (width >=64rem) {
   .learningPathTitleClass-container {
+    width: 30%;
     height: 100vh;
     padding-top: 8rem;
     padding-left: 1rem;
   }
 
   .learningPathTitleClass-title {
-    width: 18rem;
     padding-top: 0.5rem;
     font-size: var(--fontSize-titles_laptop);
   }
 
   .learningPathTitleClass-subcontent {
-    width: 16rem;
     display: block;
     padding-top: 1rem;
     font-size: var(--fontSize-paragraph_laptop);
     color: var(--darkGreen);
-  }
-}
-
-@media (width >=75rem) {
-  .learningPathTitleClass-container {
-    padding-left: 1rem;
-  }
-
-  .learningPathTitleClass-title {
-    width: 20rem;
-    font-size: var(--fontSize-titles_desktop);
-  }
-
-  .learningPathTitleClass-subcontent {
-    width: 18rem;
-    font-size: var(--fontSize-paragraph_desktop);
-  }
-}
-
-@media (min-width: 100rem) {
-  .learningPathTitleClass-container {
-    padding-top: 12rem;
   }
 }

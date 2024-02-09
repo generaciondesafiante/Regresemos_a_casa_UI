@@ -1,270 +1,210 @@
 "use client";
+import { useState } from "react";
+import { Button } from "../../../atoms";
 import { AssessmentFinished } from "../AssessmentFinished/AssessmentFinished";
-import { ArrowRightIcon, Button } from "../../../atoms";
+import { questionsData } from "../AssessmentQuestionsData";
+import Confetti from "react-confetti";
 import styles from "./AssessmentQuestions.module.css";
-import { useState, useEffect } from "react";
-
-export const questions = [
-  {
-    title: "¿ Cuál es el primogenito de abraham ?",
-    image: "esto es una imagen",
-    options: [
-      { textAnswer: "Jose", isCorrect: false },
-      { textAnswer: "Ismael", isCorrect: false },
-      { textAnswer: "Isaac", isCorrect: true },
-      { textAnswer: "Jacob", isCorrect: false },
-    ],
-  },
-  {
-    title: "¿ Cuáles son los hijos de abraham ?",
-    image: "esto es una imagen",
-    options: [
-      { textAnswer: "cristian", isCorrect: false },
-      { textAnswer: "daniel", isCorrect: false },
-      { textAnswer: "Isaac", isCorrect: true },
-      { textAnswer: "Ismael", isCorrect: true },
-    ],
-  },
-  {
-    title: "¿ Cuáles son los hijos de abraham2 ?",
-    image: "esto es una imagen",
-    options: [
-      { textAnswer: "cristian2", isCorrect: false },
-      { textAnswer: "daniel2", isCorrect: false },
-      { textAnswer: "Isaac2", isCorrect: true },
-      { textAnswer: "Ismael2", isCorrect: true },
-    ],
-  },
-  {
-    title: "¿ Cuál es el primogenito de abraham 2?",
-    image: "esto es una imagen",
-    options: [
-      { textAnswer: "Jose2", isCorrect: false },
-      { textAnswer: "Ismael2", isCorrect: false },
-      { textAnswer: "Isaac2", isCorrect: true },
-      { textAnswer: "Jacob2", isCorrect: false },
-    ],
-  },
-  {
-    title: "¿ Cuál es el primogenito de abraham ?",
-    image: "esto es una imagen",
-    options: [
-      { textAnswer: "Jose", isCorrect: false },
-      { textAnswer: "Ismael", isCorrect: false },
-      { textAnswer: "Isaac", isCorrect: true },
-      { textAnswer: "Jacob", isCorrect: false },
-    ],
-  },
-  {
-    title: "¿ Cuál es el primogenito de abraham ?",
-    image: "esto es una imagen",
-    options: [
-      { textAnswer: "Jose", isCorrect: false },
-      { textAnswer: "Ismael", isCorrect: false },
-      { textAnswer: "Isaac", isCorrect: true },
-      { textAnswer: "Jacob", isCorrect: false },
-    ],
-  },
-  {
-    title: "¿ Abraham significa... Padre ?",
-    image: "esto es una imagen",
-    options: [
-      { textAnswer: "Falso", isCorrect: true },
-      { textAnswer: "Verdadero", isCorrect: false },
-    ],
-  },
-  {
-    title: "¿ Abraham significa... Padre ?",
-    image: "esto es una imagen",
-    options: [
-      { textAnswer: "Falso", isCorrect: true },
-      { textAnswer: "Verdadero", isCorrect: false },
-    ],
-  },
-  {
-    title: "¿ Abraham significa... Padre ?",
-    image: "esto es una imagen",
-    options: [
-      { textAnswer: "Falso", isCorrect: true },
-      { textAnswer: "Verdadero", isCorrect: false },
-    ],
-  },
-  {
-    title: "¿ Cuáles fueron las promesas que le dio Dios ?",
-    image: "esto es una imagen",
-    options: [
-      {
-        textAnswer: "Descendencia como las estrellas de la arena",
-        isCorrect: true,
-      },
-      {
-        textAnswer: "Benditas en ti todas las familias de la tierra",
-        isCorrect: true,
-      },
-      { textAnswer: "Un territorio que fluye leche y miel", isCorrect: true },
-      { textAnswer: "Que tendria varias esposas", isCorrect: false },
-    ],
-  },
-];
 
 export const AssessmentQuestions = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
-  const [selectedButtonIndex, setSelectedButtonIndex] = useState<number | null>(
-    null
-  );
-  const [correctButtonIndex, setCorrectButtonIndex] = useState<
-    (number | undefined)[]
-  >([]);
   const [assessmentCompleted, setAssessmentCompleted] = useState(false);
-  const [selectedOptions, setSelectedOptions] = useState<number[]>([]);
-  const [showScore, setShowScore] = useState(false);
   const [resetAssessment, setResetAssessment] = useState(false);
+  const [selectedAnswerIndices, setSelectedAnswerIndices] = useState<number[]>(
+    []
+  );
+  const [answerRevealed, setAnswerRevealed] = useState(false);
+  const [selectedIncorrectAnswers, setSelectedIncorrectAnswers] = useState<
+    number[]
+  >([]);
+  const [selectedCorrectAnswers, setSelectedCorrectAnswers] = useState<
+    number[]
+  >([]);
+  const [showCorrectIncorrect, setShowCorrectIncorrect] = useState(false);
+  const [answerLocked, setAnswerLocked] = useState(false);
+  const [confettiActive, setConfettiActive] = useState(false);
 
-  useEffect(() => {
-    const currentOptions = questions[currentQuestion].options;
-    const countCorrect = currentOptions.filter(
-      (option) => option.isCorrect
-    ).length;
-    console.log("este es el countCorrect", countCorrect);
+  const renderAnswerOptions = () => {
+    const currentQuestionData = questionsData[currentQuestion];
 
-    if (selectedButtonIndex !== null) {
-      setCorrectButtonIndex(
-        currentOptions
-          .map((option, index) => {
-            if (option.isCorrect) return index;
-          })
-          .filter((option) => option !== undefined)
+    if (!currentQuestionData || !currentQuestionData.options) {
+      return null;
+    }
+    return questionsData[currentQuestion].options.map((option, index) => {
+      const isSelected = selectedAnswerIndices.includes(index);
+      const isCorrect = selectedCorrectAnswers.includes(index);
+      const isIncorrect = selectedIncorrectAnswers.includes(index);
+      const isRevealed = answerRevealed && isSelected;
+      const buttonColorClass = styles[`color${index + 1}`];
+
+      const buttonClass = [
+        styles["assessmentQuestions-answerOptions_button"],
+        buttonColorClass,
+        isSelected ? styles["selected"] : "",
+        isCorrect ? styles["correctAnswer"] : "",
+        isIncorrect ? styles["incorrect"] : "",
+        isRevealed ? "revealed" : "",
+      ].join(" ");
+
+      return (
+        <Button
+          type="button"
+          key={index}
+          className={buttonClass}
+          onClick={() => !answerLocked && handleAnswerClick(index)}
+        >
+          {option.textAnswer}
+        </Button>
       );
-    }
-  }, [currentQuestion, selectedButtonIndex]);
-
-  useEffect(() => {
-    if (resetAssessment) {
-      setCurrentQuestion(0);
-      setScore(0);
-      setSelectedButtonIndex(null);
-      setCorrectButtonIndex([]);
-      setCorrectButtonIndex([]);
-      setAssessmentCompleted(false);
-      setSelectedOptions([]);
-      setShowScore(false);
-      setResetAssessment(false);
-    }
-  }, [resetAssessment]);
-
-  const isAnswerCorrect = (index: number) => {
-    return questions[currentQuestion].options[index].isCorrect;
+    });
   };
 
-  const handleAnswerSubmit = (index: number) => {
-    setSelectedButtonIndex(index);
+  const handleAnswerClick = (index: number) => {
+    const currentQuestionData = questionsData[currentQuestion];
+    if (currentQuestionData.questionType === "multiple") {
+      const updatedSelectedAnswers = [...selectedAnswerIndices];
+      const answerIndex = updatedSelectedAnswers.indexOf(index);
 
-    const isCorrect = isAnswerCorrect(index);
-    if (isCorrect) {
-      setScore((prevScore) => prevScore + 1);
+      if (answerIndex !== -1) {
+        updatedSelectedAnswers.splice(answerIndex, 1);
+      } else {
+      }
+      updatedSelectedAnswers.push(index);
+
+      setSelectedAnswerIndices(updatedSelectedAnswers);
     } else {
-      setCorrectButtonIndex(
-        questions[currentQuestion].options
-          .map((option, index) => {
-            if (option.isCorrect) return index;
-          })
-          .filter((option) => option !== undefined)
-      );
+      setSelectedAnswerIndices([index]);
     }
   };
 
-  const advanceToNextQuestion = () => {
-    if (currentQuestion === questions.length - 1) {
+  const handleCheckAnswerClick = () => {
+    if (selectedAnswerIndices.length > 0) {
+      setShowCorrectIncorrect(true);
+
+      const correctAnswerIndices = questionsData[currentQuestion].options
+        .map((option, index) => (option.isCorrect ? index : -1))
+        .filter((index) => index !== -1);
+
+      const areAnswersCorrect = selectedAnswerIndices.every((index) =>
+        correctAnswerIndices.includes(index)
+      );
+
+      if (areAnswersCorrect) {
+        setScore((prevScore) => prevScore + 1);
+        setConfettiActive(true);
+      }
+
+      setSelectedCorrectAnswers(correctAnswerIndices);
+
+      const incorrectAnswerIndices = questionsData[currentQuestion].options
+        .map((option, index) => (!option.isCorrect ? index : -1))
+        .filter((index) => index !== -1);
+      setSelectedIncorrectAnswers(incorrectAnswerIndices);
+
+      setAnswerRevealed(true);
+      setAnswerLocked(true);
+    } else {
+      console.log("No answer selected");
+    }
+  };
+
+  const handleNextQuestionClick = () => {
+    setSelectedAnswerIndices([]);
+    setShowCorrectIncorrect(false);
+    setSelectedCorrectAnswers([]);
+    setSelectedIncorrectAnswers([]);
+    setAnswerRevealed(false);
+    setAnswerLocked(false);
+    setConfettiActive(false);
+
+    const nextQuestion = currentQuestion + 1;
+
+    if (nextQuestion < questionsData.length) {
+      setCurrentQuestion(nextQuestion);
+    } else {
       setAssessmentCompleted(true);
-      setShowScore(true);
-    } else {
-      setCurrentQuestion((prev) => prev + 1);
-      setSelectedButtonIndex(null);
-      setCorrectButtonIndex([]);
-      setCorrectButtonIndex([]);
     }
+  };
+
+  const handleRestartAssessmentClick = () => {
+    setCurrentQuestion(0);
+    setScore(0);
+    setAssessmentCompleted(false);
+    setResetAssessment(true);
+    setSelectedAnswerIndices([]);
+    setAnswerRevealed(false);
+    setSelectedIncorrectAnswers([]);
+    setSelectedCorrectAnswers([]);
+    setShowCorrectIncorrect(false);
+    setAnswerLocked(false);
+    setConfettiActive(false);
   };
 
   return (
-    <div className={styles["assessment-prueba"]}>
+    <>
       {!assessmentCompleted ? (
         <div className={styles["assessmentQuestions-container"]}>
+          {confettiActive && <Confetti />}
           <div className={styles["assessmentQuestions-img"]}></div>
           <p className={styles["assessmentQuestions-numberQuestion"]}>
-            {currentQuestion + 1} de {questions.length}
+            {currentQuestion + 1} de {questionsData.length}
           </p>
-          <div className={styles["ensayo"]}>
-            <div className={styles["assessmentQuestions-question_container"]}>
-              <h3 className={styles["assessmentQuestions-question_title"]}>
-                {questions[currentQuestion].title}
-              </h3>
-              <section
+          <div className={styles["assessmentQuestions-question_container"]}>
+            <h3 className={styles["assessmentQuestions-question_title"]}>
+              {questionsData[currentQuestion].title}
+            </h3>
+            <section>
+              <div
                 className={
-                  styles["assessmentQuestions-answerOptions_buttons_content"]
+                  styles["assessmentQuestions-answerOptions_container"]
                 }
               >
-                <div
-                  className={
-                    styles["assessmentQuestions-answerOptions_container"]
-                  }
-                >
-                  {questions[currentQuestion].options.map((answer, index) => (
-                    <Button
-                      key={answer.textAnswer}
-                      className={`${
-                        styles["assessmentQuestions-answerOptions_button"]
-                      } ${
-                        styles[
-                          "assessmentQuestions-answer_button" + (index + 1)
-                        ]
-                      } ${
-                        selectedButtonIndex !== null
-                          ? index === selectedButtonIndex
-                            ? isAnswerCorrect(index)
-                              ? styles["correct"]
-                              : styles["incorrect"]
-                            : correctButtonIndex.some((i) => i === index)
-                            ? styles["correct"]
-                            : styles["inactive"]
-                          : styles["active"]
-                      }`}
-                      onClick={() => handleAnswerSubmit(index)}
-                      disabled={selectedButtonIndex !== null}
-                    >
-                      {answer.textAnswer}
-                    </Button>
-                  ))}
-                </div>
-              </section>
-            </div>
-            <section>
-              {showScore && (
-                <AssessmentFinished
-                  score={score}
-                  questions={questions}
-                  onRestartAssessment={() => setResetAssessment(true)}
-                />
-              )}
-              <button
-                className={styles["assessmentQuestions-nextButton"]}
-                onClick={advanceToNextQuestion}
-                disabled={selectedButtonIndex === null}
-              >
-                <ArrowRightIcon />
-              </button>
+                {renderAnswerOptions()}
+              </div>
             </section>
+          </div>
+          <div
+            className={
+              styles[
+                "assessmentQuestions-checkAndNextButtons_container"
+              ]
+            }
+          >
+            <Button
+              onClick={handleCheckAnswerClick}
+              className={
+                selectedAnswerIndices.length > 0
+                  ? styles["assessmentQuestions-checkAnswerButton"]
+                  : styles["assessmentQuestions-checkAnswerButton_disabled"]
+              }
+              disabled={selectedAnswerIndices.length === 0}
+            >
+              Conocer Respuesta
+            </Button>
+
+            <Button
+              onClick={handleNextQuestionClick}
+              disabled={!answerRevealed}
+              className={
+                answerRevealed
+                  ? styles["assessmentQuestions-nextQuestionButton"]
+                  : styles["assessmentQuestions-nextQuestionButton_disabled"]
+              }
+            >
+              Siguiente Pregunta
+            </Button>
           </div>
         </div>
       ) : (
         <div>
           <AssessmentFinished
             score={score}
-            questions={questions}
-            onRestartAssessment={() => setResetAssessment(true)}
+            questions={questionsData}
+            onRestartAssessment={handleRestartAssessmentClick}
           />
         </div>
       )}
-    </div>
+    </>
   );
 };
