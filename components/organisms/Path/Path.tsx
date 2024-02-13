@@ -84,13 +84,16 @@ export const Path = () => {
                     onClick={() => handleUrlId(topic)}
                     className={styles["path-button"]}
                   >
-                    <IconBxLock />
+                    {courses[0].mandatory ? (
+                      <IconBxLock />
+                    ) : (
+                      <DavidStarIcon
+                        className={styles["iconStartDavid-mandatory"]}
+                      />
+                    )}
                   </button>
-
                 </div>
-                  <p className={styles["path-CourseTitle"]}>
-                    {topic.topicName}
-                  </p>
+                <p className={styles["path-CourseTitle"]}>{topic.topicName}</p>
               </div>
             ))}
           </div>
