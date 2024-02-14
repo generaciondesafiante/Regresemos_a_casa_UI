@@ -1,5 +1,6 @@
 export interface Course {
   _id: string;
+  mandatory: boolean;
   courseName: string;
   topicName: string;
   topics: Array<{
