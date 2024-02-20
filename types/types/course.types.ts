@@ -5,6 +5,7 @@ export interface Course {
   topicName: string;
   topics: Array<{
     topicName: string;
+    sequentialTopic: string;
     lessons: Array<{
       videoId: string;
       videoName: string;

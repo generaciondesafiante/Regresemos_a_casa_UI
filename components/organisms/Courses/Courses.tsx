@@ -4,9 +4,17 @@ import { useRouter } from "next/navigation";
 import { Card } from "../../atoms/Card/Card";
 import { Course } from "../../../types/types/course.types";
 import styles from "./Courses.module.css";
+import {
+  RootState,
+  useAppDispatch,
+  useAppSelector,
+} from "../../../store/store";
+import { selectCourse } from "../../../store/slices/courseSlice";
 
 export const Courses = () => {
   const [courses, setCourses] = useState<Course[]>([]);
+  const dispatch = useAppDispatch();
+  const selectedCourse = useAppSelector((state: RootState) => state);
 
   const router = useRouter();
 
@@ -39,7 +47,7 @@ export const Courses = () => {
       .toLowerCase();
 
     const url = `/dashboard/courses/${courseName}/${course._id}`;
-
+    dispatch(selectCourse(course));
     router.push(url);
   };
 
