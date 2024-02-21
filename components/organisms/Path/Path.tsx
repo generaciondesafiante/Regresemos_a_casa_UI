@@ -1,16 +1,45 @@
 "use client";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import IconBxLock from "../../atoms/icons/lockPathIcon/PathLockIcon";
 import { FlagStartIcon } from "../../atoms/icons/flagsIcon/FlagStartIcon";
 import { FlagEndIcon } from "../../atoms/icons/flagsIcon/FlagEndIcon";
 import { DavidStarIcon } from "../../atoms/icons/davidStar/DavidStarIcon";
-import { useAppSelector } from "../../../store/store";
+import { useAppDispatch, useAppSelector } from "../../../store/store";
+import { selectTopic } from "../../../store/slices/topicsSlice";
 import styles from "./Path.module.css";
 
 export const Path = () => {
   const router = useRouter();
-  const selectedCourse = useAppSelector((state) => state.course.selectedCourse);
+  const dispatch = useAppDispatch();
+  const selectedCourse = useAppSelector(
+    (state) => state.courses.selectedCourse
+  );
+  const userInformation = useAppSelector((state) => state.user.userInfo);
   const topicsCourses = selectedCourse?.topics;
+  console.log(selectedCourse);
+
+  const isTopicUnlocked = (topic: any) => {
+    return userInformation?.CourseProgress.some(
+      (progress: any) =>
+        progress.courseName === selectedCourse?.courseName &&
+        progress.topicName === topic.topicName
+    );
+  };
+
+  const isFirstTopicUnlocked = () => {
+    if (selectedCourse?.mandatory) {
+      // Verificar si no hay ningún progreso registrado para el curso seleccionado
+      const courseProgress = userInformation?.CourseProgress;
+      if (!courseProgress || courseProgress.length === 0) {
+        // Permitir acceso solo al primer tema si no hay progreso
+        return true;
+      }
+      // Si hay progreso, verificar si el primer tema está desbloqueado
+      return !isTopicUnlocked(topicsCourses[0]);
+    }
+    // Permitir acceso si el curso no es obligatorio
+    return true;
+  };
 
   const handleUrlId = (topic: any) => {
     const topicName = topic.topicName
@@ -19,9 +48,9 @@ export const Path = () => {
       .replace(/ñ/g, "n")
       .toLowerCase();
 
-    //  todo revisar las lecciones antes de dar push
     const lessonId = topic.lessons[0].videoId;
     const url = `/dashboard/courses/${topicName}/${topic._id}/${lessonId}/${topicName}/${topic.sequentialTopic}`;
+    dispatch(selectTopic(topic));
     router.push(url);
   };
 
@@ -53,8 +82,9 @@ export const Path = () => {
               <button
                 onClick={() => handleUrlId(topic)}
                 className={styles["path-button"]}
+                disabled={!isTopicUnlocked(topic) && !isFirstTopicUnlocked()}
               >
-                {selectedCourse?.mandatory ? (
+                {selectedCourse?.mandatory && !isTopicUnlocked(topic) ? (
                   <IconBxLock />
                 ) : (
                   <DavidStarIcon

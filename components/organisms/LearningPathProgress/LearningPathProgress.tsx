@@ -3,52 +3,57 @@ import { FC, useEffect, useState } from "react";
 import { Topic } from "../../../types/types/topic.type";
 import { useParams } from "next/navigation";
 import styles from "./LearningPathProgress.module.css";
+import { useAppDispatch, useAppSelector } from "../../../store/store";
+import { Lesson } from "../../../types/types/lessons.type";
+import { selectLesson } from "../../../store/slices/lessonSlice";
 
 interface LearningPathVideoClassProps {
-  course: Topic | null;
   onItemClick: (index: number) => void;
- 
 }
 
 export const LearningPathProgress: FC<LearningPathVideoClassProps> = ({
-  course,
   onItemClick,
-  
 }) => {
-  const { lessonId, indexVideo } = useParams();
-
-  
-  const [selectedItem, setSelectedItem] = useState<number | null>(null);
+  const { lessonId } = useParams();
+  const selectedTopic = useAppSelector((state) => state.topics.selectedTopic);
+  const infoSelectedLesson = useAppSelector(
+    (state) => state.lessons.selectedLesson
+  );
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const videoId = Array.isArray(lessonId) ? lessonId[0] : lessonId;
-    const videoIndex = parseInt(videoId, 10);
-    if (!isNaN(videoIndex)) {
-      setSelectedItem(videoIndex - 1);
+    if (selectedTopic && selectedTopic.lessons) {
+      const videoId = Array.isArray(lessonId) ? lessonId[0] : lessonId;
+      const selectedLesson = selectedTopic.lessons.find(
+        (lesson) => lesson.videoId === videoId
+      );
+      if (selectedLesson) {
+        dispatch(selectLesson(selectedLesson));
+      }
     }
-  }, [lessonId]);
+  }, [selectedTopic, lessonId, dispatch]);
 
-  const indexVideoString = Array.isArray(indexVideo)
-    ? indexVideo.join(",")
-    : indexVideo;
-
-  const indexVideoNumber = parseInt(indexVideoString, 10);
-
-  if (!course || !course.lessons) {
+  if (!selectedTopic || !selectedTopic.lessons) {
     return <div></div>;
   }
 
   return (
     <>
-      {course?.lessons.map((lesson, index) => (
+      {selectedTopic?.lessons.map((lesson, index) => (
         <div
           key={index}
           className={`${styles["classRoomRoute-subcontent"]}`}
-          onClick={() => onItemClick && onItemClick(index + 1)}
+          onClick={() => {
+            onItemClick && onItemClick(index + 1);
+            dispatch(selectLesson(lesson));
+          }}
         >
           <div
             className={`${styles["classRoomRoute-title"]} ${
-              indexVideoNumber - 1 === index ? styles["selected"] : ""
+              infoSelectedLesson?.sequentialLesson &&
+              parseInt(infoSelectedLesson.sequentialLesson) - 1 === index
+                ? styles["selected"]
+                : ""
             }`}
           >
             {index + 1}
@@ -56,7 +61,10 @@ export const LearningPathProgress: FC<LearningPathVideoClassProps> = ({
 
           <div
             className={`${styles["classRoomRoute-iconCircle"]} ${
-              indexVideoNumber - 1 === index ? styles["selected"] : ""
+              infoSelectedLesson?.sequentialLesson &&
+              parseInt(infoSelectedLesson.sequentialLesson) - 1 === index
+                ? styles["selected"]
+                : ""
             }`}
           >
             {index + 1}
@@ -64,7 +72,7 @@ export const LearningPathProgress: FC<LearningPathVideoClassProps> = ({
 
           <div
             className={`${styles["classRoomRoute-line"]} ${
-              index === course.lessons.length - 1 ? styles["hide"] : ""
+              index === selectedTopic.lessons.length - 1 ? styles["hide"] : ""
             }`}
           ></div>
         </div>

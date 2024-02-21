@@ -1,9 +1,15 @@
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
-import  courseSlice  from "./slices/courseSlice";
+import courseReducer from "./slices/courseSlice";
+import topicsReducer from "./slices/topicsSlice";
+import userReducer from './slices/userSlice'
+import lessonReducer from './slices/lessonSlice'
 
 const rootReducer = {
-  course: courseSlice
+  courses: courseReducer,
+  topics: topicsReducer,
+  user:userReducer,
+  lessons: lessonReducer
 };
 
 export const store = configureStore({

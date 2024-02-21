@@ -10,7 +10,7 @@ const initialState: CoursesState = {
   selectedCourse: persistedCourse ? JSON.parse(persistedCourse) : null,
 };
 
-const coursesSlice = createSlice({
+const courseSlice = createSlice({
   name: "courses",
   initialState,
   reducers: {
@@ -21,5 +21,5 @@ const coursesSlice = createSlice({
   },
 });
 
-export const { selectCourse } = coursesSlice.actions;
-export default coursesSlice.reducer;
+export const { selectCourse } = courseSlice.actions;
+export default courseSlice.reducer;
