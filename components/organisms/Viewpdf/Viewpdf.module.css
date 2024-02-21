@@ -1,4 +1,7 @@
 .viewpdf-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     position: absolute;
     height: 100vh;
     width: 100vw;
@@ -25,6 +28,7 @@
     background-color: transparent;
     border: none;
     cursor: pointer;
+    color: var(--darkBlue)
 }
 
 .viewpdf-backButton:hover {
@@ -37,6 +41,7 @@
     position: relative;
     display: flex;
     justify-content: center;
+    color: var(--darkBlue)
 }
 
 .container-pdf {
@@ -64,6 +69,7 @@
     }
 
     .container-pdf {
+        width: 60%;
         left: +2.5rem;
         height: 33.125rem;
     }
@@ -74,8 +80,12 @@
         font-size: var(--fontSize-titles_laptop);
     }
 
-    .viewpdf-backButton{
+    .viewpdf-backButton {
         font-size: var(--fontSize-buttons_laptop);
+    }
+
+    .container-pdf {
+        width: 70%;
     }
 }
 
@@ -84,7 +94,7 @@
         left: 7.5rem
     }
 
-    .viewpdf-backButton{
+    .viewpdf-backButton {
         font-size: var(--fontSize-buttons_desktop);
     }
 
