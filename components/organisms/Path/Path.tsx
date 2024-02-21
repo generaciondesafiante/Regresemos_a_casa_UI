@@ -26,11 +26,11 @@ export const Path = () => {
     );
   };
 
-  const isFirstTopicUnlocked = () => {
+  const isFirstTopicUnlocked = (topicIndex: number) => {
     if (selectedCourse?.mandatory) {
       const courseProgress = userInformation?.CourseProgress;
       if (!courseProgress || courseProgress.length === 0) {
-        return true;
+        return topicIndex === 0;
       }
       if (topicsCourses && topicsCourses.length > 0) {
         return !isTopicUnlocked(topicsCourses[0]);
@@ -81,7 +81,9 @@ export const Path = () => {
               <button
                 onClick={() => handleUrlId(topic)}
                 className={styles["path-button"]}
-                disabled={!isTopicUnlocked(topic) && !isFirstTopicUnlocked()}
+                disabled={
+                  !isTopicUnlocked(topic) && !isFirstTopicUnlocked(topicIndex)
+                }
               >
                 {selectedCourse?.mandatory && !isTopicUnlocked(topic) ? (
                   <IconBxLock />
