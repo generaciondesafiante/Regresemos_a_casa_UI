@@ -3,6 +3,7 @@ import { FC, useState, useEffect } from "react";
 import { Button, Input } from "../../../atoms";
 import { PasswordValidation } from "../RegisterCharacterValidatePassword/RegisterCharacterValidatePassword";
 import styles from "./RegisterFormPassword.module.css";
+import { useSession } from "next-auth/react";
 
 interface RegisterFormPasswordProps {
   setPassword: React.Dispatch<React.SetStateAction<string>>;
@@ -34,6 +35,7 @@ export const RegisterFormPassword: FC<RegisterFormPasswordProps> = ({
   const [isLengthValid, setLengthValid] = useState(false);
   const [isLetterValid, setLetterValid] = useState(false);
   const [isFormValid, setFormValid] = useState(false);
+  const { data: session } = useSession();
 
   const handlePasswordChange = (value: string) => {
     const specialCharRegex = /[!@#$%^&*(),.?":{}|<>]/;

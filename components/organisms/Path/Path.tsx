@@ -28,16 +28,15 @@ export const Path = () => {
 
   const isFirstTopicUnlocked = () => {
     if (selectedCourse?.mandatory) {
-      // Verificar si no hay ningún progreso registrado para el curso seleccionado
       const courseProgress = userInformation?.CourseProgress;
       if (!courseProgress || courseProgress.length === 0) {
-        // Permitir acceso solo al primer tema si no hay progreso
         return true;
       }
-      // Si hay progreso, verificar si el primer tema está desbloqueado
-      return !isTopicUnlocked(topicsCourses[0]);
+      if (topicsCourses && topicsCourses.length > 0) {
+        return !isTopicUnlocked(topicsCourses[0]);
+      }
     }
-    // Permitir acceso si el curso no es obligatorio
+
     return true;
   };
 
