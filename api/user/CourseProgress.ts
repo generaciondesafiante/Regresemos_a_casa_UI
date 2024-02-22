@@ -4,7 +4,8 @@ export const fetchCoursesProgress = async (
   topicId: string,
   sequentialTopic:string,
   lessonId: string,
-  videoId: string
+  videoId: string,
+  sequentialLesson:string
 ) => {
     try {
     const response = await fetch(
@@ -22,6 +23,7 @@ export const fetchCoursesProgress = async (
           sequentialTopic:sequentialTopic,
           lessonId: lessonId,
           videoId: videoId,
+          sequentialLesson:sequentialLesson,
           viewVideo: true,
         }),
       }

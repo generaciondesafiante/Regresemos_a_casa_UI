@@ -32,7 +32,7 @@ export const LearningPathVideoClass: FC<LearningPathVideoClassProps> = ({
     (state) => state.lessons.selectedLesson
   );
   const user = useAppSelector((state) => state.user.userInfo);
-
+  console.log(selectedTopic?.sequentialTopic);
   const handleVideoPlay = () => {
     fetchCoursesProgress(
       user?.uid || "",
@@ -40,7 +40,8 @@ export const LearningPathVideoClass: FC<LearningPathVideoClassProps> = ({
       selectedTopic?._id || "",
       selectedTopic?.sequentialTopic || "",
       selectedLesson?._id || "",
-      selectedLesson?.videoId || ""
+      selectedLesson?.videoId || "",
+      selectedLesson?.sequentialLesson || ""
     );
   };
 
@@ -51,7 +52,8 @@ export const LearningPathVideoClass: FC<LearningPathVideoClassProps> = ({
       selectedTopic?._id || "",
       selectedTopic?.sequentialTopic || "",
       selectedLesson?._id || "",
-      selectedLesson?.videoId || ""
+      selectedLesson?.videoId || "",
+      selectedLesson?.sequentialLesson || ""
     );
   };
   useEffect(() => {
