@@ -1,14 +1,13 @@
 "use client";
-import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import IconBxLock from "../../atoms/icons/lockPathIcon/PathLockIcon";
+import IconBxLockOpen from "../../atoms/icons/unLockPathIcon/PathUnlockIcon";
 import { FlagStartIcon } from "../../atoms/icons/flagsIcon/FlagStartIcon";
 import { FlagEndIcon } from "../../atoms/icons/flagsIcon/FlagEndIcon";
 import { DavidStarIcon } from "../../atoms/icons/davidStar/DavidStarIcon";
 import { useAppDispatch, useAppSelector } from "../../../store/store";
 import { selectTopic } from "../../../store/slices/topicsSlice";
 import styles from "./Path.module.css";
-import IconBxLockOpen from "../../atoms/icons/unLockPathIcon/PathUnlockIcon";
 
 export const Path = () => {
   const router = useRouter();
@@ -19,37 +18,24 @@ export const Path = () => {
   const userInformation = useAppSelector((state) => state.user.userInfo);
   const topicsCourses = selectedCourse?.topics;
 
-  useEffect(() => {
-    // Verificar el estado de desbloqueo de los topics al montar el componente
-    topicsCourses?.forEach((topic) => {
-      const unlocked = isTopicUnlocked(topic);
-      console.log(`El topic ${topic.topicName} está desbloqueado: ${unlocked}`);
-    });
-  }, []);
-
   const isTopicUnlocked = (topic: any) => {
-    // Verificamos si hay información en el progreso del curso del usuario
-    if (userInformation?.CourseProgress) {
-      // Buscamos el progreso correspondiente al curso y al topic
-      const progress = userInformation?.CourseProgress.find((progress: any) => {
-        return (
-          progress.idCourse === selectedCourse?._id &&
-          progress.topics.some(
-            (progressTopic: any) => progressTopic.idTopic === topic._id
-          )
-        );
-      });
+    if (selectedCourse && userInformation?.CourseProgress) {
+      const courseProgress = userInformation.CourseProgress.find(
+        (progress) => progress.idCourse === selectedCourse._id
+      );
 
-      // Si encontramos el progreso, determinamos si el topic está desbloqueado
-      if (progress) {
-        const sequentialTopic = parseInt(progress.sequentialTopic);
+      if (courseProgress) {
+        const sequentialTopic = parseInt(
+          courseProgress.topics[0].sequentialTopic
+        );
         const currentTopicSequential = parseInt(topic.sequentialTopic);
         return sequentialTopic >= currentTopicSequential;
+      } else {
+        const currentTopicSequential = parseInt(topic.sequentialTopic);
+        return currentTopicSequential === 1;
       }
     }
 
-    // Si no hay información de progreso o no se encontró progreso,
-    // y si el curso es no obligatorio, el topic está desbloqueado
     return !selectedCourse?.mandatory;
   };
 
@@ -73,10 +59,8 @@ export const Path = () => {
       </h2>
       <div className={styles["path-content"]}>
         {topicsCourses?.map((topic, topicIndex) => {
-          // Determinar si el topic está desbloqueado
           const isUnlocked = isTopicUnlocked(topic);
 
-          // Determinar si el curso es obligatorio y si el primer topic está desbloqueado
           const isFirstTopicUnlocked = selectedCourse?.mandatory
             ? topicIndex === 0 || isUnlocked
             : true;
@@ -87,14 +71,12 @@ export const Path = () => {
               className={styles["path-topicContainer"]}
             >
               <div className={styles["path-border"]}>
-                {/* Renderizar icono de inicio de topic si es el primer topic */}
                 {topicIndex === 0 && (
                   <FlagStartIcon
                     className={`${styles["path-flagIcon"]} ${styles["path-flagIcon_start"]}`}
                   />
                 )}
 
-                {/* Renderizar icono de fin de topic si es el último topic */}
                 {topicIndex === topicsCourses.length - 1 && (
                   <FlagEndIcon
                     className={`${styles["path-flagIcon"]} ${styles["path-flagIcon_end"]}`}
@@ -106,7 +88,6 @@ export const Path = () => {
                   className={styles["path-button"]}
                   disabled={!isFirstTopicUnlocked}
                 >
-                  {/* Renderizar icono según el estado de desbloqueo */}
                   {selectedCourse?.mandatory ? (
                     isUnlocked ? (
                       <IconBxLockOpen />

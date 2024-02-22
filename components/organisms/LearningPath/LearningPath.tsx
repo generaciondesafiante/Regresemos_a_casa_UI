@@ -42,7 +42,6 @@ export const LearningPath: FC = () => {
     }
   }, [dataUser, dispatch]);
 
-  // todo revisar con redux
   const handleItemClick = (index: number) => {
     const indexTopic = index;
 
@@ -54,7 +53,6 @@ export const LearningPath: FC = () => {
     }
   };
 
-  // todo revisar con redux
   const handleNextVideo = (index: string) => {
     const currentIndexNumber = parseInt(index, 10);
 
