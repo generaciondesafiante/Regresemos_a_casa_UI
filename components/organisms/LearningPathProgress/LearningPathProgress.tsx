@@ -1,11 +1,9 @@
 "use client";
-import { FC, useEffect, useState } from "react";
-import { Topic } from "../../../types/types/topic.type";
+import { FC, useEffect } from "react";
 import { useParams } from "next/navigation";
-import styles from "./LearningPathProgress.module.css";
 import { useAppDispatch, useAppSelector } from "../../../store/store";
-import { Lesson } from "../../../types/types/lessons.type";
 import { selectLesson } from "../../../store/slices/lessonSlice";
+import styles from "./LearningPathProgress.module.css";
 
 interface LearningPathVideoClassProps {
   onItemClick: (index: number) => void;
@@ -15,18 +13,19 @@ export const LearningPathProgress: FC<LearningPathVideoClassProps> = ({
   onItemClick,
 }) => {
   const { lessonId } = useParams();
+  const dispatch = useAppDispatch();
   const selectedTopic = useAppSelector((state) => state.topics.selectedTopic);
   const infoSelectedLesson = useAppSelector(
     (state) => state.lessons.selectedLesson
   );
-  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (selectedTopic && selectedTopic.lessons) {
       const videoId = Array.isArray(lessonId) ? lessonId[0] : lessonId;
       const selectedLesson = selectedTopic.lessons.find(
-        (lesson) => lesson.videoId === videoId
+        (lesson: any) => lesson.videoId === videoId
       );
+
       if (selectedLesson) {
         dispatch(selectLesson(selectedLesson));
       }
@@ -39,40 +38,44 @@ export const LearningPathProgress: FC<LearningPathVideoClassProps> = ({
 
   return (
     <>
-      {selectedTopic?.lessons.map((lesson, index) => (
+      {selectedTopic?.lessons.map((lesson) => (
         <div
-          key={index}
+          key={lesson.sequentialLesson}
           className={`${styles["classRoomRoute-subcontent"]}`}
           onClick={() => {
-            onItemClick && onItemClick(index + 1);
+            onItemClick && onItemClick(parseInt(lesson.sequentialLesson));
             dispatch(selectLesson(lesson));
           }}
         >
           <div
             className={`${styles["classRoomRoute-title"]} ${
               infoSelectedLesson?.sequentialLesson &&
-              parseInt(infoSelectedLesson.sequentialLesson) - 1 === index
+              parseInt(infoSelectedLesson.sequentialLesson) ===
+                parseInt(lesson.sequentialLesson)
                 ? styles["selected"]
                 : ""
             }`}
           >
-            {index + 1}
+            {lesson.sequentialLesson}
           </div>
 
           <div
             className={`${styles["classRoomRoute-iconCircle"]} ${
               infoSelectedLesson?.sequentialLesson &&
-              parseInt(infoSelectedLesson.sequentialLesson) - 1 === index
+              parseInt(infoSelectedLesson.sequentialLesson) ===
+                parseInt(lesson.sequentialLesson)
                 ? styles["selected"]
                 : ""
             }`}
           >
-            {index + 1}
+            {lesson.sequentialLesson}
           </div>
 
           <div
             className={`${styles["classRoomRoute-line"]} ${
-              index === selectedTopic.lessons.length - 1 ? styles["hide"] : ""
+              parseInt(lesson.sequentialLesson) === selectedTopic.lessons.length
+                ? styles["hide"]
+                : ""
             }`}
           ></div>
         </div>

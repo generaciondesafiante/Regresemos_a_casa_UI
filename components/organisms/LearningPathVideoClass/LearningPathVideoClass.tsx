@@ -6,6 +6,7 @@ import { Button } from "../../atoms";
 import { TaringStart } from "../TaringStart/TaringStart";
 import styles from "./LearningPathVideoClass.module.css";
 import { useAppSelector } from "../../../store/store";
+import { fetchCoursesProgress } from "../../../api/user/CourseProgress";
 
 interface LearningPathVideoClassProps {
   onNextVideoClick: (index: string) => void;
@@ -22,20 +23,37 @@ export const LearningPathVideoClass: FC<LearningPathVideoClassProps> = ({
   const [isVideoReady, setIsVideoReady] = useState(false);
   const [duracionTotal, setDuracionTotal] = useState<number>(0);
   const [enableButton, setEnableButton] = useState(false);
-  const [video, setVideo] = useState(false);
-
+  // const [video, setVideo] = useState(false);
+  const selectedCourse = useAppSelector(
+    (state) => state.courses.selectedCourse
+  );
+  const selectedTopic = useAppSelector((state) => state.topics.selectedTopic);
   const selectedLesson = useAppSelector(
     (state) => state.lessons.selectedLesson
   );
+  const user = useAppSelector((state) => state.user.userInfo);
 
   const handleVideoPlay = () => {
-    setVideo(true);
+    fetchCoursesProgress(
+      user?.uid || "",
+      selectedCourse?._id || "",
+      selectedTopic?._id || "",
+      selectedTopic?.sequentialTopic || "",
+      selectedLesson?._id || "",
+      selectedLesson?.videoId || ""
+    );
   };
 
   const handleVideoPause = () => {
-    setVideo(true);
+    fetchCoursesProgress(
+      user?.uid || "",
+      selectedCourse?._id || "",
+      selectedTopic?._id || "",
+      selectedTopic?.sequentialTopic || "",
+      selectedLesson?._id || "",
+      selectedLesson?.videoId || ""
+    );
   };
-
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVideoReady(true);

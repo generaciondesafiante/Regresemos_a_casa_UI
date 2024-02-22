@@ -11,11 +11,10 @@ export interface Course {
       videoName: string;
       description: string;
       videoUrl: string;
-      length:string;
-      videoUrlHls:string;
+      length: string;
+      videoUrlHls: string;
       rating: number;
+      sequentialLesson:string
     }>;
   }>;
-};
-
-
+}

@@ -1,7 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Lesson } from "../../types/types/lessons.type";
-
-
 interface LessonState {
   selectedLesson: Lesson | null;
 }

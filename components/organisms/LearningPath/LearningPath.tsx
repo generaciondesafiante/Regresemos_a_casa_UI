@@ -28,7 +28,11 @@ export const LearningPath: FC = () => {
 
   useEffect(() => {
     if (userId) {
-      fetchUserData(userId, setDataUser);
+      const userData = async () => {
+        const data = await fetchUserData(userId);
+        setDataUser(data);
+      };
+      userData();
     }
   }, [userId]);
 

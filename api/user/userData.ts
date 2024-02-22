@@ -14,8 +14,7 @@ export const fetchUserData = async (userId: string, setDataUser?: any) => {
 
     if (response.ok) {
       const dataUser = await response.json();
-
-      setDataUser(dataUser);
+      return dataUser
     } else {
       console.error(
         "Error al obtener la información del usuario:",

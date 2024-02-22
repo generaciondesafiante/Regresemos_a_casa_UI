@@ -10,5 +10,6 @@ export interface Topic {
     length: string;
     videoUrlHls: string;
     rating: number;
+    sequentialLesson:string;
   }>;
 }

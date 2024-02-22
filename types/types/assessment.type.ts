@@ -1,20 +1,20 @@
 export interface AssessmentFinishedProps {
-    score?: number;
-    questions?: {
-        title: string;
-        image: string;
-        options: {
-            textAnswer: string;
-            isCorrect: boolean;
-        }[];
+  score?: number;
+  questions?: {
+    title: string;
+    image: string;
+    options: {
+      textAnswer: string;
+      isCorrect: boolean;
     }[];
-    onRestartAssessment?: () => void;
+  }[];
+  onRestartAssessment?: () => void;
 }
 
 export interface AssessmentMainProps {
-    onStartAssessment: () => void;
+  onStartAssessment: () => void;
 }
 
 export interface AssestmentConditionalView {
-    onAssessmentCompleted?: () => void;
+  onAssessmentCompleted?: () => void;
 }

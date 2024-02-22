@@ -1,9 +1,7 @@
 "use client";
 import { FC } from "react";
-import { Lesson } from "../../../types/types/lessons.type";
-import { Topic } from "../../../types/types/topic.type";
-import styles from "./LearningPathTitleClass.module.css";
 import { useAppSelector } from "../../../store/store";
+import styles from "./LearningPathTitleClass.module.css";
 
 export const LearningPathTitleClass: FC = () => {
   const selectedTopic = useAppSelector((state) => state.topics.selectedTopic);
