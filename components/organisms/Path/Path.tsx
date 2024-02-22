@@ -43,12 +43,14 @@ export const Path = () => {
       // Si encontramos el progreso, determinamos si el topic está desbloqueado
       if (progress) {
         const sequentialTopic = parseInt(progress.sequentialTopic);
-        return sequentialTopic >= parseInt(topic.sequentialTopic);
+        const currentTopicSequential = parseInt(topic.sequentialTopic);
+        return sequentialTopic >= currentTopicSequential;
       }
     }
 
-    // Si no hay información de progreso o no se encontró progreso, el topic está bloqueado
-    return false;
+    // Si no hay información de progreso o no se encontró progreso,
+    // y si el curso es no obligatorio, el topic está desbloqueado
+    return !selectedCourse?.mandatory;
   };
 
   const handleUrlId = (topic: any) => {
