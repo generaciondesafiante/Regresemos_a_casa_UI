@@ -27,21 +27,10 @@ export const Path = () => {
     });
   }, []);
 
-  const getLastUnlockedTopicIndex = () => {
-    let lastUnlockedTopicIndex = -1;
-    userInformation?.CourseProgress.forEach((progress: any) => {
-      if (
-        progress.courseName === selectedCourse?.courseName &&
-        progress.sequentialTopic > lastUnlockedTopicIndex
-      ) {
-        lastUnlockedTopicIndex = progress.sequentialTopic;
-      }
-    });
-    return lastUnlockedTopicIndex;
-  };
-
   const isTopicUnlocked = (topic: any) => {
+    // Verificamos si hay información en el progreso del curso del usuario
     if (userInformation?.CourseProgress) {
+      // Buscamos el progreso correspondiente al curso y al topic
       const progress = userInformation?.CourseProgress.find((progress: any) => {
         return (
           progress.idCourse === selectedCourse?._id &&
@@ -50,27 +39,16 @@ export const Path = () => {
           )
         );
       });
+
+      // Si encontramos el progreso, determinamos si el topic está desbloqueado
       if (progress) {
         const sequentialTopic = parseInt(progress.sequentialTopic);
         return sequentialTopic >= parseInt(topic.sequentialTopic);
       }
     }
+
+    // Si no hay información de progreso o no se encontró progreso, el topic está bloqueado
     return false;
-  };
-
-  const isFirstTopicUnlocked = (topicIndex: number) => {
-    if (!topicsCourses) {
-      return false;
-    }
-
-    if (selectedCourse?.mandatory) {
-      const courseProgress = userInformation?.CourseProgress;
-      if (!courseProgress || courseProgress.length === 0) {
-        return topicIndex === 0;
-      }
-      return !isTopicUnlocked(topicsCourses[0]);
-    }
-    return true;
   };
 
   const handleUrlId = (topic: any) => {
@@ -93,29 +71,40 @@ export const Path = () => {
       </h2>
       <div className={styles["path-content"]}>
         {topicsCourses?.map((topic, topicIndex) => {
+          // Determinar si el topic está desbloqueado
           const isUnlocked = isTopicUnlocked(topic);
+
+          // Determinar si el curso es obligatorio y si el primer topic está desbloqueado
+          const isFirstTopicUnlocked = selectedCourse?.mandatory
+            ? topicIndex === 0 || isUnlocked
+            : true;
+
           return (
             <div
               key={topic.sequentialTopic}
               className={styles["path-topicContainer"]}
             >
               <div className={styles["path-border"]}>
-                {topicIndex === 0 ? (
+                {/* Renderizar icono de inicio de topic si es el primer topic */}
+                {topicIndex === 0 && (
                   <FlagStartIcon
                     className={`${styles["path-flagIcon"]} ${styles["path-flagIcon_start"]}`}
                   />
-                ) : null}
-                {topicsCourses?.length - 1 === topicIndex ? (
+                )}
+
+                {/* Renderizar icono de fin de topic si es el último topic */}
+                {topicIndex === topicsCourses.length - 1 && (
                   <FlagEndIcon
                     className={`${styles["path-flagIcon"]} ${styles["path-flagIcon_end"]}`}
                   />
-                ) : null}
+                )}
 
                 <button
                   onClick={() => handleUrlId(topic)}
                   className={styles["path-button"]}
-                  disabled={!isUnlocked}
+                  disabled={!isFirstTopicUnlocked}
                 >
+                  {/* Renderizar icono según el estado de desbloqueo */}
                   {selectedCourse?.mandatory ? (
                     isUnlocked ? (
                       <IconBxLockOpen />
