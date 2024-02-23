@@ -5,7 +5,7 @@ interface TopicsState {
   selectedTopic: Topic | null;
 }
 
-const persistedTopic = localStorage.getItem("selectedTopic");
+const persistedTopic =  typeof window !== 'undefined' ?  localStorage.getItem("selectedTopic") : null;
 const initialState: TopicsState = {
   selectedTopic: persistedTopic ? JSON.parse(persistedTopic) : null,
 };

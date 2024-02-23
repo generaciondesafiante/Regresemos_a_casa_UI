@@ -3,7 +3,10 @@ import { Lesson } from "../../types/types/lessons.type";
 interface LessonState {
   selectedLesson: Lesson | null;
 }
-const persistedLesson = localStorage.getItem("persistedLesson");
+const persistedLesson =
+  typeof window !== "undefined"
+    ? localStorage.getItem("persistedLesson")
+    : null;
 
 const initialState: LessonState = {
   selectedLesson: persistedLesson ? JSON.parse(persistedLesson) : null,

@@ -3,7 +3,7 @@ import { User } from "../../types/types/user.type";
 interface UserState {
   userInfo: User | null;
 }
-const persistedUserInfo = localStorage.getItem("userInfo");
+const persistedUserInfo =  typeof window !== 'undefined' ?  localStorage.getItem("userInfo") : null;
 
 const initialState: UserState = {
   userInfo: persistedUserInfo ? JSON.parse(persistedUserInfo) : null,

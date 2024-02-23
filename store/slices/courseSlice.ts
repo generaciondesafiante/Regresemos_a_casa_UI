@@ -5,11 +5,13 @@ interface CoursesState {
   selectedCourse: Course | null;
 }
 
-const persistedCourse = localStorage.getItem("selectedCourse");
+const persistedCourse =
+  typeof window !== "undefined"
+    ? localStorage.getItem("persistedCourse")
+    : null;
 const initialState: CoursesState = {
   selectedCourse: persistedCourse ? JSON.parse(persistedCourse) : null,
 };
-
 const courseSlice = createSlice({
   name: "courses",
   initialState,
