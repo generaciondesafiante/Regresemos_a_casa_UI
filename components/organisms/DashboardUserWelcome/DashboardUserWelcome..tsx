@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import ReactPlayer from "react-player";
-import styles from "./DashboardUserWelcome.module.css";
 import { fetchUserData } from "../../../api/user/userData";
 import { useAppDispatch } from "../../../store/store";
 import { userInfo } from "../../../store/slices/userSlice";
+import styles from "./DashboardUserWelcome.module.css";
 
 interface UserData {
   courseName: string;

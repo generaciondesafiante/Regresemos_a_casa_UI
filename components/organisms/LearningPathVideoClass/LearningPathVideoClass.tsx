@@ -4,9 +4,9 @@ import { useParams } from "next/navigation";
 import ReactPlayer from "react-player/lazy";
 import { Button } from "../../atoms";
 import { TaringStart } from "../TaringStart/TaringStart";
-import styles from "./LearningPathVideoClass.module.css";
+import { fetchLastViewedVideos } from "../../../api/user/lastViewedVideos";
 import { useAppSelector } from "../../../store/store";
-import { fetchCoursesProgress } from "../../../api/user/CourseProgress";
+import styles from "./LearningPathVideoClass.module.css";
 
 interface LearningPathVideoClassProps {
   onNextVideoClick: (index: string) => void;
@@ -18,12 +18,11 @@ export const LearningPathVideoClass: FC<LearningPathVideoClassProps> = ({
   setViewVideo,
 }) => {
   const { indexVideo } = useParams();
-
   const [userRating, setUserRating] = useState<number>(0);
   const [isVideoReady, setIsVideoReady] = useState(false);
   const [duracionTotal, setDuracionTotal] = useState<number>(0);
   const [enableButton, setEnableButton] = useState(false);
-  // const [video, setVideo] = useState(false);
+
   const selectedCourse = useAppSelector(
     (state) => state.courses.selectedCourse
   );
@@ -32,30 +31,31 @@ export const LearningPathVideoClass: FC<LearningPathVideoClassProps> = ({
     (state) => state.lessons.selectedLesson
   );
   const user = useAppSelector((state) => state.user.userInfo);
-  console.log(selectedTopic?.sequentialTopic);
+
   const handleVideoPlay = () => {
-    fetchCoursesProgress(
+    fetchLastViewedVideos(
       user?.uid || "",
+      selectedCourse?.courseName || "",
       selectedCourse?._id || "",
-      selectedTopic?._id || "",
-      selectedTopic?.sequentialTopic || "",
       selectedLesson?._id || "",
-      selectedLesson?.videoId || "",
-      selectedLesson?.sequentialLesson || ""
+      selectedTopic?.topicName || "",
+      selectedTopic?.sequentialTopic || "",
+      selectedLesson?.videoUrl || ""
     );
   };
 
   const handleVideoPause = () => {
-    fetchCoursesProgress(
+    fetchLastViewedVideos(
       user?.uid || "",
+      selectedCourse?.courseName || "",
       selectedCourse?._id || "",
-      selectedTopic?._id || "",
-      selectedTopic?.sequentialTopic || "",
       selectedLesson?._id || "",
-      selectedLesson?.videoId || "",
-      selectedLesson?.sequentialLesson || ""
+      selectedTopic?.topicName || "",
+      selectedTopic?.sequentialTopic || "",
+      selectedLesson?.videoUrl || ""
     );
   };
+  
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVideoReady(true);

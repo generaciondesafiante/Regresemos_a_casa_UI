@@ -5,24 +5,21 @@ import { useParams, useRouter } from "next/navigation";
 import { LearningPathProgress } from "../LearningPathProgress/LearningPathProgress";
 import { LearningPathVideoClass } from "../LearningPathVideoClass/LearningPathVideoClass";
 import { LearningPathTitleClass } from "../LearningPathTitleClass/LearningPathTitleClass";
-import { Lesson } from "../../../types/types/lessons.type";
-import { Topic } from "../../../types/types/topic.type";
-import styles from "./LearningPath.module.css";
 import { fetchUserData } from "../../../api/user/userData";
 import { User } from "../../../types/types/user.type";
 import { useAppDispatch, useAppSelector } from "../../../store/store";
 import { userInfo } from "../../../store/slices/userSlice";
-import { updateVideoStatus } from "../../../api/user/updateVideoStatus";
+import styles from "./LearningPath.module.css";
 
 export const LearningPath: FC = () => {
+  const dispatch = useAppDispatch();
   const router = useRouter();
+  const { courseName, tema, courseId } = useParams();
   const { data: session } = useSession();
   const userId = session?.user.uid;
 
-  const dispatch = useAppDispatch();
-
   const selectedTopic = useAppSelector((state) => state.topics.selectedTopic);
-  const { courseName, lessonId, tema, courseId } = useParams();
+
   const [dataUser, setDataUser] = useState<User | null>(null);
   const [viewVideo, setViewVideo] = useState(false);
 
@@ -62,9 +59,6 @@ export const LearningPath: FC = () => {
         currentIndexNumber < selectedTopic.lessons.length
       ) {
         const nextLesson = selectedTopic.lessons[currentIndexNumber];
-
-        // setSelectedLesson(nextLesson);
-
         router.push(
           `/dashboard/courses/${courseName}/${courseId}/${
             nextLesson.videoId
