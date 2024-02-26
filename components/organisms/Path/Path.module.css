@@ -77,7 +77,11 @@
   background-color: var(--grayGradient);
   cursor: pointer;
 }
-
+.iconStartDavid-mandatory {
+  color: var(--darkGrayGradient);
+  width: 1.5rem;
+  height: 1.5rem;
+}
 .path-CourseTitle {
   margin-top: 0.1rem;
   font-size: var(--fontSize-paragraph_mobile);
@@ -128,6 +132,11 @@
 
   .path-button {
     border: solid 0.5rem var(--white-transparent);
+  }
+
+  .iconStartDavid-mandatory {
+    width: 1.8rem;
+    height: 1.8rem;
   }
 
   .path-CourseTitle {

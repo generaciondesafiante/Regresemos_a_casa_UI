@@ -69,8 +69,8 @@ export const AssessmentQuestions = () => {
       if (answerIndex !== -1) {
         updatedSelectedAnswers.splice(answerIndex, 1);
       } else {
+        updatedSelectedAnswers.push(index);
       }
-      updatedSelectedAnswers.push(index);
 
       setSelectedAnswerIndices(updatedSelectedAnswers);
     } else {
@@ -166,9 +166,7 @@ export const AssessmentQuestions = () => {
           </div>
           <div
             className={
-              styles[
-                "assessmentQuestions-checkAndNextButtons_container"
-              ]
+              styles["assessmentQuestions-checkAndNextButtons_container"]
             }
           >
             <Button

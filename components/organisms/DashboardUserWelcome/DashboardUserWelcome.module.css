@@ -10,6 +10,7 @@
   padding: 1rem;
   border-radius: var(--borderRadius);
   box-shadow: 0rem 0rem 0.3rem 0.3rem #7b7b7b33;
+  background-color: var(--white);
 }
 
 .dashboardUserWelcome-welcomeMessage_title {
@@ -44,6 +45,7 @@
   display: block;
   border-radius: var(--borderRadius);
 }
+
 .titleVideo-skeletonVideo {
   width: 12rem;
   height: 1rem;
@@ -54,6 +56,7 @@
   background-color: #7b7b7b33;
   animation: pulse 1s ease-in-out;
 }
+
 .lastViewedVideo-skeletonVideo {
   width: 12rem;
   height: 6rem;
@@ -78,6 +81,7 @@
     opacity: 0.6;
   }
 }
+
 .dashboardUserWelcome-resourcesContainer {
   width: 85%;
   max-height: 10rem;
@@ -121,12 +125,15 @@
   .dashboardUserWelcome-continuePlayingContainer {
     width: 13rem;
   }
+
   .titleVideo-skeletonVideo {
     width: 13rem;
   }
+
   .lastViewedVideo-skeletonVideo {
     width: 13rem;
   }
+
   .dashboardUserWelcome-resourcesContainer {
     max-height: 42vh;
   }
@@ -167,14 +174,17 @@
     height: 9rem;
     width: 14rem;
   }
+
   .titleVideo-skeletonVideo {
     width: 14rem;
     height: 2rem;
   }
+
   .lastViewedVideo-skeletonVideo {
     width: 14rem;
     height: 9rem;
   }
+
   .dashboardUserWelcome-resourcesContainer {
     max-height: 41vh;
   }
@@ -216,13 +226,16 @@
   .dashboardUserWelcome-continuePlayingContainer {
     width: 19rem;
   }
+
   .titleVideo-skeletonVideo {
     width: 19rem;
     height: 2rem;
   }
+
   .lastViewedVideo-skeletonVideo {
     width: 19rem;
   }
+
   .dashboardUserWelcome-resourcesContainer {
     max-height: 31vh;
   }

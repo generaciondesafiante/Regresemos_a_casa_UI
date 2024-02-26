@@ -1,5 +1,6 @@
 "use client";
 import { FC, useState, useEffect } from "react";
+import { useSession } from "next-auth/react";
 import { Button, Input } from "../../../atoms";
 import { PasswordValidation } from "../RegisterCharacterValidatePassword/RegisterCharacterValidatePassword";
 import styles from "./RegisterFormPassword.module.css";
@@ -29,6 +30,7 @@ export const RegisterFormPassword: FC<RegisterFormPasswordProps> = ({
   buttonColor,
   borderColor,
 }) => {
+  const { data: session } = useSession();
   const [isSpecialCharValid, setSpecialCharValid] = useState(false);
   const [isNumberValid, setNumberValid] = useState(false);
   const [isLengthValid, setLengthValid] = useState(false);
@@ -125,9 +127,11 @@ export const RegisterFormPassword: FC<RegisterFormPasswordProps> = ({
       <div className={styles["registerFormPassword-containerButton"]}>
         <Button
           className={
-            isFormValid
-              ? styles["registerFormPassword-buttonEnabled"]
-              : styles["registerFormPassword-buttonDisabled"]
+            session !== null
+              ? isFormValid
+                ? styles["registerFormPassword-buttonEnabled"]
+                : styles["registerFormPassword-buttonDisabled"]
+              : styles["registerFormPassword-buttonSessionDisabled"]
           }
           type="submit"
           disabled={!isFormValid}
