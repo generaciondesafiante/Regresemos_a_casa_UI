@@ -15,7 +15,7 @@ export const Path = () => {
   const selectedCourse = useAppSelector(
     (state) => state.courses.selectedCourse
   );
-  console.log(selectedCourse);
+  console.log(selectedCourse, "epaa");
   const userInformation = useAppSelector((state) => state.user.userInfo);
   const topicsCourses = selectedCourse?.topics;
 
