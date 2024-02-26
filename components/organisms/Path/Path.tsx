@@ -1,30 +1,49 @@
 "use client";
+import { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import IconBxLock from "../../atoms/icons/lockPathIcon/PathLockIcon";
 import IconBxLockOpen from "../../atoms/icons/unLockPathIcon/PathUnlockIcon";
 import { FlagStartIcon } from "../../atoms/icons/flagsIcon/FlagStartIcon";
 import { FlagEndIcon } from "../../atoms/icons/flagsIcon/FlagEndIcon";
 import { DavidStarIcon } from "../../atoms/icons/davidStar/DavidStarIcon";
+import { User } from "../../../types/types/user.type";
 import { useAppDispatch, useAppSelector } from "../../../store/store";
 import { selectTopic } from "../../../store/slices/topicsSlice";
+import { userInfo } from "../../../store/slices/userSlice";
+import { fetchUserData } from "../../../api/user/userData";
 import styles from "./Path.module.css";
 
 export const Path = () => {
+  const { data: session } = useSession();
+  const idUser = session?.user.uid;
+
   const router = useRouter();
   const dispatch = useAppDispatch();
   const selectedCourse = useAppSelector(
     (state) => state.courses.selectedCourse
   );
-  console.log(selectedCourse, "epaa");
-  const userInformation = useAppSelector((state) => state.user.userInfo);
+  const [userInformation, setUserInformation] = useState<User | undefined>(
+    undefined
+  );
   const topicsCourses = selectedCourse?.topics;
+
+  useEffect(() => {
+    if (idUser) {
+      const userData = async () => {
+        const dataUser = await fetchUserData(idUser);
+        setUserInformation(dataUser);
+        dispatch(userInfo(dataUser));
+      };
+      userData();
+    }
+  }, [idUser]);
 
   const isTopicUnlocked = (topic: any) => {
     if (selectedCourse && userInformation?.CourseProgress) {
       const courseProgress = userInformation.CourseProgress.find(
         (progress) => progress.idCourse === selectedCourse._id
       );
-
       if (courseProgress) {
         const sequentialTopic = parseInt(
           courseProgress.topics[0].sequentialTopic
@@ -36,7 +55,6 @@ export const Path = () => {
         return currentTopicSequential === 1;
       }
     }
-
     return !selectedCourse?.mandatory;
   };
 
