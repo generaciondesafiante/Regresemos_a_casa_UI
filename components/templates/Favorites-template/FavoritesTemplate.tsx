@@ -7,4 +7,3 @@ export const FavoritesTemplate: React.FC = () => {
         </div>
     );
 };
-
