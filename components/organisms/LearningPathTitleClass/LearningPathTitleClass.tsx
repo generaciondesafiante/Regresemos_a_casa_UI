@@ -1,29 +1,24 @@
 "use client";
 import { FC } from "react";
-import { Lesson } from "../../../types/types/lessons.type";
-import { Topic } from "../../../types/types/topic.type";
+import { useAppSelector } from "../../../store/store";
 import styles from "./LearningPathTitleClass.module.css";
 
-interface LearningPathVideoClassProps {
-  course: Topic | null;
-  selectedLesson: Lesson | null;
-}
-
-export const LearningPathTitleClass: FC<LearningPathVideoClassProps> = ({
-  course,
-  selectedLesson,
-}) => {
+export const LearningPathTitleClass: FC = () => {
+  const selectedTopic = useAppSelector((state) => state.topics.selectedTopic);
+  const infoSelectedLesson = useAppSelector(
+    (state) => state.lessons.selectedLesson
+  );
   return (
     <div className={styles["learningPathTitleClass-container"]}>
       <p className={styles["learningPathTitleClass-topic"]}>
-        {course?.topicName}
+        {selectedTopic?.topicName}
       </p>
       <div className={styles["learningPathTitleClass-line"]}></div>
       <h2 className={styles["learningPathTitleClass-title"]}>
-        {selectedLesson?.videoName}
+        {infoSelectedLesson?.videoName}
       </h2>
       <div className={styles["learningPathTitleClass-subcontent"]}>
-        <p> {selectedLesson?.description}</p>
+        <p> {infoSelectedLesson?.description}</p>
       </div>
     </div>
   );

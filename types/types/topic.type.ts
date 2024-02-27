@@ -1,5 +1,6 @@
 export interface Topic {
   topicName: string;
+  sequentialTopic:string;
   _id: string;
   lessons: Array<{
     videoId: string;
@@ -9,5 +10,6 @@ export interface Topic {
     length: string;
     videoUrlHls: string;
     rating: number;
+    sequentialLesson:string;
   }>;
 }

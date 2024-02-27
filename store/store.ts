@@ -1,8 +1,15 @@
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
-import  authSlice  from "./auth/authSlice";
+import courseReducer from "./slices/courseSlice";
+import topicsReducer from "./slices/topicsSlice";
+import userReducer from "./slices/userSlice";
+import lessonReducer from "./slices/lessonSlice";
 
 const rootReducer = {
-  auth: authSlice,
+  courses: courseReducer,
+  topics: topicsReducer,
+  user: userReducer,
+  lessons: lessonReducer,
 };
 
 export const store = configureStore({
@@ -10,3 +17,6 @@ export const store = configureStore({
 });
 
 export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
+export const useAppDispatch = () => useDispatch<AppDispatch>();
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;

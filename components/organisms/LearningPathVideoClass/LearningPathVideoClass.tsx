@@ -4,86 +4,58 @@ import { useParams } from "next/navigation";
 import ReactPlayer from "react-player/lazy";
 import { Button } from "../../atoms";
 import { TaringStart } from "../TaringStart/TaringStart";
-import { Topic } from "../../../types/types/topic.type";
-import { Lesson } from "../../../types/types/lessons.type";
+import { fetchLastViewedVideos } from "../../../api/user/lastViewedVideos";
+import { useAppSelector } from "../../../store/store";
 import styles from "./LearningPathVideoClass.module.css";
 
 interface LearningPathVideoClassProps {
-  selectedLesson: Lesson | null;
-  selectedTopic: Topic | null;
   onNextVideoClick: (index: string) => void;
   setViewVideo?: Dispatch<SetStateAction<boolean>> | boolean;
-  courseProgress: any[];
-  lastViewedVideo: {
-    courseName: string;
-    idCourse: string;
-    videoId: string;
-    tema: string;
-    id: string;
-  };
 }
 
 export const LearningPathVideoClass: FC<LearningPathVideoClassProps> = ({
-  selectedLesson,
   onNextVideoClick,
   setViewVideo,
-  courseProgress,
-  selectedTopic,
-  lastViewedVideo,
 }) => {
-  const { indexVideo, courseId } = useParams();
-
+  const { indexVideo } = useParams();
   const [userRating, setUserRating] = useState<number>(0);
   const [isVideoReady, setIsVideoReady] = useState(false);
   const [duracionTotal, setDuracionTotal] = useState<number>(0);
   const [enableButton, setEnableButton] = useState(false);
-  const [video, setVideo] = useState(false);
-  const urlVideo = selectedLesson?.videoUrl;
+
+  const selectedCourse = useAppSelector(
+    (state) => state.courses.selectedCourse
+  );
+  const selectedTopic = useAppSelector((state) => state.topics.selectedTopic);
+  const selectedLesson = useAppSelector(
+    (state) => state.lessons.selectedLesson
+  );
+  const user = useAppSelector((state) => state.user.userInfo);
 
   const handleVideoPlay = () => {
-    setVideo(true);
+    fetchLastViewedVideos(
+      user?.uid || "",
+      selectedCourse?.courseName || "",
+      selectedCourse?._id || "",
+      selectedLesson?._id || "",
+      selectedTopic?.topicName || "",
+      selectedTopic?.sequentialTopic || "",
+      selectedLesson?.videoUrl || ""
+    );
   };
 
   const handleVideoPause = () => {
-    setVideo(true);
+    fetchLastViewedVideos(
+      user?.uid || "",
+      selectedCourse?.courseName || "",
+      selectedCourse?._id || "",
+      selectedLesson?._id || "",
+      selectedTopic?.topicName || "",
+      selectedTopic?.sequentialTopic || "",
+      selectedLesson?.videoUrl || ""
+    );
   };
-
-  useEffect(() => {
-    if (video) {
-      const sendVideoInfo = async () => {
-        try {
-          const response = await fetch(
-            `${process.env.NEXT_PUBLIC_BACKEND_URL}/course/lastViewedVideo/${lastViewedVideo.id}`,
-            {
-              method: "PUT",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                courseName: lastViewedVideo.courseName,
-                courseId: lastViewedVideo.idCourse,
-                videoId: lastViewedVideo.videoId,
-                tema: lastViewedVideo.tema,
-                indexTopic: indexVideo,
-                urlVideo: urlVideo,
-              }),
-            }
-          );
-
-          if (response.ok) {
-            console.log("Video information sent successfully");
-          } else {
-            console.error("Error sending video information");
-          }
-        } catch (error) {
-          console.error("Error when making fetch request:", error);
-        }
-      };
-      setVideo(false);
-      sendVideoInfo();
-    }
-  }, [video, lastViewedVideo]);
-
+  
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVideoReady(true);
@@ -139,33 +111,6 @@ export const LearningPathVideoClass: FC<LearningPathVideoClassProps> = ({
       }
     }
   };
-
-  useEffect(() => {
-    if (courseProgress.length > 0 && selectedTopic && selectedLesson) {
-      const currentCourse = courseProgress.find(
-        (course) => course.idCourse === courseId
-      );
-
-      if (currentCourse) {
-        const currentTopic = currentCourse.topics.find(
-          (topic: any) => topic.idTopic === selectedTopic._id
-        );
-
-        if (currentTopic) {
-          const currentLesson = currentTopic.lessons.find(
-            (lesson: any) => lesson.idLesson === selectedLesson._id
-          );
-
-          if (currentLesson && currentLesson.viewVideo) {
-            setEnableButton(true);
-            if (typeof setViewVideo === "function") {
-              setViewVideo(true);
-            }
-          }
-        }
-      }
-    }
-  }, [selectedLesson, courseProgress, courseId, selectedTopic]);
 
   return (
     <div className={styles["learningPathVideoClass-container"]}>

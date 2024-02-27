@@ -5,132 +5,39 @@ import { useParams, useRouter } from "next/navigation";
 import { LearningPathProgress } from "../LearningPathProgress/LearningPathProgress";
 import { LearningPathVideoClass } from "../LearningPathVideoClass/LearningPathVideoClass";
 import { LearningPathTitleClass } from "../LearningPathTitleClass/LearningPathTitleClass";
-import { Lesson } from "../../../types/types/lessons.type";
-import { Topic } from "../../../types/types/topic.type";
+import { fetchUserData } from "../../../api/user/userData";
+import { User } from "../../../types/types/user.type";
+import { useAppDispatch, useAppSelector } from "../../../store/store";
+import { userInfo } from "../../../store/slices/userSlice";
 import styles from "./LearningPath.module.css";
 
 export const LearningPath: FC = () => {
-  const { courseName, lessonId, tema, courseId } = useParams();
+  const dispatch = useAppDispatch();
   const router = useRouter();
+  const { courseName, tema, courseId } = useParams();
   const { data: session } = useSession();
   const userId = session?.user.uid;
 
-  const [selectedTopic, setSelectedTopic] = useState<Topic | null>(null);
-  const [selectedLesson, setSelectedLesson] = useState<Lesson | null>(null);
-  const [courseProgress, setCourseProgress] = useState<any[]>([]);
+  const selectedTopic = useAppSelector((state) => state.topics.selectedTopic);
+
+  const [dataUser, setDataUser] = useState<User | null>(null);
   const [viewVideo, setViewVideo] = useState(false);
 
-  const [lastViewedVideo, setLastViewedVideo] = useState({
-    courseName: "",
-    idCourse: "",
-    videoId: "",
-    tema: "",
-    id: "",
-  });
-
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_BACKEND_URL_COURSE_RESOURCES}/course/coursedata`
-        );
-        const data = await response.json();
-
-        for (const course of data.courses) {
-          for (const topic of course.topics) {
-            const lesson = topic.lessons.find(
-              (lesson: Lesson) => lesson.videoId === lessonId
-            );
-            if (lesson) {
-              setSelectedTopic(topic);
-              setSelectedLesson(lesson);
-
-              const singleCourseId = Array.isArray(courseId)
-                ? courseId[0]
-                : courseId;
-              const singleTema = Array.isArray(tema) ? tema[0] : tema;
-              const singleId = Array.isArray(userId) ? userId[0] : userId;
-              const singleCourseName = Array.isArray(courseName)
-                ? courseName[0]
-                : courseName;
-              setLastViewedVideo({
-                courseName: singleCourseName,
-                idCourse: singleCourseId,
-                videoId: lesson.videoId,
-                tema: singleTema,
-                id: singleId,
-              });
-              break;
-            }
-          }
-        }
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    if (lessonId) {
-      fetchData();
+    if (userId) {
+      const userData = async () => {
+        const data = await fetchUserData(userId);
+        setDataUser(data);
+      };
+      userData();
     }
-  }, [lessonId]);
-
-  useEffect(() => {
-    const sendVideoStatus = async () => {
-      if (viewVideo && selectedTopic && selectedLesson) {
-        try {
-          const response = await fetch(
-            `${process.env.NEXT_PUBLIC_BACKEND_URL}/course/updateVideoStatus/${userId}/${courseId}/${selectedTopic._id}/${selectedLesson?._id}/${selectedLesson?.videoId}`,
-            {
-              method: "PUT",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                viewVideo: true,
-              }),
-            }
-          );
-        } catch (error) {
-          console.error("Error al realizar la solicitud fetch:", error);
-        }
-      }
-    };
-
-    sendVideoStatus();
-  }, [viewVideo, selectedTopic, selectedLesson, userId, courseId]);
-
-  useEffect(() => {
-    const userInformacion = async () => {
-      try {
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/userinformations`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ id: userId }),
-          }
-        );
-
-        if (response.ok) {
-          const dataUser = await response.json();
-
-          if (dataUser.CourseProgress && dataUser.CourseProgress.length > 0) {
-            setCourseProgress(dataUser.CourseProgress);
-          }
-        } else {
-          console.error(
-            "Error al obtener la información del usuario:",
-            response.statusText
-          );
-        }
-      } catch (error) {
-        console.error("Error al realizar la solicitud fetch:", error);
-      }
-    };
-    userInformacion();
   }, [userId]);
+
+  useEffect(() => {
+    if (dataUser) {
+      dispatch(userInfo(dataUser));
+    }
+  }, [dataUser, dispatch]);
 
   const handleItemClick = (index: number) => {
     const indexTopic = index;
@@ -152,9 +59,6 @@ export const LearningPath: FC = () => {
         currentIndexNumber < selectedTopic.lessons.length
       ) {
         const nextLesson = selectedTopic.lessons[currentIndexNumber];
-
-        setSelectedLesson(nextLesson);
-
         router.push(
           `/dashboard/courses/${courseName}/${courseId}/${
             nextLesson.videoId
@@ -163,26 +67,17 @@ export const LearningPath: FC = () => {
       }
     }
   };
+
   return (
     <div className={styles["learningPath-container"]}>
       <LearningPathVideoClass
-        selectedLesson={selectedLesson}
         setViewVideo={setViewVideo}
         onNextVideoClick={handleNextVideo}
-        courseProgress={courseProgress}
-        selectedTopic={selectedTopic}
-        lastViewedVideo={lastViewedVideo}
       />
 
-      <LearningPathTitleClass
-        course={selectedTopic}
-        selectedLesson={selectedLesson}
-      />
+      <LearningPathTitleClass />
       <nav className={styles["classRoomRoute-container"]}>
-        <LearningPathProgress
-          course={selectedTopic}
-          onItemClick={handleItemClick}
-        />
+        <LearningPathProgress onItemClick={handleItemClick} />
       </nav>
     </div>
   );

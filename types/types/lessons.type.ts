@@ -7,4 +7,5 @@ export interface Lesson {
   videoUrlHls: string;
   rating: number;
   _id?: string;
+  sequentialLesson?:string
 }
