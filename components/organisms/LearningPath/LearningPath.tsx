@@ -39,6 +39,8 @@ export const LearningPath: FC = () => {
     }
   }, [dataUser, dispatch]);
 
+  // Todo revisar si se puede hacer desde el mismo componente
+
   const handleItemClick = (index: number) => {
     const indexTopic = index;
 
