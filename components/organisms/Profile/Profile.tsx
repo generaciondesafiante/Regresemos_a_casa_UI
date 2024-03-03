@@ -136,7 +136,7 @@ export const Profile: FC<Props> = () => {
             : "No se actualizaron los datos",
         };
         Swal.fire(swalOptions);
-        setIsModalOpen(!isModalOpen);
+        setIsModalOpen(false);
       }
 
       return isSuccess;
