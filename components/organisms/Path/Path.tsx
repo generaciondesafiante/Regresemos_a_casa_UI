@@ -11,7 +11,7 @@ import { User } from "../../../types/types/user.type";
 import { useAppDispatch, useAppSelector } from "../../../store/store";
 import { selectTopic } from "../../../store/slices/topicsSlice";
 import { userInfo } from "../../../store/slices/userSlice";
-import { fetchUserData } from "../../../api/user/userData";
+import { fetchUserData } from "../../../services/user/userData";
 import styles from "./Path.module.css";
 
 export const Path = () => {

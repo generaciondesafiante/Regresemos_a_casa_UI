@@ -1,22 +1,25 @@
 "use client";
-import { FC, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "../../../store/store";
 import { selectLesson } from "../../../store/slices/lessonSlice";
-import styles from "./LearningPathProgress.module.css";
+import { LessonItem } from "./LessonItem";
 
-interface LearningPathVideoClassProps {
-  onItemClick: (index: number) => void;
-}
-
-export const LearningPathProgress: FC<LearningPathVideoClassProps> = ({
-  onItemClick,
-}) => {
+export const LearningPathProgress = () => {
   const { lessonId } = useParams();
   const dispatch = useAppDispatch();
+  const [lessonStatus, setLessonStatus] = useState<boolean[]>([]);
+
   const selectedTopic = useAppSelector((state) => state.topics.selectedTopic);
+  const courseProgress = useAppSelector(
+    (state) => state.user.userInfo?.CourseProgress
+  );
   const infoSelectedLesson = useAppSelector(
     (state) => state.lessons.selectedLesson
+  );
+
+  const selectedCourse = useAppSelector(
+    (state) => state.courses.selectedCourse
   );
 
   useEffect(() => {
@@ -36,49 +39,45 @@ export const LearningPathProgress: FC<LearningPathVideoClassProps> = ({
     return <div></div>;
   }
 
+  useEffect(() => {
+    if (selectedTopic && courseProgress) {
+      const courseProgressForCurrentTopic = courseProgress.find(
+        (progress) => progress.idCourse === selectedCourse?._id
+      );
+
+      const sequentialTopicInCourseProgress = parseInt(
+        courseProgressForCurrentTopic?.topics[0].sequentialTopic
+      );
+      const sequentialTopicCurrent = parseInt(selectedTopic?.sequentialTopic);
+
+      if (sequentialTopicCurrent < sequentialTopicInCourseProgress) {
+        const newLessonStatus = selectedTopic.lessons.map(() => true);
+        setLessonStatus(newLessonStatus);
+      } else if (sequentialTopicCurrent === sequentialTopicInCourseProgress) {
+        const sequentialLessonUser = parseInt(
+          courseProgressForCurrentTopic.topics[0].lessons[0].sequentialLesson.trim()
+        );
+
+        const newLessonStatus = selectedTopic.lessons.map((lesson) => {
+          const lessonNumber = parseInt(lesson.sequentialLesson);
+          return lessonNumber <= sequentialLessonUser;
+        });
+
+        setLessonStatus(newLessonStatus);
+      }
+    }
+  }, [selectedTopic, courseProgress, selectedCourse, infoSelectedLesson]);
+
   return (
     <>
       {selectedTopic?.lessons.map((lesson) => (
-        <div
+        <LessonItem
           key={lesson.sequentialLesson}
-          className={`${styles["classRoomRoute-subcontent"]}`}
-          onClick={() => {
-            onItemClick && onItemClick(parseInt(lesson.sequentialLesson));
-            dispatch(selectLesson(lesson));
-          }}
-        >
-          <div
-            className={`${styles["classRoomRoute-title"]} ${
-              infoSelectedLesson?.sequentialLesson &&
-              parseInt(infoSelectedLesson.sequentialLesson) ===
-                parseInt(lesson.sequentialLesson)
-                ? styles["selected"]
-                : ""
-            }`}
-          >
-            {lesson.sequentialLesson}
-          </div>
-
-          <div
-            className={`${styles["classRoomRoute-iconCircle"]} ${
-              infoSelectedLesson?.sequentialLesson &&
-              parseInt(infoSelectedLesson.sequentialLesson) ===
-                parseInt(lesson.sequentialLesson)
-                ? styles["selected"]
-                : ""
-            }`}
-          >
-            {lesson.sequentialLesson}
-          </div>
-
-          <div
-            className={`${styles["classRoomRoute-line"]} ${
-              parseInt(lesson.sequentialLesson) === selectedTopic.lessons.length
-                ? styles["hide"]
-                : ""
-            }`}
-          ></div>
-        </div>
+          lesson={lesson}
+          infoSelectedLesson={infoSelectedLesson}
+          lessonStatus={lessonStatus}
+          selectedCourse={selectedCourse}
+        />
       ))}
     </>
   );

@@ -11,5 +11,6 @@ export interface Topic {
     videoUrlHls: string;
     rating: number;
     sequentialLesson:string;
+    _id: string;
   }>;
 }
