@@ -114,7 +114,6 @@ export const LearningPathVideo = () => {
 
   const handleNextVideo = () => {
     if (Array.isArray(indexVideo)) {
-      console.log(indexVideo[0]);
       const firstIndex = indexVideo[0];
       onNextVideoClick(firstIndex);
     } else {
@@ -131,15 +130,14 @@ export const LearningPathVideo = () => {
           nextLessonIndex - 1 === selectedTopic.lessons.length;
 
         if (isLastLesson) {
-          console.log("epa");
           const nextTopicIndex = parseInt(selectedTopic.sequentialTopic) + 1;
           const nextTopic = selectedCourse.topics.find(
             (topic: any) => parseInt(topic.sequentialTopic) === nextTopicIndex
           );
-          console.log(nextTopic);
+
           if (nextTopic && user) {
             const firstLessonOfNextTopic = nextTopic.lessons[0];
-            console.log(firstLessonOfNextTopic);
+
             fetchCoursesProgress(
               user.uid,
               selectedCourse._id,
@@ -168,7 +166,6 @@ export const LearningPathVideo = () => {
             nextLesson.videoId,
             nextLesson.sequentialLesson
           ).then(() => {
-            console.log(nextLesson.sequentialLesson);
             onNextVideoClick(nextLesson.sequentialLesson);
           });
         }
@@ -198,7 +195,7 @@ export const LearningPathVideo = () => {
   const enableFollowVideoButton = async (progressVideo: any) => {
     const currentVideo = progressVideo.played;
     const threshold = 0.95;
-    console.log(user);
+
     if (user && user.CourseProgress && user.CourseProgress.length > 0) {
       const courseProgressForCurrentTopic = user.CourseProgress.find(
         (progress: any) => progress.idCourse === selectedCourse?._id
