@@ -10,6 +10,7 @@ interface RegisterFormPasswordProps {
   setPassword2: React.Dispatch<React.SetStateAction<string>>;
   password: string;
   password2: string;
+  currentPassword: string; // Add currentPassword property
   labelButton: string;
   labelColor?: string;
   inputColor?: string;
@@ -23,6 +24,7 @@ export const RegisterFormPassword: FC<RegisterFormPasswordProps> = ({
   setPassword2,
   password,
   password2,
+  currentPassword, // Add currentPassword property
   labelButton,
   colorTextCharacter,
   labelColor,
@@ -51,14 +53,15 @@ export const RegisterFormPassword: FC<RegisterFormPasswordProps> = ({
   };
 
   useEffect(() => {
+
     setFormValid(
       isSpecialCharValid &&
-        isNumberValid &&
-        isLengthValid &&
-        isLetterValid &&
-        password !== "" &&
-        password2 !== "" &&
-        password === password2
+      isNumberValid &&
+      isLengthValid &&
+      isLetterValid &&
+      password !== "" &&
+      password2 !== "" &&
+      password === password2
     );
   }, [
     isSpecialCharValid,
@@ -67,6 +70,7 @@ export const RegisterFormPassword: FC<RegisterFormPasswordProps> = ({
     isLetterValid,
     password,
     password2,
+    currentPassword, // Add currentPassword to dependencies
   ]);
   return (
     <>
