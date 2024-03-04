@@ -153,7 +153,7 @@ export const LearningPathVideo = () => {
                 );
               })
               .catch(() => {
-                console.error("No hay temas disponible");
+                console.error("There are no themes available");
               });
           }
         } else if (user && selectedCourse && selectedTopic && nextLesson) {
