@@ -1,17 +1,11 @@
 "use client";
-import { FC, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "../../../store/store";
 import { selectLesson } from "../../../store/slices/lessonSlice";
-import styles from "./LearningPathProgress.module.css";
+import { LessonItem } from "./LessonItem";
 
-interface LearningPathVideoClassProps {
-  onItemClick: (index: number) => void;
-}
-
-export const LearningPathProgress: FC<LearningPathVideoClassProps> = ({
-  onItemClick,
-}) => {
+export const LearningPathProgress = () => {
   const { lessonId } = useParams();
   const dispatch = useAppDispatch();
   const [lessonStatus, setLessonStatus] = useState<boolean[]>([]);
@@ -23,6 +17,7 @@ export const LearningPathProgress: FC<LearningPathVideoClassProps> = ({
   const infoSelectedLesson = useAppSelector(
     (state) => state.lessons.selectedLesson
   );
+
   const selectedCourse = useAppSelector(
     (state) => state.courses.selectedCourse
   );
@@ -73,56 +68,16 @@ export const LearningPathProgress: FC<LearningPathVideoClassProps> = ({
     }
   }, [selectedTopic, courseProgress, selectedCourse, infoSelectedLesson]);
 
-  const handleLessonClick = (lessonIndex: number) => {
-    if (!selectedCourse?.mandatory || lessonStatus[lessonIndex]) {
-      onItemClick && onItemClick(lessonIndex);
-      dispatch(selectLesson(selectedTopic.lessons[lessonIndex]));
-    }
-  };
   return (
     <>
-      {selectedTopic?.lessons.map((lesson, index) => (
-        <div
+      {selectedTopic?.lessons.map((lesson) => (
+        <LessonItem
           key={lesson.sequentialLesson}
-          className={`${styles["classRoomRoute-subcontent"]}`}
-          onClick={() => handleLessonClick(index)}
-        >
-          <div
-            className={`${styles["classRoomRoute-title"]} ${
-              infoSelectedLesson?.sequentialLesson &&
-              parseInt(infoSelectedLesson.sequentialLesson) ===
-                parseInt(lesson.sequentialLesson)
-                ? styles["selected"]
-                : ""
-            } ${!lessonStatus[index] ? styles["blocked"] : ""}`}
-          >
-            {lesson.sequentialLesson}
-          </div>
-
-          <div
-            className={`${styles["classRoomRoute-iconCircle"]} ${
-              selectedCourse?.mandatory && !lessonStatus[index]
-                ? styles["unlocked"]
-                : ""
-            } ${
-              infoSelectedLesson?.sequentialLesson &&
-              parseInt(infoSelectedLesson.sequentialLesson) ===
-                parseInt(lesson.sequentialLesson)
-                ? styles["selected"]
-                : ""
-            }`}
-          >
-            {lesson.sequentialLesson}
-          </div>
-
-          <div
-            className={`${styles["classRoomRoute-line"]} ${
-              parseInt(lesson.sequentialLesson) === selectedTopic.lessons.length
-                ? styles["hide"]
-                : ""
-            }`}
-          ></div>
-        </div>
+          lesson={lesson}
+          infoSelectedLesson={infoSelectedLesson}
+          lessonStatus={lessonStatus}
+          selectedCourse={selectedCourse}
+        />
       ))}
     </>
   );

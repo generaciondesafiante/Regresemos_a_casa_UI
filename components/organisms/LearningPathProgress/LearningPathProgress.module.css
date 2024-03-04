@@ -67,8 +67,9 @@
     padding-top: 0.18rem;
     border-radius: 50%;
     font-size: var(--fontSize-buttons_mobile);
-    background-color: red;
-    /* color: var(--darkGreen); */
+    color: var(--darkGrayGradient);
+    background-color: var(--grayGradient);
+    cursor: not-allowed;
   }
 
   .classRoomRoute-line {

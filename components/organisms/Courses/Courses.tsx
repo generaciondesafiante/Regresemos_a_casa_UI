@@ -5,7 +5,7 @@ import { Card } from "../../atoms/Card/Card";
 import { Course } from "../../../types/types/course.types";
 import { useAppDispatch } from "../../../store/store";
 import { selectCourse } from "../../../store/slices/courseSlice";
-import { fetchCoursesData } from "../../../api/courses/coursesData";
+import { fetchCoursesData } from "../../../services/courses/coursesData";
 import styles from "./Courses.module.css";
 
 export const Courses = () => {
