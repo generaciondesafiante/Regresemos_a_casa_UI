@@ -7,6 +7,8 @@
   background-image: linear-gradient(0deg, #29384be6, rgba(41, 56, 77, 0.902)),
     url("https://i.imgur.com/giBenIE.png");
   background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .form-login_title {
