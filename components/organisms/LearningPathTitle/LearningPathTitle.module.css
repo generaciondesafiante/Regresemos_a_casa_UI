@@ -13,7 +13,28 @@
   background-color: var(--yellow);
   border-radius: var(--borderRadius);
 }
-
+.backButtonTopics {
+  display: flex;
+  align-items: center;
+  margin-left: -1rem;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: var(--darkBlue-content);
+  font-size: var(--fontSize-buttons_mobile);
+  transition: var(--transition);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.backButtonTopics:hover {
+  color: var(--turquoise);
+}
+.containerBackButtonTopics {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  margin-bottom: 1rem;
+}
 .learningPathTitleClass-title {
   font-size: var(--fontSize-titles_mobile);
   color: var(--darkBlue);

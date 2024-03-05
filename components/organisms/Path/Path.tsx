@@ -13,6 +13,8 @@ import { selectTopic } from "../../../store/slices/topicsSlice";
 import { userInfo } from "../../../store/slices/userSlice";
 import { fetchUserData } from "../../../services/user/userData";
 import styles from "./Path.module.css";
+import { ArrowLeftIcon } from "../../atoms";
+import Link from "next/link";
 
 export const Path = () => {
   const { data: session } = useSession();
@@ -73,9 +75,20 @@ export const Path = () => {
 
   return (
     <div className={styles["path-container"]}>
-      <h2 className={styles["path-title"]}>
-        ¡Vamos de<span> regreso </span>a casa! <DavidStarIcon />
-      </h2>
+      <div className={styles["prueba1"]}>
+        <div className={styles["containerBackButtonCourses"]}>
+          <Link
+            className={styles["backButtonCourses"]}
+            href={`/dashboard/courses`}
+          >
+            <ArrowLeftIcon />
+            <p>Regresar</p>
+          </Link>
+        </div>
+        <h2 className={styles["path-title"]}>
+          ¡Vamos de<span> regreso </span>a casa! <DavidStarIcon />
+        </h2>
+      </div>
       <div className={styles["path-content"]}>
         {topicsCourses?.map((topic, topicIndex) => {
           const isUnlocked = isTopicUnlocked(topic);
