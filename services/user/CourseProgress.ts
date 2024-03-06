@@ -24,7 +24,7 @@ export const fetchCoursesProgress = async (
           lessonId: lessonId,
           videoId: videoId,
           sequentialLesson:sequentialLesson,
-          viewVideo: true,
+          viewVideo: false,
         }),
       }
     );

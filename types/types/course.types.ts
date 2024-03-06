@@ -5,6 +5,7 @@ export interface Course {
   topicName: string;
   topics: Array<{
     topicName: string;
+    _id: string;
     sequentialTopic: string;
     lessons: Array<{
       videoId: string;
@@ -14,7 +15,8 @@ export interface Course {
       length: string;
       videoUrlHls: string;
       rating: number;
-      sequentialLesson:string
+      sequentialLesson: string;
+      _id: string;
     }>;
   }>;
 }
