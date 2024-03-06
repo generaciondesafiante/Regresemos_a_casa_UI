@@ -7,6 +7,8 @@
   background-image: linear-gradient(0deg, #29384be6, #29384be6),
     url("https://i.imgur.com/giBenIE.png");
   background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   padding-bottom: 2rem;
 }
 
@@ -124,6 +126,7 @@ button.register-form_loginRedirection_buttonEnabled:hover {
 }
 
 @media (width >=64rem) {
+
   .register-form-passwordTitle,
   .register-form-infoTitle {
     font-size: var(--fontSize-superTitles_laptop);

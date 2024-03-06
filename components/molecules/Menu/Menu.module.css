@@ -11,7 +11,7 @@
 }
 
 .header-logo {
-  width: 5rem;
+  width: 4rem;
   display: flex;
   transition: var(--transition);
   cursor: pointer;
