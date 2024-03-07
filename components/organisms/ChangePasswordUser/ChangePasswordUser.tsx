@@ -2,24 +2,21 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
 import Swal from "sweetalert2";
 import { RegisterFormPassword } from "../Register/RegisterFormPassword/RegisterFormPassword";
 import { ArrowLeftIcon, Button, Input } from "../../atoms";
 import styles from "./ChangePasswordUser.module.css";
+import { validatePassword } from "../../../services/user/validatePassword";
+import { useAppSelector } from "../../../store/store";
+import { changePassword } from "../../../services/user/changePassword";
 
-interface ValidatePasswordResponse {
-  ok: boolean;
-  msg: string;
-}
 export const ChangePasswordUser = () => {
-  const { data: session } = useSession();
   const router = useRouter();
-
   const [password, setPassword] = useState("");
   const [currentPassword, setCurrentPassword] = useState("");
   const [password2, setPassword2] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const userInfo = useAppSelector((state) => state.user.userInfo);
 
   const handleCurrentPasswordChange = (
     e: React.ChangeEvent<HTMLInputElement>
@@ -37,35 +34,6 @@ export const ChangePasswordUser = () => {
     setPassword2(e.target.value);
   };
 
-  const validatePassword = async () => {
-    try {
-      const responseValidate = await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/validate-password/${session?.user?.uid}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            password: currentPassword,
-          }),
-        }
-      );
-      const responseData: ValidatePasswordResponse =
-        await responseValidate.json();
-
-      if (responseData.ok === true) {
-        return true;
-      } else {
-        setErrorMessage(responseData.msg);
-        return false;
-      }
-    } catch (error) {
-      setErrorMessage("Contraseña actual incorrecta");
-      return false;
-    }
-  };
-
   const resetSubmitPassword = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (password !== password2) {
@@ -78,33 +46,49 @@ export const ChangePasswordUser = () => {
     }
 
     try {
-      const responseUpdate = await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/change-password/${session?.user?.uid}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
+      if (userInfo?.uid !== undefined) {
+        const changePasswordUser = await changePassword(
+          userInfo?.uid,
+          password
+        );
+        Swal.fire({
+          icon: "success",
+          title: "Contraseña modificada",
+          text: "Los cambios en tu perfil han sido guardados exitosamente",
+          didClose: () => {
+            router.push("/dashboard/profile");
           },
-          body: JSON.stringify({
-            password: password,
-          }),
-        }
-      );
-
-      Swal.fire({
-        icon: "success",
-        title: "Contraseña modificada",
-        text: "Los cambios en tu perfil han sido guardados exitosamente",
-        didClose: () => {
-          router.push("/dashboard/profile");
-        },
-      });
+        });
+      }
     } catch (error) {
       Swal.fire(
         "Error",
         "Ocurrió un error al guardar los cambios. Por favor, intenta nuevamente",
         "error"
       );
+    }
+  };
+  const validatePasswordUser = async () => {
+    if (userInfo?.uid !== undefined) {
+      const validatePasswordData = await validatePassword(
+        userInfo?.uid,
+        currentPassword
+      );
+      if (validatePasswordData.ok) {
+        if (currentPassword === password) {
+          Swal.fire(
+            "Error de validación",
+            "La contraseña actual y la contraseña nueva deben ser diferentes",
+            "error"
+          );
+
+        } else {
+          return true;
+        }
+      } else {
+        setErrorMessage(validatePasswordData.msg);
+        return false;
+      }
     }
   };
 
@@ -114,7 +98,7 @@ export const ChangePasswordUser = () => {
     e.preventDefault();
 
     try {
-      const isPasswordValid = await validatePassword();
+      const isPasswordValid = await validatePasswordUser();
 
       if (isPasswordValid) {
         await resetSubmitPassword(e);
@@ -129,6 +113,7 @@ export const ChangePasswordUser = () => {
       Swal.fire("Contraseña actual incorrecta.", errorMessage, "warning");
     }
   }, [errorMessage]);
+
   const myLabelColor = "var(--darkBlue-content)";
   const myInputColor = "var(--darkBlue-content)";
   const myButtonColor = "var(--darkBlue-content)";

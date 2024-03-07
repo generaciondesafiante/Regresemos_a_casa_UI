@@ -10,42 +10,17 @@ export const ResetPassword = () => {
   const { id } = useParams();
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
-  const [currentPassword, setCurrentPassword] = useState(""); // Define currentPassword
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
-    console.log(currentPassword);
-    console.log(password, "este es password");
-    console.log(password2, "este es password2");
-    
   };
   const handleConfirmPasswordChange = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
     setPassword2(e.target.value);
-    console.log(e.target.value);
   };
-
-  const handleCurrentPassword = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setCurrentPassword(e.target.value);
-    console.log(e.target.value);    
-  };
-
   const resetSubmitPassword = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    // Verificar si password y currentPassword son iguales
-    if (password === currentPassword) {
-      Swal.fire(
-        "Error de autenticación",
-        "La nueva contraseña no puede ser igual a la contraseña actual",
-        "error"
-      );
-      return;
-    }
-
     if (password !== password2) {
       Swal.fire(
         "Error de autenticación",
@@ -103,7 +78,6 @@ export const ResetPassword = () => {
           setPassword2={setPassword2}
           password2={password2}
           password={password}
-          currentPassword={currentPassword} // Pass currentPassword here
           colorTextCharacter="var(--white)"
           labelButton={"Hacer el cambio de contraseña"}
           labelColor="var(--white)"
