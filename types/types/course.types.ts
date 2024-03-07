@@ -16,6 +16,7 @@ export interface Course {
       videoUrlHls: string;
       rating: number;
       sequentialLesson: string;
+      typeLesson:string;
       _id: string;
     }>;
   }>;

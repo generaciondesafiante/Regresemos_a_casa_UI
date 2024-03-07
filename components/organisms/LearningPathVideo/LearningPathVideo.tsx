@@ -14,6 +14,7 @@ export const LearningPathVideo = () => {
   const [duracionTotal, setDuracionTotal] = useState<number>(0);
   const [enableButton, setEnableButton] = useState(false);
   const [viewVideo, setViewVideo] = useState(false);
+  console.log(enableButton);
 
   const selectedCourse = useAppSelector(
     (state) => state.courses.selectedCourse
@@ -62,6 +63,8 @@ export const LearningPathVideo = () => {
           const sequentialTopicInCourseProgress = parseInt(
             courseProgressForCurrentTopic.topics[0].sequentialTopic
           );
+          console.log(sequentialTopicInCourseProgress);
+
           const sequentialTopicCurrent = parseInt(
             selectedTopic.sequentialTopic
           );

@@ -8,4 +8,5 @@ export interface Lesson {
   rating: number;
   _id?: string;
   sequentialLesson?:string
+  typeLesson:string
 }

@@ -32,13 +32,18 @@ export const LessonItem: FC<LessonItemProps> = ({
       router.push(url);
     }
   };
+
   const isLessonBlocked = !lessonStatus[parseInt(sequentialLesson) - 1];
+  const isCourseMandatory = selectedCourse?.mandatory;
+  const isLessonUnlocked =
+    !isCourseMandatory || (isCourseMandatory && !isLessonBlocked);
+
   return (
     <div
       key={sequentialLesson}
       className={`${styles["classRoomRoute-subcontent"]}`}
       onClick={() => {
-        if (!isLessonBlocked) {
+        if (isLessonUnlocked) {
           handleItemClick(parseInt(sequentialLesson));
         }
       }}
@@ -50,19 +55,14 @@ export const LessonItem: FC<LessonItemProps> = ({
             parseInt(sequentialLesson)
             ? styles["selected"]
             : ""
-        } ${
-          !lessonStatus[parseInt(sequentialLesson) - 1] ? styles["blocked"] : ""
-        }`}
+        } ${!isLessonUnlocked ? styles["blocked"] : ""}`}
       >
         {sequentialLesson}
       </div>
 
       <div
         className={`${styles["classRoomRoute-iconCircle"]} ${
-          selectedCourse?.mandatory &&
-          !lessonStatus[parseInt(sequentialLesson) - 1]
-            ? styles["unlocked"]
-            : ""
+          isCourseMandatory && !isLessonBlocked ? styles["unlocked"] : ""
         } ${
           infoSelectedLesson?.sequentialLesson &&
           parseInt(infoSelectedLesson.sequentialLesson) ===
