@@ -30,25 +30,22 @@
   row-gap: 2.5rem;
   column-gap: 3rem;
 }
-.backButtonCourses {
+.containerBackReturnCourses {
+  display: flex;
+  position: absolute;
+  width: 100%;
+}
+.backReturnCourses {
+  width: 100%;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
   text-decoration: none;
-  color: var(--darkBlue-content);
+  color: var(--darkBlue);
   font-size: var(--fontSize-buttons_mobile);
   transition: var(--transition);
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  margin-top: 2rem;
 }
-.backButtonCourses:hover {
+.backReturnCourses:hover {
   color: var(--turquoise);
-}
-.containerBackButtonCourses {
-  display: flex;
-  justify-content: flex-start;
 }
 .learningPathTi .path-topicContainer {
   width: 7rem;
@@ -111,14 +108,13 @@
   .path-container {
     padding-left: 5rem;
   }
-  .prueba1 {
+  .content-title {
     display: flex;
     flex-direction: row;
     justify-content: center;
   }
-  .containerBackButtonCourses {
-    margin-right: 35rem;
-    position: absolute;
+  .containerBackReturnCourses {
+    width: calc(100% - 5rem);
   }
   .path-title {
     width: 13rem;
@@ -136,9 +132,8 @@
     width: 15rem;
     font-size: var(--fontSize-titles_laptop);
   }
-  .containerBackButtonCourses {
-    margin-right: 40rem;
-    position: absolute;
+  .containerBackReturnCourses {
+    width: calc(100% - 7rem);
   }
   .path-content {
     column-gap: 5rem;

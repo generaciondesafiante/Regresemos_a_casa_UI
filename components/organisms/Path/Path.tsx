@@ -75,16 +75,16 @@ export const Path = () => {
 
   return (
     <div className={styles["path-container"]}>
-      <div className={styles["prueba1"]}>
-        <div className={styles["containerBackButtonCourses"]}>
-          <Link
-            className={styles["backButtonCourses"]}
-            href={`/dashboard/courses`}
-          >
-            <ArrowLeftIcon />
-            <p>Regresar</p>
-          </Link>
-        </div>
+      <div className={styles["containerBackReturnCourses"]}>
+        <Link
+          className={styles["backReturnCourses"]}
+          href={`/dashboard/courses`}
+        >
+          <ArrowLeftIcon />
+          <p>Regresar</p>
+        </Link>
+      </div>
+      <div className={styles["content-title"]}>
         <h2 className={styles["path-title"]}>
           ¡Vamos de<span> regreso </span>a casa! <DavidStarIcon />
         </h2>

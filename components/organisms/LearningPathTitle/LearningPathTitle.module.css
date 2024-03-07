@@ -13,23 +13,21 @@
   background-color: var(--yellow);
   border-radius: var(--borderRadius);
 }
-.backButtonTopics {
+
+.backReturnTopics {
+  width: 100%;
   display: flex;
   align-items: center;
   margin-left: -1rem;
-  gap: 0.5rem;
   text-decoration: none;
-  color: var(--darkBlue-content);
+  color: var(--darkBlue);
   font-size: var(--fontSize-buttons_mobile);
   transition: var(--transition);
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
 }
-.backButtonTopics:hover {
+.backReturnTopics:hover {
   color: var(--turquoise);
 }
-.containerBackButtonTopics {
+.containerBackReturnTopics {
   display: flex;
   justify-content: flex-start;
   width: 100%;

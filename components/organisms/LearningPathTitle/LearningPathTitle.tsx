@@ -1,9 +1,9 @@
 "use client";
 import { FC } from "react";
-import { useAppSelector } from "../../../store/store";
-import styles from "./LearningPathTitle.module.css";
-import { ArrowLeftIcon, Button } from "../../atoms";
 import Link from "next/link";
+import { useAppSelector } from "../../../store/store";
+import { ArrowLeftIcon } from "../../atoms";
+import styles from "./LearningPathTitle.module.css";
 
 export const LearningPathTitleClass: FC = () => {
   const selectedTopic = useAppSelector((state) => state.topics.selectedTopic);
@@ -16,9 +16,9 @@ export const LearningPathTitleClass: FC = () => {
 
   return (
     <div className={styles["learningPathTitleClass-container"]}>
-      <div className={styles["containerBackButtonTopics"]}>
+      <div className={styles["containerBackReturnTopics"]}>
         <Link
-          className={styles["backButtonTopics"]}
+          className={styles["backReturnTopics"]}
           href={`/dashboard/courses/${selectedCourse?.courseName}/${selectedCourse?._id}`}
         >
           <ArrowLeftIcon />

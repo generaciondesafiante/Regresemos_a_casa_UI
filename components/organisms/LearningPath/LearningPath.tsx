@@ -37,7 +37,6 @@ export const LearningPath: FC = () => {
   return (
     <div className={styles["learningPath-container"]}>
       <LearningPathVideo />
-
       <LearningPathTitleClass />
       <nav className={styles["classRoomRoute-container"]}>
         <LearningPathProgress />
