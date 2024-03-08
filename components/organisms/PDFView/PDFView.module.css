@@ -1,0 +1,67 @@
+.pdfView-container {
+    width: 100vw;
+    height: 100vh;
+    padding-bottom: 5rem;
+    background-image: url(https://i.imgur.com/UQqp7LT.png);
+    background-size: 100% 100%;
+    overflow-y: scroll;
+}
+
+.pdfView-backButton {
+    width: auto;
+    display: flex;
+    align-items: center;
+    margin: 1rem 0rem 0rem 1rem;
+    text-decoration: none;
+    color: var(--turquoise);
+    font-size: var(--fontSize-buttons_mobile);
+    transition: var(--transition);
+}
+
+.pdfView-backButton:hover {
+    color: var(--darkBlue);
+}
+
+.pdfView-title {
+    margin-top: 1rem;
+    text-align: center;
+    color: var(--darkBlue);
+    font-size: var(--fontSize-superTitles_mobile);
+}
+
+.pdfView-pdf {
+    width: 90%;
+    height: 70vh;
+    display: flex;
+    margin: auto;
+    margin-top: 1rem;
+}
+
+@media (width >=48rem) {
+    .pdfView-container {
+        padding-left: 5rem;
+        padding-bottom: 1rem;
+    }
+
+    .pdfView-title {
+        margin-top: 0.5rem;
+    }
+
+    .pdfView-pdf {
+        height: 100vh;
+    }
+}
+
+@media (width >=64rem) {
+    .pdfView-title {
+        font-size: var(--fontSize-titles_laptop);
+    }
+
+    .pdfView-backButton {
+        font-size: var(--fontSize-buttons_laptop);
+    }
+
+    .pdfView-pdf {
+        width: 80%;
+    }
+}
