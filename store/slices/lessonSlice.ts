@@ -1,8 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Lesson } from "../../types/types/lessons.type";
+import { VideoLesson, AssessmentLesson } from "../../types/types/lessons.type";
+
 interface LessonState {
-  selectedLesson: Lesson | null;
+  selectedLesson: VideoLesson | AssessmentLesson | null;
 }
+
 const persistedLesson =
   typeof window !== "undefined"
     ? localStorage.getItem("persistedLesson")
@@ -16,9 +18,15 @@ const lessonSlice = createSlice({
   name: "lesson",
   initialState,
   reducers: {
-    selectLesson(state, action: PayloadAction<Lesson>) {
-      state.selectedLesson = action.payload;
-      localStorage.setItem("selectedLesson", JSON.stringify(action.payload));
+    selectLesson(state, action: PayloadAction<{ type: string; lessonData: VideoLesson | AssessmentLesson }>) {
+      const { type, lessonData } = action.payload;
+      state.selectedLesson = lessonData;
+
+      if (type === "video") {
+        localStorage.setItem("persistedLesson", JSON.stringify({ type: "video", data: lessonData }));
+      } else if (type === "assessment") {
+        localStorage.setItem("persistedLesson", JSON.stringify({ type: "assessment", data: lessonData }));
+      }
     },
   },
 });

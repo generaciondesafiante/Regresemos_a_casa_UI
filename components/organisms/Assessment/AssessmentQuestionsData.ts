@@ -18,7 +18,7 @@ type TrueFalseQuestion = {
   }[];
 };
 
-type MultipleChoiceQuestion = {
+export type MultipleChoiceQuestion = {
   title: string;
   image: string;
   questionType: "multiple";

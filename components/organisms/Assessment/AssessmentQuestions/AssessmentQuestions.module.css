@@ -3,12 +3,11 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding-bottom: 5rem;
 }
 
 .assessmentQuestions-img {
   width: 11rem;
-  height: 8rem;
+  height: 10rem;
   margin-top: 2rem;
   border-radius: var(--borderRadius);
   background-color: var(--gray);
@@ -117,7 +116,6 @@
   color: var(--white-transparent);
 }
 
-
 @media (width >=48rem) {
   .assessmentQuestions-container {
     padding-bottom: 1rem;
@@ -154,7 +152,6 @@
 }
 
 @media (width >=75rem) {
-
   .assessmentQuestions-question_container,
   .assessmentQuestions-checkAndNextButtons_container {
     width: 35rem;

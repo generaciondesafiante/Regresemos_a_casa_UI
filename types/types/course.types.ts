@@ -1,3 +1,5 @@
+import { AssessmentLesson, VideoLesson } from "./lessons.type";
+
 export interface Course {
   _id: string;
   mandatory: boolean;
@@ -7,17 +9,6 @@ export interface Course {
     topicName: string;
     _id: string;
     sequentialTopic: string;
-    lessons: Array<{
-      videoId: string;
-      videoName: string;
-      description: string;
-      videoUrl: string;
-      length: string;
-      videoUrlHls: string;
-      rating: number;
-      sequentialLesson: string;
-      typeLesson:string;
-      _id: string;
-    }>;
+   lessons: (VideoLesson | AssessmentLesson)[]; 
   }>;
 }

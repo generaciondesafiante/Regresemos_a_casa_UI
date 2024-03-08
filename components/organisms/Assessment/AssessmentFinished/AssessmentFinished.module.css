@@ -1,63 +1,63 @@
-.assessment-finished_container {
-    padding-bottom: 4rem;
-}
+/* .assessment-finished_container {
+  padding-bottom: 4rem;
+} */
 
 .assessment-imageContainer {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .assessment-image {
-    width: 14rem;
-    margin-top: 2rem;
+  width: 14rem;
+  margin-top: 2rem;
 }
 
 .assessment-result {
-    margin-top: 1rem;
-    padding: 0 1.25rem;
-    font-size: var(--fontSize-subtitles_mobile);
-    font-weight: bold;
-    text-align: center;
-    color: var(--white);
+  margin-top: 1rem;
+  padding: 0 1.25rem;
+  font-size: var(--fontSize-subtitles_mobile);
+  font-weight: bold;
+  text-align: center;
+  color: var(--white);
 }
 
 .assessment-buttonContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 0.7rem;
-    margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.7rem;
+  margin-top: 1rem;
 }
 
 .assessment-button {
-    width: 11rem;
-    color: var(--darkBlue);
-    font-weight: bold;
+  width: 11rem;
+  color: var(--darkBlue);
+  font-weight: bold;
 }
 
 .assessment-button:hover {
-    background-color: #FAD047;
+  background-color: #fad047;
 }
 
 @media (width >=48rem) {
-    .assessment-image {
-        width: 16rem;
-    }
+  .assessment-image {
+    width: 16rem;
+  }
 
-    .assessment-buttonContainer {
-        margin-top: 2rem;
-        flex-direction: row;
-    }
+  .assessment-buttonContainer {
+    margin-top: 2rem;
+    flex-direction: row;
+  }
 }
 
 @media (width >=64rem) {
-    .assessment-result {
-        font-size: var(--fontSize-subtitles_tablet);
-    }
+  .assessment-result {
+    font-size: var(--fontSize-subtitles_tablet);
+  }
 
-    .assessment-buttonContainer {
-        margin-top: 3rem;
-        gap: 1.2rem;
-    }
+  .assessment-buttonContainer {
+    margin-top: 3rem;
+    gap: 1.2rem;
+  }
 }

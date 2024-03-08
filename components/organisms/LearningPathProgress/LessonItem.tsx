@@ -1,13 +1,16 @@
 import { FC } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { useAppSelector } from "../../../store/store";
-import { Lesson } from "../../../types/types/lessons.type";
+import {
+  VideoLesson,
+  AssessmentLesson,
+} from "../../../types/types/lessons.type";
 import { Course } from "../../../types/types/course.types";
 import styles from "./LearningPathProgress.module.css";
 
 interface LessonItemProps {
-  lesson: Lesson;
-  infoSelectedLesson: Lesson | null;
+  lesson: VideoLesson | AssessmentLesson;
+  infoSelectedLesson: VideoLesson | AssessmentLesson | null;
   lessonStatus: boolean[];
   selectedCourse: Course | null;
 }
@@ -28,7 +31,15 @@ export const LessonItem: FC<LessonItemProps> = ({
   const handleItemClick = (sequentialLesson: number) => {
     if (selectedTopic) {
       const selectedLesson = selectedTopic.lessons[sequentialLesson - 1];
-      const url = `/dashboard/courses/${courseName}/${courseId}/${selectedLesson.videoId}/${tema}/${sequentialLesson}`;
+
+      let lessonId;
+
+      if ("videoId" in lesson) {
+        lessonId = (lesson as VideoLesson).videoId;
+      } else if ("_id" in lesson) {
+        lessonId = (lesson as AssessmentLesson)._id;
+      }
+      const url = `/dashboard/courses/${courseName}/${courseId}/${lessonId}/${tema}/${sequentialLesson}`;
       router.push(url);
     }
   };

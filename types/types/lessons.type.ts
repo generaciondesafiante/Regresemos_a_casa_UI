@@ -1,4 +1,4 @@
-export interface Lesson {
+export interface VideoLesson {
   videoId: string;
   videoName: string;
   description: string;
@@ -9,4 +9,11 @@ export interface Lesson {
   _id?: string;
   sequentialLesson?:string
   typeLesson:string
+}
+
+export interface AssessmentLesson {
+    sequentialLesson: string;
+    typeLesson: string;
+    questions: [];
+    _id?: string;
 }
