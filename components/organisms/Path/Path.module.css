@@ -27,6 +27,7 @@
   margin-top: 5rem;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
   row-gap: 2.5rem;
   column-gap: 3rem;
 }
@@ -47,7 +48,7 @@
 .backReturnCourses:hover {
   color: var(--turquoise);
 }
-.learningPathTi .path-topicContainer {
+.path-topicContainer {
   width: 7rem;
   display: flex;
   flex-direction: column;
@@ -106,7 +107,7 @@
 
 @media (width >=48rem) {
   .path-container {
-    padding-left: 5rem;
+    padding-left: 6rem;
   }
   .content-title {
     display: flex;
