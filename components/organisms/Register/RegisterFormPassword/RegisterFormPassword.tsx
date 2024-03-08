@@ -79,7 +79,7 @@ export const RegisterFormPassword: FC<RegisterFormPasswordProps> = ({
           onChange={(event) => handlePasswordChange(event.target.value)}
           type="password"
           placeholder=" "
-          label={"Contraseña"}
+          label={"Nueva contraseña"}
           isRequire={true}
           labelColor={labelColor}
           inputColor={inputColor}
@@ -94,7 +94,7 @@ export const RegisterFormPassword: FC<RegisterFormPasswordProps> = ({
           onChange={(event) => setPassword2(event.target.value)}
           type="password"
           placeholder=" "
-          label={"Repite la contraseña"}
+          label={"Confirma nueva contraseña"}
           isRequire={true}
           labelColor={labelColor}
           inputColor={inputColor}
