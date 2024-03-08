@@ -35,7 +35,9 @@
   display: flex;
   position: absolute;
   width: 100%;
+  padding: 0.8rem;
 }
+
 .backReturnCourses {
   width: 100%;
   display: flex;
@@ -45,6 +47,7 @@
   font-size: var(--fontSize-buttons_mobile);
   transition: var(--transition);
 }
+
 .backReturnCourses:hover {
   color: var(--turquoise);
 }
@@ -107,16 +110,19 @@
 
 @media (width >=48rem) {
   .path-container {
-    padding-left: 6rem;
+    padding-left: 5rem;
   }
+
   .content-title {
     display: flex;
     flex-direction: row;
     justify-content: center;
   }
+
   .containerBackReturnCourses {
     width: calc(100% - 5rem);
   }
+
   .path-title {
     width: 13rem;
     margin-top: 3rem;
@@ -133,9 +139,15 @@
     width: 15rem;
     font-size: var(--fontSize-titles_laptop);
   }
+
   .containerBackReturnCourses {
     width: calc(100% - 7rem);
   }
+
+  .backReturnCourses {
+    font-size: var(--fontSize-buttons_laptop);
+  }
+
   .path-content {
     column-gap: 5rem;
   }
