@@ -11,7 +11,7 @@
 
 .path-title {
   width: 13rem;
-  margin-top: 5rem;
+  margin-top: 2rem;
   position: relative;
   text-align: center;
   font-size: var(--fontSize-titles_mobile);
@@ -27,10 +27,30 @@
   margin-top: 5rem;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
   row-gap: 2.5rem;
   column-gap: 3rem;
 }
+.containerBackReturnCourses {
+  display: flex;
+  position: absolute;
+  width: 100%;
+  padding: 0.8rem;
+}
 
+.backReturnCourses {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--darkBlue);
+  font-size: var(--fontSize-buttons_mobile);
+  transition: var(--transition);
+}
+
+.backReturnCourses:hover {
+  color: var(--turquoise);
+}
 .path-topicContainer {
   width: 7rem;
   display: flex;
@@ -93,6 +113,16 @@
     padding-left: 5rem;
   }
 
+  .content-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .containerBackReturnCourses {
+    width: calc(100% - 5rem);
+  }
+
   .path-title {
     width: 13rem;
     margin-top: 3rem;
@@ -108,6 +138,14 @@
   .path-title {
     width: 15rem;
     font-size: var(--fontSize-titles_laptop);
+  }
+
+  .containerBackReturnCourses {
+    width: calc(100% - 7rem);
+  }
+
+  .backReturnCourses {
+    font-size: var(--fontSize-buttons_laptop);
   }
 
   .path-content {
