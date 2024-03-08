@@ -6,10 +6,10 @@ import Swal from "sweetalert2";
 import { RegisterFormPassword } from "../Register/RegisterFormPassword/RegisterFormPassword";
 import { ArrowLeftIcon, Button, Input } from "../../atoms";
 import styles from "./ChangePasswordUser.module.css";
-import { validatePassword } from "../../../services/user/validatePassword";
+
 import { useAppSelector } from "../../../store/store";
 import { changePassword } from "../../../services/user/changePassword";
-
+import { PasswordValidation } from "../../../services/user/passwordValidation";
 export const ChangePasswordUser = () => {
   const router = useRouter();
   const [password, setPassword] = useState("");
@@ -47,7 +47,7 @@ export const ChangePasswordUser = () => {
 
     try {
       if (userInfo?.uid !== undefined) {
-        const changePasswordUser = await changePassword(
+        const changeUserPassword = await changePassword(
           userInfo?.uid,
           password
         );
@@ -68,9 +68,9 @@ export const ChangePasswordUser = () => {
       );
     }
   };
-  const validatePasswordUser = async () => {
+  const validateUserPassword = async () => {
     if (userInfo?.uid !== undefined) {
-      const validatePasswordData = await validatePassword(
+      const validatePasswordData = await PasswordValidation(
         userInfo?.uid,
         currentPassword
       );
@@ -92,13 +92,13 @@ export const ChangePasswordUser = () => {
     }
   };
 
-  const validatePasswordSubmit = async (
+  const validateSubmitPassword = async (
     e: React.FormEvent<HTMLFormElement>
   ) => {
     e.preventDefault();
 
     try {
-      const isPasswordValid = await validatePasswordUser();
+      const isPasswordValid = await validateUserPassword();
 
       if (isPasswordValid) {
         await resetSubmitPassword(e);
@@ -124,7 +124,7 @@ export const ChangePasswordUser = () => {
       <form
         action=""
         className={styles["changePasswordUser-modalContainer"]}
-        onSubmit={validatePasswordSubmit}
+        onSubmit={validateSubmitPassword}
       >
         <Link
           href={"/dashboard/profile"}

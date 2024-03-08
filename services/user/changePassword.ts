@@ -1,6 +1,6 @@
 export const changePassword = async (id: string, password: string) => {
     try {
-        const responseData = await fetch(
+        const dataResponse = await fetch(
             `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/change-password/${id}`,
             {
                 method: "PUT",
@@ -12,7 +12,7 @@ export const changePassword = async (id: string, password: string) => {
                 }),
             }
         );
-        return responseData;
+        return dataResponse;
     } catch (error) {
         console.error(error);
     }

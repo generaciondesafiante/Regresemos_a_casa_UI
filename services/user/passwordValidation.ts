@@ -2,7 +2,7 @@ interface ValidatePasswordResponse {
     ok: boolean;
     msg: string;
 }
-export const validatePassword = async (id: string, password: string) => {
+export const PasswordValidation = async (id: string, password: string) => {
     try {
         const responseValidate = await fetch(
             `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/validate-password/${id}`,
