@@ -16,4 +16,9 @@ export interface AssessmentLesson {
     typeLesson: string;
     questions: [];
     _id?: string;
+    videoUrl?: string;
+    videoId?:string;
+    description?: string;
+    videoName?:string;
+
 }

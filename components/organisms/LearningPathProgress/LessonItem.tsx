@@ -31,13 +31,16 @@ export const LessonItem: FC<LessonItemProps> = ({
   const handleItemClick = (sequentialLesson: number) => {
     if (selectedTopic) {
       const selectedLesson = selectedTopic.lessons[sequentialLesson - 1];
-
+     
       let lessonId;
+ 
 
       if ("videoId" in lesson) {
         lessonId = (lesson as VideoLesson).videoId;
+       
       } else if ("_id" in lesson) {
         lessonId = (lesson as AssessmentLesson)._id;
+      
       }
       const url = `/dashboard/courses/${courseName}/${courseId}/${lessonId}/${tema}/${sequentialLesson}`;
       router.push(url);

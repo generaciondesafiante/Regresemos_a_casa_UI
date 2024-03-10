@@ -21,34 +21,33 @@ export const AssessmentFinished: FC<AssessmentFinishedProps> = ({
     (state) => state.courses.selectedCourse
   );
 
-  console.log(selectedLesson);
+
 
   const getNextLesson = () => {
-    if (!selectedTopic || !selectedTopic.lessons) return null; // Verifica si selectedTopic o selectedTopic.lessons es null o undefined
+    if (!selectedTopic || !selectedTopic.lessons) return null; 
 
     const currentLessonIndex = selectedTopic.lessons.findIndex(
       (lesson) => lesson._id === selectedLesson?._id
-    ); // Encuentra el índice de la lección actual
+    ); 
 
-    // Verifica si currentLessonIndex es -1 (no se encontró la lección actual)
+   
     if (currentLessonIndex === -1) return null;
 
-    const nextLessonIndex = currentLessonIndex + 1; // Calcula el índice de la siguiente lección
+    const nextLessonIndex = currentLessonIndex + 1; 
 
-    // Verifica si el índice de la siguiente lección está dentro del rango del arreglo de lecciones
     if (nextLessonIndex < selectedTopic.lessons.length) {
-      return selectedTopic.lessons[nextLessonIndex]; // Retorna la siguiente lección
+      return selectedTopic.lessons[nextLessonIndex]; 
     } else {
-      return null; // Si no hay más lecciones, retorna null
+      return null; 
     }
   };
 
   const handleContinue = () => {
     const nextLesson = getNextLesson();
-    console.log(selectedCourse?.courseName);
+    
 
     if (nextLesson) {
-      console.log("epa");
+    
 
       router.push(
         `/dashboard/courses/${selectedCourse?.courseName}/${selectedCourse?._id}/${nextLesson?.videoId}/${selectedTopic?.topicName}/${nextLesson.sequentialLesson}`

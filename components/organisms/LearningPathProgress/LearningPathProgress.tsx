@@ -11,7 +11,6 @@ export const LearningPathProgress = () => {
   const [lessonStatus, setLessonStatus] = useState<boolean[]>([]);
 
   const selectedTopic = useAppSelector((state) => state.topics.selectedTopic);
-  console.log(selectedTopic);
 
   const courseProgress = useAppSelector(
     (state) => state.user.userInfo?.CourseProgress
@@ -32,13 +31,15 @@ export const LearningPathProgress = () => {
         if (lessonIdArray.includes(lesson.videoId)) {
           return true;
         } else if (lesson.typeLesson === "assessment") {
-          return true;
+          dispatch(selectLesson({ type: "assessment", lessonData: lesson }));
+          return false;
         }
         return false;
       });
 
-      if (selectedLesson) {
+      if (selectedLesson && selectedLesson.typeLesson !== "assessment") {
         const lessonType = selectedLesson.typeLesson;
+
         dispatch(
           selectLesson({ type: lessonType, lessonData: selectedLesson })
         );

@@ -89,7 +89,7 @@ export const AssessmentQuestions = () => {
       return null;
     }
     const currentQuestionData = selectedLesson?.questions[currentQuestion];
-    console.log(currentQuestionData);
+  
     if (currentQuestionData.questionType === "multiple") {
       const updatedSelectedAnswers = [...selectedAnswerIndices];
       const answerIndex = updatedSelectedAnswers.indexOf(index);

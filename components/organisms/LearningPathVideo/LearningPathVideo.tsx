@@ -104,7 +104,7 @@ export const LearningPathVideo = () => {
 
         router.push(
           `/dashboard/courses/${selectedCourse?.courseName}/${
-            selectedCourse?._idS
+            selectedCourse?._id
           }/${nextLesson.videoId}/${selectedTopic?.topicName}/${
             currentIndexNumber + 1
           }`
@@ -144,9 +144,9 @@ export const LearningPathVideo = () => {
               selectedCourse._id,
               nextTopic._id,
               nextTopic.sequentialTopic,
-              firstLessonOfNextTopic._id,
-              firstLessonOfNextTopic.videoId,
-              firstLessonOfNextTopic.sequentialLesson
+              firstLessonOfNextTopic._id ?? "",
+              firstLessonOfNextTopic.videoId ?? "",
+              firstLessonOfNextTopic.sequentialLesson ?? ""
             )
               .then(() => {
                 router.push(
@@ -163,11 +163,11 @@ export const LearningPathVideo = () => {
             selectedCourse._id,
             selectedTopic._id,
             selectedTopic.sequentialTopic,
-            nextLesson._id,
-            nextLesson.videoId,
-            nextLesson.sequentialLesson
+            nextLesson._id ?? "",
+            nextLesson.videoId ?? "",
+            nextLesson.sequentialLesson ?? ""
           ).then(() => {
-            onNextVideoClick(nextLesson.sequentialLesson);
+            onNextVideoClick(nextLesson.sequentialLesson ?? "");
           });
         }
       }
