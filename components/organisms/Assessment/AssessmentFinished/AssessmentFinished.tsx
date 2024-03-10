@@ -1,4 +1,3 @@
-"use client";
 import { FC } from "react";
 import { Button } from "../../../atoms";
 import { AssessmentFinishedProps } from "../../../../types/types/assessment.type";
@@ -12,43 +11,36 @@ export const AssessmentFinished: FC<AssessmentFinishedProps> = ({
   onRestartAssessment,
 }) => {
   let imageFinished = "https://i.imgur.com/V8pdd6P.png";
-  const router = useRouter(); // Inicializa el hook useHistory
+  const router = useRouter();
   const selectedTopic = useAppSelector((state) => state.topics.selectedTopic);
-  const selectedLesson = useAppSelector(
-    (state) => state.lessons.selectedLesson
-  );
   const selectedCourse = useAppSelector(
     (state) => state.courses.selectedCourse
   );
-
-
+  const selectedLesson = useAppSelector(
+    (state) => state.lessons.selectedLesson
+  );
 
   const getNextLesson = () => {
-    if (!selectedTopic || !selectedTopic.lessons) return null; 
+    if (!selectedTopic || !selectedTopic.lessons) return null;
 
     const currentLessonIndex = selectedTopic.lessons.findIndex(
-      (lesson) => lesson._id === selectedLesson?._id
-    ); 
-
-   
+      (lesson: any) => lesson._id === selectedLesson?._id
+    );
     if (currentLessonIndex === -1) return null;
 
-    const nextLessonIndex = currentLessonIndex + 1; 
+    const nextLessonIndex = currentLessonIndex + 1;
 
     if (nextLessonIndex < selectedTopic.lessons.length) {
-      return selectedTopic.lessons[nextLessonIndex]; 
+      return selectedTopic.lessons[nextLessonIndex];
     } else {
-      return null; 
+      return null;
     }
   };
 
   const handleContinue = () => {
     const nextLesson = getNextLesson();
-    
-
+    console.log(nextLesson);
     if (nextLesson) {
-    
-
       router.push(
         `/dashboard/courses/${selectedCourse?.courseName}/${selectedCourse?._id}/${nextLesson?.videoId}/${selectedTopic?.topicName}/${nextLesson.sequentialLesson}`
       );
