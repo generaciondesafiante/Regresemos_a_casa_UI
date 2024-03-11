@@ -1,14 +1,16 @@
 .assessment-container {
-  width: 100vw;
-  min-height: 100vh;
-  height: auto;
-  position: absolute;
+  width: 100%;
+  position: relative;
   background-image: url(https://i.imgur.com/pZsTHZ9.png);
   background-size: 100% 100%;
+  /* overflow-y: auto; */
+}
+
+.content-conditionalView {
+  padding: 2rem;
 }
 
 .assessment-topicTitle {
-  margin-top: 1.8rem;
   text-align: center;
   font-size: var(--fontSize-titles_mobile);
   color: var(--darkBlue);
@@ -25,7 +27,8 @@
 
 @media (width >=48rem) {
   .assessment-container {
-    padding-left: 5rem;
+    width: calc(100% - 5rem);
+    margin-left: 5rem;
     background-image: url(https://i.imgur.com/LbpagcS.png);
     background-size: 100% 100%;
   }
@@ -40,6 +43,14 @@
 }
 
 @media (width >=64rem) {
+  .assessment-container {
+    width: calc(100% - 2rem);
+    margin-left: 0;
+    paddidng: 0;
+    background-image: url(https://i.imgur.com/LbpagcS.png);
+    background-size: 100% 100%;
+    overflow-y: auto;
+  }
   .assessment-topicTitle {
     font-size: var(--fontSize-titles_laptop);
   }

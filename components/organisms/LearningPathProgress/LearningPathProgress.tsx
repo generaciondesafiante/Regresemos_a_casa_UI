@@ -1,73 +1,95 @@
 "use client";
-import { FC, useEffect, useState } from "react";
-import { Topic } from "../../../types/types/topic.type";
+import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import styles from "./LearningPathProgress.module.css";
+import { useAppDispatch, useAppSelector } from "../../../store/store";
+import { selectLesson } from "../../../store/slices/lessonSlice";
+import { LessonItem } from "./LessonItem";
 
-interface LearningPathVideoClassProps {
-  course: Topic | null;
-  onItemClick: (index: number) => void;
- 
-}
+export const LearningPathProgress = () => {
+  const { lessonId } = useParams();
+  const dispatch = useAppDispatch();
+  const [lessonStatus, setLessonStatus] = useState<boolean[]>([]);
 
-export const LearningPathProgress: FC<LearningPathVideoClassProps> = ({
-  course,
-  onItemClick,
-  
-}) => {
-  const { lessonId, indexVideo } = useParams();
+  const selectedTopic = useAppSelector((state) => state.topics.selectedTopic);
 
-  
-  const [selectedItem, setSelectedItem] = useState<number | null>(null);
+  const courseProgress = useAppSelector(
+    (state) => state.user.userInfo?.CourseProgress
+  );
+  const infoSelectedLesson = useAppSelector(
+    (state) => state.lessons.selectedLesson
+  );
+
+  const selectedCourse = useAppSelector(
+    (state) => state.courses.selectedCourse
+  );
 
   useEffect(() => {
-    const videoId = Array.isArray(lessonId) ? lessonId[0] : lessonId;
-    const videoIndex = parseInt(videoId, 10);
-    if (!isNaN(videoIndex)) {
-      setSelectedItem(videoIndex - 1);
+    if (selectedTopic && selectedTopic.lessons) {
+      const lessonIdArray = Array.isArray(lessonId) ? lessonId : [lessonId];
+
+      const selectedLesson = selectedTopic.lessons.find((lesson: any) => {
+        if (lessonIdArray.includes(lesson.videoId)) {
+          return true;
+        } else if (lesson.typeLesson === "assessment") {
+          dispatch(selectLesson({ type: "assessment", lessonData: lesson }));
+          return false;
+        }
+        return false;
+      });
+
+      if (selectedLesson && selectedLesson.typeLesson !== "assessment") {
+        const lessonType = selectedLesson.typeLesson;
+
+        dispatch(
+          selectLesson({ type: lessonType, lessonData: selectedLesson })
+        );
+      }
     }
-  }, [lessonId]);
+  }, [selectedTopic, lessonId, dispatch]);
 
-  const indexVideoString = Array.isArray(indexVideo)
-    ? indexVideo.join(",")
-    : indexVideo;
-
-  const indexVideoNumber = parseInt(indexVideoString, 10);
-
-  if (!course || !course.lessons) {
+  if (!selectedTopic || !selectedTopic.lessons) {
     return <div></div>;
   }
 
+  useEffect(() => {
+    if (selectedTopic && courseProgress) {
+      const courseProgressForCurrentTopic = courseProgress.find(
+        (progress) => progress.idCourse === selectedCourse?._id
+      );
+
+      const sequentialTopicInCourseProgress = parseInt(
+        courseProgressForCurrentTopic?.topics[0].sequentialTopic
+      );
+      const sequentialTopicCurrent = parseInt(selectedTopic?.sequentialTopic);
+
+      if (sequentialTopicCurrent < sequentialTopicInCourseProgress) {
+        const newLessonStatus = selectedTopic.lessons.map(() => true);
+        setLessonStatus(newLessonStatus);
+      } else if (sequentialTopicCurrent === sequentialTopicInCourseProgress) {
+        const sequentialLessonUser = parseInt(
+          courseProgressForCurrentTopic.topics[0].lessons[0].sequentialLesson.trim()
+        );
+
+        const newLessonStatus = selectedTopic.lessons.map((lesson) => {
+          const lessonNumber = parseInt(lesson.sequentialLesson || "0");
+          return lessonNumber <= sequentialLessonUser;
+        });
+
+        setLessonStatus(newLessonStatus);
+      }
+    }
+  }, [selectedTopic, courseProgress, selectedCourse, infoSelectedLesson]);
+
   return (
     <>
-      {course?.lessons.map((lesson, index) => (
-        <div
-          key={index}
-          className={`${styles["classRoomRoute-subcontent"]}`}
-          onClick={() => onItemClick && onItemClick(index + 1)}
-        >
-          <div
-            className={`${styles["classRoomRoute-title"]} ${
-              indexVideoNumber - 1 === index ? styles["selected"] : ""
-            }`}
-          >
-            {index + 1}
-          </div>
-
-          <div
-            className={`${styles["classRoomRoute-iconCircle"]} ${
-              indexVideoNumber - 1 === index ? styles["selected"] : ""
-            }`}
-          >
-            {index + 1}
-          </div>
-
-          <div
-            className={`${styles["classRoomRoute-line"]} ${
-              index === course.lessons.length - 1 ? styles["hide"] : ""
-            }`}
-          ></div>
-        </div>
+      {selectedTopic?.lessons.map((lesson) => (
+        <LessonItem
+          key={lesson.sequentialLesson}
+          lesson={lesson}
+          infoSelectedLesson={infoSelectedLesson}
+          lessonStatus={lessonStatus}
+          selectedCourse={selectedCourse}
+        />
       ))}
     </>
   );

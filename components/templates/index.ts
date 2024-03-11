@@ -14,4 +14,4 @@ export * from './Profile-template/ProfileTemplate';
 export * from './Register-template/RegisterTemplate';
 export * from './ResetPassword-template/ResetPassword';
 export * from './Sidebar-template/SidebarTemplate';
-export * from './Viewpdf-template/ViewpdfTemplate';
+export * from './PDFView-template/PDFViewTemplate';

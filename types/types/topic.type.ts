@@ -1,13 +1,8 @@
+import { AssessmentLesson, VideoLesson } from "./lessons.type";
+
 export interface Topic {
   topicName: string;
+  sequentialTopic:string;
   _id: string;
-  lessons: Array<{
-    videoId: string;
-    videoName: string;
-    description: string;
-    videoUrl: string;
-    length: string;
-    videoUrlHls: string;
-    rating: number;
-  }>;
+ lessons: (VideoLesson | AssessmentLesson)[]; 
 }

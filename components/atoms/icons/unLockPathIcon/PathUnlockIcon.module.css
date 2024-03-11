@@ -1,0 +1,10 @@
+.icon-unlock {
+  width: 1.5rem;
+  color: var(--yellow);
+}
+
+@media (width >=64rem) {
+  .icon-unlock {
+    width: 1.8rem;
+  }
+}

@@ -8,7 +8,7 @@ export const Menu: React.FC = () => {
       <Link href={"/"}>
         <img
           className={styles["header-logo"]}
-          src="https://i.ibb.co/0sXKWB8/Logo11.png"
+          src="https://i.imgur.com/B0R1LHJ.png"
           alt="Logo generación desafiante"
         />
       </Link>

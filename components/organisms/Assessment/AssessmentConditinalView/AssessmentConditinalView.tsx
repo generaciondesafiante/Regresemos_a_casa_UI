@@ -1,8 +1,8 @@
 "use client";
 import { FC, useState } from "react";
 import { AssestmentConditionalView } from "../../../../types/types/assessment.type";
-import styles from "./AssestmentConditionalView.module.css";
 import { AssessmentFinished, AssessmentMain, AssessmentQuestions } from "../..";
+import styles from "./AssestmentConditionalView.module.css";
 
 export const AssessmentConditinalView: FC<AssestmentConditionalView> = () => {
   const [assessmentStarted, setAssessmentStarted] = useState(false);
@@ -14,17 +14,19 @@ export const AssessmentConditinalView: FC<AssestmentConditionalView> = () => {
 
   return (
     <section className={styles["assessment-container"]}>
-      <h3 className={styles["assessment-topicTitle"]}>Tema #1</h3>
-      <p className={styles["assessment-topicDescription"]}>
-        El nombre es el propósito/ Hasta Jacob.
-      </p>
-      {!assessmentCompleted &&
-        (!assessmentStarted ? (
-          <AssessmentMain onStartAssessment={handleStartAssessment} />
-        ) : (
-          <AssessmentQuestions />
-        ))}
-      {assessmentCompleted && <AssessmentFinished />}
+      <div className={styles["content-conditionalView"]}>
+        <h3 className={styles["assessment-topicTitle"]}>Tema #1</h3>
+        <p className={styles["assessment-topicDescription"]}>
+          El nombre es el propósito/ Hasta Jacob.
+        </p>
+        {!assessmentCompleted &&
+          (!assessmentStarted ? (
+            <AssessmentMain onStartAssessment={handleStartAssessment} />
+          ) : (
+            <AssessmentQuestions />
+          ))}
+        {assessmentCompleted && <AssessmentFinished />}
+      </div>
     </section>
   );
 };

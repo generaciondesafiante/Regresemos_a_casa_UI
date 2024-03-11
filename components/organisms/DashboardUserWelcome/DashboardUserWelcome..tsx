@@ -4,6 +4,9 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import ReactPlayer from "react-player";
+import { fetchUserData } from "../../../services/user/userData";
+import { useAppDispatch } from "../../../store/store";
+import { userInfo } from "../../../store/slices/userSlice";
 import styles from "./DashboardUserWelcome.module.css";
 
 interface UserData {
@@ -14,6 +17,7 @@ interface UserData {
   indexTopic: string;
   urlVideo: string;
   _id: string;
+  lastViewedVideos: any;
 }
 
 export const DashboardUserWelcome = () => {
@@ -24,53 +28,35 @@ export const DashboardUserWelcome = () => {
   const urlVideoDefault =
     "https://www.youtube.com/embed/CovSIgAtFIs?si=kofztRWT519UyJug";
   const routeVideoDefault =
-    "/dashboard/courses/curso_basico_biblico/65b2a19a0b68c1de28c171c2/04306687-b6b4-49eb-95fd-f153de3c2fb2/introducción/1";
+    "/dashboard/courses/curso_basico_biblico/65cfb9adbd9fbd492f793fa1/04306687-b6b4-49eb-95fd-f153de3c2fb2/introducción/1";
   const [data, setData] = useState<UserData | null>(null);
+
   const [isVideoReady, setisVideoReady] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const FILLER_CONTENT_IMG =
     "https://static.wixstatic.com/media/d166cc_4cc837baf9254000a0f3963193c6b07a~mv2.jpg/v1/fill/w_368,h_195,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/Romanos%2011111.jpg";
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const userInformacion = async () => {
-      try {
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/userinformations`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ id: idUser }),
-          }
-        );
+    if (idUser) {
+      const userData = async () => {
+        const dataUser = await fetchUserData(idUser);
+        setData(dataUser);
+        dispatch(userInfo(dataUser));
 
-        if (response.ok) {
-          const dataUser = await response.json();
-
-          if (
-            dataUser.lastViewedInfo &&
-            Object.keys(dataUser.lastViewedInfo).length > 0
-          ) {
-            setData(dataUser.lastViewedInfo);
-            setisVideoReady(true);
-          } else {
-            setisVideoReady(false);
-          }
+        if (
+          dataUser?.lastViewedVideos?.length > 0 &&
+          dataUser?.lastViewedVideos[0]?.urlVideos
+        ) {
+          setIsLoading(false);
+          setisVideoReady(true);
         } else {
-          console.error(
-            "Error al obtener la información del usuario:",
-            response.statusText
-          );
+          setIsLoading(false);
           setisVideoReady(false);
         }
-      } catch (error) {
-        console.error("Error al realizar la solicitud fetch:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    userInformacion();
+      };
+      userData();
+    }
   }, [idUser]);
 
   return (
@@ -107,10 +93,10 @@ export const DashboardUserWelcome = () => {
             <ReactPlayer
               onClick={() =>
                 router.push(
-                  `/dashboard/courses/${data?.courseName}/${data?.idCourse}/${data?.idVideo}/${data?.tema}/${data?.indexTopic}`
+                  `/dashboard/courses/${data?.lastViewedVideos[0]?.courseName}/${data?.lastViewedVideos[0]?.idCourse}/${data?.lastViewedVideos[0]?.idVideo}/${data?.lastViewedVideos[0]?.tema}/${data?.lastViewedVideos[0]?.indexTopic}`
                 )
               }
-              url={data?.urlVideo}
+              url={data?.lastViewedVideos[0]?.urlVideo}
               controls={true}
               playsinline={true}
               pip={true}

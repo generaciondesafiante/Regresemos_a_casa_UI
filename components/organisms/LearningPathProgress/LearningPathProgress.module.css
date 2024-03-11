@@ -59,6 +59,19 @@
     color: var(--darkGreen);
   }
 
+  .unlocked {
+    width: 1.5rem;
+    height: 1.5rem;
+    display: block;
+    text-align: center;
+    padding-top: 0.18rem;
+    border-radius: 50%;
+    font-size: var(--fontSize-buttons_mobile);
+    color: var(--darkGrayGradient);
+    background-color: var(--grayGradient);
+    cursor: not-allowed;
+  }
+
   .classRoomRoute-line {
     width: 0.12rem;
     height: 1rem;

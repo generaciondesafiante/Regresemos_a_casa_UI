@@ -3,31 +3,21 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Card } from "../../atoms/Card/Card";
 import { Course } from "../../../types/types/course.types";
+import { useAppDispatch } from "../../../store/store";
+import { selectCourse } from "../../../store/slices/courseSlice";
+import { fetchCoursesData } from "../../../services/courses/coursesData";
 import styles from "./Courses.module.css";
 
 export const Courses = () => {
   const [courses, setCourses] = useState<Course[]>([]);
-
+  const dispatch = useAppDispatch();
   const router = useRouter();
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_BACKEND_URL_COURSE_RESOURCES}/course/coursedata`
-        );
-        const json = await response.json();
-
-        if (json.ok && Array.isArray(json.courses)) {
-          setCourses(json.courses);
-        } else {
-          console.error("Invalid courses data:", json.courses);
-        }
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
+      const coursesData = await fetchCoursesData();
+      setCourses(coursesData);
     };
-
     fetchData();
   }, []);
 
@@ -39,7 +29,7 @@ export const Courses = () => {
       .toLowerCase();
 
     const url = `/dashboard/courses/${courseName}/${course._id}`;
-
+    dispatch(selectCourse(course));
     router.push(url);
   };
 

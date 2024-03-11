@@ -1,45 +1,66 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import IconBxLock from "../../atoms/icons/lockPathIcon/PathLockIcon";
+import IconBxLockOpen from "../../atoms/icons/unLockPathIcon/PathUnlockIcon";
 import { FlagStartIcon } from "../../atoms/icons/flagsIcon/FlagStartIcon";
 import { FlagEndIcon } from "../../atoms/icons/flagsIcon/FlagEndIcon";
 import { DavidStarIcon } from "../../atoms/icons/davidStar/DavidStarIcon";
-import { Course } from "../../../types/types/course.types";
+import { User } from "../../../types/types/user.type";
+import { useAppDispatch, useAppSelector } from "../../../store/store";
+import { selectTopic } from "../../../store/slices/topicsSlice";
+import { userInfo } from "../../../store/slices/userSlice";
+import { fetchUserData } from "../../../services/user/userData";
 import styles from "./Path.module.css";
+import { ArrowLeftIcon } from "../../atoms";
+import Link from "next/link";
 
 export const Path = () => {
-  const [courses, setCourses] = useState<Course[]>([]);
-  const { courseName, courseId } = useParams();
+  const { data: session } = useSession();
+  const idUser = session?.user.uid;
 
   const router = useRouter();
+  const dispatch = useAppDispatch();
+  const selectedCourse = useAppSelector(
+    (state) => state.courses.selectedCourse
+  );
+  const [userInformation, setUserInformation] = useState<User | undefined>(
+    undefined
+  );
+  const topicsCourses = selectedCourse?.topics;
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_BACKEND_URL_COURSE_RESOURCES}/course/coursedata`
+    if (idUser) {
+      const userData = async () => {
+        const dataUser = await fetchUserData(idUser);
+        setUserInformation(dataUser);
+        dispatch(userInfo(dataUser));
+      };
+      userData();
+    }
+  }, [idUser]);
+
+  const isTopicUnlocked = (topic: any) => {
+    if (selectedCourse && userInformation?.CourseProgress) {
+      const courseProgress = userInformation.CourseProgress.find(
+        (progress) => progress.idCourse === selectedCourse._id
+      );
+      if (courseProgress) {
+        const sequentialTopic = parseInt(
+          courseProgress.topics[0].sequentialTopic
         );
-        const json = await response.json();
-
-        if (json.ok && Array.isArray(json.courses)) {
-          const filteredCourses = json.courses.filter(
-            (course: Course) => course._id === courseId
-          );
-          setCourses(filteredCourses);
-        } else {
-          console.error("Invalid courses data:", json.courses);
-        }
-      } catch (error) {
-        console.error("Error fetching data:", error);
+        const currentTopicSequential = parseInt(topic.sequentialTopic);
+        return sequentialTopic >= currentTopicSequential;
+      } else {
+        const currentTopicSequential = parseInt(topic.sequentialTopic);
+        return currentTopicSequential === 1;
       }
-    };
-
-    fetchData();
-  }, [courseId]);
+    }
+    return !selectedCourse?.mandatory;
+  };
 
   const handleUrlId = (topic: any) => {
-    localStorage.setItem("idTopic", JSON.stringify(topic._id));
     const topicName = topic.topicName
       .replace(/\s+/g, "_")
       .replace(/́/g, "")
@@ -47,57 +68,75 @@ export const Path = () => {
       .toLowerCase();
 
     const lessonId = topic.lessons[0].videoId;
-    const defaultContentIndex = 0;
-
-    const url = `/dashboard/courses/${courseName}/${courseId}/${lessonId}/${topicName}/${
-      defaultContentIndex + 1
-    }`;
-
+    const url = `/dashboard/courses/${topicName}/${topic._id}/${lessonId}/${topicName}/${topic.sequentialTopic}`;
+    dispatch(selectTopic(topic));
     router.push(url);
   };
 
   return (
     <div className={styles["path-container"]}>
-      <h2 className={styles["path-title"]}>
-        ¡Vamos de<span> regreso </span>a casa! <DavidStarIcon />
-      </h2>
-      <div>
-        {courses.map((course, courseIndex) => (
-          <div key={courseIndex} className={styles["path-content"]}>
-            {course.topics.map((topic, topicIndex) => (
-              <div key={topicIndex} className={styles["path-topicContainer"]}>
-                <div className={styles["path-border"]}>
-                  {topicIndex === 0 ? (
-                    <FlagStartIcon
-                      className={`${styles["path-flagIcon"]} ${styles["path-flagIcon_start"]}`}
-                    />
-                  ) : (
-                    ""
-                  )}
-                  {course.topics.length - 1 === topicIndex ? (
-                    <FlagEndIcon
-                      className={`${styles["path-flagIcon"]} ${styles["path-flagIcon_end"]}`}
-                    />
-                  ) : null}
+      <div className={styles["containerBackReturnCourses"]}>
+        <Link
+          className={styles["backReturnCourses"]}
+          href={`/dashboard/courses`}
+        >
+          <ArrowLeftIcon />
+          <p>Regresar</p>
+        </Link>
+      </div>
+      <div className={styles["content-title"]}>
+        <h2 className={styles["path-title"]}>
+          ¡Vamos de<span> regreso </span>a casa! <DavidStarIcon />
+        </h2>
+      </div>
+      <div className={styles["path-content"]}>
+        {topicsCourses?.map((topic, topicIndex) => {
+          const isUnlocked = isTopicUnlocked(topic);
 
-                  <button
-                    onClick={() => handleUrlId(topic)}
-                    className={styles["path-button"]}
-                  >
-                    {courses[0].mandatory ? (
-                      <IconBxLock />
+          const isFirstTopicUnlocked = selectedCourse?.mandatory
+            ? topicIndex === 0 || isUnlocked
+            : true;
+
+          return (
+            <div
+              key={topic.sequentialTopic}
+              className={styles["path-topicContainer"]}
+            >
+              <div className={styles["path-border"]}>
+                {topicIndex === 0 && (
+                  <FlagStartIcon
+                    className={`${styles["path-flagIcon"]} ${styles["path-flagIcon_start"]}`}
+                  />
+                )}
+
+                {topicIndex === topicsCourses.length - 1 && (
+                  <FlagEndIcon
+                    className={`${styles["path-flagIcon"]} ${styles["path-flagIcon_end"]}`}
+                  />
+                )}
+
+                <button
+                  onClick={() => handleUrlId(topic)}
+                  className={styles["path-button"]}
+                  disabled={!isFirstTopicUnlocked}
+                >
+                  {selectedCourse?.mandatory ? (
+                    isUnlocked ? (
+                      <IconBxLockOpen />
                     ) : (
-                      <DavidStarIcon
-                        className={styles["iconStartDavid-mandatory"]}
-                      />
-                    )}
-                  </button>
-                </div>
-                <p className={styles["path-CourseTitle"]}>{topic.topicName}</p>
+                      <IconBxLock />
+                    )
+                  ) : (
+                    <DavidStarIcon
+                      className={styles["iconStartDavid-mandatory"]}
+                    />
+                  )}
+                </button>
               </div>
-            ))}
-          </div>
-        ))}
+              <p className={styles["path-CourseTitle"]}>{topic.topicName}</p>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
