@@ -11,6 +11,7 @@ export const LearningPathProgress = () => {
   const [lessonStatus, setLessonStatus] = useState<boolean[]>([]);
 
   const selectedTopic = useAppSelector((state) => state.topics.selectedTopic);
+
   const courseProgress = useAppSelector(
     (state) => state.user.userInfo?.CourseProgress
   );
@@ -24,13 +25,24 @@ export const LearningPathProgress = () => {
 
   useEffect(() => {
     if (selectedTopic && selectedTopic.lessons) {
-      const videoId = Array.isArray(lessonId) ? lessonId[0] : lessonId;
-      const selectedLesson = selectedTopic.lessons.find(
-        (lesson: any) => lesson.videoId === videoId
-      );
+      const lessonIdArray = Array.isArray(lessonId) ? lessonId : [lessonId];
 
-      if (selectedLesson) {
-        dispatch(selectLesson(selectedLesson));
+      const selectedLesson = selectedTopic.lessons.find((lesson: any) => {
+        if (lessonIdArray.includes(lesson.videoId)) {
+          return true;
+        } else if (lesson.typeLesson === "assessment") {
+          dispatch(selectLesson({ type: "assessment", lessonData: lesson }));
+          return false;
+        }
+        return false;
+      });
+
+      if (selectedLesson && selectedLesson.typeLesson !== "assessment") {
+        const lessonType = selectedLesson.typeLesson;
+
+        dispatch(
+          selectLesson({ type: lessonType, lessonData: selectedLesson })
+        );
       }
     }
   }, [selectedTopic, lessonId, dispatch]);
@@ -59,7 +71,7 @@ export const LearningPathProgress = () => {
         );
 
         const newLessonStatus = selectedTopic.lessons.map((lesson) => {
-          const lessonNumber = parseInt(lesson.sequentialLesson);
+          const lessonNumber = parseInt(lesson.sequentialLesson || "0");
           return lessonNumber <= sequentialLessonUser;
         });
 

@@ -62,6 +62,7 @@ export const LearningPathVideo = () => {
           const sequentialTopicInCourseProgress = parseInt(
             courseProgressForCurrentTopic.topics[0].sequentialTopic
           );
+
           const sequentialTopicCurrent = parseInt(
             selectedTopic.sequentialTopic
           );
@@ -143,9 +144,9 @@ export const LearningPathVideo = () => {
               selectedCourse._id,
               nextTopic._id,
               nextTopic.sequentialTopic,
-              firstLessonOfNextTopic._id,
-              firstLessonOfNextTopic.videoId,
-              firstLessonOfNextTopic.sequentialLesson
+              firstLessonOfNextTopic._id ?? "",
+              firstLessonOfNextTopic.videoId ?? "",
+              firstLessonOfNextTopic.sequentialLesson ?? ""
             )
               .then(() => {
                 router.push(
@@ -162,11 +163,11 @@ export const LearningPathVideo = () => {
             selectedCourse._id,
             selectedTopic._id,
             selectedTopic.sequentialTopic,
-            nextLesson._id,
-            nextLesson.videoId,
-            nextLesson.sequentialLesson
+            nextLesson._id ?? "",
+            nextLesson.videoId ?? "",
+            nextLesson.sequentialLesson ?? ""
           ).then(() => {
-            onNextVideoClick(nextLesson.sequentialLesson);
+            onNextVideoClick(nextLesson.sequentialLesson ?? "");
           });
         }
       }

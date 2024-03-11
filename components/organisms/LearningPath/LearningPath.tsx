@@ -8,6 +8,7 @@ import { fetchUserData } from "../../../services/user/userData";
 import { User } from "../../../types/types/user.type";
 import { useAppDispatch } from "../../../store/store";
 import { userInfo } from "../../../store/slices/userSlice";
+import { TypeLesson } from "./TypeLesson";
 import styles from "./LearningPath.module.css";
 
 export const LearningPath: FC = () => {
@@ -36,8 +37,7 @@ export const LearningPath: FC = () => {
 
   return (
     <div className={styles["learningPath-container"]}>
-      <LearningPathVideo />
-      <LearningPathTitleClass />
+      <TypeLesson />
       <nav className={styles["classRoomRoute-container"]}>
         <LearningPathProgress />
       </nav>
