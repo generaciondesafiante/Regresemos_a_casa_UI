@@ -1,6 +1,6 @@
 import Link from "next/link";
 import styles from "./(styles)/404.module.css";
-import { Button } from "../../components/atoms/Button/Button";
+import { ArrowLeftIcon } from "../../components/atoms";
 
 const NotFoundPage = () => {
   return (
@@ -14,11 +14,10 @@ const NotFoundPage = () => {
         <p className={styles["not-found_paragraph"]}>
           La página que estás buscando no existe, <span>vuelve a casa</span>
         </p>
-        <Button className={styles["not-found_button_LinkHome"]}>
-          <Link href="/" className={styles["not-found_linkHome"]}>
-            Ir a inicio
-          </Link>
-        </Button>
+        <Link href="/" className={styles["not-found_linkHome"]}>
+        <ArrowLeftIcon />
+        <p>Regresar</p>
+        </Link>
       </div>
     </>
   );
