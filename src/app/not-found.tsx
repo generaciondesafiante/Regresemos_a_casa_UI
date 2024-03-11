@@ -1,8 +1,12 @@
+"use client"
 import Link from "next/link";
 import styles from "./(styles)/404.module.css";
 import { ArrowLeftIcon } from "../../components/atoms";
+import { useSession } from "next-auth/react";
 
 const NotFoundPage = () => {
+  const { data: session } = useSession()
+
   return (
     <>
       <div className={styles["container"]}>
@@ -14,9 +18,9 @@ const NotFoundPage = () => {
         <p className={styles["not-found_paragraph"]}>
           La página que estás buscando no existe, <span>vuelve a casa</span>
         </p>
-        <Link href="/" className={styles["not-found_linkHome"]}>
-        <ArrowLeftIcon />
-        <p>Regresar</p>
+        <Link href={session ? "/dashboard" : "/"} className={styles["not-found_linkHome"]}>
+          <ArrowLeftIcon />
+          <p>Regresar</p>
         </Link>
       </div>
     </>
