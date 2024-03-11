@@ -44,11 +44,7 @@ export const AssessmentQuestions = () => {
     ) {
       return null;
     }
-    // const currentQuestionData = selectedLesson.questions[currentQuestion];
 
-    // if (!currentQuestionData || !currentQuestionData.options:) {
-    //   return null;
-    // }
     return selectedLesson?.questions[currentQuestion].options.map(
       (option: any, index: any) => {
         const isSelected = selectedAnswerIndices.includes(index);
@@ -89,7 +85,7 @@ export const AssessmentQuestions = () => {
       return null;
     }
     const currentQuestionData = selectedLesson?.questions[currentQuestion];
-  
+
     if (currentQuestionData.questionType === "multiple") {
       const updatedSelectedAnswers = [...selectedAnswerIndices];
       const answerIndex = updatedSelectedAnswers.indexOf(index);
