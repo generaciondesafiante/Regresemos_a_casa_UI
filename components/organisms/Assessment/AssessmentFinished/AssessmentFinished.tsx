@@ -1,6 +1,5 @@
 import { FC } from "react";
 import { Button } from "../../../atoms";
-// import { AssessmentFinishedProps } from "../../../../types/types/assessment.type";
 import styles from "./AssessmentFinished.module.css";
 import { useRouter } from "next/navigation";
 import { useAppSelector } from "../../../../store/store";
@@ -15,7 +14,6 @@ export const AssessmentFinished: FC<AssessmentFinishedProps> = ({
   questions,
   onRestartAssessment,
 }) => {
-  console.log(questions);
   let imageFinished = "https://i.imgur.com/V8pdd6P.png";
   const router = useRouter();
   const selectedTopic = useAppSelector((state) => state.topics.selectedTopic);
