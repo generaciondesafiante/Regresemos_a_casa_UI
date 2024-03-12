@@ -35,35 +35,39 @@ export const AssessmentQuestions = () => {
   const [answerLocked, setAnswerLocked] = useState(false);
 
   const renderAnswerOptions = () => {
-    return questionsData[currentQuestion].options.map(
-      (option: any, index: any) => {
-        const isSelected = selectedAnswerIndices.includes(index);
-        const isCorrect = selectedCorrectAnswers.includes(index);
-        const isIncorrect = selectedIncorrectAnswers.includes(index);
-        const isRevealed = answerRevealed && isSelected;
-        const buttonColorClass = styles[`color${index + 1}`];
+    if (questionsData && questionsData[currentQuestion]) {
+      return questionsData[currentQuestion].options.map(
+        (option: any, index: any) => {
+          const isSelected = selectedAnswerIndices.includes(index);
+          const isCorrect = selectedCorrectAnswers.includes(index);
+          const isIncorrect = selectedIncorrectAnswers.includes(index);
+          const isRevealed = answerRevealed && isSelected;
+          const buttonColorClass = styles[`color${index + 1}`];
 
-        const buttonClass = [
-          styles["assessmentQuestions-answerOptions_button"],
-          buttonColorClass,
-          isSelected ? styles["selected"] : "",
-          isCorrect ? styles["correctAnswer"] : "",
-          isIncorrect ? styles["incorrect"] : "",
-          isRevealed ? "revealed" : "",
-        ].join(" ");
+          const buttonClass = [
+            styles["assessmentQuestions-answerOptions_button"],
+            buttonColorClass,
+            isSelected ? styles["selected"] : "",
+            isCorrect ? styles["correctAnswer"] : "",
+            isIncorrect ? styles["incorrect"] : "",
+            isRevealed ? "revealed" : "",
+          ].join(" ");
 
-        return (
-          <Button
-            type="button"
-            key={index}
-            className={buttonClass}
-            onClick={() => !answerLocked && handleAnswerClick(index)}
-          >
-            {option.textAnswer}
-          </Button>
-        );
-      }
-    );
+          return (
+            <Button
+              type="button"
+              key={index}
+              className={buttonClass}
+              onClick={() => !answerLocked && handleAnswerClick(index)}
+            >
+              {option.textAnswer}
+            </Button>
+          );
+        }
+      );
+    } else {
+      return null;
+    }
   };
 
   const handleAnswerClick = (index: number) => {
