@@ -2,16 +2,8 @@
 import { useState } from "react";
 import { Button } from "../../../atoms";
 import { AssessmentFinished } from "../AssessmentFinished/AssessmentFinished";
-import confetti from "canvas-confetti";
-import styles from "./AssessmentQuestions.module.css";
-
 import { useAppSelector } from "../../../../store/store";
-import { selectLesson } from "../../../../store/slices/lessonSlice";
-
-interface Option {
-  textAnswer: string;
-  isCorrect: boolean;
-}
+import styles from "./AssessmentQuestions.module.css";
 
 export const AssessmentQuestions = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -19,6 +11,13 @@ export const AssessmentQuestions = () => {
   const selectedLesson = useAppSelector(
     (state) => state.lessons.selectedLesson
   );
+  let questionsData: any;
+
+  if (selectedLesson && "questions" in selectedLesson) {
+    questionsData = selectedLesson.questions;
+  } else {
+    questionsData = null;
+  }
 
   const [assessmentCompleted, setAssessmentCompleted] = useState(false);
   const [resetAssessment, setResetAssessment] = useState(false);
@@ -34,18 +33,9 @@ export const AssessmentQuestions = () => {
   >([]);
   const [showCorrectIncorrect, setShowCorrectIncorrect] = useState(false);
   const [answerLocked, setAnswerLocked] = useState(false);
-  const [confettiActive, setConfettiActive] = useState(false);
 
   const renderAnswerOptions = () => {
-    if (
-      !selectedLesson ||
-      !("questions" in selectedLesson) ||
-      !selectedLesson.questions
-    ) {
-      return null;
-    }
-
-    return selectedLesson?.questions[currentQuestion].options.map(
+    return questionsData[currentQuestion].options.map(
       (option: any, index: any) => {
         const isSelected = selectedAnswerIndices.includes(index);
         const isCorrect = selectedCorrectAnswers.includes(index);
@@ -77,14 +67,7 @@ export const AssessmentQuestions = () => {
   };
 
   const handleAnswerClick = (index: number) => {
-    if (
-      !selectedLesson ||
-      !("questions" in selectedLesson) ||
-      !selectedLesson.questions
-    ) {
-      return null;
-    }
-    const currentQuestionData = selectedLesson?.questions[currentQuestion];
+    const currentQuestionData = questionsData[currentQuestion];
 
     if (currentQuestionData.questionType === "multiple") {
       const updatedSelectedAnswers = [...selectedAnswerIndices];
@@ -105,16 +88,8 @@ export const AssessmentQuestions = () => {
   const handleCheckAnswerClick = () => {
     if (selectedAnswerIndices.length > 0) {
       setShowCorrectIncorrect(true);
-      if (
-        !selectedLesson ||
-        !("questions" in selectedLesson) ||
-        !selectedLesson.questions
-      ) {
-        return null;
-      }
-      const correctAnswerIndices = selectedLesson?.questions[
-        currentQuestion
-      ].options
+
+      const correctAnswerIndices = questionsData[currentQuestion].options
         .map((option: any, index: any) => (option.isCorrect ? index : -1))
         .filter((index: any) => index !== -1);
 
@@ -124,22 +99,11 @@ export const AssessmentQuestions = () => {
 
       if (areAnswersCorrect) {
         setScore((prevScore) => prevScore + 1);
-        confetti({
-          particleCount: 500,
-          angle: 6,
-          spread: 360,
-          origin: {
-            x: 0.5,
-            y: 0.5,
-          },
-        });
       }
 
       setSelectedCorrectAnswers(correctAnswerIndices);
 
-      const incorrectAnswerIndices = selectedLesson?.questions[
-        currentQuestion
-      ].options
+      const incorrectAnswerIndices = questionsData[currentQuestion].options
         .map((option: any, index: any) => (!option.isCorrect ? index : -1))
         .filter((index: any) => index !== -1);
       setSelectedIncorrectAnswers(incorrectAnswerIndices);
@@ -158,17 +122,10 @@ export const AssessmentQuestions = () => {
     setSelectedIncorrectAnswers([]);
     setAnswerRevealed(false);
     setAnswerLocked(false);
-    setConfettiActive(false);
 
     const nextQuestion = currentQuestion + 1;
-    if (
-      !selectedLesson ||
-      !("questions" in selectedLesson) ||
-      !selectedLesson.questions
-    ) {
-      return null;
-    }
-    if (nextQuestion < selectedLesson?.questions.length) {
+
+    if (nextQuestion < questionsData.length) {
       setCurrentQuestion(nextQuestion);
     } else {
       setAssessmentCompleted(true);
@@ -186,21 +143,19 @@ export const AssessmentQuestions = () => {
     setSelectedCorrectAnswers([]);
     setShowCorrectIncorrect(false);
     setAnswerLocked(false);
-    setConfettiActive(false);
   };
 
   return (
     <>
       {!assessmentCompleted ? (
         <div className={styles["assessmentQuestions-container"]}>
-          {confettiActive}
           <div className={styles["assessmentQuestions-img"]}></div>
           <p className={styles["assessmentQuestions-numberQuestion"]}>
-            {currentQuestion + 1} de {selectedLesson?.questions.length}
+            {currentQuestion + 1} de {questionsData.length}
           </p>
           <div className={styles["assessmentQuestions-question_container"]}>
             <h3 className={styles["assessmentQuestions-question_title"]}>
-              {selectedLesson?.questions[currentQuestion].title}
+              {questionsData[currentQuestion].title}
             </h3>
             <section>
               <div
@@ -246,7 +201,7 @@ export const AssessmentQuestions = () => {
         <div>
           <AssessmentFinished
             score={score}
-            questions={selectedLesson?.questions}
+            questions={questionsData || {}}
             onRestartAssessment={handleRestartAssessmentClick}
           />
         </div>

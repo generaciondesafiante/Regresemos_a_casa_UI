@@ -27,7 +27,7 @@ export const LearningPathProgress = () => {
     if (selectedTopic && selectedTopic.lessons) {
       const lessonIdArray = Array.isArray(lessonId) ? lessonId : [lessonId];
 
-      const selectedLesson = selectedTopic.lessons.find((lesson: any) => {
+      const selectedLessonData = selectedTopic.lessons.find((lesson: any) => {
         if (lessonIdArray.includes(lesson.videoId)) {
           return true;
         } else if (lesson.typeLesson === "assessment") {
@@ -37,21 +37,18 @@ export const LearningPathProgress = () => {
         return false;
       });
 
-      if (selectedLesson && selectedLesson.typeLesson !== "assessment") {
-        const lessonType = selectedLesson.typeLesson;
+      if (
+        selectedLessonData &&
+        selectedLessonData.typeLesson !== "assessment"
+      ) {
+        const lessonType = selectedLessonData.typeLesson;
 
         dispatch(
-          selectLesson({ type: lessonType, lessonData: selectedLesson })
+          selectLesson({ type: lessonType, lessonData: selectedLessonData })
         );
       }
     }
-  }, [selectedTopic, lessonId, dispatch]);
 
-  if (!selectedTopic || !selectedTopic.lessons) {
-    return <div></div>;
-  }
-
-  useEffect(() => {
     if (selectedTopic && courseProgress) {
       const courseProgressForCurrentTopic = courseProgress.find(
         (progress) => progress.idCourse === selectedCourse?._id
@@ -78,7 +75,18 @@ export const LearningPathProgress = () => {
         setLessonStatus(newLessonStatus);
       }
     }
-  }, [selectedTopic, courseProgress, selectedCourse, infoSelectedLesson]);
+  }, [
+    selectedTopic,
+    lessonId,
+    dispatch,
+    courseProgress,
+    selectedCourse,
+    infoSelectedLesson,
+  ]);
+
+  if (!selectedTopic || !selectedTopic.lessons) {
+    return <div></div>;
+  }
 
   return (
     <>
