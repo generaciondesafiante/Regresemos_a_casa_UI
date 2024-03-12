@@ -9,8 +9,7 @@ export interface VideoLesson {
   _id?: string;
   sequentialLesson?: string
   typeLesson: string
-  sequentialLesson?: string
-  typeLesson: string
+
 }
 interface Option {
   textAnswer: string;
@@ -32,14 +31,6 @@ export interface AssessmentLesson {
   videoId?: string;
   description?: string;
   videoName?: string;
-  sequentialLesson: string;
-  typeLesson: string;
-  options: Option[];
-  quetions: Question,
-  _id?: string;
-  videoUrl?: string;
-  videoId?: string;
-  description?: string;
-  videoName?: string;
+  
 
 }
