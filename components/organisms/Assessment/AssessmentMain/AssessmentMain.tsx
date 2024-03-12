@@ -2,7 +2,6 @@
 import { FC } from "react";
 import styles from "./AssessmentMain.module.css";
 import { AssessmentMainProps } from "../../../../types/types/assessment.type";
-import { questionsData } from "../AssessmentQuestionsData";
 import { Button } from "../../../atoms";
 import { useAppSelector } from "../../../../store/store";
 
@@ -13,8 +12,14 @@ export const AssessmentMain: FC<AssessmentMainProps> = ({
   const selectedLesson = useAppSelector(
     (state) => state.lessons.selectedLesson
   );
- 
 
+  let questionsData: any;
+
+  if (selectedLesson && "questions" in selectedLesson) {
+    questionsData = selectedLesson.questions;
+  } else {
+    questionsData = null;
+  }
   return (
     <div className={styles["assessment-questions_container"]}>
       <img
@@ -24,7 +29,7 @@ export const AssessmentMain: FC<AssessmentMainProps> = ({
       />
       <div className={styles["assessment-questions_content"]}>
         <p className={styles["assessment-questions"]}>
-          {`Son ${selectedLesson?.questions.length} preguntas de esta sección`}
+          {`Son ${questionsData.length} preguntas de esta sección`}
         </p>
       </div>
       <div className={styles["assessment-startButton_container"]}>

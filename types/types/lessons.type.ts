@@ -9,12 +9,13 @@ export interface VideoLesson {
   _id?: string;
   sequentialLesson?: string
   typeLesson: string
+
 }
 interface Option {
   textAnswer: string;
   isCorrect: boolean;
 }
-interface Question {
+export interface Question {
   title: string;
   image: string;
   questionType: string;
@@ -30,5 +31,6 @@ export interface AssessmentLesson {
   videoId?: string;
   description?: string;
   videoName?: string;
+  
 
 }
