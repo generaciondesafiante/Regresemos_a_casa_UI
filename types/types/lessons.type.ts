@@ -14,7 +14,7 @@ interface Option {
   textAnswer: string;
   isCorrect: boolean;
 }
-interface Question {
+export interface Question {
   title: string;
   image: string;
   questionType: string;
