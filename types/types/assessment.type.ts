@@ -1,6 +1,6 @@
 export interface AssessmentFinishedProps {
-  score?: number;
-  questions?: {
+  score: number;
+  questions: {
     title: string;
     image: string;
     options: {

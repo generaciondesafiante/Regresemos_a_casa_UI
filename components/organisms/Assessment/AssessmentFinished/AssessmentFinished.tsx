@@ -1,10 +1,14 @@
 import { FC } from "react";
 import { Button } from "../../../atoms";
-import { AssessmentFinishedProps } from "../../../../types/types/assessment.type";
 import styles from "./AssessmentFinished.module.css";
 import { useRouter } from "next/navigation";
 import { useAppSelector } from "../../../../store/store";
-
+import { AssessmentLesson } from "../../../../types/types/lessons.type";
+interface AssessmentFinishedProps {
+  score: number;
+  questions: AssessmentLesson[] | undefined;
+  onRestartAssessment: () => void;
+}
 export const AssessmentFinished: FC<AssessmentFinishedProps> = ({
   score,
   questions,
@@ -39,7 +43,7 @@ export const AssessmentFinished: FC<AssessmentFinishedProps> = ({
 
   const handleContinue = () => {
     const nextLesson = getNextLesson();
-    console.log(nextLesson);
+
     if (nextLesson) {
       router.push(
         `/dashboard/courses/${selectedCourse?.courseName}/${selectedCourse?._id}/${nextLesson?.videoId}/${selectedTopic?.topicName}/${nextLesson.sequentialLesson}`
