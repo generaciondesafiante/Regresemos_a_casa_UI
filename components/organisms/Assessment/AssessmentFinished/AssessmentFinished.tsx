@@ -44,6 +44,7 @@ export const AssessmentFinished: FC<AssessmentFinishedProps> = ({
   const handleContinue = () => {
     const nextLesson = getNextLesson();
 
+
     if (nextLesson) {
       router.push(
         `/dashboard/courses/${selectedCourse?.courseName}/${selectedCourse?._id}/${nextLesson?.videoId}/${selectedTopic?.topicName}/${nextLesson.sequentialLesson}`
