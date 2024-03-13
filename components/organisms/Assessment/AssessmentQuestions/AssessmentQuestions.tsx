@@ -35,35 +35,39 @@ export const AssessmentQuestions = () => {
   const [answerLocked, setAnswerLocked] = useState(false);
 
   const renderAnswerOptions = () => {
-    return questionsData[currentQuestion].options.map(
-      (option: any, index: any) => {
-        const isSelected = selectedAnswerIndices.includes(index);
-        const isCorrect = selectedCorrectAnswers.includes(index);
-        const isIncorrect = selectedIncorrectAnswers.includes(index);
-        const isRevealed = answerRevealed && isSelected;
-        const buttonColorClass = styles[`color${index + 1}`];
+    if (questionsData && questionsData[currentQuestion]) {
+      return questionsData[currentQuestion].options.map(
+        (option: any, index: any) => {
+          const isSelected = selectedAnswerIndices.includes(index);
+          const isCorrect = selectedCorrectAnswers.includes(index);
+          const isIncorrect = selectedIncorrectAnswers.includes(index);
+          const isRevealed = answerRevealed && isSelected;
+          const buttonColorClass = styles[`color${index + 1}`];
 
-        const buttonClass = [
-          styles["assessmentQuestions-answerOptions_button"],
-          buttonColorClass,
-          isSelected ? styles["selected"] : "",
-          isCorrect ? styles["correctAnswer"] : "",
-          isIncorrect ? styles["incorrect"] : "",
-          isRevealed ? "revealed" : "",
-        ].join(" ");
+          const buttonClass = [
+            styles["assessmentQuestions-answerOptions_button"],
+            buttonColorClass,
+            isSelected ? styles["selected"] : "",
+            isCorrect ? styles["correctAnswer"] : "",
+            isIncorrect ? styles["incorrect"] : "",
+            isRevealed ? "revealed" : "",
+          ].join(" ");
 
-        return (
-          <Button
-            type="button"
-            key={index}
-            className={buttonClass}
-            onClick={() => !answerLocked && handleAnswerClick(index)}
-          >
-            {option.textAnswer}
-          </Button>
-        );
-      }
-    );
+          return (
+            <Button
+              type="button"
+              key={index}
+              className={buttonClass}
+              onClick={() => !answerLocked && handleAnswerClick(index)}
+            >
+              {option.textAnswer}
+            </Button>
+          );
+        }
+      );
+    } else {
+      return null;
+    }
   };
 
   const handleAnswerClick = (index: number) => {
@@ -125,7 +129,7 @@ export const AssessmentQuestions = () => {
 
     const nextQuestion = currentQuestion + 1;
 
-    if (nextQuestion < questionsData.length) {
+    if (questionsData && nextQuestion < questionsData.length) {
       setCurrentQuestion(nextQuestion);
     } else {
       setAssessmentCompleted(true);
@@ -151,7 +155,7 @@ export const AssessmentQuestions = () => {
         <div className={styles["assessmentQuestions-container"]}>
           <div className={styles["assessmentQuestions-img"]}></div>
           <p className={styles["assessmentQuestions-numberQuestion"]}>
-            {currentQuestion + 1} de {questionsData.length}
+            {currentQuestion + 1} de {questionsData && questionsData.length}
           </p>
           <div className={styles["assessmentQuestions-question_container"]}>
             <h3 className={styles["assessmentQuestions-question_title"]}>

@@ -5,9 +5,9 @@ import { useRouter } from "next/navigation";
 import { useAppSelector } from "../../../../store/store";
 import { AssessmentLesson } from "../../../../types/types/lessons.type";
 interface AssessmentFinishedProps {
-  score: number;
-  questions: AssessmentLesson[] | undefined;
-  onRestartAssessment: () => void;
+  score?: number;
+  questions?: AssessmentLesson[] | undefined;
+  onRestartAssessment?: () => void;
 }
 export const AssessmentFinished: FC<AssessmentFinishedProps> = ({
   score,
@@ -43,6 +43,7 @@ export const AssessmentFinished: FC<AssessmentFinishedProps> = ({
 
   const handleContinue = () => {
     const nextLesson = getNextLesson();
+
 
     if (nextLesson) {
       router.push(
