@@ -15,18 +15,12 @@ export const AssessmentMain: FC<AssessmentMainProps> = ({
 
   let questionsData: any;
 
-  let questionsData: any;
+  if (selectedLesson && "questions" in selectedLesson) {
+    questionsData = selectedLesson.questions;
+  } else {
+    questionsData = null;
+  }
 
-  if (selectedLesson && "questions" in selectedLesson) {
-    questionsData = selectedLesson.questions;
-  } else {
-    questionsData = null;
-  }
-  if (selectedLesson && "questions" in selectedLesson) {
-    questionsData = selectedLesson.questions;
-  } else {
-    questionsData = null;
-  }
   return (
     <div className={styles["assessment-questions_container"]}>
       <img
