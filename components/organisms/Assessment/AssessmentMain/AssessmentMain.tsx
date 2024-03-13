@@ -29,7 +29,9 @@ export const AssessmentMain: FC<AssessmentMainProps> = ({
       />
       <div className={styles["assessment-questions_content"]}>
         <p className={styles["assessment-questions"]}>
-          {`Son ${questionsData.length} preguntas de esta sección`}
+          {`Son ${
+            questionsData && questionsData.length
+          } preguntas de esta sección`}
         </p>
       </div>
       <div className={styles["assessment-startButton_container"]}>
