@@ -129,7 +129,7 @@ export const AssessmentQuestions = () => {
 
     const nextQuestion = currentQuestion + 1;
 
-    if (nextQuestion < questionsData.length) {
+    if (questionsData && nextQuestion < questionsData.length) {
       setCurrentQuestion(nextQuestion);
     } else {
       setAssessmentCompleted(true);
@@ -155,7 +155,7 @@ export const AssessmentQuestions = () => {
         <div className={styles["assessmentQuestions-container"]}>
           <div className={styles["assessmentQuestions-img"]}></div>
           <p className={styles["assessmentQuestions-numberQuestion"]}>
-            {currentQuestion + 1} de {questionsData.length}
+            {currentQuestion + 1} de {questionsData && questionsData.length}
           </p>
           <div className={styles["assessmentQuestions-question_container"]}>
             <h3 className={styles["assessmentQuestions-question_title"]}>
