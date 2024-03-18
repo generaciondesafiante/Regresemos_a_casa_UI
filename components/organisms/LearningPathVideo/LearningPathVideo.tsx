@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { redirect, useParams, useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { fetchLastViewedVideos } from "../../../services/user/lastViewedVideos";
 import { useAppSelector } from "../../../store/store";
 import { LearningPahtVideoComponent } from "./LearningPahtVideoComponent";
@@ -217,14 +217,16 @@ export const LearningPathVideo = () => {
             }
           }
         }
-      }
-    } else {
-      if (currentVideo >= threshold) {
-        if (typeof setViewVideo === "function") {
-          setViewVideo(true);
-          setEnableButton(true);
+      } else {
+        if (currentVideo >= threshold) {
+          if (typeof setViewVideo === "function") {
+            setViewVideo(true);
+            setEnableButton(true);
+          }
         }
       }
+    } else {
+      console.error("No se puede hacer la petición");
     }
   };
 
