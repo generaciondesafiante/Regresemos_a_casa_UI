@@ -31,40 +31,40 @@ export const RegisterFormPassword: FC<RegisterFormPasswordProps> = ({
   borderColor,
 }) => {
   const { data: session } = useSession();
-  const [isSpecialCharValid, setSpecialCharValid] = useState(false);
+
   const [isNumberValid, setNumberValid] = useState(false);
   const [isLengthValid, setLengthValid] = useState(false);
-  const [isLetterValid, setLetterValid] = useState(false);
+  const [isLetterUpperCaseValid, setLetterUpperCaseValid] = useState(false);
+  const [isLetterLowerCaseValid, setLetterLowerCaseValid] = useState(false);
   const [isFormValid, setFormValid] = useState(false);
 
   const handlePasswordChange = (value: string) => {
-    const specialCharRegex = /[!@#$%^&*(),.?":{}|<>]/;
     const numberRegex = /\d/;
-    const letterRegex = /[a-zA-Z]/;
+    const hasUpperCase = /[A-Z]/;
+    const hasLowerCase = /[a-z]/;
 
-    setSpecialCharValid(specialCharRegex.test(value));
     setNumberValid(numberRegex.test(value));
     setLengthValid(value.length >= 8);
-    setLetterValid(letterRegex.test(value));
-
+    setLetterUpperCaseValid(hasUpperCase.test(value));
+    setLetterLowerCaseValid(hasLowerCase.test(value));
     setPassword(value);
   };
 
   useEffect(() => {
     setFormValid(
-      isSpecialCharValid &&
         isNumberValid &&
         isLengthValid &&
-        isLetterValid &&
+        isLetterUpperCaseValid &&
+        isLetterLowerCaseValid &&
         password !== "" &&
         password2 !== "" &&
         password === password2
     );
   }, [
-    isSpecialCharValid,
     isNumberValid,
     isLengthValid,
-    isLetterValid,
+    isLetterUpperCaseValid,
+    isLetterLowerCaseValid,
     password,
     password2,
   ]);
@@ -103,23 +103,23 @@ export const RegisterFormPassword: FC<RegisterFormPasswordProps> = ({
         />
         <div className={styles["registerFormPassword-characterContainer"]}>
           <PasswordValidation
-            isValid={isSpecialCharValid}
-            message="Mínimo un caracter especial (- . * : _)"
-            colorTextCharacter={colorTextCharacter}
-          />
-          <PasswordValidation
-            isValid={isNumberValid}
-            message="Mínimo un número"
-            colorTextCharacter={colorTextCharacter}
-          />
-          <PasswordValidation
             isValid={isLengthValid}
             message="Mínimo 8 caracteres"
             colorTextCharacter={colorTextCharacter}
           />
           <PasswordValidation
-            isValid={isLetterValid}
-            message="Mínimo una letra"
+            isValid={isLetterUpperCaseValid}
+            message="Mínimo una letra mayúscula"
+            colorTextCharacter={colorTextCharacter}
+          />
+          <PasswordValidation
+            isValid={isLetterLowerCaseValid}
+            message="Mínimo una letra minúscula"
+            colorTextCharacter={colorTextCharacter}
+          />
+          <PasswordValidation
+            isValid={isNumberValid}
+            message="Mínimo un número"
             colorTextCharacter={colorTextCharacter}
           />
         </div>
