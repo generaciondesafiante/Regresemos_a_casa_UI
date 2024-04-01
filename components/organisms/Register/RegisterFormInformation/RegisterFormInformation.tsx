@@ -113,7 +113,7 @@ export const RegisterFormInformation: FC<RegisterFormInformationProps> = ({
         onChange={(event) => setPhone(parseInt(event.target.value, 10))}
         type="number"
         placeholder=" "
-        label={"Teléfono (optional)"}
+        label={"Teléfono (opcional)"}
         isRequire={false}
         inputColor="var(--white)"
         borderColor="var(--turquoise)"

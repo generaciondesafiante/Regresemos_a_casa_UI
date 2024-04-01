@@ -8,40 +8,45 @@ import styles from "./ForgetPassword.module.css";
 export const ForgetPassword = () => {
   const router = useRouter();
 
-  const [email, setemail] = useState("");
+  const [email, setEmail] = useState("");
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setemail(e.target.value);
+    setEmail(e.target.value);
   };
 
   const checkEmailSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const responseValidate = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/check-email`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-        }),
-      }
-    );
+    try {
+      const responseValidate = await fetch(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/check-email`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email,
+          }),
+        }
+      );
 
-    if (responseValidate.ok) {
-      // If the request was successful, redirect to the desired page
-      Swal.fire({
-        icon: "success",
-        title: "Correo enviado exitosamente",
-        text: "Verifica tu correo electrónico para restablecer la contraseña.",
-        didClose: () => {
-          router.push("/loginPage");
-          localStorage.clear();
-        },
-      });
-    } else {
-      // If there was an error in the request, show the alert with SweetAlert2
+      if (responseValidate.ok) {
+        // If the request was successful, redirect to the desired page
+        Swal.fire({
+          icon: "success",
+          title: "Correo enviado exitosamente",
+          text: "Verifica tu correo electrónico para restablecer la contraseña.",
+          didClose: () => {
+            router.push("/loginPage");
+            localStorage.clear();
+          },
+        });
+      } else {
+        // If there was an error in the request, show the alert with SweetAlert2
+        throw new Error("Hubo un error al verificar el correo electrónico.");
+      }
+    } catch (error) {
+      console.error("Error al verificar el correo electrónico:", error);
       Swal.fire(
         "Error",
         "Hubo un error al verificar el correo electrónico.",
@@ -49,6 +54,7 @@ export const ForgetPassword = () => {
       );
     }
   };
+
   return (
     <form
       action=""
@@ -62,7 +68,7 @@ export const ForgetPassword = () => {
         Escribe el correo electrónico con el cual te registraste
       </p>
       <Input
-        id={"form-foget-input"}
+        id={"form-forget-input"}
         htmlForm={"form-foget-input"}
         type="email"
         name="email"
