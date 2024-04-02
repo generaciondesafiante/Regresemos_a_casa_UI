@@ -7,7 +7,7 @@ export async function middleware(req: NextRequest) {
 
   if (!session) {
     const baseUrl = req.headers.get('x-forwarded-host') || req.headers.get('host');
-    const redirectTo = `${req.headers.get('x-forwarded-proto') || 'http'}://${baseUrl}/loginPage`;
+    const redirectTo = `${req.headers.get('x-forwarded-proto') || 'http'}://${baseUrl}/login`;
     return NextResponse.redirect(redirectTo);
   }
 

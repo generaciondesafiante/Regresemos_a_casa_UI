@@ -1,11 +1,5 @@
-import { Menu } from "../../components/molecules";
-import HomePageTemplate from "../../components/templates/HomePage-template/HomePageTemplate";
+import { redirect } from "next/navigation";
 
 export default function Home() {
-  return (
-    <>
-      <Menu />
-      <HomePageTemplate />
-    </>
-  );
+  return redirect("login");
 }

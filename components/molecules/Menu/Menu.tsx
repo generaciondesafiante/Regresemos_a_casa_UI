@@ -13,7 +13,7 @@ export const Menu: React.FC = () => {
         />
       </Link>
       <section className={styles["header-container_btn"]}>
-        <Link href={"/loginPage"}>
+        <Link href={"/login"}>
           <Button className={styles["button-sesion"]} type="text">
             ACCEDER
           </Button>

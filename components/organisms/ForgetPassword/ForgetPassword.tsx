@@ -30,6 +30,7 @@ export const ForgetPassword = () => {
         }
       );
 
+<<<<<<< HEAD
       if (responseValidate.ok) {
         // If the request was successful, redirect to the desired page
         Swal.fire({
@@ -47,6 +48,21 @@ export const ForgetPassword = () => {
       }
     } catch (error) {
       console.error("Error al verificar el correo electrónico:", error);
+=======
+    if (responseValidate.ok) {
+      // If the request was successful, redirect to the desired page
+      Swal.fire({
+        icon: "success",
+        title: "Correo enviado exitosamente",
+        text: "Verifica tu correo electrónico para restablecer la contraseña.",
+        didClose: () => {
+          router.push("/login");
+          localStorage.clear();
+        },
+      });
+    } else {
+      // If there was an error in the request, show the alert with SweetAlert2
+>>>>>>> 05fc2b45ac3f92d8637d84f98f24e9952fd06ec6
       Swal.fire(
         "Error",
         "Hubo un error al verificar el correo electrónico.",
