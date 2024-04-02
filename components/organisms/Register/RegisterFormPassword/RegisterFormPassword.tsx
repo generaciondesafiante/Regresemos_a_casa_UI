@@ -30,8 +30,6 @@ export const RegisterFormPassword: FC<RegisterFormPasswordProps> = ({
   buttonColor,
   borderColor,
 }) => {
-  const { data: session } = useSession();
-
   const [isNumberValid, setNumberValid] = useState(false);
   const [isLengthValid, setLengthValid] = useState(false);
   const [isLetterUpperCaseValid, setLetterUpperCaseValid] = useState(false);
@@ -52,7 +50,7 @@ export const RegisterFormPassword: FC<RegisterFormPasswordProps> = ({
 
   useEffect(() => {
     setFormValid(
-        isNumberValid &&
+      isNumberValid &&
         isLengthValid &&
         isLetterUpperCaseValid &&
         isLetterLowerCaseValid &&
@@ -127,11 +125,9 @@ export const RegisterFormPassword: FC<RegisterFormPasswordProps> = ({
       <div className={styles["registerFormPassword-containerButton"]}>
         <Button
           className={
-            session !== null
-              ? isFormValid
-                ? styles["registerFormPassword-buttonEnabled"]
-                : styles["registerFormPassword-buttonDisabled"]
-              : styles["registerFormPassword-buttonSessionDisabled"]
+            isFormValid
+              ? styles["registerFormPassword-buttonEnabled"]
+              : styles["registerFormPassword-buttonDisabled"]
           }
           type="submit"
           disabled={!isFormValid}
