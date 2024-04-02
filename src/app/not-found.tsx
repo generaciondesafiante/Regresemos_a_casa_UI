@@ -18,7 +18,7 @@ const NotFoundPage = () => {
         <p className={styles["not-found_paragraph"]}>
           La página que estás buscando no existe, <span>vuelve a casa</span>
         </p>
-        <Link href={session ? "/dashboard" : "/"} className={styles["not-found_linkHome"]}>
+        <Link href={session ? "/dashboard" : "/login"} className={styles["not-found_linkHome"]}>
           <ArrowLeftIcon />
           <p>Regresar</p>
         </Link>

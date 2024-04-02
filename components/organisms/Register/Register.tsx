@@ -186,7 +186,7 @@ export const Register = () => {
               </div>
               <Link
                 className={styles["register-form_loginRedirection"]}
-                href="/loginPage"
+                href="/login"
               >
                 ¿Ya tienes cuenta?
               </Link>

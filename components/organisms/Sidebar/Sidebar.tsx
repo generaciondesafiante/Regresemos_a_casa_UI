@@ -49,7 +49,7 @@ export const Sidebar = () => {
     },
     {
       name: "logout",
-      href: "/",
+      href: "/login",
       icon: (
         <LogoutIcon
           className={`${styles["sidebar-icon"]} ${styles["sidebar-icon_house"]}`}
