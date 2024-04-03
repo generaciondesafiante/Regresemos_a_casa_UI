@@ -126,8 +126,8 @@ export const RegisterFormPassword: FC<RegisterFormPasswordProps> = ({
         <Button
           className={
             isFormValid
-              ? styles["registerFormPassword-buttonEnabled"]
-              : styles["registerFormPassword-buttonDisabled"]
+              ? styles["registerFormPassword-enabledButton"]
+              : styles["registerFormPassword-disabledButton"]
           }
           type="submit"
           disabled={!isFormValid}
