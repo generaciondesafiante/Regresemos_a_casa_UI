@@ -11,17 +11,24 @@ import styles from "./Sidebar.module.css";
 import { PathIcon } from "../../atoms/icons/sidebarIcons/PathIcon";
 import { FavoriteIcon } from "../../atoms/icons/sidebarIcons/FavoriteIcon";
 import { LogoutIcon } from "../../atoms/icons/sidebarIcons/LogoutIcon";
+import { AdminIcon } from "../../atoms/icons/sidebarIcons/AdminIcon";
 
 export const Sidebar = () => {
   const pathName = usePathname();
   const router = useRouter();
   const centeredLinks = ["home", "resources", "favorites", "path"];
+  const topLinks = ["profile", "admin"];
 
   const links = [
     {
       name: "profile",
       href: "/dashboard/profile",
       icon: <ProfileIcon className={styles["sidebar-icon"]} />,
+    },
+    {
+      name: "admin",
+      href: "/dashboard/admin",
+      icon: <AdminIcon className={styles["sidebar-icon"]} />,
     },
     {
       name: "home",
@@ -49,7 +56,7 @@ export const Sidebar = () => {
     },
     {
       name: "logout",
-      href: "/",
+      href: "/login",
       icon: (
         <LogoutIcon
           className={`${styles["sidebar-icon"]} ${styles["sidebar-icon_house"]}`}
@@ -60,24 +67,26 @@ export const Sidebar = () => {
 
   return (
     <div className={styles["sidebar-container"]}>
-      {links.map((link) => {
-        if (link.name === "profile") {
-          return (
-            <Link href={link.href} key={link.name}>
-              <div
-                className={`${styles["sidebar-iconContainer"]} ${
-                  pathName.startsWith(link.href)
+      <div className={styles["sidebar-content_center"]}>
+        {links.map((link) => {
+          if (topLinks.includes(link.name)) {
+            return (
+              <Link
+                href={link.href}
+                key={link.name}
+                className={`${
+                  pathName === link.href
                     ? styles["sidebar-sectionSelected"]
                     : ""
                 }`}
               >
                 {link.icon}
-              </div>
-            </Link>
-          );
-        }
-        return null;
-      })}
+              </Link>
+            );
+          }
+          return null;
+        })}
+      </div>
 
       <div className={styles["sidebar-content_center"]}>
         {links.map((link) => {

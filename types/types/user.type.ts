@@ -8,6 +8,7 @@ export interface User {
   country: string;
   phone: string | null;
   image: string;
+  admin:boolean;
   CourseProgress: any[]; 
   lastViewedVideos: {
     _id: string;

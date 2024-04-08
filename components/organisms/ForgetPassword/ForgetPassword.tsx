@@ -36,7 +36,7 @@ export const ForgetPassword = () => {
         title: "Correo enviado exitosamente",
         text: "Verifica tu correo electrónico para restablecer la contraseña.",
         didClose: () => {
-          router.push("/loginPage");
+          router.push("/login");
           localStorage.clear();
         },
       });
