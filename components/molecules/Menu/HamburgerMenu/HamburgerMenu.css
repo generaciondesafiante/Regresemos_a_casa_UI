@@ -138,7 +138,7 @@ nav {
   }
   .overlay {
     position: fixed;
-    margin-top: 5rem;
+    margin-top: 5.6rem;
     left: 0;
     width: 40%;
     height: calc(100% - 3.75rem);
