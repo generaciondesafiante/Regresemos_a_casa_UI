@@ -1,11 +1,11 @@
 "use client";
+import Link from "next/link";
 import { useState } from "react";
 import { menuData } from "../MenuData";
-import "./HamburgerMenu.css";
 import { UpArrow } from "../../../atoms/icons/topMenu/UpArrow";
 import { DownArrow } from "../../../atoms/icons/topMenu/DownArrow";
 import { usePathname } from "next/navigation";
-import Link from "next/link";
+import "./HamburgerMenu.css";
 
 interface SubMenuVisibility {
   [key: number]: boolean;
@@ -50,6 +50,7 @@ export const HamburgerMenu = () => {
 
   return (
     <div className="containerMenu">
+     {isMenuClicked && <div className="overlay" onClick={updateMenu} />} {/* Agregar el fondo semitransparente si el menú está visible */}
       <nav>
         <div className="burger-menu" onClick={updateMenu}>
           <div className={burger_class}></div>

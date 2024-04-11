@@ -136,6 +136,15 @@ nav {
   .menu {
     width: 60%;
   }
+  .overlay {
+    position: fixed;
+    margin-top: 5rem;
+    left: 0;
+    width: 40%;
+    height: calc(100% - 3.75rem);
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: -10;
+  }
 }
 @media (width >= 64rem) {
   .burger-menu {
