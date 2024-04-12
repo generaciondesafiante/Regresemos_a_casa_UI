@@ -1,5 +1,10 @@
-import { redirect } from "next/navigation";
+import { Menu } from "../../components/molecules";
 
 export default function Home() {
-  return redirect("login");
+  return (
+    <>
+      <Menu />
+      inicio
+    </>
+  );
 }
