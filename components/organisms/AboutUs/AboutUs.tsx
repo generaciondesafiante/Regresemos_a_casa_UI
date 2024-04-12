@@ -1,6 +1,5 @@
 "use client";
 import styles from "./AboutUs.module.css";
-const="https://static.wixstatic.com/media/b812fcf3f9424a55bd227b8e7dc3ec23.jpg/v1/fill/w_980,h_626,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/b812fcf3f9424a55bd227b8e7dc3ec23.jpg"
 
 export const AboutUs = () => {
     return (
@@ -23,8 +22,19 @@ export const AboutUs = () => {
                 </div>
             </div>
             <div className={styles["ourObjetive-verse_container"]}>
-                <img src=/>
-                <p>CUANDO USTEDES ME BUSQUEN, USTEDES ME ENCONTRARÁN CON TAL DE QUE ME BUSQUEN DE TODO CORAZÓN.</p>
+                <div className={styles["ourObjetive-bible_background"]}></div>
+                <span className={styles["ourObjetive-quote"]}>&quot;</span>
+                <p className={styles["ourObjetive-verse"]}>
+                    CUANDO USTEDES ME BUSQUEN, USTEDES ME ENCONTRARÁN CON TAL DE QUE ME <b>BUSQUEN DE TODO CORAZÓN.</b>
+                </p>
+            </div>
+            <div className={styles["ourObjetive-paragraph2"]}>
+                <p className={styles["ourObjetive-paragraph2_text1"]}>
+                    Te contaremos qué programas, libros y diccionarios podrías usar para empezar a estudiar las únicas palabras que pueden transformar nuestras vidas, la voz que nos permitirá encontrar un propósito para despertar cada mañana. Pero si no tienes ninguna pregunta y llegaste aquí de casualidad ¡no hay problema! También te servirá aprender un poco de historia, ciertas palabras en un nuevo idioma y hasta “tips” para vivir. Talvez te des cuenta que el libro más antiguo habla de ti o talvéz no ¿quién sabe? De todas formas no pierdes nada.
+                </p>
+                <p className={styles["ourObjetive-paragraph2_text2"]}>
+                    En fin, lo haremos cortito: somos un grupo de chicos que descubrimos la profundidad y verdad del libro más vendido y menos comprendido del mundo, sin institutos bíblicos, grandes congregaciones o sistemas religiosos. Sin merecerlo nos hallamos dentro del plan de nuestro Dios, el Creador de todo lo que existe. <b>Solo queremos exponer la voz del verdadero y único Pastor porque sabemos que Sus ovejas oirán Su voz.</b>
+                </p>
             </div>
         </div>
     )
