@@ -7,7 +7,7 @@
   justify-content: space-between;
   padding: 0.5rem;
   align-items: center;
-  background-color: var(--white-transparent);
+  background-color: var(--white);
 }
 
 .header-logo {
@@ -22,34 +22,7 @@
 }
 
 .header-container_btn {
-  display: flex;
-  justify-content: space-around;
-  gap: 0.7rem;
-}
-
-.button-sesion {
-  border: var(--border) var(--greenDesafiante);
-  background-color: var(--white);
-  color: var(--greenDesafiante);
-  font-weight: bold;
-}
-
-.button-sesion:hover {
-  background-color: var(--greenDesafiante);
-  color: var(--white);
-}
-
-.button-register {
-  border: var(--border) var(--greenDesafiante);
-  background-color: var(--greenDesafiante);
-  color: var(--white);
-  font-weight: bold;
-}
-
-.button-register:hover {
-  border: var(--border) var(--greenDesafiante);
-  background-color: var(--white);
-  color: var(--greenDesafiante);
+  display: none;
 }
 
 @media (width >=48rem) {
@@ -69,5 +42,65 @@
 
   .header-logo {
     width: 4rem;
+  }
+  .header-container_btn {
+    display: flex;
+    gap: 1.3rem;
+    align-items: center;
+  }
+
+  .item-header {
+    color: var(--blueDark);
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+
+  .item-header:hover {
+    cursor: pointer;
+    color: var(--greenDesafiante);
+  }
+  .item-header.selected {
+    color: var(--greenDesafiante);
+    text-decoration: none;
+  }
+  .arrow {
+    margin-left: 0.5rem;
+  }
+  .subMenu-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-top: 2.063rem;
+    position: absolute;
+    padding: 2.813rem;
+    height: auto;
+    background-color: var(--white);
+    transition: ease-out 0.5s;
+    transform: scale(1);
+    list-style: none;
+    text-decoration: none;
+  }
+  .subMenu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 4.375rem);
+    margin-top: 6rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: -10;
+    transition: opacity 0.3s ease;
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .subMenu-items {
+    color: var(--blueDark);
+    gap: 1.25rem;
+    text-decoration: none;
+  }
+  .subMenu-items:hover {
+    color: var(--greenDesafiante);
+    cursor: pointer;
   }
 }
