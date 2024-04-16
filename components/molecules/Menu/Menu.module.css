@@ -54,11 +54,13 @@
     display: flex;
     align-items: center;
     text-decoration: none;
+    transition: all 300ms;
   }
 
   .item-header:hover {
     cursor: pointer;
     color: var(--greenDesafiante);
+    transition: all 300ms;
   }
   .item-header.selected {
     color: var(--greenDesafiante);

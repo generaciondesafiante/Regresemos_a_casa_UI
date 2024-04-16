@@ -1,0 +1,38 @@
+.container-footer {
+  width: 100%;
+  height: 100%;
+  background-color: var(--turquoise);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title-footer {
+  color: var(--white);
+  font-size: var(--fontSize-titles_mobile);
+  margin-bottom: 0.625rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.paragraph-footer {
+  color: var(--white);
+  font-size: var(--fontSize-paragraph_mobile);
+  text-align: center;
+}
+
+.paragraph-footer > span {
+  font-weight: bold;
+}
+
+.soclialNetworks-footer {
+  margin-top: 1rem;
+}
+
+.paragraph-footer-italic {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  color: var(--white);
+  font-size: var(--fontSize-paragraph_mobile);
+}

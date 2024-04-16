@@ -9,7 +9,7 @@ export const menuData = [
   },
   {
     title: "Quiénes somos",
-    href: "/",
+    href: "/#",
   },
   {
     title: "Estudios",

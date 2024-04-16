@@ -1,0 +1,25 @@
+.SocialNetworkIcon {
+  width: 1.875rem;
+  height: 1.875rem;
+  color: var(--white);
+}
+
+@media (width>= 38rem) {
+  .SocialNetworkIcon {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+
+@media (width >=64rem) {
+  .SocialNetworkIcon {
+    width: 2.8rem;
+    height: 2.8rem;
+    transition: all 300ms;
+  }
+
+  .SocialNetworkIcon:hover {
+    color: var(--greenDesafiante);
+    cursor: pointer;
+  }
+}
