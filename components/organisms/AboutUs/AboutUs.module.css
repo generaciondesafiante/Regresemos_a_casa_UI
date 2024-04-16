@@ -1,5 +1,4 @@
 .aboutUs-container{
-    border: 1px solid red;
     position: absolute;
     width: 100%;
     height: 100%;
@@ -39,13 +38,13 @@
     height: 250px;
 }
 
-.ourObjetive-our{
+.ourObjetive-textOur{
     position: relative;
     font-weight: 500;
     top:12px
 }
 
-.ourObjetive-objective{
+.ourObjetive-textObjective{
     position: relative;
     font-weight: 800;
     bottom: 12px;
@@ -107,12 +106,12 @@
 .ourObjetive-paragraph2{
     display: flex;
     justify-content: center;
+    margin-bottom: 100px;
 }
 
 .ourObjetive-paragraph2_text1{
     margin-right: 19.5px;
     margin-top: 221px;
-
     line-height: 22.4px;
     font-size: 14px;
     text-align: justify;
@@ -134,4 +133,98 @@
     color: #2f2e2e;
     width: 415px;
     word-spacing: 4px;
+}
+
+.ourObjetive-photos{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    font-size: 12px;
+    /* margin-bottom: 100px; */
+}
+
+.ourObjetive-photos > div {
+    margin: 0 20px;
+    text-align: center;
+}
+
+.ourObjetice-photos_lincolns{
+    border-radius:  63% 37% 41% 59% / 63% 62% 38% 37%;
+    margin-bottom: 15px;
+}
+
+.ourObjetice-text_photo{
+    text-align: center;
+}
+
+.ourObjetice-photos_abigail{
+    border-radius:51% 49% 51% 49% / 59% 71% 29% 41%;
+    margin-bottom: 15px;
+}
+
+.ourObjetice-photos_danielaLopez{
+    border-radius:59% 41% 70% 30% / 44% 71% 29% 56%;
+    margin-bottom: 15px;
+}
+
+.ourObjetive-paragraph3{
+    margin-top: 100px;
+    background-color: rgb(50, 121, 184);
+    width: 100%;
+}
+
+.ourObjetive-paragraph3_container{
+    display: flex;
+    justify-content: center;
+    padding: 140px 0px 30px 0px;
+    background-color: #f8f8f8;
+}
+
+.ourObjetive-paragraph3_text1{
+    display: flex;
+    flex-direction: column; 
+    width: 15%;
+}
+
+.ourObjetive-textMinistries{
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 30px;
+    color: #c7bb9f;
+}
+
+.ourObjetive-textAssociates{
+    font-size: 30px;
+    line-height: 30px;
+    color: #c7bb9f;
+    font-weight: 550;
+}
+
+.ourObjetive-paragraph3_text2{
+    width: 350px;
+    font-size: 15px;
+    line-height: 24px;
+    text-align: justify;
+    word-spacing: 4px;
+}
+
+.ourObjetive-paragraph3_text2 span{
+    word-spacing: 1px;
+}
+
+.ourObjetive-imagenFooter_container img{
+    width: 100%;
+    height: 245px;
+}
+
+@media (width >= 20rem){
+
+}
+
+@media (width >= 48rem){
+
+}
+
+@media (width >= 64rem){
+    
 }
