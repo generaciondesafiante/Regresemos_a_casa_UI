@@ -124,6 +124,12 @@
   text-align: start;
 }
 
+.step-title > .reverse-word{
+  font-weight: bold;
+  display: inline-block;
+  transform: rotate(180deg);
+}
+
 .step-bliblico {
   color: var(--darkBlue-content);
 }

@@ -81,7 +81,7 @@ export const Home = () => {
             <span className={styles["step-number"]}>02</span>
             <div>
               <p className={styles["step-title"]}>
-                IR <span className={styles["reverse-word"]}>CONTRA</span>{" "}
+                IR <span className={styles["reverse-word"]}>CONTRA</span>
                 CORRIENTE
               </p>
               <i className={styles["step-bliblico"]}>Salir del sistema</i>
