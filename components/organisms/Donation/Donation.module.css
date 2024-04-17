@@ -1,0 +1,200 @@
+.container-donation {
+  width: 100%;
+  height: calc(100% - 6.25rem);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.container-info-donation-background {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-image: linear-gradient(0deg, #e0e3e7d1, rgba(210, 207, 207, 0.709)),
+    url("/donations/background-donations.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+.container-info-dontaion {
+  width: 90%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 3rem;
+  margin-top: 6rem;
+}
+
+.title-info {
+  margin-top: 4rem;
+  color: var(--greenDesafiante);
+  text-align: center;
+  font-size: var(--fontSize-titles_mobile);
+}
+
+.paragraph-info {
+  font-size: var(--fontSize-paragraph_mobile);
+  color: var(--darkGray);
+  margin-top: 2rem;
+}
+
+.content-payment-methods_info {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.paragraph-payment-methods {
+  text-align: center;
+  width: 12.5rem;
+  margin-bottom: 1rem;
+  color: var(--darkGray);
+  font-weight: bold;
+}
+.content-buttons-payment {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.content-buttons-payment > .button-paypal-me {
+  width: 9.375rem;
+  background-color: var(--white);
+  color: var(--greenDesafiante);
+  font-size: var(--fontSize-buttons_mobile);
+  border: solid 0.185rem var(--greenDesafiante);
+  font-size: var(--fontSize-buttons_mobile);
+  border-radius: 0.625rem;
+  margin-bottom: 1rem;
+}
+
+.content-buttons-payment > .button-support {
+  width: 9.375rem;
+  background-color: var(--greenDesafiante);
+  color: var(--white);
+  font-size: var(--fontSize-buttons_mobile);
+  border: solid 0.185rem var(--greenDesafiante);
+  font-size: var(--fontSize-buttons_mobile);
+  border-radius: 0.625rem;
+  margin-bottom: 1rem;
+}
+
+.payment-methods_cards{
+  display: flex;
+  gap: 1rem;
+}
+
+.payment-methods_cards > img {
+  width: 3rem;
+}
+.container-deposit {
+  width: 90%;
+  margin-top: 3rem;
+}
+
+.title-deposit {
+  color: var(--greenDesafiante);
+}
+
+.title-bank {
+  color: var(--darkBlue);
+  font-size: var(--fontSize-subtitles_mobile);
+  font-weight: bold;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.content-data-banck {
+  margin-bottom: 1rem;
+}
+.title-data {
+  color: var(--darkGray);
+  font-weight: bold;
+  font-size: var(--fontSize-subtitles_mobile);
+}
+
+.info-data {
+  color: var(--darkGray);
+  font-size: var(--fontSize-paragraph_mobile);
+}
+
+@media (width >= 48rem) {
+
+  .title-info {
+    margin-top: 3rem;
+    font-size: var(--fontSize-titles_tablet);
+  }
+
+  .paragraph-info {
+    font-size: var(--fontSize-paragraph_mobile);
+  }
+
+  .content-payment-methods_info {
+    margin-top: 3.5rem;
+  }
+
+  .paragraph-payment-methods {
+    font-size: var(--fontSize-paragraph_mobile);
+  }
+
+  .content-buttons-payment {
+    flex-direction: row;
+    gap: 0.5rem;
+  }
+
+  .content-buttons-payment > .button-paypal-me,
+  .content-buttons-payment > .button-support {
+    padding: 0.3rem;
+    font-size: var(--fontSize-buttons_tablet);
+  }
+
+  .container-deposit {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .title-deposit {
+    font-size: var(--fontSize-titles_tablet);
+  }
+  .title-bank {
+    font-size: var(--fontSize-subtitles_tablet);
+  }
+
+  .title-data {
+    font-size: var(--fontSize-subtitles_tablet);
+  }
+
+  .info-data {
+    color: var(--darkGray);
+    font-size: var(--fontSize-paragraph_tablet);
+  }
+}
+
+@media (width >= 64rem) {
+  .container-info-donation-background {
+    margin-top: 0;
+    height: 90vh;
+  }
+
+  .container-info-dontaion {
+    display: flex;
+    flex-direction: row;
+    gap: 5rem;
+    height: 80vh;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .content-info {
+    width: 30%;
+  }
+}
