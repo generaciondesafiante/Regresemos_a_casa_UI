@@ -28,9 +28,14 @@
 
 .soclialNetworks-footer {
   margin-top: 1rem;
+  display: flex;
 }
 
-.paragraph-footer-italic {
+.middle-icon {
+  margin-right: 0.5rem;
+}
+
+.paragraph-footer_italic {
   margin-top: 1rem;
   margin-bottom: 2rem;
   color: var(--white);

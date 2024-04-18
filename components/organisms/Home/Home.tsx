@@ -5,7 +5,6 @@ import { FacebookIcon } from "../../atoms/icons/home/SocialNetworkIcon/FacebookS
 import { InstagramIcon } from "../../atoms/icons/home/SocialNetworkIcon/InstagramIcon";
 import { YoutubeIcon } from "../../atoms/icons/home/SocialNetworkIcon/YoutubeIcon";
 import styles from "./Home.module.css";
-import { Footer } from "../../molecules/Footer/Footer";
 
 export const Home = () => {
   const bePart = [
@@ -42,56 +41,58 @@ export const Home = () => {
   ];
 
   return (
-    <main className="container-home">
+    <main className="home-container">
       <section className={styles["welcome-home"]}>
-        <h1 className={styles["title-home"]}>GENERACIÓN DESAFIANTE</h1>
-        <Button className={styles["button-action"]}>VERSO POR VERSO</Button>
-        <div className={styles["content-items-down"]}>
+        <h1 className={styles["home-title"]}>GENERACIÓN DESAFIANTE</h1>
+        <Button className={styles["action-button"]}>VERSO POR VERSO</Button>
+        <div className={styles["content-items_down"]}>
           <p className={styles["text-down"]}>¡BIENVENIDO A ESTE CAMINAR!</p>
           <div className={styles["soclialNetworks"]}>
             <FacebookIcon />
-            <InstagramIcon />
+            <div className={styles['middle-icon']}>
+              <InstagramIcon />
+            </div>
             <YoutubeIcon />
           </div>
         </div>
       </section>
       {/* section two */}
-      <section className={styles["container-section-two"]}>
-        <h2 className={styles["title-section-two"]}>¿QUÉ ES SER DESAFIANTE?</h2>
-        <p className={styles["paragraph-main-section-two"]}>
-          Somos una{" "}
+      <section className={styles["container-sectionTwo"]}>
+        <h2 className={styles["title-sectionTwo"]}>¿QUÉ ES SER DESAFIANTE?</h2>
+        <p className={styles["main-paragraph_sectionTwo"]}>
+          Somos una
           <span className={styles["bold-paragraph"]}>
             plataforma multimedia
-          </span>{" "}
+          </span>
           para el estudio de la palabra del Señor desde una perspectiva hebrea.
           Ser desafiante es:
         </p>
-        <div className={styles["container-step"]}>
-          <div className={styles["items-step"]}>
+        <div className={styles["step-container"]}>
+          <div className={styles["step-items"]}>
             <span className={styles["step-number"]}>01</span>
             <div>
               <p className={styles["step-title"]}>MOSTRAR TU IDENTIDAD</p>
-              <span className={styles["step-bliblico"]}>
+              <span className={styles["biblical-step"]}>
                 Sin importar el que dirán. <br />
                 Apocalipsis 14:12
               </span>
             </div>
           </div>
-          <div className={styles["items-step"]}>
+          <div className={styles["step-items"]}>
             <span className={styles["step-number"]}>02</span>
             <div>
               <p className={styles["step-title"]}>
                 IR <span className={styles["reverse-word"]}>CONTRA</span>
                 CORRIENTE
               </p>
-              <i className={styles["step-bliblico"]}>Salir del sistema</i>
+              <i className={styles["biblical-step"]}>Salir del sistema</i>
             </div>
           </div>
-          <div className={styles["items-step"]}>
+          <div className={styles["step-items"]}>
             <span className={styles["step-number"]}>03</span>
             <div>
               <p className={styles["step-title"]}>IR CONTRA CORRIENTE</p>
-              <span className={styles["step-bliblico"]}>
+              <span className={styles["biblical-step"]}>
                 cada palabra del Maestro
                 <br />
                 Romanos 2
@@ -102,39 +103,37 @@ export const Home = () => {
       </section>
       <section className={styles["bePart-container"]}>
         <h2 className={styles["title-bePart"]}>¡SÉ PARTE!</h2>
-        <div className={styles["content-items-bePart"]}>
-          {bePart.map((image, key) => (
+        <div className={styles["items-content_bePart"]}>
+          {bePart.map((image) => (
             <Link href={image.href} key={image.href}>
               <img
                 src={image.image}
                 alt={image.name}
-                className={styles["bePart-image"]}
+                className={styles["image-bePart"]}
               />
             </Link>
           ))}
         </div>
       </section>
-      <section className={styles["schedules-last-topics"]}>
-        <div className={styles["container-schedules-last-topics"]}>
+      <section className={styles["schedules-last_topics"]}>
+        <div className={styles["schedule-container_latestTopics"]}>
           <Link href={""} className={styles["link-session-schedules"]}>
-            <h2 className={styles["title-section-schedules-last-topic"]}>
-              HORARIOS
-            </h2>
+            <h2 className={styles["title-schedules_lastTopic"]}>HORARIOS</h2>
             <img
               src="/homePage/sukat-david-home.webp"
               alt=" image sukat david horarios"
-              className={styles["image-sukat-david-schedules"]}
+              className={styles["image-sukatDavid_schedules"]}
             />
           </Link>
-          <Link href={""} className={styles["link-session-course"]}>
-            <h2 className={styles["title-section-schedules-last-topic"]}>
+          <Link href={""} className={styles["link-course_section"]}>
+            <h2 className={styles["title-schedules_lastTopic"]}>
               ÚLTIMO{" "}
-              <span className={styles["title-shedules-span"]}>ESTUDIO:</span>
+              <span className={styles["span-title_shedules"]}>ESTUDIO:</span>
             </h2>
             <img
               src="/homePage/LASTCOURSE.webp"
               alt=""
-              className={styles["last-study"]}
+              className={styles["latest-study"]}
             />
           </Link>
         </div>

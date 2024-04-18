@@ -4,7 +4,7 @@ export const InstagramIcon = () => {
     <svg
       viewBox="0 0 24 24"
       fill="currentColor"
-      className={styles["SocialNetworkIcon"]}
+      className={styles["socialNetwork_icon"]}
     >
       <path d="M11.999 7.377a4.623 4.623 0 100 9.248 4.623 4.623 0 000-9.248zm0 7.627a3.004 3.004 0 110-6.008 3.004 3.004 0 010 6.008z" />
       <path d="M17.884 7.207 A1.078 1.078 0 0 1 16.806 8.285 A1.078 1.078 0 0 1 15.728000000000002 7.207 A1.078 1.078 0 0 1 17.884 7.207 z" />
