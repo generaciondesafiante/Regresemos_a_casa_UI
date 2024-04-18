@@ -1,4 +1,4 @@
-.container-donation {
+.donation-container {
   width: 100%;
   height: calc(100% - 6.25rem);
   position: relative;
@@ -8,20 +8,20 @@
   justify-content: center;
 }
 
-.container-info-donation-background {
+.donation-information_backgroundContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
-  background-image: linear-gradient(0deg, #e0e3e7d1, rgba(210, 207, 207, 0.709)),
+  background-image: linear-gradient(0deg, #fcfdffed, rgba(255, 253, 253, 0.94)),
     url("/donations/background-donations.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   position: relative;
 }
-.container-info-dontaion {
+.donation-info_container {
   width: 90%;
   height: 100%;
   display: flex;
@@ -40,22 +40,22 @@
 
 .paragraph-info {
   font-size: var(--fontSize-paragraph_mobile);
-  color: var(--darkGray);
+  color: var(--black);
   margin-top: 2rem;
 }
 
-.content-payment-methods_info {
+.content-information_payment-methods {
   margin-top: 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.paragraph-payment-methods {
+.payment-methods_paragraph {
   text-align: center;
   width: 12.5rem;
   margin-bottom: 1rem;
-  color: var(--darkGray);
+  color: var(--black);
   font-weight: bold;
 }
 .content-buttons-payment {
@@ -65,23 +65,23 @@
   align-items: center;
 }
 
-.content-buttons-payment > .button-paypal-me {
+.content-buttons-payment > .paypalme-button {
   width: 9.375rem;
   background-color: var(--white);
   color: var(--greenDesafiante);
   font-size: var(--fontSize-buttons_mobile);
-  border: solid 0.185rem var(--greenDesafiante);
+  border: var(--border) var(--greenDesafiante);
   font-size: var(--fontSize-buttons_mobile);
   border-radius: 0.625rem;
   margin-bottom: 1rem;
 }
 
-.content-buttons-payment > .button-support {
+.content-buttons-payment > .support-button {
   width: 9.375rem;
   background-color: var(--greenDesafiante);
   color: var(--white);
   font-size: var(--fontSize-buttons_mobile);
-  border: solid 0.185rem var(--greenDesafiante);
+  border: var(--border) var(--greenDesafiante);
   font-size: var(--fontSize-buttons_mobile);
   border-radius: 0.625rem;
   margin-bottom: 1rem;
@@ -95,33 +95,33 @@
 .payment-methods_cards > img {
   width: 3rem;
 }
-.container-deposit {
+.deposit-container {
   width: 90%;
   margin-top: 3rem;
 }
 
-.title-deposit {
+.deposit-title {
   color: var(--greenDesafiante);
 }
 
-.title-bank {
+.bank-title {
   color: var(--darkBlue);
   font-size: var(--fontSize-subtitles_mobile);
   font-weight: bold;
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
-.content-data-banck {
+.bank-data_content {
   margin-bottom: 1rem;
 }
-.title-data {
-  color: var(--darkGray);
+.data-title {
+  color: var(--black);
   font-weight: bold;
-  font-size: var(--fontSize-subtitles_mobile);
+  font-size: var(--fontSize-paragraph_mobile);
 }
 
-.info-data {
-  color: var(--darkGray);
+.data-info {
+  color: var(--black);
   font-size: var(--fontSize-paragraph_mobile);
 }
 
@@ -136,11 +136,11 @@
     font-size: var(--fontSize-paragraph_mobile);
   }
 
-  .content-payment-methods_info {
+  .content-information_payment-methods {
     margin-top: 3.5rem;
   }
 
-  .paragraph-payment-methods {
+  .payment-methods_paragraph {
     font-size: var(--fontSize-paragraph_mobile);
   }
 
@@ -149,43 +149,43 @@
     gap: 0.5rem;
   }
 
-  .content-buttons-payment > .button-paypal-me,
-  .content-buttons-payment > .button-support {
+  .content-buttons-payment > .paypalme-button,
+  .content-buttons-payment > .support-button {
     padding: 0.3rem;
     font-size: var(--fontSize-buttons_tablet);
   }
 
-  .container-deposit {
+  .deposit-container {
     width: 50%;
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
 
-  .title-deposit {
+  .deposit-title {
     font-size: var(--fontSize-titles_tablet);
   }
-  .title-bank {
+  .bank-title {
     font-size: var(--fontSize-subtitles_tablet);
   }
 
-  .title-data {
-    font-size: var(--fontSize-subtitles_tablet);
+  .data-title {
+    font-size: var(--fontSize-paragraph_tablet);
   }
 
-  .info-data {
-    color: var(--darkGray);
+  .data-info {
+    color: var(--black);
     font-size: var(--fontSize-paragraph_tablet);
   }
 }
 
 @media (width >= 64rem) {
-  .container-info-donation-background {
+  .donation-information_backgroundContainer {
     margin-top: 0;
     height: 90vh;
   }
 
-  .container-info-dontaion {
+  .donation-info_container {
     display: flex;
     flex-direction: row;
     gap: 5rem;
@@ -194,7 +194,12 @@
     justify-content: center;
   }
 
-  .content-info {
+  .info-content {
     width: 30%;
   }
+
+  .title-info{
+    text-align: start;
+  }
 }
+
