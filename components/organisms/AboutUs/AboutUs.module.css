@@ -1,79 +1,68 @@
-.aboutUs-container{
+.aboutUs-container {
     position: absolute;
+    margin-top: 6rem;
     width: 100%;
     height: 100%;
-    flex-direction: column;
 }
 
-.video-container{
+.video-container {
     position: relative;
-    height: 100%;
+    height: 25rem;
     width: 100%;
     overflow: hidden;
 }
 
 .video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding-bottom: 56.25%;
-    width: 100%;
-}
-
-.ourObjetive-container{
-    display: flex;
-    justify-content: center;
-    /* align-items: center; */
-    height: 457px;
-    width: 100%;
-    padding: 100px 200px;
-}
-
-.ourObjetive-title{
-    display: flex;
-    flex-direction: column;
-    color: #4ea3b2;
-    font-size: 47px;
-    font-weight: 200;
-    height: 250px;
-}
-
-.ourObjetive-textOur{
-    position: relative;
-    font-weight: 500;
-    top:12px
-}
-
-.ourObjetive-textObjective{
-    position: relative;
-    font-weight: 800;
-    bottom: 12px;
-}
-
-.ourObjetive-paragraph{
-    margin-left: 140px;
-    height: 250px;
-    width: 400px;
-}
-
-.ourObjetive-text1{
-    font-size: 15px;
-    text-align: justify;
-    color: #303f4d;
-    letter-spacing: 2px;
-    line-height: 24px;
-}
-
-.ourObjetive-verse_container{
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    height: 626px;
-}
-
-.ourObjetive-bible_background{
     width: 100%;
     height: 100%;
+    object-fit:fill;
+}
+
+.ourObjetive-container {
+    width: 100%;
+}
+
+.ourObjetive-title {
+    color: #4ea3b2;
+    font-size: 1.938rem;
+    font-weight: 200;
+    margin: 1.875rem;
+}
+
+.ourObjetive-textOur {
+    font-weight: 500;
+}
+
+.ourObjetive-textObjective {
+    position: relative;
+    font-weight: 800;
+    bottom: 0.625rem;
+}
+
+.ourObjetive-paragraph {
+    margin: 0rem 1.875rem;
+    height: 15.625rem;
+    width: auto;
+}
+
+.ourObjetive-text1 {
+    width: auto;
+    font-size: 0.813rem;
+    text-align: justify;
+    color: #303f4d;
+    line-height: 1.5rem;
+}
+
+.ourObjetive-verse_container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 25.313rem;
+}
+
+.ourObjetive-bible_background {
+    width: 100%;
+    height: 25.313rem;
     position: absolute;
     background-image: url("https://static.wixstatic.com/media/b812fcf3f9424a55bd227b8e7dc3ec23.jpg/v1/fill/w_980,h_626,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/b812fcf3f9424a55bd227b8e7dc3ec23.jpg");
     background-size: cover;
@@ -82,149 +71,316 @@
     opacity: 0.1;
 }
 
-.ourObjetive-quote{
-    position: relative;
-    margin-top: 165px;
-    margin-left: 240px;
-    color: #8d8d8d;
-    font-size: 151px;
+.ourObjetive-quote {
+    display: none;
 }
 
-.ourObjetive-verse{
+.ourObjetive-verse {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 1.875rem;
     position: relative;
-    margin-top: 200px;
-    margin-left: 40px;
     color: #8d8d8d;
-    font-size: 35px;
-    width: 440px;
+    font-size: 1.438rem;
+    width: auto;
 }
 
-.ourObjetive-verse b{
+.ourObjetive-verse b {
     font-weight: 800;
 }
 
-.ourObjetive-paragraph2{
+.ourObjetive-paragraph2 {
     display: flex;
+    flex-direction: column;
+    margin: 1.875rem;
+}
+
+.ourObjetive-paragraph2_text1 {
+    margin-bottom: 1.25rem;
+    line-height: 1.4rem;
+    font-size: 0.875rem;
+    text-align: justify;
+    color: #2f2e2e;
+    width: 100%;
+    word-spacing: 0.188rem;
+}
+
+.ourObjetive-paragraph2_text2 {
+    border-radius: 1.875rem;
+    padding: 1.875rem 0.625rem;
+    line-height: 1.4rem;
+    font-size: 0.875rem;
+    text-align: justify;
+    color: #2f2e2e;
+    width: 100%;
+    word-spacing: 0.125rem;
+}
+
+.ourObjetive-photos {
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    margin-bottom: 100px;
-}
-
-.ourObjetive-paragraph2_text1{
-    margin-right: 19.5px;
-    margin-top: 221px;
-    line-height: 22.4px;
-    font-size: 14px;
-    text-align: justify;
-    color: #2f2e2e;
-    width: 344px;
-    height: 280px;
-    word-spacing: 4px;
-}
-
-.ourObjetive-paragraph2_text2{
-    margin-top: 200px;
-    margin-left: 19.5px;
-    border: #dadada solid 1px;
-    border-radius: 30px;
-    padding: 43px 38px 52px 33px;
-    line-height: 22.4px;
-    font-size: 14px;
-    text-align: justify;
-    color: #2f2e2e;
-    width: 415px;
-    word-spacing: 4px;
-}
-
-.ourObjetive-photos{
-    display: flex;
-    justify-content:center;
     align-items: center;
-    font-size: 12px;
-    /* margin-bottom: 100px; */
+    font-size: 0.75rem;
 }
 
-.ourObjetive-photos > div {
-    margin: 0 20px;
+.ourObjetive-photos>div {
+    margin: 0.625rem;
     text-align: center;
 }
 
-.ourObjetice-photos_lincolns{
-    border-radius:  63% 37% 41% 59% / 63% 62% 38% 37%;
-    margin-bottom: 15px;
+.ourObjetice-photos_lincolns {
+    border-radius: 63% 37% 41% 59% / 63% 62% 38% 37%;
+    margin-bottom: 0.938rem;
 }
 
-.ourObjetice-text_photo{
-    text-align: center;
+.ourObjetice-photos_abigail {
+    border-radius: 51% 49% 51% 49% / 59% 71% 29% 41%;
+    margin-bottom:  0.938rem;
 }
 
-.ourObjetice-photos_abigail{
-    border-radius:51% 49% 51% 49% / 59% 71% 29% 41%;
-    margin-bottom: 15px;
+.ourObjetice-photos_danielaLopez {
+    border-radius: 59% 41% 70% 30% / 44% 71% 29% 56%;
+    margin-bottom:  0.938rem;
 }
 
-.ourObjetice-photos_danielaLopez{
-    border-radius:59% 41% 70% 30% / 44% 71% 29% 56%;
-    margin-bottom: 15px;
-}
-
-.ourObjetive-paragraph3{
-    margin-top: 100px;
-    background-color: rgb(50, 121, 184);
+.ourObjetive-paragraph3 {
+    margin-top: 2.5rem;
     width: 100%;
 }
 
-.ourObjetive-paragraph3_container{
-    display: flex;
-    justify-content: center;
-    padding: 140px 0px 30px 0px;
+.ourObjetive-paragraph3_container {
+    padding: 1.875rem;
     background-color: #f8f8f8;
 }
 
 .ourObjetive-paragraph3_text1{
-    display: flex;
-    flex-direction: column; 
-    width: 15%;
+    margin-bottom: 1.875rem;
 }
 
-.ourObjetive-textMinistries{
-    font-size: 30px;
+.ourObjetive-textMinistries {
+    font-size: 1.563rem;
     font-weight: 600;
-    line-height: 30px;
+    line-height: 1.875rem;
     color: #c7bb9f;
 }
 
-.ourObjetive-textAssociates{
-    font-size: 30px;
-    line-height: 30px;
+.ourObjetive-textAssociates {
+    font-size: 1.563rem;
+    line-height: 1.875rem;
     color: #c7bb9f;
     font-weight: 550;
 }
 
-.ourObjetive-paragraph3_text2{
-    width: 350px;
-    font-size: 15px;
-    line-height: 24px;
+.ourObjetive-paragraph3_text2 {
+    font-size: 0.938rem;
+    line-height: 1.5rem;
     text-align: justify;
-    word-spacing: 4px;
+    word-spacing: 0.188rem;
 }
 
-.ourObjetive-paragraph3_text2 span{
-    word-spacing: 1px;
+.ourObjetive-paragraph3_text2 span {
+    word-spacing: 0.063rem;
 }
 
-.ourObjetive-imagenFooter_container img{
+.ourObjetive-imagenFooter_container img {
     width: 100%;
-    height: 245px;
+    height: 11.75rem;
+    background-image: url("https://static.wixstatic.com/media/d166cc_89e082e6997946c1924000b082e3d4ad~mv2.jpg/v1/fill/w_640,h_376,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/d166cc_89e082e6997946c1924000b082e3d4ad~mv2.jpg");
+    object-fit: cover;
+    object-position: 50% 50%;
 }
 
-@media (width >= 20rem){
+@media (width >=48rem) {
+    .video-container {
+        height: calc(100% - 6rem);
+    }
+
+    .ourObjetive-title{
+        margin-top: 5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 2.5rem;
+    }
+
+    .ourObjetive-paragraph{
+        margin: 0 5rem;
+    }
+
+    .ourObjetive-text1{
+        font-size: 0.938rem;
+        letter-spacing: 0.125rem;
+    }
+
+    .ourObjetive-verse{
+        font-size: 1.875rem;
+        padding: 6.25rem;
+    }
+
+    .ourObjetive-paragraph2{
+        margin: 5rem;
+    }
+
+    .ourObjetive-paragraph2_text2{
+        padding: 2.5rem;
+    }
+
+    .ourObjetive-paragraph3_text1{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .ourObjetive-paragraph3_text2{
+        padding: 0 5rem;
+    }
+
+    .ourObjetive-paragraph3_text2>div{
+        display: flex;
+        justify-content: center;
+    }
 
 }
 
-@media (width >= 48rem){
+@media (width >=64rem) {
+    .video-container{
+        height: calc(100% - 6rem);
+    }
 
-}
+    .ourObjetive-container {
+        display: flex;
+        justify-content: center;
+        height: 28.563rem;
+        width: 100%;
+        padding: 6.25rem 12.5rem;
+    }
 
-@media (width >= 64rem){
+    .ourObjetive-title {
+        margin-top: 0;
+        position: relative;
+        left: 3.125rem;
+        align-items:normal;
+        font-size: 2.938rem;
+        height: 15.625rem;
+    }
+
+    .ourObjetive-textOur {
+        position: relative;
+        top: 0.75rem;
+    }
+
+    .ourObjetive-textObjective {
+        bottom: 0.375rem;
+    }
+
+    .ourObjetive-paragraph {
+        margin-left: 8.75rem;
+        width: 25rem;
+    }
+
+    .ourObjetive-text1{
+        width: 25rem;
+    }
+
+    .ourObjetive-verse_container {
+        height: 39.125rem;
+    }
+    
+    .ourObjetive-bible_background {
+        height: 100%;
+    }
+    
+    .ourObjetive-quote {
+        display: inline;
+        position: relative;
+        margin-top: 10.313rem;
+        margin-left: 15rem;
+        color: #8d8d8d;
+        font-size: 9.438rem;
+    }
+    
+    .ourObjetive-verse {
+        margin-top: 12.5rem;
+        margin-left: 2.5rem;
+        font-size: 2.188rem;
+        width: 27.5rem;
+        padding: 0;
+    }
+
+    .ourObjetive-paragraph2 {
+        margin: 1.875rem;
+        flex-direction: row;
+        justify-content: center;
+        margin-bottom: 6.25rem;
+        word-spacing: 0.25rem;
+    }
+    
+    .ourObjetive-paragraph2_text1 {
+        margin-right: 1.219rem;
+        margin-top: 13.813rem;
+        width: 21.25rem;
+        height: 17.5rem;
+        word-spacing: 0.25rem;
+    }
+    
+    .ourObjetive-paragraph2_text2 {
+        margin-top: 12.5rem;
+        margin-left: 1.219rem;
+        padding: 2.688rem 2.375rem 3.25rem 2.063rem;
+        width: 25.938rem;
+        word-spacing: 0.25rem;
+    }
+
+    .ourObjetive-photos>div {
+        margin: 0 1.25rem;
+    }
+    
+    .ourObjetice-text_photo {
+        text-align: center;
+    }
+
+    .ourObjetive-paragraph3 {
+        margin-top: 6.25rem;
+    }
+    
+    .ourObjetive-paragraph3_container {
+        display: flex;
+        justify-content: center;
+        padding: 8.75rem 0rem 1.875rem 0rem;
+    }
+    
+    .ourObjetive-paragraph3_text1 {
+        display: flex;
+        flex-direction: column;
+        width: 15%;
+    }
+    
+    .ourObjetive-textMinistries {
+        font-size: 1.875rem;
+    }
+    
+    .ourObjetive-textAssociates {
+        font-size: 1.875rem;
+    }
+
+    .ourObjetive-paragraph3_text1{
+        display: block;
+    }
+    
+    .ourObjetive-paragraph3_text2 {
+        width: 21.875rem;
+        padding: 0;
+        word-spacing: 0.25;
+    }
+
+    .ourObjetive-paragraph3_text2>div{
+        display: block;
+    }
+
+    .ourObjetive-imagenFooter_container img {
+        height: 15.313rem;
+    }
     
 }
