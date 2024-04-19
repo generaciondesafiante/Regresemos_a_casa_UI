@@ -1,11 +1,11 @@
-.home-container {
+.home {
   width: 100%;
   height: 100vh;
   position: absolute;
   font-family: var(--primaryFont);
 }
 
-.welcome-home {
+.home-welcome {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -28,7 +28,7 @@
   text-align: center;
 }
 
-.welcome-home > .action-button {
+.home-welcome > .home-button_action {
   background-color: transparent;
   color: var(--white);
   font-size: var(--fontSize-buttons_mobile);
@@ -36,7 +36,7 @@
   border-radius: 0.625rem;
 }
 
-.welcome-home > .content-items_down {
+.home-welcome > .home-content_itemsDown {
   width: 100vw;
   position: absolute;
   bottom: 1.25rem;
@@ -47,16 +47,16 @@
   align-items: center;
   justify-content: space-around;
 }
-.soclialNetworks {
+.home-socialNetworks_down {
   display: flex;
   gap: 0.8rem;
 }
 
-.middle-icon{
+.home-icon_middleDown{
   margin-right: 0.5rem;
 }
 
-.text-down {
+.home-sutbtitle_down {
   color: var(--white);
   text-align: center;
   font-size: var(--fontSize-paragraph_mobile);
@@ -64,21 +64,21 @@
 
 /* section 2 */
 
-.container-sectionTwo {
+.home-container_challenging {
   margin-top: 6rem;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.title-sectionTwo {
+.home-title_challenging {
   font-size: var(--fontSize-titles_mobile);
   color: var(--greenDesafiante);
   text-align: center;
   margin-bottom: 3rem;
 }
 
-.main-paragraph_sectionTwo{
+.home-mainParagraph_challenging{
   width: 300px;
   text-align: center;
   font-size: var(--fontSize-paragraph_mobile);
@@ -86,55 +86,55 @@
   margin-bottom: 3rem;
 }
 
-.bold-paragraph {
+.home-paragraphBold_challenging {
   font-weight: bold;
 }
 
-.step-container {
+.home-container-stepr {
   width: 60%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
-.step-items {
+.home-items_step {
   width: 100%;
   display: flex;
   margin-bottom: 2rem;
   gap: 1.2rem;
 }
 
-.step-number {
+.home-step_number {
   width: auto;
   text-align: start;
   font-size: var(--fontSize-superTitles_mobile);
   font-weight: bold;
 }
 
-.step-items:nth-child(1) .step-number {
+.home-items_step:nth-child(1) .home-step_number {
   color: var(--greenDesafiante);
 }
 
-.step-items:nth-child(2) .step-number {
+.home-items_step:nth-child(2) .home-step_number {
   color: var(--yellow);
 }
 
-.step-items:nth-child(3) .step-number {
+.home-items_step:nth-child(3) .home-step_number {
   color: var(--darkGreen);
 }
 
-.step-title {
+.home-title_step {
   font-size: var(--fontSize-superTitles_mobile);
   color: rgba(96, 94, 94, 1);
   text-align: start;
 }
 
-.step-title > .reverse-word{
+.home-title_step > .home-title_reverseWord{
   font-weight: bold;
   display: inline-block;
   transform: rotate(180deg);
 }
 
-.biblical-step {
+.home-biblica_step {
   color: var(--darkBlue-content);
 }
 
@@ -165,7 +165,7 @@
   cursor: pointer;
 }
 
-.schedules-last_topics {
+.home-shedulesLast {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -177,14 +177,14 @@
   background-repeat: no-repeat;
   position: relative;
 }
-.schedule-container_latestTopics {
+.home-container_shedulesLast {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.image-sukatDavid_schedules {
+.home-image-sukatDavid {
   border-radius: 1rem;
   cursor: pointer;
 }
@@ -203,12 +203,12 @@
   justify-content: center;
   align-items: center;
 }
-.title-schedules_lastTopic {
+.home-title_shedulesLast {
   margin-bottom: 1rem;
   font-size: var(--fontSize-titles_mobile);
 }
 
-.link-session-schedules {
+.home-session_linkSchedules {
   margin-top: 5rem;
   margin-bottom: 3rem;
   text-decoration: none;
@@ -218,7 +218,7 @@
   margin-bottom: 2rem;
 }
 
-.link-course_section {
+.home-section_linkCourses {
   width: 90%;
   margin-bottom: 5rem;
   text-decoration: none;
@@ -228,7 +228,7 @@
   margin-bottom: 2rem;
 }
 
-.latest-study {
+.home-image_latestStudy {
   width: 100%;
   border-radius: 1rem;
 }
@@ -239,30 +239,30 @@
     margin-bottom: 1rem;
   }
 
-  .welcome-home > .action-button {
+  .home-welcome > .home-button_action {
     font-size: var(--fontSize-buttons_tablet);
   }
 
-  .welcome-home > .content-items_down {
+  .home-welcome > .home-content_itemsDown {
     bottom: 4rem;
     gap: 1rem;
   }
 
-  .text-down {
+  .home-sutbtitle_down {
     font-size: var(--fontSize-paragraph_table);
   }
 
-  .title-sectionTwo {
+  .home-title_challenging {
     font-size: var(--fontSize-titles_tablet);
   }
 
-  .main-paragraph_sectionTwo{
+  .home-mainParagraph_challenging{
     width: 500px;
     font-size: var(--fontSize-paragraph_tablet);
     margin-bottom: 3.2rem;
   }
 
-  .step-items {
+  .home-items_step {
     width: 90%;
     display: flex;
     flex-direction: row;
@@ -292,7 +292,7 @@
     transform: scale(1.15);
   }
 
-  .image-sukatDavid_schedules {
+  .home-image-sukatDavid {
     width: 15rem;
   }
 
@@ -305,7 +305,7 @@
     gap: 1rem;
   }
 
-  .title-schedules_lastTopic {
+  .home-title_shedulesLast {
     margin-bottom: 1rem;
     font-size: var(--fontSize-titles_tablet);
   }
@@ -322,7 +322,7 @@
     width: 60%;
   }
 
-  .latest-study {
+  .home-image_latestStudy {
     width: 100%;
     border-radius: 1rem;
   }
@@ -334,11 +334,11 @@
     margin-bottom: 1.5rem;
   }
 
-  .welcome-home > .action-button {
+  .home-welcome > .home-button_action {
     font-size: var(--fontSize-buttons_laptop);
   }
 
-  .welcome-home > .action-button:hover {
+  .home-welcome > .home-button_action:hover {
     font-size: var(--fontSize-buttons_laptop);
     background-color: var(--greenDesafiante);
     color: var(--white);
@@ -346,30 +346,30 @@
     border-radius: 0.625rem;
   }
 
-  .text-down {
+  .home-sutbtitle_down {
     font-size: var(--fontSize-paragraph_laptop);
   }
 
-  .title-sectionTwo {
+  .home-title_challenging {
     font-size: var(--fontSize-titles_laptop);
   }
 
-  .main-paragraph_sectionTwo{
+  .home-mainParagraph_challenging{
     width: 450px;
     font-size: var(--fontSize-paragraph_desktop);
     margin-bottom: 4rem;
   }
 
-  .step-container {
+  .home-container-stepr {
     width: 50%;
     flex-direction: row;
   }
 
-  .step-items {
+  .home-items_step {
     flex-direction: column;
   }
 
-  .step-title {
+  .home-title_step {
     width: 200px;
   }
 
@@ -398,7 +398,7 @@
     gap: 1rem;
   }
 
-  .schedule-container_latestTopics {
+  .home-container_shedulesLast {
     width: 80%;
     display: flex;
     flex-direction: row;
@@ -409,16 +409,16 @@
     gap: 4rem;
   }
 
-  .title-schedules_lastTopic {
+  .home-title_shedulesLast {
     margin-bottom: 2rem;
     text-align: start;
     font-size: var(--fontSize-titles_desktop);
   }
 
-  .span-title_shedules {
+  .home-spanTitle_shedules {
     font-weight: normal;
   }
-  .link-session-schedules {
+  .home-session_linkSchedules {
     width: auto;
     align-content: center;
     margin-bottom: 0;
@@ -429,7 +429,7 @@
     font-weight: bold;
   }
 
-  .image-sukatDavid_schedules {
+  .home-image-sukatDavid {
     height: 400px;
     width: auto;
     margin-top: 0px;
@@ -442,11 +442,11 @@
     transition: all 300ms;
   }
 
-  .image-sukatDavid_schedules:hover {
+  .home-image-sukatDavid:hover {
     transform: scale(1.1);
   }
 
-  .link-course_section {
+  .home-section_linkCourses {
     width: auto;
     align-content: center;
     margin-bottom: 0;
@@ -457,7 +457,7 @@
     font-weight: bold;
   }
 
-  .latest-study {
+  .home-image_latestStudy {
     height: 400px;
     width: 700px;
     object-fit: cover;
@@ -465,7 +465,7 @@
     transition: all 300ms;
   }
 
-  .latest-study:hover {
+  .home-image_latestStudy:hover {
     transform: scale(1.1);
   }
 }

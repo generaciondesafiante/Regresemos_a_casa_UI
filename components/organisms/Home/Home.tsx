@@ -41,15 +41,15 @@ export const Home = () => {
   ];
 
   return (
-    <main className="home-container">
-      <section className={styles["welcome-home"]}>
+    <main className="home">
+      <section className={styles["home-welcome"]}>
         <h1 className={styles["home-title"]}>GENERACIÓN DESAFIANTE</h1>
-        <Button className={styles["action-button"]}>VERSO POR VERSO</Button>
-        <div className={styles["content-items_down"]}>
-          <p className={styles["text-down"]}>¡BIENVENIDO A ESTE CAMINAR!</p>
-          <div className={styles["soclialNetworks"]}>
+        <Button className={styles["home-button_action"]}>VERSO POR VERSO</Button>
+        <div className={styles["home-content_itemsDown"]}>
+          <p className={styles["home-sutbtitle_down"]}>¡BIENVENIDO A ESTE CAMINAR!</p>
+          <div className={styles["home-socialNetworks_down"]}>
             <FacebookIcon />
-            <div className={styles['middle-icon']}>
+            <div className={styles['home-icon_middleDown']}>
               <InstagramIcon />
             </div>
             <YoutubeIcon />
@@ -57,42 +57,42 @@ export const Home = () => {
         </div>
       </section>
       {/* section two */}
-      <section className={styles["container-sectionTwo"]}>
-        <h2 className={styles["title-sectionTwo"]}>¿QUÉ ES SER DESAFIANTE?</h2>
-        <p className={styles["main-paragraph_sectionTwo"]}>
+      <section className={styles["home-container_challenging"]}>
+        <h2 className={styles["home-title_challenging"]}>¿QUÉ ES SER DESAFIANTE?</h2>
+        <p className={styles["home-mainParagraph_challenging"]}>
           Somos una
-          <span className={styles["bold-paragraph"]}>
+          <span className={styles["home-paragraphBold_challenging"]}>
             plataforma multimedia
           </span>
           para el estudio de la palabra del Señor desde una perspectiva hebrea.
           Ser desafiante es:
         </p>
-        <div className={styles["step-container"]}>
-          <div className={styles["step-items"]}>
-            <span className={styles["step-number"]}>01</span>
+        <div className={styles["home-container-stepr"]}>
+          <div className={styles["home-items_step"]}>
+            <span className={styles["home-step_number"]}>01</span>
             <div>
-              <p className={styles["step-title"]}>MOSTRAR TU IDENTIDAD</p>
-              <span className={styles["biblical-step"]}>
+              <p className={styles["home-title_step"]}>MOSTRAR TU IDENTIDAD</p>
+              <span className={styles["home-biblica_step"]}>
                 Sin importar el que dirán. <br />
                 Apocalipsis 14:12
               </span>
             </div>
           </div>
-          <div className={styles["step-items"]}>
-            <span className={styles["step-number"]}>02</span>
+          <div className={styles["home-items_step"]}>
+            <span className={styles["home-step_number"]}>02</span>
             <div>
-              <p className={styles["step-title"]}>
-                IR <span className={styles["reverse-word"]}>CONTRA</span>
+              <p className={styles["home-title_step"]}>
+                IR <span className={styles["home-title_reverseWord"]}>CONTRA</span>
                 CORRIENTE
               </p>
-              <i className={styles["biblical-step"]}>Salir del sistema</i>
+              <i className={styles["home-biblica_step"]}>Salir del sistema</i>
             </div>
           </div>
-          <div className={styles["step-items"]}>
-            <span className={styles["step-number"]}>03</span>
+          <div className={styles["home-items_step"]}>
+            <span className={styles["home-step_number"]}>03</span>
             <div>
-              <p className={styles["step-title"]}>IR CONTRA CORRIENTE</p>
-              <span className={styles["biblical-step"]}>
+              <p className={styles["home-title_step"]}>IR CONTRA CORRIENTE</p>
+              <span className={styles["home-biblica_step"]}>
                 cada palabra del Maestro
                 <br />
                 Romanos 2
@@ -115,25 +115,25 @@ export const Home = () => {
           ))}
         </div>
       </section>
-      <section className={styles["schedules-last_topics"]}>
-        <div className={styles["schedule-container_latestTopics"]}>
-          <Link href={""} className={styles["link-session-schedules"]}>
-            <h2 className={styles["title-schedules_lastTopic"]}>HORARIOS</h2>
+      <section className={styles["home-shedulesLast"]}>
+        <div className={styles["home-container_shedulesLast"]}>
+          <Link href={""} className={styles["home-session_linkSchedules"]}>
+            <h2 className={styles["home-title_shedulesLast"]}>HORARIOS</h2>
             <img
               src="/homePage/sukat-david-home.webp"
               alt=" image sukat david horarios"
-              className={styles["image-sukatDavid_schedules"]}
+              className={styles["home-image-sukatDavid"]}
             />
           </Link>
-          <Link href={""} className={styles["link-course_section"]}>
-            <h2 className={styles["title-schedules_lastTopic"]}>
+          <Link href={""} className={styles["home-section_linkCourses"]}>
+            <h2 className={styles["home-title_shedulesLast"]}>
               ÚLTIMO{" "}
-              <span className={styles["span-title_shedules"]}>ESTUDIO:</span>
+              <span className={styles["home-spanTitle_shedules"]}>ESTUDIO:</span>
             </h2>
             <img
               src="/homePage/LASTCOURSE.webp"
               alt=""
-              className={styles["latest-study"]}
+              className={styles["home-image_latestStudy"]}
             />
           </Link>
         </div>
