@@ -12,7 +12,7 @@
   align-items: center;
   width: 100%;
   height: 100vh;
-  background-image: linear-gradient(0deg, #6e71767f, rgba(188, 191, 195, 0.44)),
+  background-image: linear-gradient(0deg, #6e71767f, #bcbfc370),
     url("/homePage/homepage.webp");
   background-size: cover;
   background-position: center;
@@ -124,7 +124,7 @@
 
 .home-title_step {
   font-size: var(--fontSize-superTitles_mobile);
-  color: rgba(96, 94, 94, 1);
+  color: #605e5e;
   text-align: start;
 }
 
@@ -169,7 +169,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  background-image: linear-gradient(0deg, #353434d1, rgba(85, 86, 87, 0.928)),
+  background-image: linear-gradient(0deg, #353434d1, #555657ed),
     url("/homePage/background-times.webp");
   background-size: cover;
   object-fit: contain;
