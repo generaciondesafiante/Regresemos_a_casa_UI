@@ -101,15 +101,15 @@ export const Home = () => {
           </div>
         </div>
       </section>
-      <section className={styles["bePart-container"]}>
-        <h2 className={styles["title-bePart"]}>¡SÉ PARTE!</h2>
-        <div className={styles["items-content_bePart"]}>
+      <section className={styles["home-container_bePart"]}>
+        <h2 className={styles["home-title_bePart"]}>¡SÉ PARTE!</h2>
+        <div className={styles["home-content_itemsBePart"]}>
           {bePart.map((image) => (
             <Link href={image.href} key={image.href}>
               <img
                 src={image.image}
                 alt={image.name}
-                className={styles["image-bePart"]}
+                className={styles["home-image_bePart"]}
               />
             </Link>
           ))}
