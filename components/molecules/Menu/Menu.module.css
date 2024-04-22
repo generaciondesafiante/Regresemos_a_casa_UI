@@ -7,49 +7,22 @@
   justify-content: space-between;
   padding: 0.5rem;
   align-items: center;
-  background-color: var(--white-transparent);
+  background-color: var(--white);
 }
 
-.header-logo {
+.menu-header_logo {
   width: 4rem;
   display: flex;
   transition: var(--transition);
   cursor: pointer;
 }
 
-.header-logo:hover {
+.menu-header_logo:hover {
   transform: var(--transform);
 }
 
-.header-container_btn {
-  display: flex;
-  justify-content: space-around;
-  gap: 0.7rem;
-}
-
-.button-sesion {
-  border: var(--border) var(--greenDesafiante);
-  background-color: var(--white);
-  color: var(--greenDesafiante);
-  font-weight: bold;
-}
-
-.button-sesion:hover {
-  background-color: var(--greenDesafiante);
-  color: var(--white);
-}
-
-.button-register {
-  border: var(--border) var(--greenDesafiante);
-  background-color: var(--greenDesafiante);
-  color: var(--white);
-  font-weight: bold;
-}
-
-.button-register:hover {
-  border: var(--border) var(--greenDesafiante);
-  background-color: var(--white);
-  color: var(--greenDesafiante);
+.menu-header_containerBtn {
+  display: none;
 }
 
 @media (width >=48rem) {
@@ -57,7 +30,7 @@
     padding: 0.5rem 1rem;
   }
 
-  .header-logo {
+  .menu-header_logo {
     width: 3.5rem;
   }
 }
@@ -67,7 +40,69 @@
     padding: 0.5rem 1.5rem;
   }
 
-  .header-logo {
+  .menu-header_logo {
     width: 4rem;
+  }
+  .menu-header_containerBtn {
+    display: flex;
+    gap: 1.3rem;
+    align-items: center;
+  }
+
+  .menu-header_item {
+    color: var(--blueDark);
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: all 300ms;
+  }
+
+  .menu-header_item:hover {
+    cursor: pointer;
+    color: var(--greenDesafiante);
+    transition: all 300ms;
+  }
+  .menu-header_item.selected {
+    color: var(--greenDesafiante);
+    text-decoration: none;
+  }
+  .menu-header_arrow {
+    margin-left: 0.5rem;
+  }
+  .menu-header_subMenuContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-top: 2.063rem;
+    position: absolute;
+    padding: 2.813rem;
+    height: auto;
+    background-color: var(--white);
+    transition: ease-out 0.5s;
+    transform: scale(1);
+    list-style: none;
+    text-decoration: none;
+  }
+  .menu-header_subMenuOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 4.375rem);
+    margin-top: 6rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: -10;
+    transition: opacity 0.3s ease;
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .menu-header_subMenuItems {
+    color: var(--blueDark);
+    gap: 1.25rem;
+    text-decoration: none;
+  }
+  .menu-header_subMenuItems:hover {
+    color: var(--greenDesafiante);
+    cursor: pointer;
   }
 }

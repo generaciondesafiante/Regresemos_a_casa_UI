@@ -1,5 +1,13 @@
-import { redirect } from "next/navigation";
+import { Menu } from "../../components/molecules";
+import { Footer } from "../../components/molecules/Footer/Footer";
+import { Home } from "../../components/organisms/Home/Home";
 
-export default function Home() {
-  return redirect("login");
+export default function HomePage() {
+  return (
+    <>
+      <Menu />
+      <Home/>
+      <Footer/>
+    </>
+  );
 }
