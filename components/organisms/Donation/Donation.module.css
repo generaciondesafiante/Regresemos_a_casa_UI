@@ -1,0 +1,205 @@
+.donations {
+  width: 100%;
+  height: calc(100% - 6.25rem);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.donations-backgroundContainer_info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-image: linear-gradient(0deg, #fcfdffed, rgba(255, 253, 253, 0.94)),
+    url("/donations/background-donations.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+.donations-container_info{
+  width: 90%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 3rem;
+  margin-top: 6rem;
+}
+
+.donations-title_info {
+  margin-top: 4rem;
+  color: var(--greenDesafiante);
+  text-align: center;
+  font-size: var(--fontSize-titles_mobile);
+}
+
+.donations-paragraph_info{
+  font-size: var(--fontSize-paragraph_mobile);
+  color: var(--black);
+  margin-top: 2rem;
+}
+
+.donations-informations_paymentMethods {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.donations-paragraph_pymentMethods {
+  text-align: center;
+  width: 12.5rem;
+  margin-bottom: 1rem;
+  color: var(--black);
+  font-weight: bold;
+}
+.donations-contentButton_paymentMethods {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.donations-contentButton_paymentMethods > .donations-button_pypalme {
+  width: 9.375rem;
+  background-color: var(--white);
+  color: var(--greenDesafiante);
+  font-size: var(--fontSize-buttons_mobile);
+  border: var(--border) var(--greenDesafiante);
+  font-size: var(--fontSize-buttons_mobile);
+  border-radius: 0.625rem;
+  margin-bottom: 1rem;
+}
+
+.donations-contentButton_paymentMethods > .donations-button_support {
+  width: 9.375rem;
+  background-color: var(--greenDesafiante);
+  color: var(--white);
+  font-size: var(--fontSize-buttons_mobile);
+  border: var(--border) var(--greenDesafiante);
+  font-size: var(--fontSize-buttons_mobile);
+  border-radius: 0.625rem;
+  margin-bottom: 1rem;
+}
+
+.donations-cards_methods{
+  display: flex;
+  gap: 1rem;
+}
+
+.donations-cards_methods > img {
+  width: 3rem;
+}
+.donations-container_deposit {
+  width: 90%;
+  margin-top: 3rem;
+}
+
+.donations-title_deposit {
+  color: var(--greenDesafiante);
+}
+
+.donations-title_bank {
+  color: var(--darkBlue);
+  font-size: var(--fontSize-subtitles_mobile);
+  font-weight: bold;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.donations-content_dataBank {
+  margin-bottom: 1rem;
+}
+.donations-title_data {
+  color: var(--black);
+  font-weight: bold;
+  font-size: var(--fontSize-paragraph_mobile);
+}
+
+.donations-info_data {
+  color: var(--black);
+  font-size: var(--fontSize-paragraph_mobile);
+}
+
+@media (width >= 48rem) {
+
+  .donations-title_info {
+    margin-top: 3rem;
+    font-size: var(--fontSize-titles_tablet);
+  }
+
+  .donations-paragraph_info{
+    font-size: var(--fontSize-paragraph_mobile);
+  }
+
+  .donations-informations_paymentMethods {
+    margin-top: 3.5rem;
+  }
+
+  .donations-paragraph_pymentMethods {
+    font-size: var(--fontSize-paragraph_mobile);
+  }
+
+  .donations-contentButton_paymentMethods {
+    flex-direction: row;
+    gap: 0.5rem;
+  }
+
+  .donations-contentButton_paymentMethods > .donations-button_pypalme,
+  .donations-contentButton_paymentMethods > .donations-button_support {
+    padding: 0.3rem;
+    font-size: var(--fontSize-buttons_tablet);
+  }
+
+  .donations-container_deposit {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .donations-title_deposit {
+    font-size: var(--fontSize-titles_tablet);
+  }
+  .donations-title_bank {
+    font-size: var(--fontSize-subtitles_tablet);
+  }
+
+  .donations-title_data {
+    font-size: var(--fontSize-paragraph_tablet);
+  }
+
+  .donations-info_data {
+    color: var(--black);
+    font-size: var(--fontSize-paragraph_tablet);
+  }
+}
+
+@media (width >= 64rem) {
+  .donations-backgroundContainer_info {
+    margin-top: 0;
+    height: 90vh;
+  }
+
+  .donations-container_info{
+    display: flex;
+    flex-direction: row;
+    gap: 5rem;
+    height: 80vh;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .donations-content_info {
+    width: 30%;
+  }
+
+  .donations-title_info{
+    text-align: start;
+  }
+}
+
