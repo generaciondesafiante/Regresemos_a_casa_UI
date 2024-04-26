@@ -93,6 +93,11 @@ export const Login: FC = () => {
         <Button className={styles["form-login_btn"]} type="submit">
           Ingresar
         </Button>
+        <Link href={'/register'} className={styles['link-register']}>
+          <Button className={styles["form-register_btn"]} type="submit">
+            Registro
+          </Button>
+        </Link>
       </form>
       {errors.length > 0 && (
         <div className="alert alert-danger mt-2">

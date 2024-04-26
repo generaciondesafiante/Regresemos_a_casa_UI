@@ -1,8 +1,8 @@
-import React from 'react'
+import { Donation } from '../../../../components/organisms/Donation/Donation'
 
 const DonationsPage = () => {
   return (
-    <div>DonationsPage</div>
+    <Donation/>
   )
 }
 

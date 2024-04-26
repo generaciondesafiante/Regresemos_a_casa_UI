@@ -65,7 +65,7 @@
   transition: var(--transition);
 }
 
-@media (width >=38rem) {
+@media (width >=48rem) {
   .input-input {
     width: 20rem;
   }
