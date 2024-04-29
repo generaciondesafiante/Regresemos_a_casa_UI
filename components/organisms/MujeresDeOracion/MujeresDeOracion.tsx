@@ -18,34 +18,35 @@ export const MujeresDeOracion = () => {
   ];
 
   return (
-    <section className={styles["MujeresDeOracion"]}>
-      <div className={styles["MujeresDeOracion_welcome"]}>
-        <h2 className={styles["MujeresDeOracion-title_welcome"]}>
+    <section className={styles["mujeresDeOracion"]}>
+      <div className={styles["mujeresDeOracion_welcome"]}>
+        <h2 className={styles["mujeresDeOracion-title_welcome"]}>
           MUJERES DE ORACIÓN
         </h2>
-        <p className={styles["MujeresDeOracion-paragraph_welcome"]}>
+        <p className={styles["mujeresDeOracion-paragraph_welcome"]}>
           ¡Bienvenida a este <b>grupo de mujeres virtuosas</b> que lo único que
           anhelan es agradarle al Padre!
         </p>
       </div>
-      <div className={styles["MujeresDeOracion-buttons"]}>
-        <Button className={styles["MujeresDeOracion-buttons_bgTrasnsparent"]}>
+      <div className={styles["mujeresDeOracion-buttons"]}>
+        <Button className={styles["mujeresDeOracion-buttons_bgTrasnsparent"]}>
           WhatsApp
         </Button>
-        <Button className={styles["MujeresDeOracion-buttons_bgTrasnsparent"]}>
+        <Button className={styles["mujeresDeOracion-buttons_bgTrasnsparent"]}>
           Telegram
         </Button>
-        <Button className={styles["MujeresDeOracion-buttons_bgGreen"]}>
+        <Button className={styles["mujeresDeOracion-buttons_bgGreen"]}>
           HAZ TU PEDIDO DE ORACIÓN
         </Button>
       </div>
-      <div className={styles["MujeresDeOracion-content_postsShedule"]}>
+      <div className={styles['mujeresDeOracion-line']}></div>
+      <div className={styles["mujeresDeOracion-content_postsShedule"]}>
         {postsShedule.map((shedule, index) => (
           <img
             src={shedule.image}
             alt={shedule.image}
             key={index}
-            className={styles["MujeresDeOracion-image_postsShedule"]}
+            className={styles["mujeresDeOracion-image_postsShedule"]}
           />
         ))}
       </div>

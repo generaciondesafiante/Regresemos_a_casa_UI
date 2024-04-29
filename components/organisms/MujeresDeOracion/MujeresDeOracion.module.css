@@ -1,4 +1,4 @@
-.MujeresDeOracion {
+.mujeresDeOracion {
   width: 100%;
   height: 100%;
   display: flex;
@@ -7,7 +7,7 @@
   align-items: center;
 }
 
-.MujeresDeOracion_welcome {
+.mujeresDeOracion_welcome {
   margin-top: 6.25rem;
   width: 100%;
   height: 80vh;
@@ -28,20 +28,21 @@
   gap: 0.625rem;
 }
 
-.MujeresDeOracion-title_welcome {
+.mujeresDeOracion-title_welcome {
+  width: 12.5rem;
   color: var(--white);
   font-size: var(--fontSize-superTitles_mobile);
   text-align: center;
 }
 
-.MujeresDeOracion-paragraph_welcome {
+.mujeresDeOracion-paragraph_welcome {
   color: var(--white);
   font-size: var(--fontSize-paragraph_mobile);
   text-align: center;
   width: 15.625rem;
 }
 
-.MujeresDeOracion-buttons {
+.mujeresDeOracion-buttons {
   width: 100%;
   height: 30vh;
   margin-top: 1.25rem;
@@ -52,22 +53,27 @@
   gap: 0.625rem;
 }
 
-.MujeresDeOracion-buttons_bgTrasnsparent {
+.mujeresDeOracion-buttons > .mujeresDeOracion-buttons_bgTrasnsparent {
   border: var(--greenDesafiante) solid 0.02rem;
   border-radius: var(--borderRadius);
   font-size: var(--fontSize-buttons_mobile);
   background: var(--white);
 }
 
-.MujeresDeOracion-buttons_bgGreen {
+.mujeresDeOracion-buttons_bgGreen {
   border: var(--greenDesafiante) solid 0.02rem;
   border-radius: var(--borderRadius);
   font-size: var(--fontSize-buttons_mobile);
   background: var(--greenDesafiante);
   color: var(--white);
 }
+.mujeresDeOracion-line {
+  width: 80%;
+  height: 1px;
+  background-color: var(--darkGrayGradient);
+}
 
-.MujeresDeOracion-content_postsShedule {
+.mujeresDeOracion-content_postsShedule {
   width: 90%;
   display: flex;
   flex-direction: column;
@@ -78,57 +84,70 @@
   margin-bottom: 1.875rem;
 }
 
-.MujeresDeOracion-image_postsShedule {
+.mujeresDeOracion-image_postsShedule {
   border-radius: var(--borderRadius);
   width: 100%;
 }
 
 @media (width >= 48rem) {
-  .MujeresDeOracion-title_welcome {
+  .mujeresDeOracion-title_welcome {
+    width: 100%;
     font-size: var(--fontSize-superTitles_tablet);
   }
 
-  .MujeresDeOracion-paragraph_welcome {
+  .mujeresDeOracion-paragraph_welcome {
     font-size: var(--fontSize-paragraph_tablet);
   }
 
-  .MujeresDeOracion-buttons_bgTrasnsparent,
-  .MujeresDeOracion-buttons_bgGreen {
+  .mujeresDeOracion-buttons_bgTrasnsparent,
+  .mujeresDeOracion-buttons_bgGreen {
     font-size: var(--fontSize-buttons_tablet);
   }
 }
 
 @media (width >=64rem) {
-  .MujeresDeOracion-title_welcome {
+  .mujeresDeOracion-title_welcome {
     font-size: var(--fontSize-superTitles_laptop);
     margin-bottom: 3.125rem;
   }
 
-  .MujeresDeOracion-paragraph_welcome {
+  .mujeresDeOracion-paragraph_welcome {
     font-size: var(--fontSize-paragraph_laptop);
     width: 21.875rem;
   }
 
-  .MujeresDeOracion-buttons_bgTrasnsparent,
-  .MujeresDeOracion-buttons_bgGreen {
+  .mujeresDeOracion-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .mujeresDeOracion-buttons_bgTrasnsparent,
+  .mujeresDeOracion-buttons_bgGreen {
     font-size: var(--fontSize-buttons_laptop);
     padding: 0.625rem;
   }
 
-  .MujeresDeOracion-buttons_bgTrasnsparent:hover {
+  .mujeresDeOracion-buttons_bgTrasnsparent:hover {
     border: var(--greenDesafiante) solid 0.02rem;
     background: var(--greenDesafiante);
     color: var(--white);
     padding: 0.625rem;
   }
-  .MujeresDeOracion-buttons_bgGreen:hover {
+  .mujeresDeOracion-buttons_bgGreen:hover {
     border: var(--greenDesafiante) solid 0.02rem;
     background: var(--white);
     color: var(--greenDesafiante);
     padding: 0.625rem;
   }
 
-  .MujeresDeOracion-content_postsShedule {
+  .mujeresDeOracion-line {
+    width: 70%;
+  }
+
+  .mujeresDeOracion-content_postsShedule {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -138,13 +157,13 @@
     margin-bottom: 5rem;
   }
 
-  .MujeresDeOracion-image_postsShedule {
+  .mujeresDeOracion-image_postsShedule {
     width: 25rem;
     transition: all 300ms;
     cursor: pointer;
   }
 
-  .MujeresDeOracion-image_postsShedule:hover {
+  .mujeresDeOracion-image_postsShedule:hover {
     transform: scale(1.1);
   }
 }
