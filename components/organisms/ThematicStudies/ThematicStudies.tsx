@@ -39,7 +39,6 @@ export const ThematicStudies = () => {
       href: "https://www.youtube.com/playlist?list=PLX-KKyt726LPEBVz6GR0Z5f6_IV2fhwmd",
     },
   ];
-
   return (
     <section className={styles["thematicStudies"]}>
       <div className={styles["thematicStudies-welcome"]}>
@@ -65,6 +64,9 @@ export const ThematicStudies = () => {
             />
           </Link>
         ))}
+      </div>
+      <div className={styles['thematicStudies-content_PDFThematics']}>
+
       </div>
     </section>
   );
