@@ -1,0 +1,169 @@
+.mujeresDeOracion {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.mujeresDeOracion_welcome {
+  margin-top: 6.25rem;
+  width: 100%;
+  height: 80vh;
+  object-fit: cover;
+  object-position: 50% 50%;
+  background-image: linear-gradient(
+      rgba(255, 97, 97, 0.716),
+      rgba(255, 97, 97, 0.716)
+    ),
+    url("/gruposDesafiantes/mujeresDeOracion/mujeresdeoracion.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.mujeresDeOracion-title_welcome {
+  width: 12.5rem;
+  color: var(--white);
+  font-size: var(--fontSize-superTitles_mobile);
+  text-align: center;
+}
+
+.mujeresDeOracion-paragraph_welcome {
+  color: var(--white);
+  font-size: var(--fontSize-paragraph_mobile);
+  text-align: center;
+  width: 15.625rem;
+}
+
+.mujeresDeOracion-buttons {
+  width: 100%;
+  height: 30vh;
+  margin-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.mujeresDeOracion-buttons > .mujeresDeOracion-buttons_bgTrasnsparent {
+  border: var(--greenDesafiante) solid 0.02rem;
+  border-radius: var(--borderRadius);
+  font-size: var(--fontSize-buttons_mobile);
+  background: var(--white);
+}
+
+.mujeresDeOracion-buttons_bgGreen {
+  border: var(--greenDesafiante) solid 0.02rem;
+  border-radius: var(--borderRadius);
+  font-size: var(--fontSize-buttons_mobile);
+  background: var(--greenDesafiante);
+  color: var(--white);
+}
+.mujeresDeOracion-line {
+  width: 80%;
+  height: 1px;
+  background-color: var(--darkGrayGradient);
+}
+
+.mujeresDeOracion-content_postsShedule {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.25rem;
+  margin-top: 1.875rem;
+  margin-bottom: 1.875rem;
+}
+
+.mujeresDeOracion-image_postsShedule {
+  border-radius: var(--borderRadius);
+  width: 100%;
+}
+
+@media (width >= 48rem) {
+  .mujeresDeOracion-title_welcome {
+    width: 100%;
+    font-size: var(--fontSize-superTitles_tablet);
+  }
+
+  .mujeresDeOracion-paragraph_welcome {
+    font-size: var(--fontSize-paragraph_tablet);
+  }
+
+  .mujeresDeOracion-buttons_bgTrasnsparent,
+  .mujeresDeOracion-buttons_bgGreen {
+    font-size: var(--fontSize-buttons_tablet);
+  }
+}
+
+@media (width >=64rem) {
+  .mujeresDeOracion-title_welcome {
+    font-size: var(--fontSize-superTitles_laptop);
+    margin-bottom: 3.125rem;
+  }
+
+  .mujeresDeOracion-paragraph_welcome {
+    font-size: var(--fontSize-paragraph_laptop);
+    width: 21.875rem;
+  }
+
+  .mujeresDeOracion-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .mujeresDeOracion-buttons_bgTrasnsparent,
+  .mujeresDeOracion-buttons_bgGreen {
+    font-size: var(--fontSize-buttons_laptop);
+    padding: 0.625rem;
+  }
+
+  .mujeresDeOracion-buttons_bgTrasnsparent:hover {
+    border: var(--greenDesafiante) solid 0.02rem;
+    background: var(--greenDesafiante);
+    color: var(--white);
+    padding: 0.625rem;
+  }
+  .mujeresDeOracion-buttons_bgGreen:hover {
+    border: var(--greenDesafiante) solid 0.02rem;
+    background: var(--white);
+    color: var(--greenDesafiante);
+    padding: 0.625rem;
+  }
+
+  .mujeresDeOracion-line {
+    width: 70%;
+  }
+
+  .mujeresDeOracion-content_postsShedule {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3.125rem;
+    margin-bottom: 5rem;
+  }
+
+  .mujeresDeOracion-image_postsShedule {
+    width: 25rem;
+    transition: all 300ms;
+    cursor: pointer;
+  }
+
+  .mujeresDeOracion-image_postsShedule:hover {
+    transform: scale(1.1);
+  }
+}

@@ -34,8 +34,8 @@ export const menuData = [
         href: "/grupos-desafiantes/salud-desafiante",
       },
       {
-        title: "Mujeres en oración",
-        href: "/grupos-desafiantes/mujeres-en-oracion",
+        title: "Mujeres de oración",
+        href: "/grupos-desafiantes/mujeres-de-oracion",
       },
       {
         title: "Ser Sansón no basta",
