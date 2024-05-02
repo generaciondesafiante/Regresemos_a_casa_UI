@@ -1,3 +1,4 @@
+export * from "./AboutUs-template/AboutUsTemplate";
 export * from "./AssessmentConditinalView-template/AssessmentConditinalViewTemplate";
 export * from "./ChangePasswordUser-template/ChangePasswordUserTemplate";
 export * from "./CourseResources-template/CourseResourcesTemplate";
