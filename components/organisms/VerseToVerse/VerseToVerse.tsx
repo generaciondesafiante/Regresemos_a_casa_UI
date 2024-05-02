@@ -131,9 +131,14 @@ export const VerseToVerse = () => {
           </p>
         </div>
       </div>
-      <div className={styles['verseToVerse__content--videosStudiesVerse']}>
+      <div className={styles["verseToVerse__content--videosStudiesVerse"]}>
         {dataVideo.map((video, index) => (
-          <img src={video.image} alt={video.name} key={index}  className={styles['verseToVerse__image--videosStudiesVerse']}/>
+          <img
+            src={video.image}
+            alt={video.name}
+            key={index}
+            className={styles["verseToVerse__image--videosStudiesVerse"]}
+          />
         ))}
       </div>
     </section>
