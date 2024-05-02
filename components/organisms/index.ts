@@ -1,3 +1,4 @@
+export * from "./AboutUs/AboutUs";
 export * from "./Assessment/AssessmentFinished/AssessmentFinished";
 export * from "./Assessment/AssessmentMain/AssessmentMain";
 export * from "./Assessment/AssessmentQuestions/AssessmentQuestions";
