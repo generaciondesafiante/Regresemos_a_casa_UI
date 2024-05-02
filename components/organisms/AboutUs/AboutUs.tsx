@@ -2,11 +2,11 @@
 import styles from "./AboutUs.module.css";
 
 export const AboutUs = () => {
-    const imagen = "https://static.wixstatic.com/media/d166cc_511a94f7936d4713b4906a3194d7f30c~mv2.jpg/v1/crop/x_283,y_60,w_994,h_1020/fill/w_166,h_172,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/30743886_2126087857670517_61279119260652.jpg";
+    const imagenLincolns = "https://static.wixstatic.com/media/d166cc_511a94f7936d4713b4906a3194d7f30c~mv2.jpg/v1/crop/x_283,y_60,w_994,h_1020/fill/w_166,h_172,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/30743886_2126087857670517_61279119260652.jpg";
 
-    const imagen2 = "https://static.wixstatic.com/media/d166cc_141257b4382346d3a80798efa1cf09c4~mv2.jpg/v1/crop/x_129,y_49,w_440,h_521/fill/w_134,h_156,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/54517632_2414760852078060_82520352340574.jpg";
+    const imagenAbigailMichell = "https://static.wixstatic.com/media/d166cc_141257b4382346d3a80798efa1cf09c4~mv2.jpg/v1/crop/x_129,y_49,w_440,h_521/fill/w_134,h_156,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/54517632_2414760852078060_82520352340574.jpg";
 
-    const imagen3 = "https://static.wixstatic.com/media/d166cc_065bdcc8edf34430a0341c1ba9fd48d7~mv2.jpg/v1/crop/x_219,y_0,w_2586,h_3132/fill/w_142,h_172,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/Milka%20Daniela.jpg";
+    const imagenDanielaLopez = "https://static.wixstatic.com/media/d166cc_065bdcc8edf34430a0341c1ba9fd48d7~mv2.jpg/v1/crop/x_219,y_0,w_2586,h_3132/fill/w_142,h_172,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/Milka%20Daniela.jpg";
 
     const discoverBible = "https://static.wixstatic.com/media/d166cc_fc0265a7548b4bc9b50511322f17870d~mv2.png/v1/fill/w_124,h_124,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/3000PX%20Logos_Mesa%20de%20trabajo%201.png";
 
@@ -48,16 +48,16 @@ export const AboutUs = () => {
             </div>
             <div className={styles["aboutUs__ourObjetive--photos"]}>
                 <div>
-                    <img className={styles["aboutUs__ourObjeticePhotos--lincolns"]} src={imagen} alt="" />
+                    <img className={styles["aboutUs__ourObjeticePhotos--lincolns"]} src={imagenLincolns} alt="lincolns' photo" />
                     <p className={styles["aboutUs__ourObjetice--textPhoto"]}><b>Lincolns</b> y <b>Mariuxi</b></p>
                     <p className={styles["aboutUs__ourObjetice--textPhoto"]}>Mendoza</p>
                 </div>
                 <div>
-                    <img className={styles["aboutUs__ourObjeticePhotos--abigail"]} src={imagen2} alt="" />
+                    <img className={styles["aboutUs__ourObjeticePhotos--abigail"]} src={imagenAbigailMichell} alt="abigail's photo" />
                     <p className={styles["aboutUs__ourObjetice--textPhoto"]}><b>Abigail</b> Michelle</p>
                 </div>
                 <div>
-                    <img className={styles["aboutUs__ourObjeticePhotos--danielaLopez"]} src={imagen3} alt="" />
+                    <img className={styles["aboutUs__ourObjeticePhotos--danielaLopez"]} src={imagenDanielaLopez} alt="daniela's photo" />
                     <p className={styles["aboutUs__ourObjetice--textPhoto"]}><b>Daniela</b> López</p>
                 </div>
             </div>
@@ -76,13 +76,13 @@ export const AboutUs = () => {
                             Si tienes un llamado a la enseñanza de la Biblia, o simplemente estás hambriento por aprender, en esta página encontrarás recursos ilimitados para saciar tu hambre.
                         </span>
                         <div>
-                            <img src={discoverBible} alt="" />
+                            <img src={discoverBible} alt="Image of bible background" />
                         </div>
                     </p>
                 </div>
             </div>
             <div className={styles["aboutUs__ourObjetive--imgFooterContainer"]}>
-                <img src={imagenFooter} alt="" />
+                <img src={imagenFooter} alt="Image people worshiping" />
             </div>
         </div>
     )
