@@ -25,7 +25,7 @@ export const thematicStudiesVideo = [
     href: "https://www.youtube.com/playlist?list=PLX-KKyt726LONP08Ey9llWGuq2Bvnwd41",
   },
   {
-    name: "Cosas que creias que estaban en la BIBLIA pero NO",
+    name: "Cosas que creías que estaban en la BIBLIA pero NO",
     image: "/courses/thematicStudies/cosasQueCreias.webp",
     href: "https://www.youtube.com/playlist?list=PLX-KKyt726LM_uBFW0pPTGTlVJX_vyklS",
   },

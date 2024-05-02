@@ -6,7 +6,7 @@ interface ThematicStudy {
 
 export const thematicsStudiesPDF: ThematicStudy[] = [
   {
-    name: "ATRAÍDOS",
+    name: "ATRAÍDOS COMO EN UNA HISTORIA DE AMOR, ASÍ EL SEÑOR NOS ATRAE.",
     pdfLink:
       "https://firebasestorage.googleapis.com/v0/b/pdf-resouraces.appspot.com/o/Estudios-tematicos%2FAtraidos3_compressed.pdf?alt=media&token=492a10c5-c091-497f-98aa-48e46158f2a8",
     image:
@@ -21,14 +21,14 @@ export const thematicsStudiesPDF: ThematicStudy[] = [
       "https://firebasestorage.googleapis.com/v0/b/pdf-resouraces.appspot.com/o/Estudios-tematicos%2FimagePDF%2Fcumplea%C3%B1os.webp?alt=media&token=fac72e35-ca07-4159-a264-5bacd5568a72",
   },
   {
-    name: "PUREZA DESAFIANTE",
+    name: "LEYES DE LA MENSTRUACIÓN",
     pdfLink:
       "https://firebasestorage.googleapis.com/v0/b/pdf-resouraces.appspot.com/o/Estudios-tematicos%2FPureza%20desafiante%2C%20leyes%20de%20menstruacion.pdf?alt=media&token=27ba771a-2c8e-4a98-a6e6-88651efe6551",
     image:
-      "https://firebasestorage.googleapis.com/v0/b/pdf-resouraces.appspot.com/o/Estudios-tematicos%2FimagePDF%2FleyesMe.webp?alt=media&token=0618b610-70ee-4271-bffa-064fc4e54532",
+      "https://firebasestorage.googleapis.com/v0/b/pdf-resouraces.appspot.com/o/Estudios-tematicos%2FimagePDF%2Fleyesde%20la%20menstruacion.jpg?alt=media&token=481d80c8-4440-4ddc-b081-a86b8c6306a0",
   },
   {
-    name: "FUREZA DESAFIANTE",
+    name: "PUREZA EN EL MATRIMONIO",
     pdfLink:
       "https://firebasestorage.googleapis.com/v0/b/pdf-resouraces.appspot.com/o/Estudios-tematicos%2FPureza%20desafiante%2C%20pureza%20matrimonio.pdf?alt=media&token=a5b172bc-8ebd-4f36-885c-fa1e6630a2e6",
     image:

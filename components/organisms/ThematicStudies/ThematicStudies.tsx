@@ -34,10 +34,13 @@ export const ThematicStudies = () => {
         ))}
       </div>
       <div className={styles["thematicStudies__content--PDFThematics"]}>
-        <div className={styles["thematicStudies__content--textInfo"]}>
-          <h2 className={styles["thematicStudies__title--textInfo"]}>VIDEOS</h2>
-          <p className={styles["thematicStudies__paragraph--textInfo"]}>
-            ¡Series inspiradas por el Señor! Camina con nosotros.
+        <div
+          className={`${styles["thematicStudies__content--textInfo"]} ${styles["thematicStudies__content--textInfo-PDFs"]} `}
+        >
+          <h2 className={styles["thematicStudies__title--textInfo"]}>PDFs</h2>
+          <p className={`${styles["thematicStudies__paragraph--textInfo"]} ${styles['thematicStudies__paragraph--PDFs']}`}>
+            Temas que confrontan nuestros pensamientos. ¿Por qué creemos lo que
+            creemos?
           </p>
         </div>
         <div className={styles["thematicStudies__content--PDF"]}>

@@ -16,7 +16,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 0.625rem;
+  gap: 2rem;
 }
 
 .thematicStudies__title--welcome {
@@ -46,8 +46,8 @@
 
 .thematicStudies__content--textInfo {
   width: 80%;
-  height: 160px;
-  gap: 20px;
+  height: 10rem;
+  gap: 1.25rem;
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -60,14 +60,14 @@
 }
 
 .thematicStudies__paragraph--textInfo {
-  width: 250px;
+  width: 15.625rem;
   font-size: var(--fontSize-paragraph_mobile);
   color: var(--darkGray);
 }
 
 .thematicStudies__image--videosThematics {
-  width: 270px;
-  height: 160px;
+  width: 16.875rem;
+  height: 10rem;
   border-radius: var(--borderRadius);
   object-fit: cover;
 }
@@ -86,9 +86,10 @@
   text-align: center;
   margin-top: 1rem;
   font-size: var(--fontSize-paragraph_mobile);
+  width: 12.5rem;
 }
 
-@media (width >= 38rem) {
+@media (width >= 48rem) {
   .thematicStudies__title--welcome {
     width: 100%;
     font-size: var(--fontSize-superTitles_tablet);
@@ -107,9 +108,9 @@
   }
 
   .thematicStudies__content--textInfo {
-    width: 270px;
-    height: 160px;
-    gap: 20px;
+    width: 16.875rem;
+    height: 10rem;
+    gap: 1.25rem;
     display: flex;
     flex-direction: column;
     align-items: start;
@@ -125,12 +126,20 @@
   }
 
   .thematicStudies__content--PDFThematics {
-    width: 100%;
+    width: 70%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 6rem;
+  }
+
+  .thematicStudies__content--textInfo-PDFs {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
   .thematicStudies__content--PDF {
@@ -141,6 +150,10 @@
     justify-content: center;
     margin-top: 3rem;
   }
+  .thematicStudies__paragraph--PDFs {
+    text-align: center;
+    width: 21.875rem;
+  }
 
   .thematicStudies__paragraph--PDF {
     text-align: center;
@@ -150,7 +163,11 @@
 }
 
 @media (width >= 64rem) {
-  .thematicStudies__welcome {
+  .thematicStudies > .thematicStudies__welcome {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0rem;
     height: 60vh;
   }
 
@@ -174,9 +191,8 @@
   }
 
   .thematicStudies__content--textInfo {
-    width: 300px;
-    height: 160px;
-    gap: 10px;
+    width: 18.75rem;
+    height: 10rem;
   }
 
   .thematicStudies__title--textInfo {
@@ -185,13 +201,19 @@
 
   .thematicStudies__paragraph--textInfo {
     font-size: var(--fontSize-paragraph_desktop);
-    margin-top: 4rem;
   }
 
   .thematicStudies__image--videosThematics {
-    width: 300px;
-    height: 160px;
+    width: 18.75rem;
+    height: 10rem;
     transition: all 300ms;
+  }
+
+  .thematicStudies__content--PDFThematics {
+    width: 80%;
+  }
+  .thematicStudies__paragraph--PDFs {
+    width: 31.25rem;
   }
 
   .thematicStudies__image--PDF {
