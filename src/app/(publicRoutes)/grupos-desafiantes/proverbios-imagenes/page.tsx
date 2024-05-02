@@ -1,9 +1,7 @@
-import React from 'react'
+import { ProverbiosImages } from "../../../../../components/organisms/ProverbiosImages/ProverbiosImages";
 
 const ProverbiosPage = () => {
-  return (
-    <div>ProverbiosPage</div>
-  )
-}
+  return <ProverbiosImages />;
+};
 
-export default ProverbiosPage
+export default ProverbiosPage;
