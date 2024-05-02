@@ -1,8 +1,8 @@
-import React from 'react'
+import { VerseToVerse } from '../../../../../components/organisms/VerseToVerse/VerseToVerse'
 
 const VersoPorVersoPage = () => {
   return (
-    <div>VersoPorVersoPage</div>
+    <VerseToVerse/>
   )
 }
 

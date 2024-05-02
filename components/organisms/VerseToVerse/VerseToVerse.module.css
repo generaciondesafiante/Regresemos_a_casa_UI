@@ -1,0 +1,200 @@
+.verseToVerse {
+  width: 100%;
+  height: 100%;
+  /* margin-top: 6.25rem; */
+}
+
+.verseToVerse__container--banner {
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--turquoise);
+  padding: 2rem;
+}
+
+.verseToVerse__doubleQuotation--banner {
+  display: none;
+}
+
+.verseToVerse__content--banner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  justify-content: center;
+  gap: 0.625rem;
+  margin-top: 6.25rem;
+}
+
+.verseToVerse__content--info-banner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.verseToVerse__title--banner {
+  font-size: var(--fontSize-superTitles_mobile);
+  color: var(--white);
+  width: 15.625rem;
+}
+
+.verseToVerse__paragraph--banner {
+  font-size: var(--fontSize-paragraph_mobile);
+  color: var(--white);
+}
+
+.verseToVerse__line--banner {
+  width: 6.25rem;
+  height: 0.25rem;
+  background-color: var(--white);
+}
+
+.verseToVerse__container--studiesVerse {
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  align-items: flex-start;
+  padding: 1rem;
+  gap: 2rem;
+}
+.verseToVerse__content-title--studiesVerse {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.verseToVerse__content--studiesVerse {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.verseToVerse__title--studiesVerse {
+  width: 12.5rem;
+  font-size: var(--fontSize-titles_mobile);
+  color: var(--turquoise);
+}
+
+.verseToVerse__line--studiesVerse {
+  width: 6.25rem;
+  height: 0.25rem;
+  background-color: var(--darkGray);
+}
+
+.verseToVerse__paragraph--studiesVerse {
+  min-width: 17.5rem;
+  max-width: 23rem;
+  line-height: 1.8rem;
+  font-size: var(--fontSize-paragraph_mobile);
+}
+
+@media (width >= 48rem) {
+  .verseToVerse__container--studiesVerse {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+  }
+
+  .verseToVerse__title--banner {
+    font-size: var(--fontSize-superTitles_tablet);
+    width: 31.25rem;
+  }
+
+  .verseToVerse__paragraph--banner {
+    font-size: var(--fontSize-paragraph_tablet);
+    color: var(--white);
+  }
+
+  .verseToVerse__line--banner {
+    width: 10rem;
+    height: 0.3rem;
+    background-color: var(--white);
+  }
+  .verseToVerse__content--studiesVerse {
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+@media (width >= 64rem) {
+  .verseToVerse {
+    width: 100%;
+  }
+
+  .verseToVerse__container--banner {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 95vh;
+  }
+
+  .verseToVerse__content--banner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    gap: 0.625rem;
+  }
+
+  .verseToVerse__content-dobleQuotation--banner {
+    width: 20%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0rem;
+  }
+
+  .verseToVerse__doubleQuotation--banner {
+    display: flex;
+    color: var(--white);
+    font-size: 31.25rem;
+    height: 21.25rem;
+  }
+
+  .verseToVerse__title--banner {
+    font-size: var(--fontSize-titles_laptop);
+    width: 22rem;
+  }
+
+  .verseToVerse__content--info-banner {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .verseToVerse__paragraph--banner {
+    font-size: var(--fontSize-paragraph_laptop);
+  }
+
+  .verseToVerse__line--banner {
+    width: 5rem;
+    height: 0.2rem;
+    background-color: var(--white);
+  }
+
+  .verseToVerse__title--studiesVerse {
+    font-size: var(--fontSize-titles_desktop);
+    width: 320px;
+  }
+
+  .verseToVerse__line--studiesVerse {
+    width: 8rem;
+  }
+
+  .verseToVerse__paragraph--studiesVerse {
+    max-width: 30rem;
+    font-size: var(--fontSize-paragraph_desktop);
+  }
+}
