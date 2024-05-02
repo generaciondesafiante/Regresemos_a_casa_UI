@@ -2,11 +2,13 @@ interface ThematicStudy {
   name: string;
   pdfLink: string;
   image: string;
+  description?: string;
 }
 
 export const thematicsStudiesPDF: ThematicStudy[] = [
   {
-    name: "ATRAÍDOS COMO EN UNA HISTORIA DE AMOR, ASÍ EL SEÑOR NOS ATRAE.",
+    name: "ATRAÍDOS ",
+    description: "Como en una historia de amor, así el Señor nos atrae.",
     pdfLink:
       "https://firebasestorage.googleapis.com/v0/b/pdf-resouraces.appspot.com/o/Estudios-tematicos%2FAtraidos3_compressed.pdf?alt=media&token=492a10c5-c091-497f-98aa-48e46158f2a8",
     image:
@@ -21,14 +23,16 @@ export const thematicsStudiesPDF: ThematicStudy[] = [
       "https://firebasestorage.googleapis.com/v0/b/pdf-resouraces.appspot.com/o/Estudios-tematicos%2FimagePDF%2Fcumplea%C3%B1os.webp?alt=media&token=fac72e35-ca07-4159-a264-5bacd5568a72",
   },
   {
-    name: "LEYES DE LA MENSTRUACIÓN",
+    name: "PUREZA DESAFIANTE",
+    description: "Leyes de la menstruación",
     pdfLink:
       "https://firebasestorage.googleapis.com/v0/b/pdf-resouraces.appspot.com/o/Estudios-tematicos%2FPureza%20desafiante%2C%20leyes%20de%20menstruacion.pdf?alt=media&token=27ba771a-2c8e-4a98-a6e6-88651efe6551",
     image:
       "https://firebasestorage.googleapis.com/v0/b/pdf-resouraces.appspot.com/o/Estudios-tematicos%2FimagePDF%2Fleyesde%20la%20menstruacion.jpg?alt=media&token=481d80c8-4440-4ddc-b081-a86b8c6306a0",
   },
   {
-    name: "PUREZA EN EL MATRIMONIO",
+    name: "PUREZA DESAFIANTE",
+    description: "Pureza en el matrimonio.",
     pdfLink:
       "https://firebasestorage.googleapis.com/v0/b/pdf-resouraces.appspot.com/o/Estudios-tematicos%2FPureza%20desafiante%2C%20pureza%20matrimonio.pdf?alt=media&token=a5b172bc-8ebd-4f36-885c-fa1e6630a2e6",
     image:

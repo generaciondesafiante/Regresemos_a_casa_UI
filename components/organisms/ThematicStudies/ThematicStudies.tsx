@@ -23,6 +23,7 @@ export const ThematicStudies = () => {
             ¡Series inspiradas por el Señor! Camina con nosotros.
           </p>
         </div>
+
         {thematicStudiesVideo.map((video, index) => (
           <Link href={video.href} key={index} target="_blank">
             <img
@@ -38,7 +39,9 @@ export const ThematicStudies = () => {
           className={`${styles["thematicStudies__content--textInfo"]} ${styles["thematicStudies__content--textInfo-PDFs"]} `}
         >
           <h2 className={styles["thematicStudies__title--textInfo"]}>PDFs</h2>
-          <p className={`${styles["thematicStudies__paragraph--textInfo"]} ${styles['thematicStudies__paragraph--PDFs']}`}>
+          <p
+            className={`${styles["thematicStudies__paragraph--textInfo"]} ${styles["thematicStudies__paragraph--PDFs"]}`}
+          >
             Temas que confrontan nuestros pensamientos. ¿Por qué creemos lo que
             creemos?
           </p>
@@ -55,6 +58,9 @@ export const ThematicStudies = () => {
               </Link>
               <p className={styles["thematicStudies__paragraph--PDF"]}>
                 {pdf.name}
+              </p>
+              <p className={styles["thematicsStudies__subtitle--PDF"]}>
+                <i>{pdf.description}</i>
               </p>
             </div>
           ))}
