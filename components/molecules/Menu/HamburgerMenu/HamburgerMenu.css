@@ -26,7 +26,7 @@ nav {
 
 .menu {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background-color: var(--white);
   position: absolute;
   right: 0;
@@ -37,20 +37,52 @@ nav {
   display: none;
 }
 
+.menu .hidden .container-menu-items {
+  display: none;
+  animation: hidden;
+  animation-duration: 500ms;
+  animation-iteration-count: 1;
+}
+
 .visible {
+  height: 100vh;
   display: inherit;
-  transition: transform 0.3s ease-out;
+  animation: visible;
+  animation-duration: 500ms;
+  animation-iteration-count: normal;
 }
 
 .container-menu-items {
   width: 100%;
-  height: 100vh;
+  max-height: 500px;
   display: flex;
   flex-direction: column;
   z-index: 200;
   gap: 0.125rem;
   margin-top: 1.875rem;
+  overflow-y: auto;
 }
+
+@keyframes visible {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes hidden {
+  from {
+    transform: translateX(0%);
+  }
+
+  to {
+    transform: translateX(100%);
+  }
+}
+
 .items-menu {
   width: 100%;
   display: flex;
@@ -101,6 +133,7 @@ nav {
   width: 100%;
   height: 100%;
 }
+
 .subMenu-container {
   width: 100%;
   display: flex;
@@ -108,7 +141,40 @@ nav {
   gap: 0.625rem;
   margin-left: 5rem;
   margin-bottom: 0.625rem;
+  overflow: hidden;
+  animation: subEnter 0.5s forwards;
 }
+
+.subMenu-enter {
+  animation: subEnter 0.5s forwards;
+}
+
+.subMenu-exit {
+  animation: subExit 0.5s forwards;
+}
+
+@keyframes subEnter {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes subExit {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+}
+
 .subMenu-items {
   width: 100%;
   display: flex;
@@ -135,15 +201,17 @@ nav {
 @media (width >=48rem) {
   .menu {
     width: 60%;
+    z-index: 1;
   }
   .overlay {
     position: fixed;
     margin-top: 5.6rem;
     left: 0;
-    width: 40%;
+    width: 100%;
     height: calc(100% - 3.75rem);
     background-color: rgba(0, 0, 0, 0.5);
     z-index: -10;
+    transition: opacity 500ms ease-in-out;
   }
 }
 @media (width >= 64rem) {
