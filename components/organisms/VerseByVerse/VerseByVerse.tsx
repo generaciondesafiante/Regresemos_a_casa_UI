@@ -1,4 +1,4 @@
-import styles from "./VerseToVerse.module.css";
+import styles from "./VerseByVerse.module.css";
 
 export const VerseToVerse = () => {
   const dataVideo = [

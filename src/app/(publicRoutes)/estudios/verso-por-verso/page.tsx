@@ -1,4 +1,4 @@
-import { VerseToVerse } from '../../../../../components/organisms/VerseToVerse/VerseToVerse'
+import { VerseToVerse } from '../../../../../components/organisms/VerseByVerse/VerseByVerse'
 
 const VersoPorVersoPage = () => {
   return (

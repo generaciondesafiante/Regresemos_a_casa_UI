@@ -9,7 +9,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--turquoise);
+  background-image: linear-gradient(
+      360deg,
+      rgb(96, 184, 189),
+      rgba(96, 184, 189, 0.821)
+    ),
+    url("/verseByVerse/imageBanner.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   padding: 2rem;
 }
 
@@ -106,7 +114,6 @@
   padding-top: 3rem;
   padding-bottom: 3rem;
 }
-
 
 .verseToVerse__image--videosStudiesVerse {
   width: 18.75rem;
