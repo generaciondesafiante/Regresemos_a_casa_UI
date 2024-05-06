@@ -18,6 +18,10 @@ export const menuData = [
     subMenu: [
       { title: "Verso por verso", href: "/estudios/verso-por-verso" },
       { title: "Estudios temáticos", href: "/estudios/estudios-tematicos" },
+      {
+        title: "Proverbios Imágenes",
+        href: "/grupos-desafiantes/proverbios-imagenes",
+      },
     ],
   },
   {
@@ -44,10 +48,6 @@ export const menuData = [
       {
         title: "Desafiante records",
         href: "/grupos-desafiantes/desafiante-records",
-      },
-      {
-        title: "Proverbios Imágenes",
-        href: "/grupos-desafiantes/proverbios-imagenes",
       },
     ],
   },
