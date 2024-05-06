@@ -1,0 +1,389 @@
+.aboutUs__container {
+    margin-top: 6rem;
+    width: 100%;
+    height: 100%;
+}
+
+.aboutUs__video--container {
+    position: relative;
+    height: 21.875rem;
+    width: 100%;
+    overflow: hidden;
+}
+
+.aboutUs__video {
+    width: 100%;
+    height: 100%;
+    object-fit:fill;
+}
+
+.aboutUs__ourObjetive--container {
+    width: 100%;
+}
+
+.aboutUs__ourObjetive--title {
+    color: var(--turquoise);
+    font-size: 1.938rem;
+    font-weight: 200;
+    margin: 1.875rem;
+}
+
+.aboutUs__ourObjetive--textOur {
+    font-weight: 500;
+}
+
+.aboutUs__ourObjetive--textObjective {
+    position: relative;
+    font-weight: 800;
+    bottom: 0.625rem;
+}
+
+.aboutUs__ourObjetive--paragraph {
+    margin: 0rem 1.875rem;
+    height: 15.625rem;
+    width: auto;
+}
+
+.aboutUs__ourObjetive--text1 {
+    width: auto;
+    font-size: 0.813rem;
+    text-align: justify;
+    color: var(--darkGray);
+    line-height: 1.5rem;
+}
+
+.aboutUs__ourObjetiveVerse--container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 25.313rem;
+}
+
+.aboutUs__ourObjetiveBible--background {
+    width: 100%;
+    height: 25.313rem;
+    position: absolute;
+    background-image: url("https://static.wixstatic.com/media/b812fcf3f9424a55bd227b8e7dc3ec23.jpg/v1/fill/w_980,h_626,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/b812fcf3f9424a55bd227b8e7dc3ec23.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.1;
+}
+
+.aboutUs__ourObjetive--quote {
+    display: none;
+}
+
+.aboutUs__ourObjetive--verse {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 1.875rem;
+    position: relative;
+    color: var(--darkGray);
+    font-size: 1.438rem;
+    width: auto;
+}
+
+.aboutUs__ourObjetive--verse b {
+    font-weight: 800;
+}
+
+.aboutUs__ourObjetive--paragraph2 {
+    display: flex;
+    flex-direction: column;
+    margin: 1.875rem;
+}
+
+.aboutUs__ourObjetiveParagraph2--text1 {
+    margin-bottom: 1.25rem;
+    line-height: 1.4rem;
+    font-size: 0.875rem;
+    text-align: justify;
+    color: #2f2e2e;
+    width: 100%;
+    word-spacing: 0.188rem;
+}
+
+.aboutUs__ourObjetiveParagraph2--text2 {
+    border-radius: var(--borderRadius);
+    border: #2f2e2e33 0.063rem solid;
+    padding: 1.875rem 0.625rem;
+    line-height: 1.4rem;
+    font-size: 0.875rem;
+    text-align: justify;
+    width: 100%;
+    word-spacing: 0.125rem;
+}
+
+.aboutUs__ourObjetive--photos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.75rem;
+}
+
+.aboutUs__ourObjetive--photos>div {
+    margin: 0.625rem;
+    text-align: center;
+}
+
+.aboutUs__ourObjeticePhotos--lincolns {
+    border-radius: 63% 37% 41% 59% / 63% 62% 38% 37%;
+    margin-bottom: 0.938rem;
+}
+
+.aboutUs__ourObjeticePhotos--abigail {
+    border-radius: 51% 49% 51% 49% / 59% 71% 29% 41%;
+    margin-bottom:  0.938rem;
+}
+
+.aboutUs__ourObjeticePhotos--danielaLopez {
+    border-radius: 59% 41% 70% 30% / 44% 71% 29% 56%;
+    margin-bottom:  0.938rem;
+}
+
+.aboutUs__ourObjetive--paragraph3 {
+    margin-top: 2.5rem;
+    width: 100%;
+}
+
+.aboutUs__ourObjetiveParagraph3--container {
+    padding: 1.875rem;
+    background-color: var(--white);
+}
+
+.aboutUs__ourObjetiveParagraph3--text1{
+    margin-bottom: 1.875rem;
+}
+
+.aboutUs__ourObjetive--textMinistries {
+    font-size: 1.563rem;
+    font-weight: 600;
+    line-height: 1.875rem;
+    color: var(--lightGold);
+}
+
+.aboutUs__ourObjetive--textAssociates {
+    font-size: 1.563rem;
+    line-height: 1.875rem;
+    color: var(--lightGold);
+    font-weight: 550;
+}
+
+.aboutUs__ourObjetiveParagraph3--text2 {
+    font-size: 0.938rem;
+    line-height: 1.5rem;
+    text-align: justify;
+    word-spacing: 0.188rem;
+}
+
+.aboutUs__ourObjetiveParagraph3--text2 span {
+    word-spacing: 0.063rem;
+}
+
+.aboutUs__ourObjetive--imgFooterContainer{
+    width: 100%;
+    height: 11.75rem;
+}
+
+.aboutUs__ourObjetive--imgFooterContainer img {
+    width: 100%;
+    height: 100%;
+    background-image: url("https://static.wixstatic.com/media/d166cc_89e082e6997946c1924000b082e3d4ad~mv2.jpg/v1/fill/w_640,h_376,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/d166cc_89e082e6997946c1924000b082e3d4ad~mv2.jpg");
+    object-fit: cover;
+    object-position: 50% 50%;
+}
+
+@media (width >=48rem) {
+    .aboutUs__video--container {
+        height: calc(100% - 6rem);
+    }
+
+    .aboutUs__ourObjetive--title{
+        margin-top: 5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 2.5rem;
+    }
+
+    .aboutUs__ourObjetive--paragraph{
+        margin: 0 5rem;
+    }
+
+    .aboutUs__ourObjetive--text1{
+        font-size: 0.938rem;
+        letter-spacing: 0.125rem;
+    }
+
+    .aboutUs__ourObjetive--verse{
+        font-size: 1.875rem;
+        padding: 6.25rem;
+    }
+
+    .aboutUs__ourObjetive--paragraph2{
+        margin: 5rem;
+    }
+
+    .aboutUs__ourObjetiveParagraph2--text2{
+        padding: 2.5rem;
+    }
+
+    .aboutUs__ourObjetiveParagraph3--text1{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .aboutUs__ourObjetiveParagraph3--text2{
+        padding: 0 5rem;
+    }
+
+    .aboutUs__ourObjetiveParagraph3--text2>div{
+        display: flex;
+        justify-content: center;
+    }
+
+}
+
+@media (width >=64rem) {
+    .aboutUs__video--container{
+        height: calc(100% - 6rem);
+    }
+
+    .aboutUs__ourObjetive--container {
+        display: flex;
+        justify-content: center;
+        height: 28.563rem;
+        width: 100%;
+        padding: 6.25rem 12.5rem;
+    }
+
+    .aboutUs__ourObjetive--title {
+        margin-top: 0;
+        position: relative;
+        left: 3.125rem;
+        align-items:normal;
+        font-size: 2.938rem;
+        height: 15.625rem;
+    }
+
+    .aboutUs__ourObjetive--textOur {
+        position: relative;
+        top: 0.75rem;
+    }
+
+    .aboutUs__ourObjetive--textObjective {
+        bottom: 0.375rem;
+    }
+
+    .aboutUs__ourObjetive--paragraph {
+        margin-left: 8.75rem;
+        width: 25rem;
+    }
+
+    .aboutUs__ourObjetive--text1{
+        width: 25rem;
+    }
+
+    .aboutUs__ourObjetiveVerse--container {
+        height: 39.125rem;
+    }
+    
+    .aboutUs__ourObjetiveBible--background {
+        height: 100%;
+    }
+    
+    .aboutUs__ourObjetive--quote {
+        display: inline;
+        position: relative;
+        margin-top: 10.313rem;
+        margin-left: 15rem;
+        color: var(--darkGray);
+        font-size: 9.438rem;
+    }
+    
+    .aboutUs__ourObjetive--verse {
+        margin-top: 12.5rem;
+        margin-left: 2.5rem;
+        font-size: 2.188rem;
+        width: 27.5rem;
+        padding: 0;
+    }
+
+    .aboutUs__ourObjetive--paragraph2 {
+        margin: 1.875rem;
+        flex-direction: row;
+        justify-content: center;
+        margin-bottom: 6.25rem;
+        word-spacing: 0.25rem;
+    }
+    
+    .aboutUs__ourObjetiveParagraph2--text1 {
+        margin-right: 1.219rem;
+        margin-top: 13.813rem;
+        width: 21.25rem;
+        height: 17.5rem;
+        word-spacing: 0.25rem;
+    }
+    
+    .aboutUs__ourObjetiveParagraph2--text2 {
+        margin-top: 12.5rem;
+        margin-left: 1.219rem;
+        padding: 2.688rem 2.375rem 3.25rem 2.063rem;
+        width: 25.938rem;
+        word-spacing: 0.25rem;
+    }
+
+    .aboutUs__ourObjetive--photos>div {
+        margin: 0 1.25rem;
+    }
+    
+    .aboutUs__ourObjetice--textPhoto {
+        text-align: center;
+    }
+
+    .aboutUs__ourObjetive--paragraph3 {
+        margin-top: 6.25rem;
+    }
+    
+    .aboutUs__ourObjetiveParagraph3--container {
+        display: flex;
+        justify-content: center;
+        padding: 8.75rem 0rem 1.875rem 0rem;
+    }
+    
+    .aboutUs__ourObjetiveParagraph3--text1 {
+        display: flex;
+        flex-direction: column;
+        min-width: 15.625rem;
+    }
+    
+    .aboutUs__ourObjetive--textMinistries {
+        font-size: 1.875rem;
+    }
+    
+    .aboutUs__ourObjetive--textAssociates {
+        font-size: 1.875rem;
+    }
+
+    .aboutUs__ourObjetiveParagraph3--text1{
+        display: block;
+    }
+    
+    .aboutUs__ourObjetiveParagraph3--text2 {
+        width: 21.875rem;
+        padding: 0;
+        word-spacing: 0.25;
+    }
+
+    .aboutUs__ourObjetiveParagraph3--text2>div{
+        display: block;
+    }
+
+    .aboutUs__ourObjetive--imgFooterContainer {
+        height: 15.313rem;
+    }
+}
