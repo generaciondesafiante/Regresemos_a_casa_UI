@@ -1,9 +1,7 @@
-import React from 'react'
+import { SukatDavidTemplate } from "../../../../components/templates";
 
 const SukatDavidPage = () => {
-  return (
-    <div>SukatDavidPage</div>
-  )
-}
+    return < SukatDavidTemplate />;
+};
 
-export default SukatDavidPage
+export default SukatDavidPage;
