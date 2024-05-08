@@ -19,7 +19,7 @@ export const menuData = [
       { title: "Verso por verso", href: "/estudios/verso-por-verso" },
       { title: "Estudios temáticos", href: "/estudios/estudios-tematicos" },
       {
-        title: "Proverbios Imágenes",
+        title: "Proverbios imágenes",
         href: "/grupos-desafiantes/proverbios-imagenes",
       },
     ],
