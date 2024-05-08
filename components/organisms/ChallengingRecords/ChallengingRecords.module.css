@@ -1,0 +1,73 @@
+.challengingRecords {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.challengingRecords__container--banner {
+  margin-top: 6.25rem;
+  width: 100%;
+  height: 80vh;
+  object-fit: cover;
+  object-position: 50% 50%;
+  background-image: linear-gradient(
+      rgba(218, 205, 149, 0.545),
+      rgba(194, 184, 166, 0.595)
+    ),
+    url("/gruposDesafiantes/desafianteRecords/bannerDesafianteRecord.webp");
+  /* opacity: 0.26; */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.challengingRecords__title--banner {
+  color: var(--white);
+  font-size: var(--fontSize-superTitles_tablet);
+  font-weight: bold;
+  width: 250px;
+  text-align: center;
+}
+
+.challengingRecords__paragraph--banner {
+  color: var(--white);
+  font-size: var(--fontSize-subtitles_mobile);
+  width: 300px;
+  text-align: center;
+}
+
+@media (width >= 48rem) {
+  .challengingRecords__title--banner {
+    font-size: var(--fontSize-superTitles_laptop);
+    width: 450px;
+    text-align: center;
+  }
+
+  .challengingRecords__paragraph--banner {
+    font-size: var(--fontSize-subtitles_tablet);
+    width: 450px;
+    text-align: center;
+  }
+}
+
+@media (width >= 64rem) {
+  .challengingRecords__title--banner {
+    font-size: var(--fontSize-titles_desktop);
+    width: 600px;
+    text-align: center;
+  }
+
+  .challengingRecords__paragraph--banner {
+    font-size: var(--fontSize-paragraph_desktop);
+    width: 500px;
+    text-align: center;
+  }
+}

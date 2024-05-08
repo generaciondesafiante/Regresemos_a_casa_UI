@@ -1,9 +1,8 @@
-import React from 'react'
+import React from "react";
+import { ChallengingRecords } from "../../../../../components/organisms/ChallengingRecords/ChallengingRecords";
 
-const DesafianteRecordsPage = () => {
-  return (
-    <div>DesafianteRecordsPage</div>
-  )
-}
+const ChallengingRecordsPage = () => {
+  return <ChallengingRecords />;
+};
 
-export default DesafianteRecordsPage
+export default ChallengingRecordsPage;
