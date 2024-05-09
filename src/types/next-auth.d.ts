@@ -10,48 +10,49 @@ declare module "next-auth" {
       city: string;
       phone: number;
       image: string;
-      uid:string;
-      token:string;
-      CourseProgress:[];
-      msg:string
+      admin: boolean;
+      uid: string;
+      token: string;
+      CourseProgress: [];
+      msg: string;
     };
   }
 
   interface Course {
-  _id: string;
-  courseName: string;
-  topicName: string;
-  topics: Array<{
+    _id: string;
+    courseName: string;
     topicName: string;
-    lessons: Array<{
-      videoId: string;
-      videoName: string;
-      description: string;
-      videoUrl: string;
-      length:string;
-      rating: number;
+    topics: Array<{
+      topicName: string;
+      lessons: Array<{
+        videoId: string;
+        videoName: string;
+        description: string;
+        videoUrl: string;
+        length: string;
+        rating: number;
+      }>;
     }>;
-  }>;
-};
+  }
 
-interface Lesson {
+  interface Lesson {
     videoId: string;
     videoName: string;
     description: string;
     videoUrl: string;
     rating: number;
-}
+  }
 
- interface Topic {
+  interface Topic {
     topics: Array<{
-        topicName: string;
-        lessons: Array<{
-            videoId: string;
-            videoName: string;
-            description: string;
-            videoUrl: string;
-            rating: number;
-        }>;
-    }>
-}
+      topicName: string;
+      lessons: Array<{
+        videoId: string;
+        videoName: string;
+        description: string;
+        videoUrl: string;
+        rating: number;
+      }>;
+    }>;
+  }
 }
