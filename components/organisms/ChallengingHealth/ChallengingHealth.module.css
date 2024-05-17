@@ -185,7 +185,7 @@
 .challengingHealth__paragraph--tips {
   width: 200px;
   color: var(--darkGray);
-  font-size: var(--fontSize-titles_mobile);
+  font-size: var(--fontSize-paragraph_mobile);
   margin: 1.5rem 0 1.5rem 0;
 }
 
@@ -390,7 +390,7 @@
   .challengingHealth__paragraph--tips {
     width: 300px;
     color: var(--darkGray);
-    font-size: var(--fontSize-subtitles_tablet);
+    font-size: var(--fontSize-paragraph_tablet);
     margin-bottom: 3rem;
   }
 
@@ -435,6 +435,21 @@
 }
 
 @media (width >= 64rem) {
+  .challengingHealth__container--studies {
+    display: flex;
+    flex-direction: row;
+  }
+  .challengingHealth__container-section--studies {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  /* .challengingHealth__content-image--studiesTwo {
+    display: flex;
+    flex-direction: row;
+  } */
+
   .challengingHealth__title--banner {
     width: 100%;
     font-size: var(--fontSize-superTitles_laptop);

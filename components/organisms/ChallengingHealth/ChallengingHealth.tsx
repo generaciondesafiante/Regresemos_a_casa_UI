@@ -47,65 +47,79 @@ export const ChallengingHealth = () => {
             y bíblica sobre la alimentación y ejercicio
           </p>
         </div>
-        <div className={styles["challengingHealth__container-image--studies"]}>
-          {dataStudies.map((studies, index) => (
-            <div
-              key={index}
-              className={styles["challengingHealth__content-image--studies"]}
-            >
-              <Link
-                href={studies.link}
-                target="_blank"
-                className={styles["challengingHealth__link-image--studies"]}
+        <div className={styles['challengingHealth__container-section--studies']}>
+          <div
+            className={styles["challengingHealth__container-image--studies"]}
+          >
+            {dataStudies.map((studies, index) => (
+              <div
+                key={index}
+                className={styles["challengingHealth__content-image--studies"]}
               >
-                <img
-                  src={studies.image}
-                  alt={studies.title}
-                  className={styles["challengingHealth__image--studies"]}
-                />
-              </Link>
-              <p className={styles["challengingHealth__title-image--studies"]}>
-                {studies.title}
-              </p>
-              {studies.tema && (
-                <p
-                  className={styles["challengingHealth__topic-image--studies"]}
+                <Link
+                  href={studies.link}
+                  target="_blank"
+                  className={styles["challengingHealth__link-image--studies"]}
                 >
-                  Tema: {studies.tema}
+                  <img
+                    src={studies.image}
+                    alt={studies.title}
+                    className={styles["challengingHealth__image--studies"]}
+                  />
+                </Link>
+                <p
+                  className={styles["challengingHealth__title-image--studies"]}
+                >
+                  {studies.title}
                 </p>
-              )}
-            </div>
-          ))}
-        </div>
+                {studies.tema && (
+                  <p
+                    className={
+                      styles["challengingHealth__topic-image--studies"]
+                    }
+                  >
+                    Tema: {studies.tema}
+                  </p>
+                )}
+              </div>
+            ))}
+          </div>
 
-        <div
-          className={
-            styles["challengingHealth__containerTwo-image--studiesTwo"]
-          }
-        >
-          {dataStudiesTwo.map((studies, index) => (
-            <div
-              key={index}
-              className={styles["challengingHealth__content-image--studiesTwo"]}
-            >
-              <Link
-                href={studies.link}
-                target="_blank"
-                className={styles["challengingHealth__link-image--studiesTwo"]}
+          <div
+            className={
+              styles["challengingHealth__containerTwo-image--studiesTwo"]
+            }
+          >
+            {dataStudiesTwo.map((studies, index) => (
+              <div
+                key={index}
+                className={
+                  styles["challengingHealth__content-image--studiesTwo"]
+                }
               >
-                <img
-                  src={studies.image}
-                  alt={studies.title}
-                  className={styles["challengingHealth__image--studiesTwo"]}
-                />
-              </Link>
-              <p
-                className={styles["challengingHealth__title-image--studiesTwo"]}
-              >
-                {studies.title}
-              </p>
-            </div>
-          ))}
+                <Link
+                  href={studies.link}
+                  target="_blank"
+                  className={
+                    styles["challengingHealth__link-image--studiesTwo"]
+                  }
+                >
+                  <img
+                    src={studies.image}
+                    alt={studies.title}
+                    className={styles["challengingHealth__image--studiesTwo"]}
+                  />
+                </Link>
+                <p
+                  className={
+                    styles["challengingHealth__title-image--studiesTwo"]
+                  }
+                >
+                  {studies.title}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -210,18 +224,31 @@ export const ChallengingHealth = () => {
               </div>
             ))}
           </div>
-          {/* <div>
-            <div>
-              <p>Menú Semanal: Sugerencia Nutricionista Yanina</p>
-            </div>
+          <div className={styles["challengingHealth__content--menuOne"]}>
+            {/* <div> */}
+            <p className={styles["challengingHealth__title--menuOne"]}>
+              Menú Semanal: Sugerencia Nutricionista Yanina
+            </p>
+            {/* </div> */}
             {dataMenuTwo.map((menuTwo, index) => (
-              <div key={index}>
-                <Link href={menuTwo.link} target="_blank">
-                  <img src={menuTwo.image} alt={menuTwo.link} />
+              <div
+                key={index}
+                className={styles["challengingHealth__content-image--menuOne"]}
+              >
+                <Link
+                  href={menuTwo.link}
+                  target="_blank"
+                  className={styles["challengingHealth__link-image--menuOne"]}
+                >
+                  <img
+                    src={menuTwo.image}
+                    alt={menuTwo.link}
+                    className={styles["challengingHealth__image--menuOne"]}
+                  />
                 </Link>
               </div>
             ))}
-          </div> */}
+          </div>
         </div>
       </section>
     </main>
