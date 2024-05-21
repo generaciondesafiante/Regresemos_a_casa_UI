@@ -22,6 +22,7 @@ export const ChallengingHealth = () => {
           acto de amor hacia el Señor. #GeneraciónDesafiante
         </p>
       </section>
+
       <div className={styles["challengingHealth__container--socialNetwork"]}>
         <Button
           className={`${styles["challengingHealth__button--socialNetwork"]}`}
@@ -47,7 +48,9 @@ export const ChallengingHealth = () => {
             y bíblica sobre la alimentación y ejercicio
           </p>
         </div>
-        <div className={styles['challengingHealth__container-section--studies']}>
+        <div
+          className={styles["challengingHealth__container-section--studies"]}
+        >
           <div
             className={styles["challengingHealth__container-image--studies"]}
           >
@@ -177,13 +180,12 @@ export const ChallengingHealth = () => {
         <div className={styles["challengingHealth__content--recipes"]}>
           {dataRecipes.map((recipes, index) => (
             <div key={index}>
-              {/* <Link href={recipes.link} target="_blank"> */}
               <img
                 src={recipes.image}
                 alt={recipes.title}
                 className={styles["challengingHealth__image--recipes"]}
               />
-              {/* </Link> */}
+
               <p className={styles["challengingHealth__title-image--recipes"]}>
                 {recipes.title}
               </p>
@@ -191,6 +193,7 @@ export const ChallengingHealth = () => {
           ))}
         </div>
       </section>
+
       <section className={`${styles["challengingHealth__container--menu"]}`}>
         <div className={styles["challengingHealth__content-title--menu"]}>
           <h2 className={`${styles["challengingHealth__title--menu"]}`}>
@@ -202,9 +205,6 @@ export const ChallengingHealth = () => {
         </div>
         <div className={styles["challengingHealth__container--items-menu"]}>
           <div className={styles["challengingHealth__content--menuOne"]}>
-            <p className={styles["challengingHealth__title--menuOne"]}>
-              <b> Semanal:</b> Menú Sugerencia Dra. Mariuxi López
-            </p>
             {dataMenuOne.map((menuOne, index) => (
               <div
                 key={index}
@@ -224,12 +224,10 @@ export const ChallengingHealth = () => {
               </div>
             ))}
           </div>
+          <p className={styles["challengingHealth__title--menuOne"]}>
+            <b> Semanal:</b> Menú Sugerencia Dra. Mariuxi López
+          </p>
           <div className={styles["challengingHealth__content--menuOne"]}>
-            {/* <div> */}
-            <p className={styles["challengingHealth__title--menuOne"]}>
-              Menú Semanal: Sugerencia Nutricionista Yanina
-            </p>
-            {/* </div> */}
             {dataMenuTwo.map((menuTwo, index) => (
               <div
                 key={index}
@@ -249,6 +247,9 @@ export const ChallengingHealth = () => {
               </div>
             ))}
           </div>
+          <p className={styles["challengingHealth__title--menuOne"]}>
+            <b>Menú Semanal:</b> Sugerencia Nutricionista Yanina
+          </p>
         </div>
       </section>
     </main>
