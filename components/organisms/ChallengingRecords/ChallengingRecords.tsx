@@ -32,7 +32,7 @@ export const ChallengingRecords = () => {
                 styles["challengingRecords__paragraph-button--playlist"]
               }
             >
-              Reproducir lista
+              Reproducir
             </p>
             <IconYoutube
               className={styles["challengingRecords__icon-youtube--playlist"]}
