@@ -122,6 +122,12 @@
   gap: 3rem;
 }
 
+.challengingHealth__link-image--studies {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .challengingHealth__content-image--studies {
   width: 100%;
   display: flex;
@@ -129,10 +135,6 @@
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
-}
-
-.challengingHealth__link-image--studies {
-  width: 100%;
 }
 
 .challengingHealth__title-image--studies {
@@ -220,6 +222,15 @@
   text-align: center;
 }
 
+.challengingHealth__content-background--recipes {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #b6ac952d;
+  margin: 2rem 0rem 2rem 0rem;
+}
+
 .challengingHealth__container--recipes {
   display: flex;
   flex-direction: column;
@@ -275,6 +286,12 @@
   text-align: center;
 }
 
+.challengingHealth__content-general--menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .challengingHealth__container--menu {
   width: 100%;
   display: flex;
@@ -298,9 +315,10 @@
 }
 
 .challengingHealth__subTitle--menu {
-  width: 18.75rem;
+  width: 16rem;
   color: var(--darkGray);
   font-size: var(--fontSize-subtitles_mobile);
+  margin-bottom: 2rem;
 }
 
 .challengingHealth__container--items-menu {
@@ -309,6 +327,15 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.challengingHealth__container--menuOne,
+.challengingHealth__container--menuTwo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 4rem;
 }
 
 .challengingHealth__content--menuOne {
@@ -322,7 +349,7 @@
 .challengingHealth__title--menuOne {
   font-size: var(--fontSize-paragraph_mobile);
   color: var(--black);
-  margin: 3rem 0 1.2rem 0;
+  margin-bottom: 2rem;
   width: 17.5rem;
   text-align: center;
 }
@@ -398,7 +425,7 @@
     width: 25%;
   }
   .challengingHealth__paragraph--studies {
-    width: 15.625rem;
+    width: 11rem;
   }
 
   .challengingHealth__container-image--studies {
@@ -407,11 +434,13 @@
     flex-direction: row;
     justify-content: center;
     align-items: flex-start;
-    gap: 2rem;
+    gap: 1rem;
   }
 
   .challengingHealth__image--studies {
     width: 7.5rem;
+    display: block;
+    margin: 0 auto;
     max-width: 12.4375rem;
     object-fit: cover;
   }
@@ -503,6 +532,11 @@
     width: 15.625rem;
   }
 
+  .challengingHealth__container--menuOne,
+  .challengingHealth__container--menuTwo {
+    flex-direction: column-reverse;
+  }
+
   .challengingHealth__content--menuOne {
     width: 100%;
     display: flex;
@@ -515,5 +549,10 @@
 
   .challengingHealth__image--menuOne {
     width: 12.5rem;
+  }
+
+  .challengingHealth__title--menuOne {
+    width: auto;
+    margin-top: 1rem;
   }
 }

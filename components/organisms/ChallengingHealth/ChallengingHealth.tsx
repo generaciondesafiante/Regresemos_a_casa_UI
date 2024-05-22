@@ -162,94 +162,119 @@ export const ChallengingHealth = () => {
       </section>
 
       <section
-        className={`${styles["challengingHealth__container--recipes"]} ${styles["challengingHealth__section--general"]}`}
+        className={`${styles["challengingHealth__content-background--recipes"]} `}
       >
-        <div className={styles["challengingHealth__content-title---recipes"]}>
-          <h2
-            className={`${styles["challengingHealth__title--recipes"]} ${styles["challengingHealth__title-general"]}`}
-          >
-            Recetas
-          </h2>
-          <p
-            className={`${styles["challengingHealth__paragraph--recipes"]} ${styles["challengingHealth__title-general"]}`}
-          >
-            Compartimos contigo recetas. ¡Que importante es la variedad en la
-            comida!
-          </p>
-        </div>
-        <div className={styles["challengingHealth__content--recipes"]}>
-          {dataRecipes.map((recipes, index) => (
-            <div key={index}>
-              <img
-                src={recipes.image}
-                alt={recipes.title}
-                className={styles["challengingHealth__image--recipes"]}
-              />
+        <div
+          className={`${styles["challengingHealth__container--recipes"]} ${styles["challengingHealth__section--general"]}`}
+        >
+          <div className={styles["challengingHealth__content-title---recipes"]}>
+            <h2
+              className={`${styles["challengingHealth__title--recipes"]} ${styles["challengingHealth__title-general"]}`}
+            >
+              Recetas
+            </h2>
+            <p
+              className={`${styles["challengingHealth__paragraph--recipes"]} ${styles["challengingHealth__title-general"]}`}
+            >
+              Compartimos contigo recetas. ¡Que importante es la variedad en la
+              comida!
+            </p>
+          </div>
+          <div className={styles["challengingHealth__content--recipes"]}>
+            {dataRecipes.map((recipes, index) => (
+              <div key={index}>
+                <img
+                  src={recipes.image}
+                  alt={recipes.title}
+                  className={styles["challengingHealth__image--recipes"]}
+                />
 
-              <p className={styles["challengingHealth__title-image--recipes"]}>
-                {recipes.title}
-              </p>
-            </div>
-          ))}
+                <p
+                  className={styles["challengingHealth__title-image--recipes"]}
+                >
+                  {recipes.title}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      <section className={`${styles["challengingHealth__container--menu"]}`}>
-        <div className={styles["challengingHealth__content-title--menu"]}>
-          <h2 className={`${styles["challengingHealth__title--menu"]}`}>
-            Menús
-          </h2>
-          <h4 className={`${styles["challengingHealth__subTitle--menu"]}`}>
-            Aprende a combinar tus comidas con un menú semanal
-          </h4>
-        </div>
-        <div className={styles["challengingHealth__container--items-menu"]}>
-          <div className={styles["challengingHealth__content--menuOne"]}>
-            {dataMenuOne.map((menuOne, index) => (
-              <div
-                key={index}
-                className={styles["challengingHealth__content-image--menuOne"]}
-              >
-                <Link
-                  href={menuOne.link}
-                  target="_blank"
-                  className={styles["challengingHealth__link-image--menuOne"]}
-                >
-                  <img
-                    src={menuOne.image}
-                    alt={menuOne.link}
-                    className={styles["challengingHealth__image--menuOne"]}
-                  />
-                </Link>
-              </div>
-            ))}
+      <section className={styles["challengingHealth__content-general--menu"]}>
+        <div className={`${styles["challengingHealth__container--menu"]}`}>
+          <div className={styles["challengingHealth__content-title--menu"]}>
+            <h2 className={`${styles["challengingHealth__title--menu"]}`}>
+              Menús
+            </h2>
+            <h4 className={`${styles["challengingHealth__subTitle--menu"]}`}>
+              Aprende a combinar tus comidas con un menú semanal
+            </h4>
           </div>
-          <p className={styles["challengingHealth__title--menuOne"]}>
-            <b> Semanal:</b> Menú Sugerencia Dra. Mariuxi López
-          </p>
-          <div className={styles["challengingHealth__content--menuOne"]}>
-            {dataMenuTwo.map((menuTwo, index) => (
-              <div
-                key={index}
-                className={styles["challengingHealth__content-image--menuOne"]}
-              >
-                <Link
-                  href={menuTwo.link}
-                  target="_blank"
-                  className={styles["challengingHealth__link-image--menuOne"]}
-                >
-                  <img
-                    src={menuTwo.image}
-                    alt={menuTwo.link}
-                    className={styles["challengingHealth__image--menuOne"]}
-                  />
-                </Link>
+
+          <div className={styles["challengingHealth__container--items-menu"]}>
+            <div className={styles["challengingHealth__container--menuOne"]}>
+              <p className={styles["challengingHealth__title--menuOne"]}>
+                <i>
+                  <b> Semanal:</b> Menú Sugerencia Dra. Mariuxi López
+                </i>
+              </p>
+              <div className={styles["challengingHealth__content--menuOne"]}>
+                {dataMenuOne.map((menuOne, index) => (
+                  <div
+                    key={index}
+                    className={
+                      styles["challengingHealth__content-image--menuOne"]
+                    }
+                  >
+                    <Link
+                      href={menuOne.link}
+                      target="_blank"
+                      className={
+                        styles["challengingHealth__link-image--menuOne"]
+                      }
+                    >
+                      <img
+                        src={menuOne.image}
+                        alt={menuOne.link}
+                        className={styles["challengingHealth__image--menuOne"]}
+                      />
+                    </Link>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
+            <div className={styles["challengingHealth__container--menuTwo"]}>
+              <p className={styles["challengingHealth__title--menuOne"]}>
+                <i>
+                  <b>Menú Semanal:</b> Sugerencia Nutricionista Yanina
+                </i>
+              </p>
+              <div className={styles["challengingHealth__content--menuOne"]}>
+                {dataMenuTwo.map((menuTwo, index) => (
+                  <div
+                    key={index}
+                    className={
+                      styles["challengingHealth__content-image--menuOne"]
+                    }
+                  >
+                    <Link
+                      href={menuTwo.link}
+                      target="_blank"
+                      className={
+                        styles["challengingHealth__link-image--menuOne"]
+                      }
+                    >
+                      <img
+                        src={menuTwo.image}
+                        alt={menuTwo.link}
+                        className={styles["challengingHealth__image--menuOne"]}
+                      />
+                    </Link>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
-          <p className={styles["challengingHealth__title--menuOne"]}>
-            <b>Menú Semanal:</b> Sugerencia Nutricionista Yanina
-          </p>
         </div>
       </section>
     </main>
