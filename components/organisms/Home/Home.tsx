@@ -44,21 +44,49 @@ export const Home = () => {
     <main className="home">
       <section className={styles["home-welcome"]}>
         <h1 className={styles["home-title"]}>GENERACIÓN DESAFIANTE</h1>
-        <Button className={styles["home-button_action"]}>VERSO POR VERSO</Button>
+        <Button className={styles["home-button_action"]}>
+          <Link
+            href={"/estudios/verso-por-verso"}
+            className={styles["home-link-button_action"]}
+          >
+            VERSO POR VERSO
+          </Link>
+        </Button>
         <div className={styles["home-content_itemsDown"]}>
-          <p className={styles["home-sutbtitle_down"]}>¡BIENVENIDO A ESTE CAMINAR!</p>
+          <p className={styles["home-sutbtitle_down"]}>
+            ¡BIENVENIDO A ESTE CAMINAR!
+          </p>
           <div className={styles["home-socialNetworks_down"]}>
-            <FacebookIcon />
-            <div className={styles['home-icon_middleDown']}>
-              <InstagramIcon />
-            </div>
-            <YoutubeIcon />
+            <Link
+              href={"https://www.facebook.com/generaciondesafiante"}
+              target="_blank"
+            >
+              <FacebookIcon />
+            </Link>
+            <Link
+              href={
+                "https://www.instagram.com/generaciondesafiante_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+              }
+              target="_blank"
+            >
+              <div className={styles["home-icon_middleDown"]}>
+                <InstagramIcon />
+              </div>
+            </Link>
+            <Link
+              href={"https://www.youtube.com/c/Generaci%C3%B3ndesafiante"}
+              target="_blank"
+            >
+              <YoutubeIcon />
+            </Link>
           </div>
         </div>
       </section>
       {/* section two */}
       <section className={styles["home-container_challenging"]}>
-        <h2 className={styles["home-title_challenging"]}>¿QUÉ ES SER DESAFIANTE?</h2>
+        <h2 className={styles["home-title_challenging"]}>
+          ¿QUÉ ES SER DESAFIANTE?
+        </h2>
         <p className={styles["home-mainParagraph_challenging"]}>
           Somos una
           <span className={styles["home-paragraphBold_challenging"]}>
@@ -82,7 +110,8 @@ export const Home = () => {
             <span className={styles["home-step_number"]}>02</span>
             <div>
               <p className={styles["home-title_step"]}>
-                IR <span className={styles["home-title_reverseWord"]}>CONTRA</span>
+                IR{" "}
+                <span className={styles["home-title_reverseWord"]}>CONTRA</span>
                 CORRIENTE
               </p>
               <i className={styles["home-biblica_step"]}>Salir del sistema</i>
@@ -125,11 +154,20 @@ export const Home = () => {
               className={styles["home-image-sukatDavid"]}
             />
           </Link>
-          <Link href={""} className={styles["home-section_linkCourses"]}>
+          <Link
+            href={
+              "https://youtube.com/playlist?list=PLX-KKyt726LPrURnoMRWSYvldlQ3b8Kf7&si=dmM6NAbkZTmIgxEm"
+            }
+            target="_blank"
+            className={styles["home-section_linkCourses"]}
+          >
             <h2 className={styles["home-title_shedulesLast"]}>
               ÚLTIMO{" "}
-              <span className={styles["home-spanTitle_shedules"]}>ESTUDIO:</span>
+              <span className={styles["home-spanTitle_shedules"]}>
+                ESTUDIO:
+              </span>
             </h2>
+
             <img
               src="/homePage/LASTCOURSE.webp"
               alt=""
