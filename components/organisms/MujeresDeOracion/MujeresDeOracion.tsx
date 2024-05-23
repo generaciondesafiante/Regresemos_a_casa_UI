@@ -5,15 +5,15 @@ import styles from "./MujeresDeOracion.module.css";
 export const MujeresDeOracion = () => {
   const postsShedule = [
     {
-      image: "/gruposDesafiantes/mujeresDeOracion/shedule-1.webp",
+      image: "/challengingGroups/womenOfPrayer/shedule-1.webp",
       name: "sheduleOne",
     },
     {
-      image: "/gruposDesafiantes/mujeresDeOracion/shedule-2.webp",
+      image: "/challengingGroups/womenOfPrayer/shedule-2.webp",
       name: "sheduleTwo",
     },
     {
-      image: "/gruposDesafiantes/mujeresDeOracion/shedule-3.webp",
+      image: "/challengingGroups/womenOfPrayer/shedule-3.webp",
       name: "sheduleThree",
     },
   ];
