@@ -1,0 +1,384 @@
+.serSansonNoBasta__container {
+    margin-top: 6rem;
+    width: 100%;
+    height: 100%;
+}
+
+.serSansonNoBasta__info {
+    width: 100%;
+    height: 27.5rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.serSansonNoBasta__info--imgBackground {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url("https://static.wixstatic.com/media/df76fa1fad2e4c6596a893bd68f9aa7c.jpg/v1/fill/w_640,h_880,al_t,q_85,usm_0.66_1.00_0.01,enc_auto/df76fa1fad2e4c6596a893bd68f9aa7c.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: brightness(50%);
+    opacity: 0.7; 
+}
+
+.serSansonNoBasta__info--name {
+    text-align: center;
+    width: 60%;
+    font-size: var(--fontSize-titles_tablet);
+    font-weight: bold;
+    color: var(--white);
+    z-index: 1;
+    margin-bottom: 0.75rem;
+}
+
+.serSansonNoBasta__info--description {
+    font-size: var(--fontSize-paragraph_tablet);
+    width: 80%;
+    text-align: center;
+    color: var(--white);
+    z-index: 1;
+    line-height: 1.125rem;
+}
+
+/* .serSansonNoBasta__festivities {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--turquoise);
+    padding: 3.125rem 0;
+}
+
+.serSansonNoBasta__festivities--textFestivities {
+    color: var(--white);
+    font-size: var(--fontSize-paragraph_tablet);
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.serSansonNoBasta__festivities--button {
+    height: 2.5rem;
+    background-color: var(--turquoise);
+    border: var(--white) var(--border);
+    border-radius: var(--borderRadius);
+    cursor: pointer;
+    color: var(--white);
+    font-size: var(--fontSize-buttons_mobile);
+    padding: 0 1.875rem;
+    margin: 0.313rem 0;
+    transition: background-color 0.4s, color 0.4s, border-color 0.4s ease-in-out;
+}
+
+.serSansonNoBasta__festivities--button:hover {
+    background-color: var(--white);
+    color: var(--turquoise);
+} */
+
+.serSansonNoBasta__schedule {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.serSansonNoBasta__schedule--container {
+    display: flex;
+    height: auto;
+    width: 100%;
+    margin: 1.25rem 0 0.938rem 0;
+    padding-bottom: 1.25rem;
+    border-bottom: #2f2e2e33 0.063rem solid;
+}
+
+.serSansonNoBasta__schedule--hoursContent {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 0.625rem;
+    color: var(--darkGray);
+    width: 50%;
+    height: auto;
+}
+
+.serSansonNoBasta__schedule--hour {
+    font-size: var(--fontSize-subtitles_desktop);
+    width: 50%;
+}
+
+.serSansonNoBasta__schedule--text1 {
+    font-size: 10px;
+    width: 50%;
+}
+
+.serSansonNoBasta__schedule--hour2 {
+    width: 100%;
+}
+
+.serSansonNoBasta__schedule--text2 {
+    width: 100%;
+}
+
+.serSansonNoBasta__networks {
+    display: block;
+    margin-bottom: 1.563rem;
+}
+
+.serSansonNoBasta__networksContent {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.serSansonNoBasta__networksButton--whatsapp {
+    height: 2.5rem;
+    width: 16.563rem;
+    background-color: var(--white);
+    border: var(--turquoise) var(--border);
+    border-radius: var(--borderRadius);
+    cursor: pointer;
+    color: var(--darkGray);
+    font-size: var(--fontSize-buttons_mobile);
+    padding: 0 1.875rem;
+    margin: 0.313rem 0;
+    transition: background-color 0.4s, color 0.4s, border-color 0.4s ease-in-out;
+}
+
+.serSansonNoBasta__networksButton--whatsapp:hover {
+    background-color: var(--turquoise);
+    color: var(--white);
+}
+
+.serSansonNoBasta__networksButton--telegram {
+    height: 2.5rem;
+    width: 16.563rem;
+    background-color: var(--turquoise);
+    border: var(--turquoise) var(--border);
+    border-radius: var(--borderRadius);
+    color: var(--white);
+    cursor: pointer;
+    font-size: var(--fontSize-buttons_mobile);
+    padding: 0 1.875rem;
+    margin: 0.313rem 0;
+    transition: background-color 0.4s, color 0.4s, border-color 0.4s ease-in-out;
+}
+
+.serSansonNoBasta__networksButton--telegram:hover {
+    background-color: var(--white);
+    border: var(--darkGray) var(--border);
+    color: var(--darkGray);
+}   
+
+.serSansonNoBasta__leavySlavery {
+    margin: 0 auto;
+    width: 87%;
+    height: auto;
+}
+
+.serSansonNoBasta__leavySlavery--Content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin-bottom: 1.563rem;
+}
+
+.serSansonNoBasta__leavySlavery--img {
+    width: 100%;
+    height: 100%;
+    border-radius: var(--borderRadius);
+    margin: 0.313rem 0;
+    transition: all 300ms;
+}
+
+.serSansonNoBasta__leavySlavery--img:hover {
+    cursor: pointer;
+    transform: scale(1.03);
+} 
+
+.serSansonNoBasta__leavySlavery--button{
+    position: relative;
+    bottom: 20px;
+    height: 2.5rem;
+    width: auto;
+    background-color: var(--turquoise);
+    border: var(--turquoise) var(--border);
+    border-radius: var(--borderRadius);
+    color: var(--white);
+    cursor: pointer;
+    font-size: var(--fontSize-buttons_mobile);
+    padding: 0 2.188rem;
+    margin: 0.313rem 0;
+    transition: background-color 0.4s, color 0.4s, border-color 0.4s ease-in-out;
+}
+
+.serSansonNoBasta__leavySlavery--button:hover {
+    background-color: var(--lightGray);
+    border: var(--lightGray) var(--border);
+    color: var(--turquoise);
+}  
+
+@media (width >=48rem) {
+    .serSansonNoBasta__info--name {
+        font-size: var(--fontSize-superTitles_tablet);
+        padding: 0 1.875rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .serSansonNoBasta__info--description {
+        width: 35%;
+        line-height: 1.313rem;
+    }
+
+    .serSansonNoBasta__festivities--textFestivities {
+        font-size: var(--fontSize-titles_tablet);
+    }
+
+    .serSansonNoBasta__festivities--button {
+        font-size: var(--fontSize-paragraph_tablet);
+    }
+
+    .serSansonNoBasta__schedule--container {
+        width: 60%;
+        padding: 2.5rem 0 3.75rem 0;
+        border-bottom: #2f2e2e33 0.15rem solid;
+    }
+
+    .serSansonNoBasta__schedule--hour {
+        font-size: var(--fontSize-titles_desktop);
+    }
+
+    .serSansonNoBasta__schedule--text {
+        font-size: var(--fontSize-paragraph_tablet);
+    }
+
+    .serSansonNoBasta__networksContent {
+        margin: 0.625rem;
+    }
+
+    .serSansonNoBasta__networksButton--whatsapp {
+        font-size: var(--fontSize-paragraph_tablet);
+    }
+
+    .serSansonNoBasta__networksButton--telegram {
+        font-size: var(--fontSize-paragraph_tablet);
+    }
+
+    .serSansonNoBasta__books {
+        width: 80%;
+    }
+
+    .serSansonNoBasta__books--imgDeuteronomio {
+        justify-content: center;
+        align-items: center;
+        margin-top: 1.25rem;
+        max-width: 46.875rem;
+    }
+
+    .serSansonNoBasta__books--imgSalmos {
+        margin: 1.563rem 0 2.5rem 0;
+        max-width: 46.875rem;
+    }
+}
+
+@media (width >=80rem) {
+    .serSansonNoBasta__info {
+        height: calc(33.875rem - 6rem);
+    }
+
+    .serSansonNoBasta__info--name {
+        font-size: var(--fontSize-titles_desktop);
+        margin-bottom: 1.875rem;
+    }
+
+    .serSansonNoBasta__info--description {
+        font-size: var(--fontSize-paragraph_desktop);
+        line-height: 1.875rem;
+        width: 25%;
+    }
+
+    .serSansonNoBasta__festivities {
+        flex-direction: row;
+    }
+
+    .serSansonNoBasta__festivities--textFestivities {
+        font-size: var(--fontSize-paragraph_desktop);
+        margin: 0 3.75rem 0 0;
+    }
+
+    .serSansonNoBasta__festivities--button {
+        font-size: var(--fontSize-subtitles_mobile);
+        margin: 0 0.625rem;
+        padding: 0 1.25rem;
+    }
+
+    .serSansonNoBasta__schedule--hour {
+        font-size: var(--fontSize-superTitles_desktop);
+    }
+
+    .serSansonNoBasta__schedule--text {
+        display: none;
+    }
+
+    .serSansonNoBasta__schedule--text1 {
+        display: block;
+        font-size: var(--fontSize-subtitles_mobile);
+    }
+
+    .serSansonNoBasta__schedule {
+        width: 70%;
+        margin: 0 auto 1.25rem auto;
+        flex-direction: row;
+        border-bottom: #2f2e2e33 0.063rem solid;
+    }
+
+    .serSansonNoBasta__schedule--container {
+        width: 50%;
+        border-bottom: none;
+        margin: 0 6.25rem 0 0;
+    }
+
+    .serSansonNoBasta__networksContent {
+        align-items: start;
+    }
+
+    .serSansonNoBasta__networksButton--whatsapp {
+        font-size: var(--fontSize-paragraph_laptop);
+    }
+
+    .serSansonNoBasta__networksButton--telegram {
+        font-size: var(--fontSize-paragraph_laptop);
+    }
+
+    .serSansonNoBasta__books {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .serSansonNoBasta__booksContent {
+        width: 45%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .serSansonNoBasta__books--imgDeuteronomio {
+        margin: 0.625rem 0.938rem;
+    }
+
+    .serSansonNoBasta__books--imgSalmos {
+        margin: 0.625rem 0.938rem;
+    }
+}
