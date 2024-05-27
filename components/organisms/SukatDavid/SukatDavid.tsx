@@ -2,9 +2,9 @@
 import styles from "./SukatDavid.module.css";
 
 export const SukatDavid = () => {
-    const imageDeuteronomio = "https://static.wixstatic.com/media/d166cc_37c665df6e2b41c39b75f6b850460d20~mv2.jpg/v1/fill/w_560,h_312,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/Deuteronomio.jpg";
+    const imageDeuteronomio = "https://firebasestorage.googleapis.com/v0/b/sukatdavid-d0ff8.appspot.com/o/Deuteronomio.webp?alt=media&token=2df3c824-03b0-45b3-8247-6239cb02493d";
 
-    const imageSalmos = "https://static.wixstatic.com/media/d166cc_595e9cd9fd6340808fece4079964c2fb~mv2.jpg/v1/fill/w_560,h_312,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/Salmos.jpg";
+    const imageSalmos = "https://firebasestorage.googleapis.com/v0/b/sukatdavid-d0ff8.appspot.com/o/Salmos.webp?alt=media&token=b160e2ec-fe21-4f48-a844-beff7c07f711";
 
     return (
         <article className={styles["sukatDavid__container"]}>

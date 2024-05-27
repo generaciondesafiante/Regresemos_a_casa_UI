@@ -4,19 +4,19 @@ import styles from "./AboutUs.module.css";
 
 export const AboutUs = () => {
   const imagenLincolns =
-    "https://static.wixstatic.com/media/d166cc_511a94f7936d4713b4906a3194d7f30c~mv2.jpg/v1/crop/x_283,y_60,w_994,h_1020/fill/w_166,h_172,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/30743886_2126087857670517_61279119260652.jpg";
+    "https://firebasestorage.googleapis.com/v0/b/quienes-somos-ec597.appspot.com/o/30743886_2126087857670517_61279119260652.webp?alt=media&token=d561dac8-c7d1-4393-9740-ecaa2b4221c2";
 
   const imagenAbigailMichell =
-    "https://static.wixstatic.com/media/d166cc_141257b4382346d3a80798efa1cf09c4~mv2.jpg/v1/crop/x_129,y_49,w_440,h_521/fill/w_134,h_156,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/54517632_2414760852078060_82520352340574.jpg";
+    "https://firebasestorage.googleapis.com/v0/b/quienes-somos-ec597.appspot.com/o/54517632_2414760852078060_82520352340574.webp?alt=media&token=477072b0-ca33-4d84-af51-4c26c50e419c";
 
   const imagenDanielaLopez =
-    "https://static.wixstatic.com/media/d166cc_065bdcc8edf34430a0341c1ba9fd48d7~mv2.jpg/v1/crop/x_219,y_0,w_2586,h_3132/fill/w_142,h_172,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/Milka%20Daniela.jpg";
+    "https://firebasestorage.googleapis.com/v0/b/quienes-somos-ec597.appspot.com/o/Milka%20Daniela.webp?alt=media&token=f9c07afa-32de-4dd4-a251-a8a312bbb88e";
 
   const discoverBible =
-    "https://static.wixstatic.com/media/d166cc_fc0265a7548b4bc9b50511322f17870d~mv2.png/v1/fill/w_124,h_124,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/3000PX%20Logos_Mesa%20de%20trabajo%201.png";
+    "https://firebasestorage.googleapis.com/v0/b/quienes-somos-ec597.appspot.com/o/3000PX%20Logos_Mesa%20de%20trabajo%201.webp?alt=media&token=a1e48414-a151-48c9-bd95-a4f70d7cce3c";
 
   const imagenFooter =
-    "https://static.wixstatic.com/media/d166cc_89e082e6997946c1924000b082e3d4ad~mv2.jpg/v1/fill/w_980,h_245,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/d166cc_89e082e6997946c1924000b082e3d4ad~mv2.jpg";
+    "https://firebasestorage.googleapis.com/v0/b/quienes-somos-ec597.appspot.com/o/d166cc_89e082e6997946c1924000b082e3d4ad~mv2.webp?alt=media&token=f35c2e10-2262-4e7c-9d5a-feba69a75a3a";
 
   return (
     <div className={styles["aboutUs__container"]}>
