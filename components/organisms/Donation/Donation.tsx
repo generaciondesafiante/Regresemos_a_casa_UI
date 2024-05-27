@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Button } from "../../atoms";
 import styles from "./Donation.module.css";
 
@@ -45,10 +46,25 @@ export const Donation = () => {
             </p>
             <div className={styles["donations-contentButton_paymentMethods"]}>
               <Button className={`${styles["donations-button_pypalme"]}`}>
-                Paypal.me
+                <Link
+                  href={"https://www.paypal.me/generaciondesafiante"}
+                  target="_blank"
+                  className={styles['donations-link-button_pypalme']}
+                >
+                  Paypal.me
+                </Link>
               </Button>
-              <Button className={` ${styles["donations-button_support"]}`}>
-                Apoya Aquí
+              <Button className={`${styles["donations-button_support"]}`}>
+                <Link
+                  href={
+                    "https://www.powr.io/checkout_screen?unique_label=5f6bbd82_1620026447"
+                  }
+                  target="_blank"
+                  className={styles['donations-link-button_support']}
+                  
+                >
+                  Apoya Aquí
+                </Link>
               </Button>
             </div>
             <div className={styles["donations-cards_methods"]}>

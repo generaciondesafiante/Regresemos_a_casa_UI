@@ -57,11 +57,15 @@
   > .challengingHealth__button--socialNetwork {
   width: 9.375rem;
   background-color: var(--white);
-  color: var(--greenDesafiante);
   font-size: var(--fontSize-buttons_mobile);
   border: var(--border) var(--greenDesafiante);
   margin-bottom: 3rem;
   margin-top: 3rem;
+}
+
+.challengingHealth__link-button--socialNetwork {
+  color: var(--greenDesafiante);
+  text-decoration: none;
 }
 
 .challengingHealth__line--socialNetwork {

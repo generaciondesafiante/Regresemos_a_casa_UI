@@ -27,7 +27,13 @@ export const ChallengingHealth = () => {
         <Button
           className={`${styles["challengingHealth__button--socialNetwork"]}`}
         >
-          WhatsApp
+          <Link
+            href={"https://chat.whatsapp.com/H1uHYFJBWQ2DvhzgTO9NDq"}
+            className={`${styles["challengingHealth__link-button--socialNetwork"]}`}
+            target="_blank"
+          >
+            WhatsApp
+          </Link>
         </Button>
         <div className={styles["challengingHealth__line--socialNetwork"]}></div>
       </div>
@@ -183,11 +189,13 @@ export const ChallengingHealth = () => {
           <div className={styles["challengingHealth__content--recipes"]}>
             {dataRecipes.map((recipes, index) => (
               <div key={index}>
-                <img
-                  src={recipes.image}
-                  alt={recipes.title}
-                  className={styles["challengingHealth__image--recipes"]}
-                />
+                <Link href={recipes.link} target="_blank">
+                  <img
+                    src={recipes.image}
+                    alt={recipes.title}
+                    className={styles["challengingHealth__image--recipes"]}
+                  />
+                </Link>
 
                 <p
                   className={styles["challengingHealth__title-image--recipes"]}

@@ -36,6 +36,11 @@
   border-radius: 0.625rem;
 }
 
+.home-link-button_action {
+  text-decoration: none;
+  color: var(--white);
+}
+
 .home-welcome > .home-content_itemsDown {
   width: 100vw;
   position: absolute;
@@ -52,7 +57,7 @@
   gap: 0.8rem;
 }
 
-.home-icon_middleDown{
+.home-icon_middleDown {
   margin-right: 0.5rem;
 }
 
@@ -78,7 +83,7 @@
   margin-bottom: 3rem;
 }
 
-.home-mainParagraph_challenging{
+.home-mainParagraph_challenging {
   width: 300px;
   text-align: center;
   font-size: var(--fontSize-paragraph_mobile);
@@ -128,7 +133,7 @@
   text-align: start;
 }
 
-.home-title_step > .home-title_reverseWord{
+.home-title_step > .home-title_reverseWord {
   font-weight: bold;
   display: inline-block;
   transform: rotate(180deg);
@@ -256,7 +261,7 @@
     font-size: var(--fontSize-titles_tablet);
   }
 
-  .home-mainParagraph_challenging{
+  .home-mainParagraph_challenging {
     width: 500px;
     font-size: var(--fontSize-paragraph_tablet);
     margin-bottom: 3.2rem;
@@ -354,7 +359,7 @@
     font-size: var(--fontSize-titles_laptop);
   }
 
-  .home-mainParagraph_challenging{
+  .home-mainParagraph_challenging {
     width: 450px;
     font-size: var(--fontSize-paragraph_desktop);
     margin-bottom: 4rem;
