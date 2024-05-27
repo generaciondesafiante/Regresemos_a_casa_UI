@@ -17,15 +17,17 @@ export const SerSansonNoBasta = () => {
 
             <section className={styles["serSansonNoBasta__schedule"]}>
                 <div className={styles["serSansonNoBasta__schedule--container"]}>
-                    <div className={styles["serSansonNoBasta__schedule--hoursContent"]}>
-                        <p className={styles["serSansonNoBasta__schedule--text1"]}>MIERCOLES | VIERNES</p>
-                        <p className={styles["serSansonNoBasta__schedule--hour"]}>8:00</p>
+                    <div>
+                        <div className={styles["serSansonNoBasta__schedule--hoursContent"]}>
+                            <p className={styles["serSansonNoBasta__schedule--text1"]}>MIERCOLES | VIERNES</p>
+                            <p className={styles["serSansonNoBasta__schedule--hour"]}>8:00</p>
+                        </div>
+                        <div className={styles["serSansonNoBasta__schedule--hoursContent"]}>
+                            <p className={styles["serSansonNoBasta__schedule--text1"]}>JUEVES</p>
+                            <p className={styles["serSansonNoBasta__schedule--hour"]}>05:00</p>
+                        </div>
+                    </div>
 
-                    </div>
-                    <div className={styles["serSansonNoBasta__schedule--hoursContent"]}>
-                        <p className={styles["serSansonNoBasta__schedule--text1"]}>JUEVES</p>
-                        <p className={styles["serSansonNoBasta__schedule--hour"]}>05:00</p>
-                    </div>
                     <div className={styles["serSansonNoBasta__schedule--hoursContent"]}>
                         <p className={styles["serSansonNoBasta__schedule--text2"]}>DOMINGO</p>
                         <p className={styles["serSansonNoBasta__schedule--hour2"]}>06:00</p>
@@ -60,10 +62,7 @@ export const SerSansonNoBasta = () => {
                     <img className={styles["serSansonNoBasta__liftWeights"]} src={imageExercise} alt="persona levantando pesas" />
                 </div>
                 <div className={styles["serSansonNoBasta__video--container"]}>
-                    <video controls className={styles["serSansonNoBasta__video"]}>
-                        <source src="https://www.youtube.com/watch?v=VjDQrONIiS0" type="video/mp4" />
-                        Your browser does not support the video tag.
-                    </video>
+                    <iframe className={styles["serSansonNoBasta__video"]} width="560" height="315" src="https://www.youtube.com/embed/VjDQrONIiS0?si=iDmu-nqubyqN_8xM" allowFullScreen></iframe>
                 </div>
             </section>
         </article>
