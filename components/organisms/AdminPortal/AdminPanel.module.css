@@ -1,4 +1,4 @@
-.adminPortal {
+.adminPanel {
   width: 100%;
   height: 100vh;
   display: flex;
@@ -6,21 +6,21 @@
   align-items: center;
 }
 
-.adminPortal__container {
+.adminPanel__container {
   display: flex;
   justify-content: center;
   align-items: start;
   gap: 3rem;
 }
 
-.adminPortal__container--sectionLeft,
-.adminPortal__container--sectionRight {
+.adminPanel__container--sectionLeft,
+.adminPanel__container--sectionRight {
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
 }
 
-.adminPortal__content--admins {
+.adminPanel__content--admins {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -30,7 +30,7 @@
   border-radius: var(--borderRadius);
 }
 
-.adminPortal__content--admins > .adminPortal__title--admins {
+.adminPanel__content--admins > .adminPanel__title--admins {
   font-size: var(--fontSize-subtitles_laptop);
   color: var(--darkBlue);
   font-weight: bold;
@@ -38,14 +38,14 @@
   margin-bottom: 1.563rem;
 }
 
-.adminPortal__content-users--admins {
+.adminPanel__content-users--admins {
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 0.875rem;
 }
 
-.adminPortal__content-infoUser--admins {
+.adminPanel__content-infoUser--admins {
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -54,30 +54,30 @@
   margin-left: 1.75rem;
 }
 
-.adminPortal__image-infoUser--admins {
+.adminPanel__image-infoUser--admins {
   width: 2.5rem;
   border-radius: 50%;
 }
 
-.adminPortal__content-buttonEdit--admins {
+.adminPanel__content-buttonEdit--admins {
   width: 100%;
   display: flex;
   justify-content: flex-end;
   margin: 1.188rem 0rem 1.563rem 0rem;
 }
 
-.adminPortal__notFound-user--admins {
+.adminPanel__notFound-user--admins {
   text-align: center;
   margin: auto 0;
   color: var(--black);
   font-size: var(--fontSize-paragraph_laptop);
 }
 
-.adminPortal__link-buttonEdit {
+.adminPanel__link-buttonEdit {
   text-decoration: none;
 }
 
-.adminPortal__buttonEdit--admins {
+.adminPanel__buttonEdit--admins {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -87,7 +87,7 @@
   gap: 0.625rem;
 }
 
-.adminPortal__content--students {
+.adminPanel__content--students {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -98,14 +98,14 @@
   border-radius: var(--borderRadius);
 }
 
-.adminPortal__title--students {
+.adminPanel__title--students {
   font-size: var(--fontSize-subtitles_laptop);
   color: var(--darkBlue);
   font-weight: bold;
   margin: 1.375rem 0 0.813rem 0;
 }
 
-.adminPortal__count--students {
+.adminPanel__count--students {
   background-color: var(--white);
   padding: 0.25rem 0.813rem;
   border-radius: var(--borderRadius);
@@ -113,7 +113,7 @@
   margin-bottom: 0.813rem;
 }
 
-.adminPortal__content--courses {
+.adminPanel__content--courses {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -122,7 +122,7 @@
   border-radius: var(--borderRadius);
 }
 
-.adminPortal__title--courses {
+.adminPanel__title--courses {
   color: var(--white);
   font-weight: bold;
   font-size: var(--fontSize-subtitles_laptop);
@@ -130,7 +130,7 @@
   margin: 1.438rem 0 1.438rem 0;
 }
 
-.adminPortal__conent-courses--courses {
+.adminPanel__conent-courses--courses {
   width: calc(100% - 1.75rem);
   margin-left: 1.75rem;
   display: flex;
@@ -138,19 +138,19 @@
   gap: 1.438rem;
 }
 
-.adminPortal__course-item--courses {
+.adminPanel__course-item--courses {
   color: var(--white);
   font-size: var(--fontSize-paragraph_laptop);
 }
 
-.adminPortal__course-notFoud--courses {
+.adminPanel__course-notFoud--courses {
   text-align: center;
   margin: auto 0;
   color: var(--white);
   font-size: var(--fontSize-paragraph_laptop);
 }
 
-.adminPortal__content-button--courses {
+.adminPanel__content-button--courses {
   width: 100%;
   display: flex;
   justify-content: flex-end;
@@ -158,7 +158,7 @@
   margin-bottom: 1.125rem;
 }
 
-.adminPortal__button--courses {
+.adminPanel__button--courses {
   font-size: var(--fontSize-buttons_laptop);
   margin-right: 1.5rem;
   color: var(--darkBlue);
@@ -169,7 +169,7 @@
   gap: 0.625rem;
 }
 
-.adminPortal__content--resources {
+.adminPanel__content--resources {
   display: flex;
   flex-direction: column;
   width: 25rem;
@@ -177,7 +177,7 @@
   border-radius: var(--borderRadius);
 }
 
-.adminPortal__title--resources {
+.adminPanel__title--resources {
   text-align: center;
   margin-top: 1.25rem;
   font-size: var(--fontSize-subtitles_laptop);
@@ -185,7 +185,7 @@
   font-weight: bold;
 }
 
-.adminPortal__conent-icons--resources {
+.adminPanel__conent-icons--resources {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -194,20 +194,20 @@
   margin: 1.188rem 0rem 1.438rem 0;
 }
 
-.adminPortal__icons--resources {
+.adminPanel__icons--resources {
   font-size: 2.5rem;
   width: 2.5rem;
   color: var(--darkBlue);
 }
 
-.adminPortal__content-button--resources {
+.adminPanel__content-button--resources {
   width: 100%;
   display: flex;
   justify-content: flex-end;
   margin-bottom: 1.125rem;
 }
 
-.adminPortal__button--resources {
+.adminPanel__button--resources {
   font-size: var(--fontSize-buttons_laptop);
   margin-right: 1.5rem;
   color: var(--darkBlue);

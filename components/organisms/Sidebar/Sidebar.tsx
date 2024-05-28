@@ -31,8 +31,8 @@ export const Sidebar = () => {
     isAdmin
       ? {
           name: "admin",
-          href: "/dashboard/panelAdmin",
-          icon: <AdminIcon className={styles["sidebar-icon"]} />,
+          href: "/dashboard/adminPanel",
+          icon: <AdminIcon className={`${styles["sidebar-icon"]} ${styles["admin-icon"]}`} />,
         }
       : null,
     {

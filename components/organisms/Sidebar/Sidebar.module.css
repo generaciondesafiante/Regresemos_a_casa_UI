@@ -31,6 +31,10 @@
   transform: var(--transform);
 }
 
+.admin-icon {
+  display: none;
+}
+
 .sidebar-icon_house {
   width: 1.7rem;
   height: 1.7rem;
@@ -87,5 +91,11 @@
   .sidebar-sectionSelected {
     width: 3.5rem;
     height: 2.5rem;
+  }
+}
+
+@media (width >= 64rem) {
+  .admin-icon {
+    display: block;
   }
 }

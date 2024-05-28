@@ -14,7 +14,7 @@ export async function middleware(req: NextRequest) {
     return NextResponse.redirect(redirectTo);
   }
 
-  if (req.nextUrl.pathname.includes("/dashboard/panelAdmin")) {
+  if (req.nextUrl.pathname.includes("/dashboard/adminPanel")) {
     if (!session.admin) {
       console.error("error");
       const baseUrl =
