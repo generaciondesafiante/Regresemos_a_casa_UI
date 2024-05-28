@@ -28,3 +28,4 @@ export * from "./Sidebar/Sidebar";
 export * from "./SukatDavid/SukatDavid";
 export * from "./TaringStart/TaringStart";
 export * from "./PDFView/PDFView";
+export * from "./AdminPortal/AdminPanel";
