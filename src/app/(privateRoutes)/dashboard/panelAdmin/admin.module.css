@@ -1,0 +1,4 @@
+.adminContent {
+  width: calc(100% - 5rem);
+  margin-left: 5rem;
+}

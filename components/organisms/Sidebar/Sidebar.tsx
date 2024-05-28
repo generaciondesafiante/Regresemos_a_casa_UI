@@ -31,7 +31,7 @@ export const Sidebar = () => {
     isAdmin
       ? {
           name: "admin",
-          href: "/dashboard/admin",
+          href: "/dashboard/panelAdmin",
           icon: <AdminIcon className={styles["sidebar-icon"]} />,
         }
       : null,
@@ -70,17 +70,24 @@ export const Sidebar = () => {
     },
   ].filter(Boolean);
 
+  const isSelected = (linkHref: string) => {
+    if (linkHref === "/dashboard") {
+      return pathName === linkHref;
+    }
+    return pathName.startsWith(linkHref);
+  };
+
   return (
     <div className={styles["sidebar-container"]}>
       <div className={styles["sidebar-content_center"]}>
-        {links.map((link, index) => {
+        {links.map((link) => {
           if (link && topLinks.includes(link.name)) {
             return (
               <Link
                 href={link.href}
                 key={link.name}
                 className={`${
-                  pathName === link.href
+                  isSelected(link.href)
                     ? styles["sidebar-sectionSelected"]
                     : ""
                 }`}
@@ -94,17 +101,13 @@ export const Sidebar = () => {
       </div>
 
       <div className={styles["sidebar-content_center"]}>
-        {links.map((link, index) => {
+        {links.map((link) => {
           if (link && centeredLinks.includes(link.name)) {
             return (
               <Link href={link.href} key={link.name}>
                 <div
                   className={`${styles["sidebar-iconContainer"]} ${
-                    (
-                      link.name === "home"
-                        ? pathName === link.href
-                        : pathName.startsWith(link.href)
-                    )
+                    isSelected(link.href)
                       ? styles["sidebar-sectionSelected"]
                       : ""
                   }`}
@@ -118,7 +121,7 @@ export const Sidebar = () => {
         })}
       </div>
 
-      {links.map((link, index) => {
+      {links.map((link) => {
         if (link && link.name === "logout") {
           return (
             <button
