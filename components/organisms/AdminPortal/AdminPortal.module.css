@@ -66,6 +66,13 @@
   margin: 1.188rem 0rem 1.563rem 0rem;
 }
 
+.adminPortal__notFound-user--admins {
+  text-align: center;
+  margin: auto 0;
+  color: var(--black);
+  font-size: var(--fontSize-paragraph_laptop);
+}
+
 .adminPortal__link-buttonEdit {
   text-decoration: none;
 }
@@ -132,6 +139,13 @@
 }
 
 .adminPortal__course-item--courses {
+  color: var(--white);
+  font-size: var(--fontSize-paragraph_laptop);
+}
+
+.adminPortal__course-notFoud--courses {
+  text-align: center;
+  margin: auto 0;
   color: var(--white);
   font-size: var(--fontSize-paragraph_laptop);
 }
