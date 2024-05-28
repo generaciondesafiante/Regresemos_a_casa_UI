@@ -85,40 +85,57 @@
     width: 100%;
     height: auto;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
 .serSansonNoBasta__schedule--container {
-    display: flex;
     height: auto;
     width: 100%;
-    margin: 1.25rem 0 0.938rem 0;
-    padding-bottom: 1.25rem;
+    margin: 40px 0px;
+}
+
+.serSansonNoBasta__schedule--contentFirst{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.serSansonNoBasta__schedule--contentSecond{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 80%;
+    padding-bottom: 30px;
     border-bottom: #2f2e2e33 0.063rem solid;
 }
 
 .serSansonNoBasta__schedule--hoursContent {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
     margin: 0.625rem;
     color: var(--darkGray);
     width: 50%;
     height: auto;
 }
 
+.serSansonNoBasta__schedule--hoursContent2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    color: var(--darkGray);
+    width: 100%;
+}
+
 .serSansonNoBasta__schedule--hour {
     font-size: var(--fontSize-subtitles_desktop);
-    width: 50%;
 }
 
 .serSansonNoBasta__schedule--text1 {
     font-size: 10px;
-    width: 50%;
 }
 
 .serSansonNoBasta__schedule--hour2 {
@@ -227,9 +244,56 @@
     background-color: var(--lightGray);
     border: var(--lightGray) var(--border);
     color: var(--turquoise);
-}  
+}
 
-@media (width >=48rem) {
+.serSansonNoBasta__video{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.serSansonNoBasta__liftWeights--imgBackground{
+    position: absolute;
+    width: 100%;
+    height: 424px;
+    background-image: url("https://static.wixstatic.com/media/11062b_e4180ddf92ae42b3b2d12dfd51579f36~mv2.jpg/v1/fill/w_640,h_848,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/11062b_e4180ddf92ae42b3b2d12dfd51579f36~mv2.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.07; 
+}
+
+.serSansonNoBasta__video--titleContent{
+    display: flex;
+    width: 80%;
+    height: 30%;
+    margin: 60px 0 20px 0;
+    padding: 40px;
+    align-items: center;
+}
+
+.serSansonNoBasta__video--title{
+    font-size: var(--fontSize-titles_mobile);
+    color: var(--darkGray);
+}
+
+.serSansonNoBasta__video--textSanson{
+    color: var(--turquoise);
+}
+
+.serSansonNoBasta__video--container{
+    width: 320px;
+    height: 250px;
+}
+
+.serSansonNoBasta__videoSerSanson{
+    width: 100%;
+    height: 250px;
+}
+
+/* @media (width >=48rem) {
     .serSansonNoBasta__info--name {
         font-size: var(--fontSize-superTitles_tablet);
         padding: 0 1.875rem;
@@ -381,4 +445,4 @@
     .serSansonNoBasta__books--imgSalmos {
         margin: 0.625rem 0.938rem;
     }
-}
+} */
