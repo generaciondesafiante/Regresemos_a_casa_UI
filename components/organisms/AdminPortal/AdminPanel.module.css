@@ -1,0 +1,219 @@
+.adminPanel {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.adminPanel__container {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  gap: 3rem;
+}
+
+.adminPanel__container--sectionLeft,
+.adminPanel__container--sectionRight {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.adminPanel__content--admins {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 25rem;
+  background-color: var(--gray);
+  border-radius: var(--borderRadius);
+}
+
+.adminPanel__content--admins > .adminPanel__title--admins {
+  font-size: var(--fontSize-subtitles_laptop);
+  color: var(--darkBlue);
+  font-weight: bold;
+  margin-top: 1.375rem;
+  margin-bottom: 1.563rem;
+}
+
+.adminPanel__content-users--admins {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+.adminPanel__content-infoUser--admins {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.688rem;
+  width: calc(100% - 1.75rem);
+  margin-left: 1.75rem;
+}
+
+.adminPanel__image-infoUser--admins {
+  width: 2.5rem;
+  border-radius: 50%;
+}
+
+.adminPanel__content-buttonEdit--admins {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin: 1.188rem 0rem 1.563rem 0rem;
+}
+
+.adminPanel__notFound-user--admins {
+  text-align: center;
+  margin: auto 0;
+  color: var(--black);
+  font-size: var(--fontSize-paragraph_laptop);
+}
+
+.adminPanel__link-buttonEdit {
+  text-decoration: none;
+}
+
+.adminPanel__buttonEdit--admins {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 1.5rem;
+  color: var(--darkBlue);
+  font-weight: bold;
+  gap: 0.625rem;
+}
+
+.adminPanel__content--students {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 25rem;
+  height: 6.875rem;
+  background-color: var(--turquoise);
+  border-radius: var(--borderRadius);
+}
+
+.adminPanel__title--students {
+  font-size: var(--fontSize-subtitles_laptop);
+  color: var(--darkBlue);
+  font-weight: bold;
+  margin: 1.375rem 0 0.813rem 0;
+}
+
+.adminPanel__count--students {
+  background-color: var(--white);
+  padding: 0.25rem 0.813rem;
+  border-radius: var(--borderRadius);
+  font-size: var(--fontSize-buttons_laptop);
+  margin-bottom: 0.813rem;
+}
+
+.adminPanel__content--courses {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 25rem;
+  background-color: var(--darkBlue);
+  border-radius: var(--borderRadius);
+}
+
+.adminPanel__title--courses {
+  color: var(--white);
+  font-weight: bold;
+  font-size: var(--fontSize-subtitles_laptop);
+  text-align: center;
+  margin: 1.438rem 0 1.438rem 0;
+}
+
+.adminPanel__conent-courses--courses {
+  width: calc(100% - 1.75rem);
+  margin-left: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.438rem;
+}
+
+.adminPanel__course-item--courses {
+  color: var(--white);
+  font-size: var(--fontSize-paragraph_laptop);
+}
+
+.adminPanel__course-notFoud--courses {
+  text-align: center;
+  margin: auto 0;
+  color: var(--white);
+  font-size: var(--fontSize-paragraph_laptop);
+}
+
+.adminPanel__content-button--courses {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 3.625rem;
+  margin-bottom: 1.125rem;
+}
+
+.adminPanel__button--courses {
+  font-size: var(--fontSize-buttons_laptop);
+  margin-right: 1.5rem;
+  color: var(--darkBlue);
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.adminPanel__content--resources {
+  display: flex;
+  flex-direction: column;
+  width: 25rem;
+  background-color: var(--yellow);
+  border-radius: var(--borderRadius);
+}
+
+.adminPanel__title--resources {
+  text-align: center;
+  margin-top: 1.25rem;
+  font-size: var(--fontSize-subtitles_laptop);
+  color: var(--darkBlue);
+  font-weight: bold;
+}
+
+.adminPanel__conent-icons--resources {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 1.188rem 0rem 1.438rem 0;
+}
+
+.adminPanel__icons--resources {
+  font-size: 2.5rem;
+  width: 2.5rem;
+  color: var(--darkBlue);
+}
+
+.adminPanel__content-button--resources {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1.125rem;
+}
+
+.adminPanel__button--resources {
+  font-size: var(--fontSize-buttons_laptop);
+  margin-right: 1.5rem;
+  color: var(--darkBlue);
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
+}
