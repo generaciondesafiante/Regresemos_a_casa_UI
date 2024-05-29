@@ -30,15 +30,16 @@ export const SerSansonNoBasta = () => {
                             <p className={styles["serSansonNoBasta__schedule--hour"]}>06:00</p>
                         </div>
                     </div>
+                    <div className={styles["serSansonNoBasta__networks"]}>
+                        <div className={styles["serSansonNoBasta__networksContent"]}>
+                            <button className={styles["serSansonNoBasta__networksButton--whatsapp"]}>WhatsApp</button>
+                            <button className={styles["serSansonNoBasta__networksButton--telegram"]}>Telegram</button>
+                        </div>
+                    </div>
                 </div>
+                <div className={styles["serSansonNoBasta__schedule--line"]}></div>
             </section>
 
-            <div className={styles["serSansonNoBasta__networks"]}>
-                <div className={styles["serSansonNoBasta__networksContent"]}>
-                    <button className={styles["serSansonNoBasta__networksButton--whatsapp"]}>WhatsApp</button>
-                    <button className={styles["serSansonNoBasta__networksButton--telegram"]}>Telegram</button>
-                </div>
-            </div>
 
             <section className={styles["serSansonNoBasta__leavySlavery"]}>
                 <div className={styles["serSansonNoBasta__leavySlavery--Content"]}>

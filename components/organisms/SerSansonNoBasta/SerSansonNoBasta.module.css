@@ -46,55 +46,23 @@
     line-height: 1.125rem;
 }
 
-/* .serSansonNoBasta__festivities {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--turquoise);
-    padding: 3.125rem 0;
-}
-
-.serSansonNoBasta__festivities--textFestivities {
-    color: var(--white);
-    font-size: var(--fontSize-paragraph_tablet);
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-}
-
-.serSansonNoBasta__festivities--button {
-    height: 2.5rem;
-    background-color: var(--turquoise);
-    border: var(--white) var(--border);
-    border-radius: var(--borderRadius);
-    cursor: pointer;
-    color: var(--white);
-    font-size: var(--fontSize-buttons_mobile);
-    padding: 0 1.875rem;
-    margin: 0.313rem 0;
-    transition: background-color 0.4s, color 0.4s, border-color 0.4s ease-in-out;
-}
-
-.serSansonNoBasta__festivities--button:hover {
-    background-color: var(--white);
-    color: var(--turquoise);
-} */
-
 .serSansonNoBasta__schedule {
     width: 100%;
     height: auto;
     display: flex;
+    flex-direction: column;
 }
 
 .serSansonNoBasta__schedule--container {
     height: auto;
     width: 100%;
-    margin: 40px 0px;
+    max-width: 380px;
+    margin: 40px auto 0px auto;
 }
 
 .serSansonNoBasta__schedule--contentFirst{
     display: flex;
+    margin: 0 auto;
     flex-direction: row;
     width: 100%;
 }
@@ -102,7 +70,7 @@
 .serSansonNoBasta__schedule--contentSecond{
     display: flex;
     flex-direction: column;
-    margin: 0 auto;
+    margin: 0 auto 40px auto;
     width: 80%;
     padding-bottom: 30px;
     border-bottom: #2f2e2e33 0.063rem solid;
@@ -136,14 +104,6 @@
 
 .serSansonNoBasta__schedule--text1 {
     font-size: 10px;
-}
-
-.serSansonNoBasta__schedule--hour2 {
-    width: 100%;
-}
-
-.serSansonNoBasta__schedule--text2 {
-    width: 100%;
 }
 
 .serSansonNoBasta__networks {
@@ -257,7 +217,7 @@
 .serSansonNoBasta__liftWeights--imgBackground{
     position: absolute;
     width: 100%;
-    height: 424px;
+    height: 100%;
     background-image: url("https://static.wixstatic.com/media/11062b_e4180ddf92ae42b3b2d12dfd51579f36~mv2.jpg/v1/fill/w_640,h_848,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/11062b_e4180ddf92ae42b3b2d12dfd51579f36~mv2.jpg");
     background-size: cover;
     background-position: center;
@@ -293,156 +253,141 @@
     height: 250px;
 }
 
-/* @media (width >=48rem) {
-    .serSansonNoBasta__info--name {
+@media (width >=48rem) {
+    .serSansonNoBasta__info{
+        height: calc(100vh - 96px);
+    }
+
+    .serSansonNoBasta__info--name{
         font-size: var(--fontSize-superTitles_tablet);
-        padding: 0 1.875rem;
-        margin-bottom: 1.25rem;
     }
 
-    .serSansonNoBasta__info--description {
-        width: 35%;
-        line-height: 1.313rem;
+    .serSansonNoBasta__info--description{
+        width: 50%;
+        font-size: var(--fontSize-subtitles_tablet);
+        line-height: 35px;
     }
 
-    .serSansonNoBasta__festivities--textFestivities {
-        font-size: var(--fontSize-titles_tablet);
-    }
-
-    .serSansonNoBasta__festivities--button {
-        font-size: var(--fontSize-paragraph_tablet);
-    }
-
-    .serSansonNoBasta__schedule--container {
+    .serSansonNoBasta__schedule--contentFirst{
+        margin: 0;
         width: 60%;
-        padding: 2.5rem 0 3.75rem 0;
-        border-bottom: #2f2e2e33 0.15rem solid;
     }
 
-    .serSansonNoBasta__schedule--hour {
-        font-size: var(--fontSize-titles_desktop);
-    }
-
-    .serSansonNoBasta__schedule--text {
-        font-size: var(--fontSize-paragraph_tablet);
-    }
-
-    .serSansonNoBasta__networksContent {
-        margin: 0.625rem;
-    }
-
-    .serSansonNoBasta__networksButton--whatsapp {
-        font-size: var(--fontSize-paragraph_tablet);
-    }
-
-    .serSansonNoBasta__networksButton--telegram {
-        font-size: var(--fontSize-paragraph_tablet);
-    }
-
-    .serSansonNoBasta__books {
-        width: 80%;
-    }
-
-    .serSansonNoBasta__books--imgDeuteronomio {
+    .serSansonNoBasta__schedule--container{
+        display: flex;
         justify-content: center;
-        align-items: center;
-        margin-top: 1.25rem;
-        max-width: 46.875rem;
+        max-width: 850px;
     }
 
-    .serSansonNoBasta__books--imgSalmos {
-        margin: 1.563rem 0 2.5rem 0;
-        max-width: 46.875rem;
+    .serSansonNoBasta__schedule--contentSecond{
+        flex-direction: row;
+        margin: 0;
+        width: 30%;
+        padding: 0;
+        border: none;
+    }
+
+    .serSansonNoBasta__networks{
+        margin: 40px 70px 40px 0;
+    }
+
+    .serSansonNoBasta__networksButton--whatsapp{
+        width: 200px;
+    }
+
+    .serSansonNoBasta__networksButton--telegram{
+        width: 200px;
+    }
+
+    .serSansonNoBasta__schedule--line{
+        width: 80%;
+        margin: 0 auto 30px auto;
+        border-bottom: #2f2e2e33 0.063rem solid;
+    }
+
+    .serSansonNoBasta__video--titleContent{
+        width: 60%;
+    }
+
+    .serSansonNoBasta__video--title{
+        font-size: var(--fontSize-titles_tablet);
+    }  
+
+    .serSansonNoBasta__video--container{
+        width: 600px;
+        height: 450px;
+    }
+
+    .serSansonNoBasta__videoSerSanson{
+        height: 100%;
     }
 }
 
 @media (width >=80rem) {
-    .serSansonNoBasta__info {
-        height: calc(33.875rem - 6rem);
+    .serSansonNoBasta__info--imgBackground{
+        background-image: url("https://static.wixstatic.com/media/df76fa1fad2e4c6596a893bd68f9aa7c.jpg/v1/fill/w_980,h_542,al_t,q_85,usm_0.66_1.00_0.01,enc_auto/df76fa1fad2e4c6596a893bd68f9aa7c.jpg");
     }
 
-    .serSansonNoBasta__info--name {
-        font-size: var(--fontSize-titles_desktop);
-        margin-bottom: 1.875rem;
-    }
-
-    .serSansonNoBasta__info--description {
-        font-size: var(--fontSize-paragraph_desktop);
-        line-height: 1.875rem;
+    .serSansonNoBasta__info--description{
         width: 25%;
-    }
-
-    .serSansonNoBasta__festivities {
-        flex-direction: row;
-    }
-
-    .serSansonNoBasta__festivities--textFestivities {
         font-size: var(--fontSize-paragraph_desktop);
-        margin: 0 3.75rem 0 0;
     }
 
-    .serSansonNoBasta__festivities--button {
-        font-size: var(--fontSize-subtitles_mobile);
-        margin: 0 0.625rem;
-        padding: 0 1.25rem;
+    .serSansonNoBasta__schedule--container {
+        max-width: 100%;
+    }
+
+    .serSansonNoBasta__schedule--text1 {
+        font-size: var(--fontSize-paragraph_desktop);
     }
 
     .serSansonNoBasta__schedule--hour {
         font-size: var(--fontSize-superTitles_desktop);
     }
 
-    .serSansonNoBasta__schedule--text {
-        display: none;
+    .serSansonNoBasta__schedule--contentFirst{
+        width: 40%;
     }
 
-    .serSansonNoBasta__schedule--text1 {
-        display: block;
-        font-size: var(--fontSize-subtitles_mobile);
+    .serSansonNoBasta__schedule--contentSecond{
+        width: 20%;
     }
 
-    .serSansonNoBasta__schedule {
-        width: 70%;
-        margin: 0 auto 1.25rem auto;
+    .serSansonNoBasta__video{
         flex-direction: row;
-        border-bottom: #2f2e2e33 0.063rem solid;
+        margin: 80px 0rem 80px 0rem;
     }
 
-    .serSansonNoBasta__schedule--container {
-        width: 50%;
-        border-bottom: none;
-        margin: 0 6.25rem 0 0;
-    }
-
-    .serSansonNoBasta__networksContent {
+    .serSansonNoBasta__video--titleContent{
         align-items: start;
+        height: 411px;
+        width: 32%;
+        margin: 0rem 0rem 0rem 100px;
     }
 
-    .serSansonNoBasta__networksButton--whatsapp {
-        font-size: var(--fontSize-paragraph_laptop);
-    }
-
-    .serSansonNoBasta__networksButton--telegram {
-        font-size: var(--fontSize-paragraph_laptop);
-    }
-
-    .serSansonNoBasta__books {
+    .serSansonNoBasta__video--title{
         width: 100%;
+        font-size: var(--fontSize-subtitles_desktop);
+        font-weight: 600;
+    }
+
+    .serSansonNoBasta__video--textSanson{
+        font-weight: 700;
+    }
+
+    .serSansonNoBasta__video--container{
+        width: 68%;
+        height: 411px;
         display: flex;
         justify-content: center;
     }
 
-    .serSansonNoBasta__booksContent {
-        width: 45%;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
+    .serSansonNoBasta__videoSerSanson{
+        width: 732px;
+        height: 100%;
     }
 
-    .serSansonNoBasta__books--imgDeuteronomio {
-        margin: 0.625rem 0.938rem;
+    .serSansonNoBasta__liftWeights--imgBackground{
+        height: 571px;
     }
-
-    .serSansonNoBasta__books--imgSalmos {
-        margin: 0.625rem 0.938rem;
-    }
-} */
+}  
