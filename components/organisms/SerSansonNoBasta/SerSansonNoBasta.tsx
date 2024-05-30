@@ -53,7 +53,6 @@ export const SerSansonNoBasta = () => {
             </section>
 
             <section className={styles["serSansonNoBasta__video"]}>
-                <div className={styles["serSansonNoBasta__liftWeights--imgBackground"]}></div>
                 <div className={styles["serSansonNoBasta__video--titleContent"]}>
                     <p className={styles["serSansonNoBasta__video--title"]}>Muchas veces ser &quot;
                         <span className={styles["serSansonNoBasta__video--textSanson"]}>Sansón</span>
@@ -63,6 +62,7 @@ export const SerSansonNoBasta = () => {
                 <div className={styles["serSansonNoBasta__video--container"]}>
                     <iframe className={styles["serSansonNoBasta__videoSerSanson"]} src="https://www.youtube.com/embed/VjDQrONIiS0?si=iDmu-nqubyqN_8xM" allowFullScreen></iframe>
                 </div>
+                <div className={styles["serSansonNoBasta__liftWeights--imgBackground"]}></div>
             </section>
         </article>
     )

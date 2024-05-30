@@ -208,21 +208,23 @@
 
 .serSansonNoBasta__video{
     width: 100%;
-    height: 31.625rem;
+    height: 419px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 4rem;
 }
 
 .serSansonNoBasta__liftWeights--imgBackground{
     position: absolute;
     width: 100%;
-    height: 80%;
+    height: 485px;
     background-image: url("https://static.wixstatic.com/media/11062b_e4180ddf92ae42b3b2d12dfd51579f36~mv2.jpg/v1/fill/w_640,h_848,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/11062b_e4180ddf92ae42b3b2d12dfd51579f36~mv2.jpg");
-    background-size: cover;
+    background-size:cover;
     background-position: center;
     background-repeat: no-repeat;
     opacity: 0.07; 
+    border: red solid 1px;
 }
 
 .serSansonNoBasta__video--titleContent{
@@ -244,14 +246,20 @@
 }
 
 .serSansonNoBasta__video--container{
-    width: 20rem;
-    min-width: 80%;
-    height: 15.625rem;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    min-width: 320px;
+    max-width: 450px;
+    height: 250px;
 }
 
 .serSansonNoBasta__videoSerSanson{
     width: 100%;
-    height: 15.625rem;
+    height: 250px;
+    max-width: 450px;
+    max-height: 407px;
+    z-index: 100;
 }
 
 @media (width >=48rem) {
@@ -306,6 +314,14 @@
         border-bottom: #2f2e2e33 0.063rem solid;
     }
 
+    .serSansonNoBasta__video{
+        margin-bottom: 15rem;
+    }
+
+    .serSansonNoBasta__liftWeights--imgBackground{
+        height: 660px;    
+    }
+
     .serSansonNoBasta__video--titleContent{
         width: 60%;
     }
@@ -315,15 +331,15 @@
     }  
 
     .serSansonNoBasta__video--container{
-        display: flex;
-        justify-content: center;
-        width: 37.5rem;
-        height: 28.125rem;
+        max-width: 728px;
+        width: 550px;
+        height: 407px;
     }
 
     .serSansonNoBasta__videoSerSanson{
-        height: 100%;
-        max-width: 45.75rem;
+        height: 407px;
+        max-width: 728px;
+        width: 100%;
     }
 }
 
@@ -358,19 +374,24 @@
     }
 
     .serSansonNoBasta__video{
+        height: 700px;
         flex-direction: row;
-        margin: 5rem 0rem 5rem 0rem;
+        margin: 5rem 0rem 0rem 0rem;
+    }
+
+    .serSansonNoBasta__liftWeights--imgBackground{
+        height: 698px;
     }
 
     .serSansonNoBasta__video--titleContent{
         align-items: start;
         height: 25.688rem;
         width: 32%;
-        margin: 0rem 0rem 0rem 6.25rem;
+        margin: 0rem 0rem 0rem 9.375rem;
     }
 
     .serSansonNoBasta__video--title{
-        width: 100%;
+        width: 270px;
         font-size: var(--fontSize-subtitles_desktop);
         font-weight: 600;
     }
@@ -380,15 +401,12 @@
     }
 
     .serSansonNoBasta__video--container{
-        width: 68%;
-        height: 25.688rem;
+        width: 724px;
+        height: 423px;
     }
 
     .serSansonNoBasta__videoSerSanson{
         height: 100%;
-    }
-
-    .serSansonNoBasta__liftWeights--imgBackground{
-        height: 93%;
+        width: 100%;
     }
 }  
