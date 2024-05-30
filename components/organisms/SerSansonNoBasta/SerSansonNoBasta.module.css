@@ -208,7 +208,7 @@
 
 .serSansonNoBasta__video{
     width: 100%;
-    height: 419px;
+    height: 26.188rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -218,13 +218,12 @@
 .serSansonNoBasta__liftWeights--imgBackground{
     position: absolute;
     width: 100%;
-    height: 485px;
+    height: 30.313rem;
     background-image: url("https://static.wixstatic.com/media/11062b_e4180ddf92ae42b3b2d12dfd51579f36~mv2.jpg/v1/fill/w_640,h_848,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/11062b_e4180ddf92ae42b3b2d12dfd51579f36~mv2.jpg");
     background-size:cover;
     background-position: center;
     background-repeat: no-repeat;
     opacity: 0.07; 
-    border: red solid 1px;
 }
 
 .serSansonNoBasta__video--titleContent{
@@ -249,16 +248,16 @@
     display: flex;
     justify-content: center;
     width: 100%;
-    min-width: 320px;
-    max-width: 450px;
-    height: 250px;
+    min-width: 20rem;
+    max-width: 28.125rem;
+    height: 15.625rem;
 }
 
 .serSansonNoBasta__videoSerSanson{
     width: 100%;
-    height: 250px;
-    max-width: 450px;
-    max-height: 407px;
+    height: 15.625rem;
+    max-width: 28.125rem;
+    max-height: 25.438rem;
     z-index: 100;
 }
 
@@ -319,7 +318,7 @@
     }
 
     .serSansonNoBasta__liftWeights--imgBackground{
-        height: 660px;    
+        height: 41.25rem;    
     }
 
     .serSansonNoBasta__video--titleContent{
@@ -331,14 +330,14 @@
     }  
 
     .serSansonNoBasta__video--container{
-        max-width: 728px;
-        width: 550px;
-        height: 407px;
+        max-width: 45.5rem;
+        width: 34.375rem;
+        height: 25.438rem;
     }
 
     .serSansonNoBasta__videoSerSanson{
-        height: 407px;
-        max-width: 728px;
+        height: 25.438rem;
+        max-width: 45.5rem;
         width: 100%;
     }
 }
@@ -374,13 +373,13 @@
     }
 
     .serSansonNoBasta__video{
-        height: 700px;
+        height: 43.75rem;
         flex-direction: row;
         margin: 5rem 0rem 0rem 0rem;
     }
 
     .serSansonNoBasta__liftWeights--imgBackground{
-        height: 698px;
+        height: 43.625rem;
     }
 
     .serSansonNoBasta__video--titleContent{
@@ -391,7 +390,7 @@
     }
 
     .serSansonNoBasta__video--title{
-        width: 270px;
+        width: 16.875rem;
         font-size: var(--fontSize-subtitles_desktop);
         font-weight: 600;
     }
@@ -401,8 +400,8 @@
     }
 
     .serSansonNoBasta__video--container{
-        width: 724px;
-        height: 423px;
+        width: 45.25rem;
+        height: 26.438rem;
     }
 
     .serSansonNoBasta__videoSerSanson{
