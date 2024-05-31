@@ -1,0 +1,411 @@
+.serSansonNoBasta__container {
+    margin-top: 6rem;
+    width: 100%;
+    height: 100%;
+}
+
+.serSansonNoBasta__info {
+    width: 100%;
+    height: 27.5rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.serSansonNoBasta__info--imgBackground {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url("https://static.wixstatic.com/media/df76fa1fad2e4c6596a893bd68f9aa7c.jpg/v1/fill/w_640,h_880,al_t,q_85,usm_0.66_1.00_0.01,enc_auto/df76fa1fad2e4c6596a893bd68f9aa7c.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: brightness(50%);
+    opacity: 0.7; 
+}
+
+.serSansonNoBasta__info--name {
+    text-align: center;
+    width: 60%;
+    font-size: var(--fontSize-titles_tablet);
+    font-weight: bold;
+    color: var(--white);
+    z-index: 1;
+    margin-bottom: 0.75rem;
+}
+
+.serSansonNoBasta__info--description {
+    font-size: var(--fontSize-paragraph_tablet);
+    width: 80%;
+    text-align: center;
+    color: var(--white);
+    z-index: 1;
+    line-height: 1.125rem;
+}
+
+.serSansonNoBasta__schedule {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.serSansonNoBasta__schedule--container {
+    height: auto;
+    width: 100%;
+    max-width: 23.75rem;
+    margin: 2.5rem auto 0rem auto;
+}
+
+.serSansonNoBasta__schedule--contentFirst{
+    display: flex;
+    margin: 0 auto;
+    flex-direction: row;
+    width: 100%;
+}
+
+.serSansonNoBasta__schedule--contentSecond{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto 2.5rem auto;
+    width: 80%;
+    padding-bottom: 1.875rem;
+    border-bottom: #2f2e2e33 0.063rem solid;
+}
+
+.serSansonNoBasta__schedule--hoursContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    margin: 0.625rem;
+    color: var(--darkGray);
+    width: 50%;
+    height: auto;
+}
+
+.serSansonNoBasta__schedule--hoursContent2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    color: var(--darkGray);
+    width: 100%;
+}
+
+.serSansonNoBasta__schedule--hour {
+    font-size: var(--fontSize-subtitles_desktop);
+}
+
+.serSansonNoBasta__schedule--text1 {
+    font-size: 0.625rem;
+}
+
+.serSansonNoBasta__networks {
+    display: block;
+    margin-bottom: 1.563rem;
+}
+
+.serSansonNoBasta__networksContent {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.serSansonNoBasta__networksButton--whatsapp {
+    height: 2.5rem;
+    width: 16.563rem;
+    background-color: var(--white);
+    border: var(--turquoise) var(--border);
+    border-radius: var(--borderRadius);
+    cursor: pointer;
+    color: var(--darkGray);
+    font-size: var(--fontSize-buttons_mobile);
+    padding: 0 1.875rem;
+    margin: 0.313rem 0;
+    transition: background-color 0.4s, color 0.4s, border-color 0.4s ease-in-out;
+}
+
+.serSansonNoBasta__networksButton--whatsapp:hover {
+    background-color: var(--turquoise);
+    color: var(--white);
+}
+
+.serSansonNoBasta__networksButton--telegram {
+    height: 2.5rem;
+    width: 16.563rem;
+    background-color: var(--turquoise);
+    border: var(--turquoise) var(--border);
+    border-radius: var(--borderRadius);
+    color: var(--white);
+    cursor: pointer;
+    font-size: var(--fontSize-buttons_mobile);
+    padding: 0 1.875rem;
+    margin: 0.313rem 0;
+    transition: background-color 0.4s, color 0.4s, border-color 0.4s ease-in-out;
+}
+
+.serSansonNoBasta__networksButton--telegram:hover {
+    background-color: var(--white);
+    border: var(--darkGray) var(--border);
+    color: var(--darkGray);
+}   
+
+.serSansonNoBasta__leavySlavery {
+    margin: 0 auto;
+    width: 87%;
+    height: auto;
+}
+
+.serSansonNoBasta__leavySlavery--Content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin-bottom: 1.563rem;
+}
+
+.serSansonNoBasta__leavySlavery--img {
+    width: 100%;
+    height: 100%;
+    border-radius: var(--borderRadius);
+    margin: 0.313rem 0;
+    transition: all 300ms;
+}
+
+.serSansonNoBasta__leavySlavery--img:hover {
+    cursor: pointer;
+    transform: scale(1.03);
+} 
+
+.serSansonNoBasta__leavySlavery--button{
+    position: relative;
+    bottom: 1.25rem;
+    height: 2.5rem;
+    width: auto;
+    background-color: var(--turquoise);
+    border: var(--turquoise) var(--border);
+    border-radius: var(--borderRadius);
+    color: var(--white);
+    cursor: pointer;
+    font-size: var(--fontSize-buttons_mobile);
+    padding: 0 2.188rem;
+    margin: 0.313rem 0;
+    transition: background-color 0.4s, color 0.4s, border-color 0.4s ease-in-out;
+}
+
+.serSansonNoBasta__leavySlavery--button:hover {
+    background-color: var(--lightGray);
+    border: var(--lightGray) var(--border);
+    color: var(--turquoise);
+}
+
+.serSansonNoBasta__video{
+    width: 100%;
+    height: 26.188rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 4rem;
+}
+
+.serSansonNoBasta__liftWeights--imgBackground{
+    position: absolute;
+    width: 100%;
+    height: 30.313rem;
+    background-image: url("https://static.wixstatic.com/media/11062b_e4180ddf92ae42b3b2d12dfd51579f36~mv2.jpg/v1/fill/w_640,h_848,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/11062b_e4180ddf92ae42b3b2d12dfd51579f36~mv2.jpg");
+    background-size:cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.07; 
+}
+
+.serSansonNoBasta__video--titleContent{
+    display: flex;
+    width: 80%;
+    height: 30%;
+    margin: 3.75rem 0 1.25rem 0;
+    padding: 2.5rem;
+    align-items: center;
+}
+
+.serSansonNoBasta__video--title{
+    font-size: var(--fontSize-titles_mobile);
+    color: var(--darkGray);
+}
+
+.serSansonNoBasta__video--textSanson{
+    color: var(--turquoise);
+}
+
+.serSansonNoBasta__video--container{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    min-width: 20rem;
+    max-width: 28.125rem;
+    height: 15.625rem;
+}
+
+.serSansonNoBasta__videoSerSanson{
+    width: 100%;
+    height: 15.625rem;
+    max-width: 28.125rem;
+    max-height: 25.438rem;
+    z-index: 100;
+}
+
+@media (width >=48rem) {
+    .serSansonNoBasta__info{
+        height: calc(100vh - 6rem);
+    }
+
+    .serSansonNoBasta__info--name{
+        font-size: var(--fontSize-superTitles_tablet);
+    }
+
+    .serSansonNoBasta__info--description{
+        width: 50%;
+        font-size: var(--fontSize-subtitles_tablet);
+        line-height: 2.188rem;
+    }
+
+    .serSansonNoBasta__schedule--contentFirst{
+        margin: 0;
+        width: 60%;
+    }
+
+    .serSansonNoBasta__schedule--container{
+        display: flex;
+        justify-content: center;
+        max-width: 53.125rem;
+    }
+
+    .serSansonNoBasta__schedule--contentSecond{
+        flex-direction: row;
+        margin: 0;
+        width: 30%;
+        padding: 0;
+        border: none;
+    }
+
+    .serSansonNoBasta__networks{
+        margin: 2.5rem 4.375rem 2.5rem 0;
+    }
+
+    .serSansonNoBasta__networksButton--whatsapp{
+        width: 12.5rem;
+    }
+
+    .serSansonNoBasta__networksButton--telegram{
+        width: 12.5rem;
+    }
+
+    .serSansonNoBasta__schedule--line{
+        width: 80%;
+        margin: 0 auto 1.875rem auto;
+        border-bottom: #2f2e2e33 0.063rem solid;
+    }
+
+    .serSansonNoBasta__video{
+        margin-bottom: 15rem;
+    }
+
+    .serSansonNoBasta__liftWeights--imgBackground{
+        height: 41.25rem;    
+    }
+
+    .serSansonNoBasta__video--titleContent{
+        width: 60%;
+    }
+
+    .serSansonNoBasta__video--title{
+        font-size: var(--fontSize-titles_tablet);
+    }  
+
+    .serSansonNoBasta__video--container{
+        max-width: 45.5rem;
+        width: 34.375rem;
+        height: 25.438rem;
+    }
+
+    .serSansonNoBasta__videoSerSanson{
+        height: 25.438rem;
+        max-width: 45.5rem;
+        width: 100%;
+    }
+}
+
+@media (width >=80rem) {
+    .serSansonNoBasta__info--imgBackground{
+        background-image: url("https://static.wixstatic.com/media/df76fa1fad2e4c6596a893bd68f9aa7c.jpg/v1/fill/w_980,h_542,al_t,q_85,usm_0.66_1.00_0.01,enc_auto/df76fa1fad2e4c6596a893bd68f9aa7c.jpg");
+    }
+
+    .serSansonNoBasta__info--description{
+        width: 25%;
+        font-size: var(--fontSize-paragraph_desktop);
+    }
+
+    .serSansonNoBasta__schedule--container {
+        max-width: 100%;
+    }
+
+    .serSansonNoBasta__schedule--text1 {
+        font-size: var(--fontSize-paragraph_desktop);
+    }
+
+    .serSansonNoBasta__schedule--hour {
+        font-size: var(--fontSize-superTitles_desktop);
+    }
+
+    .serSansonNoBasta__schedule--contentFirst{
+        width: 40%;
+    }
+
+    .serSansonNoBasta__schedule--contentSecond{
+        width: 20%;
+    }
+
+    .serSansonNoBasta__video{
+        height: 43.75rem;
+        flex-direction: row;
+        margin: 5rem 0rem 0rem 0rem;
+    }
+
+    .serSansonNoBasta__liftWeights--imgBackground{
+        height: 43.625rem;
+    }
+
+    .serSansonNoBasta__video--titleContent{
+        align-items: start;
+        height: 25.688rem;
+        width: 32%;
+        margin: 0rem 0rem 0rem 9.375rem;
+    }
+
+    .serSansonNoBasta__video--title{
+        width: 16.875rem;
+        font-size: var(--fontSize-subtitles_desktop);
+        font-weight: 600;
+    }
+
+    .serSansonNoBasta__video--textSanson{
+        font-weight: 700;
+    }
+
+    .serSansonNoBasta__video--container{
+        width: 45.25rem;
+        height: 26.438rem;
+    }
+
+    .serSansonNoBasta__videoSerSanson{
+        height: 100%;
+        width: 100%;
+    }
+}  

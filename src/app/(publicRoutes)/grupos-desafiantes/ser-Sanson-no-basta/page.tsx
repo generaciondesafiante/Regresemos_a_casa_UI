@@ -1,9 +1,9 @@
-import React from 'react'
+import { SerSansonNoBastaTemplate } from "../../../../../components/templates/SerSansonNoBasta-template/SerSansonNoBastaTemplate";
 
 const SerSansonNoBastaPage = () => {
-  return (
-    <div>SerSansonNoBastaPage</div>
-  )
+    return (
+        <SerSansonNoBastaTemplate />
+    )
 }
 
 export default SerSansonNoBastaPage
