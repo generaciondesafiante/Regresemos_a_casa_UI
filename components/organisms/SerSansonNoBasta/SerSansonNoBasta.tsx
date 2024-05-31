@@ -49,7 +49,7 @@ export const SerSansonNoBasta = () => {
                         <img className={styles["serSansonNoBasta__leavySlavery--img"]} src={imageLeavySlavery} alt="Image ¿como dejar de ser esclavo de tus ojos?" />
                     </a>
                     <a href="https://www.youtube.com/playlist?list=PLX-KKyt726LPGYDWVa3lrG8zSmBYOiQdA" target="_blank" rel="noopener noreferrer">
-                        <button className={styles["serSansonNoBasta__leavySlavery--button"]}>CHARLAS &gt;</button>
+                        <Button className={styles["serSansonNoBasta__leavySlavery--button"]}>CHARLAS &gt;</Button>
                     </a>
                 </div>
             </section>
