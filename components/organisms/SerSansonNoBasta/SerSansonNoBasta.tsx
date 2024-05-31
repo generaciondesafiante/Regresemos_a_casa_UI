@@ -1,5 +1,7 @@
 "use client"
 import styles from "./SerSansonNoBasta.module.css";
+import { Button } from '../../atoms/Button/Button';
+
 
 export const SerSansonNoBasta = () => {
     const imageLeavySlavery = "https://static.wixstatic.com/media/d166cc_77d5681914104d7da290460c434a0501~mv2.jpg/v1/fill/w_560,h_312,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/Charla2_.jpg"
@@ -32,8 +34,8 @@ export const SerSansonNoBasta = () => {
                     </div>
                     <div className={styles["serSansonNoBasta__networks"]}>
                         <div className={styles["serSansonNoBasta__networksContent"]}>
-                            <button className={styles["serSansonNoBasta__networksButton--whatsapp"]}>WhatsApp</button>
-                            <button className={styles["serSansonNoBasta__networksButton--telegram"]}>Telegram</button>
+                            <Button className={styles["serSansonNoBasta__networksButton--whatsapp"]}>WhatsApp</Button>
+                            <Button className={styles["serSansonNoBasta__networksButton--telegram"]}>Telegram</Button>
                         </div>
                     </div>
                 </div>
