@@ -42,8 +42,7 @@ export const Home = () => {
 
   const handleWhatsAppRedirect = () => {
     const numeroWhatsApp = "+54 9 11 5806-4084";
-    const mensajeWhatsApp =
-      `Hola, Andrea.\n\nHe visitado la página de Generación Desafiante y me encantaría que mi hijo/a formara parte del grupo de Desafiantes Kids.`;
+    const mensajeWhatsApp = `Hola, Andrea.\n\nHe visitado la página de Generación Desafiante y me encantaría que mi hijo/a formara parte del grupo de Desafiantes Kids.`;
 
     const enlaceWhatsApp = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${encodeURIComponent(
       mensajeWhatsApp
@@ -165,7 +164,7 @@ export const Home = () => {
           <Link href={""} className={styles["home-session_linkSchedules"]}>
             <h2 className={styles["home-title_shedulesLast"]}>HORARIOS</h2>
             <img
-              src="/homePage/sukat-david-home.webp"
+              src="/homePage/horario.jpg"
               alt=" image sukat david horarios"
               className={styles["home-image-sukatDavid"]}
             />

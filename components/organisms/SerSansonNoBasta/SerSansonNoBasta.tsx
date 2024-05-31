@@ -1,17 +1,22 @@
 "use client";
 import styles from "./SerSansonNoBasta.module.css";
 import { Button } from "../../atoms/Button/Button";
+import { YoutubeIcon } from "../../atoms/icons/home/SocialNetworkIcon/YoutubeIcon";
 
 export const SerSansonNoBasta = () => {
   const imageLeavySlavery =
     "https://static.wixstatic.com/media/d166cc_77d5681914104d7da290460c434a0501~mv2.jpg/v1/fill/w_560,h_312,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/Charla2_.jpg";
 
   const handleWhatsApp = () => {
-    window.open("https://chat.whatsapp.com/FJJFWGgbslJC4UHIa8b4Ai","_blank");
+    window.open("https://chat.whatsapp.com/FJJFWGgbslJC4UHIa8b4Ai", "_blank");
+  };
+
+  const handleTelegram = () => {
+    window.open("https://t.me/GeneracionDesafiante", "_blank");
   };
 
   return (
-    <article className={styles["serSansonNoBasta__container"]}>
+    <main className={styles["serSansonNoBasta__container"]}>
       <section className={styles["serSansonNoBasta__info"]}>
         <div className={styles["serSansonNoBasta__info--imgBackground"]}></div>
         <p className={styles["serSansonNoBasta__info--name"]}>
@@ -31,7 +36,7 @@ export const SerSansonNoBasta = () => {
                 Jueves
               </p>
               <p className={styles["serSansonNoBasta__schedule--hour"]}>
-                6:00 ECU
+                7:00 EC
               </p>
             </div>
             <div className={styles["serSansonNoBasta__schedule--hoursContent"]}>
@@ -39,7 +44,7 @@ export const SerSansonNoBasta = () => {
                 Viernes
               </p>
               <p className={styles["serSansonNoBasta__schedule--hour"]}>
-                06:00 ECU
+                06:00 EC
               </p>
             </div>
           </div>
@@ -47,12 +52,13 @@ export const SerSansonNoBasta = () => {
             <div className={styles["serSansonNoBasta__networksContent"]}>
               <Button
                 className={styles["serSansonNoBasta__networksButton--whatsapp"]}
-                onClick={() => handleWhatsApp}
+                onClick={() => handleWhatsApp()}
               >
                 WhatsApp
               </Button>
               <Button
                 className={styles["serSansonNoBasta__networksButton--telegram"]}
+                onClick={() => handleTelegram()}
               >
                 Telegram
               </Button>
@@ -64,29 +70,20 @@ export const SerSansonNoBasta = () => {
 
       <section className={styles["serSansonNoBasta__leavySlavery"]}>
         <div className={styles["serSansonNoBasta__leavySlavery--Content"]}>
-          <a
-            href="https://www.youtube.com/playlist?list=PLX-KKyt726LPGYDWVa3lrG8zSmBYOiQdA"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img
-              className={styles["serSansonNoBasta__leavySlavery--img"]}
-              src={imageLeavySlavery}
-              alt="Image ¿como dejar de ser esclavo de tus ojos?"
-            />
-          </a>
-          <a
-            href="https://www.youtube.com/playlist?list=PLX-KKyt726LPGYDWVa3lrG8zSmBYOiQdA"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Button
-              className={styles["serSansonNoBasta__leavySlavery--button"]}
-            >
-              CHARLAS &gt;
-            </Button>
-          </a>
+          <img
+            src="/serSansonNoBasta/jueves.jpg"
+            alt="Fechas reuniones Jueves"
+            className={styles["serSansonNoBasta__leavySlavery--img"]}
+          />
+          <img
+            src="/serSansonNoBasta/viernes.jpg"
+            alt="Fechas reuniones Viernes"
+            className={styles["serSansonNoBasta__leavySlavery--img"]}
+          />
         </div>
+        <Button className={styles["serSansonNoBasta__leavySlavery--button"]}>
+          CHARLAS <YoutubeIcon/>
+        </Button>
       </section>
 
       <section className={styles["serSansonNoBasta__video"]}>
@@ -110,6 +107,6 @@ export const SerSansonNoBasta = () => {
           className={styles["serSansonNoBasta__liftWeights--imgBackground"]}
         ></div>
       </section>
-    </article>
+    </main>
   );
 };

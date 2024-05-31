@@ -57,7 +57,7 @@ export const SukatDavid = () => {
             <p className={styles["sukatDavid__schedule--text1"]}>
               <b>VERSO</b> POR VERSO
             </p>
-            <p className={styles["sukatDavid__schedule--hour"]}>17:00 ECU</p>
+            <p className={styles["sukatDavid__schedule--hour"]}>17:00 EC</p>
             <p className={styles["sukatDavid__schedule--text"]}>
               <b>VERSO</b> POR VERSO
             </p>

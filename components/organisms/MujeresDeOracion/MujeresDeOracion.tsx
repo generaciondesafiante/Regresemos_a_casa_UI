@@ -5,16 +5,14 @@ import styles from "./MujeresDeOracion.module.css";
 export const MujeresDeOracion = () => {
   const postsShedule = [
     {
-      image: "/challengingGroups/womenOfPrayer/shedule-1.webp",
+      image:
+        "https://firebasestorage.googleapis.com/v0/b/mujeresdeoracion-a628d.appspot.com/o/mujeres%20de%20oracion.jpg?alt=media&token=9a20eeea-e381-4329-99fc-236ee781f11c",
       name: "sheduleOne",
     },
     {
-      image: "/challengingGroups/womenOfPrayer/shedule-2.webp",
+      image:
+        "https://firebasestorage.googleapis.com/v0/b/mujeresdeoracion-a628d.appspot.com/o/mujeres%20de%20oracion2.jpg?alt=media&token=00d3f17a-da04-4df2-9b01-ec2ff4c443b4",
       name: "sheduleTwo",
-    },
-    {
-      image: "/challengingGroups/womenOfPrayer/shedule-3.webp",
-      name: "sheduleThree",
     },
   ];
 
