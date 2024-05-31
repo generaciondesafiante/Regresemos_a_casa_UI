@@ -3,6 +3,7 @@ export * from "./Assessment/AssessmentFinished/AssessmentFinished";
 export * from "./Assessment/AssessmentMain/AssessmentMain";
 export * from "./Assessment/AssessmentQuestions/AssessmentQuestions";
 export * from "./Assessment/AssessmentQuestionsData";
+export * from "./SerSansonNoBasta/SerSansonNoBasta";
 export * from "./ChangePasswordUser/ChangePasswordUser";
 export * from "./CourseResources/CourseResources";
 export * from "./Courses/Courses";
