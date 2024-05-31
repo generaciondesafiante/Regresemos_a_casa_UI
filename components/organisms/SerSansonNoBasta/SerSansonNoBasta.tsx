@@ -4,8 +4,6 @@ import { Button } from "../../atoms/Button/Button";
 import { YoutubeIcon } from "../../atoms/icons/home/SocialNetworkIcon/YoutubeIcon";
 
 export const SerSansonNoBasta = () => {
-  const imageLeavySlavery =
-    "https://static.wixstatic.com/media/d166cc_77d5681914104d7da290460c434a0501~mv2.jpg/v1/fill/w_560,h_312,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/Charla2_.jpg";
 
   const handleWhatsApp = () => {
     window.open("https://chat.whatsapp.com/FJJFWGgbslJC4UHIa8b4Ai", "_blank");
