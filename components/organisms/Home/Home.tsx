@@ -10,12 +10,12 @@ export const Home = () => {
   const bePart = [
     {
       name: "proverbios",
-      href: "/grupos-desafiantes/proverbios-imagenes",
+      href: "/estudios/proverbios-imagenes",
       image: "/homePage/se_parte_proverbios.webp",
     },
     {
       name: "mejeres-de-oracion",
-      href: "/grupos-desafiantes/mujeres-en-oracion",
+      href: "/grupos-desafiantes/mujeres-de-oracion",
       image: "/homePage/se_parte_mujeres_de_oracion.webp",
     },
     {
@@ -35,10 +35,21 @@ export const Home = () => {
     },
     {
       name: "desafiante-kids",
-      href: "/grupos-desafiantes/desafiante-kids",
+      href: "#",
       image: "/homePage/se_parte_kids.webp",
     },
   ];
+
+  const handleWhatsAppRedirect = () => {
+    const numeroWhatsApp = "+54 9 11 5806-4084";
+    const mensajeWhatsApp =
+      `Hola, Andrea.\n\nHe visitado la página de Generación Desafiante y me encantaría que mi hijo/a formara parte del grupo de Desafiantes Kids.`;
+
+    const enlaceWhatsApp = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${encodeURIComponent(
+      mensajeWhatsApp
+    )}`;
+    window.open(enlaceWhatsApp, "_blank");
+  };
 
   return (
     <main className="home">
@@ -139,6 +150,11 @@ export const Home = () => {
                 src={image.image}
                 alt={image.name}
                 className={styles["home-image_bePart"]}
+                onClick={
+                  image.name === "desafiante-kids"
+                    ? handleWhatsAppRedirect
+                    : undefined
+                }
               />
             </Link>
           ))}

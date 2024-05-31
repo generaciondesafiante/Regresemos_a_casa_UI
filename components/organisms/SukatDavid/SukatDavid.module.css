@@ -90,6 +90,8 @@
 
 .sukatDavid__schedule--container {
   display: flex;
+  justify-content: center;
+  align-items: center;
   width: 80%;
   margin: 1.25rem 0 0.938rem 0;
   padding-bottom: 1.25rem;
@@ -103,10 +105,12 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  width: 50%;
+  width: 60%;
 }
 
 .sukatDavid__schedule--hour {
+  text-align: center;
+  width: 100%;
   font-size: var(--fontSize-subtitles_desktop);
 }
 
@@ -204,6 +208,7 @@
 }
 
 .sukatDavid__books--imgDeuteronomio {
+  width: 100%;
   border-radius: var(--borderRadius);
 }
 
@@ -220,6 +225,7 @@
 }
 
 .sukatDavid__books--imgSalmos {
+  width: 100%;
   border-radius: var(--borderRadius);
 }
 
@@ -291,7 +297,7 @@
   }
 }
 
-@media (width >=80rem) {
+@media (width >= 80rem) {
   .sukatDavid__info {
     height: calc(33.875rem - 6rem);
   }
@@ -367,7 +373,7 @@
   }
 
   .sukatDavid__booksContent {
-    width: 45%;
+    width: 62.5rem;
     display: flex;
     flex-direction: row;
     justify-content: center;

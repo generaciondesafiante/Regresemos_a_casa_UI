@@ -8,13 +8,6 @@ import IconWhatsappLine from "../../atoms/icons/home/SocialNetworkIcon/WhatsappS
 export const Footer = () => {
   return (
     <section className={styles["footer"]}>
-      <h2 className={styles["footer-title"]}>S Á B A D OS</h2>
-      <p className={styles["footer-paragraph"]}>
-        <span>Verso por verso </span> 13:00 ARG | YTLive
-      </p>
-      <p className={styles["footer-paragraph"]}>
-        <span>Salmos</span> 17:00 ARG | Zoom
-      </p>
       <div className={styles["footer-soclialNetworks"]}>
         <Link
           href={"https://www.facebook.com/generaciondesafiante"}

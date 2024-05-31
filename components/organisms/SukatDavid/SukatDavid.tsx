@@ -10,6 +10,20 @@ export const SukatDavid = () => {
   const imageSalmos =
     "https://firebasestorage.googleapis.com/v0/b/sukatdavid-d0ff8.appspot.com/o/Salmos.webp?alt=media&token=b160e2ec-fe21-4f48-a844-beff7c07f711";
 
+  const handleFestividades = () => {
+    window.open(
+      "https://firebasestorage.googleapis.com/v0/b/sukatdavid-d0ff8.appspot.com/o/pdf%2Ffestividades.pdf?alt=media&token=b73aabdb-71f3-423a-b43a-5fb8e7e69453",
+      "_blank"
+    );
+  };
+
+  const handleOmer = () => {
+    window.open(
+      "https://firebasestorage.googleapis.com/v0/b/sukatdavid-d0ff8.appspot.com/o/pdf%2Fomer.pdf?alt=media&token=a4428410-638c-4521-b4d7-aac479f5c3d0",
+      "_blank"
+    );
+  };
+
   return (
     <article className={styles["sukatDavid__container"]}>
       <section className={styles["sukatDavid__info"]}>
@@ -24,10 +38,16 @@ export const SukatDavid = () => {
         <span className={styles["sukatDavid__festivities--textFestivities"]}>
           FESTIVIDADES
         </span>
-        <Button className={styles["sukatDavid__festivities--button"]}>
+        <Button
+          className={styles["sukatDavid__festivities--button"]}
+          onClick={() => handleOmer()}
+        >
           imprime cuenta del omer
         </Button>
-        <Button className={styles["sukatDavid__festivities--button"]}>
+        <Button
+          className={styles["sukatDavid__festivities--button"]}
+          onClick={() => handleFestividades()}
+        >
           PDF | Calendario de Festividades
         </Button>
       </section>
@@ -37,18 +57,9 @@ export const SukatDavid = () => {
             <p className={styles["sukatDavid__schedule--text1"]}>
               <b>VERSO</b> POR VERSO
             </p>
-            <p className={styles["sukatDavid__schedule--hour"]}>13:00</p>
+            <p className={styles["sukatDavid__schedule--hour"]}>17:00 ECU</p>
             <p className={styles["sukatDavid__schedule--text"]}>
               <b>VERSO</b> POR VERSO
-            </p>
-          </div>
-          <div className={styles["sukatDavid__schedule--hoursContent"]}>
-            <p className={styles["sukatDavid__schedule--text1"]}>
-              <b>SALMO</b> COMUNIDAD
-            </p>
-            <p className={styles["sukatDavid__schedule--hour"]}>17:00</p>
-            <p className={styles["sukatDavid__schedule--text"]}>
-              <b>SALMO</b> COMUNIDAD
             </p>
           </div>
         </div>
@@ -58,6 +69,7 @@ export const SukatDavid = () => {
               <Link
                 href={"https://chat.whatsapp.com/El0odapVs7L29LkXVzm6lB"}
                 className={styles["sukatDavid__networksButton-link--whatsapp"]}
+                target="_blanck"
               >
                 WhatsApp Comunidad
               </Link>
@@ -66,6 +78,7 @@ export const SukatDavid = () => {
               <Link
                 href={"https://t.me/GeneracionDesafiante"}
                 className={styles["sukatDavid__networksButton-link--telegram"]}
+                target="_blanck"
               >
                 Telegram
               </Link>
