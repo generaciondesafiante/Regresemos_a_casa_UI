@@ -7,6 +7,7 @@ import {
   ResourcesIcon,
 } from "../../atoms/icons/sidebarIcons";
 import { signOut, useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import styles from "./Sidebar.module.css";
 import { PathIcon } from "../../atoms/icons/sidebarIcons/PathIcon";
 import { FavoriteIcon } from "../../atoms/icons/sidebarIcons/FavoriteIcon";
@@ -15,10 +16,13 @@ import { AdminIcon } from "../../atoms/icons/sidebarIcons/AdminIcon";
 
 export const Sidebar = () => {
   const { data: session } = useSession();
+  const { data: session } = useSession();
   const pathName = usePathname();
   const router = useRouter();
   const centeredLinks = ["home", "resources", "favorites", "path"];
   const topLinks = ["profile", "admin"];
+
+  const isAdmin = session?.user?.admin === true;
 
   const isAdmin = session?.user?.admin === true;
 
@@ -31,8 +35,8 @@ export const Sidebar = () => {
     isAdmin
       ? {
           name: "admin",
-          href: "/dashboard/admin",
-          icon: <AdminIcon className={styles["sidebar-icon"]} />,
+          href: "/dashboard/adminPanel",
+          icon: <AdminIcon className={`${styles["sidebar-icon"]} ${styles["admin-icon"]}`} />,
         }
       : null,
     {
@@ -70,17 +74,24 @@ export const Sidebar = () => {
     },
   ].filter(Boolean);
 
+  const isSelected = (linkHref: string) => {
+    if (linkHref === "/dashboard") {
+      return pathName === linkHref;
+    }
+    return pathName.startsWith(linkHref);
+  };
+
   return (
     <div className={styles["sidebar-container"]}>
       <div className={styles["sidebar-content_center"]}>
-        {links.map((link, index) => {
+        {links.map((link) => {
           if (link && topLinks.includes(link.name)) {
             return (
               <Link
                 href={link.href}
                 key={link.name}
                 className={`${
-                  pathName === link.href
+                  isSelected(link.href)
                     ? styles["sidebar-sectionSelected"]
                     : ""
                 }`}
@@ -94,17 +105,13 @@ export const Sidebar = () => {
       </div>
 
       <div className={styles["sidebar-content_center"]}>
-        {links.map((link, index) => {
+        {links.map((link) => {
           if (link && centeredLinks.includes(link.name)) {
             return (
               <Link href={link.href} key={link.name}>
                 <div
                   className={`${styles["sidebar-iconContainer"]} ${
-                    (
-                      link.name === "home"
-                        ? pathName === link.href
-                        : pathName.startsWith(link.href)
-                    )
+                    isSelected(link.href)
                       ? styles["sidebar-sectionSelected"]
                       : ""
                   }`}
@@ -118,7 +125,7 @@ export const Sidebar = () => {
         })}
       </div>
 
-      {links.map((link, index) => {
+      {links.map((link) => {
         if (link && link.name === "logout") {
           return (
             <button

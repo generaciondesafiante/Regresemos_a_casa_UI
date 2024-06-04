@@ -1,8 +1,8 @@
-import React from 'react'
+import { ChallengingHealth } from '../../../../../components/organisms/ChallengingHealth/ChallengingHealth'
 
 const SaludDesafiantePage = () => {
   return (
-    <div>SaludDesafiantePage</div>
+    <ChallengingHealth/>
   )
 }
 

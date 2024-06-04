@@ -8,26 +8,8 @@
   align-items: center;
 }
 
-.footer-title {
-  color: var(--white);
-  font-size: var(--fontSize-titles_mobile);
-  margin-bottom: 0.625rem;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-.footer-paragraph {
-  color: var(--white);
-  font-size: var(--fontSize-paragraph_mobile);
-  text-align: center;
-}
-
-.footer-paragraph > span {
-  font-weight: bold;
-}
-
-.footer-soclialNetworks{
-  margin-top: 1rem;
+.footer-soclialNetworks {
+  margin-top: 3rem;
   display: flex;
 }
 

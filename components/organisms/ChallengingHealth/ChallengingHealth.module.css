@@ -1,0 +1,562 @@
+.challengingHealth {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--primaryFont);
+  margin-top: 5rem;
+}
+
+.challengingHealth__banner {
+  width: 100%;
+  height: 80vh;
+  background-image: linear-gradient(
+      rgba(203, 203, 203, 0.403),
+      rgba(203, 203, 203, 0.403)
+    ),
+    url("/challengingGroups/challengingHealth/banner.webp");
+  object-fit: cover;
+  object-position: 50% 50%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.challengingHealth__title--banner {
+  width: 15.625rem;
+  font-size: var(--fontSize-superTitles_mobile);
+  color: var(--white);
+  font-weight: bold;
+  text-align: center;
+}
+
+.challengingHealth__paragraph--banner {
+  width: 15.625rem;
+  font-size: var(--fontSize-paragraph_tablet);
+  color: var(--white);
+  text-align: center;
+}
+
+.challengingHealth__container--socialNetwork {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.challengingHealth__container--socialNetwork
+  > .challengingHealth__button--socialNetwork {
+  width: 9.375rem;
+  background-color: var(--white);
+  font-size: var(--fontSize-buttons_mobile);
+  border: var(--border) var(--greenDesafiante);
+  margin-bottom: 3rem;
+  margin-top: 3rem;
+}
+
+.challengingHealth__link-button--socialNetwork {
+  color: var(--greenDesafiante);
+  text-decoration: none;
+}
+
+.challengingHealth__line--socialNetwork {
+  width: 90%;
+  height: 0.1rem;
+  background-color: var(--grayGradient);
+}
+
+.challengingHealth__section--general {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.challengingHealth__container-section--studies {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.challengingHealth__container--studies {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.challengingHealth__container-text--studies {
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.challengingHealth__title--studies {
+  font-size: var(--fontSize-titles_mobile);
+  font-weight: bold;
+  color: var(--turquoise);
+}
+
+.challengingHealth__paragraph--studies {
+  font-size: var(--fontSize-paragraph_mobile);
+  min-width: 15.625rem;
+  font-size: 1rem;
+  color: var(--darkGray);
+}
+
+.challengingHealth__container-image--studies {
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+}
+
+.challengingHealth__link-image--studies {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.challengingHealth__content-image--studies {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.challengingHealth__title-image--studies {
+  font-size: var(--fontSize-paragraph_mobile);
+  color: var(--darkGray);
+  text-align: center;
+}
+
+.challengingHealth__topic-image--studies {
+  font-size: var(--fontSize-paragraph_mobile);
+  text-align: center;
+  font-weight: bold;
+}
+
+.challengingHealth__image--studies {
+  width: 100%;
+  object-fit: cover;
+  image-rendering: auto;
+  image-rendering: crisp-edges;
+}
+
+.challengingHealth__containerTwo-image--studiesTwo {
+  width: 90%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: center;
+  align-items: baseline;
+  margin-top: 3rem;
+}
+
+.challengingHealth__content-image--studiesTwo {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.challengingHealth__image--studiesTwo {
+  height: 18.75rem;
+  width: 8.75rem;
+}
+
+.challengingHealth__title-image--studiesTwo {
+  font-size: var(--fontSize-paragraph_mobile);
+  text-align: center;
+  color: var(--darkGray);
+}
+
+.challengingHealth__content-title--tips {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.challengingHealth__title--tips {
+  color: var(--turquoise);
+  font-size: var(--fontSize-superTitles_mobile);
+}
+
+.challengingHealth__paragraph--tips {
+  width: 12.5rem;
+  color: var(--darkGray);
+  font-size: var(--fontSize-paragraph_mobile);
+  margin: 1.5rem 0 1.5rem 0;
+}
+
+.challengingHealth__content--tips {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.challengingHealth__image--tips {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.challengingHealth__title-image--tips {
+  color: var(--darkGray);
+  font-size: var(--fontSize-paragraph_mobile);
+  text-align: center;
+}
+
+.challengingHealth__content-background--recipes {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #b6ac952d;
+  margin: 2rem 0rem 2rem 0rem;
+}
+
+.challengingHealth__container--recipes {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f7f5f500;
+}
+
+.challengingHealth__content-title--recipes {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.challengingHealth__content-title---recipes {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.challengingHealth__title--recipes {
+  color: var(--lightGold);
+  font-size: var(--fontSize-superTitles_mobile);
+}
+
+.challengingHealth__paragraph--recipes {
+  width: 17.5rem;
+  font-size: var(--fontSize-paragraph_mobile);
+  color: var(--darkGray);
+}
+
+.challengingHealth__content--recipes {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
+  gap: 1rem;
+  padding: 2rem;
+  margin-top: 2rem;
+}
+
+.challengingHealth__image--recipes {
+  width: 100%;
+}
+
+.challengingHealth__title-image--recipes {
+  color: var(--darkGray);
+  font-size: var(--fontSize-paragraph_mobile);
+  text-align: center;
+}
+
+.challengingHealth__content-general--menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.challengingHealth__container--menu {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3rem;
+}
+
+.challengingHealth__content-title--menu {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.challengingHealth__title--menu {
+  color: var(--darkBlue);
+  font-size: var(--fontSize-superTitles_mobile);
+}
+
+.challengingHealth__subTitle--menu {
+  width: 16rem;
+  color: var(--darkGray);
+  font-size: var(--fontSize-subtitles_mobile);
+  margin-bottom: 2rem;
+}
+
+.challengingHealth__container--items-menu {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.challengingHealth__container--menuOne,
+.challengingHealth__container--menuTwo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 4rem;
+}
+
+.challengingHealth__content--menuOne {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.challengingHealth__title--menuOne {
+  font-size: var(--fontSize-paragraph_mobile);
+  color: var(--black);
+  margin-bottom: 2rem;
+  width: 17.5rem;
+  text-align: center;
+}
+
+.challengingHealth__link-image--menuOne,
+.challengingHealth__image--menuOne {
+  width: 100%;
+}
+
+@media (width >= 48rem) {
+  .challengingHealth__title--banner {
+    font-size: var(--fontSize-superTitles_tablet);
+  }
+
+  .challengingHealth__paragraph--banner {
+    width: 25rem;
+    font-size: var(--fontSize-paragraph_tablet);
+  }
+
+  .challengingHealth__line--socialNetwork {
+    width: 80%;
+  }
+
+  .challengingHealth__title--studies {
+    font-size: var(--fontSize-titles_tablet);
+  }
+
+  .challengingHealth__paragraph--studies {
+    font-size: var(--fontSize-paragraph_tablet);
+  }
+
+  .challengingHealth__title-image--studies {
+    font-size: var(--fontSize-paragraph_tablet);
+  }
+  .challengingHealth__topic-image--studies {
+    font-size: var(--fontSize-paragraph_tablet);
+    text-align: center;
+  }
+
+  .challengingHealth__title-image--studiesTwo {
+    font-size: var(--fontSize-paragraph_tablet);
+  }
+
+  .challengingHealth__title--tips {
+    font-size: var(--fontSize-superTitles_tablet);
+  }
+
+  .challengingHealth__paragraph--tips {
+    font-size: var(--fontSize-paragraph_tablet);
+  }
+}
+
+@media (width >= 64rem) {
+  .challengingHealth__title--banner {
+    width: auto;
+    font-size: var(--fontSize-superTitles_laptop);
+  }
+
+  .challengingHealth__paragraph--banner {
+    width: 23rem;
+    font-size: var(--fontSize-paragraph_laptop);
+  }
+
+  .challengingHealth__container--studies {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-top: 5rem;
+  }
+
+  .challengingHealth__container-text--studies {
+    width: 25%;
+  }
+  .challengingHealth__paragraph--studies {
+    width: 11rem;
+  }
+
+  .challengingHealth__container-image--studies {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .challengingHealth__image--studies {
+    width: 7.5rem;
+    display: block;
+    margin: 0 auto;
+    max-width: 12.4375rem;
+    object-fit: cover;
+  }
+
+  .challengingHealth__topic-image--studies {
+    text-align: center;
+  }
+
+  .challengingHealth__container-section--studies {
+    width: 75%;
+  }
+
+  .challengingHealth__containerTwo-image--studiesTwo {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .challengingHealth__image--studies {
+    margin-left: 0;
+  }
+
+  .challengingHealth__image--studiesTwo {
+    height: 18.75rem;
+    object-fit: cover;
+  }
+
+  .challengingHealth__title-image--studiesTwo {
+    font-size: var(--fontSize-paragraph_laptop);
+    margin-top: 0;
+  }
+
+  .challengingHealth__container--tips {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-top: 5rem;
+  }
+
+  .challengingHealth__content-title--tips {
+    width: 25%;
+  }
+
+  .challengingHealth__content--tips {
+    width: 75%;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .challengingHealth__container--recipes {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-top: 3rem;
+  }
+
+  .challengingHealth__content-title---recipes {
+    width: 25%;
+  }
+
+  .challengingHealth__paragraph--recipes {
+    width: 13rem;
+  }
+
+  .challengingHealth__content--recipes {
+    width: 75%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .challengingHealth__container--menu {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .challengingHealth__content-title--menu {
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .challengingHealth__subTitle--menu {
+    width: 15.625rem;
+  }
+
+  .challengingHealth__container--menuOne,
+  .challengingHealth__container--menuTwo {
+    flex-direction: column-reverse;
+  }
+
+  .challengingHealth__content--menuOne {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .challengingHealth__image--menuOne {
+    width: 12.5rem;
+  }
+
+  .challengingHealth__title--menuOne {
+    width: auto;
+    margin-top: 1rem;
+  }
+}

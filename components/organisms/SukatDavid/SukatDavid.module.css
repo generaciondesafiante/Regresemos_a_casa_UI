@@ -1,0 +1,389 @@
+.sukatDavid__container {
+  margin-top: 6rem;
+  width: 100%;
+  height: 100%;
+}
+
+.sukatDavid__info {
+  width: 100%;
+  height: 27.5rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.sukatDavid__info--imgBackground {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/sukatdavid-d0ff8.appspot.com/o/nsplsh_a02ff8f66062413ea883b651ac393d61~mv2.webp?alt=media&token=0ea610ca-d8e6-42fe-b69f-097d824c0855");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: brightness(50%);
+  opacity: 0.14;
+}
+
+.sukatDavid__info--name {
+  text-align: center;
+  width: 30%;
+  font-size: var(--fontSize-titles_tablet);
+  font-weight: bold;
+  color: var(--turquoise);
+  margin-bottom: 0.75rem;
+}
+
+.sukatDavid__info--description {
+  font-size: var(--fontSize-paragraph_tablet);
+  width: 60%;
+  text-align: center;
+  color: var(--darkGray);
+  line-height: 1.125rem;
+}
+
+.sukatDavid__festivities {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--turquoise);
+  padding: 3.125rem 0;
+}
+
+.sukatDavid__festivities--textFestivities {
+  color: var(--white);
+  font-size: var(--fontSize-paragraph_tablet);
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.sukatDavid__festivities--button {
+  height: 2.5rem;
+  background-color: var(--turquoise);
+  border: var(--white) var(--border);
+  border-radius: var(--borderRadius);
+  cursor: pointer;
+  color: var(--white);
+  font-size: var(--fontSize-buttons_mobile);
+  padding: 0 1.875rem;
+  margin: 0.313rem 0;
+  transition: background-color 0.4s, color 0.4s, border-color 0.4s ease-in-out;
+}
+
+.sukatDavid__festivities--button:hover {
+  background-color: var(--white);
+  color: var(--turquoise);
+}
+
+.sukatDavid__schedule {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.sukatDavid__schedule--container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  margin: 1.25rem 0 0.938rem 0;
+  padding-bottom: 1.25rem;
+  border-bottom: #2f2e2e33 0.063rem solid;
+}
+
+.sukatDavid__schedule--hoursContent {
+  display: flex;
+  margin: 0.625rem;
+  color: var(--darkGray);
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 60%;
+}
+
+.sukatDavid__schedule--hour {
+  text-align: center;
+  width: 100%;
+  font-size: var(--fontSize-subtitles_desktop);
+}
+
+.sukatDavid__schedule--text {
+  font-size: 0.5rem;
+}
+
+.sukatDavid__schedule--text1 {
+  display: none;
+}
+
+.sukatDavid__networks {
+  display: block;
+  margin-bottom: 1.563rem;
+}
+
+.sukatDavid__networksContent {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.sukatDavid__networksButton--whatsapp {
+  height: 2.5rem;
+  width: 16.563rem;
+  background-color: var(--white);
+  border: var(--turquoise) var(--border);
+  border-radius: var(--borderRadius);
+  cursor: pointer;
+  color: var(--darkGray);
+  font-size: var(--fontSize-buttons_mobile);
+  padding: 0 1.875rem;
+  margin: 0.313rem 0;
+  transition: background-color 0.4s, color 0.4s, border-color 0.4s ease-in-out;
+}
+
+.sukatDavid__networksButton--whatsapp:hover {
+  background-color: var(--turquoise);
+  color: var(--white);
+}
+
+.sukatDavid__networksButton--telegram {
+  height: 2.5rem;
+  width: 16.563rem;
+  background-color: var(--turquoise);
+  border: var(--turquoise) var(--border);
+  border-radius: var(--borderRadius);
+  color: var(--white);
+  cursor: pointer;
+  font-size: var(--fontSize-buttons_mobile);
+  padding: 0 1.875rem;
+  margin: 0.313rem 0;
+  transition: background-color 0.4s, color 0.4s, border-color 0.4s ease-in-out;
+}
+
+.sukatDavid__networksButton--telegram:hover {
+  background-color: var(--white);
+  border: var(--darkGray) var(--border);
+  color: var(--darkGray);
+}
+
+.sukatDavid__networksButton-link--whatsapp,
+.sukatDavid__networksButton-link--telegram {
+  text-decoration: none;
+}
+
+.sukatDavid__networksButton-link--whatsapp {
+  color: var(--darkGray);
+}
+
+.sukatDavid__networksButton-link--telegram {
+  color: var(--white);
+}
+
+.sukatDavid__books {
+  margin: 0 auto;
+  width: 87%;
+  height: auto;
+}
+
+.sukatDavid__booksContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 1.563rem;
+}
+
+.sukatDavid__books-link--imgDeuteronomio {
+  width: 100%;
+  height: 100%;
+  margin: 0.313rem 0;
+  transition: all 300ms;
+}
+
+.sukatDavid__books--imgDeuteronomio {
+  width: 100%;
+  border-radius: var(--borderRadius);
+}
+
+.sukatDavid__books-link--imgDeuteronomio:hover {
+  cursor: pointer;
+  transform: scale(1.03);
+}
+
+.sukatDavid__books-link--imgSalmos {
+  width: 100%;
+  height: 100%;
+  margin: 0.625rem 0;
+  transition: all 300ms;
+}
+
+.sukatDavid__books--imgSalmos {
+  width: 100%;
+  border-radius: var(--borderRadius);
+}
+
+.sukatDavid__books-link--imgSalmos:hover {
+  cursor: pointer;
+  transform: scale(1.03);
+}
+
+@media (width >=48rem) {
+  .sukatDavid__info--name {
+    font-size: var(--fontSize-superTitles_tablet);
+    padding: 0 1.875rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .sukatDavid__info--description {
+    width: 35%;
+    line-height: 1.313rem;
+  }
+
+  .sukatDavid__festivities--textFestivities {
+    font-size: var(--fontSize-titles_tablet);
+  }
+
+  .sukatDavid__festivities--button {
+    font-size: var(--fontSize-paragraph_tablet);
+  }
+
+  .sukatDavid__schedule--container {
+    width: 60%;
+    padding: 2.5rem 0 3.75rem 0;
+    border-bottom: #2f2e2e33 0.15rem solid;
+  }
+
+  .sukatDavid__schedule--hour {
+    font-size: var(--fontSize-titles_desktop);
+  }
+
+  .sukatDavid__schedule--text {
+    font-size: var(--fontSize-paragraph_tablet);
+  }
+
+  .sukatDavid__networksContent {
+    margin: 0.625rem;
+  }
+
+  .sukatDavid__networksButton--whatsapp {
+    font-size: var(--fontSize-paragraph_tablet);
+  }
+
+  .sukatDavid__networksButton--telegram {
+    font-size: var(--fontSize-paragraph_tablet);
+  }
+
+  .sukatDavid__books {
+    width: 80%;
+  }
+
+  .sukatDavid__books-link--imgDeuteronomio {
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.25rem;
+    max-width: 46.875rem;
+  }
+
+  .sukatDavid__books-link--imgSalmos {
+    margin: 1.563rem 0 2.5rem 0;
+    max-width: 46.875rem;
+  }
+}
+
+@media (width >= 80rem) {
+  .sukatDavid__info {
+    height: calc(33.875rem - 6rem);
+  }
+
+  .sukatDavid__info--name {
+    font-size: var(--fontSize-titles_desktop);
+    margin-bottom: 1.875rem;
+  }
+
+  .sukatDavid__info--description {
+    font-size: var(--fontSize-paragraph_desktop);
+    line-height: 1.875rem;
+    width: 25%;
+  }
+
+  .sukatDavid__festivities {
+    flex-direction: row;
+  }
+
+  .sukatDavid__festivities--textFestivities {
+    font-size: var(--fontSize-paragraph_desktop);
+    margin: 0 3.75rem 0 0;
+  }
+
+  .sukatDavid__festivities--button {
+    font-size: var(--fontSize-subtitles_mobile);
+    margin: 0 0.625rem;
+    padding: 0 1.25rem;
+  }
+
+  .sukatDavid__schedule--hour {
+    font-size: var(--fontSize-superTitles_desktop);
+  }
+
+  .sukatDavid__schedule--text {
+    display: none;
+  }
+
+  .sukatDavid__schedule--text1 {
+    display: block;
+    font-size: var(--fontSize-subtitles_mobile);
+  }
+
+  .sukatDavid__schedule {
+    width: 70%;
+    margin: 0 auto 1.25rem auto;
+    flex-direction: row;
+    border-bottom: #2f2e2e33 0.063rem solid;
+  }
+
+  .sukatDavid__schedule--container {
+    width: 50%;
+    border-bottom: none;
+    margin: 0 6.25rem 0 0;
+  }
+
+  .sukatDavid__networksContent {
+    align-items: start;
+  }
+
+  .sukatDavid__networksButton--whatsapp {
+    font-size: var(--fontSize-paragraph_laptop);
+  }
+
+  .sukatDavid__networksButton--telegram {
+    font-size: var(--fontSize-paragraph_laptop);
+  }
+
+  .sukatDavid__books {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .sukatDavid__booksContent {
+    width: 62.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .sukatDavid__books-link--imgDeuteronomio {
+    margin: 0.625rem 0.938rem;
+  }
+
+  .sukatDavid__books-link--imgSalmos {
+    margin: 0.625rem 0.938rem;
+  }
+}
