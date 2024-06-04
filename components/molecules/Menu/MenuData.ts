@@ -9,7 +9,7 @@ export const menuData = [
   },
   {
     title: "Quiénes somos",
-    href: "/aboutUs",
+    href: "/quienes-somos",
   },
   {
     title: "Estudios",
@@ -20,7 +20,7 @@ export const menuData = [
       { title: "Estudios temáticos", href: "/estudios/estudios-tematicos" },
       {
         title: "Proverbios imágenes",
-        href: "/grupos-desafiantes/proverbios-imagenes",
+        href: "/estudios/proverbios-imagenes",
       },
     ],
   },

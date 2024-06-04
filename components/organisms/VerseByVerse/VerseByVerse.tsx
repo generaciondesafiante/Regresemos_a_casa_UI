@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styles from "./VerseByVerse.module.css";
 
 export const VerseToVerse = () => {
@@ -6,19 +7,19 @@ export const VerseToVerse = () => {
       name: "Romanos",
       image:
         "https://firebasestorage.googleapis.com/v0/b/verso-por-verso.appspot.com/o/verso%20por%20verso%2FRomanos.webp?alt=media&token=a37ba147-1098-4b9c-83fb-284ba2b2cda4",
-      href: "https://www.youtube.com/watch?v=Wvn7BE2PDg4",
+      href: "https://youtube.com/playlist?list=PLX-KKyt726LOHixfRAACHnrj92Oc52-KT&si=taxUzi2aTfppVVqN",
     },
     {
       name: "Gálatas",
       image:
         "https://firebasestorage.googleapis.com/v0/b/verso-por-verso.appspot.com/o/verso%20por%20verso%2Fgalatas.webp?alt=media&token=bac19660-dfbc-4b8e-8076-09009b08db5b",
-      href: "https://www.youtube.com/watch?v=faTR6BpGcso",
+      href: "https://youtube.com/playlist?list=PLX-KKyt726LNrsNZIRLe2Bio9YmIhCE-x&si=8rFSbi1JTxuobklx",
     },
     {
       name: "Efesios",
       image:
         "https://firebasestorage.googleapis.com/v0/b/verso-por-verso.appspot.com/o/verso%20por%20verso%2Fefesios.webp?alt=media&token=53afb5e4-8e89-4577-a7aa-2eec36f04ab3",
-      href: "https://www.youtube.com/watch?v=1D8tuplr4cI",
+      href: "https://youtube.com/playlist?list=PLX-KKyt726LPejLyG-QUS0xlBtUXdA1_C&si=6hP6WgQh6mZVpDdt",
     },
     {
       name: "Filipenses",
@@ -36,7 +37,7 @@ export const VerseToVerse = () => {
       name: "Tesalonicenses",
       image:
         "https://firebasestorage.googleapis.com/v0/b/verso-por-verso.appspot.com/o/verso%20por%20verso%2Ftesalonicenses.webp?alt=media&token=4b3e9222-c21f-45bb-b991-f30402c9e1cd",
-      href: "https://www.youtube.com/watch?v=460ge-l5tf0",
+      href: "https://youtube.com/playlist?list=PLX-KKyt726LMBAFR_aQS5I0PsRbuSBJk1&si=3ZH8BfkG29RptbQe",
     },
     {
       name: "Tito",
@@ -48,7 +49,7 @@ export const VerseToVerse = () => {
       name: "Filemón",
       image:
         "https://firebasestorage.googleapis.com/v0/b/verso-por-verso.appspot.com/o/verso%20por%20verso%2Ffilemon.webp?alt=media&token=40f0ddff-5967-4f2a-bf89-620e02c42df5",
-      href: "https://www.youtube.com/watch?v=spw9_OUVycs",
+      href: "https://youtu.be/spw9_OUVycs?si=4LE4CJ39sejAU8kL",
     },
     {
       name: "Santiago",
@@ -66,7 +67,7 @@ export const VerseToVerse = () => {
       name: "Carta de Juan",
       image:
         "https://firebasestorage.googleapis.com/v0/b/verso-por-verso.appspot.com/o/verso%20por%20verso%2Fcartas%20de%20juan.webp?alt=media&token=9021600c-de2f-4989-bae1-8ad5517307fc",
-      href: "https://www.youtube.com/watch?v=R-I9O1qNKOM",
+      href: "https://youtube.com/playlist?list=PLX-KKyt726LPKjNu1aZI94xMG0-0YTLkO&si=z_I3g5ud6ta7qMLH",
     },
     {
       name: "Carta de Judas",
@@ -78,13 +79,13 @@ export const VerseToVerse = () => {
       name: "Apocalipsis",
       image:
         "https://firebasestorage.googleapis.com/v0/b/verso-por-verso.appspot.com/o/verso%20por%20verso%2Fapocalipsis.webp?alt=media&token=49643fb3-9d5f-482b-8152-e838a902312e",
-      href: "https://www.youtube.com/watch?v=vJMJ_pyjcJg",
+      href: "https://youtube.com/playlist?list=PLX-KKyt726LP1t6VePesyukcaQQ-BHaJg&si=HHwbGMknf8EKa8Dl",
     },
     {
       name: "Deuteronomio",
       image:
         "https://firebasestorage.googleapis.com/v0/b/verso-por-verso.appspot.com/o/verso%20por%20verso%2Fdeuteronomio.webp?alt=media&token=4e713b40-e106-4848-8ca1-cf9b6fe55264",
-      href: "https://www.youtube.com/watch?v=2AthT4EqF3U",
+      href: "https://youtube.com/playlist?list=PLX-KKyt726LPrURnoMRWSYvldlQ3b8Kf7&si=4QUr9HiralaX9cQ-",
     },
   ];
 
@@ -133,12 +134,13 @@ export const VerseToVerse = () => {
       </div>
       <div className={styles["verseToVerse__content--videosStudiesVerse"]}>
         {dataVideo.map((video, index) => (
-          <img
-            src={video.image}
-            alt={video.name}
-            key={index}
-            className={styles["verseToVerse__image--videosStudiesVerse"]}
-          />
+          <Link href={video.href} key={index} target="_blank">
+            <img
+              src={video.image}
+              alt={video.name}
+              className={styles["verseToVerse__image--videosStudiesVerse"]}
+            />
+          </Link>
         ))}
       </div>
     </section>

@@ -17,7 +17,7 @@
       rgba(255, 97, 97, 0.716),
       rgba(255, 97, 97, 0.716)
     ),
-    url("/gruposDesafiantes/mujeresDeOracion/mujeresdeoracion.webp");
+    url("/gruposDesafiantes/mujeres-de-oracion.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -60,6 +60,11 @@
   background: var(--white);
 }
 
+.mujeresDeOracion-link-buttons_bgTrasnsparent {
+  text-decoration: none;
+  color: var(--black);
+}
+
 .mujeresDeOracion-buttons_bgGreen {
   border: var(--greenDesafiante) solid 0.02rem;
   border-radius: var(--borderRadius);
@@ -67,6 +72,12 @@
   background: var(--greenDesafiante);
   color: var(--white);
 }
+
+.mujeresDeOracion-link-buttons_bgGreen {
+  text-decoration: none;
+  color: var(--white);
+}
+
 .mujeresDeOracion-line {
   width: 80%;
   height: 1px;
@@ -136,11 +147,20 @@
     color: var(--white);
     padding: 0.625rem;
   }
+
+  .mujeresDeOracion-link-buttons_bgTrasnsparent:hover {
+    color: var(--white);
+  }
+
   .mujeresDeOracion-buttons_bgGreen:hover {
     border: var(--greenDesafiante) solid 0.02rem;
     background: var(--white);
     color: var(--greenDesafiante);
     padding: 0.625rem;
+  }
+
+  .mujeresDeOracion-link-buttons_bgGreen:hover {
+    color: var(--greenDesafiante);
   }
 
   .mujeresDeOracion-line {
