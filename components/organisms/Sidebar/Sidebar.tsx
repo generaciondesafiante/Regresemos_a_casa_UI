@@ -7,7 +7,6 @@ import {
   ResourcesIcon,
 } from "../../atoms/icons/sidebarIcons";
 import { signOut, useSession } from "next-auth/react";
-import { signOut, useSession } from "next-auth/react";
 import styles from "./Sidebar.module.css";
 import { PathIcon } from "../../atoms/icons/sidebarIcons/PathIcon";
 import { FavoriteIcon } from "../../atoms/icons/sidebarIcons/FavoriteIcon";
@@ -16,7 +15,6 @@ import { AdminIcon } from "../../atoms/icons/sidebarIcons/AdminIcon";
 
 export const Sidebar = () => {
   const { data: session } = useSession();
-  const { data: session } = useSession();
   const pathName = usePathname();
   const router = useRouter();
   const centeredLinks = ["home", "resources", "favorites", "path"];
@@ -24,7 +22,6 @@ export const Sidebar = () => {
 
   const isAdmin = session?.user?.admin === true;
 
-  const isAdmin = session?.user?.admin === true;
 
   const links = [
     {
