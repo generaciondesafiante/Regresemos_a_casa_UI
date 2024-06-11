@@ -1,39 +1,30 @@
-.home {
-  width: 100%;
-  height: 100vh;
-  position: absolute;
-  font-family: var(--primaryFont);
-}
-
 .home-welcome {
+  height: 42rem;
+  margin-top: 4.5rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 100vh;
   background-image: linear-gradient(0deg, #6e71767f, #bcbfc370),
     url("/homePage/homepage.webp");
   background-size: cover;
+  background-position: top;
   background-position: center;
   background-repeat: no-repeat;
-  position: relative;
 }
 
 .home-title {
-  color: var(--white);
+  width: 20rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  margin-top: 15rem;
   font-size: var(--fontSize-superTitles_mobile);
   font-weight: bold;
-  margin-bottom: 0.625rem;
-  text-align: center;
+  color: var(--white);
 }
 
-.home-welcome > .home-button_action {
+.home-welcome>.home-button_action {
   background-color: transparent;
-  color: var(--white);
-  font-size: var(--fontSize-buttons_mobile);
-  border: solid 0.063rem var(--white);
-  border-radius: 0.625rem;
+  border: var(--border) var(--white);
 }
 
 .home-link-button_action {
@@ -41,17 +32,26 @@
   color: var(--white);
 }
 
-.home-welcome > .home-content_itemsDown {
-  width: 100vw;
-  position: absolute;
-  bottom: 1.25rem;
+.home-welcome>.home-button_action:hover {
+  backdrop-filter: blur(0.3rem);
+}
+
+.home-welcome>.home-content_itemsDown {
   display: flex;
+  margin-top: 14rem;
   flex-direction: column;
+  justify-content: space-around;
   align-items: center;
   gap: 1.25rem;
-  align-items: center;
-  justify-content: space-around;
+
 }
+
+.home-sutbtitle_down {
+  color: var(--white);
+  text-align: center;
+  font-size: var(--fontSize-paragraph_mobile);
+}
+
 .home-socialNetworks_down {
   display: flex;
   gap: 0.8rem;
@@ -61,34 +61,26 @@
   margin-right: 0.5rem;
 }
 
-.home-sutbtitle_down {
-  color: var(--white);
-  text-align: center;
-  font-size: var(--fontSize-paragraph_mobile);
-}
-
-/* section 2 */
-
 .home-container_challenging {
-  margin-top: 6rem;
+  width: 18rem;
+  margin: 0 auto;
+  margin-top: 4rem;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .home-title_challenging {
+  text-align: center;
   font-size: var(--fontSize-titles_mobile);
   color: var(--greenDesafiante);
-  text-align: center;
-  margin-bottom: 3rem;
 }
 
 .home-mainParagraph_challenging {
-  width: 300px;
+  margin-top: 3rem;
   text-align: center;
   font-size: var(--fontSize-paragraph_mobile);
   color: var(--darkGray);
-  margin-bottom: 3rem;
 }
 
 .home-paragraphBold_challenging {
@@ -96,15 +88,15 @@
 }
 
 .home-container-stepr {
-  width: 60%;
+  margin-top: 3rem;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
 }
+
 .home-items_step {
-  width: 100%;
+  width: 14.5rem;
   display: flex;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
   gap: 1.2rem;
 }
 
@@ -128,14 +120,14 @@
 }
 
 .home-title_step {
+  text-align: start;
   font-size: var(--fontSize-superTitles_mobile);
   color: #605e5e;
-  text-align: start;
 }
 
-.home-title_step > .home-title_reverseWord {
-  font-weight: bold;
+.home-title_step>.home-title_reverseWord {
   display: inline-block;
+  font-weight: bold;
   transform: rotate(180deg);
 }
 
@@ -143,13 +135,18 @@
   color: var(--darkBlue-content);
 }
 
+.home-biblicaNumber_step {
+  margin-top: 0.8rem;
+  font-style: italic;
+}
+
 .home-container_bePart {
-  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 3rem;
+  padding: 2rem 0rem;
+  background-color: rgb(247, 245, 245);
 }
 
 .home-title_bePart {
@@ -161,100 +158,73 @@
 .home-content_itemsBePart {
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 2rem;
   margin-top: 3rem;
 }
 
 .home-image_bePart {
-  border-radius: 1rem;
+  border-radius: var(--borderRadius);
   cursor: pointer;
+  transition: var(--transition);
 }
 
-.home-shedulesLast {
-  width: 100%;
+.home-image_bePart:hover {
+  transform: var(--transform);
+}
+
+.home-container_shedulesLast {
   display: flex;
-  justify-content: center;
-  background-image: linear-gradient(0deg, #353434d1, #555657ed),
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 2rem;
+  background-image: linear-gradient(0deg, #353434c3, #555657),
     url("/homePage/background-times.webp");
   background-size: cover;
   object-fit: contain;
   background-position: center;
   background-repeat: no-repeat;
-  position: relative;
-}
-.home-container_shedulesLast {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.home-image-sukatDavid {
-  border-radius: 1rem;
-  cursor: pointer;
-}
-
-.container-lastStudy {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.content-schedules {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.home-title_shedulesLast {
-  margin-bottom: 1rem;
-  font-size: var(--fontSize-titles_mobile);
 }
 
 .home-session_linkSchedules {
-  margin-top: 5rem;
-  margin-bottom: 3rem;
-  text-decoration: none;
-  color: var(--white);
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.home-section_linkCourses {
-  width: 90%;
-  margin-bottom: 5rem;
   text-decoration: none;
   text-align: center;
-  color: var(--white);
-  font-weight: bold;
-  margin-bottom: 2rem;
 }
 
+.home-title_shedulesLast {
+  margin: 2rem 0;
+  font-size: var(--fontSize-titles_mobile);
+  color: var(--white);
+}
+
+.home-spanTitle_shedules {
+  font-weight: normal;
+}
+
+.home-image-sukatDavid,
 .home-image_latestStudy {
-  width: 100%;
-  border-radius: 1rem;
+  width: 17rem;
+  border-radius: var(--borderRadius);
+  cursor: pointer;
+  transition: var(--transition);
 }
 
-@media (width >= 38rem) {
+.home-image-sukatDavid:hover,
+.home-image_latestStudy:hover {
+  transform: var(--transform);
+}
+
+@media (width >=48rem) {
   .home-title {
     font-size: var(--fontSize-superTitles_tablet);
     margin-bottom: 1rem;
   }
 
-  .home-welcome > .home-button_action {
-    font-size: var(--fontSize-buttons_tablet);
+  .home-welcome>.home-content_itemsDown {
+    margin-top: 13rem;
   }
 
-  .home-welcome > .home-content_itemsDown {
-    bottom: 4rem;
-    gap: 1rem;
-  }
-
-  .home-sutbtitle_down {
-    font-size: var(--fontSize-paragraph_table);
+  .home-container_challenging {
+    width: auto;
   }
 
   .home-title_challenging {
@@ -262,17 +232,17 @@
   }
 
   .home-mainParagraph_challenging {
-    width: 500px;
-    font-size: var(--fontSize-paragraph_tablet);
-    margin-bottom: 3.2rem;
+    width: 30rem;
   }
 
-  .home-items_step {
-    width: 90%;
-    display: flex;
+  .home-container-stepr {
+    width: auto;
     flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
+    gap: 1rem;
+  }
+
+  .home-container_bePart {
+    margin-top: 0rem;
   }
 
   .home-content_itemsBePart {
@@ -281,78 +251,44 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    margin-bottom: 3rem;
   }
 
-  .home-title_bePart {
-    font-size: var(--fontSize-titles_tablet);
+  .home-container_shedulesLast {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 2rem;
   }
 
-  .home-image_bePart {
-    width: 15rem;
-    transition: all 300ms;
-  }
-
-  .home-image_bePart:hover {
-    transform: scale(1.15);
+  .home-session_linkSchedules {
+    text-align: left;
   }
 
   .home-image-sukatDavid {
-    width: 15rem;
-  }
-
-  .content-schedules {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
-  }
-
-  .home-title_shedulesLast {
-    margin-bottom: 1rem;
-    font-size: var(--fontSize-titles_tablet);
-  }
-
-  .container-lastStudy {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .link-last-course {
-    width: 60%;
+    width: 10rem;
   }
 
   .home-image_latestStudy {
-    width: 100%;
-    border-radius: 1rem;
+    width: 20rem;
   }
 }
 
-@media (width >= 64rem) {
+@media (width >=80rem) {
   .home-title {
+    width: auto;
     font-size: var(--fontSize-superTitles_laptop);
-    margin-bottom: 1.5rem;
-  }
-
-  .home-welcome > .home-button_action {
-    font-size: var(--fontSize-buttons_laptop);
-  }
-
-  .home-welcome > .home-button_action:hover {
-    font-size: var(--fontSize-buttons_laptop);
-    background-color: var(--greenDesafiante);
-    color: var(--white);
-    border: solid 0.063rem var(--greenDesafiante);
-    border-radius: 0.625rem;
+    margin-bottom: 1.8rem;
   }
 
   .home-sutbtitle_down {
     font-size: var(--fontSize-paragraph_laptop);
+  }
+
+  .home-container_challenging {
+    margin-top: 5rem;
+    margin-bottom: 2rem;
   }
 
   .home-title_challenging {
@@ -360,33 +296,21 @@
   }
 
   .home-mainParagraph_challenging {
-    width: 450px;
+    width: 40rem;
     font-size: var(--fontSize-paragraph_desktop);
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
   }
 
   .home-container-stepr {
-    width: 50%;
-    flex-direction: row;
-  }
-
-  .home-items_step {
-    flex-direction: column;
+    gap: 5rem;
   }
 
   .home-title_step {
-    width: 200px;
-  }
-
-  .home-content_itemsBePart {
-    width: 90%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
+    width: 12rem;
   }
 
   .home-title_bePart {
+    margin-top: 2rem;
     font-size: var(--fontSize-titles_laptop);
   }
 
@@ -394,83 +318,21 @@
     width: 18rem;
   }
 
-  .content-schedules {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
-  }
-
   .home-container_shedulesLast {
-    width: 80%;
-    display: flex;
-    flex-direction: row;
-    height: 90vh;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-    gap: 4rem;
+    background-position: initial;
+    padding-top: 1rem;
+    padding-bottom: 4rem;
   }
 
   .home-title_shedulesLast {
-    margin-bottom: 2rem;
-    text-align: start;
-    font-size: var(--fontSize-titles_desktop);
-  }
-
-  .home-spanTitle_shedules {
-    font-weight: normal;
-  }
-  .home-session_linkSchedules {
-    width: auto;
-    align-content: center;
-    margin-bottom: 0;
-    margin-top: 2rem;
-    text-decoration: none;
-    text-align: center;
-    color: var(--white);
-    font-weight: bold;
+    font-size: var(--fontSize-subtitles_laptop);
   }
 
   .home-image-sukatDavid {
-    height: 400px;
-    width: auto;
-    margin-top: 0px;
-    align-content: center;
-    margin-bottom: 0px;
-    text-decoration: none;
-    text-align: center;
-    color: var(--white);
-    font-weight: bold;
-    transition: all 300ms;
-  }
-
-  .home-image-sukatDavid:hover {
-    transform: scale(1.1);
-  }
-
-  .home-section_linkCourses {
-    width: auto;
-    align-content: center;
-    margin-bottom: 0;
-    margin-top: 2rem;
-    text-decoration: none;
-    text-align: center;
-    color: var(--white);
-    font-weight: bold;
+    width: 15rem;
   }
 
   .home-image_latestStudy {
-    height: 400px;
-    width: 700px;
-    object-fit: cover;
-    border-radius: 15px;
-    transition: all 300ms;
-  }
-
-  .home-image_latestStudy:hover {
-    transform: scale(1.1);
+    width: 47rem;
   }
 }
