@@ -1,119 +1,83 @@
 .aboutUs__container {
-    margin-top: 6rem;
-    width: 100%;
-    height: 100%;
-}
-
-.aboutUs__video--container {
-    position: relative;
-    height: 21.875rem;
-    width: 100%;
-    overflow: hidden;
+    margin-top: 4.5rem;
 }
 
 .aboutUs__video {
     width: 100%;
-    height: 100%;
-    object-fit:fill;
 }
 
 .aboutUs__ourObjetive--container {
-    width: 100%;
+    width: 18rem;
+    margin: 0 auto;
+    margin-top: 2rem;
 }
 
 .aboutUs__ourObjetive--title {
-    color: var(--turquoise);
-    font-size: 1.938rem;
+    width: 10rem;
+    font-size: var(--fontSize-superTitles_mobile);
     font-weight: 200;
-    margin: 1.875rem;
-}
-
-.aboutUs__ourObjetive--textOur {
-    font-weight: 500;
+    line-height: 2rem;
+    color: var(--turquoise);
 }
 
 .aboutUs__ourObjetive--textObjective {
-    position: relative;
     font-weight: 800;
-    bottom: 0.625rem;
 }
 
-.aboutUs__ourObjetive--paragraph {
-    margin: 0rem 1.875rem;
-    height: 15.625rem;
-    width: auto;
-}
-
-.aboutUs__ourObjetive--text1 {
-    width: auto;
-    font-size: 0.813rem;
+.aboutUs__ourObjetive--paragraph1 {
+    margin-top: 1rem;
+    font-size: var(--fontSize-paragraph_mobile);
     text-align: justify;
-    color: var(--darkGray);
     line-height: 1.5rem;
 }
 
 .aboutUs__ourObjetiveVerse--container {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    height: 25.313rem;
-}
-
-.aboutUs__ourObjetiveBible--background {
-    width: 100%;
-    height: 25.313rem;
-    position: absolute;
-    background-image: url("https://firebasestorage.googleapis.com/v0/b/quienes-somos-ec597.appspot.com/o/b812fcf3f9424a55bd227b8e7dc3ec23.webp?alt=media&token=a6723f7e-0f84-4fe2-a6a3-0ffb4c986a80");
+    background-image: linear-gradient(0deg, #d2d3d4dc, #e8e7e7e3), url("https://firebasestorage.googleapis.com/v0/b/quienes-somos-ec597.appspot.com/o/b812fcf3f9424a55bd227b8e7dc3ec23.webp?alt=media&token=a6723f7e-0f84-4fe2-a6a3-0ffb4c986a80");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    opacity: 0.1;
-}
-
-.aboutUs__ourObjetive--quote {
-    display: none;
+    margin-top: 2rem;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
 }
 
 .aboutUs__ourObjetive--verse {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 1.875rem;
-    position: relative;
+    width: 15rem;
+    margin: 0 auto;
+    font-size: var(--fontSize-titles_mobile);
+    line-height: 2rem;
     color: var(--darkGray);
-    font-size: 1.438rem;
-    width: auto;
 }
 
 .aboutUs__ourObjetive--verse b {
     font-weight: 800;
 }
 
-.aboutUs__ourObjetive--paragraph2 {
-    display: flex;
-    flex-direction: column;
-    margin: 1.875rem;
+.aboutUs__ourObjetive--quote {
+    display: none;
 }
 
-.aboutUs__ourObjetiveParagraph2--text1 {
-    margin-bottom: 1.25rem;
-    line-height: 1.4rem;
-    font-size: 0.875rem;
+.aboutUs__ourObjetive--paragraph2 {
+    width: 18rem;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    gap: 2rem;
+}
+
+.aboutUs__ourObjetiveParagraph2--text1,
+.aboutUs__ourObjetiveParagraph2--text2 {
+    font-size: var(--fontSize-paragraph_mobile);
     text-align: justify;
-    color: #2f2e2e;
-    width: 100%;
-    word-spacing: 0.188rem;
+    line-height: 1.5rem;
 }
 
 .aboutUs__ourObjetiveParagraph2--text2 {
+    padding: 1.5rem;
+    border: var(--border) var(--gray);
     border-radius: var(--borderRadius);
-    border: #2f2e2e33 0.063rem solid;
-    padding: 1.875rem 0.625rem;
-    line-height: 1.4rem;
-    font-size: 0.875rem;
-    text-align: justify;
-    width: 100%;
-    word-spacing: 0.125rem;
 }
 
 .aboutUs__ourObjetive--photos {
@@ -121,7 +85,8 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    font-size: 0.75rem;
+    margin-top: 2 rem;
+    font-size: var(--fontSize-paragraph_mobile);
 }
 
 .aboutUs__ourObjetive--photos>div {
@@ -136,254 +101,254 @@
 
 .aboutUs__ourObjeticePhotos--abigail {
     border-radius: 51% 49% 51% 49% / 59% 71% 29% 41%;
-    margin-bottom:  0.938rem;
+    margin-bottom: 0.938rem;
 }
 
 .aboutUs__ourObjeticePhotos--danielaLopez {
     border-radius: 59% 41% 70% 30% / 44% 71% 29% 56%;
-    margin-bottom:  0.938rem;
+    margin-bottom: 0.938rem;
 }
 
-.aboutUs__ourObjetive--paragraph3 {
-    margin-top: 2.5rem;
-    width: 100%;
-}
 
 .aboutUs__ourObjetiveParagraph3--container {
-    padding: 1.875rem;
-    background-color: var(--white);
+    margin-top: 1rem;
+    padding-top: 2rem;
+    background-color: rgb(247, 245, 245);
 }
 
-.aboutUs__ourObjetiveParagraph3--text1{
-    margin-bottom: 1.875rem;
+.aboutUs__ourObjetiveParagraph3--subcontent {
+    width: 18rem;
+    margin: 0 auto;
 }
 
-.aboutUs__ourObjetive--textMinistries {
-    font-size: 1.563rem;
+.aboutUs__ourObjetiveParagraph3--title {
+    width: 10rem;
+    font-size: var(--fontSize-titles_mobile);
     font-weight: 600;
-    line-height: 1.875rem;
+    line-height: 2rem;
     color: var(--lightGold);
 }
 
-.aboutUs__ourObjetive--textAssociates {
-    font-size: 1.563rem;
-    line-height: 1.875rem;
-    color: var(--lightGold);
-    font-weight: 550;
+.aboutUs__ourObjetive--titleBold {
+    font-weight: 200;
 }
 
-.aboutUs__ourObjetiveParagraph3--text2 {
-    font-size: 0.938rem;
+.aboutUs__ourObjetiveParagraph3--paragraph {
+    margin-top: 1rem;
+    font-size: var(--fontSize-paragraph_mobile);
     line-height: 1.5rem;
     text-align: justify;
-    word-spacing: 0.188rem;
 }
 
-.aboutUs__ourObjetiveParagraph3--text2 span {
-    word-spacing: 0.063rem;
+.aboutUs__ourObjetive--imgDescubreLaBiblia {
+    width: 8rem;
+    display: block;
+    margin: 0 auto;
+    margin-top: -1.5rem;
+    transition: var(--transition);
 }
 
-.aboutUs__ourObjetive--imgFooterContainer{
-    width: 100%;
-    height: 11.75rem;
+.aboutUs__ourObjetive--imgDescubreLaBiblia:hover {
+    transform: var(--transform);
+}
+
+.aboutUs__ourObjetive--imgFooter-mobile {
+    display: block;
+    width: 100vw;
 }
 
 .aboutUs__ourObjetive--imgFooterContainer img {
-    width: 100%;
-    height: 100%;
-    background-image: url("https://firebasestorage.googleapis.com/v0/b/quienes-somos-ec597.appspot.com/o/d166cc_89e082e6997946c1924000b082e3d4ad~mv2%20(1).webp?alt=media&token=a84d80db-96a2-4ea6-be14-608aafbf2ecd");
-    object-fit: cover;
-    object-position: 50% 50%;
+    display: none;
 }
 
 @media (width >=48rem) {
-    .aboutUs__video--container {
-        height: calc(100% - 6rem);
-    }
-
-    .aboutUs__ourObjetive--title{
-        margin-top: 5rem;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        font-size: 2.5rem;
-    }
-
-    .aboutUs__ourObjetive--paragraph{
-        margin: 0 5rem;
-    }
-
-    .aboutUs__ourObjetive--text1{
-        font-size: 0.938rem;
-        letter-spacing: 0.125rem;
-    }
-
-    .aboutUs__ourObjetive--verse{
-        font-size: 1.875rem;
-        padding: 6.25rem;
-    }
-
-    .aboutUs__ourObjetive--paragraph2{
-        margin: 5rem;
-    }
-
-    .aboutUs__ourObjetiveParagraph2--text2{
-        padding: 2.5rem;
-    }
-
-    .aboutUs__ourObjetiveParagraph3--text1{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .aboutUs__ourObjetiveParagraph3--text2{
-        padding: 0 5rem;
-    }
-
-    .aboutUs__ourObjetiveParagraph3--text2>div{
-        display: flex;
-        justify-content: center;
-    }
-
-}
-
-@media (width >=64rem) {
-    .aboutUs__video--container{
-        height: calc(100% - 6rem);
-    }
-
     .aboutUs__ourObjetive--container {
+        width: 30rem;
         display: flex;
-        justify-content: center;
-        height: 28.563rem;
-        width: 100%;
-        padding: 6.25rem 12.5rem;
+        gap: 4rem;
+        margin-top: 4rem;
     }
 
     .aboutUs__ourObjetive--title {
+        font-size: var(--fontSize-superTitles_tablet);
+    }
+
+    .aboutUs__ourObjetive--paragraph1 {
         margin-top: 0;
-        position: relative;
-        left: 3.125rem;
-        align-items:normal;
-        font-size: 2.938rem;
-        height: 15.625rem;
-    }
-
-    .aboutUs__ourObjetive--textOur {
-        position: relative;
-        top: 0.75rem;
-    }
-
-    .aboutUs__ourObjetive--textObjective {
-        bottom: 0.375rem;
-    }
-
-    .aboutUs__ourObjetive--paragraph {
-        margin-left: 8.75rem;
-        width: 25rem;
-    }
-
-    .aboutUs__ourObjetive--text1{
-        width: 25rem;
     }
 
     .aboutUs__ourObjetiveVerse--container {
-        height: 39.125rem;
+        margin-top: 4rem;
+        display: flex;
+        justify-content: center;
     }
-    
-    .aboutUs__ourObjetiveBible--background {
-        height: 100%;
-    }
-    
+
     .aboutUs__ourObjetive--quote {
-        display: inline;
-        position: relative;
-        margin-top: 10.313rem;
-        margin-left: 15rem;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        display: block;
         color: var(--darkGray);
-        font-size: 9.438rem;
+        font-size: 7rem;
+        position: relative;
+        bottom: 2rem;
+        right: 2rem;
     }
-    
+
     .aboutUs__ourObjetive--verse {
-        margin-top: 12.5rem;
-        margin-left: 2.5rem;
-        font-size: 2.188rem;
-        width: 27.5rem;
-        padding: 0;
+        width: 17rem;
+        font-size: var(--fontSize-titles_tablet);
+        margin: 0;
     }
 
     .aboutUs__ourObjetive--paragraph2 {
-        margin: 1.875rem;
+        width: 45rem;
+        display: flex;
         flex-direction: row;
         justify-content: center;
-        margin-bottom: 6.25rem;
-        word-spacing: 0.25rem;
+        align-items: flex-start;
+        gap: 2rem;
+        margin-top: 4rem;
     }
-    
+
     .aboutUs__ourObjetiveParagraph2--text1 {
-        margin-right: 1.219rem;
-        margin-top: 13.813rem;
-        width: 21.25rem;
-        height: 17.5rem;
-        word-spacing: 0.25rem;
+        width: 20rem;
     }
-    
+
     .aboutUs__ourObjetiveParagraph2--text2 {
-        margin-top: 12.5rem;
-        margin-left: 1.219rem;
-        padding: 2.688rem 2.375rem 3.25rem 2.063rem;
-        width: 25.938rem;
-        word-spacing: 0.25rem;
+        width: 22rem;
     }
 
-    .aboutUs__ourObjetive--photos>div {
-        margin: 0 1.25rem;
-    }
-    
-    .aboutUs__ourObjetice--textPhoto {
-        text-align: center;
+    .aboutUs__ourObjetive--photos {
+        gap: 3rem;
     }
 
-    .aboutUs__ourObjetive--paragraph3 {
-        margin-top: 6.25rem;
-    }
-    
-    .aboutUs__ourObjetiveParagraph3--container {
+    .aboutUs__ourObjetiveParagraph3--subcontent {
         display: flex;
-        justify-content: center;
-        padding: 8.75rem 0rem 1.875rem 0rem;
-    }
-    
-    .aboutUs__ourObjetiveParagraph3--text1 {
-        display: flex;
-        flex-direction: column;
-        min-width: 15.625rem;
-    }
-    
-    .aboutUs__ourObjetive--textMinistries {
-        font-size: 1.875rem;
-    }
-    
-    .aboutUs__ourObjetive--textAssociates {
-        font-size: 1.875rem;
+        width: 30rem;
+        gap: 4rem;
+        margin-top: 2rem;
     }
 
-    .aboutUs__ourObjetiveParagraph3--text1{
-        display: block;
-    }
-    
-    .aboutUs__ourObjetiveParagraph3--text2 {
-        width: 21.875rem;
-        padding: 0;
-        word-spacing: 0.25;
+    .aboutUs__ourObjetiveParagraph3--title {
+        width: 10rem;
+        font-size: var(--fontSize-titles_mobile);
+        font-weight: 600;
+        line-height: 2rem;
+        color: var(--lightGold);
     }
 
-    .aboutUs__ourObjetiveParagraph3--text2>div{
-        display: block;
+    .aboutUs__ourObjetiveParagraph3--paragraph {
+        margin-top: 0;
+    }
+
+    .aboutUs__ourObjetive--imgDescubreLaBiblia {
+        width: 8rem;
+        position: relative;
+        left: 0.5rem;
+    }
+
+
+    .aboutUs__ourObjetive--imgFooter-mobile {
+        display: none;
     }
 
     .aboutUs__ourObjetive--imgFooterContainer {
-        height: 15.313rem;
+        width: 100%;
+        height: 20rem;
+    }
+
+    .aboutUs__ourObjetive--imgFooterContainer img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 50% 50%;
+    }
+}
+
+@media (width >=80rem) {
+    .aboutUs__ourObjetive--container {
+        width: 40rem;
+        margin-top: 7rem;
+    }
+
+    .aboutUs__ourObjetive--title {
+        width: auto;
+        line-height: 2.4rem;
+        font-size: var(--fontSize-superTitles_laptop);
+    }
+
+    .aboutUs__ourObjetive--paragraph1 {
+        font-size: var(--fontSize-paragraph_laptop);
+    }
+
+    .aboutUs__ourObjetiveVerse--container {
+        margin-top: 7rem;
+        padding-top: 10rem;
+        padding-bottom: 10rem;
+    }
+
+    .aboutUs__ourObjetive--verse {
+        width: 25rem;
+        font-size: var(--fontSize-titles_laptop);
+    }
+
+    .aboutUs__ourObjetive--paragraph2 {
+        width: auto;
+        margin-top: 7rem;
+        gap: 5rem;
+    }
+
+    .aboutUs__ourObjetiveParagraph2--text1 {
+        width: 25rem;
+        font-size: var(--fontSize-paragraph_laptop);
+    }
+
+    .aboutUs__ourObjetiveParagraph2--text2 {
+        width: 27rem;
+        font-size: var(--fontSize-paragraph_laptop);
+    }
+
+    .aboutUs__ourObjetive--photos {
+        margin-top: 3rem;
+        gap: 3rem;
+        font-size: var(--fontSize-paragraph_laptop);
+    }
+
+    .aboutUs__ourObjetiveParagraph3--container {
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+    }
+
+    .aboutUs__ourObjetiveParagraph3--subcontent {
+        display: flex;
+        width: 30rem;
+        gap: 4rem;
+        margin-top: 2rem;
+    }
+
+    .aboutUs__ourObjetiveParagraph3--container {
+        margin-top: 4rem;
+    }
+
+    .aboutUs__ourObjetiveParagraph3--subcontent {
+        width: 40rem;
+    }
+
+    .aboutUs__ourObjetiveParagraph3--title {
+        width: auto;
+        font-size: var(--fontSize-titles_laptop);
+    }
+
+    .aboutUs__ourObjetiveParagraph3--paragraph {
+        font-size: var(--fontSize-paragraph_laptop);
+    }
+
+    .aboutUs__ourObjetive--imgDescubreLaBiblia {
+        left: -1.5rem;
+    }
+
+    .aboutUs__ourObjetive--imgFooter {
+        display: block;
+        width: 100vw;
     }
 }
