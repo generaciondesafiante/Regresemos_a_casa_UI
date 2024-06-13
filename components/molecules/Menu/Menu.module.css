@@ -1,22 +1,23 @@
 .header {
   width: 100%;
   min-width: 20rem;
-  position: fixed;
-  z-index: 200;
+  height: 4.5rem;
   display: flex;
   justify-content: space-between;
+  position: fixed;
+  z-index: 200;
   padding: 0.5rem;
   top: 0;
   left: 0;
   align-items: center;
-  background-color: var(--white);
+  backdrop-filter: blur(0.3rem);
 }
 
 .menu-header_logo {
-  width: 4rem;
+  width: 3.5rem;
   display: flex;
-  transition: var(--transition);
   cursor: pointer;
+  transition: var(--transition);
 }
 
 .menu-header_logo:hover {
@@ -31,10 +32,6 @@
   .header {
     padding: 0.5rem 1rem;
   }
-
-  .menu-header_logo {
-    width: 3.5rem;
-  }
 }
 
 @media (width >=64rem) {
@@ -45,6 +42,7 @@
   .menu-header_logo {
     width: 4rem;
   }
+
   .menu-header_containerBtn {
     display: flex;
     gap: 1.3rem;
@@ -64,13 +62,16 @@
     color: var(--greenDesafiante);
     transition: all 300ms;
   }
+
   .menu-header_item.selected {
     color: var(--greenDesafiante);
     text-decoration: none;
   }
+
   .menu-header_arrow {
     margin-left: 0.5rem;
   }
+
   .menu-header_subMenuContainer {
     display: flex;
     flex-direction: column;
@@ -85,6 +86,7 @@
     list-style: none;
     text-decoration: none;
   }
+
   .menu-header_subMenuOverlay {
     position: fixed;
     top: 0;
@@ -98,11 +100,13 @@
     opacity: 1;
     pointer-events: auto;
   }
+
   .menu-header_subMenuItems {
     color: var(--blueDark);
     gap: 1.25rem;
     text-decoration: none;
   }
+
   .menu-header_subMenuItems:hover {
     color: var(--greenDesafiante);
     cursor: pointer;

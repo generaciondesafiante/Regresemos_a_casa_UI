@@ -51,7 +51,7 @@ export const Home = () => {
   };
 
   return (
-    <main className="home">
+    <div>
       <section className={styles["home-welcome"]}>
         <h1 className={styles["home-title"]}>GENERACIÓN DESAFIANTE</h1>
         <Button className={styles["home-button_action"]}>
@@ -100,7 +100,8 @@ export const Home = () => {
         <p className={styles["home-mainParagraph_challenging"]}>
           Somos una
           <span className={styles["home-paragraphBold_challenging"]}>
-            plataforma multimedia
+            {" "}
+            plataforma multimedia{" "}
           </span>
           para el estudio de la palabra del Señor desde una perspectiva hebrea.
           Ser desafiante es:
@@ -111,8 +112,8 @@ export const Home = () => {
             <div>
               <p className={styles["home-title_step"]}>MOSTRAR TU IDENTIDAD</p>
               <span className={styles["home-biblica_step"]}>
-                Sin importar el que dirán. <br />
-                Apocalipsis 14:12
+                Sin importar el que dirán.
+                <p className={styles["home-biblicaNumber_step"]}>Apocalipsis 14:12</p>
               </span>
             </div>
           </div>
@@ -132,9 +133,8 @@ export const Home = () => {
             <div>
               <p className={styles["home-title_step"]}>IR CONTRA CORRIENTE</p>
               <span className={styles["home-biblica_step"]}>
-                cada palabra del Maestro
-                <br />
-                Romanos 2
+                Cada palabra del Maestro
+                <p className={styles["home-biblicaNumber_step"]}>Romanos 2</p>
               </span>
             </div>
           </div>
@@ -159,38 +159,38 @@ export const Home = () => {
           ))}
         </div>
       </section>
-      <section className={styles["home-shedulesLast"]}>
-        <div className={styles["home-container_shedulesLast"]}>
-          <Link href={""} className={styles["home-session_linkSchedules"]}>
-            <h2 className={styles["home-title_shedulesLast"]}>HORARIOS</h2>
-            <img
-              src="/homePage/horario.jpg"
-              alt=" image sukat david horarios"
-              className={styles["home-image-sukatDavid"]}
-            />
-          </Link>
-          <Link
-            href={
-              "https://youtube.com/playlist?list=PLX-KKyt726LPrURnoMRWSYvldlQ3b8Kf7&si=dmM6NAbkZTmIgxEm"
-            }
-            target="_blank"
-            className={styles["home-section_linkCourses"]}
-          >
-            <h2 className={styles["home-title_shedulesLast"]}>
+      <section className={styles["home-container_shedulesLast"]}>
+        <Link
+          href={"/sukatDavid"}
+          className={styles["home-session_linkSchedules"]}
+        >
+          <h2 className={styles["home-title_shedulesLast"]}>HORARIOS</h2>
+          <img
+            src="/homePage/horario.jpg"
+            alt=" image sukat david horarios"
+            className={styles["home-image-sukatDavid"]}
+          />
+        </Link>
+        <Link
+          href={
+            "https://youtube.com/playlist?list=PLX-KKyt726LPrURnoMRWSYvldlQ3b8Kf7&si=dmM6NAbkZTmIgxEm"
+          }
+          target="_blank"
+          className={styles["home-session_linkSchedules"]}
+        >
+          <h2 className={styles["home-title_shedulesLast"]}>
               ÚLTIMO{" "}
               <span className={styles["home-spanTitle_shedules"]}>
                 ESTUDIO:
               </span>
             </h2>
-
-            <img
-              src="/homePage/LASTCOURSE.webp"
-              alt=""
-              className={styles["home-image_latestStudy"]}
-            />
-          </Link>
-        </div>
+          <img
+            src="/homePage/LASTCOURSE.webp"
+            alt=""
+            className={styles["home-image_latestStudy"]}
+          />
+        </Link>
       </section>
-    </main>
+    </div>
   );
 };
