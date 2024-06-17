@@ -28,6 +28,19 @@ export async function middleware(req: NextRequest) {
   }
   console.log(session.admin);
 
+  if (req.nextUrl.pathname.includes("/dashboard/adminPanel")) {
+    if (!session.admin) {
+      console.error("error");
+      const baseUrl =
+        req.headers.get("x-forwarded-host") || req.headers.get("host");
+      const redirectTo = `${
+        req.headers.get("x-forwarded-proto") || "http"
+      }://${baseUrl}/dashboard`;
+      return NextResponse.redirect(redirectTo);
+    }
+  }
+  console.log(session.admin);
+
   return NextResponse.next();
 }
 

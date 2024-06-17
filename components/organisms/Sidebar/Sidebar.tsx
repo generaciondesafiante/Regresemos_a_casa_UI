@@ -22,7 +22,6 @@ export const Sidebar = () => {
 
   const isAdmin = session?.user?.admin === true;
 
-
   const links = [
     {
       name: "profile",
@@ -33,7 +32,22 @@ export const Sidebar = () => {
       ? {
           name: "admin",
           href: "/dashboard/adminPanel",
-          icon: <AdminIcon className={`${styles["sidebar-icon"]} ${styles["admin-icon"]}`} />,
+          icon: (
+            <AdminIcon
+              className={`${styles["sidebar-icon"]} ${styles["admin-icon"]}`}
+            />
+          ),
+        }
+      : null,
+    isAdmin
+      ? {
+          name: "admin",
+          href: "/dashboard/adminPanel",
+          icon: (
+            <AdminIcon
+              className={`${styles["sidebar-icon"]} ${styles["admin-icon"]}`}
+            />
+          ),
         }
       : null,
     {
@@ -88,9 +102,7 @@ export const Sidebar = () => {
                 href={link.href}
                 key={link.name}
                 className={`${
-                  isSelected(link.href)
-                    ? styles["sidebar-sectionSelected"]
-                    : ""
+                  isSelected(link.href) ? styles["sidebar-sectionSelected"] : ""
                 }`}
               >
                 {link.icon}
