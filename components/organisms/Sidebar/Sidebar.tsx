@@ -7,7 +7,6 @@ import {
   ResourcesIcon,
 } from "../../atoms/icons/sidebarIcons";
 import { signOut, useSession } from "next-auth/react";
-import { signOut, useSession } from "next-auth/react";
 import styles from "./Sidebar.module.css";
 import { PathIcon } from "../../atoms/icons/sidebarIcons/PathIcon";
 import { FavoriteIcon } from "../../atoms/icons/sidebarIcons/FavoriteIcon";
@@ -16,13 +15,10 @@ import { AdminIcon } from "../../atoms/icons/sidebarIcons/AdminIcon";
 
 export const Sidebar = () => {
   const { data: session } = useSession();
-  const { data: session } = useSession();
   const pathName = usePathname();
   const router = useRouter();
   const centeredLinks = ["home", "resources", "favorites", "path"];
   const topLinks = ["profile", "admin"];
-
-  const isAdmin = session?.user?.admin === true;
 
   const isAdmin = session?.user?.admin === true;
 
@@ -36,7 +32,22 @@ export const Sidebar = () => {
       ? {
           name: "admin",
           href: "/dashboard/adminPanel",
-          icon: <AdminIcon className={`${styles["sidebar-icon"]} ${styles["admin-icon"]}`} />,
+          icon: (
+            <AdminIcon
+              className={`${styles["sidebar-icon"]} ${styles["admin-icon"]}`}
+            />
+          ),
+        }
+      : null,
+    isAdmin
+      ? {
+          name: "admin",
+          href: "/dashboard/adminPanel",
+          icon: (
+            <AdminIcon
+              className={`${styles["sidebar-icon"]} ${styles["admin-icon"]}`}
+            />
+          ),
         }
       : null,
     {
@@ -91,9 +102,7 @@ export const Sidebar = () => {
                 href={link.href}
                 key={link.name}
                 className={`${
-                  isSelected(link.href)
-                    ? styles["sidebar-sectionSelected"]
-                    : ""
+                  isSelected(link.href) ? styles["sidebar-sectionSelected"] : ""
                 }`}
               >
                 {link.icon}

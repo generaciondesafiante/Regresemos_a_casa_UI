@@ -20,36 +20,31 @@ export const AboutUs = () => {
 
   return (
     <div className={styles["aboutUs__container"]}>
-      <div className={styles["aboutUs__video--container"]}>
-        <video controls className={styles["aboutUs__video"]}>
-          <source
-            src="https://video.wixstatic.com/video/d166cc_bf68bc0718e546a6b23f233fb55617fe/1080p/mp4/file.mp4"
-            type="video/mp4"
-          />
-          Your browser does not support the video tag.
-        </video>
-      </div>
+      <video controls className={styles["aboutUs__video"]}>
+        <source
+          src="https://video.wixstatic.com/video/d166cc_bf68bc0718e546a6b23f233fb55617fe/1080p/mp4/file.mp4"
+          type="video/mp4"
+        />
+        Your browser does not support the video tag.
+      </video>
       <div className={styles["aboutUs__ourObjetive--container"]}>
-        <div className={styles["aboutUs__ourObjetive--title"]}>
-          <p className={styles["aboutUs__ourObjetive--textOur"]}>Nuestro</p>
-          <p className={styles["aboutUs__ourObjetive--textObjective"]}>
+        <h3 className={styles["aboutUs__ourObjetive--title"]}>
+          Nuestro{" "}
+          <span className={styles["aboutUs__ourObjetive--textObjective"]}>
             objetivo
-          </p>
-        </div>
-        <div className={styles["aboutUs__ourObjetive--paragraph"]}>
-          <p className={styles["aboutUs__ourObjetive--text1"]}>
-            El <b>objetivo</b> es mostrarte lo que ha cambiado nuestras vidas:
-            estudiar la Biblia palabra por palabra, de tapa a tapa, desde el
-            idioma original, recorriendo la historia para entender cómo se ha
-            llegado hasta aquí, qué tradiciones adoptamos y de dónde.{" "}
-            <b>¿Te preguntaste alguna vez por qué crees en lo que crees?</b>{" "}
-            Bueno tomate un minuto y piénsalo.
-          </p>
-        </div>
+          </span>
+        </h3>
+        <p className={styles["aboutUs__ourObjetive--paragraph1"]}>
+          El <b>objetivo</b> es mostrarte lo que ha cambiado nuestras vidas:
+          estudiar la Biblia palabra por palabra, de tapa a tapa, desde el
+          idioma original, recorriendo la historia para entender cómo se ha
+          llegado hasta aquí, qué tradiciones adoptamos y de dónde.{" "}
+          <b>¿Te preguntaste alguna vez por qué crees en lo que crees?</b> Bueno
+          tomate un minuto y piénsalo.
+        </p>
       </div>
       <div className={styles["aboutUs__ourObjetiveVerse--container"]}>
-        <div className={styles["aboutUs__ourObjetiveBible--background"]}></div>
-        <span className={styles["aboutUs__ourObjetive--quote"]}>&quot;</span>
+        <p className={styles["aboutUs__ourObjetive--quote"]}>“</p>
         <p className={styles["aboutUs__ourObjetive--verse"]}>
           CUANDO USTEDES ME BUSQUEN, USTEDES ME ENCONTRARÁN CON TAL DE QUE ME{" "}
           <b>BUSQUEN DE TODO CORAZÓN.</b>
@@ -111,18 +106,17 @@ export const AboutUs = () => {
           </p>
         </div>
       </div>
-      <div className={styles["aboutUs__ourObjetive--paragraph3"]}>
-        <div className={styles["aboutUs__ourObjetiveParagraph3--container"]}>
-          <div className={styles["aboutUs__ourObjetiveParagraph3--text1"]}>
-            <p className={styles["aboutUs__ourObjetive--textMinistries"]}>
-              Minesterios
-            </p>
-            <p className={styles["aboutUs__ourObjetive--textAssociates"]}>
+      <div className={styles["aboutUs__ourObjetiveParagraph3--container"]}>
+        <div className={styles["aboutUs__ourObjetiveParagraph3--subcontent"]}>
+          <h3 className={styles["aboutUs__ourObjetiveParagraph3--title"]}>
+            Minesterios
+            <span className={styles["aboutUs__ourObjetive--titleBold"]}>
+              {" "}
               asociados
-            </p>
-          </div>
-          <p className={styles["aboutUs__ourObjetiveParagraph3--text2"]}>
-            ¡Más de <b>3000 horas de comentarios</b> y{" "}
+            </span>
+          </h3>
+          <p className={styles["aboutUs__ourObjetiveParagraph3--paragraph"]}>
+            ¡Más de<b> 3000 horas de comentarios</b> y{" "}
             <b>explicaciones de toda la Biblia! </b>
             <span>
               estudios panorámicos y resúmenes de cada libro, estudios verso por
@@ -135,14 +129,21 @@ export const AboutUs = () => {
               estás hambriento por aprender, en esta página encontrarás recursos
               ilimitados para saciar tu hambre.
             </span>
-            <Link href={"https://www.descubrelabiblia.org/"} target="_blank">
-              <div>
-                <img src={discoverBible} alt="Image of bible background" />
-              </div>
-            </Link>
           </p>
         </div>
+        <Link href={"https://www.descubrelabiblia.org/"} target="_blank">
+          <img
+            className={styles["aboutUs__ourObjetive--imgDescubreLaBiblia"]}
+            src={discoverBible}
+            alt="Image of bible background"
+          />
+        </Link>
       </div>
+      <img
+        className={styles["aboutUs__ourObjetive--imgFooter-mobile"]}
+        src="https://firebasestorage.googleapis.com/v0/b/quienes-somos-ec597.appspot.com/o/d166cc_89e082e6997946c1924000b082e3d4ad~mv2%20(1).webp?alt=media&token=a84d80db-96a2-4ea6-be14-608aafbf2ecd"
+        alt="Image people worshiping"
+      />
       <div className={styles["aboutUs__ourObjetive--imgFooterContainer"]}>
         <img src={imagenFooter} alt="Image people worshiping" />
       </div>
