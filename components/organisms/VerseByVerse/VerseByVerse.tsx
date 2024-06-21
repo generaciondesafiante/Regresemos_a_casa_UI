@@ -90,58 +90,61 @@ export const VerseToVerse = () => {
   ];
 
   return (
-    <section className={styles["verseToVerse"]}>
-      <div className={styles["verseToVerse__container--banner"]}>
-        <div className={styles["verseToVerse__content-dobleQuotation--banner"]}>
-          <p className={styles["verseToVerse__doubleQuotation--banner"]}>
-            &ldquo;
-          </p>
-        </div>
-        <div className={styles["verseToVerse__content--banner"]}>
-          <h2 className={styles["verseToVerse__title--banner"]}>
-            Leían del libro de la ley de Dios y explicaban con claridad el
-            significado de lo que se leía.
-          </h2>
-          <div className={styles["verseToVerse__content--info-banner"]}>
-            <p className={styles["verseToVerse__paragraph--banner"]}>
-              Nehemías 8:8
+    <section>
+      <div className={styles["verseToVerse__background--banner"]}>
+        <div className={styles["verseToVerse__container--banner"]}>
+          <div>
+            <p className={styles["verseToVerse__doubleQuotation--banner"]}>
+              &ldquo;
             </p>
-            <div className={styles["verseToVerse__line--banner"]}></div>
+          </div>
+          <div className={styles["verseToVerse__content--banner"]}>
+            <h2 className={styles["verseToVerse__title--banner"]}>
+              Leían del libro de la ley de Dios y explicaban con claridad el
+              significado de lo que se leía.
+            </h2>
+            <div className={styles["verseToVerse__content--info-banner"]}>
+              <p className={styles["verseToVerse__paragraph--banner"]}>
+                Nehemías 8:8
+              </p>
+              <div className={styles["verseToVerse__line--banner"]}></div>
+            </div>
           </div>
         </div>
       </div>
-
       <div className={styles["verseToVerse__container--studiesVerse"]}>
-        {/* <div className={styles["verseToVerse__content--studiesVerse"]}> */}
-        <div className={styles["verseToVerse__content-title--studiesVerse"]}>
+        <div>
           <h2 className={styles["verseToVerse__title--studiesVerse"]}>
-            Estudios por verso por verso
+            Estudios <br />
+            verso por verso
           </h2>
           <div className={styles["verseToVerse__line--studiesVerse"]}></div>
         </div>
         <div>
           <p className={styles["verseToVerse__paragraph--studiesVerse"]}>
-            Estudiamos la escritura verso por verso, desde el contexto en el
-            cuál fue escrito. Nuestro deseo es entender el corazón del Padre y
-            cumplir Nehemías 8:
-            <i>
-              &quot; Leían del libro de la ley de Dios y explicaban con claridad
+            Estudiamos las Escrituras verso a verso, en el contexto en el que
+            fueron escritas. Nuestro deseo es comprender el corazón del Padre y
+            cumplir con lo enseñado en Nehemías 8:{" "}
+            <span>
+              &quot;Leían del libro de la ley de Dios y explicaban con claridad
               el significado de lo que se leía,
-              <b> así ayudaban al pueblo a comprender cada pasaje.&quot;</b>
-            </i>
+            </span>
+            <span> así ayudaban al pueblo a comprender cada pasaje&quot;.</span>
           </p>
         </div>
       </div>
-      <div className={styles["verseToVerse__content--videosStudiesVerse"]}>
-        {dataVideo.map((video, index) => (
-          <Link href={video.href} key={index} target="_blank">
-            <img
-              src={video.image}
-              alt={video.name}
-              className={styles["verseToVerse__image--videosStudiesVerse"]}
-            />
-          </Link>
-        ))}
+      <div className={styles["verseToVerse__background--videosStudiesVerse"]}>
+        <div className={styles["verseToVerse__content--videosStudiesVerse"]}>
+          {dataVideo.map((video, index) => (
+            <Link href={video.href} key={index} target="_blank">
+              <img
+                src={video.image}
+                alt={video.name}
+                className={styles["verseToVerse__image--videosStudiesVerse"]}
+              />
+            </Link>
+          ))}
+        </div>
       </div>
     </section>
   );
