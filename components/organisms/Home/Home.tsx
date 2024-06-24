@@ -54,6 +54,7 @@ export const Home = () => {
     <div>
       <section className={styles["home-welcome"]}>
         <h1 className={styles["home-title"]}>GENERACIÓN DESAFIANTE</h1>
+
         <Button className={styles["home-button_action"]}>
           <Link
             href={"/estudios/verso-por-verso"}
@@ -113,7 +114,9 @@ export const Home = () => {
               <p className={styles["home-title_step"]}>MOSTRAR TU IDENTIDAD</p>
               <span className={styles["home-biblica_step"]}>
                 Sin importar el que dirán.
-                <p className={styles["home-biblicaNumber_step"]}>Apocalipsis 14:12</p>
+                <p className={styles["home-biblicaNumber_step"]}>
+                  Apocalipsis 14:12
+                </p>
               </span>
             </div>
           </div>
@@ -121,7 +124,7 @@ export const Home = () => {
             <span className={styles["home-step_number"]}>02</span>
             <div>
               <p className={styles["home-title_step"]}>
-                IR{" "}
+                IR
                 <span className={styles["home-title_reverseWord"]}>CONTRA</span>
                 CORRIENTE
               </p>
@@ -179,11 +182,9 @@ export const Home = () => {
           className={styles["home-session_linkSchedules"]}
         >
           <h2 className={styles["home-title_shedulesLast"]}>
-              ÚLTIMO{" "}
-              <span className={styles["home-spanTitle_shedules"]}>
-                ESTUDIO:
-              </span>
-            </h2>
+            ÚLTIMO
+            <span className={styles["home-spanTitle_shedules"]}>ESTUDIO:</span>
+          </h2>
           <img
             src="/homePage/LASTCOURSE.webp"
             alt=""
