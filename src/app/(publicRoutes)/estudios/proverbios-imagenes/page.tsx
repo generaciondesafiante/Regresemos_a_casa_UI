@@ -1,7 +1,7 @@
-import { ProverbiosImages } from "../../../../../components/organisms/ProverbiosImages/ProverbiosImages";
+import { ProverbsImages } from "../../../../../components/organisms/ProverbsImages/ProverbsImages";
 
 const ProverbiosPage = () => {
-  return <ProverbiosImages />;
+  return <ProverbsImages />;
 };
 
 export default ProverbiosPage;
