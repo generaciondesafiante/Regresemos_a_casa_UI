@@ -1,0 +1,35 @@
+.proverbsImages__container {
+  margin-top: 6rem;
+  margin-bottom: 3rem;
+}
+
+.proverbsImages__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  gap: 1.3rem;
+}
+
+.proverbsImages__image {
+  width: 16rem;
+  height: 27rem;
+  border-radius: var(--borderRadius);
+  transition: var(--transition);
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.proverbsImages__image:hover {
+  transform: var(--transform);
+}
+
+@media (width >=38rem) {
+  .proverbsImages__content {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

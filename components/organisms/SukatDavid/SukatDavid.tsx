@@ -1,6 +1,8 @@
 "use client";
 import Link from "next/link";
 import { Button } from "../../atoms";
+import { WhatsAppIcon } from "../../atoms/icons/whatsAppIcon/WhatsAppIcon";
+import { TelegramIcon } from "../../atoms/icons/telegramIcon/TelegramIcon";
 import styles from "./SukatDavid.module.css";
 
 export const SukatDavid = () => {
@@ -25,97 +27,101 @@ export const SukatDavid = () => {
   };
 
   return (
-    <article className={styles["sukatDavid__container"]}>
-      <section className={styles["sukatDavid__info"]}>
-        <div className={styles["sukatDavid__info--imgBackground"]}></div>
-        <p className={styles["sukatDavid__info--name"]}>SUKAT DAVID</p>
+    <div className={styles["sukatDavid__container"]}>
+      <section className={styles["sukatDavid__info--imgBackground"]}>
+        <h3 className={styles["sukatDavid__info--title"]}>SUKAT DAVID</h3>
         <p className={styles["sukatDavid__info--description"]}>
           Sé parte de nuestra <b>comunidad virtual,</b> donde estudiamos verso
           por verso la palabra y compartimos tiempo en comunidad.
         </p>
       </section>
       <section className={styles["sukatDavid__festivities"]}>
-        <span className={styles["sukatDavid__festivities--textFestivities"]}>
+        <h4 className={styles["sukatDavid__festivities--title"]}>
           FESTIVIDADES
-        </span>
-        <Button
-          className={styles["sukatDavid__festivities--button"]}
-          onClick={() => handleOmer()}
-        >
-          imprime cuenta del omer
-        </Button>
-        <Button
-          className={styles["sukatDavid__festivities--button"]}
-          onClick={() => handleFestividades()}
-        >
-          PDF | Calendario de Festividades
-        </Button>
+        </h4>
+        <div className={styles["sukatDavid__festivities--buttonContainer"]}>
+          <Button
+            className={styles["sukatDavid__festivities--button"]}
+            onClick={() => handleOmer()}
+          >
+            Imprime la cuenta del omer
+          </Button>
+          <Button
+            className={styles["sukatDavid__festivities--button"]}
+            onClick={() => handleFestividades()}
+          >
+            PDF | Calendario de Festividades
+          </Button>
+        </div>
       </section>
       <section className={styles["sukatDavid__schedule"]}>
         <div className={styles["sukatDavid__schedule--container"]}>
           <div className={styles["sukatDavid__schedule--hoursContent"]}>
-            <p className={styles["sukatDavid__schedule--text1"]}>
-              <b>VERSO</b> POR VERSO
-            </p>
             <p className={styles["sukatDavid__schedule--hour"]}>17:00 EC</p>
             <p className={styles["sukatDavid__schedule--text"]}>
               <b>VERSO</b> POR VERSO
             </p>
           </div>
         </div>
-        <div className={styles["sukatDavid__networks"]}>
-          <div className={styles["sukatDavid__networksContent"]}>
+        <div className={styles["sukatDavid__networks--container"]}>
+          <Link
+            href={"https://chat.whatsapp.com/El0odapVs7L29LkXVzm6lB"}
+            className={styles["sukatDavid__networksButton-link"]}
+            target="_blanck"
+          >
             <Button className={styles["sukatDavid__networksButton--whatsapp"]}>
-              <Link
-                href={"https://chat.whatsapp.com/El0odapVs7L29LkXVzm6lB"}
-                className={styles["sukatDavid__networksButton-link--whatsapp"]}
-                target="_blanck"
-              >
-                WhatsApp Comunidad
-              </Link>
+              <WhatsAppIcon
+                className={styles["sukatDavid__networksButton--whatsAppIcon"]}
+              />
+              WhatsApp Comunidad
             </Button>
+          </Link>
+          <Link
+            href={"https://t.me/GeneracionDesafiante"}
+            className={styles["sukatDavid__networksButton-link"]}
+            target="_blanck"
+          >
             <Button className={styles["sukatDavid__networksButton--telegram"]}>
-              <Link
-                href={"https://t.me/GeneracionDesafiante"}
-                className={styles["sukatDavid__networksButton-link--telegram"]}
-                target="_blanck"
+              <div
+                className={
+                  styles["sukatDavid__networksButton--telegram-iconContainer"]
+                }
               >
-                Telegram
-              </Link>
+                <TelegramIcon
+                  className={styles["sukatDavid__networksButton--telegramIcon"]}
+                />
+              </div>
+              Telegram
             </Button>
-          </div>
-        </div>
-      </section>
-      <section className={styles["sukatDavid__books"]}>
-        <div className={styles["sukatDavid__booksContent"]}>
-          <Link
-            href={
-              "https://youtube.com/playlist?list=PLX-KKyt726LPrURnoMRWSYvldlQ3b8Kf7&si=bj6DtTAkNffkPRhB"
-            }
-            target="_blank"
-            className={styles["sukatDavid__books-link--imgDeuteronomio"]}
-          >
-            <img
-              className={styles["sukatDavid__books--imgDeuteronomio"]}
-              src={imageDeuteronomio}
-              alt="Image book Deuteronomio"
-            />
-          </Link>
-          <Link
-            href={
-              "https://youtube.com/playlist?list=PLX-KKyt726LMVdJ01eaHz0S5SCZbaKNna&si=giZnDS-sK5ckTdDB"
-            }
-            target="_blank"
-            className={styles["sukatDavid__books-link--imgSalmos"]}
-          >
-            <img
-              className={styles["sukatDavid__books--imgSalmos"]}
-              src={imageSalmos}
-              alt="Image book Salmos"
-            />
           </Link>
         </div>
       </section>
-    </article>
+      <section className={styles["sukatDavid__books--container"]}>
+        <Link
+          href={
+            "https://youtube.com/playlist?list=PLX-KKyt726LPrURnoMRWSYvldlQ3b8Kf7&si=bj6DtTAkNffkPRhB"
+          }
+          target="_blank"
+        >
+          <img
+            className={styles["sukatDavid__books--img"]}
+            src={imageDeuteronomio}
+            alt="Image book Deuteronomio"
+          />
+        </Link>
+        <Link
+          href={
+            "https://youtube.com/playlist?list=PLX-KKyt726LMVdJ01eaHz0S5SCZbaKNna&si=giZnDS-sK5ckTdDB"
+          }
+          target="_blank"
+        >
+          <img
+            className={styles["sukatDavid__books--img"]}
+            src={imageSalmos}
+            alt="Image book Salmos"
+          />
+        </Link>
+      </section>
+    </div>
   );
 };
