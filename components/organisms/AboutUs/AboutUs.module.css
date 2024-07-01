@@ -17,7 +17,7 @@
     font-size: var(--fontSize-superTitles_mobile);
     font-weight: 200;
     line-height: 2rem;
-    color: var(--turquoise);
+    color: var(--greenDesafiante);
 }
 
 .aboutUs__ourObjetive--textObjective {
@@ -108,7 +108,6 @@
     border-radius: 59% 41% 70% 30% / 44% 71% 29% 56%;
     margin-bottom: 0.938rem;
 }
-
 
 .aboutUs__ourObjetiveParagraph3--container {
     margin-top: 1rem;

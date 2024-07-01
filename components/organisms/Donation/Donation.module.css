@@ -1,133 +1,117 @@
-.donations {
-  width: 100%;
-  height: calc(100% - 6.25rem);
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
 .donations-backgroundContainer_info {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  background-image: linear-gradient(0deg, #fcfdffed, rgba(255, 253, 253, 0.94)),
+  background-image: linear-gradient(0deg, #fcfdffeb, #fcfdffeb),
     url("/donations/background-donations.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  position: relative;
+  padding-bottom: 2rem;
+  margin-top: 4.5rem;
 }
-.donations-container_info {
-  width: 90%;
-  height: 100%;
+
+.donations-content_info {
+  width: 18rem;
   display: flex;
-  justify-content: center;
   flex-direction: column;
-  margin-bottom: 3rem;
-  margin-top: 6rem;
+  margin: 0 auto;
+  padding-top: 3rem;
 }
 
 .donations-title_info {
-  margin-top: 4rem;
-  color: var(--greenDesafiante);
-  text-align: center;
   font-size: var(--fontSize-titles_mobile);
+  color: var(--greenDesafiante);
 }
 
 .donations-paragraph_info {
+  margin-top: 1rem;
   font-size: var(--fontSize-paragraph_mobile);
+  line-height: 1.4rem;
+  text-align: justify;
   color: var(--black);
-  margin-top: 2rem;
+}
+
+.donations-paragraph_info span {
+  font-style: italic;
 }
 
 .donations-informations_paymentMethods {
-  margin-top: 3rem;
+  margin-top: 2.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .donations-paragraph_pymentMethods {
+  width: 16.5rem;
   text-align: center;
-  width: 12.5rem;
-  margin-bottom: 1rem;
-  color: var(--black);
+  font-size: var(--fontSize-subtitles_mobile);
   font-weight: bold;
+  color: var(--black);
 }
+
 .donations-contentButton_paymentMethods {
   display: flex;
-  justify-content: center;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
+  gap: 0.8rem;
 }
 
-.donations-contentButton_paymentMethods > .donations-button_pypalme {
-  width: 9.375rem;
-  background-color: var(--white);
-  color: var(--greenDesafiante);
-  font-size: var(--fontSize-buttons_mobile);
-  border: var(--border) var(--greenDesafiante);
-  font-size: var(--fontSize-buttons_mobile);
-  border-radius: 0.625rem;
-  margin-bottom: 1rem;
-}
-
-.donations-link-button_pypalme {
-  text-decoration: none;
-  color: var(--greenDesafiante);
-}
-
-.donations-contentButton_paymentMethods > .donations-button_support {
-  width: 9.375rem;
+.donations-contentButton_paymentMethods>.donations-button_pypalme {
+  width: 17rem;
+  height: 2.5rem;
+  margin-top: 1.5rem;
   background-color: var(--greenDesafiante);
   color: var(--white);
-  font-size: var(--fontSize-buttons_mobile);
-  border: var(--border) var(--greenDesafiante);
-  font-size: var(--fontSize-buttons_mobile);
-  border-radius: 0.625rem;
-  margin-bottom: 1rem;
 }
 
-.donations-link-button_support {
-  text-decoration: none;
-  color: var(--white);
+.donations-contentButton_paymentMethods>.donations-button_support {
+  width: 17rem;
+  border: var(--border) var(--greenDesafiante);
+  background-color: var(--white);
+  color: var(--greenDesafiante);
 }
 
 .donations-cards_methods {
   display: flex;
-  gap: 1rem;
+  justify-content: center;
+  margin-top: 0.5rem;
+  gap: 0.5rem;
 }
 
-.donations-cards_methods > img {
-  width: 3rem;
+.donations-cards_methods>img {
+  width: 2.8rem;
 }
+
 .donations-container_deposit {
-  width: 90%;
-  margin-top: 3rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.donations-content_deposit {
+  width: 18rem;
+  margin: 0 auto;
 }
 
 .donations-title_deposit {
+  font-size: var(--fontSize-titles_mobile);
   color: var(--greenDesafiante);
 }
 
 .donations-title_bank {
-  color: var(--darkBlue);
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  color: var(--darkGreen);
   font-size: var(--fontSize-subtitles_mobile);
-  font-weight: bold;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
 }
+
 .donations-content_dataBank {
-  margin-bottom: 1rem;
+  margin-top: 1rem;
 }
+
 .donations-title_data {
-  color: var(--black);
-  font-weight: bold;
   font-size: var(--fontSize-paragraph_mobile);
+  font-weight: bold;
+  color: var(--darkGreen);
 }
 
 .donations-info_data {
@@ -135,79 +119,63 @@
   font-size: var(--fontSize-paragraph_mobile);
 }
 
-@media (width >= 48rem) {
-  .donations-title_info {
-    margin-top: 3rem;
-    font-size: var(--fontSize-titles_tablet);
-  }
-
-  .donations-paragraph_info {
-    font-size: var(--fontSize-paragraph_mobile);
-  }
-
-  .donations-informations_paymentMethods {
-    margin-top: 3.5rem;
-  }
-
-  .donations-paragraph_pymentMethods {
-    font-size: var(--fontSize-paragraph_mobile);
-  }
-
-  .donations-contentButton_paymentMethods {
-    flex-direction: row;
-    gap: 0.5rem;
-  }
-
-  .donations-contentButton_paymentMethods > .donations-button_pypalme,
-  .donations-contentButton_paymentMethods > .donations-button_support {
-    padding: 0.3rem;
-    font-size: var(--fontSize-buttons_tablet);
-  }
-
-  .donations-container_deposit {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .donations-title_deposit {
-    font-size: var(--fontSize-titles_tablet);
-  }
-  .donations-title_bank {
-    font-size: var(--fontSize-subtitles_tablet);
-  }
-
-  .donations-title_data {
-    font-size: var(--fontSize-paragraph_tablet);
-  }
-
-  .donations-info_data {
-    color: var(--black);
-    font-size: var(--fontSize-paragraph_tablet);
-  }
-}
-
-@media (width >= 64rem) {
+@media (width >=48rem) {
   .donations-backgroundContainer_info {
-    margin-top: 0;
-    height: 90vh;
+    height: 27rem;
+    display: flex;
+    padding-bottom: 0;
   }
 
-  .donations-container_info {
+  .donations-Container_info {
+    width: 43rem;
     display: flex;
-    flex-direction: row;
-    gap: 5rem;
-    height: 80vh;
     align-items: center;
-    justify-content: center;
+    margin: 0 auto;
+    gap: 3rem;
   }
 
   .donations-content_info {
-    width: 30%;
+    width: 100%;
+    padding-top: 0;
+  }
+
+  .donations-informations_paymentMethods {
+    margin-top: 0;
   }
 
   .donations-title_info {
-    text-align: start;
+    margin-top: 0;
+    font-size: var(--fontSize-titles_tablet);
+  }
+
+  .donations-informations_paymentMethods {
+    margin-top: 0;
+  }
+
+  .donations-content_deposit {
+    position: relative;
+    right: 12.5rem;
+  }
+}
+
+@media (width >=80rem) {
+  .donations-backgroundContainer_info {
+    height: 30rem;
+  }
+
+  .donations-Container_info {
+    width: 48rem;
+  }
+
+  .donations-title_info {
+    font-size: var(--fontSize-titles_laptop);
+  }
+
+  .donations-paragraph_info {
+    font-size: var(--fontSize-paragraph_laptop);
+  }
+
+  .donations-content_deposit {
+    right: 15rem;
   }
 }

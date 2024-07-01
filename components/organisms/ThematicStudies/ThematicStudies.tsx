@@ -12,8 +12,8 @@ export const ThematicStudies = () => {
           ESTUDIOS TEMÁTICOS
         </h2>
         <p className={styles["thematicStudies__paragraph--welcome"]}>
-          ¡No te pierdas de los estudios de <b>temas específicos</b> en pdfs y
-          videos!
+          ¡No te pierdas nuestros estudios de <b>temas específicos</b>{" "}
+          disponibles en PDF y videos!
         </p>
       </div>
       <div className={styles["thematicStudies__content--videosThematics"]}>
@@ -34,21 +34,24 @@ export const ThematicStudies = () => {
           </Link>
         ))}
       </div>
-      <div className={styles["thematicStudies__content--PDFThematics"]}>
+      <div className={styles["thematicStudies__container--PDFThematics"]}>
         <div
           className={`${styles["thematicStudies__content--textInfo"]} ${styles["thematicStudies__content--textInfo-PDFs"]} `}
         >
-          <h2 className={styles["thematicStudies__title--textInfo"]}>PDFs</h2>
+          <h2 className={styles["thematicStudies__title--textInfo"]}>PDF</h2>
           <p
-            className={`${styles["thematicStudies__paragraph--textInfo"]} ${styles["thematicStudies__paragraph--PDFs"]}`}
+            className={`${styles["thematicStudies__paragraph--textInfo"]} ${styles["thematicStudies__name--PDFs"]}`}
           >
             Temas que confrontan nuestros pensamientos. ¿Por qué creemos lo que
             creemos?
           </p>
         </div>
-        <div className={styles["thematicStudies__content--PDF"]}>
+        <div className={styles["thematicStudies__container--PDF"]}>
           {thematicsStudiesPDF.map((pdf, index) => (
-            <div key={index}>
+            <div
+              key={index}
+              className={styles["thematicStudies__content--PDF"]}
+            >
               <Link href={pdf.pdfLink} target="_blank">
                 <img
                   src={pdf.image}
@@ -56,10 +59,8 @@ export const ThematicStudies = () => {
                   className={styles["thematicStudies__image--PDF"]}
                 />
               </Link>
-              <p className={styles["thematicStudies__paragraph--PDF"]}>
-                {pdf.name}
-              </p>
-              <p className={styles["thematicsStudies__subtitle--PDF"]}>
+              <p className={styles["thematicStudies__name--PDF"]}>{pdf.name}</p>
+              <p className={styles["thematicsStudies__description--PDF"]}>
                 <i>{pdf.description}</i>
               </p>
             </div>
