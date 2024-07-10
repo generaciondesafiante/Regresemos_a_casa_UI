@@ -4,12 +4,14 @@ import courseReducer from "./slices/courseSlice";
 import topicsReducer from "./slices/topicsSlice";
 import userReducer from "./slices/userSlice";
 import lessonReducer from "./slices/lessonSlice";
+import resourcesReducer from "./slices/resourcesByRol";
 
 const rootReducer = {
   courses: courseReducer,
   topics: topicsReducer,
   user: userReducer,
   lessons: lessonReducer,
+  resources: resourcesReducer,
 };
 
 export const store = configureStore({
