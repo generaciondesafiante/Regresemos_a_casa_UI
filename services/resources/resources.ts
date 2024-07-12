@@ -1,6 +1,5 @@
 export const fetchResourcesData = async (idUser: string) => {
   const userId = idUser;
-  console.log(userId, "id del usuario en recursos fetch");
 
   try {
     const response = await fetch(

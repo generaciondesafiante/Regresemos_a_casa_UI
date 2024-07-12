@@ -60,7 +60,6 @@ export const DashboardUserWelcome = () => {
 
       const resources = async () => {
         const dataResources = await fetchResourcesData(idUser);
-        console.log(dataResources, "datos en el dashboard");
         dispatch(allResources(dataResources));
       };
       userData();
