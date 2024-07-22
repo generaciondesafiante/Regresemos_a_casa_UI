@@ -1,4 +1,4 @@
-export interface Resources {
+export interface SelectedResource {
   _id: string;
   createdAt: string;
   description: string;
@@ -9,4 +9,20 @@ export interface Resources {
   updatedAt: string;
   visibility: string;
   __v: number;
+}
+type ResourceType = "video" | "audio" | "image" | "pdf" | "link";
+type VisibilityType = "public" | "private" | "restrictedInCourse";
+export interface Resource {
+  _id: {
+    _id: string;
+    resourceUrl: string;
+    title: string;
+    description: string;
+    typeResource: ResourceType;
+    visibility: VisibilityType;
+    miniaturaUrl: string;
+    createdAt: string;
+    updatedAt: string;
+    __v?: number;
+  };
 }

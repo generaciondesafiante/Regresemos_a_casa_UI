@@ -33,7 +33,6 @@ export const Donation = () => {
         "noopener,noreferrer"
       );
     }
-    console.log(href);
   };
 
   return (

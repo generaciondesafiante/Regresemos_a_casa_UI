@@ -6,30 +6,28 @@ import { Button } from "../../atoms";
 
 interface LearningPahtVideoComponentProps {
   isVideoReady: boolean;
-  selectedLesson: any;
+  selectedResource: any;
   handleDuration: (duration: number) => void;
-  enableFollowVideoButton: (progressVideo: any) => void;
-  handleNextVideo: () => void;
   obtenerDuracionFormateada: (length: number) => string;
   userRating: number;
   handleRatingChange: (rating: number) => void;
-  enableButton: boolean;
-  updateLasVideoUser: () => void;
+  updateLasVideoUser?: () => void;
+  onNextVideoClick?: () => void;
   duracionTotal: number;
 }
 
-export const LearningPahtVideoComponent: FC<LearningPahtVideoComponentProps> = ({
+export const LearningPahtVideoComponent: FC<
+  LearningPahtVideoComponentProps
+> = ({
   isVideoReady,
-  selectedLesson,
+  selectedResource,
   handleDuration,
-  enableFollowVideoButton,
-  handleNextVideo,
   obtenerDuracionFormateada,
   userRating,
   handleRatingChange,
-  enableButton,
   updateLasVideoUser,
   duracionTotal,
+  onNextVideoClick,
 }) => {
   return (
     <div className={styles["learningPathVideoClass-container"]}>
@@ -37,13 +35,12 @@ export const LearningPahtVideoComponent: FC<LearningPahtVideoComponentProps> = (
         {isVideoReady ? (
           <div className={styles["learningPathVideoClass-video"]}>
             <ReactPlayer
-              url={selectedLesson?.videoUrl}
+              url={selectedResource?.resourceUrl}
               controls={true}
               playsinline={true}
               pip={true}
               stopOnUnmount
               onDuration={handleDuration}
-              onProgress={enableFollowVideoButton}
               width={"100%"}
               height={"100%"}
               onPlay={updateLasVideoUser}
@@ -86,11 +83,7 @@ export const LearningPahtVideoComponent: FC<LearningPahtVideoComponentProps> = (
               />
             </div>
           </div>
-          <Button
-            className={enableButton ? styles["enabled"] : styles["disabled"]}
-            disabled={!enableButton}
-            onClick={handleNextVideo}
-          >
+          <Button className={styles["enabled"]} onClick={onNextVideoClick}>
             Siguiente
           </Button>
         </div>

@@ -6,7 +6,6 @@ export const fetchResourcesData = async (idUser: string) => {
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/resources/${userId}`
     );
     const json = await response.json();
-    console.log(json);
     if (json.ok) {
       return json.resources;
     } else {

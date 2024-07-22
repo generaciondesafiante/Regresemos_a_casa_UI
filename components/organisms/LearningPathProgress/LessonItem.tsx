@@ -1,93 +1,49 @@
 import { FC } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { useAppSelector } from "../../../store/store";
-import {
-  VideoLesson,
-  AssessmentLesson,
-} from "../../../types/types/lessons.type";
 import { Course } from "../../../types/types/course.types";
 import styles from "./LearningPathProgress.module.css";
 
+
 interface LessonItemProps {
-  lesson: VideoLesson | AssessmentLesson;
-  infoSelectedLesson: VideoLesson | AssessmentLesson | null;
-  lessonStatus: boolean[];
   selectedCourse: Course | null;
+  index: number;
 }
 
-export const LessonItem: FC<LessonItemProps> = ({
-  lesson,
-  infoSelectedLesson,
-  lessonStatus,
-  selectedCourse,
-}) => {
+export const LessonItem: FC<LessonItemProps> = ({ index }) => {
   const router = useRouter();
   const { courseName, tema, courseId } = useParams();
   const selectedTopic = useAppSelector((state) => state.topics.selectedTopic);
-  const sequentialLesson = lesson.sequentialLesson
-    ? lesson.sequentialLesson
-    : "";
 
-  const handleItemClick = (sequentialLesson: number) => {
+  const handleItemClick = (lessonIndex: number) => {
     if (selectedTopic) {
       let lessonId;
-
-      if ("videoId" in lesson) {
-        lessonId = (lesson as VideoLesson).videoId;
-      } else if ("_id" in lesson) {
-        lessonId = (lesson as AssessmentLesson)._id;
-      }
-      const url = `/dashboard/courses/${courseName}/${courseId}/${lessonId}/${tema}/${sequentialLesson}`;
+      const url = `/dashboard/courses/${courseName}/${courseId}/${lessonId}/${tema}/${lessonIndex}`;
       router.push(url);
     }
   };
 
-  const isLessonBlocked = !lessonStatus[parseInt(sequentialLesson) - 1];
-  const isCourseMandatory = selectedCourse?.mandatory;
-  const isLessonUnlocked =
-    !isCourseMandatory || (isCourseMandatory && !isLessonBlocked);
+  const isLessonUnlocked = true;
 
   return (
     <div
-      key={sequentialLesson}
+      key={index}
       className={`${styles["classRoomRoute-subcontent"]}`}
       onClick={() => {
         if (isLessonUnlocked) {
-          handleItemClick(parseInt(sequentialLesson));
+          handleItemClick(index + 1);
         }
       }}
     >
-      <div
-        className={`${styles["classRoomRoute-title"]} ${
-          infoSelectedLesson?.sequentialLesson &&
-          parseInt(infoSelectedLesson.sequentialLesson) ===
-            parseInt(sequentialLesson)
-            ? styles["selected"]
-            : ""
-        } ${!isLessonUnlocked ? styles["blocked"] : ""}`}
-      >
-        {sequentialLesson}
-      </div>
+      <div className={`${styles["classRoomRoute-title"]} `}>{index + 1}</div>
 
-      <div
-        className={`${styles["classRoomRoute-iconCircle"]} ${
-          isCourseMandatory && !isLessonBlocked
-            ? styles["blocked"]
-            : styles["unlocked"]
-        } ${
-          infoSelectedLesson?.sequentialLesson &&
-          parseInt(infoSelectedLesson.sequentialLesson) ===
-            parseInt(sequentialLesson)
-            ? styles["selected"]
-            : ""
-        }`}
-      >
-        {sequentialLesson}
+      <div className={`${styles["classRoomRoute-iconCircle"]}`}>
+        {index + 1}
       </div>
 
       <div
         className={`${styles["classRoomRoute-line"]} ${
-          parseInt(sequentialLesson) === selectedTopic?.lessons.length
+          index === (selectedTopic?.resources.length ?? 0) - 1
             ? styles["hide"]
             : ""
         }`}

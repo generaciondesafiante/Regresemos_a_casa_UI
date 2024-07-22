@@ -7,7 +7,7 @@ import IconBxLockOpen from "../../atoms/icons/unLockPathIcon/PathUnlockIcon";
 import { FlagStartIcon } from "../../atoms/icons/flagsIcon/FlagStartIcon";
 import { FlagEndIcon } from "../../atoms/icons/flagsIcon/FlagEndIcon";
 import { DavidStarIcon } from "../../atoms/icons/davidStar/DavidStarIcon";
-import { User } from "../../../types/types/user.type";
+import { CourseProgress, User } from "../../../types/types/user.type";
 import { useAppDispatch, useAppSelector } from "../../../store/store";
 import { selectTopic } from "../../../store/slices/topicsSlice";
 import { userInfo } from "../../../store/slices/userSlice";
@@ -15,6 +15,7 @@ import { fetchUserData } from "../../../services/user/userData";
 import styles from "./Path.module.css";
 import { ArrowLeftIcon } from "../../atoms";
 import Link from "next/link";
+import { selectedResource } from "../../../store/slices/ResourceSlice";
 
 export const Path = () => {
   const { data: session } = useSession();
@@ -25,10 +26,12 @@ export const Path = () => {
   const selectedCourse = useAppSelector(
     (state) => state.courses.selectedCourse
   );
+
   const [userInformation, setUserInformation] = useState<User | undefined>(
     undefined
   );
-  const topicsCourses = selectedCourse?.topics;
+
+  const topicsCourses = selectedCourse?.topic;
 
   useEffect(() => {
     if (idUser) {
@@ -41,34 +44,60 @@ export const Path = () => {
     }
   }, [idUser]);
 
-  const isTopicUnlocked = (topic: any) => {
+  const isTopicUnlocked = (topic: any, topicIndex: any) => {
     if (selectedCourse && userInformation?.CourseProgress) {
       const courseProgress = userInformation.CourseProgress.find(
-        (progress) => progress.idCourse === selectedCourse._id
+        (progress) => progress.course === selectedCourse._id
       );
+
       if (courseProgress) {
-        const sequentialTopic = parseInt(
-          courseProgress.topics[0].sequentialTopic
-        );
-        const currentTopicSequential = parseInt(topic.sequentialTopic);
-        return sequentialTopic >= currentTopicSequential;
+        const completedTopics = courseProgress.topics
+          ? courseProgress.topics.filter((topicProgress) =>
+              topicProgress.resources.some((resource) => resource.viewResource)
+            )
+          : [];
+
+        return topicIndex <= completedTopics.length;
       } else {
-        const currentTopicSequential = parseInt(topic.sequentialTopic);
-        return currentTopicSequential === 1;
+        return topicIndex === 0;
       }
+    } else {
+      return selectedCourse?.typeOfRoute === "strict" && topicIndex === 0;
     }
-    return !selectedCourse?.mandatory;
   };
 
   const handleUrlId = (topic: any) => {
-    const topicName = topic.topicName
+    const nameCourse = selectedCourse?.nameCourse
       .replace(/\s+/g, "_")
       .replace(/́/g, "")
       .replace(/ñ/g, "n")
       .toLowerCase();
+    const nameTopic = topic.nameTopic
+      .replace(/\s+/g, "_")
+      .replace(/́/g, "")
+      .replace(/ñ/g, "n")
+      .toLowerCase();
+    const resource = topic.resources[0];
+    const resourceId = resource?._id?._id;
+    const url = `/dashboard/courses/${nameCourse}/${selectedCourse?._id}/${resourceId}/${nameTopic}/1`;
+    console.log(resource);
+    // Dispatch the first lesson of the selected topic
+    if (resource) {
+      const resourcesData = {
+        _id: resource._id._id,
+        resourceUrl: resource._id.resourceUrl,
+        title: resource._id.title,
+        description: resource._id.description,
+        typeResource: resource._id.typeResource,
+        visibility: resource._id.visibility,
+        miniaturaUrl: resource._id.miniaturaUrl,
+        createdAt: resource._id.createdAt,
+        updatedAt: resource._id.updatedAt,
+        isCompleted: resource.isCompleted,
+      };
+      dispatch(selectedResource(resourcesData));
+    }
 
-    const lessonId = topic.lessons[0].videoId;
-    const url = `/dashboard/courses/${topicName}/${topic._id}/${lessonId}/${topicName}/${topic.sequentialTopic}`;
     dispatch(selectTopic(topic));
     router.push(url);
   };
@@ -91,17 +120,9 @@ export const Path = () => {
       </div>
       <div className={styles["path-content"]}>
         {topicsCourses?.map((topic, topicIndex) => {
-          const isUnlocked = isTopicUnlocked(topic);
-
-          const isFirstTopicUnlocked = selectedCourse?.mandatory
-            ? topicIndex === 0 || isUnlocked
-            : true;
-
+          const isUnlocked = isTopicUnlocked(topic, topicIndex);
           return (
-            <div
-              key={topic.sequentialTopic}
-              className={styles["path-topicContainer"]}
-            >
+            <div key={topic._id} className={styles["path-topicContainer"]}>
               <div className={styles["path-border"]}>
                 {topicIndex === 0 && (
                   <FlagStartIcon
@@ -118,9 +139,11 @@ export const Path = () => {
                 <button
                   onClick={() => handleUrlId(topic)}
                   className={styles["path-button"]}
-                  disabled={!isFirstTopicUnlocked}
+                  disabled={
+                    selectedCourse?.typeOfRoute === "strict" && !isUnlocked
+                  }
                 >
-                  {selectedCourse?.mandatory ? (
+                  {selectedCourse?.typeOfRoute === "strict" ? (
                     isUnlocked ? (
                       <IconBxLockOpen />
                     ) : (
@@ -133,7 +156,7 @@ export const Path = () => {
                   )}
                 </button>
               </div>
-              <p className={styles["path-CourseTitle"]}>{topic.topicName}</p>
+              <p className={styles["path-CourseTitle"]}>{topic.nameTopic}</p>
             </div>
           );
         })}
