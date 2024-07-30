@@ -8,8 +8,8 @@ export interface User {
   country: string;
   phone: string | null;
   image: string;
-  admin:boolean;
-  CourseProgress: any[]; 
+  admin: boolean;
+  CourseProgress: CourseProgress[];
   lastViewedVideos: {
     _id: string;
     courseName: string;
@@ -20,3 +20,16 @@ export interface User {
     urlVideo: string;
   }[];
 }
+
+export type CourseProgress = {
+  course: string;
+  topics?: Array<{
+    completed: boolean;
+    resources: ResourceProgress[];
+  }>;
+};
+
+type ResourceProgress = {
+  viewResource: boolean; // Whether the user has viewed the resource
+  // Add other resource progress properties as needed (e.g., completion time)
+};

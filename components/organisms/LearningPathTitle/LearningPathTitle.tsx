@@ -8,29 +8,28 @@ import styles from "./LearningPathTitle.module.css";
 export const LearningPathTitleClass: FC = () => {
   const selectedTopic = useAppSelector((state) => state.topics.selectedTopic);
   const infoSelectedLesson = useAppSelector(
-    (state) => state.lessons.selectedLesson
+    (state) => state.resource.selectedResource
   );
   const selectedCourse = useAppSelector(
     (state) => state.courses.selectedCourse
   );
-
   return (
     <div className={styles["learningPathTitleClass-container"]}>
       <div className={styles["containerBackReturnTopics"]}>
         <Link
           className={styles["backReturnTopics"]}
-          href={`/dashboard/courses/${selectedCourse?.courseName}/${selectedCourse?._id}`}
+          href={`/dashboard/courses/${selectedCourse?.nameCourse}/${selectedCourse?._id}`}
         >
           <ArrowLeftIcon />
           <p>Regresar</p>
         </Link>
       </div>
       <p className={styles["learningPathTitleClass-topic"]}>
-        {selectedTopic?.topicName}
+        {selectedTopic?.nameTopic}
       </p>
       <div className={styles["learningPathTitleClass-line"]}></div>
       <h2 className={styles["learningPathTitleClass-title"]}>
-        {infoSelectedLesson?.videoName}
+        {infoSelectedLesson?.title}
       </h2>
       <div className={styles["learningPathTitleClass-subcontent"]}>
         <p> {infoSelectedLesson?.description}</p>

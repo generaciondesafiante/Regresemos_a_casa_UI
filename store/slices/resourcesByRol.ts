@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Resources } from "../../types/types/Resources";
+import { SelectedResource } from "../../types/types/Resources";
 
 interface GroupedResources {
-  public: Resources[];
-  private: Resources[];
-  restrictedIncourse: Resources[];
+  public: SelectedResource[];
+  private: SelectedResource[];
+  restrictedIncourse: SelectedResource[];
 }
 
 interface ResourcesState {
@@ -23,7 +23,7 @@ const resourcesSlice = createSlice({
   name: "resources",
   initialState,
   reducers: {
-    allResources(state, action: PayloadAction<Resources[]>) {
+    allResources(state, action: PayloadAction<SelectedResource[]>) {
       const groupedResources: GroupedResources = {
         public: [],
         private: [],
