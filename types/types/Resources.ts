@@ -12,17 +12,16 @@ export interface SelectedResource {
 }
 type ResourceType = "video" | "audio" | "image" | "pdf" | "link";
 type VisibilityType = "public" | "private" | "restrictedInCourse";
+
 export interface Resource {
-  _id: {
-    _id: string;
-    resourceUrl: string;
-    title: string;
-    description: string;
-    typeResource: ResourceType;
-    visibility: VisibilityType;
-    miniaturaUrl: string;
-    createdAt: string;
-    updatedAt: string;
-    __v?: number;
-  };
+  _id: string;
+  createdAt: string;
+  description: string;
+  miniaturaUrl: string;
+  resourceUrl: string;
+  title: string;
+  typeResource: ResourceType;
+  updatedAt: string;
+  visibility: VisibilityType;
+  __v?: number;
 }
