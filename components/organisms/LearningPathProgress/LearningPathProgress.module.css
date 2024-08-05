@@ -20,7 +20,6 @@
   display: none;
 }
 
-
 @media (width >=48rem) {
   .classRoomRoute-title {
     padding-left: 7rem;
@@ -73,7 +72,7 @@
     cursor: not-allowed;
   }
 
-  .blocked{
+  .blocked {
     width: 1.5rem;
     height: 1.5rem;
     display: block;

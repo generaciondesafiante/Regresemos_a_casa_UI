@@ -1,5 +1,5 @@
 "use client";
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "../../../store/store";
 import { Course } from "../../../types/types/course.types";
@@ -19,65 +19,58 @@ export const LessonItem: FC<LessonItemProps> = ({ index }) => {
   const userSelectedTopic = useAppSelector(
     (state) => state.topics.selectedTopic
   );
+
   const userProgress = useAppSelector(
     (state) => state.user.userInfo?.CourseProgress
-  ); // Suponiendo que tienes el progreso del usuario en el estado
-
-  // Verifica si el progreso del usuario incluye recursos para el curso y el tema actuales
-  const courseProgress = userProgress?.find(
-    (progress: any) => progress.course.toString() === courseId
-  );
-  const topicProgress = courseProgress?.topics?.find(
-    (topic: any) => topic.topicId === userSelectedTopic?._id
   );
 
-  // Determina el máximo índice de lecciones completadas
-  const maxCompletedIndex =
-    topicProgress?.resources.reduce(
-      (max: any, resource: any, idx: any) =>
-        resource.viewResource ? Math.max(max, idx) : max,
-      -1
-    ) ?? -1;
+  const userSelectedResource = useAppSelector(
+    (state) => state.resource.selectedResource?._id._id
+  );
 
-  console.log(maxCompletedIndex + 2, index);
-  // Verifica si la lección actual está desbloqueada
-  const isLessonUnlocked = index <= maxCompletedIndex + 2;
-  console.log(isLessonUnlocked);
+  const lastViewedResourceIndex =
+    userProgress && userProgress.length > 0
+      ? userSelectedTopic?.resources.findIndex(
+          (resource: any) =>
+            resource._id._id ===
+            userProgress[0].lastViewedTopic.topic[0].lastViewedResource._id
+        )
+      : null;
+
+  const currentResourceIndex = userSelectedTopic?.resources.findIndex(
+    (resource: any) => resource._id._id === userSelectedResource
+  );
+
   const handleItemClick = (lessonIndex: number) => {
-    console.log(lessonIndex);
-
     if (userSelectedTopic) {
       const resource = userSelectedTopic.resources[lessonIndex - 1];
-      console.log(resource);
       if (resource) {
         dispatch(selectedResource(resource));
       }
 
-      // Navigate to the URL
       const lessonId = userSelectedTopic.resources[lessonIndex - 1]?._id._id;
       const url = `/dashboard/courses/${courseName}/${courseId}/${lessonId}/${tema}/${lessonIndex}`;
       router.push(url);
     }
   };
 
-  return (
-    <div
-      key={index}
-      className={`${styles["classRoomRoute-subcontent"]} ${
-        !isLessonUnlocked ? styles["blocked"] : ""
-      }`}
-      onClick={() => {
-        if (isLessonUnlocked) {
-          handleItemClick(index + 1);
-        }
-      }}
-    >
-      <div className={`${styles["classRoomRoute-title"]} `}>{index + 1}</div>
+  const isViewed =
+    lastViewedResourceIndex !== undefined &&
+    lastViewedResourceIndex !== null &&
+    index <= lastViewedResourceIndex;
 
-      <div className={`${styles["classRoomRoute-iconCircle"]}`}>
+  const isSelected = index === currentResourceIndex;
+  return (
+    <div key={index} className={`${styles["classRoomRoute-subcontent"]} `}>
+      <div className={`${styles["classRoomRoute-title"]}`}>{index + 1}</div>
+      <div
+        className={`${styles["classRoomRoute-iconCircle"]} ${
+          isViewed ? styles["viewedResource"] : styles["unlocked"]
+        } ${isSelected ? styles["selected"] : ""}`}
+        onClick={isViewed ? () => handleItemClick(index + 1) : undefined}
+      >
         {index + 1}
       </div>
-
       <div
         className={`${styles["classRoomRoute-line"]} ${
           index === (userSelectedTopic?.resources.length ?? 0) - 1

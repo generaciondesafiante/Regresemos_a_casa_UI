@@ -7,7 +7,11 @@ import IconBxLockOpen from "../../atoms/icons/unLockPathIcon/PathUnlockIcon";
 import { FlagStartIcon } from "../../atoms/icons/flagsIcon/FlagStartIcon";
 import { FlagEndIcon } from "../../atoms/icons/flagsIcon/FlagEndIcon";
 import { DavidStarIcon } from "../../atoms/icons/davidStar/DavidStarIcon";
-import { CourseProgress, User } from "../../../types/types/user.type";
+import {
+  CourseProgress,
+  User,
+  LastViewedVideo,
+} from "../../../types/types/user.type";
 import { useAppDispatch, useAppSelector } from "../../../store/store";
 import { selectTopic } from "../../../store/slices/topicsSlice";
 import { userInfo } from "../../../store/slices/userSlice";
@@ -16,7 +20,6 @@ import styles from "./Path.module.css";
 import { ArrowLeftIcon } from "../../atoms";
 import Link from "next/link";
 import { selectedResource } from "../../../store/slices/ResourceSlice";
-import { Resource } from "../../../types/types/Resources";
 
 export const Path = () => {
   const { data: session } = useSession();
@@ -43,26 +46,34 @@ export const Path = () => {
       };
       userData();
     }
-  }, [idUser]);
+  }, [idUser, dispatch]);
 
-  const isTopicUnlocked = (topic: any, topicIndex: any) => {
+  const isTopicUnlocked = (topic: any, topicIndex: number): boolean => {
     if (selectedCourse && userInformation?.CourseProgress) {
       const courseProgress = userInformation.CourseProgress.find(
         (progress) => progress.course === selectedCourse._id
       );
 
       if (courseProgress) {
-        const completedTopics = courseProgress.topics
-          ? courseProgress.topics.filter((topicProgress) =>
-              topicProgress.resources.some((resource) => resource.viewResource)
-            )
-          : [];
+        // Ensure that lastViewedTopic.topic is an array of objects with a topicId property
+        const lastViewedTopicIndex =
+          courseProgress.lastViewedTopic.topic.findIndex(
+            (t: any) => t.topicId === topic._id
+          );
 
-        return topicIndex <= completedTopics.length;
+        // If no topics are saved, unlock the first topic
+        if (lastViewedTopicIndex + 1 === -1) {
+          return topicIndex === 0;
+        }
+
+        // Check if the current topic index is less than or equal to the last viewed index + 1
+        return topicIndex <= lastViewedTopicIndex + 2;
       } else {
-        return topicIndex === 0;
+        // If there is no course progress, unlock the first topic
+        return selectedCourse?.typeOfRoute === "strict" && topicIndex === 0;
       }
     } else {
+      // If there is no selected course or user progress, unlock the first topic
       return selectedCourse?.typeOfRoute === "strict" && topicIndex === 0;
     }
   };
