@@ -1,10 +1,9 @@
 import { Resource } from "./Resources";
 
 export interface Topic {
-  topicName: string;
-  sequentialTopic: string;
   _id: string;
-  resources: [];
+  nameTopic: string;
+  resources: Resource[]; 
 }
 
 export interface Topic1 {

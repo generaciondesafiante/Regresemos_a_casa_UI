@@ -1,15 +1,10 @@
-import { AssessmentLesson, VideoLesson } from "./lessons.type";
+import { Topic } from "./topic.type";
 
-type CourseType = "strict" | "flexible";
 export interface Course {
   _id: string;
-  typeOfRoute: CourseType;
   nameCourse: string;
-  topicName: string;
-  topic: Array<{
-    nameTopic: string;
-    _id: string;
-    sequentialTopic: string;
-    lessons: (VideoLesson | AssessmentLesson)[];
-  }>;
+  titleCourse: string;
+  typeOfRoute: "strict" | "flexible";
+  topic: Topic[];
+  __v: number;
 }

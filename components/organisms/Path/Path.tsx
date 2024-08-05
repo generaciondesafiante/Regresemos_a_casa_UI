@@ -16,6 +16,7 @@ import styles from "./Path.module.css";
 import { ArrowLeftIcon } from "../../atoms";
 import Link from "next/link";
 import { selectedResource } from "../../../store/slices/ResourceSlice";
+import { Resource } from "../../../types/types/Resources";
 
 export const Path = () => {
   const { data: session } = useSession();
@@ -80,22 +81,8 @@ export const Path = () => {
     const resource = topic.resources[0];
     const resourceId = resource?._id?._id;
     const url = `/dashboard/courses/${nameCourse}/${selectedCourse?._id}/${resourceId}/${nameTopic}/1`;
-    console.log(resource);
-    // Dispatch the first lesson of the selected topic
     if (resource) {
-      const resourcesData = {
-        _id: resource._id._id,
-        resourceUrl: resource._id.resourceUrl,
-        title: resource._id.title,
-        description: resource._id.description,
-        typeResource: resource._id.typeResource,
-        visibility: resource._id.visibility,
-        miniaturaUrl: resource._id.miniaturaUrl,
-        createdAt: resource._id.createdAt,
-        updatedAt: resource._id.updatedAt,
-        isCompleted: resource.isCompleted,
-      };
-      dispatch(selectedResource(resourcesData));
+      dispatch(selectedResource(resource));
     }
 
     dispatch(selectTopic(topic));

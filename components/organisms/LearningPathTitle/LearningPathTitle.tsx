@@ -8,7 +8,7 @@ import styles from "./LearningPathTitle.module.css";
 export const LearningPathTitleClass: FC = () => {
   const selectedTopic = useAppSelector((state) => state.topics.selectedTopic);
   const infoSelectedLesson = useAppSelector(
-    (state) => state.resource.selectedResource
+    (state) => state.resource.selectedResource?._id
   );
   const selectedCourse = useAppSelector(
     (state) => state.courses.selectedCourse

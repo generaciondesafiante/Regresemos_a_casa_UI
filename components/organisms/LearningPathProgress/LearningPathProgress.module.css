@@ -20,6 +20,7 @@
   display: none;
 }
 
+
 @media (width >=48rem) {
   .classRoomRoute-title {
     padding-left: 7rem;
@@ -60,6 +61,19 @@
   }
 
   .unlocked {
+    width: 1.5rem;
+    height: 1.5rem;
+    display: block;
+    text-align: center;
+    padding-top: 0.18rem;
+    border-radius: 50%;
+    font-size: var(--fontSize-buttons_mobile);
+    color: var(--darkGrayGradient);
+    background-color: var(--grayGradient);
+    cursor: not-allowed;
+  }
+
+  .blocked{
     width: 1.5rem;
     height: 1.5rem;
     display: block;
