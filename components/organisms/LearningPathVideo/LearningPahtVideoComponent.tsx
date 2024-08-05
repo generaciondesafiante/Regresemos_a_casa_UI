@@ -4,8 +4,7 @@ import styles from "./LearningPathVideo.module.css";
 import ReactPlayer from "react-player";
 import { TaringStart } from "../TaringStart/TaringStart";
 import { Button } from "../../atoms";
-import { useDispatch } from "react-redux";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 
 interface LearningPahtVideoComponentProps {
   isVideoReady: boolean;
@@ -50,8 +49,8 @@ export const LearningPahtVideoComponent: FC<
   selectedTopic,
 }) => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
-  const dispatch = useDispatch();
   const router = useRouter();
+  const params = useParams();
 
   useEffect(() => {
     const currentResourceIndex = selectedTopic?.resources?.findIndex(
@@ -83,6 +82,19 @@ export const LearningPahtVideoComponent: FC<
     selectedResource,
     selectedTopic,
   ]);
+
+  const handleNextButtonClick = () => {
+    const currentResourceIndex = selectedTopic?.resources?.findIndex(
+      (resource: any) => resource._id._id === selectedResource?._id
+    );
+    const totalResources = selectedTopic?.resources?.length;
+
+    if (currentResourceIndex + 1 === totalResources) {
+      router.push(`/dashboard/courses/${params.courseName}/${params.courseId}`);
+    } else {
+      if (onNextVideoClick) onNextVideoClick();
+    }
+  };
 
   return (
     <div className={styles["learningPathVideoClass-container"]}>
@@ -141,7 +153,7 @@ export const LearningPahtVideoComponent: FC<
           </div>
           <Button
             className={styles[isButtonDisabled ? "disabled" : "enabled"]}
-            onClick={onNextVideoClick}
+            onClick={handleNextButtonClick}
             disabled={isButtonDisabled}
           >
             Siguiente

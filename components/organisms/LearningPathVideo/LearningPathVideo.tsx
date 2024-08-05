@@ -87,32 +87,17 @@ export const LearningPathVideo = () => {
   };
 
   const handleNextVideoClick = () => {
-    console.log(selectedResourceTopic?._id);
-    console.log(selectedTopic?.resources);
     if (selectedTopic && selectedResourceTopic) {
       const currentLessonIndex = selectedTopic.resources.findIndex(
         (resource) => resource._id._id === selectedResourceTopic._id
       );
-      console.log(currentLessonIndex);
       if (
         currentLessonIndex !== -1 &&
         currentLessonIndex < selectedTopic.resources.length - 1
       ) {
         const nextResourceFull =
           selectedTopic.resources[currentLessonIndex + 1];
-        console.log();
-        // const nextResources = {
-        //   _id: nextResourceFull._id,
-        //   resourceUrl: nextResourceFull.resourceUrl,
-        //   title: nextResourceFull.title,
-        //   description: nextResourceFull.description,
-        //   typeResource: nextResourceFull.typeResource,
-        //   visibility: nextResourceFull.visibility,
-        //   miniaturaUrl: nextResourceFull.miniaturaUrl,
-        //   createdAt: nextResourceFull.createdAt,
-        //   updatedAt: nextResourceFull.updatedAt,
-        // };
-        console.log(nextResourceFull._id._id);
+
         if (nextResourceFull) {
           dispatch(selectedResource(nextResourceFull));
           const nameCourse = selectedCourse?.nameCourse
