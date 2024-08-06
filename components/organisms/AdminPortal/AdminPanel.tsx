@@ -119,7 +119,7 @@ export const AdminPanel = async () => {
                     className={styles["adminPanel__course-item--courses"]}
                     key={index}
                   >
-                    {course.courseName}
+                    {course.nameCourse}
                   </p>
                 ))
               ) : (

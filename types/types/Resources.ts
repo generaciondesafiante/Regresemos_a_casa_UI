@@ -1,28 +1,15 @@
-export interface SelectedResource {
-  _id: string;
-  createdAt: string;
-  description: string;
-  miniaturaUrl: string;
-  resourceUrl: string;
-  title: string;
-  typeResource: string;
-  updatedAt: string;
-  visibility: string;
-  __v: number;
-}
-type ResourceType = "video" | "audio" | "image" | "pdf" | "link";
-type VisibilityType = "public" | "private" | "restrictedInCourse";
 export interface Resource {
   _id: {
     _id: string;
     resourceUrl: string;
     title: string;
     description: string;
-    typeResource: ResourceType;
-    visibility: VisibilityType;
+    typeResource: "video" | "audio" | "image" | "pdf" | "link"; // puedes ajustar esto según los tipos de recursos
+    visibility: "public" | "private" | "restrictedIncourse"; // Ajusta según los tipos de visibilidad
     miniaturaUrl: string;
-    createdAt: string;
-    updatedAt: string;
-    __v?: number;
+    createdAt: string; // Considera usar Date en lugar de string si es posible
+    updatedAt: string; // Considera usar Date en lugar de string si es posible
+    __v: number;
   };
+  isCompleted?: boolean; // Este campo es opcional
 }

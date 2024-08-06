@@ -1,17 +1,22 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import { useAppSelector } from "../../../store/store";
 import { LearningPahtVideoComponent } from "./LearningPahtVideoComponent";
 import { useDispatch } from "react-redux";
 import { selectedResource } from "../../../store/slices/ResourceSlice";
+import { useSession } from "next-auth/react";
+import { fetchCoursesProgress } from "../../../services/user/CourseProgress";
+import { useRouter } from "next/navigation";
 
 export const LearningPathVideo = () => {
-  const router = useRouter();
   const dispatch = useDispatch();
+  const router = useRouter();
+
+  const { data: session } = useSession();
   const [userRating, setUserRating] = useState<number>(0);
   const [isVideoReady, setIsVideoReady] = useState(false);
-  const [duracionTotal, setDuracionTotal] = useState<number>(0);
+  const [totalDuration, setTotalDuration] = useState<number>(0);
+  const [videoProgress, setVideoProgress] = useState<number>(0);
 
   const selectedCourse = useAppSelector(
     (state) => state.courses.selectedCourse
@@ -19,8 +24,10 @@ export const LearningPathVideo = () => {
   const selectedTopic = useAppSelector((state) => state.topics.selectedTopic);
 
   const selectedResourceTopic = useAppSelector(
-    (state) => state.resource.selectedResource
+    (state) => state.resource.selectedResource?._id
   );
+
+  const userInformation = useAppSelector((state) => state.user.userInfo);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -34,7 +41,7 @@ export const LearningPathVideo = () => {
     setUserRating(rating);
   };
 
-  const obtenerDuracionFormateada = (length: number) => {
+  const getFormattedDuration = (length: number) => {
     length = Math.round(length);
 
     const horas = Math.floor(length / 3600);
@@ -49,54 +56,92 @@ export const LearningPathVideo = () => {
     return duracionFormateada;
   };
 
+  const handleProgress = (state: {
+    played: number;
+    playedSeconds: number;
+    loaded: number;
+    loadedSeconds: number;
+  }) => {
+    const newProgress = state.played;
+    setVideoProgress(newProgress);
+
+    if (newProgress >= 0.9) {
+      if (
+        selectedCourse &&
+        selectedTopic &&
+        selectedResourceTopic &&
+        session?.user.uid
+      ) {
+        fetchCoursesProgress(
+          session.user.uid,
+          selectedCourse._id,
+          selectedTopic._id,
+          selectedResourceTopic._id
+        );
+      }
+    }
+  };
+
   const handleDuration = (duration: number) => {
-    setDuracionTotal(duration);
+    setTotalDuration(duration);
   };
 
   const handleNextVideoClick = () => {
-    console.log("siguiente");
     if (selectedTopic && selectedResourceTopic) {
       const currentLessonIndex = selectedTopic.resources.findIndex(
-        (resource) => resource._id === selectedResourceTopic._id
+        (resource) => resource._id._id === selectedResourceTopic._id
       );
-      console.log("currentLessonIndex", currentLessonIndex);
-
       if (
         currentLessonIndex !== -1 &&
         currentLessonIndex < selectedTopic.resources.length - 1
       ) {
         const nextResourceFull =
           selectedTopic.resources[currentLessonIndex + 1];
-        const nextResources = {
-          _id: nextResourceFull._id._id,
-          resourceUrl: nextResourceFull._id.resourceUrl,
-          title: nextResourceFull._id.title,
-          description: nextResourceFull._id.description,
-          typeResource: nextResourceFull._id.typeResource,
-          visibility: nextResourceFull._id.visibility,
-          miniaturaUrl: nextResourceFull._id.miniaturaUrl,
-          createdAt: nextResourceFull._id.createdAt,
-          updatedAt: nextResourceFull._id.updatedAt,
-        };
-        console.log(nextResourceFull);
+
         if (nextResourceFull) {
-          // Asegúrate de que nextResourceFull tenga todas las propiedades requeridas
-          dispatch(selectedResource(nextResources));
+          dispatch(selectedResource(nextResourceFull));
+          const nameCourse = selectedCourse?.nameCourse
+            .replace(/\s+/g, "_")
+            .replace(/́/g, "")
+            .replace(/ñ/g, "n")
+            .toLowerCase();
+          const nameTopic = selectedTopic.nameTopic
+            .replace(/\s+/g, "_")
+            .replace(/́/g, "")
+            .replace(/ñ/g, "n")
+            .toLowerCase();
+
+          router.push(
+            `/dashboard/courses/${nameCourse}/${selectedCourse?._id}/${
+              nextResourceFull._id._id
+            }/${nameTopic}/${currentLessonIndex + 2}`
+          );
         }
       }
     }
   };
+
+  const currentResourceIndex =
+    selectedTopic?.resources.findIndex(
+      (resource) => resource._id._id === selectedResourceTopic?._id
+    ) ?? -1;
 
   return (
     <LearningPahtVideoComponent
       isVideoReady={isVideoReady}
       selectedResource={selectedResourceTopic}
       handleDuration={handleDuration}
-      obtenerDuracionFormateada={obtenerDuracionFormateada}
+      getFormattedDuration={getFormattedDuration}
       userRating={userRating}
       handleRatingChange={handleRatingChange}
-      duracionTotal={duracionTotal}
+      totalDuration={totalDuration}
       onNextVideoClick={handleNextVideoClick}
+      handleProgress={handleProgress}
+      videoProgress={videoProgress}
+      typeOfRouteCourse={selectedCourse?.typeOfRoute}
+      userProgressCourse={userInformation?.CourseProgress[0]}
+      currentResourceIndex={currentResourceIndex}
+      selectedTopic={selectedTopic}
     />
   );
 };

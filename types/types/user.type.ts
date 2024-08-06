@@ -1,3 +1,5 @@
+import { Resource } from "./Resources";
+
 export interface User {
   ok: boolean;
   uid: string;
@@ -6,30 +8,33 @@ export interface User {
   email: string;
   city: string;
   country: string;
-  phone: string | null;
+  phone: number | null; // Cambiado de string a number, ya que el ejemplo tiene un número
   image: string;
   admin: boolean;
   CourseProgress: CourseProgress[];
-  lastViewedVideos: {
-    _id: string;
-    courseName: string;
-    idCourse: string;
-    idVideo: string;
-    tema: string;
-    indexTopic: string;
-    urlVideo: string;
-  }[];
+  lastViewedVideos: LastViewedVideo[];
 }
 
-export type CourseProgress = {
-  course: string;
-  topics?: Array<{
-    completed: boolean;
-    resources: ResourceProgress[];
-  }>;
-};
+export interface CourseProgress {
+  _id: string; // Agregado para el ID del progreso del curso
+  course: string; // ID del curso
+  lastViewedTopic: {
+    topic: TopicProgress[];
+  };
+}
 
-type ResourceProgress = {
-  viewResource: boolean; // Whether the user has viewed the resource
-  // Add other resource progress properties as needed (e.g., completion time)
-};
+export interface TopicProgress {
+  _id: string; // ID del tema
+  topicId: string; // ID del tema
+  lastViewedResource: Resource;
+}
+
+export interface LastViewedVideo {
+  _id: string; // ID del video
+  courseName: string; // Nombre del curso
+  courseId: string; // ID del curso
+  videoId: string; // ID del video
+  topicName: string; // Nombre del tema
+  sequentialTopic: string; // Número secuencial del tema
+  URLVideo: string; // URL del video
+}
