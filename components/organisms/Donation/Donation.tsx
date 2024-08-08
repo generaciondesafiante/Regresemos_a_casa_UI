@@ -36,52 +36,50 @@ export const Donation = () => {
   };
 
   return (
-    <>
-      <div className={styles["donations-backgroundContainer_info"]}>
-        <div className={styles["donations-Container_info"]}>
-          <div className={styles["donations-content_info"]}>
-            <h2 className={styles["donations-title_info"]}>
-              SE PARTE DE UNA GENERACIÓN DESAFIANTE.
-            </h2>
-            <p className={styles["donations-paragraph_info"]}>
-              Este contenido es completamente gratuito. Nos esforzamos por
-              difundir la palabra del Señor a los cuatro ángulos de la tierra.
-              Siguiendo las palabras de Pablo en su Carta a los Gálatas:{" "}
-              <span>
-                “El que es enseñado en la palabra haga participe de toda cosa
-                buena al que lo instruye”
-              </span>
-              .
-            </p>
-            <p className={styles["donations-paragraph_info"]}>
-              Gracias por invertir y apoyar este ministerio con
-              <b> amor y gozo</b>. Lo mejor de todo, es que eres parte de la
-              difusión de las Escrituras.
-            </p>
-          </div>
-          <div className={styles["donations-informations_paymentMethods"]}>
-            <p className={styles["donations-paragraph_pymentMethods"]}>
-              Puedes contribuir directamente mediante PayPal
-            </p>
-            <div className={styles["donations-contentButton_paymentMethods"]}>
-              <Button
-                className={styles["donations-button_pypalme"]}
-                onClick={() => handleClick("paypal")}
-              >
-                Paypal.me
-              </Button>
-              <Button
-                className={`${styles["donations-button_support"]}`}
-                onClick={() => handleClick("others")}
-              >
-                Otros métodos
-                <div className={styles["donations-cards_methods"]}>
-                  {cards.map((card, index) => (
-                    <img src={card.image} alt={card.title} key={index} />
-                  ))}
-                </div>
-              </Button>
-            </div>
+    <div className={styles["donations-backgroundContainer_info"]}>
+      <div className={styles["donations-Container_info"]}>
+        <div className={styles["donations-content_info"]}>
+          <h2 className={styles["donations-title_info"]}>
+            SE PARTE DE UNA GENERACIÓN DESAFIANTE.
+          </h2>
+          <p className={styles["donations-paragraph_info"]}>
+            Este contenido es completamente gratuito. Nos esforzamos por
+            difundir la palabra del Señor a los cuatro ángulos de la tierra.
+            Siguiendo las palabras de Pablo en su Carta a los Gálatas:{" "}
+            <span>
+              “El que es enseñado en la palabra haga participe de toda cosa
+              buena al que lo instruye”
+            </span>
+            .
+          </p>
+          <p className={styles["donations-paragraph_info"]}>
+            Gracias por invertir y apoyar este ministerio con
+            <b> amor y gozo</b>. Lo mejor de todo, es que eres parte de la
+            difusión de las Escrituras.
+          </p>
+        </div>
+        <div className={styles["donations-informations_paymentMethods"]}>
+          <p className={styles["donations-paragraph_pymentMethods"]}>
+            Puedes contribuir directamente mediante PayPal
+          </p>
+          <div className={styles["donations-contentButton_paymentMethods"]}>
+            <Button
+              className={styles["donations-button_pypalme"]}
+              onClick={() => handleClick("paypal")}
+            >
+              Paypal.me
+            </Button>
+            <Button
+              className={`${styles["donations-button_support"]}`}
+              onClick={() => handleClick("others")}
+            >
+              Otros métodos
+              <div className={styles["donations-cards_methods"]}>
+                {cards.map((card, index) => (
+                  <img src={card.image} alt={card.title} key={index} />
+                ))}
+              </div>
+            </Button>
           </div>
         </div>
       </div>
@@ -97,6 +95,6 @@ export const Donation = () => {
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 };
