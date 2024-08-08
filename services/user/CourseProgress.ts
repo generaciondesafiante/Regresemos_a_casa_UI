@@ -20,7 +20,7 @@ export const fetchCoursesProgress = async (
         }),
       }
     );
-    console.log(response);
+   
     if (response.ok) {
       console.log("Video information sent successfully");
     } else {

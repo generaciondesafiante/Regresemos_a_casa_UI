@@ -8,33 +8,32 @@ export interface User {
   email: string;
   city: string;
   country: string;
-  phone: number | null; // Cambiado de string a number, ya que el ejemplo tiene un número
+  phone: number | null;
   image: string;
   admin: boolean;
   CourseProgress: CourseProgress[];
-  lastViewedVideos: LastViewedVideo[];
+  lastViewedVideos: LastViewedResource[];
 }
 
 export interface CourseProgress {
-  _id: string; // Agregado para el ID del progreso del curso
-  course: string; // ID del curso
+  _id: string;
+  course: string;
   lastViewedTopic: {
     topic: TopicProgress[];
   };
 }
 
 export interface TopicProgress {
-  _id: string; // ID del tema
-  topicId: string; // ID del tema
+  _id: string;
+  topicId: string;
   lastViewedResource: Resource;
 }
 
-export interface LastViewedVideo {
-  _id: string; // ID del video
-  courseName: string; // Nombre del curso
-  courseId: string; // ID del curso
-  videoId: string; // ID del video
-  topicName: string; // Nombre del tema
-  sequentialTopic: string; // Número secuencial del tema
-  URLVideo: string; // URL del video
+export interface LastViewedResource {
+  _id: string;
+  courseName: string;
+  courseId: string;
+  topicName: string;
+  topicId: string;
+  resource: Resource;
 }

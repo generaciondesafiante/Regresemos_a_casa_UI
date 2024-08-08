@@ -51,15 +51,12 @@ export const LearningPahtVideoComponent: FC<
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const router = useRouter();
   const params = useParams();
-  console.log(isButtonDisabled);
-  console.log(userProgressCourse);
+  
   useEffect(() => {
     const currentResourceIndex = selectedTopic?.resources?.findIndex(
       (resource: any) => resource._id._id === selectedResource?._id
     );
-    console.log(
-      userProgressCourse.lastViewedTopic.topic[0].lastViewedResource._id
-    );
+   
 
     const lastViewedResourceIndex = selectedTopic?.resources?.findIndex(
       (resource: any) =>
@@ -67,7 +64,7 @@ export const LearningPahtVideoComponent: FC<
         userProgressCourse.lastViewedTopic.topic[0].lastViewedResource._id
     );
 
-    console.log(currentResourceIndex, lastViewedResourceIndex);
+    
 
     if (typeOfRouteCourse === "flexible") {
       setIsButtonDisabled(false);

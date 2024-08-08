@@ -1,29 +1,22 @@
 export const fetchLastViewedVideos = async (
   userId: string,
-  courseName: string,
   courseId: string,
-  videoId: string,
-  topicName: string,
-  sequentialTopic: string,
-  URLVideo: string
+  topicId: string,
+  resourceId: string
 ) => {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_URL}/course/lastViewedVideos`,
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/user/lastViewedResource`,
       {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          id: userId,
-          courseName,
+          userId,
           courseId,
-          videoId,
-          topicName,
-          sequentialTopic,
-          URLVideo,
-          viewVideo: true,
+          topicId,
+          resourceId,
         }),
       }
     );
