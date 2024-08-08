@@ -4,12 +4,12 @@ export interface Resource {
     resourceUrl: string;
     title: string;
     description: string;
-    typeResource: "video" | "audio" | "image" | "pdf" | "link"; // puedes ajustar esto según los tipos de recursos
-    visibility: "public" | "private" | "restrictedIncourse"; // Ajusta según los tipos de visibilidad
+    typeResource: "video" | "audio" | "image" | "pdf" | "link";
+    visibility: "public" | "private" | "restrictedIncourse";
     miniaturaUrl: string;
-    createdAt: string; // Considera usar Date en lugar de string si es posible
-    updatedAt: string; // Considera usar Date en lugar de string si es posible
+    createdAt: string;
+    updatedAt: string;
     __v: number;
   };
-  isCompleted?: boolean; // Este campo es opcional
+  isCompleted?: boolean;
 }

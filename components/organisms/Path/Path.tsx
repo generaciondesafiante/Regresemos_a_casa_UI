@@ -7,11 +7,7 @@ import IconBxLockOpen from "../../atoms/icons/unLockPathIcon/PathUnlockIcon";
 import { FlagStartIcon } from "../../atoms/icons/flagsIcon/FlagStartIcon";
 import { FlagEndIcon } from "../../atoms/icons/flagsIcon/FlagEndIcon";
 import { DavidStarIcon } from "../../atoms/icons/davidStar/DavidStarIcon";
-import {
-  CourseProgress,
-  User,
-  LastViewedVideo,
-} from "../../../types/types/user.type";
+import { User } from "../../../types/types/user.type";
 import { useAppDispatch, useAppSelector } from "../../../store/store";
 import { selectTopic } from "../../../store/slices/topicsSlice";
 import { userInfo } from "../../../store/slices/userSlice";
