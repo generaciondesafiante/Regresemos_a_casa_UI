@@ -20,22 +20,21 @@ export const AssessmentFinished: FC<AssessmentFinishedProps> = ({
   const selectedCourse = useAppSelector(
     (state) => state.courses.selectedCourse
   );
-  const selectedLesson = useAppSelector(
-    (state) => state.lessons.selectedLesson
+  const selectedResource = useAppSelector(
+    (state) => state.resource.selectedResource
   );
-
   const getNextLesson = () => {
-    if (!selectedTopic || !selectedTopic.lessons) return null;
+    if (!selectedTopic || !selectedTopic.resources) return null;
 
-    const currentLessonIndex = selectedTopic.lessons.findIndex(
-      (lesson: any) => lesson._id === selectedLesson?._id
+    const currentLessonIndex = selectedTopic.resources.findIndex(
+      (lesson: any) => lesson._id === selectedResource?._id
     );
     if (currentLessonIndex === -1) return null;
 
     const nextLessonIndex = currentLessonIndex + 1;
 
-    if (nextLessonIndex < selectedTopic.lessons.length) {
-      return selectedTopic.lessons[nextLessonIndex];
+    if (nextLessonIndex < selectedTopic.resources.length) {
+      return selectedTopic.resources[nextLessonIndex];
     } else {
       return null;
     }
@@ -44,10 +43,10 @@ export const AssessmentFinished: FC<AssessmentFinishedProps> = ({
   const handleContinue = () => {
     const nextLesson = getNextLesson();
 
-
     if (nextLesson) {
       router.push(
-        `/dashboard/courses/${selectedCourse?.courseName}/${selectedCourse?._id}/${nextLesson?.videoId}/${selectedTopic?.topicName}/${nextLesson.sequentialLesson}`
+        // `/dashboard/courses/${selectedCourse?.nameCourse}}/${selectedCourse?._id}/${nextLesson?.videoId}/${selectedTopic?.topicName}/${nextLesson.sequentialLesson}`
+        "/dashboard"
       );
     } else {
       console.log("No hay más lecciones disponibles");

@@ -3,13 +3,15 @@ import { configureStore } from "@reduxjs/toolkit";
 import courseReducer from "./slices/courseSlice";
 import topicsReducer from "./slices/topicsSlice";
 import userReducer from "./slices/userSlice";
-import lessonReducer from "./slices/lessonSlice";
+import resourceReducer from "./slices/ResourceSlice";
+import resourcesReducer from "./slices/resourcesByRol";
 
 const rootReducer = {
   courses: courseReducer,
   topics: topicsReducer,
   user: userReducer,
-  lessons: lessonReducer,
+  resource: resourceReducer,
+  resources: resourcesReducer,
 };
 
 export const store = configureStore({

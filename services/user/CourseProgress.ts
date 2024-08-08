@@ -1,34 +1,26 @@
 export const fetchCoursesProgress = async (
-  id: string,
+  userId: string,
   courseId: string,
   topicId: string,
-  sequentialTopic:string,
-  lessonId: string,
-  videoId: string,
-  sequentialLesson:string
+  resourceId: string
 ) => {
-    try {
+  try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_URL}/course/courseProgress
-            `,
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/user/courseProgress`,
       {
-        method: "PUT",
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          id: id,
-          courseId: courseId,
-          topicId: topicId,
-          sequentialTopic:sequentialTopic,
-          lessonId: lessonId,
-          videoId: videoId,
-          sequentialLesson:sequentialLesson,
-          viewVideo: false,
+          userId,
+          courseId,
+          topicId,
+          resourceId,
         }),
       }
     );
-
+   
     if (response.ok) {
       console.log("Video information sent successfully");
     } else {

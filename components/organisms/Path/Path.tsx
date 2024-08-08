@@ -15,6 +15,7 @@ import { fetchUserData } from "../../../services/user/userData";
 import styles from "./Path.module.css";
 import { ArrowLeftIcon } from "../../atoms";
 import Link from "next/link";
+import { selectedResource } from "../../../store/slices/ResourceSlice";
 
 export const Path = () => {
   const { data: session } = useSession();
@@ -25,10 +26,12 @@ export const Path = () => {
   const selectedCourse = useAppSelector(
     (state) => state.courses.selectedCourse
   );
+
   const [userInformation, setUserInformation] = useState<User | undefined>(
     undefined
   );
-  const topicsCourses = selectedCourse?.topics;
+
+  const topicsCourses = selectedCourse?.topic;
 
   useEffect(() => {
     if (idUser) {
@@ -39,36 +42,56 @@ export const Path = () => {
       };
       userData();
     }
-  }, [idUser]);
+  }, [idUser, dispatch]);
 
-  const isTopicUnlocked = (topic: any) => {
+  const isTopicUnlocked = (topic: any, topicIndex: number): boolean => {
     if (selectedCourse && userInformation?.CourseProgress) {
       const courseProgress = userInformation.CourseProgress.find(
-        (progress) => progress.idCourse === selectedCourse._id
+        (progress) => progress.course === selectedCourse._id
       );
+
       if (courseProgress) {
-        const sequentialTopic = parseInt(
-          courseProgress.topics[0].sequentialTopic
-        );
-        const currentTopicSequential = parseInt(topic.sequentialTopic);
-        return sequentialTopic >= currentTopicSequential;
+        // Ensure that lastViewedTopic.topic is an array of objects with a topicId property
+        const lastViewedTopicIndex =
+          courseProgress.lastViewedTopic.topic.findIndex(
+            (t: any) => t.topicId === topic._id
+          );
+
+        // If no topics are saved, unlock the first topic
+        if (lastViewedTopicIndex + 1 === -1) {
+          return topicIndex === 0;
+        }
+
+        // Check if the current topic index is less than or equal to the last viewed index + 1
+        return topicIndex <= lastViewedTopicIndex + 2;
       } else {
-        const currentTopicSequential = parseInt(topic.sequentialTopic);
-        return currentTopicSequential === 1;
+        // If there is no course progress, unlock the first topic
+        return selectedCourse?.typeOfRoute === "strict" && topicIndex === 0;
       }
+    } else {
+      // If there is no selected course or user progress, unlock the first topic
+      return selectedCourse?.typeOfRoute === "strict" && topicIndex === 0;
     }
-    return !selectedCourse?.mandatory;
   };
 
   const handleUrlId = (topic: any) => {
-    const topicName = topic.topicName
+    const nameCourse = selectedCourse?.nameCourse
       .replace(/\s+/g, "_")
       .replace(/́/g, "")
       .replace(/ñ/g, "n")
       .toLowerCase();
+    const nameTopic = topic.nameTopic
+      .replace(/\s+/g, "_")
+      .replace(/́/g, "")
+      .replace(/ñ/g, "n")
+      .toLowerCase();
+    const resource = topic.resources[0];
+    const resourceId = resource?._id?._id;
+    const url = `/dashboard/courses/${nameCourse}/${selectedCourse?._id}/${resourceId}/${nameTopic}/1`;
+    if (resource) {
+      dispatch(selectedResource(resource));
+    }
 
-    const lessonId = topic.lessons[0].videoId;
-    const url = `/dashboard/courses/${topicName}/${topic._id}/${lessonId}/${topicName}/${topic.sequentialTopic}`;
     dispatch(selectTopic(topic));
     router.push(url);
   };
@@ -91,17 +114,9 @@ export const Path = () => {
       </div>
       <div className={styles["path-content"]}>
         {topicsCourses?.map((topic, topicIndex) => {
-          const isUnlocked = isTopicUnlocked(topic);
-
-          const isFirstTopicUnlocked = selectedCourse?.mandatory
-            ? topicIndex === 0 || isUnlocked
-            : true;
-
+          const isUnlocked = isTopicUnlocked(topic, topicIndex);
           return (
-            <div
-              key={topic.sequentialTopic}
-              className={styles["path-topicContainer"]}
-            >
+            <div key={topic._id} className={styles["path-topicContainer"]}>
               <div className={styles["path-border"]}>
                 {topicIndex === 0 && (
                   <FlagStartIcon
@@ -118,9 +133,11 @@ export const Path = () => {
                 <button
                   onClick={() => handleUrlId(topic)}
                   className={styles["path-button"]}
-                  disabled={!isFirstTopicUnlocked}
+                  disabled={
+                    selectedCourse?.typeOfRoute === "strict" && !isUnlocked
+                  }
                 >
-                  {selectedCourse?.mandatory ? (
+                  {selectedCourse?.typeOfRoute === "strict" ? (
                     isUnlocked ? (
                       <IconBxLockOpen />
                     ) : (
@@ -133,7 +150,7 @@ export const Path = () => {
                   )}
                 </button>
               </div>
-              <p className={styles["path-CourseTitle"]}>{topic.topicName}</p>
+              <p className={styles["path-CourseTitle"]}>{topic.nameTopic}</p>
             </div>
           );
         })}

@@ -9,14 +9,15 @@ export const AssessmentMain: FC<AssessmentMainProps> = ({
   onStartAssessment,
 }) => {
   let imageStudents = "https://i.imgur.com/bBY0Bs9.png";
-  const selectedLesson = useAppSelector(
-    (state) => state.lessons.selectedLesson
+
+  const selectedResource = useAppSelector(
+    (state) => state.resource.selectedResource
   );
 
   let questionsData: any;
 
-  if (selectedLesson && "questions" in selectedLesson) {
-    questionsData = selectedLesson.questions;
+  if (selectedResource && "questions" in selectedResource) {
+    questionsData = selectedResource.questions;
   } else {
     questionsData = null;
   }

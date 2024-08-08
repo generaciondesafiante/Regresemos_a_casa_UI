@@ -1,8 +1,13 @@
-import { AssessmentLesson, VideoLesson } from "./lessons.type";
+import { Resource } from "./Resources";
 
 export interface Topic {
-  topicName: string;
-  sequentialTopic:string;
   _id: string;
- lessons: (VideoLesson | AssessmentLesson)[]; 
+  nameTopic: string;
+  resources: Resource[]; 
+}
+
+export interface Topic1 {
+  _id: string;
+  nameTopic: string;
+  resources: Resource[];
 }

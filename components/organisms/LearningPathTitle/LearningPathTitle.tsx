@@ -4,33 +4,32 @@ import Link from "next/link";
 import { useAppSelector } from "../../../store/store";
 import { ArrowLeftIcon } from "../../atoms";
 import styles from "./LearningPathTitle.module.css";
+import { useParams } from "next/navigation";
 
 export const LearningPathTitleClass: FC = () => {
+  const params = useParams();
+
   const selectedTopic = useAppSelector((state) => state.topics.selectedTopic);
   const infoSelectedLesson = useAppSelector(
-    (state) => state.lessons.selectedLesson
+    (state) => state.resource.selectedResource?._id
   );
-  const selectedCourse = useAppSelector(
-    (state) => state.courses.selectedCourse
-  );
-
   return (
     <div className={styles["learningPathTitleClass-container"]}>
       <div className={styles["containerBackReturnTopics"]}>
         <Link
           className={styles["backReturnTopics"]}
-          href={`/dashboard/courses/${selectedCourse?.courseName}/${selectedCourse?._id}`}
+          href={`/dashboard/courses/${params.courseName}/${params.courseId}`}
         >
           <ArrowLeftIcon />
           <p>Regresar</p>
         </Link>
       </div>
       <p className={styles["learningPathTitleClass-topic"]}>
-        {selectedTopic?.topicName}
+        {selectedTopic?.nameTopic}
       </p>
       <div className={styles["learningPathTitleClass-line"]}></div>
       <h2 className={styles["learningPathTitleClass-title"]}>
-        {infoSelectedLesson?.videoName}
+        {infoSelectedLesson?.title}
       </h2>
       <div className={styles["learningPathTitleClass-subcontent"]}>
         <p> {infoSelectedLesson?.description}</p>

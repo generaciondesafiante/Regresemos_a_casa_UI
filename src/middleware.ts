@@ -2,7 +2,6 @@ import { getToken } from "next-auth/jwt";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-
 export async function middleware(req: NextRequest) {
   const session = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
 
@@ -26,7 +25,6 @@ export async function middleware(req: NextRequest) {
       return NextResponse.redirect(redirectTo);
     }
   }
-  console.log(session.admin);
 
   if (req.nextUrl.pathname.includes("/dashboard/adminPanel")) {
     if (!session.admin) {
@@ -39,7 +37,6 @@ export async function middleware(req: NextRequest) {
       return NextResponse.redirect(redirectTo);
     }
   }
-  console.log(session.admin);
 
   return NextResponse.next();
 }

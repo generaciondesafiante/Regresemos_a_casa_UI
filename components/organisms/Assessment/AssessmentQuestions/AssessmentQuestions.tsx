@@ -8,13 +8,13 @@ import styles from "./AssessmentQuestions.module.css";
 export const AssessmentQuestions = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
-  const selectedLesson = useAppSelector(
-    (state) => state.lessons.selectedLesson
+  const selectedResource = useAppSelector(
+    (state) => state.resource.selectedResource
   );
   let questionsData: any;
 
-  if (selectedLesson && "questions" in selectedLesson) {
-    questionsData = selectedLesson.questions;
+  if (selectedResource && "questions" in selectedResource) {
+    questionsData = selectedResource.questions;
   } else {
     questionsData = null;
   }
