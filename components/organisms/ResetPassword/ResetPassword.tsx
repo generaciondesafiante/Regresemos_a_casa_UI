@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 import { RegisterFormPassword } from "../Register/RegisterFormPassword/RegisterFormPassword";
+import { changePassword } from "../../../services/user/changePassword";
 import styles from "./ResetPassword.module.css";
 
 export const ResetPassword = () => {
@@ -11,14 +12,6 @@ export const ResetPassword = () => {
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
 
-  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
-  };
-  const handleConfirmPasswordChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setPassword2(e.target.value);
-  };
   const resetSubmitPassword = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (password !== password2) {
@@ -31,27 +24,30 @@ export const ResetPassword = () => {
     }
 
     try {
-      const responseUpdate = await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/change-password/${id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            password,
-          }),
-        }
-      );
+      if (Array.isArray(id)) {
+        throw new Error(
+          "Expected a single string parameter, but received an array"
+        );
+      }
 
-      Swal.fire({
-        icon: "success",
-        title: "Contraseña modificada",
-        text: "Los cambios en tu perfil han sido guardados exitosamente.",
-        didClose: () => {
-          router.push("/login");
-        },
-      });
+      const responseChangePassword = await changePassword(id, password);
+      console.log(responseChangePassword);
+      if (responseChangePassword?.ok) {
+        Swal.fire({
+          icon: "success",
+          title: "Contraseña modificada",
+          text: "Los cambios en tu perfil han sido guardados exitosamente.",
+          didClose: () => {
+            router.push("/login");
+          },
+        });
+      } else {
+        Swal.fire(
+          "Error",
+          "No se pudo cambiar la contraseña correctamente.",
+          "error"
+        );
+      }
     } catch (error) {
       Swal.fire(
         "Error",
