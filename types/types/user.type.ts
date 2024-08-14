@@ -1,3 +1,5 @@
+import { Resource } from "./Resources";
+
 export interface User {
   ok: boolean;
   uid: string;
@@ -6,17 +8,32 @@ export interface User {
   email: string;
   city: string;
   country: string;
-  phone: string | null;
+  phone: number | null;
   image: string;
-  admin:boolean;
-  CourseProgress: any[]; 
-  lastViewedVideos: {
-    _id: string;
-    courseName: string;
-    idCourse: string;
-    idVideo: string;
-    tema: string;
-    indexTopic: string;
-    urlVideo: string;
-  }[];
+  admin: boolean;
+  CourseProgress: CourseProgress[];
+  lastViewedVideos: LastViewedResource[];
+}
+
+export interface CourseProgress {
+  _id: string;
+  course: string;
+  lastViewedTopic: {
+    topic: TopicProgress[];
+  };
+}
+
+export interface TopicProgress {
+  _id: string;
+  topicId: string;
+  lastViewedResource: Resource;
+}
+
+export interface LastViewedResource {
+  _id: string;
+  courseName: string;
+  courseId: string;
+  topicName: string;
+  topicId: string;
+  resource: Resource;
 }

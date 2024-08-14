@@ -22,7 +22,7 @@ export const Courses = () => {
   }, []);
 
   const handleUrlId = (course: any) => {
-    const courseName = course.courseName
+    const courseName = course.nameCourse
       .replace(/\s+/g, "_")
       .replace(/́/g, "")
       .replace(/ñ/g, "n")
@@ -39,7 +39,7 @@ export const Courses = () => {
         {courses.map((course) => (
           <div key={course._id}>
             <Card
-              title={course.courseName}
+              title={course.nameCourse}
               onNextVideoClick={() => handleUrlId(course)}
             />
           </div>

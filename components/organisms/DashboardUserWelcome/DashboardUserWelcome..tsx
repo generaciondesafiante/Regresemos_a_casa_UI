@@ -7,18 +7,17 @@ import ReactPlayer from "react-player";
 import { fetchUserData } from "../../../services/user/userData";
 import { useAppDispatch } from "../../../store/store";
 import { userInfo } from "../../../store/slices/userSlice";
+import { fetchResourcesData } from "../../../services/resources/resources";
 import styles from "./DashboardUserWelcome.module.css";
-
-interface UserData {
-  courseName: string;
-  idCourse: string;
-  idVideo: string;
-  tema: string;
-  indexTopic: string;
-  urlVideo: string;
-  _id: string;
-  lastViewedVideos: any;
-}
+import { allResources } from "../../../store/slices/resourcesByRol";
+import { fetchCoursesData } from "../../../services/courses/coursesData";
+import { Course } from "../../../types/types/course.types";
+import { Topic } from "../../../types/types/topic.type";
+import { Resource } from "../../../types/types/Resources";
+import { selectCourse } from "../../../store/slices/courseSlice";
+import { selectTopic } from "../../../store/slices/topicsSlice";
+import { selectedResource } from "../../../store/slices/ResourceSlice";
+import { LastViewedResource } from "../../../types/types/lastViewedResource";
 
 export const DashboardUserWelcome = () => {
   const { data: session } = useSession();
@@ -28,26 +27,28 @@ export const DashboardUserWelcome = () => {
   const urlVideoDefault =
     "https://www.youtube.com/embed/CovSIgAtFIs?si=kofztRWT519UyJug";
   const routeVideoDefault =
-    "/dashboard/courses/curso_basico_biblico/65cfb9adbd9fbd492f793fa1/04306687-b6b4-49eb-95fd-f153de3c2fb2/introducción/1";
-  const [data, setData] = useState<UserData | null>(null);
+    "/dashboard/courses/curso_de_biblico_strict/6679abed07b3075c743257a2";
 
   const [isVideoReady, setisVideoReady] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [lastViewedResource, setLastViewedResource] = useState<LastViewedResource | null>(null);
+
+
   const FILLER_CONTENT_IMG =
     "https://static.wixstatic.com/media/d166cc_4cc837baf9254000a0f3963193c6b07a~mv2.jpg/v1/fill/w_368,h_195,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/Romanos%2011111.jpg";
   const dispatch = useAppDispatch();
+ 
 
   useEffect(() => {
     if (idUser) {
       const userData = async () => {
         const dataUser = await fetchUserData(idUser);
-        setData(dataUser);
         dispatch(userInfo(dataUser));
-
         if (
-          dataUser?.lastViewedVideos?.length > 0 &&
-          dataUser?.lastViewedVideos[0]?.urlVideos
+          dataUser?.lastViewedResources?.length > 0 &&
+          dataUser?.lastViewedResources[0]?.resource
         ) {
+          setLastViewedResource(dataUser.lastViewedResources[0]);
           setIsLoading(false);
           setisVideoReady(true);
         } else {
@@ -55,9 +56,73 @@ export const DashboardUserWelcome = () => {
           setisVideoReady(false);
         }
       };
+
+      const resources = async () => {
+        const dataResources = await fetchResourcesData(idUser);
+        dispatch(allResources(dataResources));
+      };
       userData();
+      resources();
     }
-  }, [idUser]);
+  }, [idUser, dispatch]);
+
+  const handleClicklastViewedResource = async () => {
+    try {
+      const courses = await fetchCoursesData();
+      if (!courses || !lastViewedResource) {
+        console.warn("No courses data or last viewed resource available.");
+        return;
+      }
+
+      const course = courses.find(
+        (course: Course) => course._id === lastViewedResource.courseId
+      );
+
+      if (course) {
+        dispatch(selectCourse(course));
+
+        const topic = course.topic.find(
+          (topic: Topic) => topic._id === lastViewedResource.topicId
+        );
+        if (topic) {
+          dispatch(selectTopic(topic));
+          const resourceIndex = topic.resources.findIndex(
+            (resource: Resource) =>
+              resource._id._id === lastViewedResource.resource._id
+          );
+          if (resourceIndex === -1) {
+            console.warn("Resource not found.");
+            return;
+          }
+          const courseName = course.nameCourse
+            .replace(/\s+/g, "_")
+            .replace(/́/g, "")
+            .replace(/ñ/g, "n")
+            .toLowerCase();
+
+          const topicName = topic.nameTopic
+            .replace(/\s+/g, "_")
+            .replace(/́/g, "")
+            .replace(/ñ/g, "n")
+            .toLowerCase();
+          const resource = topic.resources.find(
+            (resource: Resource) =>
+              resource._id._id === lastViewedResource.resource._id
+          );
+          dispatch(selectedResource(resource));
+          router.push(
+            `/dashboard/courses/${courseName}/${course._id}/${
+              lastViewedResource.resource._id
+            }/${topicName}/${resourceIndex + 1}`
+          );
+        }
+      } else {
+        console.warn("Course not found.");
+      }
+    } catch (error) {
+      console.error("Error fetching courses data:", error);
+    }
+  };
 
   return (
     <div className={styles["dashboardUserWelcome-container"]}>
@@ -91,12 +156,8 @@ export const DashboardUserWelcome = () => {
             className={styles["dashboardUserWelcome-continuePlayingContainer"]}
           >
             <ReactPlayer
-              onClick={() =>
-                router.push(
-                  `/dashboard/courses/${data?.lastViewedVideos[0]?.courseName}/${data?.lastViewedVideos[0]?.idCourse}/${data?.lastViewedVideos[0]?.idVideo}/${data?.lastViewedVideos[0]?.tema}/${data?.lastViewedVideos[0]?.indexTopic}`
-                )
-              }
-              url={data?.lastViewedVideos[0]?.urlVideo}
+              onClick={() => handleClicklastViewedResource()}
+              url={lastViewedResource?.resource?.resourceUrl}
               controls={true}
               playsinline={true}
               pip={true}
