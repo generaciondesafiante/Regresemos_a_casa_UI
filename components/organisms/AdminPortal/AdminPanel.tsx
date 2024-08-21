@@ -15,17 +15,15 @@ import ResourcesMusicIcon from "../../atoms/icons/adminPanel/ResourcesMusicIcon"
 import ResourcesBookIcon from "../../atoms/icons/adminPanel/ResourcesBookIcon";
 import { Course } from "../../../types/types/course.types";
 import styles from "./AdminPanel.module.css";
-
-interface Admin {
-  _id: string;
-  name: string;
-  lastname: string;
-  image: string;
-}
+import { Admin } from "../../../types/types/admin.type";
+import { useAppDispatch } from "../../../store/store";
+import { allAdmins } from "../../../store/slices/allAdminsSlice";
+import { studentsCount } from "../../../store/slices/studentsCountSlice";
 
 export const AdminPanel = async () => {
   const { data: session } = useSession();
   const userId = session?.user?.uid || "";
+  const dispatch = useAppDispatch();
   const [admins, setAdmins] = useState<Admin[]>([]);
   const [allStudents, setAllStudents] = useState(0);
   const [allCourses, setAllCourses] = useState<Course[] | undefined>(undefined);
@@ -33,15 +31,19 @@ export const AdminPanel = async () => {
   useEffect(() => {
     const fetchAdmins = async () => {
       try {
-        const adminsAll = await fetchAllAdmin(userId);
-        if (adminsAll && adminsAll.admins) {
-          setAdmins(adminsAll.admins.slice(0, 3));
+        const allAdmin = await fetchAllAdmin(userId);
+        if (allAdmin && allAdmin.admins) {
+          dispatch(allAdmins(allAdmin.admins));
+          setAdmins(allAdmin.admins.slice(0, 3));
         } else {
           setAdmins([]);
         }
 
         const allStudents = await fetAllStudents(userId);
-        setAllStudents(allStudents);
+        if (allStudents > 0) {
+          dispatch(studentsCount(allStudents));
+          setAllStudents(allStudents);
+        }
 
         const allCourses = await fetchCoursesData();
         if (allCourses) {
@@ -88,7 +90,7 @@ export const AdminPanel = async () => {
             </div>
             <div className={styles["adminPanel__content-buttonEdit--admins"]}>
               <Link
-                href={"/dashboard/adminPanel/admin"}
+                href={"/dashboard/adminPanel/editAdmin"}
                 className={styles["adminPanel__link-buttonEdit"]}
               >
                 <Button className={styles["adminPanel__buttonEdit--admins"]}>
