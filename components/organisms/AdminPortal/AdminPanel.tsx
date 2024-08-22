@@ -15,47 +15,41 @@ import ResourcesMusicIcon from "../../atoms/icons/adminPanel/ResourcesMusicIcon"
 import ResourcesBookIcon from "../../atoms/icons/adminPanel/ResourcesBookIcon";
 import { Course } from "../../../types/types/course.types";
 import styles from "./AdminPanel.module.css";
-import { Admin } from "../../../types/types/admin.type";
-import { useAppDispatch } from "../../../store/store";
-import { allAdmins } from "../../../store/slices/allAdminsSlice";
-import { studentsCount } from "../../../store/slices/studentsCountSlice";
+import { useAppDispatch, useAppSelector } from "../../../store/store";
+import { fetchAdmins } from "../../../store/slices/allAdminsSlice";
 
 export const AdminPanel = async () => {
   const { data: session } = useSession();
   const userId = session?.user?.uid || "";
   const dispatch = useAppDispatch();
-  const [admins, setAdmins] = useState<Admin[]>([]);
   const [allStudents, setAllStudents] = useState(0);
   const [allCourses, setAllCourses] = useState<Course[] | undefined>(undefined);
+  const { admins, loading, error } = useAppSelector((state) => state.allAdmins);
 
   useEffect(() => {
-    const fetchAdmins = async () => {
+    if (userId) {
+      dispatch(fetchAdmins(userId));
+    }
+
+    const fetchData = async () => {
       try {
-        const allAdmin = await fetchAllAdmin(userId);
-        if (allAdmin && allAdmin.admins) {
-          dispatch(allAdmins(allAdmin.admins));
-          setAdmins(allAdmin.admins.slice(0, 3));
-        } else {
-          setAdmins([]);
+        const studentsCount = await fetAllStudents(userId);
+        if (studentsCount > 0) {
+          dispatch(studentsCount(studentsCount));
+          setAllStudents(studentsCount);
         }
 
-        const allStudents = await fetAllStudents(userId);
-        if (allStudents > 0) {
-          dispatch(studentsCount(allStudents));
-          setAllStudents(allStudents);
-        }
-
-        const allCourses = await fetchCoursesData();
-        if (allCourses) {
-          setAllCourses(allCourses.slice(0, 4));
+        const coursesData = await fetchCoursesData();
+        if (coursesData) {
+          setAllCourses(coursesData.slice(0, 4));
         }
       } catch (error) {
-        console.error("Error fetching admins:", error);
+        console.error("Error fetching data:", error);
       }
     };
 
-    fetchAdmins();
-  }, [userId]);
+    fetchData();
+  }, [dispatch, userId]);
 
   return (
     <main className={styles["adminPanel"]}>
@@ -66,8 +60,12 @@ export const AdminPanel = async () => {
               Administradores
             </h1>
             <div className={styles["adminPanel__content-users--admins"]}>
-              {admins.length > 0 ? (
-                admins.map((admin, index) => (
+              {loading ? (
+                <p>Loading admins...</p>
+              ) : error ? (
+                <p>Error: {error}</p>
+              ) : admins && admins.length > 0 ? (
+                admins.slice(0, 3).map((admin, index) => (
                   <div
                     className={styles["adminPanel__content-infoUser--admins"]}
                     key={index}

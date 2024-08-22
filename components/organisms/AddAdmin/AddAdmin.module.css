@@ -1,19 +1,8 @@
-.addAdmin {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .content__addAdmin {
-  width: 800px;
-  height: 500px;
-  border-radius: 12px;
-  background-color: var(--gray);
   display: flex;
   flex-direction: column;
   justify-content: center;
+  height: 100%;
   align-items: center;
   gap: 3rem;
 }
@@ -38,4 +27,27 @@
   width: 1.25rem;
   margin-left: 0.3rem;
   text-align: center;
+}
+
+.addAdmin__button--delete:hover {
+  background-color: var(--red);
+  color: var(--white);
+}
+
+.addAdmin__button--add:hover {
+  background-color: var(--darkBlue);
+  color: var(--white);
+}
+
+.addAdmin__button--disabled {
+  background-color: var(--grayGradient);
+  color: var(--darkGrayGradient);
+  transition: none;
+}
+
+.addAdmin__button--disabled:hover {
+  transform: none;
+  background-color: var(--grayGradient);
+  color: var(--darkGrayGradient);
+  cursor: no-drop;
 }

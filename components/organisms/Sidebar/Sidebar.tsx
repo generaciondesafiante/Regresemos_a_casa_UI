@@ -21,24 +21,13 @@ export const Sidebar = () => {
   const topLinks = ["profile", "admin"];
 
   const isAdmin = session?.user?.admin === true;
-
+  console.log(isAdmin);
   const links = [
     {
       name: "profile",
       href: "/dashboard/profile",
       icon: <ProfileIcon className={styles["sidebar-icon"]} />,
     },
-    isAdmin
-      ? {
-          name: "admin",
-          href: "/dashboard/adminPanel",
-          icon: (
-            <AdminIcon
-              className={`${styles["sidebar-icon"]} ${styles["admin-icon"]}`}
-            />
-          ),
-        }
-      : null,
     isAdmin
       ? {
           name: "admin",
