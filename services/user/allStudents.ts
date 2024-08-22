@@ -11,7 +11,7 @@ export const fetAllStudents = async (userId: string) => {
     );
     if (response.ok) {
       const dataUser = await response.json();
-
+  
       return dataUser.studentCount;
     } else {
       console.error(

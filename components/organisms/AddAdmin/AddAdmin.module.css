@@ -1,0 +1,53 @@
+.content__addAdmin {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  align-items: center;
+  gap: 3rem;
+}
+
+.addAdmin__title {
+  font-size: var(--fontSize-subtitles_laptop);
+  color: var(--darkBlue);
+  font-weight: bold;
+}
+
+.content__buttons {
+  display: flex;
+  gap: 3rem;
+}
+
+.addAdmin__button {
+  color: var(--darkBlue);
+  display: flex;
+}
+
+.addAdmin__addIcon {
+  width: 1.25rem;
+  margin-left: 0.3rem;
+  text-align: center;
+}
+
+.addAdmin__button--delete:hover {
+  background-color: var(--red);
+  color: var(--white);
+}
+
+.addAdmin__button--add:hover {
+  background-color: var(--darkBlue);
+  color: var(--white);
+}
+
+.addAdmin__button--disabled {
+  background-color: var(--grayGradient);
+  color: var(--darkGrayGradient);
+  transition: none;
+}
+
+.addAdmin__button--disabled:hover {
+  transform: none;
+  background-color: var(--grayGradient);
+  color: var(--darkGrayGradient);
+  cursor: no-drop;
+}
