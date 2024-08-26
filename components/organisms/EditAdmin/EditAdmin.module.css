@@ -1,0 +1,101 @@
+.aditAdmin__buttonBack {
+  width: 100%;
+}
+.changePasswordUser-returnProfile {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--darkBlue);
+  font-size: var(--fontSize-buttons_mobile);
+  transition: var(--transition);
+}
+
+.changePasswordUser-returnProfile:hover {
+  color: white;
+  cursor: pointer;
+}
+
+.aditAdmin__container--admins {
+  margin: 0 auto;
+  width: 600px;
+  height: calc(100% - 60px);
+}
+
+.adminPanel__content-users--admins {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+.editAdmin__title {
+  text-align: center;
+  color: var(--darkBlue);
+  padding-top: 4.5rem;
+  margin-bottom: 3.5rem;
+}
+
+.adminPanel__content-infoUser--admins {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.688rem;
+  width: calc(100% - 1.75rem);
+  margin-left: 1.75rem;
+}
+
+.adminPanel__image-infoUser--admins {
+  width: 2.5rem;
+  border-radius: 50%;
+}
+
+.adminPanel__deleteIcon {
+  color: var(--darkBlue);
+  width: 1.5rem;
+  transition: var(--transition);
+}
+
+.adminPanel__deleteIcon:hover {
+  color: var(--red);
+  cursor: pointer;
+  transform: var(--transform);
+}
+
+.adminPanel__content-buttonEdit--admins {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin: 1.188rem 0rem 1.563rem 0rem;
+}
+
+.adminPanel__notFound-user--admins {
+  text-align: center;
+  margin: auto 0;
+  color: var(--black);
+  font-size: var(--fontSize-paragraph_laptop);
+}
+
+.adminPanel__link-buttonEdit {
+  text-decoration: none;
+}
+
+.adminPanel__buttonEdit--admins {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 1.5rem;
+  color: var(--darkBlue);
+  font-weight: bold;
+  gap: 0.625rem;
+}
+
+.addAdmin__icon {
+  width: 1.2rem;
+}
+
+.adminPanel__buttonEdit--admins:hover,
+.addAdmin__icon:hover {
+  color: var(--white);
+  background-color: var(--darkBlue);
+}

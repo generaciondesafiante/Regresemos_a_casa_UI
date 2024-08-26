@@ -1,4 +1,8 @@
-export const fetchAllAdmin = async (userId: string) => {
+import { AllAdmins } from "../../types/types/allAdmins.type";
+
+export const fetchAllAdmin = async (
+  userId: string
+): Promise<{ admins: AllAdmins[] } | undefined> => {
   try {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/admins/${userId}`,
@@ -11,8 +15,7 @@ export const fetchAllAdmin = async (userId: string) => {
     );
 
     if (response.ok) {
-      const dataUser = await response.json();
-
+      const dataUser: { admins: AllAdmins[] } = await response.json();
       return dataUser;
     } else {
       console.error(

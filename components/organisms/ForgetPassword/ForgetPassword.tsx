@@ -4,10 +4,11 @@ import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 import { Button, Input } from "../../atoms";
 import styles from "./ForgetPassword.module.css";
+import { fetchValidateEamilResetPassword } from "../../../services/user/validateEmail-resetPassword";
 
 export const ForgetPassword = () => {
   const router = useRouter();
-
+  const currentUrl = window.location.origin;
   const [email, setemail] = useState("");
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setemail(e.target.value);
@@ -16,21 +17,12 @@ export const ForgetPassword = () => {
   const checkEmailSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const responseValidate = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/check-email`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-        }),
-      }
+    const responseValidate = await fetchValidateEamilResetPassword(
+      email,
+      currentUrl
     );
 
-    if (responseValidate.ok) {
-      // If the request was successful, redirect to the desired page
+    if (responseValidate?.ok) {
       Swal.fire({
         icon: "success",
         title: "Correo enviado exitosamente",
@@ -41,7 +33,6 @@ export const ForgetPassword = () => {
         },
       });
     } else {
-      // If there was an error in the request, show the alert with SweetAlert2
       Swal.fire(
         "Error",
         "Hubo un error al verificar el correo electrónico.",
