@@ -8,14 +8,14 @@
 
 .content__editAdmin {
   position: relative;
-  width: 800px;
-  height: 500px;
-  border-radius: 12px;
+  width: 50rem;
+  height: 31.25rem;
+  border-radius: 0.75rem;
   background-color: var(--gray);
 }
 
-.toastContainer{
+.toastContainer {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 0.625rem;
+  right: 0.625rem;
 }

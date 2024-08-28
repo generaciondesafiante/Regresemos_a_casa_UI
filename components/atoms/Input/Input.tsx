@@ -19,6 +19,7 @@ interface InputProps {
   className?: string;
   buttonColor?: string;
   borderColor?: string;
+  ref?: React.Ref<HTMLInputElement>;
 }
 
 export const Input: React.FC<InputProps> = ({
@@ -35,6 +36,7 @@ export const Input: React.FC<InputProps> = ({
   isRequire,
   buttonColor,
   borderColor,
+  ref,
 }) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
@@ -62,6 +64,7 @@ export const Input: React.FC<InputProps> = ({
   return (
     <div className={styles["input-container_inputLabel"]}>
       <input
+        ref={ref}
         id={id}
         name={name}
         value={value}
@@ -79,11 +82,7 @@ export const Input: React.FC<InputProps> = ({
           onClick={togglePasswordVisibility}
           style={{ ...buttonStyle, position: "absolute", right: "-10" }}
         >
-          {isPasswordVisible ? (
-            <RemoveRedEyeIcon />
-          ) : (
-            <VisibilityOffIcon />
-          )}
+          {isPasswordVisible ? <RemoveRedEyeIcon /> : <VisibilityOffIcon />}
         </button>
       )}
       <label
