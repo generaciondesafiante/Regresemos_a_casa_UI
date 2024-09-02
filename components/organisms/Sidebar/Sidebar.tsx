@@ -21,7 +21,6 @@ export const Sidebar = () => {
   const topLinks = ["profile", "admin"];
 
   const isAdmin = session?.user?.admin === true;
-  console.log(isAdmin);
   const links = [
     {
       name: "profile",

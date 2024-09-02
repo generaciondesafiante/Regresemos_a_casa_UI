@@ -1,21 +1,32 @@
-export const addAdmin = async (email: string, id: string, admin: boolean) => {
+export const addResource = async (
+  userId: string,
+  resourceUrl: string,
+  title: string,
+  description: string,
+  typeResource: string,
+  visibility: string,
+  miniaturaUrl: string
+) => {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_URL}/user/addAdmin/${id}`,
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/resources/createResource/${userId}`,
       {
-        method: "PATCH",
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          email,
-          admin,
+          resourceUrl,
+          title,
+          description,
+          typeResource,
+          visibility,
+          miniaturaUrl,
         }),
       }
     );
 
     const responseData = await response.json();
-
     if (!response.ok) {
       return {
         status: response.status,

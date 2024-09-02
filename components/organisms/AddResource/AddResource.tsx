@@ -1,14 +1,18 @@
 "use client";
-
-import { useRef, useState } from "react";
+import React, { useRef, useState } from "react";
+import Swal from "sweetalert2";
 import styles from "./AddResource.module.css";
 import { Button, Input } from "../../atoms";
+import { uploadResourceAndThumbnail } from "../../../hooks/useFirebaseCreateResource";
+import { addResource } from "../../../services/resources/createResource";
+import { useSession } from "next-auth/react";
 
 export const AddResource = () => {
+  const { data: session } = useSession();
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [resourceType, setResourceType] = useState<string>("tipo de recurso");
-  const [visibility, setVisibility] = useState<string>("publico");
+  const [visibility, setVisibility] = useState<string>("public");
   const [selectedResourceFile, setSelectedResourceFile] = useState<File | null>(
     null
   );
@@ -47,15 +51,129 @@ export const AddResource = () => {
     }
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const isFormValid = () => {
+    return (
+      title.trim() !== "" &&
+      description.trim() !== "" &&
+      resourceType !== "" &&
+      visibility !== "" &&
+      selectedResourceFile !== null
+    );
+  };
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log({
-      title,
-      resourceType,
-      visibility,
-      selectedResourceFile,
-      selectedThumbnailFile,
-    });
+
+    const userId = session?.user.uid;
+
+    if (!userId) {
+      Swal.fire(
+        "Error",
+        "El ID de usuario no está definido. Por favor, inicia sesión.",
+        "error"
+      );
+      return;
+    }
+    const allowedTypes = ["video", "audio", "image", "pdf", "link"];
+    const allowedVisibility = [
+      "private",
+      "visibleForward",
+      "public",
+      "restrictedIncourse",
+    ];
+
+    if (!allowedTypes.includes(resourceType)) {
+      Swal.fire(
+        "Error",
+        `Tipo de recurso no válido. Debe ser uno de: ${allowedTypes.join(
+          ", "
+        )}.`,
+        "error"
+      );
+      return;
+    }
+
+    if (!allowedVisibility.includes(visibility)) {
+      Swal.fire(
+        "Error",
+        `Tipo de visibilidad no válido. Debe ser uno de: ${allowedVisibility.join(
+          ", "
+        )}.`,
+        "error"
+      );
+      return;
+    }
+
+    if (selectedResourceFile) {
+      Swal.fire({
+        title: "¿Estás seguro?",
+        text: "Vas a guardar este recurso",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Sí, guardarlo",
+        cancelButtonText: "Cancelar",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          try {
+            const { resourceUrl, thumbnailUrl } =
+              await uploadResourceAndThumbnail(
+                selectedResourceFile,
+                selectedThumbnailFile,
+                title
+              );
+            
+            const response = await addResource(
+              userId, 
+              resourceUrl,
+              title,
+              description,
+              resourceType,
+              visibility,
+              thumbnailUrl || ""
+            );
+        
+            if (response.status === 200) {
+              Swal.fire(
+                "¡Éxito!",
+                "El recurso se ha creado correctamente.",
+                "success"
+              );
+              setTitle("");
+              setDescription("");
+              setResourceType("video");
+              setVisibility("public");
+              setSelectedResourceFile(null);
+              setSelectedThumbnailFile(null);
+
+              if (resourceFileInputRef.current) {
+                resourceFileInputRef.current.value = "";
+              }
+              if (thumbnailFileInputRef.current) {
+                thumbnailFileInputRef.current.value = "";
+              }
+            } else {
+              Swal.fire(
+                "Error",
+                "Hubo un problema al crear el recurso.",
+                "error"
+              );
+            }
+          } catch (error) {
+            Swal.fire(
+              "Error",
+              "Hubo un problema al subir o crear el recurso.",
+              "error"
+            );
+          }
+        }
+      });
+    } else {
+      Swal.fire(
+        "Error",
+        "No se ha seleccionado ningún archivo de recurso",
+        "error"
+      );
+    }
   };
 
   return (
@@ -120,10 +238,10 @@ export const AddResource = () => {
             onChange={(e) => setVisibility(e.target.value)}
             className={styles.inputOptions}
           >
-            <option value="publico" className={styles["input__option__select"]}>
+            <option value="public" className={styles["input__option__select"]}>
               Público
             </option>
-            <option value="privado" className={styles["input__option__select"]}>
+            <option value="private" className={styles["input__option__select"]}>
               Privado
             </option>
           </select>
@@ -142,9 +260,7 @@ export const AddResource = () => {
               accept="*/*"
               ref={resourceFileInputRef}
               className={styles["input__file"]}
-              onClick={(e) => {
-                e.stopPropagation();
-              }}
+              onClick={(e) => e.stopPropagation()}
               onChange={handleResourceFileChange}
             />
           </Button>
@@ -154,6 +270,7 @@ export const AddResource = () => {
             </span>
           )}
         </div>
+
         <div className={styles["container__input--select"]}>
           <Button
             onClick={handleThumbnailFileButtonClick}
@@ -167,9 +284,7 @@ export const AddResource = () => {
               accept="image/*"
               ref={thumbnailFileInputRef}
               className={styles["input__file"]}
-              onClick={(e) => {
-                e.stopPropagation();
-              }}
+              onClick={(e) => e.stopPropagation()}
               onChange={handleThumbnailFileChange}
             />
           </Button>
@@ -186,7 +301,9 @@ export const AddResource = () => {
 
         <div className={styles["container__buttons--actions"]}>
           <Button className={styles["button__action"]}>Cancelar</Button>
-          <Button type="submit">Guardar</Button>
+          <Button type="submit" disabled={!isFormValid()}>
+            Guardar
+          </Button>
         </div>
       </form>
     </main>

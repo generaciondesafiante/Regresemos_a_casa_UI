@@ -9,7 +9,6 @@ import AddCircleIcon from "../../atoms/icons/adminPanel/AddCircleIcon";
 
 export const ResourceAdmin = () => {
   const handleSearch = (query: string) => {
-    console.log("Realizando búsqueda para:", query);
     // Here you can handle the search logic, such as making a request to an API
   };
   return (
