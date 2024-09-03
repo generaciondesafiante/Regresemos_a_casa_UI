@@ -23,7 +23,6 @@ export const HamburgerMenu = () => {
 
   const updateMenu = () => {
     if (!isMenuClicked) {
-      subMenuVisibility;
       setBurger_class("burger-bar clicked");
       setMenu_class("menu visible");
     } else {
@@ -44,13 +43,23 @@ export const HamburgerMenu = () => {
     if (data.subMenu) {
       toggleSubMenu(index);
     } else if (data.href) {
-      console.log("Redireccionar a:", data.href);
+      updateMenu();
     }
+  };
+
+  const isMainMenuItemSelected = (data: any) => {
+    if (pathName === data.href) {
+      return true;
+    }
+    if (data.subMenu) {
+      return data.subMenu.some((subItem: any) => subItem.href === pathName);
+    }
+    return false;
   };
 
   return (
     <div className="containerMenu">
-     {isMenuClicked && <div className="overlay" onClick={updateMenu} />} {/* Agregar el fondo semitransparente si el menú está visible */}
+      {isMenuClicked && <div className="overlay" onClick={updateMenu} />}
       <nav>
         <div className="burger-menu" onClick={updateMenu}>
           <div className={burger_class}></div>
@@ -68,7 +77,7 @@ export const HamburgerMenu = () => {
                     href={data.href}
                     passHref
                     className={`items-menu ${
-                      pathName === data.href ? "selected" : ""
+                      isMainMenuItemSelected(data) ? "selected" : ""
                     }`}
                   >
                     {data.title}
@@ -81,7 +90,7 @@ export const HamburgerMenu = () => {
                 ) : (
                   <div
                     className={`items-menu ${
-                      pathName === data.href ? "selected" : ""
+                      isMainMenuItemSelected(data) ? "selected" : ""
                     }`}
                   >
                     {data.title}
@@ -108,6 +117,7 @@ export const HamburgerMenu = () => {
                           className={`subMenu-items ${
                             pathName === item.href ? "selected" : ""
                           }`}
+                          onClick={() => updateMenu()}
                         >
                           {item.title}
                         </Link>

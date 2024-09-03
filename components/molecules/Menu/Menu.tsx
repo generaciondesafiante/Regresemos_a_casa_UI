@@ -12,12 +12,22 @@ interface SubMenuVisibility {
   [key: number]: boolean;
 }
 
+const normalizePathName = (path: string) => {
+  return path
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/ /g, "-");
+};
+
 export const Menu: React.FC = () => {
   const pathName = usePathname();
-
+  const normalizedPathName = normalizePathName(pathName);
+  console.log(normalizedPathName);
   const [subMenuVisibility, setSubMenuVisibility] = useState<SubMenuVisibility>(
     {}
   );
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   const toggleSubMenu = (index: number) => {
     setSubMenuVisibility({
@@ -36,19 +46,43 @@ export const Menu: React.FC = () => {
   };
 
   const handleMenuMouseEnter = (index: number) => {
-    setSubMenuVisibility({
-      ...subMenuVisibility,
+    setHoveredIndex(index);
+    setSubMenuVisibility((prev) => ({
+      ...prev,
       [index]: true,
-    });
+    }));
   };
 
   const handleMenuMouseLeave = (index: number) => {
-    if (!subMenuVisibility[-1]) {
-      setSubMenuVisibility({
-        ...subMenuVisibility,
-        [index]: false,
-      });
+    setTimeout(() => {
+      if (hoveredIndex === index) {
+        setSubMenuVisibility((prev) => ({
+          ...prev,
+          [index]: false,
+        }));
+      }
+    }, 100);
+  };
+
+  const handleSubMenuMouseEnter = () => {
+    if (hoveredIndex !== null) {
+      setSubMenuVisibility((prev) => ({
+        ...prev,
+        [hoveredIndex]: true,
+      }));
     }
+  };
+
+  const handleSubMenuMouseLeave = () => {
+    setTimeout(() => {
+      if (hoveredIndex !== null) {
+        setSubMenuVisibility((prev) => ({
+          ...prev,
+          [hoveredIndex]: false,
+        }));
+        setHoveredIndex(null);
+      }
+    }, 100);
   };
 
   return (
@@ -60,46 +94,76 @@ export const Menu: React.FC = () => {
           alt="Logo generación desafiante"
         />
       </Link>
-      <section className={styles["menu-header_containerBtn"]} onMouseLeave={() => handleMenuMouseLeave(-1)}>
-        {menuData.map((data, index) => (
-          <div key={index} onMouseEnter={() => handleMenuMouseEnter(index)} onMouseLeave={() => handleMenuMouseLeave(index)}>
-            <Link
-              href={data.href}
-              key={data.href}
-              onClick={() => handleMenuClick(index)}
-              className={`${styles["menu-header_item"]} ${
-                pathName === data.href ? styles["selected"] : ""
-              }`}
-            >
-              <p>{data.title}</p>
-              {data.subMenu && (
-                <span className={styles["menu-header_arrow"]}>
-                  {subMenuVisibility[index] ? <UpArrow /> : <DownArrow />}
-                </span>
-              )}
-            </Link>
+      <section
+        className={styles["menu-header_containerBtn"]}
+        onMouseLeave={() => handleMenuMouseLeave(-1)}
+      >
+        {menuData.map((data, index) => {
+          const isMainMenuSelected =
+            normalizePathName(pathName) === normalizePathName(data.href) ||
+            (data.subMenu &&
+              data.subMenu.some(
+                (item) =>
+                  normalizePathName(pathName) === normalizePathName(item.href)
+              ));
 
-            {data.subMenu && subMenuVisibility[index] && (
-              <>
-                <div
-                  className={styles["menu-header_subMenuOverlay"]}
-                  onClick={() => toggleSubMenu(index)}
-                />
-                <ul className={styles["menu-header_subMenuContainer"]} onMouseEnter={() => handleMenuMouseEnter(index)} onMouseLeave={() => handleMenuMouseLeave(index)}>
-                  {data.subMenu.map((item, subIndex) => (
-                    <Link href={item.href} key={subIndex} className={styles["menu-header_subMenuItems"]}>
-                      {item.title}
-                    </Link>
-                  ))}
-                </ul>
-              </>
-            )}
-          </div>
-        ))}
+          return (
+            <div
+              key={index}
+              onMouseEnter={() => handleMenuMouseEnter(index)}
+              onMouseLeave={() => handleMenuMouseLeave(index)}
+              className={styles["menu-header_itemWrapper"]}
+            >
+              <Link
+                href={data.href}
+                key={data.href}
+                onClick={() => handleMenuClick(index)}
+                className={`${styles["menu-header_item"]} ${
+                  isMainMenuSelected ? styles["selected"] : ""
+                }`}
+              >
+                <p>{data.title}</p>
+                {data.subMenu && (
+                  <span className={styles["menu-header_arrow"]}>
+                    {subMenuVisibility[index] ? <UpArrow /> : <DownArrow />}
+                  </span>
+                )}
+              </Link>
+
+              {data.subMenu && subMenuVisibility[index] && (
+                <>
+                  <div
+                    className={styles["menu-header_subMenuOverlay"]}
+                    onClick={() => toggleSubMenu(index)}
+                  />
+                  <ul
+                    className={styles["menu-header_subMenuContainer"]}
+                    onMouseEnter={handleSubMenuMouseEnter}
+                    onMouseLeave={handleSubMenuMouseLeave}
+                  >
+                    {data.subMenu.map((item, subIndex) => (
+                      <Link
+                        href={item.href}
+                        key={subIndex}
+                        className={`${styles["menu-header_subMenuItems"]} ${
+                          normalizePathName(pathName) ===
+                          normalizePathName(item.href)
+                            ? styles["selected"]
+                            : ""
+                        }`}
+                      >
+                        {item.title}
+                      </Link>
+                    ))}
+                  </ul>
+                </>
+              )}
+            </div>
+          );
+        })}
       </section>
 
       <HamburgerMenu />
     </header>
   );
 };
-
