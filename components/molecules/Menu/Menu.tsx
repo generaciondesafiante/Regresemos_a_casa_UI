@@ -13,12 +13,22 @@ interface SubMenuVisibility {
   [key: number]: boolean;
 }
 
+const normalizePathName = (path: string) => {
+  return path
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/ /g, "-");
+};
+
 export const Menu: React.FC = () => {
   const pathName = usePathname();
-
+  const normalizedPathName = normalizePathName(pathName);
+  console.log(normalizedPathName);
   const [subMenuVisibility, setSubMenuVisibility] = useState<SubMenuVisibility>(
     {}
   );
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   const toggleSubMenu = (index: number) => {
     setSubMenuVisibility({
@@ -37,10 +47,11 @@ export const Menu: React.FC = () => {
   };
 
   const handleMenuMouseEnter = (index: number) => {
-    setSubMenuVisibility({
-      ...subMenuVisibility,
+    setHoveredIndex(index);
+    setSubMenuVisibility((prev) => ({
+      ...prev,
       [index]: true,
-    });
+    }));
   };
 
   const handleMenuMouseLeave = (index: number) => {
