@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 import { Button, Input } from "../../atoms";
@@ -8,8 +8,15 @@ import { fetchValidateEamilResetPassword } from "../../../services/user/validate
 
 export const ForgetPassword = () => {
   const router = useRouter();
-  const currentUrl = window.location.origin;
   const [email, setemail] = useState("");
+  const [currentUrl, setCurrentUrl] = useState<string>("");
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setCurrentUrl(window.location.origin);
+    }
+  }, []);
+
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setemail(e.target.value);
   };
@@ -40,6 +47,7 @@ export const ForgetPassword = () => {
       );
     }
   };
+
   return (
     <form
       action=""
