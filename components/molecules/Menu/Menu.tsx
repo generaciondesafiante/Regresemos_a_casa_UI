@@ -7,6 +7,7 @@ import { useState } from "react";
 import { UpArrow } from "../../atoms/icons/topMenu/UpArrow";
 import { DownArrow } from "../../atoms/icons/topMenu/DownArrow";
 import { usePathname } from "next/navigation";
+import { getEnabledRoutes } from "../../../feature/BlockedRoutesPublicsFeatureFlags/getEnabledRoutesPublics";
 
 interface SubMenuVisibility {
   [key: number]: boolean;
@@ -54,36 +55,18 @@ export const Menu: React.FC = () => {
   };
 
   const handleMenuMouseLeave = (index: number) => {
-    setTimeout(() => {
-      if (hoveredIndex === index) {
-        setSubMenuVisibility((prev) => ({
-          ...prev,
-          [index]: false,
-        }));
-      }
-    }, 100);
-  };
-
-  const handleSubMenuMouseEnter = () => {
-    if (hoveredIndex !== null) {
-      setSubMenuVisibility((prev) => ({
-        ...prev,
-        [hoveredIndex]: true,
-      }));
+    if (!subMenuVisibility[-1]) {
+      setSubMenuVisibility({
+        ...subMenuVisibility,
+        [index]: false,
+      });
     }
   };
 
-  const handleSubMenuMouseLeave = () => {
-    setTimeout(() => {
-      if (hoveredIndex !== null) {
-        setSubMenuVisibility((prev) => ({
-          ...prev,
-          [hoveredIndex]: false,
-        }));
-        setHoveredIndex(null);
-      }
-    }, 100);
-  };
+  const filteredMenuData = menuData.filter((data) => {
+    const enabledRoutes = getEnabledRoutes([data.href]);
+    return enabledRoutes.length > 0;
+  });
 
   return (
     <header className={styles.header}>
@@ -98,69 +81,53 @@ export const Menu: React.FC = () => {
         className={styles["menu-header_containerBtn"]}
         onMouseLeave={() => handleMenuMouseLeave(-1)}
       >
-        {menuData.map((data, index) => {
-          const isMainMenuSelected =
-            normalizePathName(pathName) === normalizePathName(data.href) ||
-            (data.subMenu &&
-              data.subMenu.some(
-                (item) =>
-                  normalizePathName(pathName) === normalizePathName(item.href)
-              ));
-
-          return (
-            <div
-              key={index}
-              onMouseEnter={() => handleMenuMouseEnter(index)}
-              onMouseLeave={() => handleMenuMouseLeave(index)}
-              className={styles["menu-header_itemWrapper"]}
+        {filteredMenuData.map((data, index) => (
+          <div
+            key={index}
+            onMouseEnter={() => handleMenuMouseEnter(index)}
+            onMouseLeave={() => handleMenuMouseLeave(index)}
+          >
+            <Link
+              href={data.href}
+              key={data.href}
+              onClick={() => handleMenuClick(index)}
+              className={`${styles["menu-header_item"]} ${
+                pathName === data.href ? styles["selected"] : ""
+              }`}
             >
-              <Link
-                href={data.href}
-                key={data.href}
-                onClick={() => handleMenuClick(index)}
-                className={`${styles["menu-header_item"]} ${
-                  isMainMenuSelected ? styles["selected"] : ""
-                }`}
-              >
-                <p>{data.title}</p>
-                {data.subMenu && (
-                  <span className={styles["menu-header_arrow"]}>
-                    {subMenuVisibility[index] ? <UpArrow /> : <DownArrow />}
-                  </span>
-                )}
-              </Link>
-
-              {data.subMenu && subMenuVisibility[index] && (
-                <>
-                  <div
-                    className={styles["menu-header_subMenuOverlay"]}
-                    onClick={() => toggleSubMenu(index)}
-                  />
-                  <ul
-                    className={styles["menu-header_subMenuContainer"]}
-                    onMouseEnter={handleSubMenuMouseEnter}
-                    onMouseLeave={handleSubMenuMouseLeave}
-                  >
-                    {data.subMenu.map((item, subIndex) => (
-                      <Link
-                        href={item.href}
-                        key={subIndex}
-                        className={`${styles["menu-header_subMenuItems"]} ${
-                          normalizePathName(pathName) ===
-                          normalizePathName(item.href)
-                            ? styles["selected"]
-                            : ""
-                        }`}
-                      >
-                        {item.title}
-                      </Link>
-                    ))}
-                  </ul>
-                </>
+              <p>{data.title}</p>
+              {data.subMenu && (
+                <span className={styles["menu-header_arrow"]}>
+                  {subMenuVisibility[index] ? <UpArrow /> : <DownArrow />}
+                </span>
               )}
-            </div>
-          );
-        })}
+            </Link>
+
+            {data.subMenu && subMenuVisibility[index] && (
+              <>
+                <div
+                  className={styles["menu-header_subMenuOverlay"]}
+                  onClick={() => toggleSubMenu(index)}
+                />
+                <ul
+                  className={styles["menu-header_subMenuContainer"]}
+                  onMouseEnter={() => handleMenuMouseEnter(index)}
+                  onMouseLeave={() => handleMenuMouseLeave(index)}
+                >
+                  {data.subMenu.map((item, subIndex) => (
+                    <Link
+                      href={item.href}
+                      key={subIndex}
+                      className={styles["menu-header_subMenuItems"]}
+                    >
+                      {item.title}
+                    </Link>
+                  ))}
+                </ul>
+              </>
+            )}
+          </div>
+        ))}
       </section>
 
       <HamburgerMenu />

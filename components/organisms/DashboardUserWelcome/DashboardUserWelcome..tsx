@@ -18,8 +18,11 @@ import { selectCourse } from "../../../store/slices/courseSlice";
 import { selectTopic } from "../../../store/slices/topicsSlice";
 import { selectedResource } from "../../../store/slices/ResourceSlice";
 import { LastViewedResource } from "../../../types/types/lastViewedResource";
+import { ResourceDashboard } from "../../molecules/ResourcesDashboard/ResourceDashboard";
+import ConditionalRendererComponentePrivate from "../../../feature/BlockedComponentsPrivatesFeatureFlags/conditionalRenderComponentsPrivates";
 
 export const DashboardUserWelcome = () => {
+  const dispatch = useAppDispatch();
   const { data: session } = useSession();
   const router = useRouter();
   const idUser = session?.user.uid;
@@ -31,13 +34,8 @@ export const DashboardUserWelcome = () => {
 
   const [isVideoReady, setisVideoReady] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [lastViewedResource, setLastViewedResource] = useState<LastViewedResource | null>(null);
-
-
-  const FILLER_CONTENT_IMG =
-    "https://static.wixstatic.com/media/d166cc_4cc837baf9254000a0f3963193c6b07a~mv2.jpg/v1/fill/w_368,h_195,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/Romanos%2011111.jpg";
-  const dispatch = useAppDispatch();
- 
+  const [lastViewedResource, setLastViewedResource] =
+    useState<LastViewedResource | null>(null);
 
   useEffect(() => {
     if (idUser) {
@@ -125,106 +123,83 @@ export const DashboardUserWelcome = () => {
   };
 
   return (
-    <div className={styles["dashboardUserWelcome-container"]}>
-      <div className={styles["dashboardUserWelcome-welcomeMessageContainer"]}>
-        <h3 className={styles["dashboardUserWelcome-welcomeMessage_title"]}>
-          Bienvenid@, {name}
-        </h3>
-        <p className={styles["dashboardUserWelcome-welcomeMessage_paragraph"]}>
-          ¡Esperamos que tengas un bendecido día!
-        </p>
-        <img
-          src="https://i.imgur.com/g0891Ec.png"
-          alt="Image of book"
-          className={
-            styles["dashboardUserWelcome-welcomeMessage_decorationImg"]
-          }
-        />
-      </div>
+    <ConditionalRendererComponentePrivate viewName={"Dashboard"}>
+      <div className={styles["dashboardUserWelcome-container"]}>
+        <div className={styles["dashboardUserWelcome-welcomeMessageContainer"]}>
+          <h3 className={styles["dashboardUserWelcome-welcomeMessage_title"]}>
+            Bienvenid@, {name}
+          </h3>
+          <p
+            className={styles["dashboardUserWelcome-welcomeMessage_paragraph"]}
+          >
+            ¡Esperamos que tengas un bendecido día!
+          </p>
+          <img
+            src="https://i.imgur.com/g0891Ec.png"
+            alt="Image of book"
+            className={
+              styles["dashboardUserWelcome-welcomeMessage_decorationImg"]
+            }
+          />
+        </div>
 
-      {isLoading ? (
-        <div>
-          <div className={styles["titleVideo-skeletonVideo"]}> </div>
-          <div className={styles["lastViewedVideo-skeletonVideo"]}></div>
-        </div>
-      ) : isVideoReady ? (
-        <div>
-          <h3 className={styles["dashboardUserWelcome-subtitle"]}>
-            ¡Continúa tu curso!
-          </h3>
-          <div
-            className={styles["dashboardUserWelcome-continuePlayingContainer"]}
-          >
-            <ReactPlayer
-              onClick={() => handleClicklastViewedResource()}
-              url={lastViewedResource?.resource?.resourceUrl}
-              controls={true}
-              playsinline={true}
-              pip={true}
-              stopOnUnmount
-              width={"100%"}
-              height={"100%"}
-              light={true}
-              className={styles["dashboardUserWelcome-continuePlaying"]}
-            />
+        {isLoading ? (
+          <div>
+            <div className={styles["titleVideo-skeletonVideo"]}> </div>
+            <div className={styles["lastViewedVideo-skeletonVideo"]}></div>
           </div>
-        </div>
-      ) : (
-        <div>
-          <h3 className={styles["dashboardUserWelcome-subtitle"]}>
-            ¡Inicia el recorrido de la fé!
-          </h3>
-          <div
-            className={styles["dashboardUserWelcome-continuePlayingContainer"]}
-          >
-            <ReactPlayer
-              onClick={() => router.push(routeVideoDefault)}
-              url={urlVideoDefault}
-              controls={true}
-              playsinline={true}
-              pip={true}
-              stopOnUnmount
-              width={"100%"}
-              height={"100%"}
-              light={true}
-              className={styles["dashboardUserWelcome-continuePlaying"]}
-            />
+        ) : isVideoReady ? (
+          <div>
+            <h3 className={styles["dashboardUserWelcome-subtitle"]}>
+              ¡Continúa tu curso!
+            </h3>
+            <div
+              className={
+                styles["dashboardUserWelcome-continuePlayingContainer"]
+              }
+            >
+              <ReactPlayer
+                onClick={() => handleClicklastViewedResource()}
+                url={lastViewedResource?.resource?.resourceUrl}
+                controls={true}
+                playsinline={true}
+                pip={true}
+                stopOnUnmount
+                width={"100%"}
+                height={"100%"}
+                light={true}
+                className={styles["dashboardUserWelcome-continuePlaying"]}
+              />
+            </div>
           </div>
-        </div>
-      )}
-      <h3 className={styles["dashboardUserWelcome-subtitle"]}>
-        Recursos para ti
-      </h3>
-      <div className={styles["dashboardUserWelcome-resourcesContainer"]}>
-        <img src={FILLER_CONTENT_IMG} alt="" />
-        <img src={FILLER_CONTENT_IMG} alt="" />
-        <img src={FILLER_CONTENT_IMG} alt="" />
-        <img src={FILLER_CONTENT_IMG} alt="" />
-        <img src={FILLER_CONTENT_IMG} alt="" />
-        <img src={FILLER_CONTENT_IMG} alt="" />
-        <img src={FILLER_CONTENT_IMG} alt="" />
-        <img src={FILLER_CONTENT_IMG} alt="" />
-        <img src={FILLER_CONTENT_IMG} alt="" />
-        <img src={FILLER_CONTENT_IMG} alt="" />
-        <img src={FILLER_CONTENT_IMG} alt="" />
-        <img src={FILLER_CONTENT_IMG} alt="" />
-        <img src={FILLER_CONTENT_IMG} alt="" />
-        <img src={FILLER_CONTENT_IMG} alt="" />
-        <img src={FILLER_CONTENT_IMG} alt="" />
-        <img src={FILLER_CONTENT_IMG} alt="" />
-        <img src={FILLER_CONTENT_IMG} alt="" />
-        <img src={FILLER_CONTENT_IMG} alt="" />
-        <img src={FILLER_CONTENT_IMG} alt="" />
-        <img src={FILLER_CONTENT_IMG} alt="" />
-        <img src={FILLER_CONTENT_IMG} alt="" />
-        <img src={FILLER_CONTENT_IMG} alt="" />
-        <img src={FILLER_CONTENT_IMG} alt="" />
-        <img src={FILLER_CONTENT_IMG} alt="" />
-        <img src={FILLER_CONTENT_IMG} alt="" />
-        <img src={FILLER_CONTENT_IMG} alt="" />
-        <img src={FILLER_CONTENT_IMG} alt="" />
-        <img src={FILLER_CONTENT_IMG} alt="" />
+        ) : (
+          <div>
+            <h3 className={styles["dashboardUserWelcome-subtitle"]}>
+              ¡Inicia el recorrido de la fé!
+            </h3>
+            <div
+              className={
+                styles["dashboardUserWelcome-continuePlayingContainer"]
+              }
+            >
+              <ReactPlayer
+                onClick={() => router.push(routeVideoDefault)}
+                url={urlVideoDefault}
+                controls={true}
+                playsinline={true}
+                pip={true}
+                stopOnUnmount
+                width={"100%"}
+                height={"100%"}
+                light={true}
+                className={styles["dashboardUserWelcome-continuePlaying"]}
+              />
+            </div>
+          </div>
+        )}
+
+        <ResourceDashboard />
       </div>
-    </div>
+    </ConditionalRendererComponentePrivate>
   );
 };

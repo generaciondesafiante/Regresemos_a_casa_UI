@@ -10,6 +10,7 @@ import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import { useAppDispatch } from "../../../store/store";
 import { fetchAdmins } from "../../../store/slices/allAdminsSlice";
+import ConditionalRenderer from "../../../feature/BlockedComponentsPublicsFeatureFlags/conditionalRenderComponentsPublics";
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -85,41 +86,44 @@ export const AddAdmin = () => {
   }, [adminEmail]);
 
   return (
-    <main className={styles["content__addAdmin"]}>
-      <h2 className={styles["addAdmin__title"]}>Agregar administrador</h2>
-      <Input
-        id={"admin-email"}
-        htmlForm={"admin-email"}
-        type="text"
-        placeholder=""
-        name="adminEmail"
-        value={adminEmail}
-        onChange={handleEmailChange}
-        label={"Correo electronico"}
-        isRequire={true}
-        labelColor={colorInput}
-        inputColor={colorInput}
-        buttonColor={colorInput}
-        borderColor={colorInput}
-      />
-      <div className={styles["content__buttons"]}>
-        <Button
-          className={`${styles["addAdmin__button"]} ${styles["addAdmin__button--delete"]}`}
-          onClick={() => router.push("/dashboard/adminPanel/editAdmin")}
-        >
-          Cancelar
-        </Button>
-        <Button
-          className={`${styles["addAdmin__button"]} ${
-            styles["addAdmin__button--add"]
-          } ${isButtonEnabled ? "" : styles["addAdmin__button--disabled"]}`}
-          onClick={handleClickSaveAdmin}
-          disabled={!isButtonEnabled}
-        >
-          Agregar
-          <AddCircleIcon className={styles["addAdmin__addIcon"]} />
-        </Button>
-      </div>
-    </main>
+    <ConditionalRenderer viewName="addAdmin">
+      {" "}
+      <main className={styles["content__addAdmin"]}>
+        <h2 className={styles["addAdmin__title"]}>Agregar administrador</h2>
+        <Input
+          id={"admin-email"}
+          htmlForm={"admin-email"}
+          type="text"
+          placeholder=""
+          name="adminEmail"
+          value={adminEmail}
+          onChange={handleEmailChange}
+          label={"Correo electronico"}
+          isRequire={true}
+          labelColor={colorInput}
+          inputColor={colorInput}
+          buttonColor={colorInput}
+          borderColor={colorInput}
+        />
+        <div className={styles["content__buttons"]}>
+          <Button
+            className={`${styles["addAdmin__button"]} ${styles["addAdmin__button--delete"]}`}
+            onClick={() => router.push("/dashboard/adminPanel/editAdmin")}
+          >
+            Cancelar
+          </Button>
+          <Button
+            className={`${styles["addAdmin__button"]} ${
+              styles["addAdmin__button--add"]
+            } ${isButtonEnabled ? "" : styles["addAdmin__button--disabled"]}`}
+            onClick={handleClickSaveAdmin}
+            disabled={!isButtonEnabled}
+          >
+            Agregar
+            <AddCircleIcon className={styles["addAdmin__addIcon"]} />
+          </Button>
+        </div>
+      </main>
+    </ConditionalRenderer>
   );
 };
