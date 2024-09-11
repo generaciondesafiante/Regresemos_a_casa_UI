@@ -12,16 +12,22 @@ import { PathIcon } from "../../atoms/icons/sidebarIcons/PathIcon";
 import { FavoriteIcon } from "../../atoms/icons/sidebarIcons/FavoriteIcon";
 import { LogoutIcon } from "../../atoms/icons/sidebarIcons/LogoutIcon";
 import { AdminIcon } from "../../atoms/icons/sidebarIcons/AdminIcon";
+import { getEnabledRoutes } from "../../../feature/BlockedRoutesPrivateFeatureFlags/getEnabledRoutesPrivates";
+// Type Guard to ensure link is not null
+const isNonNullLink = (
+  link: { name: string; href: string; icon: JSX.Element } | null
+): link is { name: string; href: string; icon: JSX.Element } => {
+  return link !== null;
+};
 
 export const Sidebar = () => {
   const { data: session } = useSession();
   const pathName = usePathname();
   const router = useRouter();
-  const centeredLinks = ["home", "resources", "favorites", "path"];
-  const topLinks = ["profile", "admin"];
 
   const isAdmin = session?.user?.admin === true;
-  const links = [
+
+  const allLinks = [
     {
       name: "profile",
       href: "/dashboard/profile",
@@ -71,7 +77,13 @@ export const Sidebar = () => {
         />
       ),
     },
-  ].filter(Boolean);
+  ].filter(isNonNullLink);
+
+  const enabledRoutes = getEnabledRoutes(allLinks.map((link) => link.href));
+
+  const visibleLinks = allLinks.filter((link) =>
+    enabledRoutes.includes(link.href)
+  );
 
   const isSelected = (linkHref: string) => {
     if (linkHref === "/dashboard") {
@@ -83,8 +95,8 @@ export const Sidebar = () => {
   return (
     <div className={styles["sidebar-container"]}>
       <div className={styles["sidebar-content_center"]}>
-        {links.map((link) => {
-          if (link && topLinks.includes(link.name)) {
+        {visibleLinks.map((link) => {
+          if (link && ["profile", "admin"].includes(link.name)) {
             return (
               <Link
                 href={link.href}
@@ -102,8 +114,11 @@ export const Sidebar = () => {
       </div>
 
       <div className={styles["sidebar-content_center"]}>
-        {links.map((link) => {
-          if (link && centeredLinks.includes(link.name)) {
+        {visibleLinks.map((link) => {
+          if (
+            link &&
+            ["home", "path", "resources", "favorites"].includes(link.name)
+          ) {
             return (
               <Link href={link.href} key={link.name}>
                 <div
@@ -122,7 +137,7 @@ export const Sidebar = () => {
         })}
       </div>
 
-      {links.map((link) => {
+      {visibleLinks.map((link) => {
         if (link && link.name === "logout") {
           return (
             <button

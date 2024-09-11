@@ -7,17 +7,28 @@ import { useState } from "react";
 import { UpArrow } from "../../atoms/icons/topMenu/UpArrow";
 import { DownArrow } from "../../atoms/icons/topMenu/DownArrow";
 import { usePathname } from "next/navigation";
+import { getEnabledRoutes } from "../../../feature/BlockedRoutesPublicsFeatureFlags/getEnabledRoutesPublics";
 
 interface SubMenuVisibility {
   [key: number]: boolean;
 }
 
+const normalizePathName = (path: string) => {
+  return path
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/ /g, "-");
+};
+
 export const Menu: React.FC = () => {
   const pathName = usePathname();
-
+  const normalizedPathName = normalizePathName(pathName);
+  console.log(normalizedPathName);
   const [subMenuVisibility, setSubMenuVisibility] = useState<SubMenuVisibility>(
     {}
   );
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   const toggleSubMenu = (index: number) => {
     setSubMenuVisibility({
@@ -36,10 +47,11 @@ export const Menu: React.FC = () => {
   };
 
   const handleMenuMouseEnter = (index: number) => {
-    setSubMenuVisibility({
-      ...subMenuVisibility,
+    setHoveredIndex(index);
+    setSubMenuVisibility((prev) => ({
+      ...prev,
       [index]: true,
-    });
+    }));
   };
 
   const handleMenuMouseLeave = (index: number) => {
@@ -51,6 +63,11 @@ export const Menu: React.FC = () => {
     }
   };
 
+  const filteredMenuData = menuData.filter((data) => {
+    const enabledRoutes = getEnabledRoutes([data.href]);
+    return enabledRoutes.length > 0;
+  });
+
   return (
     <header className={styles.header}>
       <Link href={"/"}>
@@ -60,9 +77,16 @@ export const Menu: React.FC = () => {
           alt="Logo generación desafiante"
         />
       </Link>
-      <section className={styles["menu-header_containerBtn"]} onMouseLeave={() => handleMenuMouseLeave(-1)}>
-        {menuData.map((data, index) => (
-          <div key={index} onMouseEnter={() => handleMenuMouseEnter(index)} onMouseLeave={() => handleMenuMouseLeave(index)}>
+      <section
+        className={styles["menu-header_containerBtn"]}
+        onMouseLeave={() => handleMenuMouseLeave(-1)}
+      >
+        {filteredMenuData.map((data, index) => (
+          <div
+            key={index}
+            onMouseEnter={() => handleMenuMouseEnter(index)}
+            onMouseLeave={() => handleMenuMouseLeave(index)}
+          >
             <Link
               href={data.href}
               key={data.href}
@@ -85,9 +109,17 @@ export const Menu: React.FC = () => {
                   className={styles["menu-header_subMenuOverlay"]}
                   onClick={() => toggleSubMenu(index)}
                 />
-                <ul className={styles["menu-header_subMenuContainer"]} onMouseEnter={() => handleMenuMouseEnter(index)} onMouseLeave={() => handleMenuMouseLeave(index)}>
+                <ul
+                  className={styles["menu-header_subMenuContainer"]}
+                  onMouseEnter={() => handleMenuMouseEnter(index)}
+                  onMouseLeave={() => handleMenuMouseLeave(index)}
+                >
                   {data.subMenu.map((item, subIndex) => (
-                    <Link href={item.href} key={subIndex} className={styles["menu-header_subMenuItems"]}>
+                    <Link
+                      href={item.href}
+                      key={subIndex}
+                      className={styles["menu-header_subMenuItems"]}
+                    >
                       {item.title}
                     </Link>
                   ))}
@@ -102,4 +134,3 @@ export const Menu: React.FC = () => {
     </header>
   );
 };
-

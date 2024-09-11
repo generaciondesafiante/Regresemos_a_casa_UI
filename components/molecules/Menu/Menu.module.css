@@ -10,7 +10,8 @@
   top: 0;
   left: 0;
   align-items: center;
-  backdrop-filter: blur(0.3rem);
+  backdrop-filter: blur(0rem);
+  background-color: var(--white);
 }
 
 .menu-header_logo {
@@ -35,6 +36,21 @@
 }
 
 @media (width >=64rem) {
+  .header {
+    width: 100%;
+    min-width: 20rem;
+    height: 4.5rem;
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    z-index: 200;
+    padding: 0.5rem;
+    top: 0;
+    left: 0;
+    align-items: center;
+    backdrop-filter: blur(0.3rem);
+  }
+
   .header {
     padding: 0.5rem 1.5rem;
   }
@@ -71,34 +87,37 @@
   .menu-header_arrow {
     margin-left: 0.5rem;
   }
-
+  .menu-header_itemWrapper {
+    position: relative;
+  }
   .menu-header_subMenuContainer {
+    background-color: var(--white);
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
-    margin-top: 2.063rem;
     position: absolute;
+    top: auto;
+    left: 0;
+    width: auto;
     padding: 2.813rem;
     height: auto;
-    background-color: var(--white);
     transition: ease-out 0.5s;
     transform: scale(1);
     list-style: none;
     text-decoration: none;
+    z-index: 100;
   }
-
   .menu-header_subMenuOverlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: calc(100% - 4.375rem);
-    margin-top: 6rem;
-    background-color: rgba(0, 0, 0, 0.5);
+    height: calc(100% - 4.5rem);
     z-index: -10;
     transition: opacity 0.3s ease;
     opacity: 1;
     pointer-events: auto;
+    background-color: transparent;
   }
 
   .menu-header_subMenuItems {
@@ -110,5 +129,11 @@
   .menu-header_subMenuItems:hover {
     color: var(--greenDesafiante);
     cursor: pointer;
+  }
+
+  .menu-header_item.selected,
+  .menu-header_subMenuItems.selected {
+    color: var(--greenDesafiante) !important;
+    text-decoration: none;
   }
 }
