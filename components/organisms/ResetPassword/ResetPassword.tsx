@@ -31,7 +31,6 @@ export const ResetPassword = () => {
       }
 
       const responseChangePassword = await changePassword(id, password);
-      console.log(responseChangePassword);
       if (responseChangePassword?.ok) {
         Swal.fire({
           icon: "success",

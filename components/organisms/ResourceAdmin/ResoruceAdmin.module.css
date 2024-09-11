@@ -1,0 +1,47 @@
+.resourceAdmin {
+  width: 100%;
+}
+
+.container__section-table--resourceAdmin {
+  width: 60%;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.title--resourceAdmin {
+  text-align: center;
+  font-size: var(--fontSize-superTitles_tablet);
+  color: var(--white);
+  font-weight: bold;
+  margin-bottom: 1.938rem;
+}
+
+.contaier__search {
+  display: flex;
+  justify-content: space-between;
+}
+
+.adminPanel__link-buttonEdit {
+  text-decoration: none;
+}
+
+.adminPanel__buttonEdit--admins {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 1.5rem;
+  color: var(--darkBlue);
+  font-weight: bold;
+  gap: 0.625rem;
+}
+
+.addAdmin__icon {
+  width: 1.2rem;
+}
+
+.adminPanel__buttonEdit--admins:hover,
+.addAdmin__icon:hover {
+  color: var(--white);
+  background-color: var(--darkBlue);
+  border: 0.063rem solid var(--white);
+}

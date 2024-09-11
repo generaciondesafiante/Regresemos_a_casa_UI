@@ -1,7 +1,8 @@
 import React from "react";
+import { ResourceTemplate } from "../../../../../../components/templates/Resoruce-template/ResourceTemplate";
 
 const ResourcesEditAdminPage = () => {
-  return <div>Resources page</div>;
+  return <ResourceTemplate />;
 };
 
 export default ResourcesEditAdminPage;
