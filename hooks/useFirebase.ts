@@ -1,4 +1,4 @@
-import { initializeApp } from "firebase/app";
+import { initializeApp, getApps } from "firebase/app";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -10,11 +10,11 @@ const firebaseConfig = {
   storageBucket: "photoperfilusers-6768e.appspot.com",
   messagingSenderId: "1076936385065",
   appId: "1:1076936385065:web:6ae560d78dd030a3beb238",
-  measurementId: "G-9EJCPWXWN4"
+  measurementId: "G-9EJCPWXWN4",
 };
 
-const app = initializeApp(firebaseConfig);
-export const storage = getStorage(app);
+const app = !getApps().length ? initializeApp(firebaseConfig) : getApps()[0];
+const storage = getStorage(app);
 
 export async function uploadFile(file: File, id: string) {
   const storageRef = ref(storage, `users/${id}/profile-image`);
