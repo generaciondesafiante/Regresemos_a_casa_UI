@@ -1,0 +1,16 @@
+.container__back {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  font-size: var(--fontSize-buttons_mobile);
+  transition: var(--transition);
+}
+
+.container__back:hover {
+  cursor: pointer;
+}
+
+.container__back-hover {
+  color: var(--hoverColor); 
+}

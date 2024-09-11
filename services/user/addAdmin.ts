@@ -1,5 +1,4 @@
 export const addAdmin = async (email: string, id: string, admin: boolean) => {
-  console.log(email, id);
   try {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/user/addAdmin/${id}`,

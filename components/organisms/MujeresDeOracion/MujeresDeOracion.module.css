@@ -80,7 +80,7 @@
 
 .mujeresDeOracion-line {
   width: 80%;
-  height: 1px;
+  height:0.063rem;
   background-color: var(--darkGrayGradient);
 }
 
