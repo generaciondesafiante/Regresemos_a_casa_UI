@@ -5,7 +5,6 @@ import { FacebookIcon } from "../../atoms/icons/home/SocialNetworkIcon/FacebookS
 import { InstagramIcon } from "../../atoms/icons/home/SocialNetworkIcon/InstagramIcon";
 import { YoutubeIcon } from "../../atoms/icons/home/SocialNetworkIcon/YoutubeIcon";
 import styles from "./Home.module.css";
-import blockedRoutes from "../../../feature/BlockedRoutesPublicsFeatureFlags/getEnabledRoutesPublics";
 
 export const Home = () => {
   const bePart = [
