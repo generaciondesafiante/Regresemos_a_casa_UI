@@ -5,36 +5,22 @@ import IconSearch from "../../atoms/SearchBar/SearchBar";
 
 interface SearchBarProps {
   placeholder?: string;
-  onSearch: (query: string) => void;
+  setSearchQuery: (query: string) => void;
 }
 
 export const SearchBar: React.FC<SearchBarProps> = ({
   placeholder = "Buscar...",
-  onSearch,
+  setSearchQuery,
 }) => {
-  const [query, setQuery] = useState("");
-
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(event.target.value);
-  };
-
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter") {
-      onSearch(query);
-    }
-  };
-
-  const handleSearchClick = () => {
-    onSearch(query);
+    setSearchQuery(event.target.value); // Actualiza la búsqueda a medida que se escribe
   };
 
   return (
     <div className={styles.searchBar}>
       <input
         type="text"
-        value={query}
         onChange={handleInputChange}
-        onKeyDown={handleKeyDown}
         placeholder={placeholder}
         className={styles.searchInput}
       />
