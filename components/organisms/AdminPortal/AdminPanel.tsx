@@ -17,8 +17,10 @@ import { Course } from "../../../types/types/course.types";
 import styles from "./AdminPanel.module.css";
 import { useAppDispatch, useAppSelector } from "../../../store/store";
 import { fetchAdmins } from "../../../store/slices/allAdminsSlice";
+import { fetchResourcesData } from "../../../services/resources/resources";
+import { allResources } from "../../../store/slices/resourcesByRol";
 
-export const AdminPanel = async () => {
+export const AdminPanel = () => {
   const { data: session } = useSession();
   const userId = session?.user?.uid || "";
   const dispatch = useAppDispatch();
@@ -42,6 +44,11 @@ export const AdminPanel = async () => {
         const coursesData = await fetchCoursesData();
         if (coursesData) {
           setAllCourses(coursesData.slice(0, 4));
+        }
+
+        const resourceData = await fetchResourcesData(userId);
+        if (resourceData) {
+          dispatch(allResources(resourceData.resources));
         }
       } catch (error) {
         console.error("Error fetching data:", error);

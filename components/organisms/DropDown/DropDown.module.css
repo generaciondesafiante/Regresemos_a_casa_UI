@@ -1,0 +1,59 @@
+/* Contenedor del dropdown */
+.dropdown-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* Botón con la flecha */
+  .dropdown-toggle {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 5px;
+  }
+  
+  .arrow {
+    font-size: 18px;
+  }
+  
+  /* Menú emergente */
+  .dropdown-menu {
+    position: absolute;
+    background-color: white;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    min-width: 160px;
+    z-index: 1;
+    border-radius: 4px;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  
+  /* Cuando el dropdown está abierto */
+  .open {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Estilos para cada opción del dropdown */
+  .dropdown-item {
+    padding: 10px 15px;
+    cursor: pointer;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .container__colums1{
+    display: flex;
+  }
+
+  .no-data-message {
+    width: 100%;
+    text-align: center;
+    color: #888; /* Cambia el color según tus necesidades */
+    padding: 20px;
+    font-size: 16px; /* Tamaño de fuente ajustable */
+  }

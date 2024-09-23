@@ -12,9 +12,21 @@
   padding: 0.5rem;
   text-align: center;
 }
+.dynamicTable td {
+  text-align: start;
+}
 
 .container__colums {
   background-color: var(--grayGradient);
+}
+.link__button {
+  text-decoration: none;
+}
+.action__button {
+  background-color: var(--darkBlue);
+  color: var(--white);
+  display: flex;
+  gap: 0.5rem;
 }
 
 .pagination {

@@ -8,7 +8,6 @@ export const TypeResource = () => {
     (state) => state.resource.selectedResource
   );
   const resourceType = selectedResourceTopic?._id.typeResource;
- 
   if (resourceType === "video") {
     return (
       <>

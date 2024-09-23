@@ -1,14 +1,20 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Swal from "sweetalert2";
-import styles from "./AddResource.module.css";
+import styles from "./AddOrEditResource.module.css";
 import { Button, Input } from "../../atoms";
 import { uploadResourceAndThumbnail } from "../../../hooks/useFirebaseCreateResource";
 import { addResource } from "../../../services/resources/createResource";
 import { useSession } from "next-auth/react";
+import { useParams, useRouter } from "next/navigation";
+import { useAppSelector } from "../../../store/store";
+import { Resource } from "../../../types/types/Resources";
+import { aditResource } from "../../../services/resources/editResource";
 
 export const AddResource = () => {
   const { data: session } = useSession();
+  const { idResource } = useParams();
+  const rotuer = useRouter();
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [resourceType, setResourceType] = useState<string>("tipo de recurso");
@@ -20,6 +26,21 @@ export const AddResource = () => {
     useState<File | null>(null);
   const resourceFileInputRef = useRef<HTMLInputElement | null>(null);
   const thumbnailFileInputRef = useRef<HTMLInputElement | null>(null);
+
+  const infoEditResource: Resource | null = useAppSelector(
+    (state) => state.resourceEditAdmin.resourceEditAdmin
+  );
+
+  useEffect(() => {
+    if (idResource && infoEditResource) {
+      if (infoEditResource._id === idResource) {
+        setTitle(infoEditResource.title || "");
+        setDescription(infoEditResource.description || "");
+        setResourceType(infoEditResource.typeResource || "tipo de recurso");
+        setVisibility(infoEditResource.visibility || "public");
+      }
+    }
+  }, [idResource, infoEditResource]);
 
   const handleResourceFileButtonClick = () => {
     if (resourceFileInputRef.current) {
@@ -51,14 +72,43 @@ export const AddResource = () => {
     }
   };
 
+  const hasChanges = () => {
+    return (
+      title !== infoEditResource?.title ||
+      description !== infoEditResource?.description ||
+      resourceType !== infoEditResource?.typeResource ||
+      visibility !== infoEditResource?.visibility ||
+      (selectedResourceFile !== null &&
+        selectedResourceFile.name !== infoEditResource?.resourceUrl) ||
+      (selectedThumbnailFile !== null &&
+        selectedThumbnailFile.name !== infoEditResource?.miniaturaUrl)
+    );
+  };
+
   const isFormValid = () => {
     return (
       title.trim() !== "" &&
       description.trim() !== "" &&
-      resourceType !== "" &&
+      resourceType !== "tipo de recurso" &&
       visibility !== "" &&
-      selectedResourceFile !== null
+      (selectedResourceFile !== null || (infoEditResource && idResource))
     );
+  };
+
+  const resetForm = () => {
+    setTitle("");
+    setDescription("");
+    setResourceType("video");
+    setVisibility("public");
+    setSelectedResourceFile(null);
+    setSelectedThumbnailFile(null);
+
+    if (resourceFileInputRef.current) {
+      resourceFileInputRef.current.value = "";
+    }
+    if (thumbnailFileInputRef.current) {
+      thumbnailFileInputRef.current.value = "";
+    }
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -104,7 +154,7 @@ export const AddResource = () => {
       return;
     }
 
-    if (selectedResourceFile) {
+    if (selectedResourceFile && selectedThumbnailFile) {
       Swal.fire({
         title: "¿Estás seguro?",
         text: "Vas a guardar este recurso",
@@ -121,9 +171,9 @@ export const AddResource = () => {
                 selectedThumbnailFile,
                 title
               );
-            
+
             const response = await addResource(
-              userId, 
+              userId,
               resourceUrl,
               title,
               description,
@@ -131,8 +181,7 @@ export const AddResource = () => {
               visibility,
               thumbnailUrl || ""
             );
-        
-            if (response.status === 200) {
+            if (response.status === 201) {
               Swal.fire(
                 "¡Éxito!",
                 "El recurso se ha creado correctamente.",
@@ -151,6 +200,7 @@ export const AddResource = () => {
               if (thumbnailFileInputRef.current) {
                 thumbnailFileInputRef.current.value = "";
               }
+              resetForm();
             } else {
               Swal.fire(
                 "Error",
@@ -167,25 +217,98 @@ export const AddResource = () => {
           }
         }
       });
-    } else {
-      Swal.fire(
-        "Error",
-        "No se ha seleccionado ningún archivo de recurso",
-        "error"
-      );
+    }
+    const idResourceString = Array.isArray(idResource)
+      ? idResource[0]
+      : idResource;
+    if (infoEditResource && idResourceString && hasChanges()) {
+      Swal.fire({
+        title: "¿Estás seguro?",
+        text: "Vas a editar este recurso",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Sí, editar",
+        cancelButtonText: "Cancelar",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          try {
+            let resourceUrl = infoEditResource.resourceUrl;
+            let thumbnailUrl = infoEditResource.miniaturaUrl || "";
+
+            if (selectedResourceFile && selectedThumbnailFile) {
+              const uploadResult = await uploadResourceAndThumbnail(
+                selectedResourceFile,
+                selectedThumbnailFile,
+                title
+              );
+              resourceUrl = uploadResult.resourceUrl;
+              thumbnailUrl = uploadResult.thumbnailUrl || "";
+            }
+
+            const resourceData = {
+              resourceUrl,
+              title,
+              description,
+              typeResource: resourceType,
+              visibility,
+              miniaturaUrl: thumbnailUrl,
+            };
+
+            const response = await aditResource(
+              userId,
+              idResourceString,
+              resourceData
+            );
+            if (response.status === 200) {
+              Swal.fire(
+                "¡Éxito!",
+                "El recurso se ha editado correctamente.",
+                "success"
+              );
+              setTitle("");
+              setDescription("");
+              setResourceType("video");
+              setVisibility("public");
+              setSelectedResourceFile(null);
+              setSelectedThumbnailFile(null);
+
+              if (resourceFileInputRef.current) {
+                resourceFileInputRef.current.value = "";
+              }
+              if (thumbnailFileInputRef.current) {
+                thumbnailFileInputRef.current.value = "";
+              }
+              resetForm();
+            } else {
+              Swal.fire(
+                "Error",
+                "Hubo un problema al editar el recurso.",
+                "error"
+              );
+            }
+          } catch (error) {
+            Swal.fire(
+              "Error",
+              "Hubo un problema al subir o editar el recurso.",
+              "error"
+            );
+          }
+        }
+      });
     }
   };
 
   return (
     <main>
-      <h2 className={styles["title__addResource"]}>Agregar recurso</h2>
+      <h2 className={styles["title__addResource"]}>
+        {infoEditResource && idResource ? "Editar recurso" : "Agregar recurso"}
+      </h2>
       <form onSubmit={handleSubmit} className={styles.form}>
         <Input
           label="Título"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           type="text"
-          isRequire={true}
           placeholder=""
           labelColor="var(--white)"
           inputColor="var(--white)"
@@ -196,7 +319,6 @@ export const AddResource = () => {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           type="textArea"
-          isRequire={true}
           placeholder=""
           labelColor="var(--white)"
           inputColor="var(--white)"
@@ -252,9 +374,16 @@ export const AddResource = () => {
             onClick={handleResourceFileButtonClick}
             className={styles["button__file--input"]}
           >
-            <label className={styles["label-button__file--input"]}>
-              Selecciona tu recurso
-            </label>
+            {infoEditResource && idResource ? (
+              <label className={styles["label-button__file--input"]}>
+                Editar Recurso
+              </label>
+            ) : (
+              <label className={styles["label-button__file--input"]}>
+                Selecciona tu recurso
+              </label>
+            )}
+
             <input
               type="file"
               accept="*/*"
@@ -264,10 +393,16 @@ export const AddResource = () => {
               onChange={handleResourceFileChange}
             />
           </Button>
-          {selectedResourceFile && (
+          {infoEditResource && idResource ? (
             <span className={styles["name__file--select"]}>
-              {selectedResourceFile.name}
+              {infoEditResource.resourceUrl}
             </span>
+          ) : (
+            selectedResourceFile && (
+              <span className={styles["name__file--select"]}>
+                {selectedResourceFile.name}
+              </span>
+            )
           )}
         </div>
 
@@ -276,9 +411,16 @@ export const AddResource = () => {
             onClick={handleThumbnailFileButtonClick}
             className={styles["button__file--input"]}
           >
-            <label className={styles["label-button__file--input"]}>
-              Seleccionar miniatura
-            </label>
+            {infoEditResource && idResource ? (
+              <label className={styles["label-button__file--input"]}>
+                Editar Miniatura
+              </label>
+            ) : (
+              <label className={styles["label-button__file--input"]}>
+                Seleccionar Miniatura
+              </label>
+            )}
+
             <input
               type="file"
               accept="image/*"
@@ -288,21 +430,37 @@ export const AddResource = () => {
               onChange={handleThumbnailFileChange}
             />
           </Button>
-          {selectedThumbnailFile && (
+          {infoEditResource && idResource ? (
             <div className={styles["thumbnail-preview"]}>
               <img
-                src={URL.createObjectURL(selectedThumbnailFile)}
+                src={infoEditResource.miniaturaUrl}
                 alt="Vista previa de la miniatura"
                 className={styles["thumbnail-image"]}
               />
             </div>
+          ) : (
+            selectedThumbnailFile && (
+              <div className={styles["thumbnail-preview"]}>
+                <img
+                  src={URL.createObjectURL(selectedThumbnailFile)}
+                  alt="Vista previa de la miniatura"
+                  className={styles["thumbnail-image"]}
+                />
+              </div>
+            )
           )}
         </div>
 
         <div className={styles["container__buttons--actions"]}>
-          <Button className={styles["button__action"]}>Cancelar</Button>
-          <Button type="submit" disabled={!isFormValid()}>
-            Guardar
+          <Button
+            type="button"
+            className={styles["button__action"]}
+            onClick={() => rotuer.back()}
+          >
+            Cancelar
+          </Button>
+          <Button type="submit" disabled={!isFormValid() || !hasChanges()}>
+            {infoEditResource && idResource ? "Actualizar Recurso" : "Guardar"}
           </Button>
         </div>
       </form>

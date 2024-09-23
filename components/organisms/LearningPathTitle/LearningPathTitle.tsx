@@ -13,6 +13,7 @@ export const LearningPathTitleClass: FC = () => {
   const infoSelectedLesson = useAppSelector(
     (state) => state.resource.selectedResource?._id
   );
+
   return (
     <div className={styles["learningPathTitleClass-container"]}>
       <div className={styles["containerBackReturnTopics"]}>
@@ -30,9 +31,11 @@ export const LearningPathTitleClass: FC = () => {
       <div className={styles["learningPathTitleClass-line"]}></div>
       <h2 className={styles["learningPathTitleClass-title"]}>
         {infoSelectedLesson?.title}
+        hola
       </h2>
       <div className={styles["learningPathTitleClass-subcontent"]}>
         <p> {infoSelectedLesson?.description}</p>
+        hole
       </div>
     </div>
   );

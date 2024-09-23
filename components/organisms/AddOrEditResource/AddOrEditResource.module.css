@@ -99,6 +99,7 @@
   width: 130%;
   height: 14.375rem;
   border-radius: var(--borderRadius);
+  color: var(--white);
 }
 
 .container__buttons--actions {

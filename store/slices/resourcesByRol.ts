@@ -7,16 +7,12 @@ interface GroupedResources {
   restrictedIncourse: Resource[];
 }
 
-interface ResourcesState {
-  Resources: GroupedResources | null;
-}
-
-const persistedResources =
-  typeof window !== "undefined" ? localStorage.getItem("Resources") : null;
-const initialState: ResourcesState = {
-  Resources: persistedResources
-    ? JSON.parse(persistedResources)
-    : { public: [], private: [], restrictedIncourse: [] },
+const initialState: { Resources: GroupedResources } = {
+  Resources: {
+    public: [],
+    private: [],
+    restrictedIncourse: [],
+  },
 };
 
 const resourcesSlice = createSlice({
@@ -31,7 +27,8 @@ const resourcesSlice = createSlice({
       };
 
       action.payload.forEach((resource) => {
-        switch (resource._id.visibility) {
+        // Accediendo a la propiedad visibility dentro de _id
+        switch (resource.visibility) {
           case "public":
             groupedResources.public.push(resource);
             break;
@@ -40,6 +37,8 @@ const resourcesSlice = createSlice({
             break;
           case "restrictedIncourse":
             groupedResources.restrictedIncourse.push(resource);
+            break;
+          default:
             break;
         }
       });

@@ -28,7 +28,6 @@ export const LearningPathVideo = () => {
   );
 
   const userInformation = useAppSelector((state) => state.user.userInfo);
-
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVideoReady(true);
@@ -76,7 +75,7 @@ export const LearningPathVideo = () => {
           session.user.uid,
           selectedCourse._id,
           selectedTopic._id,
-          selectedResourceTopic._id
+          selectedResourceTopic
         );
       }
     }
@@ -89,7 +88,7 @@ export const LearningPathVideo = () => {
   const handleNextVideoClick = () => {
     if (selectedTopic && selectedResourceTopic) {
       const currentLessonIndex = selectedTopic.resources.findIndex(
-        (resource) => resource._id._id === selectedResourceTopic._id
+        (resource) => resource._id === selectedResourceTopic
       );
       if (
         currentLessonIndex !== -1 &&
@@ -113,7 +112,7 @@ export const LearningPathVideo = () => {
 
           router.push(
             `/dashboard/courses/${nameCourse}/${selectedCourse?._id}/${
-              nextResourceFull._id._id
+              nextResourceFull._id
             }/${nameTopic}/${currentLessonIndex + 2}`
           );
         }
@@ -123,7 +122,7 @@ export const LearningPathVideo = () => {
 
   const currentResourceIndex =
     selectedTopic?.resources.findIndex(
-      (resource) => resource._id._id === selectedResourceTopic?._id
+      (resource) => resource._id === selectedResourceTopic
     ) ?? -1;
 
   return (
@@ -139,7 +138,7 @@ export const LearningPathVideo = () => {
       handleProgress={handleProgress}
       videoProgress={videoProgress}
       typeOfRouteCourse={selectedCourse?.typeOfRoute}
-      userProgressCourse={userInformation?.CourseProgress[0]}
+      userProgressCourse={userInformation?.CourseProgress}
       currentResourceIndex={currentResourceIndex}
       selectedTopic={selectedTopic}
     />

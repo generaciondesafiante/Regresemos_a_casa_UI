@@ -1,9 +1,9 @@
-import { Resource } from "./Resources";
+import { Resource, ResourceOfCourse } from "./Resources";
 
 export interface Topic {
   _id: string;
   nameTopic: string;
-  resources: Resource[]; 
+  resources: ResourceOfCourse[];
 }
 
 export interface Topic1 {

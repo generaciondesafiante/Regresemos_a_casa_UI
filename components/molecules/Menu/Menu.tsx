@@ -24,7 +24,6 @@ const normalizePathName = (path: string) => {
 export const Menu: React.FC = () => {
   const pathName = usePathname();
   const normalizedPathName = normalizePathName(pathName);
-  console.log(normalizedPathName);
   const [subMenuVisibility, setSubMenuVisibility] = useState<SubMenuVisibility>(
     {}
   );

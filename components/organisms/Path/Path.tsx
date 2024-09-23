@@ -62,7 +62,7 @@ export const Path = () => {
           return topicIndex === 0;
         }
 
-        // Check if the current topic index is less than or equal to the last viewed index + 1
+        // Check if the current topic index is less than or equal to the last viewed index + 2
         return topicIndex <= lastViewedTopicIndex + 2;
       } else {
         // If there is no course progress, unlock the first topic
@@ -91,7 +91,6 @@ export const Path = () => {
     if (resource) {
       dispatch(selectedResource(resource));
     }
-
     dispatch(selectTopic(topic));
     router.push(url);
   };
