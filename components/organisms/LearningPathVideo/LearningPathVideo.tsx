@@ -7,6 +7,7 @@ import { selectedResource } from "../../../store/slices/ResourceSlice";
 import { useSession } from "next-auth/react";
 import { fetchCoursesProgress } from "../../../services/user/CourseProgress";
 import { useRouter } from "next/navigation";
+import { ResourceOfCourse } from "../../../types/types/Resources";
 
 export const LearningPathVideo = () => {
   const dispatch = useDispatch();
@@ -22,14 +23,25 @@ export const LearningPathVideo = () => {
     (state) => state.courses.selectedCourse
   );
   const selectedTopic = useAppSelector((state) => state.topics.selectedTopic);
-  console.log(selectedTopic);
 
-  const selectedResourceTopic = useAppSelector((state) => {
-    const resource = state.resource.selectedResource;
-    return typeof resource?._id === "string" ? resource._id : resource?._id._id;
-  });
+  const selectedResourceTopic = useAppSelector(
+    (state) => state.resource.selectedResource
+  );
 
-  console.log(selectedResourceTopic);
+  const isResourceObject = (
+    resource: any
+  ): resource is ResourceOfCourse["_id"] => {
+    return (
+      resource && typeof resource === "object" && "typeResource" in resource
+    );
+  };
+
+  const resourceData = isResourceObject(selectedResourceTopic?._id)
+    ? selectedResourceTopic?._id
+    : undefined;
+
+  console.log(resourceData?._id);
+
   const userInformation = useAppSelector((state) => state.user.userInfo);
 
   useEffect(() => {
@@ -79,7 +91,7 @@ export const LearningPathVideo = () => {
           session.user.uid,
           selectedCourse._id,
           selectedTopic._id,
-          selectedResourceTopic
+          resourceData?._id || ""
         );
       }
     }
@@ -92,7 +104,7 @@ export const LearningPathVideo = () => {
   const handleNextVideoClick = () => {
     if (selectedTopic && selectedResourceTopic) {
       const currentLessonIndex = selectedTopic.resources.findIndex(
-        (resource) => resource._id === selectedResourceTopic
+        (resource) => resource._id === resourceData?._id
       );
       if (
         currentLessonIndex !== -1 &&
@@ -126,13 +138,13 @@ export const LearningPathVideo = () => {
 
   const currentResourceIndex =
     selectedTopic?.resources.findIndex(
-      (resource) => resource._id === selectedResourceTopic
+      (resource) => resource._id === resourceData?._id
     ) ?? -1;
 
   return (
     <LearningPahtVideoComponent
       isVideoReady={isVideoReady}
-      selectedResource={selectedResourceTopic}
+      selectedResource={resourceData}
       handleDuration={handleDuration}
       getFormattedDuration={getFormattedDuration}
       userRating={userRating}
