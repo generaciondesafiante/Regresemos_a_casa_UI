@@ -52,9 +52,6 @@ export const LearningPahtVideoComponent: FC<
   const router = useRouter();
   const params = useParams();
 
-  console.log("selected resource", selectedResource);
-  console.log("selected topic", selectedTopic);
-
   useEffect(() => {
     const currentResourceIndex = selectedTopic?.resources?.findIndex(
       (resource: any) => resource?._id === selectedResource?._id

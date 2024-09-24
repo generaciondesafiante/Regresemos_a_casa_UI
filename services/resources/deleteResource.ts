@@ -1,5 +1,4 @@
 export const deleteResource = async (userId: string, idResource: string) => {
-  console.log(userId, idResource);
   try {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/resources/deleteResource/${userId}/${idResource}`,
@@ -12,7 +11,6 @@ export const deleteResource = async (userId: string, idResource: string) => {
     );
 
     const responseData = await response.json();
-    console.log(responseData);
     if (!response.ok) {
       return {
         status: response.status,

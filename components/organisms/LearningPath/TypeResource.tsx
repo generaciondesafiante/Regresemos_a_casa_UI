@@ -9,8 +9,6 @@ export const TypeResource = () => {
     (state) => state.resource.selectedResource
   );
 
-  console.log("Selected Resource Topic:", selectedResourceTopic);
-
   const isResourceObject = (
     resource: any
   ): resource is ResourceOfCourse["_id"] => {
@@ -19,7 +17,6 @@ export const TypeResource = () => {
     );
   };
 
-  // Solo accede a `typeResource` si `selectedResourceTopic?._id` es un objeto con `typeResource`
   const resourceType = isResourceObject(selectedResourceTopic?._id)
     ? selectedResourceTopic?._id.typeResource
     : undefined;

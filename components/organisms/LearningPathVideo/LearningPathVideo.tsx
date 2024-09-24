@@ -40,8 +40,6 @@ export const LearningPathVideo = () => {
     ? selectedResourceTopic?._id
     : undefined;
 
-  console.log(resourceData?._id);
-
   const userInformation = useAppSelector((state) => state.user.userInfo);
 
   useEffect(() => {
