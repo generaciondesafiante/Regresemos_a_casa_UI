@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import styles from "./Dropdown.module.css"; 
+import styles from "./DropDown.module.css";
 
 interface DropdownProps {
   options: string[];
@@ -21,11 +21,10 @@ export const Dropdown: React.FC<DropdownProps> = ({
 
   const handleOptionClick = (option: string) => {
     onChange(option);
-    setIsOpen(false); 
+    setIsOpen(false);
   };
   return (
     <>
-      {/* Fondo oscuro detrás del modal */}
       {isOpen && (
         <div
           className={`${styles["modal-backdrop"]} ${
@@ -36,13 +35,10 @@ export const Dropdown: React.FC<DropdownProps> = ({
       )}
 
       <div className={styles["dropdown-container"]}>
-        {/* Botón que muestra el valor seleccionado o una indicación para seleccionar */}
         <button className={styles["dropdown-toggle"]} onClick={toggleDropdown}>
-          {/* {selectedValue ? selectedValue : "Selecciona"}{" "} */}
           <span className={styles["arrow"]}>&#9662;</span>
         </button>
 
-        {/* Menú emergente como modal */}
         {isOpen && (
           <div
             className={`${styles["dropdown-menu"]} ${
