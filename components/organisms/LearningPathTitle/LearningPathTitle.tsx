@@ -11,8 +11,13 @@ export const LearningPathTitleClass: FC = () => {
 
   const selectedTopic = useAppSelector((state) => state.topics.selectedTopic);
   const infoSelectedLesson = useAppSelector(
-    (state) => state.resource.selectedResource?._id
+    (state) => state.resource.selectedResource
   );
+
+  const dataSelectedLesson =
+    infoSelectedLesson && typeof infoSelectedLesson._id === "object"
+      ? infoSelectedLesson._id
+      : undefined;
 
   return (
     <div className={styles["learningPathTitleClass-container"]}>
@@ -30,12 +35,10 @@ export const LearningPathTitleClass: FC = () => {
       </p>
       <div className={styles["learningPathTitleClass-line"]}></div>
       <h2 className={styles["learningPathTitleClass-title"]}>
-        {infoSelectedLesson?.title}
-        hola
+        {dataSelectedLesson?.title}
       </h2>
       <div className={styles["learningPathTitleClass-subcontent"]}>
-        <p> {infoSelectedLesson?.description}</p>
-        hole
+        <p> {dataSelectedLesson?.description}</p>
       </div>
     </div>
   );

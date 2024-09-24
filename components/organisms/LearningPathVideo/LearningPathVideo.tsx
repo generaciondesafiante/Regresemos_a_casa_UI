@@ -22,12 +22,16 @@ export const LearningPathVideo = () => {
     (state) => state.courses.selectedCourse
   );
   const selectedTopic = useAppSelector((state) => state.topics.selectedTopic);
+  console.log(selectedTopic);
 
-  const selectedResourceTopic = useAppSelector(
-    (state) => state.resource.selectedResource?._id
-  );
+  const selectedResourceTopic = useAppSelector((state) => {
+    const resource = state.resource.selectedResource;
+    return typeof resource?._id === "string" ? resource._id : resource?._id._id;
+  });
 
+  console.log(selectedResourceTopic);
   const userInformation = useAppSelector((state) => state.user.userInfo);
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVideoReady(true);

@@ -52,14 +52,17 @@ export const LearningPahtVideoComponent: FC<
   const router = useRouter();
   const params = useParams();
 
+  console.log("selected resource", selectedResource);
+  console.log("selected topic", selectedTopic);
+
   useEffect(() => {
     const currentResourceIndex = selectedTopic?.resources?.findIndex(
-      (resource: any) => resource?._id?._id === selectedResource?._id
+      (resource: any) => resource?._id === selectedResource?._id
     );
 
     const lastViewedResourceIndex = selectedTopic?.resources?.findIndex(
       (resource: any) =>
-        resource?._id?._id ===
+        resource?._id ===
         userProgressCourse?.lastViewedTopic?.topic?.[0]?.lastViewedResource?._id
     );
 
@@ -91,7 +94,7 @@ export const LearningPahtVideoComponent: FC<
 
   const handleNextButtonClick = () => {
     const currentResourceIndex = selectedTopic?.resources?.findIndex(
-      (resource: any) => resource._id._id === selectedResource?._id
+      (resource: any) => resource._id === selectedResource?._id
     );
     const totalResources = selectedTopic?.resources?.length;
 
