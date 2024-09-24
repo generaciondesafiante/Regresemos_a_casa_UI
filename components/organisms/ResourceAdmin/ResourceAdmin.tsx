@@ -37,18 +37,16 @@ export const ResourceAdmin = () => {
 
   const [resources, setresources] = useState([]);
   const [originalResources, setOriginalResources] = useState([]);
-
-  console.log(originalResources);
-  function handleSearch(query: string): void {
-    throw new Error("Function not implemented.");
-  }
+  const [selectedDropdownValues, setSelectedDropdownValues] = useState<{
+    [key: string]: string;
+  }>({});
 
   useEffect(() => {
     const dataResource = async () => {
       if (userId) {
         const data = await fetchResourcesData(userId);
-        setresources(data.resources); // Establecer recursos filtrados inicialmente
-        setOriginalResources(data.resources); // Almacenar todos los recursos
+        setresources(data.resources);
+        setOriginalResources(data.resources);
       }
     };
     dataResource();
@@ -70,8 +68,7 @@ export const ResourceAdmin = () => {
 
   const handleDropdownChange = (value: string) => {
     if (value === "todos") {
-      // Cuando seleccionamos "todos", recargamos los recursos originales
-      setresources(originalResources); // `originalResources` debe contener los recursos sin filtrar
+      setresources(originalResources);
     } else {
       const resourcesDropDown = originalResources.filter(
         (resource: any) => resource.typeResource === value

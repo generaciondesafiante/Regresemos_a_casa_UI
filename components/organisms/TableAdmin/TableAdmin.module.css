@@ -1,5 +1,4 @@
 .dynamicTable {
-  /* border-radius: 0.5rem; */
   width: 100%;
   margin-top: 1rem;
   border-collapse: collapse;
@@ -19,6 +18,14 @@
 .container__colums {
   background-color: var(--grayGradient);
 }
+
+.header__with-dropdown {
+  display: flex;
+  align-items: center; 
+  justify-content: center; 
+  gap: 0.5rem; 
+}
+
 .link__button {
   text-decoration: none;
 }
@@ -27,6 +34,11 @@
   color: var(--white);
   display: flex;
   gap: 0.5rem;
+}
+
+.action__button:hover {
+  background-color: var(--yellow);
+  color: var(--darkBlue);
 }
 
 .pagination {

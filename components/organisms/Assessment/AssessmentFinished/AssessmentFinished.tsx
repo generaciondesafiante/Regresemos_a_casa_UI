@@ -45,7 +45,6 @@ export const AssessmentFinished: FC<AssessmentFinishedProps> = ({
 
     if (nextLesson) {
       router.push(
-        // `/dashboard/courses/${selectedCourse?.nameCourse}}/${selectedCourse?._id}/${nextLesson?.videoId}/${selectedTopic?.topicName}/${nextLesson.sequentialLesson}`
         "/dashboard"
       );
     } else {

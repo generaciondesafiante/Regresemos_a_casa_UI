@@ -10,11 +10,14 @@ import { useParams, useRouter } from "next/navigation";
 import { useAppSelector } from "../../../store/store";
 import { Resource } from "../../../types/types/Resources";
 import { aditResource } from "../../../services/resources/editResource";
+import AddCircleIcon from "../../atoms/icons/adminPanel/AddCircleIcon";
+import IconDeleteBin6Fill from "../../atoms/icons/deleteIcon/DeleteIcon";
+import { deleteResource } from "../../../services/resources/deleteResource";
 
 export const AddResource = () => {
   const { data: session } = useSession();
   const { idResource } = useParams();
-  const rotuer = useRouter();
+  const router = useRouter();
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [resourceType, setResourceType] = useState<string>("tipo de recurso");
@@ -281,9 +284,9 @@ export const AddResource = () => {
               resetForm();
             } else {
               Swal.fire(
-                "Error",
-                "Hubo un problema al editar el recurso.",
-                "error"
+                "¡Éxito!",
+                "El recurso se ha eliminado correctamente.",
+                "success"
               );
             }
           } catch (error) {
@@ -292,10 +295,57 @@ export const AddResource = () => {
               "Hubo un problema al subir o editar el recurso.",
               "error"
             );
+            return;
           }
         }
       });
     }
+  };
+
+  const handleDeleteResource = async () => {
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: "No podrás revertir esta acción",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí, eliminar",
+      cancelButtonText: "Cancelar",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        if (idResource && session?.user?.uid) {
+          try {
+            const deleteData = await deleteResource(
+              session?.user?.uid || "",
+              idResource.toString()
+            );
+            if (deleteData.status === 200) {
+              Swal.fire(
+                "¡Eliminado!",
+                "El recurso ha sido eliminado exitosamente.",
+                "success"
+              );
+            }
+            return router.push("/dashboard/adminPanel/resources");
+          } catch (error) {
+            Swal.fire(
+              "Error",
+              "Ocurrió un error al intentar eliminar el recurso.",
+              "error"
+            );
+          }
+        } else {
+          Swal.fire(
+            "Error",
+            "La información requerida para eliminar el recurso no es suficiente.",
+            "error"
+          );
+        }
+      } else {
+        Swal.fire("Cancelado", "El recurso no fue eliminado", "info");
+      }
+    });
   };
 
   return (
@@ -454,13 +504,32 @@ export const AddResource = () => {
         <div className={styles["container__buttons--actions"]}>
           <Button
             type="button"
-            className={styles["button__action"]}
-            onClick={() => rotuer.back()}
+            className={styles["button__action--delete"]}
+            onClick={() => router.back()}
           >
             Cancelar
           </Button>
-          <Button type="submit" disabled={!isFormValid() || !hasChanges()}>
+
+          {infoEditResource && idResource ? (
+            <Button
+              type="button"
+              className={styles["button__action--delete"]}
+              onClick={() => handleDeleteResource()}
+            >
+              Eliminar
+              <IconDeleteBin6Fill
+                className={styles["addAdmin__icon--delete"]}
+              />
+            </Button>
+          ) : null}
+
+          <Button
+            type="submit"
+            disabled={!isFormValid() || !hasChanges()}
+            className={styles["button__action--save"]}
+          >
             {infoEditResource && idResource ? "Actualizar Recurso" : "Guardar"}
+            <AddCircleIcon className={styles["addAdmin__icon"]} />
           </Button>
         </div>
       </form>

@@ -13,7 +13,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
   setSearchQuery,
 }) => {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(event.target.value); // Actualiza la búsqueda a medida que se escribe
+    setSearchQuery(event.target.value); 
   };
 
   return (

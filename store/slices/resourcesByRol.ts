@@ -27,7 +27,6 @@ const resourcesSlice = createSlice({
       };
 
       action.payload.forEach((resource) => {
-        // Accediendo a la propiedad visibility dentro de _id
         switch (resource.visibility) {
           case "public":
             groupedResources.public.push(resource);

@@ -36,10 +36,12 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
   dropdownColumnKey = "",
   onDropdownChange,
   onEdit,
-  noDataMessage= "No hay datos para mostrar en la tabla."
+  noDataMessage = "No hay datos para mostrar en la tabla.",
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
-
+  const [selectedDropdownValues, setSelectedDropdownValues] = useState<{
+    [key: string]: string;
+  }>({});
   const filteredRows = rows.filter((row) =>
     columns.some((column) =>
       String(row[column.key]).toLowerCase().includes(searchQuery.toLowerCase())
@@ -62,18 +64,30 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
       setCurrentPage(currentPage - 1);
     }
   };
+
+  const handleDropdownChange = (value: string, columnKey: any) => {
+    setSelectedDropdownValues((prev) => ({
+      ...prev,
+      [columnKey]: value,
+    }));
+    onDropdownChange?.(value, columnKey); 
+  };
+
   return (
     <div>
       <table className={styles["dynamicTable"]}>
         <thead className={styles["container__colums"]}>
           <tr className={styles["container__colums1"]}>
             {columns.map((column: any) => (
-              <th key={column.key}>
+              <th key={column.key} className="header__with-dropdown">
                 {column.label}
                 {column.key === dropdownColumnKey && (
                   <Dropdown
                     options={dropdownOptions}
-                    onChange={(value) => onDropdownChange?.(value, column.key)}
+                    onChange={(value) =>
+                      handleDropdownChange(value, column.key)
+                    } 
+                    selectedValue={selectedDropdownValues[column.key]}
                   />
                 )}
               </th>
@@ -87,7 +101,7 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
                 colSpan={columns.length}
                 className={styles["no-data-message"]}
               >
-                {noDataMessage} 
+                {noDataMessage}
               </td>
             </tr>
           ) : (

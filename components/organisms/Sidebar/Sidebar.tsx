@@ -13,7 +13,7 @@ import { FavoriteIcon } from "../../atoms/icons/sidebarIcons/FavoriteIcon";
 import { LogoutIcon } from "../../atoms/icons/sidebarIcons/LogoutIcon";
 import { AdminIcon } from "../../atoms/icons/sidebarIcons/AdminIcon";
 import { getEnabledRoutes } from "../../../feature/BlockedRoutesPrivateFeatureFlags/getEnabledRoutesPrivates";
-// Type Guard to ensure link is not null
+
 const isNonNullLink = (
   link: { name: string; href: string; icon: JSX.Element } | null
 ): link is { name: string; href: string; icon: JSX.Element } => {
