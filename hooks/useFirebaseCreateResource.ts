@@ -26,14 +26,13 @@ export async function uploadResourceAndThumbnail(
   thumbnailFile: File | null,
   resourceId: string
 ): Promise<{ resourceUrl: string; thumbnailUrl: string | null }> {
-  // Ruta para subir el archivo de recurso
   const resourceRef = ref(storage, `resources/${resourceId}/resource-file`);
   await uploadBytes(resourceRef, resourceFile);
   const resourceUrl = await getDownloadURL(resourceRef);
 
   let thumbnailUrl: string | null = null;
 
-  // Si hay una miniatura, subirla también
+  
   if (thumbnailFile) {
     const thumbnailRef = ref(storage, `resources/${resourceId}/thumbnail`);
     await uploadBytes(thumbnailRef, thumbnailFile);

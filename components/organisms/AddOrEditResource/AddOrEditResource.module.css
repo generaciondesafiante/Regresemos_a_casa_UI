@@ -99,6 +99,7 @@
   width: 130%;
   height: 14.375rem;
   border-radius: var(--borderRadius);
+  color: var(--white);
 }
 
 .container__buttons--actions {
@@ -109,11 +110,35 @@
   padding: 0.6rem;
 }
 
-.button__action {
+.button__action--save {
+  color: var(--darkBlue);
+  display: flex;
+  gap: 0.6rem;
+}
+
+.button__action--save:hover {
+  background-color: var(--yellow);
   color: var(--darkBlue);
 }
 
-.button__action:hover {
-  background-color: var(--white);
-  color: var(--turquoise);
+.button__action--save:disabled {
+  background-color: var(--gray);
+  color: var(--lightGray);
+  cursor: not-allowed;
+}
+
+.addAdmin__icon,
+.addAdmin__icon--delete {
+  width: 1.2rem;
+}
+
+.button__action--delete {
+  color: var(--darkBlue);
+  display: flex;
+  gap: 0.6rem;
+}
+
+.button__action--delete:hover {
+  color: var(--white);
+  background-color: var(--red);
 }

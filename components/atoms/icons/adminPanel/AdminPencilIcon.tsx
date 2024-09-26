@@ -1,4 +1,3 @@
-// icon:bxs-pencil | Boxicons https://boxicons.com/ | Atisa
 import * as React from "react";
 
 function AdminPencilIcon (props: React.SVGProps<SVGSVGElement>) {

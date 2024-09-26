@@ -1,0 +1,64 @@
+.dynamicTable {
+  width: 100%;
+  margin-top: 1rem;
+  border-collapse: collapse;
+  background-color: var(--white);
+}
+
+.dynamicTable td,
+.dynamicTable th {
+  border: 0.063rem solid var(--gray);
+  padding: 0.5rem;
+  text-align: center;
+}
+.dynamicTable td {
+  text-align: start;
+}
+
+.container__colums {
+  background-color: var(--grayGradient);
+}
+
+.header__with-dropdown {
+  display: flex;
+  align-items: center; 
+  justify-content: center; 
+  gap: 0.5rem; 
+}
+
+.link__button {
+  text-decoration: none;
+}
+.action__button {
+  background-color: var(--darkBlue);
+  color: var(--white);
+  display: flex;
+  gap: 0.5rem;
+}
+
+.action__button:hover {
+  background-color: var(--yellow);
+  color: var(--darkBlue);
+}
+
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 0.625rem;
+}
+
+.pagination__button {
+  background-color: transparent;
+  color: var(--white);
+  cursor: pointer;
+}
+
+.pagination__button:disabled {
+  color: var(--darkGray);
+  cursor: not-allowed;
+}
+
+.pagination__number {
+  color: var(--white);
+}

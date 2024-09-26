@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Resource } from "../../types/types/Resources";
+import { Resource, ResourceOfCourse } from "../../types/types/Resources";
 
 interface ResourceState {
-  selectedResource: Resource | null;
+  selectedResource: Resource | ResourceOfCourse | null;
 }
 
 const persistedResource =

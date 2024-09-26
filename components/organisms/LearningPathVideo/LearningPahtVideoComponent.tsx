@@ -51,27 +51,29 @@ export const LearningPahtVideoComponent: FC<
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const router = useRouter();
   const params = useParams();
-  
+
   useEffect(() => {
     const currentResourceIndex = selectedTopic?.resources?.findIndex(
-      (resource: any) => resource._id._id === selectedResource?._id
+      (resource: any) => resource?._id === selectedResource?._id
     );
-   
 
     const lastViewedResourceIndex = selectedTopic?.resources?.findIndex(
       (resource: any) =>
-        resource._id._id ===
-        userProgressCourse.lastViewedTopic.topic[0].lastViewedResource._id
+        resource?._id ===
+        userProgressCourse?.lastViewedTopic?.topic?.[0]?.lastViewedResource?._id
     );
 
-    
+    const validLastViewedIndex =
+      lastViewedResourceIndex !== undefined && lastViewedResourceIndex !== -1
+        ? lastViewedResourceIndex
+        : -1;
 
     if (typeOfRouteCourse === "flexible") {
       setIsButtonDisabled(false);
     } else if (typeOfRouteCourse === "strict") {
       if (
-        currentResourceIndex <= lastViewedResourceIndex ||
-        videoProgress >= 0.9
+        currentResourceIndex !== undefined &&
+        (currentResourceIndex <= validLastViewedIndex || videoProgress >= 0.9)
       ) {
         setIsButtonDisabled(false);
       } else {
@@ -89,7 +91,7 @@ export const LearningPahtVideoComponent: FC<
 
   const handleNextButtonClick = () => {
     const currentResourceIndex = selectedTopic?.resources?.findIndex(
-      (resource: any) => resource._id._id === selectedResource?._id
+      (resource: any) => resource._id === selectedResource?._id
     );
     const totalResources = selectedTopic?.resources?.length;
 

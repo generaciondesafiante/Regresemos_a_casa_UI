@@ -51,25 +51,20 @@ export const Path = () => {
       );
 
       if (courseProgress) {
-        // Ensure that lastViewedTopic.topic is an array of objects with a topicId property
         const lastViewedTopicIndex =
           courseProgress.lastViewedTopic.topic.findIndex(
             (t: any) => t.topicId === topic._id
           );
 
-        // If no topics are saved, unlock the first topic
         if (lastViewedTopicIndex + 1 === -1) {
           return topicIndex === 0;
         }
 
-        // Check if the current topic index is less than or equal to the last viewed index + 1
         return topicIndex <= lastViewedTopicIndex + 2;
       } else {
-        // If there is no course progress, unlock the first topic
         return selectedCourse?.typeOfRoute === "strict" && topicIndex === 0;
       }
     } else {
-      // If there is no selected course or user progress, unlock the first topic
       return selectedCourse?.typeOfRoute === "strict" && topicIndex === 0;
     }
   };
@@ -91,7 +86,6 @@ export const Path = () => {
     if (resource) {
       dispatch(selectedResource(resource));
     }
-
     dispatch(selectTopic(topic));
     router.push(url);
   };
