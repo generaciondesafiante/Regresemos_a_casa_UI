@@ -1,7 +1,8 @@
 import React from "react";
+import { CourseAdminPanel } from "../../../../../../components/organisms/CoursesAdminPanel/CourseAdminPanel";
 
 const CourseEditAdminPage = () => {
-  return <div>course page</div>;
+  return <CourseAdminPanel />;
 };
 
 export default CourseEditAdminPage;

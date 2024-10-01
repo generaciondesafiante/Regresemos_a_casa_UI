@@ -1,20 +1,15 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { ArrowBack } from "../../atoms/ArrowBack/ArrowBack";
-import { SearchBar } from "../../molecules/SearchBar/SearchBar";
 import styles from "./ResoruceAdmin.module.css";
-import { Button } from "../../atoms";
-import Link from "next/link";
-import AddCircleIcon from "../../atoms/icons/adminPanel/AddCircleIcon";
-import { DynamicTable } from "../TableAdmin/TableAdmin";
-import { Column, Row } from "../../../types/types/tableAdmin";
+import { Column } from "../../../types/types/tableAdmin";
 import { fetchResourcesData } from "../../../services/resources/resources";
 import { useAppDispatch, useAppSelector } from "../../../store/store";
 import AdminPencilIcon from "../../atoms/icons/adminPanel/AdminPencilIcon";
-import { Resource } from "../../../types/types/Resources";
 import { useRouter } from "next/navigation";
 import { resourceEditAdmin } from "../../../store/slices/resourceEditAdminSlice";
 import Swal from "sweetalert2";
+import { DynamicTable } from "../TableAdmin/TableAdmin";
 
 const columns: Column[] = [
   { key: "_id", label: "Id" },
@@ -30,23 +25,17 @@ const actionButton = {
 const dropdownOptions = ["todos", "video", "audio", "pdf", "imagen", "link"];
 
 export const ResourceAdmin = () => {
-  const [searchQuery, setsearchQuery] = useState("");
   const dispatch = useAppDispatch();
   const router = useRouter();
   const userId = useAppSelector((state) => state.user.userInfo?.uid);
 
   const [resources, setresources] = useState([]);
-  const [originalResources, setOriginalResources] = useState([]);
-  const [selectedDropdownValues, setSelectedDropdownValues] = useState<{
-    [key: string]: string;
-  }>({});
 
   useEffect(() => {
     const dataResource = async () => {
       if (userId) {
         const data = await fetchResourcesData(userId);
         setresources(data.resources);
-        setOriginalResources(data.resources);
       }
     };
     dataResource();
@@ -66,17 +55,6 @@ export const ResourceAdmin = () => {
     router.push(`/dashboard/adminPanel/resources/editResource/${resource._id}`);
   };
 
-  const handleDropdownChange = (value: string) => {
-    if (value === "todos") {
-      setresources(originalResources);
-    } else {
-      const resourcesDropDown = originalResources.filter(
-        (resource: any) => resource.typeResource === value
-      );
-      setresources(resourcesDropDown);
-    }
-  };
-
   return (
     <main className={styles["resourceAdmin"]}>
       <ArrowBack
@@ -87,26 +65,12 @@ export const ResourceAdmin = () => {
       />
       <section className={styles["container__section-table--resourceAdmin"]}>
         <h2 className={styles["title--resourceAdmin"]}>Recursos</h2>
-        <div className={styles["contaier__search"]}>
-          <SearchBar setSearchQuery={setsearchQuery} />
-          <Link
-            href={"/dashboard/adminPanel/resources/addResource"}
-            className={styles["adminPanel__link-buttonEdit"]}
-          >
-            <Button className={styles["adminPanel__buttonEdit--admins"]}>
-              Agregar
-              <AddCircleIcon className={styles["addAdmin__icon"]} />
-            </Button>
-          </Link>
-        </div>
         <DynamicTable
           columns={columns}
           rows={resources}
-          searchQuery={searchQuery}
           actionButton={actionButton}
           dropdownOptions={dropdownOptions}
           dropdownColumnKey="typeResource"
-          onDropdownChange={handleDropdownChange}
           onEdit={handleEditClick}
           noDataMessage="No hay recursos disponibles. Por favor, agrega nuevos recursos."
         />

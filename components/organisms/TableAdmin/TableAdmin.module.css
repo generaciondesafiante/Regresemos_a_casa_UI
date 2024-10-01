@@ -1,3 +1,43 @@
+.container--table {
+  width: 100%;
+}
+
+.container__section-table {
+  width: 46.875rem;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.search-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.link__button--create {
+  text-decoration: none;
+}
+
+.button__create {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 1.5rem;
+  color: var(--darkBlue);
+  font-weight: bold;
+  gap: 0.625rem;
+}
+
+.icon__button--create {
+  width: 1.2rem;
+}
+
+.button__create:hover,
+.icon__button--create:hover {
+  color: var(--white);
+  color: var(--darkBlue);
+  background-color: var(--yellow);
+}
+
 .dynamicTable {
   width: 100%;
   margin-top: 1rem;
@@ -21,9 +61,9 @@
 
 .header__with-dropdown {
   display: flex;
-  align-items: center; 
-  justify-content: center; 
-  gap: 0.5rem; 
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
 .link__button {
