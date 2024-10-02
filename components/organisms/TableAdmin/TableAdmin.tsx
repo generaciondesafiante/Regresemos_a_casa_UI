@@ -1,5 +1,5 @@
 "use state";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Column, Row } from "../../../types/types/tableAdmin";
 import styles from "./TableAdmin.module.css";
 import IconStepBackward from "../../atoms/icons/adminPanel/BackIconTable";
@@ -7,16 +7,23 @@ import { Button } from "../../atoms";
 import IconBxSkipNext from "../../atoms/icons/adminPanel/NextIconTable";
 import Link from "next/link";
 import { Dropdown } from "../DropDown/DropDown";
+import { SearchBar } from "../../molecules/SearchBar/SearchBar";
+import AddCircleIcon from "../../atoms/icons/adminPanel/AddCircleIcon";
 
 interface ActionButtonProps {
   icon?: React.ReactNode;
   label?: string;
 }
 
+interface ButtonCreateProps {
+  icon?: React.ReactNode;
+  label?: string;
+  href?: string;
+}
+
 interface DynamicTableProps {
   columns: Column[];
   rows: Row[];
-  searchQuery: string;
   rowsPerPage?: number;
   actionButton?: ActionButtonProps;
   dropdownOptions?: string[];
@@ -24,12 +31,13 @@ interface DynamicTableProps {
   onDropdownChange?: (value: string, row: Row) => void;
   onEdit?: (resource: Row) => void;
   noDataMessage?: string;
+  searchPlaceholder?: string;
+  buttonCreateProps?: ButtonCreateProps;
 }
 
 export const DynamicTable: React.FC<DynamicTableProps> = ({
   columns,
   rows,
-  searchQuery = "",
   rowsPerPage = 10,
   actionButton = { label: "Editar" },
   dropdownOptions = [],
@@ -37,16 +45,35 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
   onDropdownChange,
   onEdit,
   noDataMessage = "No hay datos para mostrar en la tabla.",
+  searchPlaceholder = "Buscar...",
+  buttonCreateProps = { label: "Agregar", href: "/" },
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedDropdownValues, setSelectedDropdownValues] = useState<{
-    [key: string]: string;
-  }>({});
-  const filteredRows = rows.filter((row) =>
-    columns.some((column) =>
-      String(row[column.key]).toLowerCase().includes(searchQuery.toLowerCase())
-    )
-  );
+  const [search, setSearch] = useState("");
+  const [selectedDropdownValue, setSelectedDropdownValue] = useState("todos");
+  const [filteredRows, setFilteredRows] = useState(rows);
+
+
+  useEffect(() => {
+    let updatedRows = rows;
+
+    if (selectedDropdownValue !== "todos" && dropdownColumnKey) {
+      updatedRows = rows.filter(
+        (row) => row[dropdownColumnKey] === selectedDropdownValue
+      );
+    }
+
+
+    if (search) {
+      updatedRows = updatedRows.filter((row) =>
+        columns.some((column) =>
+          String(row[column.key]).toLowerCase().includes(search.toLowerCase())
+        )
+      );
+    }
+
+    setFilteredRows(updatedRows);
+  }, [selectedDropdownValue, search, rows, columns, dropdownColumnKey]);
 
   const totalPages = Math.ceil(filteredRows.length / rowsPerPage);
   const startRow = (currentPage - 1) * rowsPerPage;
@@ -65,84 +92,98 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
     }
   };
 
-  const handleDropdownChange = (value: string, columnKey: any) => {
-    setSelectedDropdownValues((prev) => ({
-      ...prev,
-      [columnKey]: value,
-    }));
-    onDropdownChange?.(value, columnKey); 
+  const handleDropdownChange = (value: string) => {
+    setSelectedDropdownValue(value);
   };
 
   return (
-    <div>
-      <table className={styles["dynamicTable"]}>
-        <thead className={styles["container__colums"]}>
-          <tr className={styles["container__colums1"]}>
-            {columns.map((column: any) => (
-              <th key={column.key} className="header__with-dropdown">
-                {column.label}
-                {column.key === dropdownColumnKey && (
-                  <Dropdown
+    <main className={styles["container--table"]}>
+      <section className={styles["container__section-table"]}>
+        <div className={styles["search-container"]}>
+          <SearchBar
+            placeholder={searchPlaceholder}
+            setSearchQuery={setSearch}
+          />
+          <Link
+            href={buttonCreateProps.href || "/dashboard"}
+            className={styles["link__button--create"]}
+          >
+            <Button className={styles["button__create"]}>
+              {buttonCreateProps.label}{" "}
+              {buttonCreateProps.icon ?? (
+                <AddCircleIcon className={styles["icon__button--create"]} />
+              )}
+            </Button>
+          </Link>
+        </div>
+
+        <table className={styles["dynamicTable"]}>
+          <thead className={styles["container__colums"]}>
+            <tr className={styles["container__colums1"]}>
+              {columns.map((column: any) => (
+                <th key={column.key} className="header__with-dropdown">
+                  {column.label}
+                  {column.key === dropdownColumnKey && (
+                    <Dropdown
                     options={dropdownOptions}
-                    onChange={(value) =>
-                      handleDropdownChange(value, column.key)
-                    } 
-                    selectedValue={selectedDropdownValues[column.key]}
-                  />
-                )}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {currentRows.length === 0 ? (
-            <tr>
-              <td
-                colSpan={columns.length}
-                className={styles["no-data-message"]}
-              >
-                {noDataMessage}
-              </td>
+                    onChange={handleDropdownChange}
+                    selectedValue={selectedDropdownValue}
+                    />
+                  )}
+                </th>
+              ))}
             </tr>
-          ) : (
-            currentRows.map((row) => (
-              <tr key={row._id}>
-                {columns.map((column) => (
-                  <td key={column.key}>{row[column.key]}</td>
-                ))}
-                <td className={styles["action__cell--button"]}>
-                  <Button
-                    className={styles["action__button"]}
-                    onClick={() => onEdit?.(row)}
-                  >
-                    {actionButton.label} {actionButton.icon}
-                  </Button>
+          </thead>
+          <tbody>
+            {currentRows.length === 0 ? (
+              <tr>
+                <td
+                  colSpan={columns.length}
+                  className={styles["no-data-message"]}
+                >
+                  {noDataMessage}
                 </td>
               </tr>
-            ))
-          )}
-        </tbody>
-      </table>
+            ) : (
+              currentRows.map((row) => (
+                <tr key={row._id}>
+                  {columns.map((column) => (
+                    <td key={column.key}>{row[column.key]}</td>
+                  ))}
+                  <td className={styles["action__cell--button"]}>
+                    <Button
+                      className={styles["action__button"]}
+                      onClick={() => onEdit?.(row)}
+                    >
+                      {actionButton.label} {actionButton.icon}
+                    </Button>
+                  </td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
 
-      <div className={styles["pagination"]}>
-        <Button
-          onClick={handlePrevPage}
-          disabled={currentPage === 1}
-          className={styles["pagination__button"]}
-        >
-          <IconStepBackward />
-        </Button>
-        <span className={styles["pagination__number"]}>
-          {currentPage} ... {totalPages}
-        </span>
-        <Button
-          onClick={handleNextPage}
-          disabled={currentPage === totalPages}
-          className={styles["pagination__button"]}
-        >
-          <IconBxSkipNext />
-        </Button>
-      </div>
-    </div>
+        <div className={styles["pagination"]}>
+          <Button
+            onClick={handlePrevPage}
+            disabled={currentPage === 1}
+            className={styles["pagination__button"]}
+          >
+            <IconStepBackward />
+          </Button>
+          <span className={styles["pagination__number"]}>
+            {currentPage} ... {totalPages}
+          </span>
+          <Button
+            onClick={handleNextPage}
+            disabled={currentPage === totalPages}
+            className={styles["pagination__button"]}
+          >
+            <IconBxSkipNext />
+          </Button>
+        </div>
+      </section>
+    </main>
   );
 };
