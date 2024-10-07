@@ -31,6 +31,11 @@ export const ResourceAdmin = () => {
 
   const [resources, setresources] = useState([]);
 
+  const buttonCreateProps = {
+    label: "Agregar",
+    href: "/dashboard/adminPanel/resources/addResource",
+  };
+
   useEffect(() => {
     const dataResource = async () => {
       if (userId) {
@@ -69,6 +74,7 @@ export const ResourceAdmin = () => {
           columns={columns}
           rows={resources}
           actionButton={actionButton}
+          buttonCreateProps={buttonCreateProps}
           dropdownOptions={dropdownOptions}
           dropdownColumnKey="typeResource"
           onEdit={handleEditClick}

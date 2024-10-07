@@ -46,7 +46,7 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
   onEdit,
   noDataMessage = "No hay datos para mostrar en la tabla.",
   searchPlaceholder = "Buscar...",
-  buttonCreateProps = { label: "Agregar", href: "/" },
+  buttonCreateProps = { label: "Agregar", href: "/dashboard" },
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [search, setSearch] = useState("");
