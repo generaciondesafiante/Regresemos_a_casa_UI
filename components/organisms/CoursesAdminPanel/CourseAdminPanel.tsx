@@ -29,20 +29,20 @@ export const CourseAdminPanel = () => {
 
   return (
     <main className={styles["container__coursesAdmin"]}>
-       <ArrowBack
+      <ArrowBack
         linkBack={"/dashboard/adminPanel"}
         text={"Regresar"}
         colorText={"white"}
         colorHover={"greenDesafiante"}
       />
 
-      <h2 className={styles["coursesAdmin__title"]}>Courses</h2>
+      <h2 className={styles["coursesAdmin__title"]}>Cursos</h2>
       <DynamicTable
         columns={columns}
         rows={courseData}
         buttonCreateProps={{
           label: "Agregar curso",
-          href: "/dashboard/adminPanel/resources/addResource",
+          href: "/dashboard/adminPanel/courses/createCourse",
         }}
         actionButton={{ label: "Administrar" }}
       />
