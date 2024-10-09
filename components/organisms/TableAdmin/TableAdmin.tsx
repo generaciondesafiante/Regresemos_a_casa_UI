@@ -155,7 +155,7 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
                       className={styles["action__button"]}
                       onClick={() => onEdit?.(row)}
                     >
-                      {actionButton.label} {actionButton.icon}
+                      {actionButton.label} {actionButton.icon} 
                     </Button>
                   </td>
                 </tr>

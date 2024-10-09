@@ -6,6 +6,12 @@ import { useSession } from "next-auth/react";
 import { DynamicTable } from "../TableAdmin/TableAdmin";
 import styles from "./CoursesAdminPanel.module.css";
 import { ArrowBack } from "../../atoms/ArrowBack/ArrowBack";
+import { useRouter } from "next/navigation";
+import { useAppDispatch } from "../../../store/store";
+import { selectTopic } from "../../../store/slices/topicsSlice";
+import Swal from "sweetalert2";
+import { Course } from "../../../types/types/course.types";
+import { selectCourse } from "../../../store/slices/courseSlice";
 
 const columns: Column[] = [
   { key: "_id", label: "Id" },
@@ -16,6 +22,8 @@ export const CourseAdminPanel = () => {
   const { data: session } = useSession();
   const userId = session?.user.uid;
   const [courseData, setcourseData] = useState([]);
+  const router = useRouter();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const dataResource = async () => {
@@ -26,6 +34,23 @@ export const CourseAdminPanel = () => {
     };
     dataResource();
   }, [userId]);
+
+  const handleEditClick = (row: any) => {
+    const course = row;
+    const topics = row.topic;
+    if (topics) {
+      dispatch(selectTopic(topics));
+      dispatch(selectCourse(course));
+    } else {
+      Swal.fire(
+        "Error",
+        "Error para poder editar el recurso, consulte con el administrador.",
+        "error"
+      );
+    }
+
+    router.push(`/dashboard/adminPanel/courses/courseTopicManage`);
+  };
 
   return (
     <main className={styles["container__coursesAdmin"]}>
@@ -45,6 +70,7 @@ export const CourseAdminPanel = () => {
           href: "/dashboard/adminPanel/courses/createCourse",
         }}
         actionButton={{ label: "Administrar" }}
+        onEdit={handleEditClick}
       />
     </main>
   );
