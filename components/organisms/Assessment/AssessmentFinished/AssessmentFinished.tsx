@@ -1,3 +1,4 @@
+"use client";
 import { FC } from "react";
 import { Button } from "../../../atoms";
 import styles from "./AssessmentFinished.module.css";
@@ -44,9 +45,7 @@ export const AssessmentFinished: FC<AssessmentFinishedProps> = ({
     const nextLesson = getNextLesson();
 
     if (nextLesson) {
-      router.push(
-        "/dashboard"
-      );
+      router.push("/dashboard");
     } else {
       console.log("No hay más lecciones disponibles");
     }

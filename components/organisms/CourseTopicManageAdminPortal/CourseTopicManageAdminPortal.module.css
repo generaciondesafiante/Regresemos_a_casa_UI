@@ -5,9 +5,42 @@
   justify-content: center;
 }
 
+.coursesAdmin__title--container {
+  max-width: 43.75rem;
+  min-width: 25rem;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  color: var(--white);
+  gap: 0.6rem;
+  margin: 0 auto;
+}
+
+.coursesAdmin__title-course--content {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
 .coursesAdmin__title {
   color: var(--white);
   text-align: center;
   font-size: var(--fontSize-titles_desktop);
-  margin: 3rem 0 3rem 0;
+}
+
+.coursesAdmin__title--info {
+  text-align: start;
+}
+
+.title__icon {
+  font-size: 2rem;
+}
+
+.title__icon:hover {
+  color: var(--turquoise);
+  cursor: pointer;
+}
+
+.coursesAdmin__title--table {
+  margin-top: 2rem;
 }

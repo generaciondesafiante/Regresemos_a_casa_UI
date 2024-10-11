@@ -81,6 +81,11 @@
   color: var(--darkBlue);
 }
 
+.action__cell--button {
+  display: flex;
+  justify-content: center;
+}
+
 .pagination {
   display: flex;
   justify-content: flex-end;
