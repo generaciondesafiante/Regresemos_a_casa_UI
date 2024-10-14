@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import { useSession } from "next-auth/react";
 import { createCourse } from "../../../services/courses/createCourse";
 import { useRouter } from "next/navigation";
+import AddCircleIcon from "../../atoms/icons/adminPanel/AddCircleIcon";
 
 interface CourseState {
   nameCourse: string;
@@ -198,6 +199,7 @@ export const CreateCourseAdminPanel: React.FC = () => {
             className={styles["button__submit"]}
           >
             Guardar
+            <AddCircleIcon className={styles["addCreateCourse__addIcon"]} />
           </Button>
         </div>
       </form>

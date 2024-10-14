@@ -10,6 +10,8 @@ import styles from "./EditCourseTopicManage.module.css";
 import { fetchCoursesData } from "../../../services/courses/coursesData";
 import { selectCourse } from "../../../store/slices/courseSlice";
 import { deleteCourse } from "../../../services/courses/deleteCourse";
+import AddCircleIcon from "../../atoms/icons/adminPanel/AddCircleIcon";
+import DeleteIcon from "../../atoms/icons/deleteIcon/DeleteIcon";
 
 export const EditCourseTopicManage = () => {
   const router = useRouter();
@@ -110,7 +112,6 @@ export const EditCourseTopicManage = () => {
                 (data: any) => data._id === courseId
               );
               dispatch(selectCourse(selectedCourse[0]));
-              console.log(selectedCourse);
             }
           };
 
@@ -236,6 +237,7 @@ export const EditCourseTopicManage = () => {
             disabled={!hasChanges}
           >
             Guardar
+            <AddCircleIcon className={styles["editCourse__addIcon"]} />
           </Button>
         </div>
         <hr className={styles["button__split"]} />
@@ -247,6 +249,7 @@ export const EditCourseTopicManage = () => {
             }}
           >
             Eliminar curso
+            <DeleteIcon className={styles["icon__delete-course"]} />
           </Button>
         </div>
       </form>

@@ -19,6 +19,7 @@ export const CourseTopicManageAdminPortal = () => {
   );
 
   const selectedTopic = useAppSelector((state) => state.topics.selectedTopic);
+
   const selectedTopicArray = selectedTopic
     ? [Object.values(selectedTopic)]
     : [];
@@ -65,9 +66,9 @@ export const CourseTopicManageAdminPortal = () => {
           rows={selectedTopicArray[0]}
           buttonCreateProps={{
             label: "Agregar tema",
-            href: "/dashboard/adminPanel/courses/createCourse",
+            href: `/dashboard/adminPanel/courses/${courseSelected?._id}/createTopicOnCourse`,
           }}
-          actionButton={{ label: "Editar",icon: <AdminPencilIcon/> }}
+          actionButton={{ label: "Editar", icon: <AdminPencilIcon /> }}
           onEdit={handleEditClick}
         />
       </div>

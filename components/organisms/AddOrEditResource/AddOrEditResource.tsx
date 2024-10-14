@@ -214,6 +214,7 @@ export const AddResource = () => {
               );
             }
           } catch (error) {
+            console.error(error)
             Swal.fire(
               "Error",
               "Hubo un problema al subir o crear el recurso.",
