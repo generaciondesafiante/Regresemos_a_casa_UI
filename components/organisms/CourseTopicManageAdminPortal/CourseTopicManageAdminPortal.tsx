@@ -1,11 +1,8 @@
 "use client";
-import { useSession } from "next-auth/react";
 import { ArrowBack } from "../../atoms/ArrowBack/ArrowBack";
 import { DynamicTable } from "../TableAdmin/TableAdmin";
-import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { fetchCoursesData } from "../../../services/courses/coursesData";
-import { Column, Row } from "../../../types/types/tableAdmin";
+import { Column } from "../../../types/types/tableAdmin";
 import styles from "./CourseTopicManageAdminPortal.module.css";
 import { useAppSelector } from "../../../store/store";
 import AdminPencilIcon from "../../atoms/icons/adminPanel/AdminPencilIcon";
@@ -16,9 +13,6 @@ const columns: Column[] = [
 ];
 
 export const CourseTopicManageAdminPortal = () => {
-  const { data: session } = useSession();
-  const userId = session?.user.uid;
-  const [courseData, setCourseData] = useState<Row[]>([]);
   const router = useRouter();
   const courseSelected = useAppSelector(
     (state) => state.courses.selectedCourse
@@ -31,29 +25,10 @@ export const CourseTopicManageAdminPortal = () => {
 
   const typeRoute =
     courseSelected?.typeOfRoute === "strict" ? "Estricta" : "Flexible";
-  //   useEffect(() => {
-  //     const dataResource = async () => {
-  //       if (userId) {
-  //         const data = await fetchCoursesData();
-  //         setcourseData(data);
-  //       }
-  //     };
-  //     dataResource();
-  //   }, [userId]);
 
   const handleEditClick = () => {
-    // Todo AQui va la ligica para lanazar el dispatch y elegir el curso y los timpos de teams que hay
-    // if (resource) {
-    //   dispatch(resourceEditAdmin(resource));
-    // } else {
-    //   Swal.fire(
-    //     "Error",
-    //     "Error para poder editar el recurso, consulte con el administrador.",
-    //     "error"
-    //   );
-    // }
-
-    router.push(`/dashboard/adminPanel/courses/courseTopicManage`);
+    //todo Here is the logic to launch the dispatch and choose the course and the times of teams that there are
+    router.push(`/dashboard/adminPanel/courses/courseTopicManage/lessons`);
   };
 
   return (
@@ -92,7 +67,7 @@ export const CourseTopicManageAdminPortal = () => {
             label: "Agregar tema",
             href: "/dashboard/adminPanel/courses/createCourse",
           }}
-          actionButton={{ label: "Editar" }}
+          actionButton={{ label: "Editar",icon: <AdminPencilIcon/> }}
           onEdit={handleEditClick}
         />
       </div>

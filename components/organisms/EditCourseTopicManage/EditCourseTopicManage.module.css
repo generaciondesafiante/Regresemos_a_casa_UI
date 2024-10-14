@@ -62,3 +62,18 @@
   background-color: var(--yellow);
   color: var(--darkBlue);
 }
+
+.button__split{
+  border-top: 1px solid var(--turquoise);
+}
+
+
+.button__content-delete-course{
+  width: 100%;
+  display: flex;  
+  justify-content: center;
+}
+.button__delete-course:hover{
+  background-color: var(--red);
+  color: var(--white);
+}

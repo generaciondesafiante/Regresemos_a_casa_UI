@@ -12,6 +12,7 @@ import { selectTopic } from "../../../store/slices/topicsSlice";
 import Swal from "sweetalert2";
 import { Course } from "../../../types/types/course.types";
 import { selectCourse } from "../../../store/slices/courseSlice";
+import ConfigIcon from "../../atoms/icons/adminPanel/ConfigIcon";
 
 const columns: Column[] = [
   { key: "_id", label: "Id" },
@@ -69,7 +70,7 @@ export const CourseAdminPanel = () => {
           label: "Agregar curso",
           href: "/dashboard/adminPanel/courses/createCourse",
         }}
-        actionButton={{ label: "Administrar" }}
+        actionButton={{ label: "Administrar", icon: <ConfigIcon className={styles['iconButton__table']}/> }}
         onEdit={handleEditClick}
       />
     </main>
