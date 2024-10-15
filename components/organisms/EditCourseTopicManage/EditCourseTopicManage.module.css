@@ -73,7 +73,7 @@
 }
 
 .button__split {
-  border-top: 1px solid var(--turquoise);
+  border-top: 0.063rem solid var(--turquoise);
 }
 
 .button__content-delete-course {
