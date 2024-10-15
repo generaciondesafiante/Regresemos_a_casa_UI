@@ -5,6 +5,7 @@ import styles from "./AssessmentFinished.module.css";
 import { useRouter } from "next/navigation";
 import { useAppSelector } from "../../../../store/store";
 import { AssessmentLesson } from "../../../../types/types/lessons.type";
+import Swal from "sweetalert2";
 interface AssessmentFinishedProps {
   score?: number;
   questions?: AssessmentLesson[] | undefined;
@@ -47,7 +48,8 @@ export const AssessmentFinished: FC<AssessmentFinishedProps> = ({
     if (nextLesson) {
       router.push("/dashboard");
     } else {
-      console.log("No hay más lecciones disponibles");
+      Swal.fire("Error", "No hay más lecciones disponibles.", "error");
+      return;
     }
   };
 

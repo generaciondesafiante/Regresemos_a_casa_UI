@@ -115,7 +115,7 @@ export const AssessmentQuestions = () => {
       setAnswerRevealed(true);
       setAnswerLocked(true);
     } else {
-      console.log("No answer selected");
+      console.error("No answer selected");
     }
   };
 

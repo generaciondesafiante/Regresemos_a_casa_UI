@@ -1,12 +1,20 @@
-export const deleteCourse = async (userId: string, idCourse: string) => {
+export const createTopicOnCourse = async (
+  nameTopic: string,
+  userId: string,
+  idCourse: string
+) => {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_URL}/course/${userId}/${idCourse}`,
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/course/topics/${userId}`,
       {
-        method: "DELETE",
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
+        body: JSON.stringify({
+          courseId: idCourse,
+          nameTopic,
+        }),
       }
     );
 

@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Input } from "../../atoms";
 import styles from "./EditResourceAdmin.module.css";
+import AddCircleIcon from "../../atoms/icons/adminPanel/AddCircleIcon";
 
 export const EditResourceAdmin = () => {
   return (
@@ -113,6 +114,8 @@ export const EditResourceAdmin = () => {
           <Button className={styles["button__action"]}>Cancelar</Button>
           <Button type="submit">
             Guardar
+            <AddCircleIcon className={styles["editResource__addIcon"]} />
+
           </Button>
         </div>
       </form>
