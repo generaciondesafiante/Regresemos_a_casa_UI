@@ -4,7 +4,6 @@ export const createTopicOnCourse = async (
   idCourse: string
 ) => {
   try {
-    console.log("data SERVISES", { nameTopic, userId, idCourse });
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/course/topics/${userId}`,
       {

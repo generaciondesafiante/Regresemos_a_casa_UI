@@ -106,7 +106,6 @@ export const CreateCourseAdminPanel: React.FC = () => {
               typeCourse,
               userId || ""
             );
-            console.log(courseData);
             if (courseData.status === 201) {
               Swal.fire({
                 icon: "success",

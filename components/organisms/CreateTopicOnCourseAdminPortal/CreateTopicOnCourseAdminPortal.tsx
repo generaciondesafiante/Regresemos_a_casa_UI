@@ -54,7 +54,6 @@ export const CreateTopicOnCourseAdminPortal = () => {
             userId || "",
             idCourse.toString()
           );
-          console.log(response.data.topic);
           if (response.status === 201) {
             dispatch(selectTopic(response.data.topic));
 

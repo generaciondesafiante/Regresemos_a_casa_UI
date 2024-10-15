@@ -1,5 +1,4 @@
 export const deleteCourse = async (userId: string, idCourse: string) => {
-  console.log(userId, idCourse);
   try {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/course/${userId}/${idCourse}`,
@@ -12,7 +11,6 @@ export const deleteCourse = async (userId: string, idCourse: string) => {
     );
 
     const responseData = await response.json();
-    console.log(responseData);
     if (!response.ok) {
       return {
         status: response.status,

@@ -106,7 +106,6 @@ export const EditCourseTopicManage = () => {
           });
           const course = async () => {
             const data = await fetchCoursesData();
-            console.log(data);
             if (data) {
               const selectedCourse = data.filter(
                 (data: any) => data._id === courseId
@@ -149,7 +148,6 @@ export const EditCourseTopicManage = () => {
       if (result.isConfirmed) {
         try {
           const resposeData = await deleteCourse(userId, courseId);
-          console.log(resposeData);
           if (resposeData.status !== 200) {
             Swal.fire({
               icon: "error",
