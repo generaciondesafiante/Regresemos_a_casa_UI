@@ -165,6 +165,8 @@ export const AddResource = () => {
         showCancelButton: true,
         confirmButtonText: "Sí, guardarlo",
         cancelButtonText: "Cancelar",
+        confirmButtonColor: "var(--turquoise)",
+        cancelButtonColor: "var(--red)",
       }).then(async (result) => {
         if (result.isConfirmed) {
           try {
@@ -308,8 +310,8 @@ export const AddResource = () => {
       text: "No podrás revertir esta acción",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
+      confirmButtonColor: "var(--turquoise)",
+      cancelButtonColor: "var(--red)",
       confirmButtonText: "Sí, eliminar",
       cancelButtonText: "Cancelar",
     }).then(async (result) => {

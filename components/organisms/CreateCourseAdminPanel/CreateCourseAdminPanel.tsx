@@ -90,8 +90,8 @@ export const CreateCourseAdminPanel: React.FC = () => {
         text: "¿Deseas confirmar la creación del curso?",
         icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
+        confirmButtonColor: "var(--turquoise)",
+        cancelButtonColor: "var(--red)",
         confirmButtonText: "Sí, crear curso",
         cancelButtonText: "Cancelar",
       }).then(async (result) => {

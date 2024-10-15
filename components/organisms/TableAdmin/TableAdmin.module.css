@@ -81,6 +81,11 @@
   color: var(--darkBlue);
 }
 
+.action__cell--button {
+  display: flex;
+  justify-content: center;
+}
+
 .pagination {
   display: flex;
   justify-content: flex-end;
@@ -101,4 +106,16 @@
 
 .pagination__number {
   color: var(--white);
+}
+
+.no-data-message {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 9.375rem;
+  display: table-cell;
+  color: var(--darkGray);
 }

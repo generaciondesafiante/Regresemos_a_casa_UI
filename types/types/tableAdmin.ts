@@ -4,5 +4,5 @@ export interface Column {
 }
 
 export interface Row {
-  [key: string]: string | number;
+  [key: string]: any;
 }
