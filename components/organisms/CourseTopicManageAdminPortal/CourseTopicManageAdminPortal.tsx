@@ -4,8 +4,10 @@ import { DynamicTable } from "../TableAdmin/TableAdmin";
 import { useRouter } from "next/navigation";
 import { Column } from "../../../types/types/tableAdmin";
 import styles from "./CourseTopicManageAdminPortal.module.css";
-import { useAppSelector } from "../../../store/store";
+import { useAppDispatch, useAppSelector } from "../../../store/store";
 import AdminPencilIcon from "../../atoms/icons/adminPanel/AdminPencilIcon";
+import { selectedResource } from "../../../store/slices/ResourceSlice";
+import { selectTopic } from "../../../store/slices/topicsSlice";
 
 const columns: Column[] = [
   { key: "_id", label: "Id" },
@@ -13,23 +15,31 @@ const columns: Column[] = [
 ];
 
 export const CourseTopicManageAdminPortal = () => {
+  const dispatch = useAppDispatch();
   const router = useRouter();
   const courseSelected = useAppSelector(
     (state) => state.courses.selectedCourse
   );
 
-  const selectedTopic = useAppSelector((state) => state.topics.selectedTopic);
+  const allTopicsWithinACourse = useAppSelector(
+    (state) => state.allTopicsWithACourse.allTopicWithinACourse
+  );
 
-  const selectedTopicArray = selectedTopic
-    ? [Object.values(selectedTopic)]
+  const selectedTopicArray = allTopicsWithinACourse
+    ? [Object.values(allTopicsWithinACourse)]
     : [];
 
   const typeRoute =
     courseSelected?.typeOfRoute === "strict" ? "Estricta" : "Flexible";
 
-  const handleEditClick = () => {
-    //todo Here is the logic to launch the dispatch and choose the course and the times of teams that there are
-    router.push(`/dashboard/adminPanel/courses/courseTopicManage/lessons`);
+  const handleEditClick = (row: any) => {
+    const dispatchSelectedResource = row.resources;
+    dispatch(selectedResource(dispatchSelectedResource));
+    dispatch(selectTopic(row));
+
+    router.push(
+      `/dashboard/adminPanel/courses/courseTopicManage/lessonsWithinACourse`
+    );
   };
 
   return (

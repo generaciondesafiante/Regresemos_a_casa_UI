@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Column, Row } from "../../../types/types/tableAdmin";
+import { Column } from "../../../types/types/tableAdmin";
 import { fetchCoursesData } from "../../../services/courses/coursesData";
 import { useSession } from "next-auth/react";
 import { DynamicTable } from "../TableAdmin/TableAdmin";
@@ -8,11 +8,10 @@ import styles from "./CoursesAdminPanel.module.css";
 import { ArrowBack } from "../../atoms/ArrowBack/ArrowBack";
 import { useRouter } from "next/navigation";
 import { useAppDispatch } from "../../../store/store";
-import { selectTopic } from "../../../store/slices/topicsSlice";
 import Swal from "sweetalert2";
-import { Course } from "../../../types/types/course.types";
 import { selectCourse } from "../../../store/slices/courseSlice";
 import ConfigIcon from "../../atoms/icons/adminPanel/ConfigIcon";
+import { allTopicWithinACourse } from "../../../store/slices/allTopicwithinCourseSlice";
 
 const columns: Column[] = [
   { key: "_id", label: "Id" },
@@ -40,7 +39,7 @@ export const CourseAdminPanel = () => {
     const course = row;
     const topics = row.topic;
     if (topics) {
-      dispatch(selectTopic(topics));
+      dispatch(allTopicWithinACourse(topics));
       dispatch(selectCourse(course));
     } else {
       Swal.fire(
