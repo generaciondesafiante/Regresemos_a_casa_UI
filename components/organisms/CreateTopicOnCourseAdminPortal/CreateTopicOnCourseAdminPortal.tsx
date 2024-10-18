@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
 import { createTopicOnCourse } from "../../../services/courses/topicOnCourse/createTopicOnCourse";
 import { useSession } from "next-auth/react";
 import { useAppDispatch } from "../../../store/store";
-import { selectTopic } from "../../../store/slices/topicsSlice";
+import { allTopicWithinACourse } from "../../../store/slices/allTopicwithinCourseSlice";
 
 export const CreateTopicOnCourseAdminPortal = () => {
   const { idCourse } = useParams();
@@ -55,7 +55,7 @@ export const CreateTopicOnCourseAdminPortal = () => {
             idCourse.toString()
           );
           if (response.status === 201) {
-            dispatch(selectTopic(response.data.topic));
+            dispatch(allTopicWithinACourse(response.data.topic));
 
             Swal.fire({
               icon: "success",
