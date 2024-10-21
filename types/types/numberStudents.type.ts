@@ -1,3 +1,1 @@
-export interface NumberStudents {
-  studentCount: number;
-}
+export type NumberStudents = number;
