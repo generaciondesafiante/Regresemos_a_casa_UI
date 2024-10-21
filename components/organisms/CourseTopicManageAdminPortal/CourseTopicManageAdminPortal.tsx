@@ -73,7 +73,7 @@ export const CourseTopicManageAdminPortal = () => {
       <div className={styles["coursesAdmin__title--table"]}>
         <DynamicTable
           columns={columns}
-          rows={selectedTopicArray[0]}
+          rows={selectedTopicArray[0] || []}
           buttonCreateProps={{
             label: "Agregar tema",
             href: `/dashboard/adminPanel/courses/${courseSelected?._id}/createTopicOnCourse`,

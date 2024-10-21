@@ -12,6 +12,7 @@ import { selectCourse } from "../../../store/slices/courseSlice";
 import { deleteCourse } from "../../../services/courses/deleteCourse";
 import AddCircleIcon from "../../atoms/icons/adminPanel/AddCircleIcon";
 import DeleteIcon from "../../atoms/icons/deleteIcon/DeleteIcon";
+import { LoadingTemplate } from "../../templates";
 
 export const EditCourseTopicManage = () => {
   const router = useRouter();
@@ -31,7 +32,11 @@ export const EditCourseTopicManage = () => {
 
   useEffect(() => {
     const modifiedFields = getModifiedFields();
-    setHasChanges(Object.keys(modifiedFields).length > 0);
+    if (modifiedFields) {
+      setHasChanges(Object.keys(modifiedFields).length > 0);
+    } else {
+      console.error("modifiedFields undefined");
+    }
   }, [formData]);
 
   const handleChange = (
@@ -41,7 +46,11 @@ export const EditCourseTopicManage = () => {
     setFormData((prevData) => {
       const newFormData = { ...prevData, [name]: value };
       const modifiedFields = getModifiedFields(newFormData);
-      setHasChanges(Object.keys(modifiedFields).length > 0);
+      if (modifiedFields) {
+        setHasChanges(Object.keys(modifiedFields).length > 0);
+      } else {
+        console.error("modifiedFields undefined");
+      }
       return newFormData;
     });
   };
@@ -62,7 +71,7 @@ export const EditCourseTopicManage = () => {
 
   const updateCourseInfo = async () => {
     const modifiedFields = getModifiedFields();
-    if (Object.keys(modifiedFields).length === 0) {
+    if (modifiedFields && Object.keys(modifiedFields).length === 0) {
       alert("No hay cambios para guardar");
       Swal.fire({
         title: "No hay cambios para guardar",
@@ -173,6 +182,10 @@ export const EditCourseTopicManage = () => {
       }
     });
   };
+
+  if (!course?.nameCourse) {
+    return <LoadingTemplate />;
+  }
 
   return (
     <main className={styles["createCourse"]}>
