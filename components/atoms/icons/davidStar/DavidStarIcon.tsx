@@ -1,4 +1,3 @@
-// icon:star-of-david | Fontawesome https://fontawesome.com/ | Fontawesome
 import * as React from "react";
 import styles from "./DavidStarIcon.module.css";
 

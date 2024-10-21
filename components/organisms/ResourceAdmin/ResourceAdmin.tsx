@@ -1,16 +1,65 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ArrowBack } from "../../atoms/ArrowBack/ArrowBack";
-import { SearchBar } from "../../molecules/SearchBar/SearchBar";
 import styles from "./ResoruceAdmin.module.css";
-import { Button } from "../../atoms";
-import Link from "next/link";
-import AddCircleIcon from "../../atoms/icons/adminPanel/AddCircleIcon";
+import { Column } from "../../../types/types/tableAdmin";
+import { fetchResourcesData } from "../../../services/resources/resources";
+import { useAppDispatch, useAppSelector } from "../../../store/store";
+import AdminPencilIcon from "../../atoms/icons/adminPanel/AdminPencilIcon";
+import { useRouter } from "next/navigation";
+import { resourceEditAdmin } from "../../../store/slices/resourceEditAdminSlice";
+import Swal from "sweetalert2";
+import { DynamicTable } from "../TableAdmin/TableAdmin";
+
+const columns: Column[] = [
+  { key: "_id", label: "Id" },
+  { key: "title", label: "Nombre" },
+  { key: "typeResource", label: "Tipo" },
+];
+
+const actionButton = {
+  icon: <AdminPencilIcon />,
+  label: "Editar",
+};
+
+const dropdownOptions = ["todos", "video", "audio", "pdf", "imagen", "link"];
 
 export const ResourceAdmin = () => {
-  const handleSearch = (query: string) => {
-    // Here you can handle the search logic, such as making a request to an API
+  const dispatch = useAppDispatch();
+  const router = useRouter();
+  const userId = useAppSelector((state) => state.user.userInfo?.uid);
+
+  const [resources, setresources] = useState([]);
+
+  const buttonCreateProps = {
+    label: "Agregar",
+    href: "/dashboard/adminPanel/resources/addResource",
   };
+
+  useEffect(() => {
+    const dataResource = async () => {
+      if (userId) {
+        const data = await fetchResourcesData(userId);
+        setresources(data.resources);
+      }
+    };
+    dataResource();
+  }, [userId]);
+
+  const handleEditClick = (resource: any) => {
+    if (resource) {
+      dispatch(resourceEditAdmin(resource));
+    } else {
+      Swal.fire(
+        "Error",
+        "Error para poder editar el recurso, consulte con el administrador.",
+        "error"
+      );
+    }
+
+    router.push(`/dashboard/adminPanel/resources/editResource/${resource._id}`);
+  };
+
   return (
     <main className={styles["resourceAdmin"]}>
       <ArrowBack
@@ -21,18 +70,16 @@ export const ResourceAdmin = () => {
       />
       <section className={styles["container__section-table--resourceAdmin"]}>
         <h2 className={styles["title--resourceAdmin"]}>Recursos</h2>
-        <div className={styles["contaier__search"]}>
-          <SearchBar onSearch={handleSearch} />
-          <Link
-            href={"/dashboard/adminPanel/resources/addResource"}
-            className={styles["adminPanel__link-buttonEdit"]}
-          >
-            <Button className={styles["adminPanel__buttonEdit--admins"]}>
-              Agregar
-              <AddCircleIcon className={styles["addAdmin__icon"]} />
-            </Button>
-          </Link>
-        </div>
+        <DynamicTable
+          columns={columns}
+          rows={resources}
+          actionButton={actionButton}
+          buttonCreateProps={buttonCreateProps}
+          dropdownOptions={dropdownOptions}
+          dropdownColumnKey="typeResource"
+          onEdit={handleEditClick}
+          noDataMessage="No hay recursos disponibles. Por favor, agrega nuevos recursos."
+        />
       </section>
     </main>
   );

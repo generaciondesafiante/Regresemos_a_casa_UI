@@ -1,0 +1,22 @@
+.container__coursesAdmin {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.coursesAdmin__title {
+  color: var(--white);
+  text-align: center;
+  font-size: var(--fontSize-titles_desktop);
+  margin: 3rem 0 3rem 0;
+}
+
+.iconButton__table {
+  width: 1.5rem;
+  color: var(--white);
+}
+
+.iconButton__table:hover {
+  color: var(--darkBlue);
+}

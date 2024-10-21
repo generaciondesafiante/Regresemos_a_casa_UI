@@ -1,26 +1,27 @@
 interface ValidatePasswordResponse {
-    ok: boolean;
-    msg: string;
+  ok: boolean;
+  msg: string;
 }
 export const PasswordValidation = async (id: string, password: string) => {
-    try {
-        const responseValidate = await fetch(
-            `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/validate-password/${id}`,
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    password,
-                }),
-            }
-        );
-        const responseData: ValidatePasswordResponse = await responseValidate.json();
+  try {
+    const responseValidate = await fetch(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/validate-password/${id}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          password,
+        }),
+      }
+    );
+    const responseData: ValidatePasswordResponse =
+      await responseValidate.json();
 
-        return responseData;
-    } catch (error) {
-        console.log(error);
-        throw new Error('Error al validar la contraseña');
-    }
+    return responseData;
+  } catch (error) {
+    console.error(error);
+    throw new Error("Error al validar la contraseña");
+  }
 };

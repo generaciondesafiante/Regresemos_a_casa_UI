@@ -1,5 +1,5 @@
 import React from "react";
-import { AddResource } from "../../../../../../../components/organisms/AddResource/AddResource";
+import { AddResource } from "../../../../../../../components/organisms/AddOrEditResource/AddOrEditResource";
 
 const page = () => {
   return <AddResource />;

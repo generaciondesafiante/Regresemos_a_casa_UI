@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
-import { fetchAllAdmin } from "../../../services/user/allAdmis";
 import { fetAllStudents } from "../../../services/user/allStudents";
 import { fetchCoursesData } from "../../../services/courses/coursesData";
 import { Button } from "../../atoms";
@@ -17,14 +16,18 @@ import { Course } from "../../../types/types/course.types";
 import styles from "./AdminPanel.module.css";
 import { useAppDispatch, useAppSelector } from "../../../store/store";
 import { fetchAdmins } from "../../../store/slices/allAdminsSlice";
+import { fetchResourcesData } from "../../../services/resources/resources";
+import { allResources } from "../../../store/slices/resourcesByRol";
+import { studentsCount } from "../../../store/slices/studentsCountSlice";
 
-export const AdminPanel = async () => {
+export const AdminPanel = () => {
   const { data: session } = useSession();
   const userId = session?.user?.uid || "";
   const dispatch = useAppDispatch();
-  const [allStudents, setAllStudents] = useState(0);
+  const [allStudents, setAllStudents] = useState<number>(0);
   const [allCourses, setAllCourses] = useState<Course[] | undefined>(undefined);
   const { admins, loading, error } = useAppSelector((state) => state.allAdmins);
+
 
   useEffect(() => {
     if (userId) {
@@ -33,15 +36,20 @@ export const AdminPanel = async () => {
 
     const fetchData = async () => {
       try {
-        const studentsCount = await fetAllStudents(userId);
-        if (studentsCount > 0) {
-          dispatch(studentsCount(studentsCount));
-          setAllStudents(studentsCount);
+        const allStudentsCount = await fetAllStudents(userId);
+        if (typeof allStudentsCount === "number" && allStudentsCount > 0) {
+          dispatch(studentsCount(allStudentsCount));
+          setAllStudents(allStudentsCount);
         }
 
         const coursesData = await fetchCoursesData();
         if (coursesData) {
           setAllCourses(coursesData.slice(0, 4));
+        }
+
+        const resourceData = await fetchResourcesData(userId);
+        if (resourceData) {
+          dispatch(allResources(resourceData.resources));
         }
       } catch (error) {
         console.error("Error fetching data:", error);

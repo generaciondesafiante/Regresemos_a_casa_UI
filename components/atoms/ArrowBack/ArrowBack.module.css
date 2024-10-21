@@ -5,6 +5,7 @@
   text-decoration: none;
   font-size: var(--fontSize-buttons_mobile);
   transition: var(--transition);
+
 }
 
 .container__back:hover {

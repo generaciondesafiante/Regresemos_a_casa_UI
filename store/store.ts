@@ -7,6 +7,9 @@ import resourceReducer from "./slices/ResourceSlice";
 import resourcesReducer from "./slices/resourcesByRol";
 import allAdminsReducer from "./slices/allAdminsSlice";
 import studentsCountReducer from "./slices/studentsCountSlice";
+import resourceEditAdminReducer from "./slices/resourceEditAdminSlice";
+import coursesAdminPanelReducer from "./slices/courseAdminPanel";
+import allTopicsWithinACourse from "./slices/allTopicwithinCourseSlice";
 
 const rootReducer = {
   courses: courseReducer,
@@ -16,6 +19,9 @@ const rootReducer = {
   resources: resourcesReducer,
   allAdmins: allAdminsReducer,
   countStudents: studentsCountReducer,
+  resourceEditAdmin: resourceEditAdminReducer,
+  coursesAdminPanel: coursesAdminPanelReducer,
+  allTopicsWithACourse: allTopicsWithinACourse,
 };
 
 export const store = configureStore({

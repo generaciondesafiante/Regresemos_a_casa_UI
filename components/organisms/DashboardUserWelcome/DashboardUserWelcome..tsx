@@ -86,7 +86,7 @@ export const DashboardUserWelcome = () => {
           dispatch(selectTopic(topic));
           const resourceIndex = topic.resources.findIndex(
             (resource: Resource) =>
-              resource._id._id === lastViewedResource.resource._id
+              resource._id === lastViewedResource.resource._id
           );
           if (resourceIndex === -1) {
             console.warn("Resource not found.");
@@ -105,7 +105,7 @@ export const DashboardUserWelcome = () => {
             .toLowerCase();
           const resource = topic.resources.find(
             (resource: Resource) =>
-              resource._id._id === lastViewedResource.resource._id
+              resource._id === lastViewedResource.resource._id
           );
           dispatch(selectedResource(resource));
           router.push(

@@ -1,0 +1,121 @@
+.container--table {
+  width: 100%;
+}
+
+.container__section-table {
+  width: 46.875rem;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.search-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.link__button--create {
+  text-decoration: none;
+}
+
+.button__create {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 1.5rem;
+  color: var(--darkBlue);
+  font-weight: bold;
+  gap: 0.625rem;
+}
+
+.icon__button--create {
+  width: 1.2rem;
+}
+
+.button__create:hover,
+.icon__button--create:hover {
+  color: var(--white);
+  color: var(--darkBlue);
+  background-color: var(--yellow);
+}
+
+.dynamicTable {
+  width: 100%;
+  margin-top: 1rem;
+  border-collapse: collapse;
+  background-color: var(--white);
+}
+
+.dynamicTable td,
+.dynamicTable th {
+  border: 0.063rem solid var(--gray);
+  padding: 0.5rem;
+  text-align: center;
+}
+.dynamicTable td {
+  text-align: start;
+}
+
+.container__colums {
+  background-color: var(--grayGradient);
+}
+
+.header__with-dropdown {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.link__button {
+  text-decoration: none;
+}
+.action__button {
+  background-color: var(--darkBlue);
+  color: var(--white);
+  display: flex;
+  gap: 0.5rem;
+}
+
+.action__button:hover {
+  background-color: var(--yellow);
+  color: var(--darkBlue);
+}
+
+.action__cell--button {
+  display: flex;
+  justify-content: center;
+}
+
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 0.625rem;
+}
+
+.pagination__button {
+  background-color: transparent;
+  color: var(--white);
+  cursor: pointer;
+}
+
+.pagination__button:disabled {
+  color: var(--darkGray);
+  cursor: not-allowed;
+}
+
+.pagination__number {
+  color: var(--white);
+}
+
+.no-data-message {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 9.375rem;
+  display: table-cell;
+  color: var(--darkGray);
+}

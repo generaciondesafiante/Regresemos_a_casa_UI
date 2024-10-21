@@ -25,8 +25,10 @@ export const LessonItem: FC<LessonItemProps> = ({ index }) => {
   );
 
   const userSelectedResource = useAppSelector(
-    (state) => state.resource.selectedResource?._id._id
+    (state) => state.resource.selectedResource?._id
   );
+
+  console.log(userSelectedResource)
 
   const lastViewedResourceIndex =
     userProgress && userProgress.length > 0
@@ -48,7 +50,7 @@ export const LessonItem: FC<LessonItemProps> = ({ index }) => {
         dispatch(selectedResource(resource));
       }
 
-      const lessonId = userSelectedTopic.resources[lessonIndex - 1]?._id._id;
+      const lessonId = userSelectedTopic.resources[lessonIndex - 1]?._id;
       const url = `/dashboard/courses/${courseName}/${courseId}/${lessonId}/${tema}/${lessonIndex}`;
       router.push(url);
     }

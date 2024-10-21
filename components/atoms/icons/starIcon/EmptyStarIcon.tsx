@@ -1,4 +1,3 @@
-// icon:star | Ant Design Icons https://ant.design/components/icon/ | Ant Design
 import styles from "./StarIcon.module.css";
 
 import * as React from "react";
