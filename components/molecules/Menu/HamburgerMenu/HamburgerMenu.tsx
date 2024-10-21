@@ -5,11 +5,28 @@ import { menuData } from "../MenuData";
 import { UpArrow } from "../../../atoms/icons/topMenu/UpArrow";
 import { DownArrow } from "../../../atoms/icons/topMenu/DownArrow";
 import { usePathname } from "next/navigation";
+import { motion } from "framer-motion";
 import "./HamburgerMenu.css";
 
 interface SubMenuVisibility {
   [key: number]: boolean;
 }
+
+const menuVariants = {
+  hidden: { opacity: 0, y: -20 },
+  visible: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -20 },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: -10 },
+  visible: { opacity: 1, y: 0 },
+};
+
+const subMenuVariants = {
+  hidden: { opacity: 0, height: 0, overflow: "hidden" },
+  visible: { opacity: 1, height: "auto" },
+};
 
 export const HamburgerMenu = () => {
   const pathName = usePathname();
@@ -67,7 +84,14 @@ export const HamburgerMenu = () => {
           <div className={burger_class}></div>
         </div>
       </nav>
-      <div className={menu_class}>
+      <motion.div
+        className={menu_class}
+        initial="hidden"
+        animate={isMenuClicked ? "visible" : "hidden"}
+        exit="exit"
+        variants={menuVariants}
+        transition={{ duration: 0.3, ease: "easeOut" }}
+      >
         <div className="container-menu-items">
           {menuData.map((data, index) => (
             <div key={index}>
@@ -102,14 +126,25 @@ export const HamburgerMenu = () => {
                   </div>
                 )}
               </div>
-              {data.subMenu && subMenuVisibility[index] && (
-                <ul className={"subMenu-container"}>
+
+              {data.subMenu && (
+                <motion.ul
+                  className={"subMenu-container"}
+                  initial="hidden"
+                  animate={subMenuVisibility[index] ? "visible" : "hidden"}
+                  variants={subMenuVariants}
+                  transition={{ duration: 0.3 }}
+                >
                   {data.subMenu.map((item, subIndex) => (
-                    <li
+                    <motion.li
                       key={subIndex}
                       className={`subMenu-items ${
                         pathName === item.href ? "selected" : ""
                       }`}
+                      variants={itemVariants}
+                      initial="hidden"
+                      animate={subMenuVisibility[index] ? "visible" : "hidden"}
+                      transition={{ duration: 0.3, delay: subIndex * 0.1 }}
                     >
                       {item.href ? (
                         <Link
@@ -122,14 +157,14 @@ export const HamburgerMenu = () => {
                           {item.title}
                         </Link>
                       ) : null}
-                    </li>
+                    </motion.li>
                   ))}
-                </ul>
+                </motion.ul>
               )}
             </div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

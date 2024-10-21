@@ -124,13 +124,11 @@ nav {
 .subMenu-items:hover {
   cursor: pointer;
   color: var(--greenDesafiante);
-  transform: scale(1.03);
   font-weight: bold;
 }
 .subMenu-items.selected {
   color: var(--greenDesafiante);
   font-weight: bold;
-  transform: scale(1.03);
 }
 @media (width >=48rem) {
   .menu {
@@ -142,7 +140,6 @@ nav {
     left: 0;
     width: 40%;
     height: calc(100% - 3.75rem);
-    background-color: var(--white);
     z-index: -10;
   }
 }
