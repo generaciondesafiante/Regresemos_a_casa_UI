@@ -12,6 +12,7 @@ import { selectCourse } from "../../../store/slices/courseSlice";
 import { deleteCourse } from "../../../services/courses/deleteCourse";
 import AddCircleIcon from "../../atoms/icons/adminPanel/AddCircleIcon";
 import DeleteIcon from "../../atoms/icons/deleteIcon/DeleteIcon";
+import { LoadingTemplate } from "../../templates";
 
 export const EditCourseTopicManage = () => {
   const router = useRouter();
@@ -173,6 +174,10 @@ export const EditCourseTopicManage = () => {
       }
     });
   };
+
+  if (!course?.nameCourse) {
+    return <LoadingTemplate/>; 
+  }
 
   return (
     <main className={styles["createCourse"]}>
