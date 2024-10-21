@@ -280,7 +280,7 @@ export const Profile: FC<Props> = () => {
                 Guardar Cambios
               </Button>
               <Button
-                type={"text"}
+                type={"button"}
                 className={styles["profile-editInformation_cancelButton"]}
                 onClick={handleCancelEdit}
               >
