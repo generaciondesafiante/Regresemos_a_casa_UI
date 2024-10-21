@@ -11,6 +11,7 @@ import { updateTopicWithinCourse } from "../../../services/courses/topicOnCourse
 import { useSession } from "next-auth/react";
 import { deleteTopicWithinCourse } from "../../../services/courses/topicOnCourse/deleteTopicWithinCourse";
 import { allTopicWithinACourse } from "../../../store/slices/allTopicwithinCourseSlice";
+import { selectTopic } from "../../../store/slices/topicsSlice";
 
 export const EditTopicWithinCourseManage = () => {
   const [value, setValue] = useState("");
@@ -58,7 +59,7 @@ export const EditTopicWithinCourseManage = () => {
               text: "El tema no se ha editado correctamente.",
             });
           } else if (response.status === 200) {
-            dispatch(allTopicWithinACourse(response.data));
+            dispatch(selectTopic(response.data));
 
             Swal.fire({
               icon: "success",
