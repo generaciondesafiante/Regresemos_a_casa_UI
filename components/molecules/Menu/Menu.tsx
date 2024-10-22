@@ -43,6 +43,8 @@ export const Menu: React.FC = () => {
   const [subMenuVisibility, setSubMenuVisibility] = useState<SubMenuVisibility>(
     {}
   );
+  const [selectedMenu, setSelectedMenu] = useState<string | null>(null);
+  const [selectedSubMenu, setSelectedSubMenu] = useState<string | null>(null);
 
   const toggleSubMenu = (index: number) => {
     setSubMenuVisibility({
@@ -51,12 +53,12 @@ export const Menu: React.FC = () => {
     });
   };
 
-  const handleMenuClick = (index: number) => {
-    if (!subMenuVisibility[index]) {
-      setSubMenuVisibility({
-        ...subMenuVisibility,
-        [index]: true,
-      });
+  const handleMenuClick = (menuHref: string, subMenuHref?: string) => {
+    setSelectedMenu(menuHref);
+    if (subMenuHref) {
+      setSelectedSubMenu(subMenuHref);
+    } else {
+      setSelectedSubMenu(null);
     }
   };
 
@@ -99,9 +101,15 @@ export const Menu: React.FC = () => {
             <Link
               href={data.href}
               key={data.href}
-              onClick={() => handleMenuClick(index)}
+              onClick={() => handleMenuClick(data.href)}
               className={`${styles["menu-header_item"]} ${
-                pathName === data.href ? styles["selected"] : ""
+                data.subMenu &&
+                data.subMenu.some((subItem) => subItem.href === selectedSubMenu)
+                  ? styles["selected"]
+                  : !data.subMenu &&
+                    normalizedPathName === normalizePathName(data.href)
+                  ? styles["selected"]
+                  : ""
               }`}
             >
               <p>{data.title}</p>
@@ -132,7 +140,12 @@ export const Menu: React.FC = () => {
                       <Link
                         href={item.href}
                         key={subIndex}
-                        className={styles["menu-header_subMenuItems"]}
+                        onClick={() => handleMenuClick(data.href, item.href)}
+                        className={`${styles["menu-header_subMenuItems"]} ${
+                          selectedSubMenu === item.href
+                            ? styles["selected"]
+                            : ""
+                        }`}
                       >
                         {item.title}
                       </Link>
