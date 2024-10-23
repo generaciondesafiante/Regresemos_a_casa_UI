@@ -8,11 +8,27 @@ import { UpArrow } from "../../atoms/icons/topMenu/UpArrow";
 import { DownArrow } from "../../atoms/icons/topMenu/DownArrow";
 import { usePathname } from "next/navigation";
 import { getEnabledRoutes } from "../../../feature/BlockedRoutesPublicsFeatureFlags/getEnabledRoutesPublics";
-
+import { motion, AnimatePresence } from "framer-motion";
 interface SubMenuVisibility {
   [key: number]: boolean;
 }
 
+export interface MenuItem {
+  href: string;
+  title: string;
+  subMenu?: MenuItem[];
+}
+
+const fadeSlide = {
+  hidden: { y: -10, opacity: 0 },
+  visible: { y: 0, opacity: 1 },
+  exit: { y: 10, opacity: 0 },
+};
+
+const rotateArrow = {
+  open: { rotate: 180 },
+  closed: { rotate: 0 },
+};
 const normalizePathName = (path: string) => {
   return path
     .normalize("NFD")
@@ -27,7 +43,8 @@ export const Menu: React.FC = () => {
   const [subMenuVisibility, setSubMenuVisibility] = useState<SubMenuVisibility>(
     {}
   );
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [selectedMenu, setSelectedMenu] = useState<string | null>(null);
+  const [selectedSubMenu, setSelectedSubMenu] = useState<string | null>(null);
 
   const toggleSubMenu = (index: number) => {
     setSubMenuVisibility({
@@ -36,17 +53,16 @@ export const Menu: React.FC = () => {
     });
   };
 
-  const handleMenuClick = (index: number) => {
-    if (!subMenuVisibility[index]) {
-      setSubMenuVisibility({
-        ...subMenuVisibility,
-        [index]: true,
-      });
+  const handleMenuClick = (menuHref: string, subMenuHref?: string) => {
+    setSelectedMenu(menuHref);
+    if (subMenuHref) {
+      setSelectedSubMenu(subMenuHref);
+    } else {
+      setSelectedSubMenu(null);
     }
   };
 
   const handleMenuMouseEnter = (index: number) => {
-    setHoveredIndex(index);
     setSubMenuVisibility((prev) => ({
       ...prev,
       [index]: true,
@@ -54,15 +70,13 @@ export const Menu: React.FC = () => {
   };
 
   const handleMenuMouseLeave = (index: number) => {
-    if (!subMenuVisibility[-1]) {
-      setSubMenuVisibility({
-        ...subMenuVisibility,
-        [index]: false,
-      });
-    }
+    setSubMenuVisibility((prev) => ({
+      ...prev,
+      [index]: false,
+    }));
   };
 
-  const filteredMenuData = menuData.filter((data) => {
+  const filteredMenuData = menuData.filter((data: MenuItem) => {
     const enabledRoutes = getEnabledRoutes([data.href]);
     return enabledRoutes.length > 0;
   });
@@ -76,59 +90,73 @@ export const Menu: React.FC = () => {
           alt="Logo generación desafiante"
         />
       </Link>
-      <section
-        className={styles["menu-header_containerBtn"]}
-        onMouseLeave={() => handleMenuMouseLeave(-1)}
-      >
+      <section className={styles["menu-header_containerBtn"]}>
         {filteredMenuData.map((data, index) => (
           <div
             key={index}
+            className={styles["menu-header_itemWrapper"]}
             onMouseEnter={() => handleMenuMouseEnter(index)}
             onMouseLeave={() => handleMenuMouseLeave(index)}
           >
             <Link
               href={data.href}
               key={data.href}
-              onClick={() => handleMenuClick(index)}
+              onClick={() => handleMenuClick(data.href)}
               className={`${styles["menu-header_item"]} ${
-                pathName === data.href ? styles["selected"] : ""
+                data.subMenu &&
+                data.subMenu.some((subItem) => subItem.href === selectedSubMenu)
+                  ? styles["selected"]
+                  : !data.subMenu &&
+                    normalizedPathName === normalizePathName(data.href)
+                  ? styles["selected"]
+                  : ""
               }`}
             >
               <p>{data.title}</p>
               {data.subMenu && (
-                <span className={styles["menu-header_arrow"]}>
+                <motion.span
+                  className={styles["menu-header_arrow"]}
+                  initial="closed"
+                  animate={subMenuVisibility[index] ? "open" : "closed"}
+                  variants={rotateArrow}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
+                >
                   {subMenuVisibility[index] ? <UpArrow /> : <DownArrow />}
-                </span>
+                </motion.span>
               )}
             </Link>
-
-            {data.subMenu && subMenuVisibility[index] && (
-              <>
-                <div
-                  className={styles["menu-header_subMenuOverlay"]}
-                  onClick={() => toggleSubMenu(index)}
-                />
-                <ul
-                  className={styles["menu-header_subMenuContainer"]}
-                  onMouseEnter={() => handleMenuMouseEnter(index)}
-                  onMouseLeave={() => handleMenuMouseLeave(index)}
-                >
-                  {data.subMenu.map((item, subIndex) => (
-                    <Link
-                      href={item.href}
-                      key={subIndex}
-                      className={styles["menu-header_subMenuItems"]}
-                    >
-                      {item.title}
-                    </Link>
-                  ))}
-                </ul>
-              </>
+            {data.subMenu && (
+              <AnimatePresence>
+                {subMenuVisibility[index] && (
+                  <motion.ul
+                    initial="hidden"
+                    animate={subMenuVisibility[index] ? "visible" : "hidden"}
+                    exit="exit"
+                    variants={fadeSlide}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                    className={styles["menu-header_subMenuContainer"]}
+                  >
+                    {data.subMenu.map((item, subIndex) => (
+                      <Link
+                        href={item.href}
+                        key={subIndex}
+                        onClick={() => handleMenuClick(data.href, item.href)}
+                        className={`${styles["menu-header_subMenuItems"]} ${
+                          selectedSubMenu === item.href
+                            ? styles["selected"]
+                            : ""
+                        }`}
+                      >
+                        {item.title}
+                      </Link>
+                    ))}
+                  </motion.ul>
+                )}
+              </AnimatePresence>
             )}
           </div>
         ))}
       </section>
-
       <HamburgerMenu />
     </header>
   );
