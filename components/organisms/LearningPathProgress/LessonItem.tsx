@@ -28,8 +28,6 @@ export const LessonItem: FC<LessonItemProps> = ({ index }) => {
     (state) => state.resource.selectedResource?._id
   );
 
-  console.log(userSelectedResource)
-
   const lastViewedResourceIndex =
     userProgress && userProgress.length > 0
       ? userSelectedTopic?.resources.findIndex(

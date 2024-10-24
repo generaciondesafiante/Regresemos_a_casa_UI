@@ -62,7 +62,7 @@ export const LessonsWithinACourseAdminPortal = () => {
           actionButton={{ label: "Editar", icon: <AdminPencilIcon /> }}
           buttonCreateProps={{
             label: "Agregar lección",
-            // href: `/dashboard/adminPanel/courses/courseTopicManage/editTopicWithinACourse`,
+            href: `/dashboard/adminPanel/courses/courseTopicManage/lessonsWithinACourse/createLesson`,
           }}
           dropdownOptions={dropdownOptions}
           dropdownColumnKey="typeResource"
