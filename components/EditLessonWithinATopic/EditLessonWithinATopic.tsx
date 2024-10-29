@@ -1,35 +1,40 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import styles from "./CreateLessonWithinCourseAdminPortal.module.css";
-import { Button } from "../../atoms";
-import AddCircleIcon from "../../atoms/icons/adminPanel/AddCircleIcon";
-import AdminPencilIcon from "../../atoms/icons/adminPanel/AdminPencilIcon";
-import { motion, AnimatePresence } from "framer-motion";
-import { fetchResourcesData } from "../../../services/resources/resources";
+import { Button } from "../atoms";
+import styles from "./EditLessonWithinATopic.module.css";
+import AdminPencilIcon from "../atoms/icons/adminPanel/AdminPencilIcon";
+import { AnimatePresence, motion } from "framer-motion";
+import AddCircleIcon from "../atoms/icons/adminPanel/AddCircleIcon";
+import { useAppSelector } from "../../store/store";
+import { Resource } from "../../types/types/Resources";
+import { fetchResourcesData } from "../../services/resources/resources";
 import { useSession } from "next-auth/react";
-import { Resource } from "../../../types/types/Resources";
 import { useRouter } from "next/navigation";
-import { addLessonWithinTopic } from "../../../services/courses/lessonOnTopic/addLessonWithinTopic";
-import { useAppDispatch, useAppSelector } from "../../../store/store";
 import Swal from "sweetalert2";
-import { selectedResource } from "../../../store/slices/ResourceSlice";
-import { resourceEditAdmin } from "../../../store/slices/resourceEditAdminSlice";
+import { resourceEditAdmin } from "../../store/slices/resourceEditAdminSlice";
+import { useDispatch } from "react-redux";
+import { updateLessonWithinTopic } from "../../services/courses/lessonOnTopic/updateLessonWithinTopic";
+import { selectedResource } from "../../store/slices/ResourceSlice";
 
-export const CreateLessonWithinCourseAdminPortal = () => {
+const EdtLessonWithinATopic = () => {
   const { data: session } = useSession();
   const router = useRouter();
-  const dispatch = useAppDispatch();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
+  const dispatch = useDispatch();
+  const resourseData = useAppSelector(
+    (state) => state.resourceEditAdmin.resourceEditAdmin
+  );
+  const courseId = useAppSelector((state) => state.courses.selectedCourse?._id);
+  const topicId = useAppSelector((state) => state.topics.selectedTopic?._id);
   const [selectedResourceData, setSelectedResource] = useState<Resource | null>(
     null
   );
   const [resources, setResources] = useState<Resource[]>([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedType, setSelectedType] = useState("tipo de recurso");
-  const courseId = useAppSelector((state) => state.courses.selectedCourse?._id);
-  const topicId = useAppSelector((state) => state.topics.selectedTopic?._id);
-  
+  const [searchTerm, setSearchTerm] = useState("");
+
   useEffect(() => {
+    setSelectedResource(resourseData);
     const fetch = async () => {
       const idUser = session?.user.uid;
       const data = await fetchResourcesData(idUser || "");
@@ -40,7 +45,7 @@ export const CreateLessonWithinCourseAdminPortal = () => {
       }
     };
     fetch();
-  }, [session?.user.uid]);
+  }, [session?.user.uid, resourseData]);
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
@@ -50,13 +55,13 @@ export const CreateLessonWithinCourseAdminPortal = () => {
     setSearchTerm(event.target.value);
   };
 
+  const handleTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedType(event.target.value);
+  };
+
   const handleResourceClick = (resource: Resource) => {
     setSelectedResource(resource);
     setIsModalOpen(false);
-  };
-
-  const handleTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedType(event.target.value);
   };
 
   const filteredResources = resources
@@ -69,29 +74,49 @@ export const CreateLessonWithinCourseAdminPortal = () => {
       resource.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
+  const handleEditClick = () => {
+    if (selectedResourceData) {
+      router.push(
+        `/dashboard/adminPanel/resources/editResource/${selectedResourceData._id}`
+      );
+      dispatch(resourceEditAdmin(selectedResourceData));
+    } else {
+      Swal.fire({
+        title: "Seleccionar recurso para poder editar",
+        text: "No hay ningun recurso seleccionado",
+        icon: "warning",
+        confirmButtonText: "Seleccionar",
+        confirmButtonColor: "var(--turquoise)",
+      });
+    }
+  };
+
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+    event?.preventDefault();
     const userId = session?.user.uid;
-    const resourceId = selectedResourceData?._id;
+    const currentResourceId = resourseData?._id;
+    const newResourceId = selectedResourceData?._id || "";
     Swal.fire({
-      title: "¿Estás seguro de agregar el recurso a este tema?",
-      text: "Se agregara el recurso a este tema",
+      title: "¿Estás seguro de actualizar el recurso de este tema?",
+      text: "Se actualizara el recurso de este tema",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonText: "Sí, guardarlo",
+      confirmButtonText: "Sí, actualizar",
       cancelButtonText: "Cancelar",
       confirmButtonColor: "var(--turquoise)",
       cancelButtonColor: "var(--red)",
     }).then(async (result: any) => {
       if (result.isConfirmed) {
         try {
-          const data = await addLessonWithinTopic(
+          const data = await updateLessonWithinTopic(
             userId || "",
             courseId || "",
             topicId || "",
-            resourceId || ""
+            currentResourceId || "",
+            newResourceId
           );
-          if (data.status === 201) {
+
+          if (data.status === 200) {
             dispatch(selectedResource(data.data));
             Swal.fire({
               icon: "success",
@@ -115,26 +140,9 @@ export const CreateLessonWithinCourseAdminPortal = () => {
       }
     });
   };
-  const handleEditClick = () => {
-    if (selectedResourceData) {
-      router.push(
-        `/dashboard/adminPanel/resources/editResource/${selectedResourceData._id}`
-      );
-      dispatch(resourceEditAdmin(selectedResourceData));
-    } else {
-      Swal.fire({
-        title: "Seleccionar recurso para poder editar",
-        text: "No hay ningun recurso seleccionado",
-        icon: "warning",
-        confirmButtonText: "Seleccionar",
-        confirmButtonColor: "var(--turquoise)",
-      });
-    }
-  };
-
   return (
     <main className={styles["createCourse"]}>
-      <h2 className={styles["createCourse__title"]}>Agregar lección</h2>
+      <h2 className={styles["createCourse__title"]}>Editar lección</h2>
       <form className={styles["createCourse__form"]} onSubmit={onSubmit}>
         <div className={styles["container__input"]}>
           <h3 className={styles["subtitle__input"]}>
@@ -143,6 +151,7 @@ export const CreateLessonWithinCourseAdminPortal = () => {
           <select
             className={styles.inputOptions}
             name="typeOfRoute"
+            defaultValue={resourseData?.typeResource || "tipo de recurso"}
             onChange={handleTypeChange}
           >
             <option
@@ -192,7 +201,10 @@ export const CreateLessonWithinCourseAdminPortal = () => {
           <Button
             type="submit"
             className={styles["button__submit"]}
-            // disabled={!selectedResource}
+            disabled={
+              !selectedResourceData ||
+              selectedResourceData._id === resourseData?._id
+            }
           >
             Guardar
             <AddCircleIcon className={styles["editCourse__addIcon"]} />
@@ -202,7 +214,6 @@ export const CreateLessonWithinCourseAdminPortal = () => {
         <div className={styles["button__content-delete-course"]}>
           <Button
             className={styles["button__submit"]}
-            // disabled={!selectedResource}
             onClick={handleEditClick}
           >
             Editar recurso
@@ -252,3 +263,5 @@ export const CreateLessonWithinCourseAdminPortal = () => {
     </main>
   );
 };
+
+export default EdtLessonWithinATopic;
