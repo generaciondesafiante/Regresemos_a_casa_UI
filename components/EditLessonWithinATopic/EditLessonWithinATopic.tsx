@@ -15,6 +15,8 @@ import { resourceEditAdmin } from "../../store/slices/resourceEditAdminSlice";
 import { useDispatch } from "react-redux";
 import { updateLessonWithinTopic } from "../../services/courses/lessonOnTopic/updateLessonWithinTopic";
 import { selectedResource } from "../../store/slices/ResourceSlice";
+import { deleteLessonWithinTopic } from "../../services/courses/lessonOnTopic/deleteLessonWithinTopic";
+import DeleteIcon from "../atoms/icons/deleteIcon/DeleteIcon";
 
 const EdtLessonWithinATopic = () => {
   const { data: session } = useSession();
@@ -140,6 +142,55 @@ const EdtLessonWithinATopic = () => {
       }
     });
   };
+
+  const deleteResourceWithinCourse = async () => {
+    const userId = session?.user.uid;
+    const idCourse = courseId;
+    const resourceId = resourseData?._id;
+
+    Swal.fire({
+      title: "¿Estás seguro de eliminar el recurso de este tema?",
+      text: "Se eliminara el recurso de este tema",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Sí, Eliminar",
+      cancelButtonText: "Cancelar",
+      confirmButtonColor: "var(--turquoise)",
+      cancelButtonColor: "var(--red)",
+    }).then(async (result: any) => {
+      if (result.isConfirmed) {
+        try {
+          const data = await deleteLessonWithinTopic(
+            userId || "",
+            idCourse || "",
+            topicId || "",
+            resourceId || ""
+          );
+
+          if (data.status === 200) {
+            dispatch(selectedResource(data.data));
+            Swal.fire({
+              icon: "success",
+              title: "Lección fue eliminada",
+              text: "La lección se ha eliminado correctamente.",
+            });
+            router.push(
+              "/dashboard/adminPanel/courses/courseTopicManage/lessonsWithinACourse"
+            );
+          } else {
+            Swal.fire("Error", `${data.data.error}`, "error");
+          }
+        } catch (error) {
+          console.error(error);
+          Swal.fire(
+            "Error",
+            "Hubo un problema al eliminar el recurso correctamente.",
+            "error"
+          );
+        }
+      }
+    });
+  };
   return (
     <main className={styles["createCourse"]}>
       <h2 className={styles["createCourse__title"]}>Editar lección</h2>
@@ -213,7 +264,14 @@ const EdtLessonWithinATopic = () => {
         <hr className={styles["button__split"]} />
         <div className={styles["button__content-delete-course"]}>
           <Button
-            className={styles["button__submit"]}
+            className={styles["button__delete-resource"]}
+            onClick={deleteResourceWithinCourse}
+          >
+            Eliminar recurso{" "}
+            <DeleteIcon className={styles["icon__delete-course"]} />
+          </Button>
+          <Button
+            className={styles["button_edit-resource"]}
             onClick={handleEditClick}
           >
             Editar recurso
