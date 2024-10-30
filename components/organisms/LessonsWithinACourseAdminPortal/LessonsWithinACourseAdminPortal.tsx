@@ -2,11 +2,13 @@
 import React from "react";
 import { DynamicTable } from "../TableAdmin/TableAdmin";
 import { Column } from "../../../types/types/tableAdmin";
-import { useAppSelector } from "../../../store/store";
+import { useAppDispatch, useAppSelector } from "../../../store/store";
 import AdminPencilIcon from "../../atoms/icons/adminPanel/AdminPencilIcon";
 import styles from "./LessonsWithinACourseAdminPortal.module.css";
 import { ArrowBack } from "../../atoms/ArrowBack/ArrowBack";
 import { useRouter } from "next/navigation";
+import { resourceEditAdmin } from "../../../store/slices/resourceEditAdminSlice";
+import Swal from "sweetalert2";
 
 const columns: Column[] = [
   { key: "_id", label: "Id" },
@@ -18,7 +20,7 @@ const dropdownOptions = ["todos", "video", "audio", "pdf", "imagen", "link"];
 
 export const LessonsWithinACourseAdminPortal = () => {
   const router = useRouter();
-
+  const dispatch = useAppDispatch();
   const selectedTopic = useAppSelector((state) => state.topics.selectedTopic);
 
   const selectedLesson = useAppSelector(
@@ -30,7 +32,22 @@ export const LessonsWithinACourseAdminPortal = () => {
     ? [selectedLesson._id]
     : [];
 
-  const handleEditClick = (row: any) => {};
+  const handleEditClick = (row: any) => {
+    if (row) {
+      dispatch(resourceEditAdmin(row));
+      router.push(
+        "/dashboard/adminPanel/courses/courseTopicManage/lessonsWithinACourse/editLesson"
+      );
+    } else {
+      Swal.fire({
+        title: "Error al seleccionar el recurso.",
+        text: "Ponte en contacto con el equipo de desarrollo.",
+        icon: "warning",
+        confirmButtonText: "Seleccionar",
+        confirmButtonColor: "var(--turquoise)",
+      });
+    }
+  };
   return (
     <main className={styles["container__lessonWithinCourse"]}>
       <ArrowBack
