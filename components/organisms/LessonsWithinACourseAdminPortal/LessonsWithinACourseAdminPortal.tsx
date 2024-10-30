@@ -40,8 +40,8 @@ export const LessonsWithinACourseAdminPortal = () => {
       );
     } else {
       Swal.fire({
-        title: "Error al seleccionar el recurso",
-        text: "Hablar con el equipo de desarrollo",
+        title: "Error al seleccionar el recurso.",
+        text: "Ponte en contacto con el equipo de desarrollo.",
         icon: "warning",
         confirmButtonText: "Seleccionar",
         confirmButtonColor: "var(--turquoise)",

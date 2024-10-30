@@ -28,7 +28,7 @@ export const CreateLessonWithinCourseAdminPortal = () => {
   const [selectedType, setSelectedType] = useState("tipo de recurso");
   const courseId = useAppSelector((state) => state.courses.selectedCourse?._id);
   const topicId = useAppSelector((state) => state.topics.selectedTopic?._id);
-  
+
   useEffect(() => {
     const fetch = async () => {
       const idUser = session?.user.uid;
@@ -75,7 +75,7 @@ export const CreateLessonWithinCourseAdminPortal = () => {
     const resourceId = selectedResourceData?._id;
     Swal.fire({
       title: "¿Estás seguro de agregar el recurso a este tema?",
-      text: "Se agregara el recurso a este tema",
+      text: "Se agregará el recurso a este tema.",
       icon: "warning",
       showCancelButton: true,
       confirmButtonText: "Sí, guardarlo",
@@ -123,8 +123,8 @@ export const CreateLessonWithinCourseAdminPortal = () => {
       dispatch(resourceEditAdmin(selectedResourceData));
     } else {
       Swal.fire({
-        title: "Seleccionar recurso para poder editar",
-        text: "No hay ningun recurso seleccionado",
+        title: "Selecciona un recurso para editar.",
+        text: "No has seleccionado ningún recurso.",
         icon: "warning",
         confirmButtonText: "Seleccionar",
         confirmButtonColor: "var(--turquoise)",
@@ -189,11 +189,7 @@ export const CreateLessonWithinCourseAdminPortal = () => {
           >
             Cancelar
           </Button>
-          <Button
-            type="submit"
-            className={styles["button__submit"]}
-            // disabled={!selectedResource}
-          >
+          <Button type="submit" className={styles["button__submit"]}>
             Guardar
             <AddCircleIcon className={styles["editCourse__addIcon"]} />
           </Button>
@@ -202,7 +198,6 @@ export const CreateLessonWithinCourseAdminPortal = () => {
         <div className={styles["button__content-delete-course"]}>
           <Button
             className={styles["button__submit"]}
-            // disabled={!selectedResource}
             onClick={handleEditClick}
           >
             Editar recurso
