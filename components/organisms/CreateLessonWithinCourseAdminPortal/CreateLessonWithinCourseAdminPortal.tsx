@@ -14,6 +14,7 @@ import { useAppDispatch, useAppSelector } from "../../../store/store";
 import Swal from "sweetalert2";
 import { selectedResource } from "../../../store/slices/ResourceSlice";
 import { resourceEditAdmin } from "../../../store/slices/resourceEditAdminSlice";
+import { showNotification } from "../../../store/slices/notificationSlice ";
 
 export const CreateLessonWithinCourseAdminPortal = () => {
   const { data: session } = useSession();
@@ -93,11 +94,7 @@ export const CreateLessonWithinCourseAdminPortal = () => {
           );
           if (data.status === 201) {
             dispatch(selectedResource(data.data));
-            Swal.fire({
-              icon: "success",
-              title: "Lección agreagada",
-              text: "La lección se ha agregado correctamente.",
-            });
+            dispatch(showNotification("Lección agregada"));
             router.push(
               "/dashboard/adminPanel/courses/courseTopicManage/lessonsWithinACourse"
             );

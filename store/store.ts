@@ -10,6 +10,7 @@ import studentsCountReducer from "./slices/studentsCountSlice";
 import resourceEditAdminReducer from "./slices/resourceEditAdminSlice";
 import coursesAdminPanelReducer from "./slices/courseAdminPanel";
 import allTopicsWithinACourse from "./slices/allTopicwithinCourseSlice";
+import notificationToast from "./slices/notificationSlice ";
 
 const rootReducer = {
   courses: courseReducer,
@@ -22,6 +23,7 @@ const rootReducer = {
   resourceEditAdmin: resourceEditAdminReducer,
   coursesAdminPanel: coursesAdminPanelReducer,
   allTopicsWithACourse: allTopicsWithinACourse,
+  notificationToast: notificationToast,
 };
 
 export const store = configureStore({
