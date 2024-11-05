@@ -17,6 +17,7 @@ import { updateLessonWithinTopic } from "../../services/courses/lessonOnTopic/up
 import { selectedResource } from "../../store/slices/ResourceSlice";
 import { deleteLessonWithinTopic } from "../../services/courses/lessonOnTopic/deleteLessonWithinTopic";
 import DeleteIcon from "../atoms/icons/deleteIcon/DeleteIcon";
+import { showNotification } from "../../store/slices/notificationSlice ";
 
 const EdtLessonWithinATopic = () => {
   const { data: session } = useSession();
@@ -120,11 +121,7 @@ const EdtLessonWithinATopic = () => {
 
           if (data.status === 200) {
             dispatch(selectedResource(data.data));
-            Swal.fire({
-              icon: "success",
-              title: "Lección agreagada",
-              text: "La lección se ha agregado correctamente.",
-            });
+            dispatch(showNotification("Lección editada"));
             router.push(
               "/dashboard/adminPanel/courses/courseTopicManage/lessonsWithinACourse"
             );

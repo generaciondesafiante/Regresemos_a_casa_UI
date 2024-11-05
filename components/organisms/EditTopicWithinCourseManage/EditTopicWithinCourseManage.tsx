@@ -12,6 +12,7 @@ import { useSession } from "next-auth/react";
 import { deleteTopicWithinCourse } from "../../../services/courses/topicOnCourse/deleteTopicWithinCourse";
 import { allTopicWithinACourse } from "../../../store/slices/allTopicwithinCourseSlice";
 import { selectTopic } from "../../../store/slices/topicsSlice";
+import { showNotification } from "../../../store/slices/notificationSlice ";
 
 export const EditTopicWithinCourseManage = () => {
   const [value, setValue] = useState("");
@@ -61,15 +62,12 @@ export const EditTopicWithinCourseManage = () => {
           } else if (response.status === 200) {
             dispatch(selectTopic(response.data));
 
-            Swal.fire({
-              icon: "success",
-              title: "Tema editado",
-              text: "El tema se ha editado correctamente.",
-            });
-
-            router.push(
-              "/dashboard/adminPanel/courses/courseTopicManage/lessonsWithinACourse"
-            );
+            dispatch(showNotification("Tema editado"));
+            setTimeout(() => {
+              router.push(
+                "/dashboard/adminPanel/courses/courseTopicManage/lessonsWithinACourse"
+              );
+            }, 1000);
           }
         } catch (error) {
           console.error(error);

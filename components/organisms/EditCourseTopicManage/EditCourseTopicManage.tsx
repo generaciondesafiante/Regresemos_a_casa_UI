@@ -13,6 +13,7 @@ import { deleteCourse } from "../../../services/courses/deleteCourse";
 import AddCircleIcon from "../../atoms/icons/adminPanel/AddCircleIcon";
 import DeleteIcon from "../../atoms/icons/deleteIcon/DeleteIcon";
 import { LoadingTemplate } from "../../templates";
+import { showNotification } from "../../../store/slices/notificationSlice ";
 
 export const EditCourseTopicManage = () => {
   const router = useRouter();
@@ -108,11 +109,7 @@ export const EditCourseTopicManage = () => {
             });
           }
 
-          Swal.fire({
-            icon: "success",
-            title: "Curso editado",
-            text: "El curso editado correctamente.",
-          });
+          dispatch(showNotification("Curso editado"));
           const course = async () => {
             const data = await fetchCoursesData();
             if (data) {
@@ -164,12 +161,6 @@ export const EditCourseTopicManage = () => {
               text: "El curso no ha eliminado correctamente.",
             });
           }
-
-          Swal.fire({
-            icon: "success",
-            title: "Curso eliminado",
-            text: "El curso se ha eliminado correctamente.",
-          });
           router.push("/dashboard/adminPanel/courses");
         } catch (error) {
           console.error(error);
