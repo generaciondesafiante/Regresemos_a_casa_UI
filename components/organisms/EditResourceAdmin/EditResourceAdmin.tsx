@@ -103,7 +103,6 @@ export const EditResourceAdmin = () => {
           </Button>
             <div className={styles["thumbnail-preview"]}>
               <img
-                // src={URL.createObjectURL(selectedThumbnailFile)}
                 alt="Vista previa de la miniatura"
                 className={styles["thumbnail-image"]}
               />

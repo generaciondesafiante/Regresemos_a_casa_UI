@@ -9,6 +9,7 @@ import { createTopicOnCourse } from "../../../services/courses/topicOnCourse/cre
 import { useSession } from "next-auth/react";
 import { useAppDispatch } from "../../../store/store";
 import { allTopicWithinACourse } from "../../../store/slices/allTopicwithinCourseSlice";
+import { showNotification } from "../../../store/slices/notificationSlice ";
 
 export const CreateTopicOnCourseAdminPortal = () => {
   const { idCourse } = useParams();
@@ -57,11 +58,7 @@ export const CreateTopicOnCourseAdminPortal = () => {
           if (response.status === 201) {
             dispatch(allTopicWithinACourse(response.data.topic));
 
-            Swal.fire({
-              icon: "success",
-              title: "Tema creado",
-              text: "El tema ha sido creado correctamente.",
-            });
+            dispatch(showNotification("Tema agregado"));
             router.push("/dashboard/adminPanel/courses/courseTopicManage");
           } else {
             Swal.fire(

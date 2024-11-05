@@ -7,6 +7,8 @@ import { useSession } from "next-auth/react";
 import { createCourse } from "../../../services/courses/createCourse";
 import { useRouter } from "next/navigation";
 import AddCircleIcon from "../../atoms/icons/adminPanel/AddCircleIcon";
+import { useDispatch } from "react-redux";
+import { showNotification } from "../../../store/slices/notificationSlice ";
 
 interface CourseState {
   nameCourse: string;
@@ -17,6 +19,7 @@ interface CourseState {
 export const CreateCourseAdminPanel: React.FC = () => {
   const { data: session } = useSession();
   const router = useRouter();
+  const dispatch = useDispatch();
   const userId = session?.user.uid;
   const [course, setCourse] = useState<CourseState>({
     nameCourse: "",
@@ -107,11 +110,7 @@ export const CreateCourseAdminPanel: React.FC = () => {
               userId || ""
             );
             if (courseData.status === 201) {
-              Swal.fire({
-                icon: "success",
-                title: "Curso creado",
-                text: "El curso ha sido agregado correctamente.",
-              });
+              dispatch(showNotification("Curso agregado"));
               router.push("/dashboard/adminPanel/courses");
             } else {
               Swal.fire({
