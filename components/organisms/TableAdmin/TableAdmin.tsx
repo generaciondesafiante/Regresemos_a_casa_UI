@@ -53,7 +53,6 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
   const [selectedDropdownValue, setSelectedDropdownValue] = useState("todos");
   const [filteredRows, setFilteredRows] = useState(rows);
 
-
   useEffect(() => {
     let updatedRows = rows;
 
@@ -62,7 +61,6 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
         (row) => row[dropdownColumnKey] === selectedDropdownValue
       );
     }
-
 
     if (search) {
       updatedRows = updatedRows.filter((row) =>
@@ -96,6 +94,41 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
     setSelectedDropdownValue(value);
   };
 
+  const generatePagination = () => {
+    const pages = [];
+    const ellipsis = "...";
+    for (let i = 1; i <= totalPages; i++) {
+      if (
+        i === 1 ||
+        i === totalPages ||
+        i === currentPage ||
+        i === currentPage - 1 ||
+        i === currentPage + 1
+      ) {
+        pages.push(
+          <Button
+            key={i}
+            onClick={() => setCurrentPage(i)}
+            className={`${styles["pagination__button"]} ${
+              currentPage === i
+                ? styles["pagination__button--current"]
+                : styles["pagination__button--notCurrent"]
+            }`}
+          >
+            {i}
+          </Button>
+        );
+      } else if (i === currentPage - 2 || i === currentPage + 2) {
+        pages.push(
+          <span key={i} className={styles["pagination__ellipsis"]}>
+            {ellipsis}
+          </span>
+        );
+      }
+    }
+    return pages;
+  };
+
   return (
     <main className={styles["container--table"]}>
       <section className={styles["container__section-table"]}>
@@ -109,7 +142,7 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
             className={styles["link__button--create"]}
           >
             <Button className={styles["button__create"]}>
-              {buttonCreateProps.label}{" "}
+              {buttonCreateProps.label}
               {buttonCreateProps.icon ?? (
                 <AddCircleIcon className={styles["icon__button--create"]} />
               )}
@@ -118,20 +151,21 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
         </div>
 
         <table className={styles["dynamicTable"]}>
-          <thead className={styles["container__colums"]}>
+          <thead className={`${styles["container__colums"]}`}>
             <tr className={styles["container__colums1"]}>
               {columns.map((column: any) => (
                 <th key={column.key} className="header__with-dropdown">
                   {column.label}
                   {column.key === dropdownColumnKey && (
                     <Dropdown
-                    options={dropdownOptions}
-                    onChange={handleDropdownChange}
-                    selectedValue={selectedDropdownValue}
+                      options={dropdownOptions}
+                      onChange={handleDropdownChange}
+                      selectedValue={selectedDropdownValue}
                     />
                   )}
                 </th>
               ))}
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -153,9 +187,11 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
                   <td className={styles["action__cell--button"]}>
                     <Button
                       className={styles["action__button"]}
-                      onClick={() => onEdit?.(row)}
+                      onClick={() => {
+                        onEdit?.(row);
+                      }}
                     >
-                      {actionButton.label} {actionButton.icon} 
+                      {actionButton.label} {actionButton.icon}
                     </Button>
                   </td>
                 </tr>
@@ -172,9 +208,7 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
           >
             <IconStepBackward />
           </Button>
-          <span className={styles["pagination__number"]}>
-            {currentPage} ... {totalPages}
-          </span>
+          {generatePagination()}
           <Button
             onClick={handleNextPage}
             disabled={currentPage === totalPages}
