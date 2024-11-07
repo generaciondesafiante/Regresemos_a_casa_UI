@@ -28,7 +28,6 @@ export const AdminPanel = () => {
   const [allCourses, setAllCourses] = useState<Course[] | undefined>(undefined);
   const { admins, loading, error } = useAppSelector((state) => state.allAdmins);
 
-
   useEffect(() => {
     if (userId) {
       dispatch(fetchAdmins(userId));
@@ -122,7 +121,7 @@ export const AdminPanel = () => {
             <h1 className={styles["adminPanel__title--courses"]}>Cursos</h1>
             <div className={styles["adminPanel__conent-courses--courses"]}>
               {allCourses && allCourses.length > 0 ? (
-                allCourses.map((course, index) => (
+                allCourses.slice(0, 3).map((course, index) => (
                   <p
                     className={styles["adminPanel__course-item--courses"]}
                     key={index}
