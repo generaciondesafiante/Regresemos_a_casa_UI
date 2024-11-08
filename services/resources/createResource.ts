@@ -26,7 +26,7 @@ export const addResource = async (
       }
     );
 
-    const responseData = await response.json();
+    const responseData = await response.json(); 
     if (!response.ok) {
       return {
         status: response.status,
