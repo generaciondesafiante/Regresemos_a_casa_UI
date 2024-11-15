@@ -1,28 +1,37 @@
 .home-welcome {
+  position: relative;
   height: 42rem;
   margin-top: 4.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: linear-gradient(0deg, #6e71767f, #bcbfc370),
-    url("/homePage/homepage.webp");
-  background-size: cover;
-  background-position: top;
-  background-position: center;
-  background-repeat: no-repeat;
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, #6e71767f, #bcbfc370);
+  z-index: 1;
 }
 
 .home-title {
   width: 20rem;
   text-align: center;
+  position: relative;
+  z-index: 2;
+  font-weight: bold;
+  color: var(--white);
+  font-size: 2.5rem;
   margin-bottom: 1rem;
   margin-top: 15rem;
   font-size: var(--fontSize-superTitles_mobile);
-  font-weight: bold;
-  color: var(--white);
 }
 
-.home-welcome>.home-button_action {
+.home-welcome > .home-button_action {
+  position: relative;
+  z-index: 2;
   background-color: transparent;
   border: var(--border) var(--white);
 }
@@ -32,18 +41,22 @@
   color: var(--white);
 }
 
-.home-welcome>.home-button_action:hover {
+.home-welcome > .home-button_action:hover {
   backdrop-filter: blur(0.3rem);
 }
 
-.home-welcome>.home-content_itemsDown {
+.home-socialNetworks_down a {
+  margin: 0 0.5rem;
+}
+.home-welcome > .home-content_itemsDown {
+  position: relative;
+  z-index: 2;
   display: flex;
   margin-top: 14rem;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
   gap: 1.25rem;
-
 }
 
 .home-sutbtitle_down {
@@ -125,7 +138,7 @@
   color: #605e5e;
 }
 
-.home-title_step>.home-title_reverseWord {
+.home-title_step > .home-title_reverseWord {
   display: inline-block;
   font-weight: bold;
   transform: rotate(180deg);
@@ -146,7 +159,7 @@
   justify-content: center;
   align-items: center;
   padding: 2rem 0rem;
-  background-color: rgb(247, 245, 245);
+  background-color: #f7f5f5;
 }
 
 .home-title_bePart {
@@ -166,6 +179,8 @@
   border-radius: var(--borderRadius);
   cursor: pointer;
   transition: var(--transition);
+  width: 17.375rem;
+  height: auto;
 }
 
 .home-image_bePart:hover {
@@ -173,27 +188,37 @@
 }
 
 .home-container_shedulesLast {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-bottom: 2rem;
-  background-image: linear-gradient(0deg, #353434c3, #555657),
-    url("/homePage/background-times.webp");
-  background-size: cover;
-  object-fit: contain;
-  background-position: center;
-  background-repeat: no-repeat;
+  height: auto;
+  overflow: hidden;
+}
+
+.overlay__shedulesLast {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, #353434c3, #555657);
+  z-index: 1;
 }
 
 .home-session_linkSchedules {
+  position: relative;
   text-decoration: none;
   text-align: center;
+  z-index: 2;
 }
 
 .home-title_shedulesLast {
   margin: 2rem 0;
   font-size: var(--fontSize-titles_mobile);
   color: var(--white);
+  z-index: 2;
 }
 
 .home-spanTitle_shedules {
@@ -206,6 +231,17 @@
   border-radius: var(--borderRadius);
   cursor: pointer;
   transition: var(--transition);
+  z-index: 2;
+  position: relative;
+}
+
+.home-session_linkSchedules > .home-image-sukatDavid{
+  height: 32rem;
+}
+
+.image-wrapper {
+  width: 17rem; 
+  height: auto; 
 }
 
 .home-image-sukatDavid:hover,
@@ -219,7 +255,7 @@
     margin-bottom: 1rem;
   }
 
-  .home-welcome>.home-content_itemsDown {
+  .home-welcome > .home-content_itemsDown {
     margin-top: 13rem;
   }
 

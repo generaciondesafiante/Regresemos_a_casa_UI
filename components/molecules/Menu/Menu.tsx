@@ -9,6 +9,7 @@ import { DownArrow } from "../../atoms/icons/topMenu/DownArrow";
 import { usePathname } from "next/navigation";
 import { getEnabledRoutes } from "../../../feature/BlockedRoutesPublicsFeatureFlags/getEnabledRoutesPublics";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 interface SubMenuVisibility {
   [key: number]: boolean;
 }
@@ -84,7 +85,9 @@ export const Menu: React.FC = () => {
   return (
     <header className={styles.header}>
       <Link href={"/"}>
-        <img
+        <Image
+          width={56}
+          height={56}
           className={styles["menu-header_logo"]}
           src="https://i.imgur.com/B0R1LHJ.png"
           alt="Logo generación desafiante"
