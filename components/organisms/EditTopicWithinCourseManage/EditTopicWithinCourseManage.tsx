@@ -61,13 +61,10 @@ export const EditTopicWithinCourseManage = () => {
             });
           } else if (response.status === 200) {
             dispatch(selectTopic(response.data));
-
             dispatch(showNotification("Tema editado"));
-            setTimeout(() => {
-              router.push(
-                "/dashboard/adminPanel/courses/courseTopicManage/lessonsWithinACourse"
-              );
-            }, 1000);
+            router.push(
+              "/dashboard/adminPanel/courses/courseTopicManage/lessonsWithinACourse"
+            );
           }
         } catch (error) {
           console.error(error);

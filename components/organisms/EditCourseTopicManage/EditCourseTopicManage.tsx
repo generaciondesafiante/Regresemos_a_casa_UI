@@ -86,10 +86,10 @@ export const EditCourseTopicManage = () => {
       text: "¿Deseas confirmar la edición del curso?",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "var(--turquoise)",
-      cancelButtonColor: "var(--red)",
       confirmButtonText: "Sí, editar curso",
+      confirmButtonColor: "var(--turquoise)",
       cancelButtonText: "Cancelar",
+      cancelButtonColor: "var(--red)",
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {

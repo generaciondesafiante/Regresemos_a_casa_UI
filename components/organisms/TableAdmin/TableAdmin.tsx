@@ -52,7 +52,7 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
   const [search, setSearch] = useState("");
   const [selectedDropdownValue, setSelectedDropdownValue] = useState("todos");
   const [filteredRows, setFilteredRows] = useState(rows);
-
+  console.log(selectedDropdownValue);
   useEffect(() => {
     let updatedRows = rows;
 
@@ -91,7 +91,8 @@ export const DynamicTable: React.FC<DynamicTableProps> = ({
   };
 
   const handleDropdownChange = (value: string) => {
-    setSelectedDropdownValue(value);
+    console.log(value.toLowerCase());
+    setSelectedDropdownValue(value.toLowerCase());
   };
 
   const generatePagination = () => {

@@ -15,6 +15,9 @@
   overflow: auto;
   padding: 1rem;
 }
+.parent-container {
+  position: relative; 
+}
 
 .content__resource::-webkit-scrollbar {
   width: 0.5rem;

@@ -1,10 +1,10 @@
 "use client";
 import React, { useEffect } from "react";
-import { motion } from "framer-motion";
 import { useAppDispatch, useAppSelector } from "../../../store/store";
+import { toast, ToastContainer } from "react-toastify";
 import { hideNotification } from "../../../store/slices/notificationSlice ";
+import "react-toastify/dist/ReactToastify.css";
 import styles from "./NotifyToast.module.css";
-import { IconCheckCircle } from "../../atoms/icons/CheckCirculeIcon/CheckCirculeIcon";
 
 const ToastNotification = () => {
   const dispatch = useAppDispatch();
@@ -13,26 +13,29 @@ const ToastNotification = () => {
   );
 
   useEffect(() => {
-    if (visible) {
+    if (visible && message) {
+      toast.success(message, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "light",
+      });
+
       const timer = setTimeout(() => {
         dispatch(hideNotification());
-      }, 3000);
+      }, 5000);
+
       return () => clearTimeout(timer);
     }
-  }, [visible, dispatch]);
-
-  if (!visible) return null;
+  }, [visible, message, dispatch]);
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }}
-      className={styles.toast}
-    >
-      <span className={styles['toast__message']}>{message}</span>
-      <IconCheckCircle />
-    </motion.div>
+    <div className={styles["toast"]}>
+      <ToastContainer />
+    </div>
   );
 };
 

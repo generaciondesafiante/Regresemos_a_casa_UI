@@ -1,15 +1,6 @@
 .toast {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: absolute;
-  top: 0.625rem;
-  right: 0.625rem;
-  color: var(--turquoise);
-  padding: 0.625rem 1.25rem;
-  border-radius: 0.313rem;
-  z-index: 10;
-  gap: 0.625rem;
+
 }
 
 .toast__message {

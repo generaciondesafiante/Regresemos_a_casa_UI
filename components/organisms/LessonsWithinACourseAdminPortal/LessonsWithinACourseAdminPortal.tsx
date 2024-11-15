@@ -16,7 +16,7 @@ const columns: Column[] = [
   { key: "typeResource", label: "Tipo" },
 ];
 
-const dropdownOptions = ["todos", "video", "audio", "pdf", "imagen", "link"];
+const dropdownOptions = ["Todos", "Video", "Audio", "Pdf", "Imagen", "Link"];
 
 export const LessonsWithinACourseAdminPortal = () => {
   const router = useRouter();

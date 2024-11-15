@@ -1,20 +1,22 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import Swal from "sweetalert2";
-import styles from "./AddOrEditResource.module.css";
-import { Button, Input } from "../../atoms";
-import { uploadResourceAndThumbnail } from "../../../hooks/useFirebaseCreateResource";
-import { addResource } from "../../../services/resources/createResource";
+import { useAppDispatch, useAppSelector } from "../../../store/store";
 import { useSession } from "next-auth/react";
 import { useParams, useRouter } from "next/navigation";
-import { useAppSelector } from "../../../store/store";
+import { uploadResourceAndThumbnail } from "../../../hooks/useFirebaseCreateResource";
+import { addResource } from "../../../services/resources/createResource";
 import { Resource } from "../../../types/types/Resources";
 import { aditResource } from "../../../services/resources/editResource";
-import AddCircleIcon from "../../atoms/icons/adminPanel/AddCircleIcon";
-import IconDeleteBin6Fill from "../../atoms/icons/deleteIcon/DeleteIcon";
 import { deleteResource } from "../../../services/resources/deleteResource";
+import { showNotification } from "../../../store/slices/notificationSlice ";
+import { Button, Input } from "../../atoms";
+import IconDeleteBin6Fill from "../../atoms/icons/deleteIcon/DeleteIcon";
+import AddCircleIcon from "../../atoms/icons/adminPanel/AddCircleIcon";
+import Swal from "sweetalert2";
+import styles from "./AddOrEditResource.module.css";
 
 export const AddResource = () => {
+  const dispatch = useAppDispatch();
   const { data: session } = useSession();
   const { idResource } = useParams();
   const router = useRouter();
@@ -206,6 +208,7 @@ export const AddResource = () => {
                 thumbnailFileInputRef.current.value = "";
               }
               resetForm();
+              dispatch(showNotification("Recurso creado"));
             } else {
               Swal.fire(
                 "Error",
@@ -214,7 +217,7 @@ export const AddResource = () => {
               );
             }
           } catch (error) {
-            console.error(error)
+            console.error(error);
             Swal.fire(
               "Error",
               "Hubo un problema al subir o crear el recurso.",
@@ -233,8 +236,10 @@ export const AddResource = () => {
         text: "Vas a editar este recurso",
         icon: "warning",
         showCancelButton: true,
-        confirmButtonText: "Sí, editar",
+        confirmButtonText: "Sí, Actualizar",
+        confirmButtonColor: "var(--turquoise)",
         cancelButtonText: "Cancelar",
+        cancelButtonColor: "var(--red)",
       }).then(async (result) => {
         if (result.isConfirmed) {
           try {
@@ -285,12 +290,16 @@ export const AddResource = () => {
                 thumbnailFileInputRef.current.value = "";
               }
               resetForm();
+              dispatch(showNotification("Recurso editado"));
+
+              router.push("/dashboard/adminPanel/resources");
             } else {
               Swal.fire(
                 "¡Éxito!",
                 "El recurso se ha eliminado correctamente.",
                 "success"
               );
+              router.push("/dashboard/adminPanel/resources");
             }
           } catch (error) {
             Swal.fire(

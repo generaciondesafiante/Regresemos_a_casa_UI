@@ -126,6 +126,7 @@ export const CreateLessonWithinCourseAdminPortal = () => {
         confirmButtonText: "Seleccionar",
         confirmButtonColor: "var(--turquoise)",
       });
+      dispatch(showNotification("Lección editada."));
     }
   };
 
