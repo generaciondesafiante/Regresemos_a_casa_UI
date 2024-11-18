@@ -111,8 +111,7 @@
 .pagination__button {
   background-color: transparent;
   border: none;
-  cursor: pointer;
-  padding: 16rem;
+  cursor: pointer;  
 }
 
 .pagination__button--current {
