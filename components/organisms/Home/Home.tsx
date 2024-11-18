@@ -5,6 +5,7 @@ import { FacebookIcon } from "../../atoms/icons/home/SocialNetworkIcon/FacebookS
 import { InstagramIcon } from "../../atoms/icons/home/SocialNetworkIcon/InstagramIcon";
 import { YoutubeIcon } from "../../atoms/icons/home/SocialNetworkIcon/YoutubeIcon";
 import styles from "./Home.module.css";
+import Image from "next/image";
 
 export const Home = () => {
   const bePart = [
@@ -52,8 +53,17 @@ export const Home = () => {
   return (
     <div>
       <section className={styles["home-welcome"]}>
+        <div className={styles["overlay"]}></div>
+        <Image
+          className={styles["image__home"]}
+          src="/homePage/homepage.webp"
+          alt="Fondo de la página"
+          layout="fill"
+          objectFit="cover"
+          quality={80}
+          priority
+        />
         <h1 className={styles["home-title"]}>GENERACIÓN DESAFIANTE</h1>
-
         <Button className={styles["home-button_action"]}>
           <Link
             href={"/estudios/verso-por-verso"}
@@ -145,8 +155,8 @@ export const Home = () => {
       <section className={styles["home-container_bePart"]}>
         <h2 className={styles["home-title_bePart"]}>¡SÉ PARTE!</h2>
         <div className={styles["home-content_itemsBePart"]}>
-          {bePart.map((image) => (
-            <Link href={image.href} key={image.href}>
+          {bePart.map((image, index) => (
+            <Link href={image.href} key={index}>
               <img
                 src={image.image}
                 alt={image.name}
@@ -161,15 +171,28 @@ export const Home = () => {
           ))}
         </div>
       </section>
+
       <section className={styles["home-container_shedulesLast"]}>
+        <div className={styles["overlay__shedulesLast"]}></div>
+        <Image
+          src="/homePage/background-times.webp"
+          alt="Fondo de la página"
+          layout="fill"
+          objectFit="cover"
+          quality={80}
+          priority
+        />
         <Link
           href={"/sukatDavid"}
           className={styles["home-session_linkSchedules"]}
         >
           <h2 className={styles["home-title_shedulesLast"]}>HORARIOS</h2>
-          <img
+          <Image
             src="/homePage/horario.jpg"
-            alt=" image sukat david horarios"
+            alt="image sukat david horarios"
+            layout="fill"
+            objectFit="cover"
+            quality={80}
             className={styles["home-image-sukatDavid"]}
           />
         </Link>
@@ -184,11 +207,13 @@ export const Home = () => {
             ÚLTIMO
             <span className={styles["home-spanTitle_shedules"]}>ESTUDIO:</span>
           </h2>
-          <img
+          <Image
             src="/homePage/LASTCOURSE.webp"
-            alt=""
+            alt="Último estudio"
+            layout="fill"
+            objectFit="cover"
             className={styles["home-image_latestStudy"]}
-          />
+          />{" "}
         </Link>
       </section>
     </div>
