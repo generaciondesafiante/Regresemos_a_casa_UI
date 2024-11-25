@@ -40,6 +40,16 @@
   font-size: var(--fontSize-buttons_mobile);
 }
 
+.form-login_btn-disabled {
+  width: 8rem;
+  margin-top: 0.8rem;
+  padding: 0.5rem;
+  color: var(--white);
+  background-color: var(--turquoise);
+  font-size: var(--fontSize-buttons_mobile);
+  border-radius: var(--borderRadius);
+}
+
 .link-register {
   text-decoration: none;
 }
@@ -80,6 +90,11 @@
 
   .form-login_btn,
   .form-register_btn {
+    width: 10rem;
+    font-size: var(--fontSize-buttons_laptop);
+  }
+
+  .form-login_btn-disabled {
     width: 10rem;
     font-size: var(--fontSize-buttons_laptop);
   }

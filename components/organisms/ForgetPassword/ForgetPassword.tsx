@@ -10,6 +10,8 @@ export const ForgetPassword = () => {
   const router = useRouter();
   const [email, setemail] = useState("");
   const [currentUrl, setCurrentUrl] = useState<string>("");
+  const [disabledButton, setDisabledButton] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -23,13 +25,16 @@ export const ForgetPassword = () => {
 
   const checkEmailSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
+    setDisabledButton(true);
+    setLoading(true);
     const responseValidate = await fetchValidateEamilResetPassword(
       email,
       currentUrl
     );
 
     if (responseValidate?.ok) {
+      setDisabledButton(false);
+      setLoading(false);
       Swal.fire({
         icon: "success",
         title: "Correo enviado exitosamente",
@@ -40,6 +45,8 @@ export const ForgetPassword = () => {
         },
       });
     } else {
+      setDisabledButton(false);
+      setLoading(false);
       Swal.fire(
         "Error",
         "Hubo un error al verificar el correo electrónico.",
@@ -73,7 +80,17 @@ export const ForgetPassword = () => {
         borderColor="var(--turquoise)"
         inputColor="var(--white)"
       />
-      <Button className={styles["form-forget_button"]} type="submit">
+      <Button
+        className={
+          !disabledButton
+            ? styles["form-forget_button"]
+            : styles["form-forget_button-disabled"]
+        }
+        type="submit"
+        colorLoading="var(--white)"
+        disabled={disabledButton}
+        loading={loading}
+      >
         Recuperar contraseña
       </Button>
     </form>

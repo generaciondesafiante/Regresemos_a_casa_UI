@@ -27,6 +27,7 @@ export const CreateCourseAdminPanel: React.FC = () => {
     typeCourse: "",
   });
   const [isFormValid, setIsFormValid] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const { nameCourse, titleCourse, typeCourse } = course;
@@ -50,12 +51,15 @@ export const CreateCourseAdminPanel: React.FC = () => {
   };
 
   const validateInputs = (): boolean => {
+    setIsLoading(true);
     const { nameCourse, titleCourse, typeCourse } = course;
 
     const nameCourseValid = nameCourse.length >= 3;
     const titleCourseValid = titleCourse.length >= 3;
 
     if (!nameCourseValid) {
+      setIsLoading(false);
+
       Swal.fire({
         icon: "error",
         title: "Nombre del curso inválido",
@@ -65,6 +69,8 @@ export const CreateCourseAdminPanel: React.FC = () => {
     }
 
     if (!titleCourseValid) {
+      setIsLoading(false);
+
       Swal.fire({
         icon: "error",
         title: "Título del curso inválido",
@@ -74,6 +80,8 @@ export const CreateCourseAdminPanel: React.FC = () => {
     }
 
     if (typeCourse === "tipo de recurso") {
+      setIsLoading(false);
+
       Swal.fire({
         icon: "error",
         title: "Tipo de ruta no seleccionado",
@@ -87,8 +95,10 @@ export const CreateCourseAdminPanel: React.FC = () => {
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsLoading(true);
 
     if (validateInputs()) {
+      setIsLoading(false);
       Swal.fire({
         title: "¿Estás seguro?",
         text: "¿Deseas confirmar la creación del curso?",
@@ -110,9 +120,11 @@ export const CreateCourseAdminPanel: React.FC = () => {
               userId || ""
             );
             if (courseData.status === 201) {
+              setIsLoading(false);
               dispatch(showNotification("Curso agregado"));
               router.push("/dashboard/adminPanel/courses");
             } else {
+              setIsLoading(false);
               Swal.fire({
                 icon: "error",
                 title: "Error al crear el curso",
@@ -120,6 +132,7 @@ export const CreateCourseAdminPanel: React.FC = () => {
               });
             }
           } catch (error) {
+            setIsLoading(false);
             Swal.fire({
               icon: "error",
               title: "Error",
@@ -127,6 +140,7 @@ export const CreateCourseAdminPanel: React.FC = () => {
             });
           }
         } else {
+          setIsLoading(false);
           Swal.fire({
             icon: "info",
             title: "Acción cancelada",
@@ -195,6 +209,7 @@ export const CreateCourseAdminPanel: React.FC = () => {
             type="submit"
             disabled={!isFormValid}
             className={styles["button__submit"]}
+            loading={isLoading}
           >
             Guardar
             <AddCircleIcon className={styles["addCreateCourse__addIcon"]} />

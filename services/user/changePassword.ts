@@ -13,7 +13,7 @@ export const changePassword = async (id: string, password: string) => {
       }
     );
 
-    return dataResponse;
+    return dataResponse.status;
   } catch (error) {
     console.error(error);
   }
