@@ -38,6 +38,8 @@ export const Profile: FC<Props> = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [file, setFile] = useState<File | null>(null);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(false);
 
   const [formData, setFormData] = useState(() => {
     const storedData = getLocalStorageItem("formData");
@@ -91,6 +93,8 @@ export const Profile: FC<Props> = () => {
   };
 
   const handleSaveChanges = async (e?: React.FormEvent<HTMLFormElement>) => {
+    setIsLoading(true);
+    setIsDisabled(true);
     e?.preventDefault();
 
     try {
@@ -124,6 +128,8 @@ export const Profile: FC<Props> = () => {
       if (isSuccess) {
         setIsEditing(false);
       }
+      setIsLoading(false);
+      setIsDisabled(false);
 
       if (Swal && typeof Swal.fire === "function") {
         const swalOptions: SweetAlertOptions = {
@@ -141,6 +147,8 @@ export const Profile: FC<Props> = () => {
 
       return isSuccess;
     } catch (error) {
+      setIsLoading(false);
+      setIsDisabled(false);
       console.error("Error al actualizar el usuario:", error);
       return false;
     }
@@ -276,6 +284,9 @@ export const Profile: FC<Props> = () => {
                 className={styles["profile-editInformation_saveChangeButton"]}
                 type={"submit"}
                 onClick={handleSaveChanges}
+                loading={isLoading}
+                disabled={isDisabled}
+                colorLoading="var(--white)"
               >
                 Guardar Cambios
               </Button>

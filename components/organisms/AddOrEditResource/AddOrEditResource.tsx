@@ -29,6 +29,7 @@ export const AddResource = () => {
     useState<File | null>(null);
   const resourceFileInputRef = useRef<HTMLInputElement | null>(null);
   const thumbnailFileInputRef = useRef<HTMLInputElement | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const infoEditResource: Resource | null = useAppSelector(
     (state) => state.resourceEditAdmin.resourceEditAdmin
@@ -116,10 +117,11 @@ export const AddResource = () => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
+    setIsLoading(true);
     const userId = session?.user.uid;
 
     if (!userId) {
+      setIsLoading(false);
       Swal.fire(
         "Error",
         "El ID de usuario no está definido. Por favor, inicia sesión.",
@@ -136,6 +138,7 @@ export const AddResource = () => {
     ];
 
     if (!allowedTypes.includes(resourceType)) {
+      setIsLoading(false);
       Swal.fire(
         "Error",
         `Tipo de recurso no válido. Debe ser uno de: ${allowedTypes.join(
@@ -147,6 +150,8 @@ export const AddResource = () => {
     }
 
     if (!allowedVisibility.includes(visibility)) {
+      setIsLoading(false);
+
       Swal.fire(
         "Error",
         `Tipo de visibilidad no válido. Debe ser uno de: ${allowedVisibility.join(
@@ -158,6 +163,8 @@ export const AddResource = () => {
     }
 
     if (selectedResourceFile && selectedThumbnailFile) {
+      setIsLoading(false);
+
       Swal.fire({
         title: "¿Estás seguro?",
         text: "Vas a guardar este recurso",
@@ -187,6 +194,8 @@ export const AddResource = () => {
               thumbnailUrl || ""
             );
             if (response.status === 201) {
+              setIsLoading(false);
+
               Swal.fire(
                 "¡Éxito!",
                 "El recurso se ha creado correctamente.",
@@ -207,6 +216,8 @@ export const AddResource = () => {
               }
               resetForm();
             } else {
+              setIsLoading(false);
+
               Swal.fire(
                 "Error",
                 "Hubo un problema al crear el recurso.",
@@ -214,7 +225,9 @@ export const AddResource = () => {
               );
             }
           } catch (error) {
-            console.error(error)
+            console.error(error);
+            setIsLoading(false);
+
             Swal.fire(
               "Error",
               "Hubo un problema al subir o crear el recurso.",
@@ -228,6 +241,8 @@ export const AddResource = () => {
       ? idResource[0]
       : idResource;
     if (infoEditResource && idResourceString && hasChanges()) {
+      setIsLoading(false);
+
       Swal.fire({
         title: "¿Estás seguro?",
         text: "Vas a editar este recurso",
@@ -266,6 +281,8 @@ export const AddResource = () => {
               resourceData
             );
             if (response.status === 200) {
+              setIsLoading(false);
+
               Swal.fire(
                 "¡Éxito!",
                 "El recurso se ha editado correctamente.",
@@ -286,6 +303,8 @@ export const AddResource = () => {
               }
               resetForm();
             } else {
+              setIsLoading(false);
+
               Swal.fire(
                 "¡Éxito!",
                 "El recurso se ha eliminado correctamente.",
@@ -293,6 +312,8 @@ export const AddResource = () => {
               );
             }
           } catch (error) {
+            setIsLoading(false);
+
             Swal.fire(
               "Error",
               "Hubo un problema al subir o editar el recurso.",
@@ -530,6 +551,7 @@ export const AddResource = () => {
             type="submit"
             disabled={!isFormValid() || !hasChanges()}
             className={styles["button__action--save"]}
+            loading={isLoading}
           >
             {infoEditResource && idResource ? "Actualizar Recurso" : "Guardar"}
             <AddCircleIcon className={styles["addAdmin__icon"]} />

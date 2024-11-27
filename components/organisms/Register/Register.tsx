@@ -26,6 +26,7 @@ export const Register = () => {
   const [showPasswordSection, setShowPasswordSection] =
     useState<boolean>(false);
   const [condicionalView, setCondicionalView] = useState<boolean>(false);
+  const [loading, setLoading] = useState(false);
 
   const handleInputChange = () => {
     const allFieldsFilled: boolean = !!(
@@ -51,6 +52,7 @@ export const Register = () => {
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    setLoading(true);
     event.preventDefault();
     setErrors([]);
 
@@ -69,6 +71,7 @@ export const Register = () => {
         phone,
       }),
     });
+    setLoading(false);
 
     if (res.status === 500) {
       Swal.fire({
@@ -78,6 +81,8 @@ export const Register = () => {
       });
     }
     const responseAPI = await res.json();
+    setLoading(false);
+
     if (!res.ok) {
       setErrors(responseAPI.message);
       Swal.fire({
@@ -85,6 +90,8 @@ export const Register = () => {
         title: "¡Upss!",
         text: `${responseAPI.msg}`,
       });
+      setLoading(false);
+
       if (res.status === 422) {
         Swal.fire({
           icon: "error",
@@ -92,6 +99,8 @@ export const Register = () => {
           text: `${errors} ${responseAPI.errors[0].msg}`,
         });
       }
+      setLoading(false);
+
       if (res.status === 500) {
         Swal.fire({
           icon: "error",
@@ -158,6 +167,7 @@ export const Register = () => {
                   borderColor="var(--turquoise)"
                   labelColor="var(--white)"
                   buttonColor={"var(--white)"}
+                  loanding={loading}
                 />
               </div>
             </>
@@ -190,7 +200,7 @@ export const Register = () => {
               >
                 ¿Ya tienes cuenta?
               </Link>
-              <Button
+              <button
                 className={
                   showPasswordSection
                     ? styles["register-form_loginRedirection_buttonEnabled"]
@@ -201,7 +211,7 @@ export const Register = () => {
                 onClick={handlePasswordButtonClick}
               >
                 <ArrowRightIcon />
-              </Button>
+              </button>
             </>
           )}
         </section>

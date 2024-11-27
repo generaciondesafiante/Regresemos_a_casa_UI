@@ -11,8 +11,10 @@ export const ResetPassword = () => {
   const { id } = useParams();
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const resetSubmitPassword = async (e: React.FormEvent<HTMLFormElement>) => {
+    setLoading(true);
     e.preventDefault();
     if (password !== password2) {
       Swal.fire(
@@ -31,7 +33,9 @@ export const ResetPassword = () => {
       }
 
       const responseChangePassword = await changePassword(id, password);
-      if (responseChangePassword?.ok) {
+      setLoading(false);
+      console.log(responseChangePassword)
+      if (responseChangePassword === 200) {
         Swal.fire({
           icon: "success",
           title: "Contraseña modificada",
@@ -41,6 +45,7 @@ export const ResetPassword = () => {
           },
         });
       } else {
+        setLoading(false);
         Swal.fire(
           "Error",
           "No se pudo cambiar la contraseña correctamente.",
@@ -48,6 +53,8 @@ export const ResetPassword = () => {
         );
       }
     } catch (error) {
+      setLoading(false);
+
       Swal.fire(
         "Error",
         "Ocurrió un error al guardar los cambios. Por favor, intenta nuevamente.",
@@ -78,9 +85,9 @@ export const ResetPassword = () => {
           labelColor="var(--white)"
           inputColor="var(--white)"
           borderColor="var(--turquoise)"
+          loanding={loading}
         />
       </div>
     </form>
   );
 };
-

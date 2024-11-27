@@ -20,6 +20,7 @@ export const AddAdmin = () => {
   const dispatch = useAppDispatch();
   const [adminEmail, setAdminEmail] = useState("");
   const [isValidEmail, setIsValidEmail] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const isButtonEnabled = isValidEmail;
   const colorInput = "var(--darkBlue-content)";
 
@@ -31,6 +32,7 @@ export const AddAdmin = () => {
   };
 
   const handleClickSaveAdmin = async () => {
+    setIsLoading(true);
     const admin = true;
     const email = adminEmail;
     const id = session?.user.uid || "";
@@ -43,6 +45,8 @@ export const AddAdmin = () => {
       return;
     }
     try {
+      setIsLoading(false);
+
       const result = await Swal.fire({
         title: "Estás seguro que deseas agregar como administrador a:",
         text: adminEmail,
@@ -55,6 +59,8 @@ export const AddAdmin = () => {
 
       if (result.isConfirmed) {
         const response = await addAdmin(email, id, admin);
+        setIsLoading(false);
+
         if (response.status === 200) {
           toast.success(
             response.data.msg || "Administrador agregado exitosamente"
@@ -62,6 +68,8 @@ export const AddAdmin = () => {
           dispatch(fetchAdmins(id));
           router.push("/dashboard/adminPanel/editAdmin");
         } else {
+          setIsLoading(false);
+
           Swal.fire(
             "Error!",
             response.data.message || "Usuario no encontrado con este email",
@@ -71,12 +79,16 @@ export const AddAdmin = () => {
       }
     } catch (error) {
       if (error instanceof Error) {
+        setIsLoading(false);
+
         Swal.fire(
           "Error!",
           error.message || "No se pudo actualizar el rol",
           "error"
         );
       } else {
+        setIsLoading(false);
+
         Swal.fire("Error!", "No se pudo actualizar el rol", "error");
       }
     }
@@ -118,6 +130,8 @@ export const AddAdmin = () => {
             } ${isButtonEnabled ? "" : styles["addAdmin__button--disabled"]}`}
             onClick={handleClickSaveAdmin}
             disabled={!isButtonEnabled}
+            loading={isLoading}
+            colorLoading="var(--turquoise)"
           >
             Agregar
             <AddCircleIcon className={styles["addAdmin__addIcon"]} />

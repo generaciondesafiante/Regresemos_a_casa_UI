@@ -11,9 +11,13 @@ export const Login: FC = () => {
   const [errors, setErrors] = useState<string[]>([]);
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [disabledButton, setDisabledButton] = useState(false);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    setDisabledButton(true);
+    setLoading(true);
     event.preventDefault();
     setErrors([]);
 
@@ -26,12 +30,18 @@ export const Login: FC = () => {
       const errorMessage = responseNextAuth.error;
       console.error(responseNextAuth?.error);
       if (errorMessage.includes("Failed to parse URL from undefined/auth")) {
+        setDisabledButton(false);
+        setLoading(false);
+
         Swal.fire({
           icon: "error",
           title: "Error en autenticación",
           text: "Hubo un problema con el servidor.Por favor, intenta nuevamente más tarde.",
         });
       } else if (errorMessage.includes("Server error")) {
+        setDisabledButton(false);
+        setLoading(false);
+
         Swal.fire({
           icon: "error",
           title: "Error en autenticación",
@@ -39,6 +49,9 @@ export const Login: FC = () => {
         });
       } else {
         setErrors(errorMessage.split(","));
+        setDisabledButton(false);
+        setLoading(false);
+
         Swal.fire({
           icon: "error",
           title: "Error en autenticación",
@@ -89,11 +102,20 @@ export const Login: FC = () => {
         >
           Olvidé mi contraseña
         </Link>
-
-        <Button className={styles["form-login_btn"]} type="submit">
+        <Button
+          className={
+            !disabledButton
+              ? styles["form-login_btn"]
+              : styles["form-login_btn-disabled"]
+          }
+          type="submit"
+          disabled={disabledButton}
+          colorLoading="var(--white)"
+          loading={loading}
+        >
           Ingresar
         </Button>
-        <Link href={'/register'} className={styles['link-register']}>
+        <Link href={"/register"} className={styles["link-register"]}>
           <Button className={styles["form-register_btn"]} type="submit">
             Registro
           </Button>

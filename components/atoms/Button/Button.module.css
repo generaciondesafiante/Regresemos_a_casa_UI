@@ -1,4 +1,7 @@
-.button-component {
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 0.5rem;
   text-align: center;
   text-decoration: none;
@@ -9,12 +12,17 @@
   cursor: pointer;
 }
 
-.button-component:hover {
+.button:hover {
   transform: var(--transform);
 }
 
+.button:disabled {
+  cursor: not-allowed;
+  background-color: #d3d3d3;
+  color: #a1a1a1;
+}
 @media (width >=64rem) {
-  .button-component {
+  .button {
     font-size: var(--fontSize-buttons_laptop);
   }
 }

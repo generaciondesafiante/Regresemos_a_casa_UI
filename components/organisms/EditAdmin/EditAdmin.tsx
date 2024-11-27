@@ -38,7 +38,7 @@ export const EditAdmin = () => {
         text: `${fullName} (${adminEmail})`,
         icon: "warning",
         showCancelButton: true,
-        confirmButtonText: "Sí, actualizar",
+        confirmButtonText: "Sí, eliminar",
         cancelButtonText: "Cancelar",
         reverseButtons: true,
       });
@@ -124,7 +124,10 @@ export const EditAdmin = () => {
             href={"/dashboard/adminPanel/editAdmin/addAdmin"}
             className={styles["adminPanel__link-buttonEdit"]}
           >
-            <Button className={styles["adminPanel__buttonEdit--admins"]}>
+            <Button
+              className={styles["adminPanel__buttonEdit--admins"]}
+              type="submit"
+            >
               Agregar
               <AddCircleIcon className={styles["addAdmin__icon"]} />
             </Button>

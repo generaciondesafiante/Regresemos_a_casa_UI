@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import styles from "./Button.module.css";
+import BeatLoader from "react-spinners/BeatLoader";
 
 interface ButtonProps {
   children?: ReactNode;
@@ -8,22 +9,26 @@ interface ButtonProps {
   disabled?: boolean;
   onClick?: (event: any) => void;
   style?: React.CSSProperties;
+  colorLoading?: string;
+  loading?: boolean;
 }
 export const Button: React.FC<ButtonProps> = ({
   children,
   className,
   type = "button",
-  disabled,
+  disabled = false,
   onClick,
+  colorLoading = "var(--greenDesafiante)",
+  loading = false,
 }) => {
   return (
     <button
-      className={`${styles["button-component"]} ${className} ${type} `}
+      className={`${styles.button} ${className}`}
       disabled={disabled}
       type={type}
       onClick={onClick}
     >
-      {children}
+      {loading ? <BeatLoader size={10} color={colorLoading} /> : children}
     </button>
   );
 };

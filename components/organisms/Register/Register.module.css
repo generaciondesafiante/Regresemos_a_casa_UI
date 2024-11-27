@@ -72,6 +72,8 @@ button.register-form_loginRedirection_buttonDisabled {
   border-radius: 50%;
   color: var(--darkGrayGradient);
   background-color: var(--grayGradient);
+  border: none;
+  cursor:not-allowed;
 }
 
 button.register-form_loginRedirection_buttonDisabled:hover {
@@ -86,6 +88,7 @@ button.register-form_loginRedirection_buttonEnabled {
   border-radius: 50%;
   color: var(--white);
   background-color: var(--turquoise);
+  border: none;
 }
 
 button.register-form_loginRedirection_buttonEnabled:hover {
@@ -118,7 +121,6 @@ button.register-form_loginRedirection_buttonEnabled:hover {
 }
 
 @media (width >=38rem) {
-
   .register-form-passwordTitle,
   .register-form-infoTitle {
     font-size: var(--fontSize-superTitles_tablet);
@@ -126,7 +128,6 @@ button.register-form_loginRedirection_buttonEnabled:hover {
 }
 
 @media (width >=64rem) {
-
   .register-form-passwordTitle,
   .register-form-infoTitle {
     font-size: var(--fontSize-superTitles_laptop);

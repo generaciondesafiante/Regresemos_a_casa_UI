@@ -16,6 +16,7 @@ export const ChangePasswordUser = () => {
   const [currentPassword, setCurrentPassword] = useState("");
   const [password2, setPassword2] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const userInfo = useAppSelector((state) => state.user.userInfo);
 
   const handleCurrentPasswordChange = (
@@ -36,6 +37,7 @@ export const ChangePasswordUser = () => {
 
   const resetSubmitPassword = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsLoading(true);
     if (password !== password2) {
       Swal.fire(
         "Error de autenticación",
@@ -51,16 +53,22 @@ export const ChangePasswordUser = () => {
           userInfo?.uid,
           password
         );
-        Swal.fire({
-          icon: "success",
-          title: "Contraseña modificada",
-          text: "Los cambios en tu perfil han sido guardados exitosamente",
-          didClose: () => {
-            router.push("/dashboard/profile");
-          },
-        });
+
+        if (changeUserPassword === 200) {
+          setIsLoading(false);
+          Swal.fire({
+            icon: "success",
+            title: "Contraseña modificada",
+            text: "Los cambios en tu perfil han sido guardados exitosamente",
+            didClose: () => {
+              router.push("/dashboard/profile");
+            },
+          });
+        }
       }
     } catch (error) {
+      setIsLoading(false);
+
       Swal.fire(
         "Error",
         "Ocurrió un error al guardar los cambios. Por favor, intenta nuevamente",
@@ -69,19 +77,21 @@ export const ChangePasswordUser = () => {
     }
   };
   const validateUserPassword = async () => {
+    setIsLoading(true);
+
     if (userInfo?.uid !== undefined) {
       const validatePasswordData = await PasswordValidation(
         userInfo?.uid,
         currentPassword
       );
       if (validatePasswordData.ok) {
+        setIsLoading(false);
         if (currentPassword === password) {
           Swal.fire(
             "Error de validación",
             "La contraseña actual y la contraseña nueva deben ser diferentes",
             "error"
           );
-
         } else {
           return true;
         }
@@ -96,6 +106,7 @@ export const ChangePasswordUser = () => {
     e: React.FormEvent<HTMLFormElement>
   ) => {
     e.preventDefault();
+    setIsLoading(true);
 
     try {
       const isPasswordValid = await validateUserPassword();
@@ -104,12 +115,15 @@ export const ChangePasswordUser = () => {
         await resetSubmitPassword(e);
       }
     } catch (error) {
+      setIsLoading(false);
       Swal.fire("Error", "Ocurrió un error al validar la contraseña", "error");
     }
   };
 
   useEffect(() => {
     if (errorMessage !== "") {
+      setIsLoading(false);
+
       Swal.fire("Contraseña actual incorrecta.", errorMessage, "warning");
     }
   }, [errorMessage]);
@@ -165,6 +179,7 @@ export const ChangePasswordUser = () => {
           inputColor={myInputColor}
           buttonColor={myButtonColor}
           borderColor={myBorderInput}
+          loanding={isLoading}
         />
         <Link href={"/dashboard/profile"}>
           <Button className={styles["changePasswordUser-cancelButton"]}>

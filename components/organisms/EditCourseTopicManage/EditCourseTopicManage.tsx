@@ -30,6 +30,7 @@ export const EditCourseTopicManage = () => {
   });
 
   const [hasChanges, setHasChanges] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const modifiedFields = getModifiedFields();
@@ -74,6 +75,7 @@ export const EditCourseTopicManage = () => {
     const modifiedFields = getModifiedFields();
     if (modifiedFields && Object.keys(modifiedFields).length === 0) {
       alert("No hay cambios para guardar");
+
       Swal.fire({
         title: "No hay cambios para guardar",
         icon: "info",
