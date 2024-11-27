@@ -34,8 +34,8 @@ export const ResetPassword = () => {
 
       const responseChangePassword = await changePassword(id, password);
       setLoading(false);
-
-      if (responseChangePassword?.ok) {
+      console.log(responseChangePassword)
+      if (responseChangePassword === 200) {
         Swal.fire({
           icon: "success",
           title: "Contraseña modificada",
