@@ -10,31 +10,33 @@ const ConditionalRendererComponentePrivate: React.FC<
   ConditionalRendererProps
 > = ({ children, viewName }) => {
   const renderChildren = (child: React.ReactNode): React.ReactNode => {
-    if (React.isValidElement(child)) {
-      const componentName =
-        typeof child.type === "string"
-          ? child.type
-          : (child.type as React.ComponentType).displayName ||
-            (child.type as React.ComponentType).name ||
-            "";
+    if (!React.isValidElement(child)) return child;
+    
+    const typedChild = child as React.ReactElement<{ children?: React.ReactNode }>;
+    const componentName =
+      typeof typedChild.type === "string"
+        ? typedChild.type
+        : (typedChild.type as React.ComponentType).displayName ||
+          (typedChild.type as React.ComponentType).name ||
+          "";
 
-      const featureConfig = featureFlags[viewName];
+    const featureConfig = featureFlags[viewName];
 
-      if (
-        featureConfig?.enabled &&
-        featureConfig.components.includes(componentName)
-      ) {
-        return null;
-      }
-
-      if (child.props && child.props.children) {
-        return React.cloneElement(child, {
-          ...child.props,
-          children: React.Children.map(child.props.children, renderChildren),
-        });
-      }
+    if (
+      featureConfig?.enabled &&
+      featureConfig.components.includes(componentName)
+    ) {
+      return null;
     }
-    return child;
+
+    if (typedChild.props && typedChild.props.children) {
+      return React.cloneElement(typedChild, {
+        ...typedChild.props,
+        children: React.Children.map(typedChild.props.children, renderChildren),
+      });
+    }
+    
+    return typedChild;
   };
 
   return <>{React.Children.map(children, renderChildren)}</>;

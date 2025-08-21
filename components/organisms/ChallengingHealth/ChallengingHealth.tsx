@@ -1,5 +1,5 @@
 import styles from "./ChallengingHealth.module.css";
-import { Button } from "../../atoms/Button/Button";
+import  Button  from "@/shared/components/Button/Button";
 import Link from "next/link";
 import {
   dataMenuOne,

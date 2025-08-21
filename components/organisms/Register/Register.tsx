@@ -4,7 +4,7 @@ import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
-import { Button } from "../../atoms";
+import  Button  from "@/shared/components/Button/Button";
 import { ArrowLeftIcon, ArrowRightIcon } from "../../atoms/icons/arrowsIcons";
 import { RegisterFormPassword } from "./RegisterFormPassword/RegisterFormPassword";
 import { RegisterFormInformation } from "./RegisterFormInformation/RegisterFormInformation";

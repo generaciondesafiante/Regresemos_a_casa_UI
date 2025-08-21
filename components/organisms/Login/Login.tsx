@@ -3,19 +3,25 @@ import { FC, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
-import { signIn } from "next-auth/react";
-import { Button, Input } from "../../atoms";
+import { getSession, signIn } from "next-auth/react";
+import { Input } from "../../atoms";
+import Button from "@/shared/components/Button/Button";
+
 import styles from "./Login.module.css";
+import { useUserStore } from "../../../shared/store/user-store";
 
 export const Login: FC = () => {
   const [errors, setErrors] = useState<string[]>([]);
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const router = useRouter();
+  const setUser = useUserStore((state) => state.setUser);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setErrors([]);
+    setIsLoading(true);
 
     const responseNextAuth = await signIn("credentials", {
       email,
@@ -46,9 +52,16 @@ export const Login: FC = () => {
         });
       }
 
+      setIsLoading(false);
       return;
     }
 
+    const session = await getSession();
+    if (session && session.user) {
+      setUser(session.user);
+    }
+
+    setIsLoading(false);
     router.push("/dashboard");
   };
   return (
@@ -90,10 +103,15 @@ export const Login: FC = () => {
           Olvidé mi contraseña
         </Link>
 
-        <Button className={styles["form-login_btn"]} type="submit">
-          Ingresar
+        <Button
+          className={styles["form-login_btn"]}
+          type="submit"
+          loading={isLoading}
+          disabled={isLoading}
+        >
+          {isLoading ? "Ingresando..." : "Ingresar"}
         </Button>
-        <Link href={'/register'} className={styles['link-register']}>
+        <Link href={"/register"} className={styles["link-register"]}>
           <Button className={styles["form-register_btn"]} type="submit">
             Registro
           </Button>

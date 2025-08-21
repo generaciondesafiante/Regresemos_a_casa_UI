@@ -1,6 +1,6 @@
 "use client";
 import { FC } from "react";
-import { Button } from "../../../atoms";
+import  Button  from "@/shared/components/Button/Button";
 import styles from "./AssessmentFinished.module.css";
 import { useRouter } from "next/navigation";
 import { useAppSelector } from "../../../../store/store";

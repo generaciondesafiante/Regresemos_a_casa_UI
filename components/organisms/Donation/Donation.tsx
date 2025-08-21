@@ -1,5 +1,5 @@
 "use client";
-import { Button } from "../../atoms";
+import  Button  from "@/shared/components/Button/Button";
 import styles from "./Donation.module.css";
 
 export const Donation = () => {

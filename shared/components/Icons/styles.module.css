@@ -1,0 +1,49 @@
+.icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  
+  /* Tamaños */
+  .sm {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .md {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .lg {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .xl {
+    width: 48px;
+    height: 48px;
+  }
+  
+  /* Colores */
+  .primary {
+    color: #F8623A; /* Tu color primario */
+  }
+  
+  .secondary {
+    color: #3A8EF8; /* Azul secundario */
+  }
+  
+  .success {
+    color: #3AF862; /* Verde */
+  }
+  
+  .error {
+    color: #F83A3A; /* Rojo */
+  }
+  
+  .neutral {
+    color: #626262; /* Gris neutro */
+  }
+  

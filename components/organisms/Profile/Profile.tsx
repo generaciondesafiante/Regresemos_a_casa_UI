@@ -3,7 +3,7 @@ import { FC, useEffect, useState } from "react";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import Swal, { SweetAlertOptions } from "sweetalert2";
-import { Button } from "../../atoms";
+import  Button  from "@/shared/components/Button/Button";
 import { uploadFile } from "../../../hooks/useFirebase";
 import { ModalEditPhotoProfile } from "../Modal/Modal";
 import { AddPhotoIcon } from "../../atoms/icons/addPhotoIcon/AddPhotoIcon";

@@ -2,7 +2,7 @@
 import { FC } from "react";
 import styles from "./AssessmentMain.module.css";
 import { AssessmentMainProps } from "../../../../types/types/assessment.type";
-import { Button } from "../../../atoms";
+import  Button  from "@/shared/components/Button/Button";
 import { useAppSelector } from "../../../../store/store";
 
 export const AssessmentMain: FC<AssessmentMainProps> = ({

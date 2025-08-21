@@ -3,7 +3,7 @@ import { FC, useEffect, useState } from "react";
 import styles from "./LearningPathVideo.module.css";
 import ReactPlayer from "react-player";
 import { TaringStart } from "../TaringStart/TaringStart";
-import { Button } from "../../atoms";
+import  Button  from "@/shared/components/Button/Button";
 import { useParams, useRouter } from "next/navigation";
 
 interface LearningPahtVideoComponentProps {

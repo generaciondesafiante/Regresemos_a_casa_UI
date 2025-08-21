@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Column, Row } from "../../../types/types/tableAdmin";
 import styles from "./TableAdmin.module.css";
 import IconStepBackward from "../../atoms/icons/adminPanel/BackIconTable";
-import { Button } from "../../atoms";
+import  Button  from "@/shared/components/Button/Button";
 import IconBxSkipNext from "../../atoms/icons/adminPanel/NextIconTable";
 import Link from "next/link";
 import { Dropdown } from "../DropDown/DropDown";

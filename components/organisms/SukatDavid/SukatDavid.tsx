@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { Button } from "../../atoms";
+import  Button  from "@/shared/components/Button/Button";
 import { WhatsAppIcon } from "../../atoms/icons/whatsAppIcon/WhatsAppIcon";
 import { TelegramIcon } from "../../atoms/icons/telegramIcon/TelegramIcon";
 import styles from "./SukatDavid.module.css";

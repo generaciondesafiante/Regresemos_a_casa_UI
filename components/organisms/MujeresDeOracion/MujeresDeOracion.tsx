@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Button } from "../../atoms";
+import  Button  from "@/shared/components/Button/Button";
 import styles from "./MujeresDeOracion.module.css";
 
 export const MujeresDeOracion = () => {

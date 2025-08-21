@@ -1,4 +1,4 @@
-export * from './Button/Button';
+
 export * from './Input/Input';
 export * from './icons/addPhotoIcon/AddPhotoIcon';
 export * from './icons/arrowsIcons';

@@ -8,7 +8,7 @@ interface ConditionalRendererProps {
 
 const ConditionalRenderer: React.FC<ConditionalRendererProps> = ({ children, viewName }) => {
     const renderChildren = (child: React.ReactNode): React.ReactNode => {
-      if (React.isValidElement(child)) {
+      if (React.isValidElement<{ children?: React.ReactNode }>(child)) {
         const componentName =
           typeof child.type === "string"
             ? child.type
@@ -23,7 +23,7 @@ const ConditionalRenderer: React.FC<ConditionalRendererProps> = ({ children, vie
           return null;
         }
   
-        if (child.props && child.props.children) {
+        if (child.props?.children) {
           return React.cloneElement(child, {
             ...child.props,
             children: React.Children.map(child.props.children, renderChildren),

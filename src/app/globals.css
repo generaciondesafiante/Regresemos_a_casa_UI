@@ -2,12 +2,12 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Montserrat", sans-serif;
+  font-family: sans-serif;
 }
 
 :root {
   /* Typography */
-  --primaryFont: "Montserrat", sans-serif;
+  --primaryFont: sans-serif;
   /* Font size */
   /* mobile */
   --fontSize-buttons_mobile: 1rem;
@@ -37,11 +37,20 @@
   /* Letters colors */
   --white: #fcfcfc;
   --black: black;
+  --darkGray: #707070;
+
   --yellow: #fad047;
+  --blueLigth: #38b6ff;
+  --red: #f44336;
+
+  /* blue */
   --blueKing: #1a2284;
   --darkBlue: #072a3e;
   --darkGreen: #0f5765;
-  --darkGray: #707070;
+
+  /* green */
+  --greenDesafiante: #168991;
+
   /* Design colors */
   --white: #fcfcfc;
   --white-transparent: #ffffffbe;
@@ -51,12 +60,8 @@
   --lightGray: #f8f7f7;
   --darkGray: #707070;
   --darkGrayGradient: #707070a2;
-  --red: #f44336;
-  --yellow: #fad047;
-  --blue: #38b6ff;
   --darkBlue-content: #2b394a;
   --darkGreen: #0f5765;
-  --greenDesafiante: #168991;
   --turquoise: #61d3c3;
   --lightGold: #c7bb9f;
   /* Others */

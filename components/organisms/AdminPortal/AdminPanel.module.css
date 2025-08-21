@@ -113,6 +113,21 @@
   margin-bottom: 0.813rem;
 }
 
+.adminPanel__count--resources {
+  width: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.adminPanel__count--title {
+  background-color: var(--white);
+  padding: 0.25rem 0.813rem;
+  border-radius: var(--borderRadius);
+  font-size: var(--fontSize-buttons_laptop);
+  margin-bottom: 0.813rem;
+  width: auto;
+}
+
 .adminPanel__content--courses {
   display: flex;
   flex-direction: column;

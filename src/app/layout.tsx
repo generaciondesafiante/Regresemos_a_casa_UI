@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import SessionAuthProvider from "../../store/provider/SessionAuthProvider";
+import { Poppins } from "next/font/google";import SessionAuthProvider from "../../store/provider/SessionAuthProvider";
 import "./globals.css";
 import "react-toastify/dist/ReactToastify.css";
-
-const inter = Inter({ subsets: ["latin"] });
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"], // Puedes ajustar los pesos que necesitas
+});
+// const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Regresemos a nuestra casa",
@@ -19,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <SessionAuthProvider>
-        <body className={inter.className}>{children}</body>
+        <body className={poppins.className}>{children}</body>
       </SessionAuthProvider>
     </html>
   );

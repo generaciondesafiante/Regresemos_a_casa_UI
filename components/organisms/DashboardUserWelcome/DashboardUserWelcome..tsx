@@ -27,6 +27,7 @@ export const DashboardUserWelcome = () => {
   const router = useRouter();
   const idUser = session?.user.uid;
   const name = session?.user?.name;
+
   const urlVideoDefault =
     "https://www.youtube.com/embed/CovSIgAtFIs?si=kofztRWT519UyJug";
   const routeVideoDefault =

@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Button } from "../../../atoms";
+import  Button  from "@/shared/components/Button/Button";
 import { AssessmentFinished } from "../AssessmentFinished/AssessmentFinished";
 import { useAppSelector } from "../../../../store/store";
 import styles from "./AssessmentQuestions.module.css";

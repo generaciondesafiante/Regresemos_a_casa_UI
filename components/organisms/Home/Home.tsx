@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { Button } from "../../atoms/Button/Button";
+import  Button  from "@/shared/components/Button/Button";
 import { FacebookIcon } from "../../atoms/icons/home/SocialNetworkIcon/FacebookSocialNetworksIcon";
 import { InstagramIcon } from "../../atoms/icons/home/SocialNetworkIcon/InstagramIcon";
 import { YoutubeIcon } from "../../atoms/icons/home/SocialNetworkIcon/YoutubeIcon";

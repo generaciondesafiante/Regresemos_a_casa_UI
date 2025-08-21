@@ -14,18 +14,16 @@ import { LogoutIcon } from "../../atoms/icons/sidebarIcons/LogoutIcon";
 import { AdminIcon } from "../../atoms/icons/sidebarIcons/AdminIcon";
 import { getEnabledRoutes } from "../../../feature/BlockedRoutesPrivateFeatureFlags/getEnabledRoutesPrivates";
 
-const isNonNullLink = (
-  link: { name: string; href: string; icon: JSX.Element } | null
-): link is { name: string; href: string; icon: JSX.Element } => {
-  return link !== null;
-};
 
 export const Sidebar = () => {
   const { data: session } = useSession();
   const pathName = usePathname();
   const router = useRouter();
 
-  const isAdmin = session?.user?.admin === true;
+  const userInfo = localStorage.getItem("userInfo")
+    ? JSON.parse(localStorage.getItem("userInfo") as string)
+    : null;
+  const isAdmin = userInfo?.admin;
 
   const allLinks = [
     {
@@ -33,16 +31,16 @@ export const Sidebar = () => {
       href: "/dashboard/profile",
       icon: <ProfileIcon className={styles["sidebar-icon"]} />,
     },
-    isAdmin
+    isAdmin || session?.user?.admin
       ? {
-          name: "admin",
-          href: "/dashboard/adminPanel",
-          icon: (
-            <AdminIcon
-              className={`${styles["sidebar-icon"]} ${styles["admin-icon"]}`}
-            />
-          ),
-        }
+        name: "admin",
+        href: "/dashboard/adminPanel",
+        icon: (
+          <AdminIcon
+            className={`${styles["sidebar-icon"]} ${styles["admin-icon"]}`}
+          />
+        ),
+      }
       : null,
     {
       name: "home",
@@ -77,7 +75,7 @@ export const Sidebar = () => {
         />
       ),
     },
-  ].filter(isNonNullLink);
+  ].filter((link) => link !== null);
 
   const enabledRoutes = getEnabledRoutes(allLinks.map((link) => link.href));
 
@@ -101,9 +99,8 @@ export const Sidebar = () => {
               <Link
                 href={link.href}
                 key={link.name}
-                className={`${
-                  isSelected(link.href) ? styles["sidebar-sectionSelected"] : ""
-                }`}
+                className={`${isSelected(link.href) ? styles["sidebar-sectionSelected"] : ""
+                  }`}
               >
                 {link.icon}
               </Link>
@@ -122,11 +119,10 @@ export const Sidebar = () => {
             return (
               <Link href={link.href} key={link.name}>
                 <div
-                  className={`${styles["sidebar-iconContainer"]} ${
-                    isSelected(link.href)
+                  className={`${styles["sidebar-iconContainer"]} ${isSelected(link.href)
                       ? styles["sidebar-sectionSelected"]
                       : ""
-                  }`}
+                    }`}
                 >
                   {link.icon}
                 </div>

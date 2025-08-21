@@ -1,6 +1,6 @@
 "use client";
 import styles from "./SerSansonNoBasta.module.css";
-import { Button } from "../../atoms/Button/Button";
+import  Button  from "@/shared/components/Button/Button";
 import { YoutubeIcon } from "../../atoms/icons/home/SocialNetworkIcon/YoutubeIcon";
 
 export const SerSansonNoBasta = () => {

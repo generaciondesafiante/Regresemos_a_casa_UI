@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Button } from "../Button/Button";
+import   Button  from "@/shared/components/Button/Button"; 
 import styles from "./Card.module.css";
 
 interface CardProps {

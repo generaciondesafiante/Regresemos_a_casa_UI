@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import styles from "./CreateLessonWithinCourseAdminPortal.module.css";
-import { Button } from "../../atoms";
+import  Button  from "@/shared/components/Button/Button";
 import AddCircleIcon from "../../atoms/icons/adminPanel/AddCircleIcon";
 import AdminPencilIcon from "../../atoms/icons/adminPanel/AdminPencilIcon";
 import { motion, AnimatePresence } from "framer-motion";
