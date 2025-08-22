@@ -1,5 +1,5 @@
 
-export * from './Input/Input';
+export * from '../../shared/components/Input/Input';
 export * from './icons/addPhotoIcon/AddPhotoIcon';
 export * from './icons/arrowsIcons';
 export { default as CheckRegisterIcion } from './icons/checkRegisterIcon/CheckRegisterIcion';

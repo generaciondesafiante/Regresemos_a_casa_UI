@@ -20,7 +20,7 @@ const Button: React.FC<ButtonProps> = ({
   children,
   icon,
   iconPosition = "left",
-  sizeIcon,
+  sizeIcon = 24,
   colorIcon,
   className,
   type = "button",
@@ -30,7 +30,9 @@ const Button: React.FC<ButtonProps> = ({
 }) => {
   return (
     <button
-      className={`${styles["button-component"]} ${className} ${type} ${loading ? styles.loading : ''}`}
+      className={`${styles["button-component"]} ${className} ${type} ${
+        loading ? styles.loading : ""
+      }`}
       disabled={disabled || loading}
       type={type}
       onClick={onClick}
@@ -39,9 +41,13 @@ const Button: React.FC<ButtonProps> = ({
         <span className={styles.loader}></span>
       ) : (
         <>
-          {icon && iconPosition === "left" && <Icon name={icon} size={sizeIcon} color={colorIcon} />}
+          {icon && iconPosition === "left" && (
+            <Icon name={icon} size={sizeIcon} color={colorIcon} />
+          )}
           <span>{children}</span>
-          {icon && iconPosition === "right" && <Icon name={icon} size={sizeIcon} color={colorIcon} />}
+          {icon && iconPosition === "right" && (
+            <Icon name={icon} size={sizeIcon} color={colorIcon} />
+          )}
         </>
       )}
     </button>

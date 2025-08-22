@@ -40,33 +40,34 @@
   --darkGray: #707070;
 
   --yellow: #fad047;
-  --blueLigth: #38b6ff;
   --red: #f44336;
 
   /* blue */
   --blueKing: #1a2284;
   --darkBlue: #072a3e;
-  --darkGreen: #0f5765;
+  --blueLigth: #38b6ff;
 
   /* green */
   --greenDesafiante: #168991;
-
-  /* Design colors */
-  --white: #fcfcfc;
-  --white-transparent: #ffffffbe;
-  --black: black;
-  --gray: #bbbbbb;
-  --grayGradient: #dad8d8e6;
-  --lightGray: #f8f7f7;
-  --darkGray: #707070;
-  --darkGrayGradient: #707070a2;
-  --darkBlue-content: #2b394a;
   --darkGreen: #0f5765;
   --turquoise: #61d3c3;
+
+  /* grey */
+  --lightGray: #cacaca54;
+  --grayGradient: #dad8d8e6;
+
+  /* Design colors */
+  --white-transparent: #ffffffbe;
+  --gray: #bbbbbb;
+  /* --lightGray: #f8f7f7; */
+  --darkGrayGradient: #707070a2;
+  --darkBlue-content: #2b394a;
   --lightGold: #c7bb9f;
+
   /* Others */
   --border: solid 0.02rem;
   --borderRadius: 0.8rem;
+  --borderRadiusButtons: 0.5rem;
   --transition: 500ms;
   --transform: scale(1.05);
 }

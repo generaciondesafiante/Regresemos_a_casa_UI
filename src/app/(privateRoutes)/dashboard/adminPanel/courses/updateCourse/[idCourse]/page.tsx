@@ -1,7 +1,8 @@
 import { CreateCourseAdminPanel } from "@/feature/admin/Courses/managementCourse";
+import React from "react";
 
-const CreateCoursePage = () => {
+const UpdateCoursePage = () => {
   return <CreateCourseAdminPanel />;
 };
 
-export default CreateCoursePage;
+export default UpdateCoursePage;

@@ -1,9 +1,9 @@
 .input-container_inputLabel {
   display: flex;
+  flex-direction: column;
   align-items: center;
   position: relative;
-  padding: 0.6rem;
-  margin-top: 0.8rem;
+  gap: 0.5rem;
 }
 
 .password-toggle_button {
@@ -12,10 +12,11 @@
   background: none;
   border: none;
   cursor: pointer;
+  top: 0.6rem;
 }
 
-.input-input:not(:placeholder-shown)+.input-label,
-.input-input:focus+.input-label {
+.input-input:not(:placeholder-shown) + .input-label,
+.input-input:focus + .input-label {
   transform: translateY(-1.9rem);
   transition: var(--transition);
 }
@@ -45,24 +46,28 @@
   font-size: var(--fontSize-paragraph_mobile);
 }
 
-.input-input:not(:placeholder-shown)+.input-label,
-.input-input:focus+.input-label,
-.input-input:not(:placeholder-shown)+.input-label.active {
+.input-input:not(:placeholder-shown) + .input-label,
+.input-input:focus + .input-label,
+.input-input:not(:placeholder-shown) + .input-label.active {
   padding-left: 0;
   font-size: var(--fontSize-paragraph_mobile);
   transform: translateY(-2.1rem);
   transition: var(--transition);
 }
 
-.input-input:focus+.input-label {
+.input-input:focus + .input-label {
   padding-left: 0rem;
   font-size: var(--fontSize-subtitles_mobile);
   transform: translateY(-2.1rem);
 }
 
-.input-input:not(:placeholder-shown)+.input-label {
+.input-input:not(:placeholder-shown) + .input-label {
   transform: translateY(-1.9rem);
   transition: var(--transition);
+}
+
+.input-error {
+  width: 100%;
 }
 
 @media (width >=48rem) {
@@ -81,11 +86,11 @@
     font-size: var(--fontSize-paragraph_laptop);
   }
 
-  .input-input:focus+.input-label {
+  .input-input:focus + .input-label {
     font-size: var(--fontSize-trasitionLabel_laptop);
   }
 
-  .input-input:not(:placeholder-shown)+.input-label {
+  .input-input:not(:placeholder-shown) + .input-label {
     transform: translateY(-2.1rem);
   }
 }

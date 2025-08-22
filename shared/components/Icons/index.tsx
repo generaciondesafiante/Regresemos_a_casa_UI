@@ -1,5 +1,6 @@
 import React from "react";
 import { IconType } from "react-icons";
+import { CiWarning } from "react-icons/ci";
 import {
   LuPencil,
   LuEye,
@@ -8,9 +9,20 @@ import {
   LuImage,
   LuMusic,
   LuFolder,
+  LuSearch,
+  LuTrash,
+  LuCircleCheckBig,
+  LuPlus,
+  LuX,
 } from "react-icons/lu";
 
-import { MdDashboard, MdDelete, MdAdd } from "react-icons/md";
+import {
+  MdDashboard,
+  MdDelete,
+  MdAdd,
+  MdChevronLeft,
+  MdChevronRight,
+} from "react-icons/md";
 
 // Mapa de íconos permitidos
 const iconMap: Record<string, IconType> = {
@@ -18,12 +30,20 @@ const iconMap: Record<string, IconType> = {
   LuEye,
   LuBookPlus,
   LuSquarePlay,
+  LuSearch,
   LuImage,
+  LuTrash,
   LuMusic,
   LuFolder,
+  LuPlus,
+  LuCircleCheckBig,
+  LuX,
   MdDashboard,
   MdDelete,
   MdAdd,
+  MdChevronLeft,
+  MdChevronRight,
+  CiWarning,
 };
 
 type IconProps = {

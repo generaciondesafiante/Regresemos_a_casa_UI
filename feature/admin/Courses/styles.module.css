@@ -1,0 +1,20 @@
+.container--table {
+  width: 100%;
+  height: 100%;
+}
+
+.icon--edit{
+  cursor: pointer;
+}
+
+.no-data-message {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 9.375rem;
+  display: table-cell;
+  color: var(--darkGray);
+}

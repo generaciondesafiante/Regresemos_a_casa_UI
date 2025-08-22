@@ -1,13 +1,12 @@
 "use client";
-import React, { ChangeEvent, CSSProperties, useState } from "react";
+import React, { CSSProperties, useState } from "react";
+import { FieldError, UseFormRegisterReturn } from "react-hook-form";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import styles from "./Input.module.css";
+import Text from "../Text";
 
 interface InputProps {
-  name?: string;
-  value?: string;
-  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   type?: string;
   placeholder?: string;
   label?: string;
@@ -15,28 +14,33 @@ interface InputProps {
   htmlForm?: string;
   labelColor?: string;
   inputColor?: string;
-  isRequire?: boolean;
-  className?: string;
-  buttonColor?: string;
   borderColor?: string;
-  ref?: React.Ref<HTMLInputElement>;
+  buttonColor?: string;
+  className?: string;
+  name?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  value?: string;
+  // React Hook Form
+  register?: UseFormRegisterReturn;
+  error?: FieldError;
 }
 
 export const Input: React.FC<InputProps> = ({
-  name,
-  value,
-  onChange,
-  type,
+  type = "text",
   placeholder,
   label,
   id,
   htmlForm,
   labelColor,
   inputColor,
-  isRequire,
-  buttonColor,
   borderColor,
-  ref,
+  buttonColor,
+  className,
+  register,
+  error,
+  name,
+  onChange,
+  value,
 }) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
@@ -44,56 +48,65 @@ export const Input: React.FC<InputProps> = ({
     setIsPasswordVisible(!isPasswordVisible);
   };
 
-  const inputType = isPasswordVisible ? "text" : "password";
-
-  const showToggle = type === "password" && value && value.length > 1;
+  const inputType = isPasswordVisible ? "text" : type;
+  const showToggle = type === "password";
 
   const labelStyle: CSSProperties = {
     color: labelColor || "var(--white)",
   };
 
   const inputStyle: CSSProperties = {
-    color: inputColor || "transparent",
+    color: inputColor || "var(--white)",
     border: borderColor
       ? `var(--border) ${borderColor}`
       : "var(--border) var(--white)",
   };
+
   const buttonStyle: CSSProperties = {
     color: buttonColor || "var(--white)",
   };
+
   return (
-    <div className={styles["input-container_inputLabel"]}>
+    <div
+      className={`${styles["input-container_inputLabel"]} ${className || ""}`}
+    >
       <input
-        ref={ref}
         id={id}
-        name={name}
-        value={value}
-        onChange={onChange}
-        type={type === "password" ? inputType : type}
-        required={isRequire}
+        type={inputType}
         placeholder={placeholder}
         className={styles["input-input"]}
-        style={{ ...inputStyle }}
+        style={inputStyle}
+        value={value}
+        {...register}
+        autoComplete="off"
+        autoCorrect="off"
       />
+
+      <label
+        htmlFor={htmlForm}
+        className={`${styles["input-label"]}`}
+        style={labelStyle}
+      >
+        {label}
+      </label>
+
       {showToggle && (
         <button
           type="button"
           className={styles["password-toggle_button"]}
           onClick={togglePasswordVisibility}
-          style={{ ...buttonStyle, position: "absolute", right: "-10" }}
+          style={buttonStyle}
         >
           {isPasswordVisible ? <RemoveRedEyeIcon /> : <VisibilityOffIcon />}
         </button>
       )}
-      <label
-        htmlFor={htmlForm}
-        className={`${styles["input-label"]} ${
-          value && value.length > 1 ? styles.active : ""
-        }`}
-        style={labelStyle}
-      >
-        {label}
-      </label>
+
+      {/* Mostrar error si lo hay */}
+      {error && (
+        <Text color="red" align="left" className={styles["input-error"]}>
+          {error.message}
+        </Text>
+      )}
     </div>
   );
 };

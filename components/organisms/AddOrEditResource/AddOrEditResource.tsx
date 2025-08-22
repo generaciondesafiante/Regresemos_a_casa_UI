@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Swal from "sweetalert2";
 import styles from "./AddOrEditResource.module.css";
-import { Button, Input } from "../../atoms";
+import { Input } from "../../atoms";
 import { uploadResourceAndThumbnail } from "../../../hooks/useFirebaseCreateResource";
 import { addResource } from "../../../services/resources/createResource";
 import { useSession } from "next-auth/react";
@@ -13,6 +13,7 @@ import { aditResource } from "../../../services/resources/editResource";
 import AddCircleIcon from "../../atoms/icons/adminPanel/AddCircleIcon";
 import IconDeleteBin6Fill from "../../atoms/icons/deleteIcon/DeleteIcon";
 import { deleteResource } from "../../../services/resources/deleteResource";
+import Button from "@/shared/components/Button/Button";
 
 export const AddResource = () => {
   const { data: session } = useSession();

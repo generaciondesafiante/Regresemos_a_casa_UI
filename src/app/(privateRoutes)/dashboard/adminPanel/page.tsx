@@ -1,8 +1,9 @@
-import { AdminPanelTemplate } from "../../../../../components/templates/AdminPanel-template/AdminPanelTemplate";
+import { AdminPanel } from "@/feature/admin/AdminPortal";
+
 const AdminPanePage = () => {
   return (
     <div>
-      <AdminPanelTemplate />
+      <AdminPanel />
     </div>
   );
 };

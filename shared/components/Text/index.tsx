@@ -1,9 +1,18 @@
 import React from "react";
 import styles from "./styles.module.css";
 
-type TextVariant = "h1" | "h2" | "h3" | "body" | "caption" | "small";
-type TextColor = "primary" | "secondary" | "success" | "error" | "neutral";
+type TextVariant = "h1" | "h2" | "h3" | "h4" | "body" | "caption" | "small";
+type TextColor =
+  | "black"
+  | "blueLigth"
+  | "yellow"
+  | "greenDesafiante"
+  | "red"
+  | "white"
+  | "darkGray"
+  | "darkBlue";
 type TextAlign = "left" | "center" | "right";
+type TextWeight = "normal" | "semiBold" | "bold";
 
 interface TextProps {
   variant?: TextVariant;
@@ -16,7 +25,7 @@ interface TextProps {
 
 const Text: React.FC<TextProps> = ({
   variant = "body",
-  color = "var(--black)",
+  color = "black",
   align = "left",
   bold = false,
   children,

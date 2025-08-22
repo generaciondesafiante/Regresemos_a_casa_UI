@@ -1,8 +1,8 @@
 import React from "react";
-import { CourseAdminPanel } from "../../../../../../components/organisms/CoursesAdminPanel/CourseAdminPanel";
+import { CourseTableAdmin } from "@/feature/admin/Courses";
 
 const CourseEditAdminPage = () => {
-  return <CourseAdminPanel />;
+  return <CourseTableAdmin />;
 };
 
 export default CourseEditAdminPage;
