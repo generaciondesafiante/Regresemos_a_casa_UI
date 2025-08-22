@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Button, Input } from "../../atoms";
+
 import styles from "./CreateTopicOnCourseAdminPortal.module.css";
 import { useParams, useRouter } from "next/navigation";
 import AddCircleIcon from "../../atoms/icons/adminPanel/AddCircleIcon";
@@ -10,7 +10,8 @@ import { useSession } from "next-auth/react";
 import { useAppDispatch } from "../../../store/store";
 import { allTopicWithinACourse } from "../../../store/slices/allTopicwithinCourseSlice";
 import { showNotification } from "../../../store/slices/notificationSlice ";
-
+import { Input } from "@/shared/components/Input/Input";
+import Button from "@/shared/components/Button/Button";
 export const CreateTopicOnCourseAdminPortal = () => {
   const { idCourse } = useParams();
   const router = useRouter();

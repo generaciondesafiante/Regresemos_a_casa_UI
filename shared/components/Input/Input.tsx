@@ -20,6 +20,7 @@ interface InputProps {
   name?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   value?: string;
+  required?: boolean;
   // React Hook Form
   register?: UseFormRegisterReturn;
   error?: FieldError;
@@ -41,6 +42,7 @@ export const Input: React.FC<InputProps> = ({
   name,
   onChange,
   value,
+  required = false,
 }) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
@@ -80,6 +82,7 @@ export const Input: React.FC<InputProps> = ({
         {...register}
         autoComplete="off"
         autoCorrect="off"
+        required={required}
       />
 
       <label

@@ -2,7 +2,7 @@
 import { useSession } from "next-auth/react";
 import styles from "./EditAdmin.module.css";
 import Link from "next/link";
-import { ArrowLeftIcon, Button } from "../../atoms";
+import { ArrowLeftIcon } from "../../atoms";
 import IconDeleteBin6Fill from "../../atoms/icons/deleteIcon/DeleteIcon";
 import { useAppDispatch, useAppSelector } from "../../../store/store";
 import Swal from "sweetalert2";
@@ -10,7 +10,7 @@ import { addAdmin } from "../../../services/user/addAdmin";
 import { useRouter } from "next/navigation";
 import AddCircleIcon from "../../atoms/icons/adminPanel/AddCircleIcon";
 import { fetchAdmins } from "../../../store/slices/allAdminsSlice";
-
+import Button from "@/shared/components/Button/Button";
 export const EditAdmin = () => {
   const { data: session } = useSession();
   const router = useRouter();

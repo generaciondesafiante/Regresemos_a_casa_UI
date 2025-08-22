@@ -1,9 +1,9 @@
 "use client";
 import { FC, useState, useEffect } from "react";
-import { useSession } from "next-auth/react";
-import { Button, Input } from "../../../atoms";
 import { PasswordValidation } from "../RegisterCharacterValidatePassword/RegisterCharacterValidatePassword";
 import styles from "./RegisterFormPassword.module.css";
+import { Input } from "@/shared/components/Input/Input";
+import Button from "@/shared/components/Button/Button";
 
 interface RegisterFormPasswordProps {
   setPassword: React.Dispatch<React.SetStateAction<string>>;
@@ -78,7 +78,7 @@ export const RegisterFormPassword: FC<RegisterFormPasswordProps> = ({
           type="password"
           placeholder=" "
           label={"Nueva contraseña"}
-          isRequire={true}
+          required={true}
           labelColor={labelColor}
           inputColor={inputColor}
           buttonColor={buttonColor}
@@ -93,7 +93,7 @@ export const RegisterFormPassword: FC<RegisterFormPasswordProps> = ({
           type="password"
           placeholder=" "
           label={"Confirma nueva contraseña"}
-          isRequire={true}
+          required={true}
           labelColor={labelColor}
           inputColor={inputColor}
           buttonColor={buttonColor}

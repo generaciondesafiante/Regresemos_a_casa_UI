@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Button, Input } from "../../atoms";
 import styles from "./AddAdmin.module.css";
 import AddCircleIcon from "../../atoms/icons/adminPanel/AddCircleIcon";
 import { useRouter } from "next/navigation";
@@ -11,6 +10,8 @@ import { toast } from "react-toastify";
 import { useAppDispatch } from "../../../store/store";
 import { fetchAdmins } from "../../../store/slices/allAdminsSlice";
 import ConditionalRenderer from "../../../feature/BlockedComponentsPublicsFeatureFlags/conditionalRenderComponentsPublics";
+import { Input } from "@/shared/components/Input/Input";
+import Button from "@/shared/components/Button/Button";
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -99,7 +100,7 @@ export const AddAdmin = () => {
           value={adminEmail}
           onChange={handleEmailChange}
           label={"Correo electronico"}
-          isRequire={true}
+          required={true}
           labelColor={colorInput}
           inputColor={colorInput}
           buttonColor={colorInput}

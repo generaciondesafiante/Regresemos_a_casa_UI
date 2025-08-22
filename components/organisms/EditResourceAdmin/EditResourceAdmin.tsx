@@ -1,8 +1,9 @@
 import React from "react";
-import { Button, Input } from "../../atoms";
+
 import styles from "./EditResourceAdmin.module.css";
 import AddCircleIcon from "../../atoms/icons/adminPanel/AddCircleIcon";
-
+import { Input } from "@/shared/components/Input/Input";
+import Button from "@/shared/components/Button/Button";
 export const EditResourceAdmin = () => {
   return (
     <main>
@@ -10,9 +11,8 @@ export const EditResourceAdmin = () => {
       <form className={styles.form}>
         <Input
           label="Título"
-       
           type="text"
-          isRequire={true}
+          required={true}
           placeholder=""
           labelColor="var(--white)"
           inputColor="var(--white)"
@@ -20,18 +20,15 @@ export const EditResourceAdmin = () => {
         />
         <Input
           label="Descripción"
-       
           type="textArea"
-          isRequire={true}
+          required={true}
           placeholder=""
           labelColor="var(--white)"
           inputColor="var(--white)"
           borderColor={"var(--turquoise)"}
         />
         <div className={styles["container__input"]}>
-          <select
-            className={styles.inputOptions}
-          >
+          <select className={styles.inputOptions}>
             <option
               value="tipo de recurso"
               className={styles["input__option__select"]}
@@ -57,9 +54,7 @@ export const EditResourceAdmin = () => {
         </div>
 
         <div className={styles["container__input"]}>
-          <select
-            className={styles.inputOptions}
-          >
+          <select className={styles.inputOptions}>
             <option value="public" className={styles["input__option__select"]}>
               Público
             </option>
@@ -70,9 +65,7 @@ export const EditResourceAdmin = () => {
         </div>
 
         <div className={styles["container__input--select"]}>
-          <Button
-            className={styles["button__file--input"]}
-          >
+          <Button className={styles["button__file--input"]}>
             <label className={styles["label-button__file--input"]}>
               Selecciona tu recurso
             </label>
@@ -83,14 +76,11 @@ export const EditResourceAdmin = () => {
               onClick={(e) => e.stopPropagation()}
             />
           </Button>
-            <span className={styles["name__file--select"]}>
-            </span>
+          <span className={styles["name__file--select"]}></span>
         </div>
 
         <div className={styles["container__input--select"]}>
-          <Button
-            className={styles["button__file--input"]}
-          >
+          <Button className={styles["button__file--input"]}>
             <label className={styles["label-button__file--input"]}>
               Seleccionar miniatura
             </label>
@@ -101,12 +91,12 @@ export const EditResourceAdmin = () => {
               onClick={(e) => e.stopPropagation()}
             />
           </Button>
-            <div className={styles["thumbnail-preview"]}>
-              <img
-                alt="Vista previa de la miniatura"
-                className={styles["thumbnail-image"]}
-              />
-            </div>
+          <div className={styles["thumbnail-preview"]}>
+            <img
+              alt="Vista previa de la miniatura"
+              className={styles["thumbnail-image"]}
+            />
+          </div>
         </div>
 
         <div className={styles["container__buttons--actions"]}>
@@ -114,7 +104,6 @@ export const EditResourceAdmin = () => {
           <Button type="submit">
             Guardar
             <AddCircleIcon className={styles["editResource__addIcon"]} />
-
           </Button>
         </div>
       </form>

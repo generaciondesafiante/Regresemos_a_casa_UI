@@ -1,7 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
-import { Button, Input } from "../../atoms";
 import { useAppDispatch, useAppSelector } from "../../../store/store";
 import { useState, useEffect } from "react";
 import { updateCourse } from "../../../services/courses/updateCourse";
@@ -14,6 +13,8 @@ import AddCircleIcon from "../../atoms/icons/adminPanel/AddCircleIcon";
 import DeleteIcon from "../../atoms/icons/deleteIcon/DeleteIcon";
 import { LoadingTemplate } from "../../templates";
 import { showNotification } from "../../../store/slices/notificationSlice ";
+import { Input } from "@/shared/components/Input/Input";
+import Button from "@/shared/components/Button/Button";
 
 export const EditCourseTopicManage = () => {
   const router = useRouter();

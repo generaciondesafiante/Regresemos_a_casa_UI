@@ -4,12 +4,15 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 import { RegisterFormPassword } from "../Register/RegisterFormPassword/RegisterFormPassword";
-import { ArrowLeftIcon, Button, Input } from "../../atoms";
+import { ArrowLeftIcon } from "../../atoms";
 import styles from "./ChangePasswordUser.module.css";
 
 import { useAppSelector } from "../../../store/store";
 import { changePassword } from "../../../services/user/changePassword";
 import { PasswordValidation } from "../../../services/user/passwordValidation";
+import { Input } from "@/shared/components/Input/Input";
+import Button from "@/shared/components/Button/Button";
+
 export const ChangePasswordUser = () => {
   const router = useRouter();
   const [password, setPassword] = useState("");
@@ -81,7 +84,6 @@ export const ChangePasswordUser = () => {
             "La contraseña actual y la contraseña nueva deben ser diferentes",
             "error"
           );
-
         } else {
           return true;
         }
@@ -147,7 +149,7 @@ export const ChangePasswordUser = () => {
           value={currentPassword}
           onChange={handleCurrentPasswordChange}
           label={"Contraseña actual"}
-          isRequire={true}
+          required={true}
           labelColor={myLabelColor}
           inputColor={myInputColor}
           buttonColor={myButtonColor}

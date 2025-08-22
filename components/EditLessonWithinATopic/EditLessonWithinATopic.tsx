@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import import  Button  from "@/shared/components/Button/Button"; from "../atoms";
+import Button from "@/shared/components/Button/Button";
 import styles from "./EditLessonWithinATopic.module.css";
 import AdminPencilIcon from "../atoms/icons/adminPanel/AdminPencilIcon";
 import { AnimatePresence, motion } from "framer-motion";

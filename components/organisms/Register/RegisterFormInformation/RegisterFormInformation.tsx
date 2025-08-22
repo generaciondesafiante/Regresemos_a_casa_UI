@@ -1,6 +1,6 @@
 "use client";
 import { FC, useEffect } from "react";
-import { Input } from "../../../atoms";
+import { Input } from "@/shared/components/Input/Input";
 interface RegisterFormInformationProps {
   onInputChange: () => void;
   setName: React.Dispatch<React.SetStateAction<string>>;
@@ -48,7 +48,7 @@ export const RegisterFormInformation: FC<RegisterFormInformationProps> = ({
         type="text"
         placeholder=" "
         label={"Nombres"}
-        isRequire={true}
+        required={true}
         inputColor="var(--white)"
         borderColor="var(--turquoise)"
         labelColor="var(--white)"
@@ -66,7 +66,7 @@ export const RegisterFormInformation: FC<RegisterFormInformationProps> = ({
         type="text"
         placeholder=" "
         label={"Apellidos"}
-        isRequire={true}
+        required={true}
         inputColor="var(--white)"
         borderColor="var(--turquoise)"
         labelColor="var(--white)"
@@ -83,7 +83,7 @@ export const RegisterFormInformation: FC<RegisterFormInformationProps> = ({
         type="text"
         placeholder=" "
         label={"País"}
-        isRequire={true}
+        required={true}
         inputColor="var(--white)"
         borderColor="var(--turquoise)"
         labelColor="var(--white)"
@@ -100,7 +100,7 @@ export const RegisterFormInformation: FC<RegisterFormInformationProps> = ({
         type="text"
         placeholder=" "
         label={"Ciudad"}
-        isRequire={true}
+        required={true}
         inputColor="var(--white)"
         borderColor="var(--turquoise)"
         labelColor="var(--white)"
@@ -114,7 +114,7 @@ export const RegisterFormInformation: FC<RegisterFormInformationProps> = ({
         type="number"
         placeholder=" "
         label={"Teléfono (opcional)"}
-        isRequire={false}
+        required={false}
         inputColor="var(--white)"
         borderColor="var(--turquoise)"
         labelColor="var(--white)"
@@ -131,7 +131,7 @@ export const RegisterFormInformation: FC<RegisterFormInformationProps> = ({
         type="email"
         placeholder=" "
         label={"Correo electrónico"}
-        isRequire={true}
+        required={true}
         inputColor="var(--white)"
         borderColor="var(--turquoise)"
         labelColor="var(--white)"

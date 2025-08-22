@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import { Button, Input } from "../../atoms";
 import { useRouter } from "next/navigation";
 import AddCircleIcon from "../../atoms/icons/adminPanel/AddCircleIcon";
 import DeleteIcon from "../../atoms/icons/deleteIcon/DeleteIcon";
@@ -13,6 +12,8 @@ import { deleteTopicWithinCourse } from "../../../services/courses/topicOnCourse
 import { allTopicWithinACourse } from "../../../store/slices/allTopicwithinCourseSlice";
 import { selectTopic } from "../../../store/slices/topicsSlice";
 import { showNotification } from "../../../store/slices/notificationSlice ";
+import { Input } from "@/shared/components/Input/Input";
+import Button from "@/shared/components/Button/Button";
 
 export const EditTopicWithinCourseManage = () => {
   const [value, setValue] = useState("");

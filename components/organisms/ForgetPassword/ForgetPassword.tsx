@@ -2,9 +2,10 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
-import { Button, Input } from "../../atoms";
 import styles from "./ForgetPassword.module.css";
 import { fetchValidateEamilResetPassword } from "../../../services/user/validateEmail-resetPassword";
+import { Input } from "@/shared/components/Input/Input";
+import Button from "@/shared/components/Button/Button";
 
 export const ForgetPassword = () => {
   const router = useRouter();
@@ -69,7 +70,7 @@ export const ForgetPassword = () => {
         placeholder=" "
         onChange={handleEmailChange}
         label={"Correo electrónico"}
-        isRequire={true}
+        required={true}
         borderColor="var(--turquoise)"
         inputColor="var(--white)"
       />
