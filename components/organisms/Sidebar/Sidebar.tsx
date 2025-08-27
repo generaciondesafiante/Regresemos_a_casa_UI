@@ -20,10 +20,9 @@ export const Sidebar = () => {
   const pathName = usePathname();
   const router = useRouter();
 
-  const userInfo = localStorage.getItem("userInfo")
-    ? JSON.parse(localStorage.getItem("userInfo") as string)
-    : null;
-  const isAdmin = userInfo?.admin;
+  
+  // console.log(session?.user.admin);
+  const isAdmin = session?.user.admin;
 
   const allLinks = [
     {

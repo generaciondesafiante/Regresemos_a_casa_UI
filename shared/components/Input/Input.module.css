@@ -1,9 +1,7 @@
-.input-container_inputLabel {
+.input-wrapper {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  position: relative;
-  gap: 0.5rem;
 }
 
 .password-toggle_button {
@@ -36,7 +34,7 @@
 }
 
 .input-input {
-  width: 18rem;
+  width: 100%;
   padding: 0.6rem;
   border: none;
   border-radius: var(--borderRadius);
@@ -70,27 +68,75 @@
   width: 100%;
 }
 
-@media (width >=48rem) {
+.input-fieldContainer {
+  position: relative;
+  width: 100%;
+  /* min-width: 18rem; */
+}
+
+.input-input {
+  width: 100%;
+  padding: 0.6rem 2.5rem 0.6rem 0.6rem; /* padding right para ícono */
+  border: none;
+  border-radius: var(--borderRadius);
+  outline: none;
+  background-color: transparent;
+  font-family: var(--primaryFont);
+  font-size: var(--fontSize-paragraph_mobile);
+  color: var(--white);
+  border: var(--border) var(--white);
+}
+
+.input-label {
+  position: absolute;
+  top: -0.2rem;
+  left: 0.6rem;
+  pointer-events: none;
+  color: var(--white);
+  transition: var(--transition);
+  font-size: var(--fontSize-paragraph_mobile);
+}
+
+.input-input:not(:placeholder-shown) + .input-label,
+.input-input:focus + .input-label {
+  transform: translateY(-1.8rem);
+  font-size: var(--fontSize-subtitles_mobile);
+  color: var(--white);
+}
+
+.password-toggle_button {
+  position: absolute;
+  top: 50%;
+  right: 0.6rem;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+}
+
+.input-error {
+  margin-top: 0.4rem;
+  font-size: 0.875rem;
+  color: var(--red);
+}
+
+@media (width >= 48rem) {
   .input-input {
-    width: 20rem;
+    font-size: var(--fontSize-paragraph_tablet);
   }
 }
 
-@media (width >=64rem) {
+@media (width >= 64rem) {
   .input-label {
-    font-size: var(--fontSize-paragraph_laptop);
-  }
-
-  .input-input {
-    width: 28rem;
     font-size: var(--fontSize-paragraph_laptop);
   }
 
   .input-input:focus + .input-label {
     font-size: var(--fontSize-trasitionLabel_laptop);
-  }
-
-  .input-input:not(:placeholder-shown) + .input-label {
-    transform: translateY(-2.1rem);
   }
 }

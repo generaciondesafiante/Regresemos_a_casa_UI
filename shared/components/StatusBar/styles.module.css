@@ -1,0 +1,17 @@
+.status--active {
+  padding: 0.3rem 0.8rem;
+  border-radius: 1rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--greenDesafiante);
+  background-color: rgba(0, 255, 0, 0.1);
+}
+
+.status--inactive {
+  padding: 0.3rem 0.8rem;
+  border-radius: 1rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--red);
+  background-color: rgba(255, 0, 0, 0.1);
+}

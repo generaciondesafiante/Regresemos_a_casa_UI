@@ -33,7 +33,56 @@
   box-sizing: border-box;
   animation: rotation 1s linear infinite;
 }
+/* Colores base por variante */
+.variant-default {
+  background-color: var(--turquoise);
+  color: white;
+}
 
+.variant-white {
+  background-color: var(--white);
+  color: var(--darkBlue);
+}
+
+.variant-default:hover:not(:disabled) {
+  background-color: transparent;
+  border: 1px solid var(--turquoise);
+  color: var(--turquoise);
+}
+
+.variant-success {
+  background-color: var(--greenDesafiante);
+  color: white;
+}
+
+.variant-success:hover {
+  background-color: transparent;
+  border: 1px solid var(--greenDesafiante);
+  color: var(--greenDesafiante);
+}
+
+.variant-danger {
+  background-color: var(--red);
+  color: var(--white);
+}
+
+.variant-danger:hover {
+  background-color: transparent;
+  border: 1px solid var(--red);
+  color: var(--red);
+}
+
+.variant-outlineWhite {
+  background-color: transparent;
+  border: 1px solid var(--white);
+  color: var(--white);
+}
+
+.variant-outlineWhite:hover {
+  background-color: var(--turquoise);
+  border: 1px solid var(--turquoise);
+  color: var(--white);
+}
 @keyframes rotation {
   0% {
     transform: rotate(0deg);

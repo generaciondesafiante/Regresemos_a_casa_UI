@@ -1,47 +1,31 @@
+// CreateCourseAdminPanel.tsx
 "use client";
-import { useEffect, useState } from "react";
-import { useParams, useRouter } from "next/navigation";
+
+import { useEffect } from "react";
+import { useParams } from "next/navigation";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { Input } from "@/components/atoms";
 import Button from "@/shared/components/Button/Button";
 import { Select } from "@/shared/components/Select";
-import { Divider } from "@/shared/components/Divider";
-import { Alert } from "@/shared/components/ModalAlerts";
 
 import { schema, FormData } from "./schema";
 
 import styles from "./styles.module.css";
 import Text from "@/shared/components/Text";
-import { useSession } from "next-auth/react";
+import { AlertModal } from "@/shared/components/ModalAlerts";
 import { allCoursesTableService } from "@/shared/services/admin/courses/allCourses";
+import { useSubmitCourse } from "../hooks/useSubmitManagementCourse";
 import { TypeOfRouteCourse } from "@/types/admin/courses/createCourse-type";
 
 const options = [
-  { value: "strict", label: "Ruta estricta" },
-  { value: "flexible", label: "Ruta flexible" },
+  { value: TypeOfRouteCourse.MANDATORY, label: "Ruta estricta" },
+  { value: TypeOfRouteCourse.FLEXIBLE, label: "Ruta flexible" },
 ];
-
-type AlertState = {
-  type: "success" | "error" | "warning";
-  title: string;
-  subtitle: string;
-  primaryButton?: { text: string; onClick: () => void };
-  secondaryButton?: { text: string; onClick: () => void };
-};
 
 export const CreateCourseAdminPanel = () => {
   const { idCourse } = useParams();
-  const [showAlert, setShowAlert] = useState(false);
-  const [alert, setAlert] = useState<AlertState>({
-    type: "success",
-    title: "",
-    subtitle: "",
-  });
-  const router = useRouter();
-  const { data: session } = useSession();
-  const idUser = session?.user?.uid || null;
 
   const {
     control,
@@ -53,76 +37,32 @@ export const CreateCourseAdminPanel = () => {
     resolver: zodResolver(schema),
   });
 
+  const { onSubmit, deleteCourse, showAlert, alert, closeAlert } =
+    useSubmitCourse({
+      idCourse: Array.isArray(idCourse) ? idCourse[0] : idCourse || undefined,
+    });
+
   useEffect(() => {
     if (idCourse) {
-      const GetCourse = async () => {
-        const response = await allCoursesTableService.getCourseById(
-          idCourse as string
-        );
+      const fetchCourse = async () => {
+        const courseId = Array.isArray(idCourse) ? idCourse[0] : idCourse;
+        const response = await allCoursesTableService.getCourseById(courseId);
         reset({
           nameCourse: response.nameCourse,
           titleCourse: response.titleCourse,
-          typeOfRoute: response.typeOfRoute,
+          typeOfRoute: response.typeOfRoute as TypeOfRouteCourse,
         });
-        console.log("Curso obtenido:", response);
       };
-      GetCourse();
+      fetchCourse();
     }
-  }, [idCourse]);
-
-  const handleShowAlert = (
-    type: AlertState["type"],
-    title: string,
-    subtitle: string
-  ) => {
-    setAlert({
-      type,
-      title,
-      subtitle,
-      primaryButton: {
-        text: "Aceptar",
-        onClick: () => router.push("/dashboard/adminPanel/courses"),
-      },
-    });
-    setShowAlert(true);
-  };
-
-  const onSubmit = async (data: FormData) => {
-    try {
-      const payload = {
-        ...data,
-        typeOfRoute: data.typeOfRoute as TypeOfRouteCourse,
-      };
-
-      const isUpdating = !!idCourse;
-
-      const response = isUpdating
-        ? await allCoursesTableService.updateCourse(idCourse as string, payload)
-        : await allCoursesTableService.createCourse(payload, idUser);
-
-      if (response) {
-        const successTitle = isUpdating
-          ? "Curso actualizado exitosamente"
-          : "Curso creado exitosamente";
-        const successSubtitle =
-          "Este curso se verá reflejado en la plataforma automáticamente.";
-        handleShowAlert("success", successTitle, successSubtitle);
-      }
-    } catch (error) {
-      const isUpdating = !!idCourse;
-      const errorTitle = isUpdating
-        ? "Error al actualizar el curso"
-        : "Error al crear el curso";
-      const errorSubtitle = "Por favor, inténtalo de nuevo más tarde.";
-      handleShowAlert("error", errorTitle, errorSubtitle);
-    }
-  };
+  }, [idCourse, reset]);
 
   return (
     <main className={styles["createCourse"]}>
       <Text variant="h2" color="white">
         {idCourse ? "Actualizar curso" : "Crear curso"}
       </Text>
+
       <form
         className={styles["createCourse__form"]}
         onSubmit={handleSubmit(onSubmit)}
@@ -163,48 +103,36 @@ export const CreateCourseAdminPanel = () => {
             )}
           />
         </div>
-        <div className={styles["createCourse__content--button"]}>
+
+        <Button type="submit" icon="LuPlus" iconPosition="right" sizeIcon={24}>
+          {idCourse ? "Actualizar" : "Crear"}
+        </Button>
+
+        {idCourse && (
           <Button
-            onClick={() => {
-              router.back();
-            }}
-            className={styles["button__cancel"]}
-          >
-            Cancelar
-          </Button>
-          <Button
-            type="submit"
-            icon="LuPlus"
+            type="button"
+            className={styles["button__submit--delete"]}
+            icon="LuTrash"
             iconPosition="right"
             sizeIcon={24}
+            variant="danger"
+            onClick={deleteCourse}
           >
-            {idCourse ? "Actualizar" : "Crear"}
+            Eliminar curso
           </Button>
-        </div>
-        {idCourse && (
-          <div className={styles["createCourse__delete"]}>
-            <Divider />
-            <Button
-              type="submit"
-              className={styles["button__submit--delete"]}
-              icon="LuTrash"
-              iconPosition="right"
-              sizeIcon={24}
-            >
-              Eliminar curso
-            </Button>
-          </div>
         )}
       </form>
-      {showAlert && (
-        <Alert
-          type={alert.type}
-          title={alert.title}
-          subtitle={alert.subtitle}
-          primaryButton={alert.primaryButton}
-          secondaryButton={alert.secondaryButton}
-        />
-      )}
+
+      <AlertModal
+        isOpen={showAlert}
+        onClose={closeAlert}
+        type={alert.type}
+        title={alert.title}
+        subtitle={alert.subtitle}
+        primaryButton={alert.primaryButton}
+      />
     </main>
   );
 };
+
+export default CreateCourseAdminPanel;

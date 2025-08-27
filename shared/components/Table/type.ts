@@ -17,7 +17,9 @@ export interface TableProps<TData> {
   onPageChange: (page: number) => void;
   onItemsPerPageChange?: (itemsPerPage: number) => void;
   title: string;
-  navigateRoute: string;
+  subTitle?: string;
+  navigateRouteButton: string;
+  navigateRouteHeader?: string;
   onSearchChange?: (value: string) => void;
   placeHolderSearch?: string;
 }

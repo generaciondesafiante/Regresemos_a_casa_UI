@@ -1,6 +1,8 @@
 import React from "react";
 import { IconType } from "react-icons";
 import { CiWarning } from "react-icons/ci";
+import { BsGearFill } from "react-icons/bs";
+import { TfiReload } from "react-icons/tfi";
 import {
   LuPencil,
   LuEye,
@@ -22,6 +24,7 @@ import {
   MdAdd,
   MdChevronLeft,
   MdChevronRight,
+  MdOutlineKeyboardBackspace
 } from "react-icons/md";
 
 // Mapa de íconos permitidos
@@ -43,7 +46,10 @@ const iconMap: Record<string, IconType> = {
   MdAdd,
   MdChevronLeft,
   MdChevronRight,
+  MdOutlineKeyboardBackspace,
   CiWarning,
+  BsGearFill,
+  TfiReload
 };
 
 type IconProps = {

@@ -1,11 +1,10 @@
-import React from "react";
-import { Menu } from "../../../../components/molecules";
+import { Menu } from "@/shared/components/Menu/Menu";
+import AuthLayout from "@/shared/Layouts/auth";
 
 const layoutePublicRoutes = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
-      <Menu />
-      {children}
+      <AuthLayout>{children}</AuthLayout>
     </>
   );
 };

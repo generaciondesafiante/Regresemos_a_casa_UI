@@ -14,6 +14,8 @@ interface ButtonProps {
   loading?: boolean;
   onClick?: (event: any) => void;
   style?: React.CSSProperties;
+  variant?: "default" | "success" | "danger" | "outlineWhite" | "white";
+  width?: string;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -27,15 +29,22 @@ const Button: React.FC<ButtonProps> = ({
   disabled,
   loading = false,
   onClick,
+  variant = "default",
+  width,
+  style,
 }) => {
   return (
     <button
-      className={`${styles["button-component"]} ${className} ${type} ${
-        loading ? styles.loading : ""
-      }`}
+      className={`
+        ${styles["button-component"]} 
+        ${styles[`variant-${variant}`]} 
+        ${loading ? styles.loading : ""} 
+        ${className}
+      `}
       disabled={disabled || loading}
       type={type}
       onClick={onClick}
+      style={{ ...style, width: width ?? "100%" }}
     >
       {loading ? (
         <span className={styles.loader}></span>

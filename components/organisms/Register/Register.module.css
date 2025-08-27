@@ -1,4 +1,4 @@
-.register-form {
+/* .register-form {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -10,7 +10,7 @@
   background-position: center;
   background-repeat: no-repeat;
   padding-bottom: 2rem;
-}
+} */
 
 .register-section {
   display: flex;

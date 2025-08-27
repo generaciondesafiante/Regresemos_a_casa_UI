@@ -69,42 +69,41 @@ export const Input: React.FC<InputProps> = ({
   };
 
   return (
-    <div
-      className={`${styles["input-container_inputLabel"]} ${className || ""}`}
-    >
-      <input
-        id={id}
-        type={inputType}
-        placeholder={placeholder}
-        className={styles["input-input"]}
-        style={inputStyle}
-        value={value}
-        {...register}
-        autoComplete="off"
-        autoCorrect="off"
-        required={required}
-      />
+    <div className={`${styles["input-wrapper"]} ${className || ""}`}>
+      <div className={styles["input-fieldContainer"]}>
+        <input
+          id={id}
+          type={inputType}
+          placeholder={placeholder}
+          className={styles["input-input"]}
+          style={inputStyle}
+          value={value}
+          {...register}
+          autoComplete="off"
+          autoCorrect="off"
+          required={required}
+        />
 
-      <label
-        htmlFor={htmlForm}
-        className={`${styles["input-label"]}`}
-        style={labelStyle}
-      >
-        {label}
-      </label>
-
-      {showToggle && (
-        <button
-          type="button"
-          className={styles["password-toggle_button"]}
-          onClick={togglePasswordVisibility}
-          style={buttonStyle}
+        <label
+          htmlFor={id}
+          className={styles["input-label"]}
+          style={labelStyle}
         >
-          {isPasswordVisible ? <RemoveRedEyeIcon /> : <VisibilityOffIcon />}
-        </button>
-      )}
+          {label}
+        </label>
 
-      {/* Mostrar error si lo hay */}
+        {showToggle && (
+          <button
+            type="button"
+            className={styles["password-toggle_button"]}
+            onClick={togglePasswordVisibility}
+            style={buttonStyle}
+          >
+            {isPasswordVisible ? <RemoveRedEyeIcon /> : <VisibilityOffIcon />}
+          </button>
+        )}
+      </div>
+
       {error && (
         <Text color="red" align="left" className={styles["input-error"]}>
           {error.message}

@@ -2,54 +2,75 @@
 import { useEffect, useState } from "react";
 
 import Table from "@/shared/components/Table";
-import { allCoursesTableService } from "@/shared/services/admin/courses/allCourses";
 
 import { Course } from "@/types/admin/courses/allCourses-type";
-import { columns } from "./columsTableCourse";
+import { courseColumns } from "./columsTableCourse";
 import styles from "./styles.module.css";
+import { AlertModal, AlertType } from "@/shared/components/ModalAlerts";
+import { useFetchCourses } from "./hooks/useFetchCourses";
+
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
+import { useUpdateCourseStatus } from "./hooks/useUpdateStatusCourse";
 
 export const CourseTableAdmin = () => {
-  const [courses, setCourses] = useState<Course[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [search, setSearch] = useState("");
-  const [pagination, setPagination] = useState({
-    totalItems: 0,
-    totalPages: 1,
-    currentPage: 1,
-    hasPreviousPage: false,
-    hasNextPage: false,
+  const {
+    refetch,
+    courses,
+    loading,
+    pagination,
+    setCurrentPage,
+    search,
+    setSearch,
+  } = useFetchCourses();
+
+  const { updateStatus } = useUpdateCourseStatus({
+    refetch,
+    search,
+    currentPage: pagination.currentPage,
+    onSuccess: () => {
+      setModalOpen(false);
+      setSelectedCourse(null);
+    },
+    onError: (error) => {
+      console.error("Error en updateStatus:", error);
+    },
   });
 
-  const fetchCourse = async () => {
-    setLoading(true);
-    try {
-      const data = await allCoursesTableService.getAllCoursesTable({
-        limit: 10,
-        search,
-        page: pagination.currentPage,
-      });
-
-      setCourses(data.courses);
-      setPagination({
-        totalItems: data.pagination.totalCount,
-        totalPages: data.pagination.totalPages,
-        currentPage: data.pagination.currentPage,
-        hasPreviousPage: data.pagination.hasPreviousPage,
-        hasNextPage: data.pagination.hasNextPage,
-      });
-    } catch (error) {
-      console.error("Error al cargar usuarios:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const [alert, setAlert] = useState({
+    type: "" as AlertType,
+    title: "",
+    subtitle: "",
+  });
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
 
   useEffect(() => {
-    fetchCourse();
+    refetch({ search, page: pagination.currentPage });
   }, [search, pagination.currentPage]);
 
   const handlePageChange = (page: number) => {
-    setPagination({ ...pagination, currentPage: page });
+    setCurrentPage(page);
+  };
+
+  const handleOpenModal = (course: Course) => {
+    setSelectedCourse(course);
+    setModalOpen(true);
+    setAlert({
+      type: "warning",
+      title: course.isActive ? "Desactivar" : "Activar",
+      subtitle: `¿Estás seguro de que deseas ${
+        course.isActive ? "desactivar" : "activar"
+      } el curso "${course.nameCourse}"?`,
+    });
+  };
+
+  const columns = courseColumns({ onReloadClick: handleOpenModal });
+
+  const handleUpdateStatusCourse = () => {
+    if (selectedCourse) {
+      updateStatus(selectedCourse);
+    }
   };
 
   return (
@@ -57,7 +78,7 @@ export const CourseTableAdmin = () => {
       <Table
         labelButton="Agregar curso"
         title="Cursos"
-        data={courses}
+        data={courses ?? []}
         columns={columns}
         searchable
         filterable
@@ -69,9 +90,32 @@ export const CourseTableAdmin = () => {
         hasPreviousPage={pagination.hasPreviousPage}
         hasNextPage={pagination.hasNextPage}
         onPageChange={handlePageChange}
-        navigateRoute={"/dashboard/adminPanel/courses/createCourse"}
+        navigateRouteButton={"/dashboard/adminPanel/courses/createCourse"}
         onSearchChange={setSearch}
         placeHolderSearch="Buscar por nombre del curso o id del curso"
+      />
+      <AlertModal
+        isOpen={modalOpen}
+        type="warning"
+        title={alert.title}
+        subtitle={alert.subtitle}
+        primaryButton={{
+          text: selectedCourse?.isActive ? "Desactivar curso" : "Activar curso",
+          onClick: () => {
+            handleUpdateStatusCourse();
+          },
+        }}
+        onClose={() => setModalOpen(false)}
+      />
+
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        closeOnClick
+        pauseOnHover
+        draggable
+        theme="light"
       />
     </main>
   );

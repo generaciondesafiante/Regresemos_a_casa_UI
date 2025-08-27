@@ -7,8 +7,10 @@ import Icon from "../Icons";
 
 import styles from "./styles.module.css";
 
+export type AlertType = "success" | "error" | "warning";
+
 interface AlertProps {
-  type: "success" | "error" | "warning";
+  type: AlertType;
   title: string;
   subtitle: string;
   icon?: React.ReactNode;
@@ -16,10 +18,8 @@ interface AlertProps {
     text: string;
     onClick: () => void;
   };
-  secondaryButton?: {
-    text: string;
-    onClick: () => void;
-  };
+  isOpen: boolean;
+  onClose: () => void;
 }
 
 const getDefaultIcon = (type: AlertProps["type"]) => {
@@ -59,45 +59,56 @@ const getDefaultIcon = (type: AlertProps["type"]) => {
   }
 };
 
-export const Alert: React.FC<AlertProps> = ({
+export const AlertModal: React.FC<AlertProps> = ({
   type,
   title,
   subtitle,
   icon,
   primaryButton,
-  secondaryButton,
+  isOpen,
+  onClose,
 }) => {
+  if (!isOpen) return null;
+  const handleClose = () => {
+    console.log("Modal cerrado");
+    onClose();
+  };
   return (
-    <div className={styles.overlay}>
-      <div className={`${styles.alert} ${styles[type]}`}>
-        <div className={styles.icon}>{icon || getDefaultIcon(type)}</div>
-        <div className={styles.content}>
-          <Text variant="h3" color="darkBlue" bold>
-            {title}
-          </Text>
-          <Text variant="body" color="darkBlue">
-            {subtitle}
-          </Text>
-          <div className={styles.actions}>
-            {secondaryButton && (
-              <Button
-                className={styles.secondary}
-                onClick={secondaryButton.onClick}
-              >
-                {secondaryButton.text}
-              </Button>
-            )}
-            {primaryButton && (
-              <Button
-                className={styles.primary}
-                onClick={primaryButton.onClick}
-              >
-                {primaryButton.text}
-              </Button>
-            )}
+    <>
+      {isOpen && (
+        <div className={styles.overlay}>
+          <div className={`${styles.alert} ${styles[type]}`}>
+            <div className={styles.icon}>{icon || getDefaultIcon(type)}</div>
+            <div className={styles.content}>
+              <Text variant="h3" color="darkBlue" bold>
+                {title}
+              </Text>
+              <Text variant="body" color="darkBlue">
+                {subtitle}
+              </Text>
+              <div className={styles.actions}>
+                <Button
+                  className={styles.secondary}
+                  variant="danger"
+                  onClick={handleClose}
+                  width="auto"
+                >
+                  {"Cancelar"}
+                </Button>
+                {primaryButton && (
+                  <Button
+                    className={styles.primary}
+                    onClick={primaryButton.onClick}
+                    width="auto"
+                  >
+                    {primaryButton.text}
+                  </Button>
+                )}
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 };

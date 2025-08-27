@@ -85,6 +85,8 @@ export const AdminPanel = () => {
                 icon="LuPencil"
                 iconPosition="right"
                 onClick={() => navigateTo("/dashboard/adminPanel/editAdmin")}
+                variant="white"
+                width="auto"
               >
                 Editar
               </Button>
@@ -93,7 +95,7 @@ export const AdminPanel = () => {
         )}
         {/* Cursos */}
         {isLoading ? (
-           <SkeletonCard backgroundColor="var(--darkBlue)" />
+          <SkeletonCard backgroundColor="var(--darkBlue)" />
         ) : (
           <section
             className={styles["adminPanel__content--cards"]}
@@ -122,6 +124,8 @@ export const AdminPanel = () => {
                 icon="LuPencil"
                 iconPosition="right"
                 onClick={() => navigateTo("/dashboard/adminPanel/courses")}
+                variant="white"
+                width="auto"
               >
                 Editar
               </Button>
@@ -130,7 +134,7 @@ export const AdminPanel = () => {
         )}
         {/* Estudiantes */}
         {isLoading ? (
-         <SkeletonCard backgroundColor="var(--turquoise)" />
+          <SkeletonCard backgroundColor="var(--turquoise)" />
         ) : (
           <section
             className={styles["adminPanel__content--cards"]}
@@ -174,6 +178,8 @@ export const AdminPanel = () => {
                 icon="LuEye"
                 iconPosition="right"
                 onClick={() => navigateTo("/dashboard/adminPanel/resources")}
+                variant="white"
+                width="auto"
               >
                 Editar
               </Button>

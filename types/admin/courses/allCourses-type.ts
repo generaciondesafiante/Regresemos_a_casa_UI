@@ -1,11 +1,13 @@
 import { Pagination } from "@/types/tables/pagination";
+import { TypeOfRouteCourse } from "./createCourse-type";
 
 export interface Course {
   topics: string[];
   _id: string;
   nameCourse: string;
   titleCourse: string;
-  typeOfRoute: string;
+  typeOfRoute: TypeOfRouteCourse;
+  isActive?: boolean;
   __v: number;
   pagination: Pagination;
 }

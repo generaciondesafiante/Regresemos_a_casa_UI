@@ -64,7 +64,7 @@ export const Home = () => {
           priority
         />
         <h1 className={styles["home-title"]}>GENERACIÓN DESAFIANTE</h1>
-        <Button className={styles["home-button_action"]}>
+        <Button className={styles["home-button_action"]} width="21.875rem">
           <Link
             href={"/estudios/verso-por-verso"}
             className={styles["home-link-button_action"]}

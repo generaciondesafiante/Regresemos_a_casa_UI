@@ -1,0 +1,46 @@
+.authLayout {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+.left {
+  width: 100%;
+  /* flex: 1; */
+  display: flex;
+  flex-direction: column;
+  background-color: var(--darkBlue);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.right {
+  display: none;
+}
+
+.image {
+  /* width: 100%;
+  height: 100%; */
+  object-fit: cover;
+}
+
+@media (min-width: 64rem) {
+  .authLayout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: calc(100vh - 4.5rem);
+    margin-top: 4.5rem;
+    width: 100vw;
+  }
+  .right {
+    display: flex;
+    background-color: var(--yellow);
+    position: relative;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+}

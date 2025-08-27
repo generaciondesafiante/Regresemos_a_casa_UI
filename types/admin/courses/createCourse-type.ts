@@ -1,12 +1,13 @@
 export enum TypeOfRouteCourse {
   FLEXIBLE = "flexible",
-  MANDATORY = "estrict",
+  MANDATORY = "strict",
 }
 
 export interface FormDataCourseCreate {
-  nameCourse: string;
-  titleCourse: string;
-  typeOfRoute: TypeOfRouteCourse;
+  nameCourse?: string;
+  titleCourse?: string;
+  typeOfRoute?: TypeOfRouteCourse;
+  isActive?: boolean;
 }
 
 export interface responseDataCourseCreate extends FormDataCourseCreate {

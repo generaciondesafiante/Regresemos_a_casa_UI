@@ -8,7 +8,7 @@ export * from "./Favorites-template/FavoritesTemplate";
 export * from "./ForgetPassword-template/ForgetPasswordTemplate";
 export * from "./LearningPath-template/LearningPathTemplate";
 export * from "./Loading-template/LoadingTemplate";
-export * from "./Login-template/LoginTemplate";
+
 export * from "./Path-template/PathTemplate";
 export * from "./PDFView-template/PDFViewTemplate";
 export * from "./Profile-template/ProfileTemplate";

@@ -15,7 +15,7 @@ export * from "./LearningPathProgress/LearningPathProgress";
 export * from "./LearningPathTitle/LearningPathTitle";
 export * from "./LearningPathVideo/LearningPathVideo";
 export * from "./Loading/Loading";
-export * from "./Login/Login";
+
 export * from "./Modal/Modal";
 export * from "./Path/Path";
 export * from "./Profile/Profile";
@@ -29,4 +29,3 @@ export * from "./Sidebar/Sidebar";
 export * from "./SukatDavid/SukatDavid";
 export * from "./TaringStart/TaringStart";
 export * from "./PDFView/PDFView";
-

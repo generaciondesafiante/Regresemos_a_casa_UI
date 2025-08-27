@@ -1,8 +1,8 @@
+import { Login } from "@/feature/auth/Login/Login";
 import { FC } from "react";
-import { LoginTemplate } from "../../../../../components/templates";
 
 const LoginPage: FC = () => {
-  return <LoginTemplate />;
+  return <Login />;
 };
 
 export default LoginPage;

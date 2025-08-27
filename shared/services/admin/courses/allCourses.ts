@@ -5,8 +5,6 @@ import {
   responseDataCourseCreate,
 } from "@/types/admin/courses/createCourse-type";
 import { Params } from "@/types/tables/params";
-import { create } from "domain";
-import { get } from "http";
 
 export const allCoursesTableService = {
   async getAllCoursesTable(params: Params): Promise<CoursesResponse> {
@@ -54,9 +52,7 @@ export const allCoursesTableService = {
     }
   },
 
-  async getCourseById(
-    idCourse: string
-  ): Promise<responseDataCourseCreate> {
+  async getCourseById(idCourse: string): Promise<responseDataCourseCreate> {
     try {
       const response = await axiosInstance.get<responseDataCourseCreate>(
         `/course/${idCourse}`
@@ -65,5 +61,14 @@ export const allCoursesTableService = {
     } catch (error) {
       throw handleAxiosError(error);
     }
-  }
+  },
+
+  async deleteCourse(idCourse: string): Promise<void> {
+    try {
+     const response = await axiosInstance.delete(`/course/${idCourse}`);
+     return response.data;
+    } catch (error) {
+      throw handleAxiosError(error);
+    }
+  },
 };

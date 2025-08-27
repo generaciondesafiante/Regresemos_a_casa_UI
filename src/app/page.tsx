@@ -1,4 +1,5 @@
-import { Menu } from "../../components/molecules";
+;
+import { Menu } from "@/shared/components/Menu/Menu";
 import { Footer } from "../../components/molecules/Footer/Footer";
 import { Home } from "../../components/organisms/Home/Home";
 

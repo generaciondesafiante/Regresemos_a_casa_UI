@@ -16,8 +16,8 @@ import { Input } from "../Input/Input";
 import useDebounce from "@/shared/hooks/debounce";
 import { getPaginationButtons } from "./utils/paginationButtons";
 import { TableProps } from "./type";
-import styles from "./styles.module.css";
 import { useRouter } from "next/navigation";
+import styles from "./styles.module.css";
 
 const Table = <TData,>({
   data,
@@ -32,7 +32,9 @@ const Table = <TData,>({
   hasNextPage,
   onPageChange,
   title,
-  navigateRoute,
+  subTitle,
+  navigateRouteButton,
+  navigateRouteHeader,
   onSearchChange,
   placeHolderSearch = "Buscar...",
 }: TableProps<TData>) => {
@@ -69,20 +71,40 @@ const Table = <TData,>({
 
   return (
     <div className={styles.tableContainer}>
-      <Text variant="h1" color="white" align="center" bold>
-        {title}
-      </Text>
+      <section>
+        <div className={styles.contenHeader}>
+          <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
+            <Text variant="h1" color="white" align="center" bold>
+              {title}
+            </Text>
+            {navigateRouteHeader && (
+              <Icon
+                name="LuPencil"
+                color="white"
+                size={26}
+                className={styles.editIconHeader}
+                onClick={() => router.push(navigateRouteHeader)}
+              />
+            )}
+          </div>
+          <Text color="white" align="center" bold>
+            {subTitle}
+          </Text>
+        </div>
+      </section>
       {searchable && (
-        <div className={styles.searchBar}>
-          <Input
-            type="text"
-            placeholder={placeHolderSearch}
-            value={globalFilter}
-            onChange={(e) => setGlobalFilter(e.target.value)}
-            className={styles.searchInput}
-            borderColor="var(--turquoise)"
-            inputColor="var(--white)"
-          />
+        <section className={styles.searchBar}>
+          <div style={{ width: "500px" }}>
+            <Input
+              type="text"
+              placeholder={placeHolderSearch}
+              value={globalFilter}
+              onChange={(e) => setGlobalFilter(e.target.value)}
+              className={styles.searchInput}
+              borderColor="var(--turquoise)"
+              inputColor="var(--white)"
+            />
+          </div>
 
           {labelButton && (
             <Button
@@ -90,13 +112,15 @@ const Table = <TData,>({
               iconPosition="right"
               colorIcon="var(--darkBlue)"
               onClick={() => {
-                router.push(navigateRoute);
+                router.push(navigateRouteButton);
               }}
+              variant="white"
+              width="18.75rem"
             >
               {labelButton}
             </Button>
           )}
-        </div>
+        </section>
       )}
 
       {/* Tabla */}

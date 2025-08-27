@@ -1,10 +1,13 @@
+// schema.ts
 import { z } from "zod";
 
+// Usa el enum para generar el schema
+export const typeOfRouteEnum = z.enum(["strict", "flexible"]);
+
 export const schema = z.object({
-  nameCourse: z.string().min(2, "El nombre del curso es obligatorio").min(1),
-  titleCourse: z.string().min(2, "El título del curso es obligatorio").min(1),
-  typeOfRoute: z.string().min(2, "Selecciona una opción").min(1),
+  nameCourse: z.string().min(2, "El nombre del curso es obligatorio"),
+  titleCourse: z.string().min(2, "El título del curso es obligatorio"),
+  typeOfRoute: typeOfRouteEnum,
 });
 
-type FormData = z.infer<typeof schema>;
-export type { FormData };
+export type FormData = z.infer<typeof schema>;
