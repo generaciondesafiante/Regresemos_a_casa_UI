@@ -58,7 +58,7 @@ export const ResourcesTable = () => {
           setPage(1);
           setSearch(value);
         }}
-        navigateRouteButton="/dashboard/adminPanel/resources/createResource"
+        navigateRouteButton="/dashboard/adminPanel/resources/managementResource"
         placeHolderSearch="Buscar por nombre del recurso o tipo de recurso"
       />
       <AlertModal

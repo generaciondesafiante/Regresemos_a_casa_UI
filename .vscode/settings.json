@@ -1,3 +1,20 @@
 {
-    "ansible.python.interpreterPath": "c:\\Users\\Familia\\AppData\\Local\\Programs\\Python\\Python310\\python.exe"
+    "ansible.python.interpreterPath": "c:\\Users\\Familia\\AppData\\Local\\Programs\\Python\\Python310\\python.exe",
+    "workbench.colorCustomizations": {
+        "activityBar.activeBackground": "#00d300",
+        "activityBar.activeBorder": "#6060ff",
+        "activityBar.background": "#00d300",
+        "activityBar.foreground": "#e7e7e7",
+        "activityBar.inactiveForeground": "#e7e7e799",
+        "activityBarBadge.background": "#6060ff",
+        "activityBarBadge.foreground": "#e7e7e7",
+        "statusBar.background": "#00a000",
+        "statusBar.foreground": "#e7e7e7",
+        "statusBarItem.hoverBackground": "#00d300",
+        "titleBar.activeBackground": "#00a000",
+        "titleBar.activeForeground": "#e7e7e7",
+        "titleBar.inactiveBackground": "#00a00099",
+        "titleBar.inactiveForeground": "#e7e7e799"
+    },
+    "peacock.color": "#00a000"
 }

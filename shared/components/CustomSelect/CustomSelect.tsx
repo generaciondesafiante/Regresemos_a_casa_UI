@@ -1,5 +1,6 @@
 "use client";
 import styles from "./styles.module.css";
+import { UseFormRegisterReturn } from "react-hook-form";
 
 interface Option {
   value: string;
@@ -9,9 +10,10 @@ interface Option {
 interface CustomSelectProps {
   options: Option[];
   placeholder?: string;
-  onSelect: (value: string) => void;
+  onSelect?: (value: string) => void;
   className?: string;
   value?: string;
+  register?: UseFormRegisterReturn;
 }
 
 export const CustomSelect = ({
@@ -19,17 +21,27 @@ export const CustomSelect = ({
   placeholder = "Seleccionar...",
   onSelect,
   className = "",
-  value = "",
+  value,
+  register,
 }: CustomSelectProps) => {
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    onSelect(event.target.value);
+    if (onSelect) {
+      onSelect(event.target.value);
+    }
   };
+
+  // Si se usa register, no controlar el componente manualmente
+  const selectProps = register
+    ? { ...register }
+    : {
+        value: value || "",
+        onChange: handleChange,
+      };
 
   return (
     <select
       className={`${styles.customSelect} ${className}`}
-      value={value}
-      onChange={handleChange}
+      {...selectProps}
     >
       <option value="" disabled>
         {placeholder}
